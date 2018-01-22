@@ -18,25 +18,6 @@ function chaos_knight_chaos_bolt:OnSpellStart()
 		bDodgeable = true,
 	}
 	ProjectileManager:CreateTrackingProjectile( info )
-
-
-
-	local damage = {
-		victim = target,
-		attacker = self:GetCaster(),
-		damage = damage,
-		damage_type = DAMAGE_TYPE_MAGICAL,
-		ability = self
-	}
-	ApplyDamage( damage )
-
-	-- Add stun modifier
-	target:AddNewModifier(
-		self:GetCaster(),
-		self,
-		"modifier_ogre_magi_fireblast",
-		{ duration = stun_duration }
-	)
 end
 
 function chaos_knight_chaos_bolt:OnProjectileHit( hTarget, vLocation )
