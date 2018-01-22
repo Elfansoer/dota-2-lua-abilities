@@ -73,6 +73,7 @@
 			"bolt_damage"		"100 175 250 325"
 		}
 	}
+    
 }
 
 // Template Ability
