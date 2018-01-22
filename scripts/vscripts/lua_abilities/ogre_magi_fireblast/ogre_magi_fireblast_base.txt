@@ -1,0 +1,61 @@
+//=================================================================================================================
+// Ogre Magi: Fireblast
+//=================================================================================================================
+
+"ogre_magi_fireblast"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/ogre_magi_fireblast/ogre_magi_fireblast"
+	"AbilityTextureName"			"ogre_magi_fireblast"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"475"
+	"AbilityCastPoint"				"0.45"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"12"
+	"AbilityManaCost"				"75 85 95 105"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"stun_duration"		"1.5"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"multicast_delay"	"0.5"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"fireblast_damage"		"55 110 165 220"
+		}
+	}
+}
