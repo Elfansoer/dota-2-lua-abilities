@@ -64,28 +64,3 @@
 		}
 	}
 }
-
-// Template Ability
-"DOTA_Tooltip_ability_<ability_name>"
-	"Name"
-
-"DOTA_Tooltip_ability_<ability_name>_Description"
-	"Description, with %stat_value%"
-
-"DOTA_Tooltip_ability_<ability_name>_Lore"
-	"Role"
-
-"DOTA_Tooltip_ability_<ability_name>_Note<0-3>"
-	"Note # (When Alt is pressed)"
-
-"DOTA_Tooltip_ability_<ability_name>_<stats_value>"			"STAT NAME:"
-"DOTA_Tooltip_ability_<ability_name>_<stats_pct>"			"%PERCENT STAT NAME:"
-
-"DOTA_Tooltip_ability_<ability_name>_aghanim_description"
-	"Aghanim Description"
-
-"DOTA_Tooltip_ability_<ability_name>_<stats_scepter>"		"SCEPTER STAT NAME:"
-
-"DOTA_Tooltip_<modifier_name>"		"Modifier Name"
-"DOTA_Tooltip_<modifier_name>_Description"
-	"Description, with %dMODIFIER_PROPERTY_XX% flat and %dMODIFIER_PROPERTY_XX%%% percent"
