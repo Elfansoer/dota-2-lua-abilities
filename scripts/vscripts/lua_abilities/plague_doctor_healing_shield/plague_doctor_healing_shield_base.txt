@@ -1,0 +1,53 @@
+//=================================================================================================================
+// Plague Doctor: Healing Shield
+//=================================================================================================================
+
+"plague_doctor_healing_shield"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/plague_doctor_healing_shield/plague_doctor_healing_shield"
+	"AbilityTextureName"			"plague_doctor_healing_shield"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"2.0"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"stack_amplification_pct"	"10 15 20 25"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"stack_duration"			"10"
+		}
+		"03"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"stac_max"					"10"
+		}
+	}
+}
