@@ -18,13 +18,18 @@ end
 function modifier_plague_doctor_healing_shield:OnCreated( kv )
 	if IsServer() then
 		-- get references
-		
+		self.stack_duration = self:GetAbility():GetSpecialValueFor("stack_duration")
+		self.stack_max = self:GetAbility():GetSpecialValueFor("stack_max")
+
 		self:SetStackCount(0)
 	end
 end
 
 function modifier_plague_doctor_healing_shield:OnRefresh( kv )
 	if IsServer() then
+		self.stack_duration = self:GetAbility():GetSpecialValueFor("stack_duration")
+		self.stack_max = self:GetAbility():GetSpecialValueFor("stack_max")
+
 		self:SetStackCount(0)
 	end
 end
@@ -34,7 +39,6 @@ end
 function modifier_plague_doctor_healing_shield:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
-		MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE,
 	}
 
 	return funcs
@@ -64,11 +68,32 @@ function modifier_plague_doctor_healing_shield:OnTakeDamage( params )
 	end
 end
 
-function modifier_plague_doctor_healing_shield:GetModifierHealAmplify_Percentage( params )
-
-end
-
 --------------------------------------------------------------------------------
 function modifier_plague_doctor_healing_shield:AddStack()
-	if self
+	-- check if maximum
+	if self:GetStackCount() < self.stack_max then
+		-- get modifier key
+		local modifier_key = self:GetAbility():AddATValue(self)
+
+		-- add modifier
+		self:GetParent():AddNewModifier(
+			self:GetCaster(),
+			self:GetAbility(),
+			"modifier_plague_doctor_healing_shield_stack",
+			{
+				duration = self.stack_duration,
+				modifier = modifier_key
+			}
+		)
+
+		-- add stack
+		self:IncrementStackCount()
+
+		-- set on cooldown
+		self:GetAbility():StartCooldown(self:GetAbility():GetCooldown(-1))	
+	end
+end
+
+function modifier_plague_doctor_healing_shield:MinStack()
+	self:DecrementStackCount()
 end
