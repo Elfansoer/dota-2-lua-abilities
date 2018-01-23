@@ -20,9 +20,9 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_plague_doctor_healing_shield_stack:OnCreated( kv )
+	-- get references
+	self.amplify = self:GetAbility():GetSpecialValueFor("stack_amplification_pct")
 	if IsServer() then
-		-- get references
-		self.amplify = self:GetAbility():GetSpecialValueFor("stack_amplification_pct")
 		self.modifier = self:GetAbility():RetATValue( kv.modifier )
 	end
 end
@@ -36,7 +36,9 @@ end
 
 function modifier_plague_doctor_healing_shield_stack:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE,
+		-- MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE, --(not working)
+		-- MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE, --(get max health as regen instead)
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 	}
 
 	return funcs
@@ -44,7 +46,14 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_plague_doctor_healing_shield_stack:GetModifierHealAmplify_Percentage( params )
+-- function modifier_plague_doctor_healing_shield_stack:GetModifierHealAmplify_Percentage( params )
+-- 	return self.amplify
+-- end
+
+-- function modifier_plague_doctor_healing_shield_stack:GetModifierHealthRegenPercentage()
+-- 	return self.amplify
+-- end
+
+function modifier_plague_doctor_healing_shield_stack:GetModifierConstantHealthRegen( params )
 	return self.amplify
 end
-
