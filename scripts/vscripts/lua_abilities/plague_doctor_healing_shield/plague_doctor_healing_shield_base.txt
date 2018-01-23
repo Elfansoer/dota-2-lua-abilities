@@ -47,7 +47,7 @@
 		"03"
 		{
 			"var_type"					"FIELD_INTEGER"
-			"stac_max"					"10"
+			"stack_max"					"10"
 		}
 	}
 }
