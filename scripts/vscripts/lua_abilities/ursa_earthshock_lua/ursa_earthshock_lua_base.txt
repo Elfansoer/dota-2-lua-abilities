@@ -1,0 +1,55 @@
+//=================================================================================================================
+// Ursa: Earthshock (lua version)
+//=================================================================================================================
+
+"ursa_earthshock_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/ursa_earthshock_lua/ursa_earthshock_lua"
+	"AbilityTextureName"			"ursa_earthshock_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"0"
+	"AbilityCastPoint"				"0.3"
+	"AbilityDuration"				"4.0"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"5"
+	"AbilityManaCost"				"75"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityDamage"					"90 140 190 240"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"shock_radius"				"385"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"movement_slow"				"-25 -35 -45 -55"
+		}
+	}
+}
