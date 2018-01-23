@@ -58,3 +58,13 @@ function shadow_fiend_shadowraze_a_lua:OnSpellStart()
 			modifier:ForceRefresh()
 	end
 end
+
+function shadow_fiend_shadowraze_a_lua:OnUpgrade()
+	-- Set all three abilities to the same level
+	local linkedAbility = self:GetCaster():FindAbilityByName("shadow_fiend_shadowraze_b_lua")
+	if linkedAbility~=nil then
+		if linkedAbility:GetLevel()~=self:GetLevel() then
+			linkedAbility:SetLevel(self:GetLevel())
+		end
+	end
+end
