@@ -1,6 +1,6 @@
-modifier_troll_warlord_fervor = class({})
+modifier_troll_warlord_fervor_lua = class({})
 
-function modifier_troll_warlord_fervor:OnCreated( kv )
+function modifier_troll_warlord_fervor_lua:OnCreated( kv )
 	if IsServer() then
 		self:SetStackCount(1)
 		self.stack_multiplier = self:GetAbility():GetSpecialValueFor("attack_speed")
@@ -9,7 +9,7 @@ function modifier_troll_warlord_fervor:OnCreated( kv )
 	end
 end
 
-function modifier_troll_warlord_fervor:OnRefresh( kv )
+function modifier_troll_warlord_fervor_lua:OnRefresh( kv )
 	if IsServer() then
 		self.stack_multiplier = self:GetAbility():GetSpecialValueFor("attack_speed")
 		self.max_stacks = self:GetAbility():GetSpecialValueFor("max_stacks")
@@ -18,7 +18,7 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_troll_warlord_fervor:DeclareFunctions()
+function modifier_troll_warlord_fervor_lua:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_EVENT_ON_ATTACK_START
@@ -29,7 +29,7 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_troll_warlord_fervor:OnAttackStart( params )
+function modifier_troll_warlord_fervor_lua:OnAttackStart( params )
 	if IsServer() then
 		-- filter
 		pass = false
@@ -49,19 +49,19 @@ function modifier_troll_warlord_fervor:OnAttackStart( params )
 	end
 end
 
-function modifier_troll_warlord_fervor:GetModifierAttackSpeedBonus_Constant( params )
+function modifier_troll_warlord_fervor_lua:GetModifierAttackSpeedBonus_Constant( params )
 	if IsServer() then
 		return self:GetStackCount() * self.stack_multiplier
 	end
 end
 
-function modifier_troll_warlord_fervor:AddStack()
+function modifier_troll_warlord_fervor_lua:AddStack()
 	-- check if it is not maximum
 	if self:GetStackCount < self.max_stacks then
 		self:IncrementStackCount()
 	end
 end
 
-function modifier_troll_warlord_fervor:ResetStack()
+function modifier_troll_warlord_fervor_lua:ResetStack()
 	self:SetStackCount(1)
 end
