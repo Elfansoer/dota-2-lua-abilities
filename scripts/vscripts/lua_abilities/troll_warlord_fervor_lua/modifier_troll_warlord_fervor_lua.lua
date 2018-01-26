@@ -64,6 +64,7 @@ function modifier_troll_warlord_fervor_lua:OnAttack( params )
 				self:AddStack()
 			else
 				self:ResetStack()
+				self.currentTarget = params.target
 			end
 		end
 	end
@@ -83,12 +84,14 @@ end
 function modifier_troll_warlord_fervor_lua:AddStack()
 	-- check if it is not maximum
 	if not self:GetParent():PassivesDisabled() then
-		if self:GetStackCount < self.max_stacks then
+		if self:GetStackCount() < self.max_stacks then
 			self:IncrementStackCount()
 		end
 	end
 end
 
 function modifier_troll_warlord_fervor_lua:ResetStack()
-	self:SetStackCount(1)
+	if not self:GetParent():PassivesDisabled() then
+		self:SetStackCount(1)
+	end
 end
