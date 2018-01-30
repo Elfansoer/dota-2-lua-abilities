@@ -1,5 +1,5 @@
-ogre_magi_fireblast_lua = class({})
-LinkLuaModifier( "modifier_generic_stunned_lua" , "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
+modifier_ogre_magi_fireblast_lua = class({})
+LinkLuaModifier( "modifier_ogre_magi_fireblast_lua" , "lua_abilities/ogre_magi_fireblast_lua/modifier_ogre_magi_fireblast_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 
@@ -23,7 +23,7 @@ function ogre_magi_fireblast_lua:OnSpellStart()
 	target:AddNewModifier(
 		self:GetCaster(),
 		self, 
-		"modifier_generic_stunned_lua", 
+		"modifier_ogre_magi_fireblast_lua", 
 		{duration = duration}
 	)
 
