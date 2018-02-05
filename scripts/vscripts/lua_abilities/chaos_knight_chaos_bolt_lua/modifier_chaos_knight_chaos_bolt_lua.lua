@@ -1,18 +1,18 @@
-modifier_chaos_knight_chaos_bolt = class({})
+modifier_chaos_knight_chaos_bolt_lua = class({})
 
 --------------------------------------------------------------------------------
 
-function modifier_chaos_knight_chaos_bolt:IsDebuff()
+function modifier_chaos_knight_chaos_bolt_lua:IsDebuff()
 	return true
 end
 
-function modifier_chaos_knight_chaos_bolt:IsStunDebuff()
+function modifier_chaos_knight_chaos_bolt_lua:IsStunDebuff()
 	return true
 end
 
 --------------------------------------------------------------------------------
 
-function modifier_chaos_knight_chaos_bolt:CheckState()
+function modifier_chaos_knight_chaos_bolt_lua:CheckState()
 	local state = {
 	[MODIFIER_STATE_STUNNED] = true,
 	}
@@ -22,7 +22,7 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_chaos_knight_chaos_bolt:DeclareFunctions()
+function modifier_chaos_knight_chaos_bolt_lua:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
 	}
@@ -32,17 +32,17 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_chaos_knight_chaos_bolt:GetOverrideAnimation( params )
+function modifier_chaos_knight_chaos_bolt_lua:GetOverrideAnimation( params )
 	return ACT_DOTA_DISABLED
 end
 
 --------------------------------------------------------------------------------
 
-function modifier_chaos_knight_chaos_bolt:GetEffectName()
+function modifier_chaos_knight_chaos_bolt_lua:GetEffectName()
 	return "particles/generic_gameplay/generic_stunned.vpcf"
 end
 
-function modifier_chaos_knight_chaos_bolt:GetEffectAttachType()
+function modifier_chaos_knight_chaos_bolt_lua:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
 end
 
