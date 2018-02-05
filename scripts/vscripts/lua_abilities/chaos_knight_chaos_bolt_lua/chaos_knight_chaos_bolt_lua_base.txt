@@ -1,19 +1,24 @@
 //=================================================================================================================
 // Chaos Knight: Chaos Bolt
 //=================================================================================================================
-
-"chaos_knight_chaos_bolt"
+"chaos_knight_chaos_bolt_lua"
 {
 	// Ability Technical Aspect
 	// base script folder	: scripts/vscripts
 	// base texture folder	: resource/flash3/images/spellicons
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"						"ability_lua"
-	"ScriptFile"					"lua_abilities/chaos_knight_chaos_bolt/chaos_knight_chaos_bolt"
-	"AbilityTextureName"			"chaos_knight_chaos_bolt"
+	"ScriptFile"					"lua_abilities/chaos_knight_chaos_bolt_lua/chaos_knight_chaos_bolt_lua"
+	"AbilityTextureName"			"chaos_knight_chaos_bolt_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
-	
+	"precache"
+	{
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+		"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_chaos_bolt.vpcf"
+		"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_bolt_msg.vpcf"
+	}
+
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
