@@ -72,7 +72,6 @@ end
 
 --------------------------------------------------------------------------------
 -- Unused
-
 function modifier_test:printImportant( params )
 	if IsServer() then
 	if params.attacker ~= nil then print("","attacker",params.attacker,"health",params.attacker:GetHealth()) end

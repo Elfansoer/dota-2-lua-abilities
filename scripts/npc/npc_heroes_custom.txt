@@ -83,6 +83,6 @@
 		"Ability1"				"lina_dragon_slave_lua"						// Ability 1
 		"Ability2"				"sandra_ability_b"					// Ability 2
 		"Ability3"				"lina_fiery_soul_lua"					// Ability 3
-		"Ability4"				"lina_laguna_blade_lua"						// Ability 4
+		"Ability6"				"lina_laguna_blade_lua"						// Ability 4
 	}
 }
