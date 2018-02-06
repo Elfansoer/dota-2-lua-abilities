@@ -63,28 +63,5 @@
 		"Ability4"				"chaos_knight_chaos_bolt_lua"			// Ability 4
 		"Ability5"				"slardar_slithereen_crush_lua"			// Ability 5
 		"Ability6"				"lina_laguna_blade_lua"					// Ability 6
-
-		//"AttackDamageMin"		"0"
-		//"AttackDamageMax"		"0"
-		//"AttackRange"			"800"
-
-		//"ArmorPhysical"		"0"
-		//"StatusHealthRegen"		"0.0"
-
-		//"AttributeBaseIntelligence"		"100"
-		//"AttributeIntelligenceGain"		"0.0"
-		//"AttributeBaseAgility"		"0"
-		//"AttributeAgilityGain"		"0.0"
-	}
-	//=================================================================================================================
-	// HERO: Sandra (PA)
-	//=================================================================================================================
-	"npc_dota_hero_sandra"
-	{
-		"override_hero"					"npc_dota_hero_phantom_assassin"	// Hero to override
-		"Ability1"				"ursa_earthshock_lua"						// Ability 1
-		"Ability2"				"ursa_overpower_lua"						// Ability 2
-		"Ability3"				"ursa_fury_swipes_lua"						// Ability 3
-		"Ability6"				"ursa_enrage_lua"							// Ability 6
 	}
 }

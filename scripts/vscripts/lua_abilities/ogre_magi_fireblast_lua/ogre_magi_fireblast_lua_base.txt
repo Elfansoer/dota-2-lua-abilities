@@ -13,11 +13,6 @@
 	"AbilityTextureName"			"ogre_magi_fireblast_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
-	"precache"
-	{
-		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
-		"particle"	"particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf"
-	}
 
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------

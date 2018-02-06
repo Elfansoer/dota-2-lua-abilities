@@ -26,22 +26,4 @@ function ogre_magi_fireblast_lua:OnSpellStart()
 		"modifier_ogre_magi_fireblast_lua", 
 		{duration = duration}
 	)
-
-	self:PlayEffects()
-end
-
-function ogre_magi_fireblast_lua:PlayEffects()
-	-- get references
-	local target = self:GetCursorTarget()
-	local particle_target = "particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf"
-	local sound_target = "Hero_OgreMagi.Fireblast.Cast"
-
-	-- play particles
-	local nFXIndex = ParticleManager:CreateParticle( particle_target, PATTACH_WORLDORIGIN, nil )
-	ParticleManager:SetParticleControl( nFXIndex, 0, target:GetOrigin() )
-	ParticleManager:SetParticleControl( nFXIndex, 1, target:GetOrigin() )
-	ParticleManager:ReleaseParticleIndex( nFXIndex )
-
-	-- play sound
-	EmitSoundOn( sound_target, target )
 end

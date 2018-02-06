@@ -14,9 +14,7 @@
 	"MaxLevel"						"4"
 	"precache"
 	{
-		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
 		"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_chaos_bolt.vpcf"
-		"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_bolt_msg.vpcf"
 	}
 
 	// Ability General

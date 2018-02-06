@@ -19,29 +19,3 @@ function modifier_slardar_slithereen_crush_lua:CheckState()
 
 	return state
 end
-
---------------------------------------------------------------------------------
-
-function modifier_slardar_slithereen_crush_lua:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-	}
-
-	return funcs
-end
-
-function modifier_slardar_slithereen_crush_lua:GetOverrideAnimation( params )
-	return ACT_DOTA_DISABLED
-end
-
---------------------------------------------------------------------------------
-
-function modifier_slardar_slithereen_crush_lua:GetEffectName()
-	return "particles/generic_gameplay/generic_stunned.vpcf"
-end
-
-function modifier_slardar_slithereen_crush_lua:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-
---------------------------------------------------------------------------------
