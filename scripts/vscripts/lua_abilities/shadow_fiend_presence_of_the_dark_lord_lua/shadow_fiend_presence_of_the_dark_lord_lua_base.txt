@@ -1,0 +1,50 @@
+//=================================================================================================================
+// Shadow Fiend: Presence of the Dark Lord
+//=================================================================================================================
+
+"shadow_fiend_presence_of_the_dark_lord_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/shadow_fiend_presence_of_the_dark_lord_lua/shadow_fiend_presence_of_the_dark_lord_lua"
+	"AbilityTextureName"			"vera_tutorial_ability"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"900"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"presence_armor_reduction"		"-3 -4 -5 -6"
+		}
+		"02"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"presence_radius"				"900"
+		}
+	}
+}

@@ -1,0 +1,82 @@
+//=================================================================================================================
+// Ability: Sandra Olivia ability B: Heal without Heal
+//=================================================================================================================
+"sandra_ability_b"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+	// optional
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+
+	// explanation needed
+	"FightRecapLevel"				"1"
+
+	// base folder: vscripts, no extensions
+	"AbilityTextureName"			"sandra_ability_b"
+	"ScriptFile"					"lua_abilities/sandra_ability_b/sandra_ability_b"
+	
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"0"
+	"AbilityCastPoint"				"0 0 0 0"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"5.0 4.0 3.0 2.0"
+
+	// Damage.
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityDamage"					"100 200 300 400"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"self_damage"			"100 200 300 400"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"bonus_regen"			"10 20 30 40"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"duration"	"10.0"
+		}
+	}
+}
+
+"DOTA_Tooltip_ability_sandra_ability_b"
+	"Heal without Heal"
+
+"DOTA_Tooltip_ability_sandra_ability_b_Description"
+	"Sandra damages herself to gain bonus health regeneration for a duration."
+
+"DOTA_Tooltip_ability_sandra_ability_b_Lore"
+	"Such irony that Sandra must hurt herself in order to heal herself."
+
+"DOTA_Tooltip_ability_sandra_ability_b_Note0"
+	"Can be cast while channeling or get stunned, but not when silenced."
+
+"DOTA_Tooltip_ability_sandra_ability_b_Note1"
+	"Each cast fully stack with each other."
+
+"DOTA_Tooltip_ability_sandra_ability_b_self_damage"		"SELF DAMAGE:"
+"DOTA_Tooltip_ability_sandra_ability_b_bonus_regen"		"BONUS REGENERATION:"
+"DOTA_Tooltip_ability_sandra_ability_b_duration"		"DURATION:"
+
+"DOTA_Tooltip_modifier_sandra_ability_b_heal"	"Heal without Heal"
+"DOTA_Tooltip_modifier_sandra_ability_b_heal_Description"
+	"Gains %dMODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT% bonus health regeneration"
