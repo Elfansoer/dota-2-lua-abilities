@@ -22,16 +22,21 @@ function slardar_slithereen_crush_lua:OnSpellStart()
 		false
 	)
 
+	-- Prepare damage table
+	local damageTable = {
+		victim = nil,
+		attacker = self:GetCaster(),
+		damage = damage,
+		damage_type = DAMAGE_TYPE_PHYSICAL,
+		damage_flags = DOTA_DAMAGE_FLAG_NONE, --Optional.
+		ability = self, --Optional.
+	}
+
 	-- for each caught enemies
 	for _,enemy in pairs(enemies) do
 		-- Apply Damage
-		local damage = {
-			victim = enemy,
-			attacker = self:GetCaster(),
-			damage = damage,
-			damage_type = DAMAGE_TYPE_PHYSICAL,
-		}
-		ApplyDamage( damage )
+		damageTable.victim = enemy
+		ApplyDamage(damageTable)
 
 		-- Apply stun debuff
 		enemy:AddNewModifier( self:GetCaster(), self, "modifier_generic_stunned_lua", { duration = stun_duration } )
@@ -39,4 +44,24 @@ function slardar_slithereen_crush_lua:OnSpellStart()
 		-- Apply slow debuff
 		enemy:AddNewModifier( self:GetCaster(), self, "modifier_slardar_slithereen_crush_lua_slow", { duration = stun_duration + slow_duration } )
 	end
+
+	-- Play effects
+	self:PlayEffects()
+end
+
+function slardar_slithereen_crush_lua:PlayEffects()
+	-- get particles
+	local particle_cast = "particles/units/heroes/hero_slardar/slardar_crush.vpcf"
+	local sound_cast = "Hero_Slardar.Slithereen_Crush"
+
+	-- get data
+	local radius = self:GetSpecialValueFor("crush_radius")
+
+
+	local nFXIndex = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	ParticleManager:SetParticleControl( nFXIndex, 0, self:GetCaster():GetOrigin() )
+	ParticleManager:SetParticleControl( nFXIndex, 1, Vector(radius, radius, 0) )
+	ParticleManager:ReleaseParticleIndex( nFXIndex )
+
+	EmitSoundOn( sound_cast, self:GetCaster() )
 end

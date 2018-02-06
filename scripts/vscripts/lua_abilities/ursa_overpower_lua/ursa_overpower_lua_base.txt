@@ -12,7 +12,14 @@
 	"AbilityTextureName"			"ursa_overpower_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
-	
+	"AbilitySound"					"Hero_Ursa.Overpower"
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+		"particle"	"particles/units/heroes/hero_ursa/ursa_overpower_buff.vpcf"
+		"particle"	"particles/units/heroes/hero_ursa/ursa_overpower_cast.vpcf"
+	}
+
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"

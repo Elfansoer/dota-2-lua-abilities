@@ -12,6 +12,11 @@
 	"AbilityTextureName"			"slardar_slithereen_crush_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+		"particle"	"particles/units/heroes/hero_slardar/slardar_crush.vpcf"
+	}
 	
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------

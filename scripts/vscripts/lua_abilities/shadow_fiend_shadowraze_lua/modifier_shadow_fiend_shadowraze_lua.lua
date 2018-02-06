@@ -16,12 +16,20 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_shadow_fiend_shadowraze_lua:OnCreated( kv )
-	if IsServer() then
-		self:SetStackCount(1)
-	end
+	self:SetStackCount(1)
 end
 
 function modifier_shadow_fiend_shadowraze_lua:OnRefresh( kv )
-	if IsServer() then
-	end
+
 end
+
+--------------------------------------------------------------------------------
+
+function modifier_shadow_fiend_shadowraze_lua:GetEffectName()
+	return "particles/units/heroes/hero_nevermore/nevermore_shadowraze_debuff.vpcf"
+end
+
+function modifier_shadow_fiend_shadowraze_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+--------------------------------------------------------------------------------

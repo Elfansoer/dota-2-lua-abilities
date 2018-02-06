@@ -12,7 +12,12 @@
 	"AbilityTextureName"			"ursa_fury_swipes_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
-	
+	"precache"
+	{
+		"particle"	"particles/units/heroes/hero_ursa/ursa_fury_swipes.vpcf"
+		"particle"	"particles/units/heroes/hero_ursa/ursa_fury_swipes_debuff.vpcf"
+	}
+
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"

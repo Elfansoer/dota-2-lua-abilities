@@ -1,7 +1,6 @@
 //=================================================================================================================
 // Shadow Fiend: Shadowrazes (lua version)
 //=================================================================================================================
-
 "shadow_fiend_shadowraze_a_lua"
 {
 	// Ability Technical Aspect
@@ -9,12 +8,18 @@
 	// base texture folder	: resource/flash3/images/spellicons
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"						"ability_lua"
-	"ScriptFile"					"lua_abilities/shadow_fiend_shadowraze_lua/shadow_fiend_shadowraze_a_lua"
+	"ScriptFile"					"lua_abilities/shadow_fiend_shadowraze_lua/shadow_fiend_shadowraze_lua"
 	"AbilityTextureName"			"shadow_fiend_shadowraze_a_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
 	"LinkedAbility"					"shadow_fiend_shadowraze_b_lua"
-	
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+		"particle"	"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+		"particle"	"particles/units/heroes/hero_nevermore/nevermore_shadowraze_debuff.vpcf"
+	}
+
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
@@ -26,8 +31,6 @@
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityCastRange"				"200"
 	"AbilityCastPoint"				"0.55"
-	"AbilityChannelTime"			"2.75 3.5 4.25 5.0"
-	"AbilityDuration"				"0.0 0.0 0.0 0.0"
 
 	// Ability Resource
 	//-------------------------------------------------------------------------------------------------------------
@@ -81,13 +84,18 @@
 	// base texture folder	: resource/flash3/images/spellicons
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"						"ability_lua"
-	"ScriptFile"					"lua_abilities/shadow_fiend_shadowraze_lua/shadow_fiend_shadowraze_b_lua"
+	"ScriptFile"					"lua_abilities/shadow_fiend_shadowraze_lua/shadow_fiend_shadowraze_lua"
 	"AbilityTextureName"			"shadow_fiend_shadowraze_b_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
 	"LinkedAbility"					"shadow_fiend_shadowraze_c_lua"
 	//"OnLearnBar"					"0" todo: find out what is this
-	
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+		"particle"	"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+	}
+
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
@@ -97,10 +105,8 @@
 
 	// Ability Casting
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"200"
+	"AbilityCastRange"				"450"
 	"AbilityCastPoint"				"0.55"
-	"AbilityChannelTime"			"2.75 3.5 4.25 5.0"
-	"AbilityDuration"				"0.0 0.0 0.0 0.0"
 
 	// Ability Resource
 	//-------------------------------------------------------------------------------------------------------------
@@ -154,12 +160,17 @@
 	// base texture folder	: resource/flash3/images/spellicons
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"						"ability_lua"
-	"ScriptFile"					"lua_abilities/shadow_fiend_shadowraze_lua/shadow_fiend_shadowraze_c_lua"
+	"ScriptFile"					"lua_abilities/shadow_fiend_shadowraze_lua/shadow_fiend_shadowraze_lua"
 	"AbilityTextureName"			"shadow_fiend_shadowraze_c_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
 	"LinkedAbility"					"shadow_fiend_shadowraze_a_lua"
-	
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+		"particle"	"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+	}
+
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
@@ -169,10 +180,8 @@
 
 	// Ability Casting
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"200"
+	"AbilityCastRange"				"700"
 	"AbilityCastPoint"				"0.55"
-	"AbilityChannelTime"			"2.75 3.5 4.25 5.0"
-	"AbilityDuration"				"0.0 0.0 0.0 0.0"
 
 	// Ability Resource
 	//-------------------------------------------------------------------------------------------------------------

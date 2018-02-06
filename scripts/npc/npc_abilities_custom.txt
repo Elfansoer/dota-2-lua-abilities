@@ -1348,6 +1348,11 @@
 		"AbilityTextureName"			"slardar_slithereen_crush_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+			"particle"	"particles/units/heroes/hero_slardar/slardar_crush.vpcf"
+		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
@@ -1418,6 +1423,12 @@
 		"AbilityTextureName"			"ursa_earthshock_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_earthshock.vpcf"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_earthshock_modifier.vpcf"
+		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
@@ -1429,7 +1440,7 @@
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
+		"AbilityCastRange"				"385"
 		"AbilityCastPoint"				"0.3"
 		"AbilityDuration"				"4.0"
 
@@ -1472,7 +1483,13 @@
 		"AbilityTextureName"			"ursa_overpower_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-		
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_overpower_buff.vpcf"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_overpower_cast.vpcf"
+		}
+
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
@@ -1528,7 +1545,11 @@
 		"AbilityTextureName"			"ursa_fury_swipes_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-		
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_ursa/ursa_fury_swipes.vpcf"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_fury_swipes_debuff.vpcf"
+		}
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
@@ -1582,7 +1603,13 @@
 		"AbilityTextureName"			"ursa_enrage_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"3"
-		
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_enrage_shell.vpcf"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_enrage_hero_effect.vpcf"
+		}
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
@@ -1630,45 +1657,47 @@
 			}
 		}
 	}
-
-	// AUTHOR: SELF
 	//=================================================================================================================
-	// Ability: Sandra Olivia ability B: Heal without Heal
+	// Shadow Fiend: Shadowrazes (lua version)
 	//=================================================================================================================
-	"sandra_ability_b"
+	"shadow_fiend_shadowraze_a_lua"
 	{
-		// General
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"ScriptFile"					"lua_abilities/shadow_fiend_shadowraze_lua/shadow_fiend_shadowraze_lua"
+		"AbilityTextureName"			"shadow_fiend_shadowraze_a_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"LinkedAbility"					"shadow_fiend_shadowraze_b_lua"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+			"particle"	"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+			"particle"	"particles/units/heroes/hero_nevermore/nevermore_shadowraze_debuff.vpcf"
+		}
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
-		// optional
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-
-		// explanation needed
-		"FightRecapLevel"				"1"
-
-		// base folder: vscripts, no extensions
-		"AbilityTextureName"			"sandra_ability_b"
-		"ScriptFile"					"lua_abilities/sandra_ability_b/sandra_ability_b"
-		
-		// Casting
+		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0 0 0 0"
+		"AbilityCastRange"				"200"
+		"AbilityCastPoint"				"0.55"
 
-		// Time		
+		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5.0 4.0 3.0 2.0"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"90"
 
-		// Damage.
+		// Damage
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"100 200 300 400"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -1676,18 +1705,184 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"self_damage"			"100 200 300 400"
+				"var_type"			"FIELD_INTEGER"
+				"shadowraze_damage"	"90 160 230 300"	
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"bonus_regen"			"10 20 30 40"
+				"shadowraze_radius"	"250"		
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"	"10.0"
+				"var_type"			"FIELD_INTEGER"
+				"shadowraze_range"	"200"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"shadowraze_cooldown"	"3"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stack_bonus_damage" "80"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"	"8"
+			}
+		}
+	}
+
+	"shadow_fiend_shadowraze_b_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/shadow_fiend_shadowraze_lua/shadow_fiend_shadowraze_lua"
+		"AbilityTextureName"			"shadow_fiend_shadowraze_b_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"LinkedAbility"					"shadow_fiend_shadowraze_c_lua"
+		//"OnLearnBar"					"0" todo: find out what is this
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+			"particle"	"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+		}
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.55"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"90"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"shadowraze_damage"	"90 160 230 300"	
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"shadowraze_radius"	"250"		
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"shadowraze_range"	"450"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"shadowraze_cooldown"	"3"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stack_bonus_damage" "80"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"	"8"
+			}
+		}
+	}
+
+	"shadow_fiend_shadowraze_c_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/shadow_fiend_shadowraze_lua/shadow_fiend_shadowraze_lua"
+		"AbilityTextureName"			"shadow_fiend_shadowraze_c_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"LinkedAbility"					"shadow_fiend_shadowraze_a_lua"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+			"particle"	"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+		}
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.55"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"90"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"shadowraze_damage"	"90 160 230 300"	
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"shadowraze_radius"	"250"		
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"shadowraze_range"	"700"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"shadowraze_cooldown"	"3"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stack_bonus_damage" "80"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"	"8"
 			}
 		}
 	}

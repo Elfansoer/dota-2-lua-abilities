@@ -144,6 +144,17 @@ function template:OnHeroDiedNearby(handle unit, handle attacker, handle table)
 end
 
 --------------------------------------------------------------------------------
+function template:PlayEffects()
+	local nFXIndex = ParticleManager:CreateParticle( particle_target, PATTACH_WORLDORIGIN, nil )
+	ParticleManager:SetParticleControl( nFXIndex, 0, target:GetOrigin() )
+	ParticleManager:SetParticleControl( nFXIndex, 1, target:GetOrigin() )
+	ParticleManager:ReleaseParticleIndex( nFXIndex )
+
+	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
+	EmitSoundOn( sound_target, target )
+end
+
+--------------------------------------------------------------------------------
 -- Built-in functions
 -- Helper: Ability Table (AT)
 function template:GetAT()

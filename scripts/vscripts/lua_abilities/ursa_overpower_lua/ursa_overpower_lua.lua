@@ -14,4 +14,17 @@ function ursa_overpower_lua:OnSpellStart()
 		"modifier_ursa_overpower_lua",
 		{ duration = bonus_duration }
 	)
+
+	-- Play effects
+	self:PlayEffects()
+end
+
+function ursa_overpower_lua:PlayEffects()
+	-- get resources
+	local sound_cast = "Hero_Ursa.Overpower"
+
+	-- play particles
+
+	-- play sounds
+	EmitSoundOn(sound_cast, self:GetCaster())
 end

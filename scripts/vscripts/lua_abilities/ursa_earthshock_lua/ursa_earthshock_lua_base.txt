@@ -12,7 +12,14 @@
 	"AbilityTextureName"			"ursa_earthshock_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
-	
+	"AbilitySound"					"Hero_Ursa.Earthshock"
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+		"particle"	"particles/units/heroes/hero_ursa/ursa_earthshock.vpcf"
+		"particle"	"particles/units/heroes/hero_ursa/ursa_earthshock_modifier.vpcf"
+	}
+
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
@@ -23,7 +30,7 @@
 
 	// Ability Casting
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"0"
+	"AbilityCastRange"				"385"
 	"AbilityCastPoint"				"0.3"
 	"AbilityDuration"				"4.0"
 
