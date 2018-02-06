@@ -35,19 +35,8 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_ursa_fury_swipes_lua:DeclareFunctions()
-	--[[
-	todo: find differences between:
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE			GetModifierPreAttack_BonusDamage	
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_PROC		GetModifierPreAttack_BonusDamage_Proc	
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_POST_CRIT	GetModifierPreAttack_BonusDamagePostCrit	
-		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE			GetModifierBaseAttack_BonusDamage	
-		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL	GetModifierProcAttack_BonusDamage_Physical
-		MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_CONSTANT	GetModifierIncomingPhysicalDamageConstant
-	]]
-
 	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_CONSTANT,
+		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
 	}
 
 	return funcs
@@ -55,67 +44,46 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_ursa_fury_swipes_lua:OnAttackLanded( params )
+function modifier_ursa_fury_swipes_lua:GetModifierProcAttack_BonusDamage_Physical( params )
 	if IsServer() then
-		-- filter
-		local pass = false
-		if params.attacker==self:GetParent() then
+		-- get target
+		local target = params.target if target==nil then target = params.unit end
+
+		-- get modifier stack
+		local stack = 0
+		local modifier = target:FindModifierByNameAndCaster("modifier_ursa_fury_swipes_debuff_lua", self:GetAbility():GetCaster())
+
+		-- add stack if not
+		if modifier==nil then
+			-- if does not have break
 			if not self:GetParent():PassivesDisabled() then
-				pass = true
-			end
-		end
+				-- determine duration if roshan/not
+				local _duration = self.bonus_reset_time
+				if params.target:GetUnitName()=="npc_dota_roshan" then
+					_duration = self.bonus_reset_time_roshan
+				end
 
-		-- logic
-		if pass then
-			-- get target (sometimes params.unit, sometimes params.target)
-			local target = params.target if target==nil then target = params.unit end
-
-			-- add debuff stack based on target
-			local _duration = self.bonus_reset_time
-
-			-- Check if target is Roshan
-			if params.target:GetUnitName()=="npc_dota_roshan" then
-				_duration = self.bonus_reset_time_roshan
-			end
-
-			-- Add or increase stack
-			local modifier = target:FindModifierByNameAndCaster("modifier_ursa_fury_swipes_debuff_lua", self:GetAbility():GetCaster())
-			if modifier==nil then
-				-- add stack
+				-- add modifier
 				target:AddNewModifier(
 					self:GetAbility():GetCaster(),
 					self:GetAbility(),
 					"modifier_ursa_fury_swipes_debuff_lua",
 					{ duration = _duration }
 				)
-			else
-				-- increase stack
-				modifier:IncrementStackCount()
-				modifier:ForceRefresh()
-			end
-		end
-	end
-end
 
-function modifier_ursa_fury_swipes_lua:GetModifierIncomingPhysicalDamageConstant( params )
-	if IsServer() then
-		-- filter
-		local pass = false
-		local target = params.target if target==nil then target = params.unit end
-		if params.attacker==self:GetParent() then
-			if target:HasModifier("modifier_ursa_fury_swipes_debuff_lua") then
-				pass = true
+				-- get stack number
+				stack = 1
 			end
+		else
+			-- increase stack
+			modifier:IncrementStackCount()
+			modifier:ForceRefresh()
+
+			-- get stack number
+			stack = modifier:GetStackCount()
 		end
 
-		-- logic
-		if pass then
-			local modifier = target:FindModifierByNameAndCaster("modifier_ursa_fury_swipes_debuff_lua", self:GetAbility():GetCaster())
-			if not modifier==nil then
-				local stack = modifier:GetStackCount()
-				return stack * self.damage_per_stack
-			end
-		end
+		-- return damage bonus
+		return stack * self.damage_per_stack
 	end
-	return 0
 end

@@ -9,15 +9,11 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_ursa_earthshock_lua:OnCreated( kv )
-	if IsServer() then
-		self.slow = self:GetAbility():GetSpecialValueFor("movement_slow")
-	end
+	self.slow = self:GetAbility():GetSpecialValueFor("movement_slow")
 end
 
 function modifier_ursa_earthshock_lua:OnRefresh( kv )
-	if IsServer() then
-		self.slow = self:GetAbility():GetSpecialValueFor("movement_slow")
-	end
+	self.slow = self:GetAbility():GetSpecialValueFor("movement_slow")
 end
 --------------------------------------------------------------------------------
 

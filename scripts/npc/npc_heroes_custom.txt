@@ -82,9 +82,9 @@
 	"npc_dota_hero_sandra"
 	{
 		"override_hero"					"npc_dota_hero_phantom_assassin"	// Hero to override
-		"Ability1"				"lina_dragon_slave_lua"						// Ability 1
-		"Ability2"				"sandra_ability_b"							// Ability 2
-		"Ability3"				"lina_fiery_soul_lua"						// Ability 3
-		"Ability6"				"lina_laguna_blade_lua"						// Ability 4
+		"Ability1"				"ursa_earthshock_lua"						// Ability 1
+		"Ability2"				"ursa_overpower_lua"						// Ability 2
+		"Ability3"				"ursa_fury_swipes_lua"						// Ability 3
+		"Ability6"				"ursa_enrage_lua"							// Ability 6
 	}
 }

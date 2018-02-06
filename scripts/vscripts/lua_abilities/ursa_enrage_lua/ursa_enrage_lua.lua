@@ -11,7 +11,7 @@ function ursa_enrage_lua:OnSpellStart()
 	self:GetCaster():AddNewModifier(
 		self:GetCaster(),
 		self,
-		"modifier_ursa_overpower_lua",
+		"modifier_ursa_enrage_lua",
 		{ duration = bonus_duration }
 	)
 end

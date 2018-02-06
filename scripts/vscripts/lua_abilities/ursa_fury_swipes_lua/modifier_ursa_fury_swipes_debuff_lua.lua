@@ -16,12 +16,8 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_ursa_fury_swipes_debuff_lua:OnCreated( kv )
-	if IsServer() then
-		self:SetStackCount(1)
-	end
+	self:SetStackCount(1)
 end
 
 function modifier_ursa_fury_swipes_debuff_lua:OnRefresh( kv )
-	if IsServer() then
-	end
 end
