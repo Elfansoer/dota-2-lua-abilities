@@ -9,13 +9,13 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_slardar_slithereen_crush_lua_slow:OnCreated( kv )
-	self.ms_slow = self:GetSpecialValueFor("crush_extra_slow")
-	self.as_slow = self:GetSpecialValueFor("crush_attack_slow_tooltip")
+	self.ms_slow = self:GetAbility():GetSpecialValueFor("crush_extra_slow")
+	self.as_slow = self:GetAbility():GetSpecialValueFor("crush_attack_slow_tooltip")
 end
 
 function modifier_slardar_slithereen_crush_lua_slow:OnRefresh( kv )
-	self.ms_slow = self:GetSpecialValueFor("crush_extra_slow")
-	self.as_slow = self:GetSpecialValueFor("crush_attack_slow_tooltip")
+	self.ms_slow = self:GetAbility():GetSpecialValueFor("crush_extra_slow")
+	self.as_slow = self:GetAbility():GetSpecialValueFor("crush_attack_slow_tooltip")
 end
 
 --------------------------------------------------------------------------------
