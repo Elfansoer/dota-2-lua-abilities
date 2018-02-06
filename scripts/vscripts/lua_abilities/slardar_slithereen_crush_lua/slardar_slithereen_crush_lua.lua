@@ -1,5 +1,5 @@
 slardar_slithereen_crush_lua = class({})
-LinkLuaModifier( "modifier_slardar_slithereen_crush_lua", "lua_abilities/slardar_slithereen_crush_lua/modifier_slardar_slithereen_crush_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_slardar_slithereen_crush_lua_slow", "lua_abilities/slardar_slithereen_crush_lua/modifier_slardar_slithereen_crush_lua_slow", LUA_MODIFIER_MOTION_NONE )
 
 function slardar_slithereen_crush_lua:OnSpellStart()
@@ -34,7 +34,7 @@ function slardar_slithereen_crush_lua:OnSpellStart()
 		ApplyDamage( damage )
 
 		-- Apply stun debuff
-		enemy:AddNewModifier( self:GetCaster(), self, "modifier_slardar_slithereen_crush_lua", { duration = stun_duration } )
+		enemy:AddNewModifier( self:GetCaster(), self, "modifier_generic_stunned_lua", { duration = stun_duration } )
 
 		-- Apply slow debuff
 		enemy:AddNewModifier( self:GetCaster(), self, "modifier_slardar_slithereen_crush_lua_slow", { duration = stun_duration + slow_duration } )

@@ -1,5 +1,5 @@
 wraith_king_hellfire_blast_lua = class({})
-LinkLuaModifier("modifier_wraith_king_hellfire_blast_lua", "lua_abilities/wraith_king_hellfire_blast_lua/modifier_wraith_king_hellfire_blast_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier("modifier_wraith_king_hellfire_blast_lua_slow", "lua_abilities/wraith_king_hellfire_blast_lua/modifier_wraith_king_hellfire_blast_lua_slow", LUA_MODIFIER_MOTION_NONE )
 
 function wraith_king_hellfire_blast_lua:OnSpellStart() {
@@ -40,7 +40,7 @@ function wraith_king_hellfire_blast_lua:OnProjectileHit( hTarget, vLocation )
 		ApplyDamage( damage )
 
 		-- apply stun debuff
-		hTarget:AddNewModifier( self:GetCaster(), self, "modifier_wraith_king_hellfire_blast_lua", { duration = stun_duration } )
+		hTarget:AddNewModifier( self:GetCaster(), self, "modifier_generic_stunned_lua", { duration = stun_duration } )
 		
 		-- apply slow debuff
 		hTarget:AddNewModifier( self:GetCaster(), self, "modifier_wraith_king_hellfire_blast_lua_slow", { duration = dot_duration, damage = dot_damage, slow = dot_slow } )
