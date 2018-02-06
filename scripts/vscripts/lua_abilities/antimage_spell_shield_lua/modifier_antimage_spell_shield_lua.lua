@@ -1,15 +1,11 @@
 modifier_antimage_spell_shield_lua = class({})
 
 function modifier_antimage_spell_shield_lua:OnCreated( kv )
-	if IsServer() then
-		self.bonus = self:GetAbility():GetSpecialValueFor("bonus_resist_pct")
-	end
+	self.bonus = self:GetAbility():GetSpecialValueFor("bonus_resist_pct")
 end
 
 function modifier_antimage_spell_shield_lua:OnRefresh( kv )
-	if IsServer() then
-		self.bonus = self:GetAbility():GetSpecialValueFor("bonus_resist_pct")
-	end
+	self.bonus = self:GetAbility():GetSpecialValueFor("bonus_resist_pct")
 end
 
 --------------------------------------------------------------------------------

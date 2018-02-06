@@ -1,4 +1,4 @@
-modifier_ogre_magi_fireblast_lua = class({})
+ogre_magi_fireblast_lua = class({})
 LinkLuaModifier( "modifier_ogre_magi_fireblast_lua" , "lua_abilities/ogre_magi_fireblast_lua/modifier_ogre_magi_fireblast_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
