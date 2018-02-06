@@ -1,0 +1,76 @@
+//=================================================================================================================
+// Chaos Knight: Chaos Bolt
+//=================================================================================================================
+"chaos_knight_chaos_bolt_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/chaos_knight_chaos_bolt_lua/chaos_knight_chaos_bolt_lua"
+	"AbilityTextureName"			"chaos_knight_chaos_bolt_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	"precache"
+	{
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+		"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_chaos_bolt.vpcf"
+		"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_bolt_msg.vpcf"
+	}
+
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"500"
+	"AbilityCastPoint"				"0.4"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"10.0"
+	"AbilityManaCost"				"140"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"chaos_bolt_speed"		"1000"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"stun_min"				"1 1 1 2"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"stun_max"				"2 3 4 4"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"damage_min"			"75 100 125 150"
+		}
+		"05"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"damage_max"			"200 225 250 275"
+		}
+	}
+}

@@ -1,0 +1,41 @@
+//=================================================================================================================
+// Anti-mage: Spell Shield
+//=================================================================================================================
+
+"antimage_spell_shield_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/antimage_spell_shield_lua/antimage_spell_shield_lua"
+	"AbilityTextureName"			"antimage_spell_shield_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_resist_pct"		"20 30 40 50"
+		}
+	}
+}

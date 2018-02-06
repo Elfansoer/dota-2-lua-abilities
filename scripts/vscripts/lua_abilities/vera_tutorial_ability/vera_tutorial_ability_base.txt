@@ -1,0 +1,66 @@
+//=================================================================================================================
+// Vera Olivia: Tutorial Ability
+//=================================================================================================================
+
+"vera_tutorial_ability"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/vera_tutorial_ability/vera_tutorial_ability"
+	"AbilityTextureName"			"vera_tutorial_ability"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"600"
+	"AbilityCastRangeBuffer"		"250"
+	"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+	"AbilityChannelTime"			"2.75 3.5 4.25 5.0"
+	"AbilityDuration"				"0.0 0.0 0.0 0.0"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"13.0"
+	"AbilityManaCost"				"140"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityDamage"					"100 175 250 325"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"special_one"			"700 800 900 1000"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"special_two"			"2.0"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"special_three"			"255"
+		}
+	}
+}

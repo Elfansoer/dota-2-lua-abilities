@@ -1,0 +1,55 @@
+//=================================================================================================================
+// Ursa: Fury Swipes (lua version)
+//=================================================================================================================
+
+"ursa_fury_swipes_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/ursa_fury_swipes_lua/ursa_fury_swipes_lua"
+	"AbilityTextureName"			"ursa_fury_swipes_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"						"FIELD_FLOAT"
+			"bonus_reset_time"				"20"
+		}
+		"02"
+		{
+			"var_type"						"FIELD_FLOAT"
+			"bonus_reset_time_roshan"		"6"
+		}
+		"03"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"damage_per_stack"				"15 20 25 30"
+		}
+	}
+}
