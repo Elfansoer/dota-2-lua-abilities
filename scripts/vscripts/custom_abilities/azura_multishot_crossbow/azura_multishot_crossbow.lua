@@ -12,6 +12,6 @@ end
 function azura_multishot_crossbow:OnHeroCalculateStatBonus()
 	local charge_restore = self:GetSpecialValueFor("charge_restore")
 	-- todo: find attack speed value
-	local attack_speed = 100
-	self.recharge_time = charge_restore * (100/attack_speed)
+	local attack_speed = self:GetCaster():GetAttackSpeed()
+	self.recharge_time = charge_restore * (1/attack_speed)
 end

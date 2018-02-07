@@ -10,10 +10,6 @@ function modifier_azura_multishot_crossbow:IsDebuff()
 	return false
 end
 
-function modifier_azura_multishot_crossbow:GetAttributes()
-	-- return MODIFIER_ATRRIBUTE_XX + MODIFIER_ATRRIBUTE_YY 
-end
-
 function modifier_azura_multishot_crossbow:IsPurgable()
 	return false
 end
@@ -25,28 +21,31 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_azura_multishot_crossbow:OnCreated( kv )
-	-- references
-	self.max_charge = self:GetAbility():GetSpecialValueFor( "max_charge" )
-	self.bat_override = self:GetAbility():GetSpecialValueFor( "bat_override" )
-	self.charge_restore = self:GetAbility():GetSpecialValueFor( "charge_restore" )
-
-	-- set current stack
-	self:SetStackCount(self.max_charge)
-
-	-- set base attack time
 	if IsServer() then
+		-- references
+		self.max_charge = self:GetAbility():GetSpecialValueFor( "max_charge" )
+		self.bat_override = self:GetAbility():GetSpecialValueFor( "bat_override" )
+
+		-- set current stack
+		self:SetStackCount(self.max_charge)
+
+		-- set base attack time
 		self:GetParent():SetBaseAttackTime( self.bat_override )
+
+		-- run stat bonus
+		self:GetAbility():OnHeroCalculateStatBonus()
 	end
 end
 
 function modifier_azura_multishot_crossbow:OnRefresh( kv )
-	-- references
-	self.max_charge = self:GetAbility():GetSpecialValueFor( "max_charge" )
-	self.bat_override = self:GetAbility():GetSpecialValueFor( "bat_override" )
-	self.charge_restore = self:GetAbility():GetSpecialValueFor( "charge_restore" )
+	if IsServer() then
+		-- references
+		self.max_charge = self:GetAbility():GetSpecialValueFor( "max_charge" )
+		self.bat_override = self:GetAbility():GetSpecialValueFor( "bat_override" )
 
-	-- calculate charge
-	self:CalculateCharge()
+		-- calculate charge
+		self:CalculateCharge()
+	end
 end
 
 function modifier_azura_multishot_crossbow:OnDestroy( kv )
@@ -58,13 +57,14 @@ end
 function modifier_azura_multishot_crossbow:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ATTACK,
+		-- MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 	}
 
 	return funcs
 end
 
 function modifier_azura_multishot_crossbow:OnAttack( params )
-	-- if IsServer() then
+	if IsServer() then
 		-- filter
 		local pass = false
 		if params.attacker == self:GetParent() then
@@ -75,9 +75,16 @@ function modifier_azura_multishot_crossbow:OnAttack( params )
 		if pass then
 			self:RemoveStack( 1 )
 		end
-	-- end
+	end
 end
 
+-- function modifier_azura_multishot_crossbow:GetModifierBaseAttackTimeConstant( params )
+-- 	if self:GetStackCount()==0 then
+-- 		return 10
+-- 	else
+-- 		return 0
+-- 	end
+-- end
 --------------------------------------------------------------------------------
 -- Status Effects
 function modifier_azura_multishot_crossbow:CheckState()
@@ -91,41 +98,22 @@ end
 --------------------------------------------------------------------------------
 -- Interval Effects
 function modifier_azura_multishot_crossbow:OnIntervalThink()
-	self:StartIntervalThink( -1 )
-	self:AddStack( 1 )
+	if IsServer() then
+		self:StartIntervalThink( -1 )
+		self:AddStack( 1 )
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Helper Functions
 function modifier_azura_multishot_crossbow:AddStack( value )
-	local tab = ""
-	if IsServer() then
-		tab = "\t\t"
-	end 
-	print(tab,"----------------------------------------------------")
-	print(tab,"current stack:", self:GetStackCount() )
-	print(tab,"add stack:", value )
 	self:SetStack( self:GetStackCount() + value )
 end
 function modifier_azura_multishot_crossbow:RemoveStack( value )
-	local tab = ""
-	if IsServer() then
-		tab = "\t\t"
-	end 
-	print(tab,"----------------------------------------------------")
-	print(tab,"current stack:", self:GetStackCount() )
-	print(tab,"remove stack:", value )
 	self:SetStack( self:GetStackCount() - value )
 end
 
 function modifier_azura_multishot_crossbow:SetStack( value )
-	local tab = ""
-	if IsServer() then
-		tab = "\t\t"
-	end 
-	print(tab,"----------------------------------------------------")
-	print(tab,"prev-stack",self:GetStackCount())
-	print(tab,"next-stack",value)
 	if value > self.max_charge then
 		self:SetStackCount( self.max_charge )
 	elseif value < 0 then
@@ -133,7 +121,6 @@ function modifier_azura_multishot_crossbow:SetStack( value )
 	else
 		self:SetStackCount( value )
 	end
-	print(tab,"final-stack",self:GetStackCount())
 
 	self:CalculateCharge()
 end
@@ -147,10 +134,11 @@ function modifier_azura_multishot_crossbow:CalculateCharge()
 		self:StartIntervalThink( -1 )
 	else
 		-- if not charging
-		if self:GetRemainingTime() <= 0 then
+		if self:GetRemainingTime() <= 0.05 then
 			-- start charging
-			self:StartIntervalThink( self.charge_restore )
-			self:SetDuration( self.charge_restore, true )
+			local charge_time = self:GetAbility().recharge_time
+			self:StartIntervalThink( charge_time )
+			self:SetDuration( charge_time, true )
 		end
 	end
 end

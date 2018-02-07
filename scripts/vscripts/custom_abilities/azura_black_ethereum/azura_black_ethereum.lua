@@ -12,7 +12,7 @@ function azura_black_ethereum:OnSpellStart()
 	local damage = self:GetSpecialValueFor("damage_tooltip")
 	local search_radius = self:GetSpecialValueFor("search_radius")
 	local bolt_per_unit = self:GetSpecialValueFor("bolt_per_unit")
-	local modifier_name = "modifier_azura_multishot_crossbow_charge"
+	local modifier_name = "modifier_azura_multishot_crossbow"
 
 	-- find affected targets
 	local enemies = FindUnitsInRadius(

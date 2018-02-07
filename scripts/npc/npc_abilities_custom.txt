@@ -2311,4 +2311,63 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Azura: Gaze of Exile
+	//=================================================================================================================
+	"azura_gaze_of_exile"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/azura_gaze_of_exile/azura_gaze_of_exile"
+		"AbilityTextureName"			"custom/azura_gaze_of_exile"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+		// "precache"
+		// {
+		// 	"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+		// 	"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+		// }
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"80 60 40"
+		"AbilityManaCost"				"200"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration_tooltip"		"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_range"			"200 300 400"
+			}
+		}
+	}
 }

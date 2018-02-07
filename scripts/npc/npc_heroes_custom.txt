@@ -61,7 +61,7 @@
 		"Ability2"				"ogre_magi_fireblast_lua"				// Ability 3
 		"Ability3"				"shadow_fiend_necromastery_lua"				// Ability 1
 		"Ability4"				"chaos_knight_chaos_bolt_lua"			// Ability 4
-		"Ability5"				"troll_warlord_fervor_lua"				// Ability 2
+		"Ability5"				"oracle_purifying_flames"				// Ability 2
 		"Ability6"				"shadow_fiend_requiem_of_souls_lua"					// Ability 6
 
 		//"AttackDamageMin"		"0"
@@ -96,6 +96,6 @@
 		"Ability1"				"azura_black_ethereum"						// Ability 1
 		"Ability2"				"azura_shadowform"							// Ability 2
 		"Ability3"				"azura_multishot_crossbow"					// Ability 3
-		//"Ability6"				"ursa_enrage_lua"							// Ability 6
+		"Ability6"				"azura_gaze_of_exile"						// Ability 6
 	}
 }

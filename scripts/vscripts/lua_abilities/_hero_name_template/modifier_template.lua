@@ -1,49 +1,49 @@
-modifier_template_lua = class({})
+modifier_template = class({})
 
 --------------------------------------------------------------------------------
 -- Classifications
-function modifier_template_lua:IsHidden()
+function modifier_template:IsHidden()
 	return false
 end
 
-function modifier_template_lua:IsDebuff()
+function modifier_template:IsDebuff()
 	return false
 end
 
-function modifier_template_lua:IsStunDebuff()
+function modifier_template:IsStunDebuff()
 	return false
 end
 
-function modifier_template_lua:GetAttributes()
+function modifier_template:GetAttributes()
 	return MODIFIER_ATRRIBUTE_XX + MODIFIER_ATRRIBUTE_YY 
 end
 
-function modifier_template_lua:IsPurgable()
+function modifier_template:IsPurgable()
 	return true
 end
 --------------------------------------------------------------------------------
 -- Aura
-function modifier_template_lua:IsAura()
+function modifier_template:IsAura()
 	return true
 end
 
-function modifier_template_lua:GetModifierAura()
-	return "modifier_template_effect_lua"
+function modifier_template:GetModifierAura()
+	return "modifier_template_effect"
 end
 
-function modifier_template_lua:GetAuraRadius()
+function modifier_template:GetAuraRadius()
 	return float
 end
 
-function modifier_template_lua:GetAuraSearchTeam()
+function modifier_template:GetAuraSearchTeam()
 	return DOTA_UNIT_TARGET_TEAM_XX
 end
 
-function modifier_template_lua:GetAuraSearchType()
+function modifier_template:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_XX + DOTA_UNIT_TARGET_YY + ...
 end
 
-function modifier_template_lua:GetAuraEntityReject( hEntity )
+function modifier_template:GetAuraEntityReject( hEntity )
 	if IsServer() then
 		
 	end
@@ -53,7 +53,7 @@ end
 
 --------------------------------------------------------------------------------
 -- Initializations
-function modifier_template_lua:OnCreated( kv )
+function modifier_template:OnCreated( kv )
 	-- references
 	self.special_value = self:GetAbility():GetSpecialValueFor( "special_value" ) -- special value
 
@@ -62,17 +62,17 @@ function modifier_template_lua:OnCreated( kv )
 	self:OnIntervalThink()
 end
 
-function modifier_template_lua:OnRefresh( kv )
+function modifier_template:OnRefresh( kv )
 	
 end
 
-function modifier_template_lua:OnDestroy( kv )
+function modifier_template:OnDestroy( kv )
 
 end
 
 --------------------------------------------------------------------------------
 -- Modifier Effects
-function modifier_template_lua:DeclareFunctions()
+function modifier_template:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_XX,
 		MODIFIER_EVENT_YY,
@@ -83,7 +83,7 @@ end
 
 --------------------------------------------------------------------------------
 -- Status Effects
-function modifier_template_lua:CheckState()
+function modifier_template:CheckState()
 	local state = {
 	[MODIFIER_STATE_XX] = true,
 	}
@@ -93,87 +93,15 @@ end
 
 --------------------------------------------------------------------------------
 -- Interval Effects
-function modifier_template_lua:OnIntervalThink()
+function modifier_template:OnIntervalThink()
 end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
-function modifier_template_lua:GetEffectName()
+function modifier_template:GetEffectName()
 	return "particles/string/here.vpcf"
 end
 
-function modifier_template_lua:GetEffectAttachType()
+function modifier_template:GetEffectAttachType()
 	return PATTACH_XX
 end
-
---------------------------------------------------------------------------------
--- Declared Functions
-function modifier_template_lua:OnAttackLanded( params )
-
-	-- target	table: 0x02126f70
-	-- attacker	table: 0x0210a5e8
-	-- damage_type	1
-	-- damage_flags	0
-	-- damage	65
-	-- original_damage	65
-	
-	-- ranged_attack	false
-	-- no_attack_cooldown	false
-	-- reincarnate	false
-	-- order_type	0
-	-- damage_category	1
-	
-	-- new_pos	Vector 0000000002138938 [0.000000 0.000000 0.000000]
-	-- process_procs	true
-	-- issuer_player_index	1234320
-	-- ignore_invis	false
-	-- record	0
-	-- activity	-1
-	-- do_not_consume	false
-	-- heart_regen_applied	false
-	-- diffusal_applied	false
-	-- mkb_tested	false
-	-- distance	0
-	-- cost	0
-	-- gain	0
-	-- basher_tested	false
-	-- fail_type	0
-end
-
-function modifier_template_lua:OnTakeDamage( params )
-
-	-- attacker	table: 0x0210e1d0
-	-- unit	table: 0x02125680
-	-- inflictor table: 0x02125680
-	-- damage	52.34899520874
-	-- original_damage	65
-	-- damage_flags	0
-	-- damage_type	1
-
-	-- ranged_attack	false
-	-- no_attack_cooldown	false
-	-- reincarnate	false
-	-- order_type	0
-	-- damage_category	1
-	
-	-- new_pos	Vector 000000000210A488 [0.000000 1.000000 0.000000]
-	-- process_procs	false
-	-- issuer_player_index	0
-	-- fail_type	0
-	-- ignore_invis	false
-	-- record	0
-	-- do_not_consume	false
-	-- activity	-1
-	-- heart_regen_applied	false
-	-- diffusal_applied	false
-	-- mkb_tested	false
-	-- gain	0
-	-- cost	0
-	-- basher_tested	false
-	-- distance	0
-end
-
--- Learned:
-	-- damage always equal to original_damage in OnAttackLanded
-	-- OnTakeDamage happens after OnAttackLanded
-		-- So, SetHealth behaves differently (AFTER DAMAGE, if on OnTakeDamage)
