@@ -87,4 +87,15 @@
 		"Ability3"				"ursa_fury_swipes_lua"						// Ability 3
 		"Ability6"				"ursa_enrage_lua"							// Ability 6
 	}
+	//=================================================================================================================
+	// HERO: Azura (Drow Ranger)
+	//=================================================================================================================
+	"npc_dota_hero_azura"
+	{
+		"override_hero"			"npc_dota_hero_drow_ranger"			// Hero to override
+		"Ability1"				"azura_black_ethereum"						// Ability 1
+		"Ability2"				"azura_shadowform"							// Ability 2
+		"Ability3"				"azura_multishot_crossbow"					// Ability 3
+		//"Ability6"				"ursa_enrage_lua"							// Ability 6
+	}
 }
