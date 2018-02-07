@@ -1,5 +1,5 @@
 //=================================================================================================================
-// Vera Olivia: Tutorial Ability
+// Shadow Fiend: Requiem of Souls (lua version)
 //=================================================================================================================
 
 "shadow_fiend_requiem_of_souls_lua"
@@ -10,10 +10,15 @@
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"						"ability_lua"
 	"ScriptFile"					"lua_abilities/shadow_fiend_requiem_of_souls_lua/shadow_fiend_requiem_of_souls_lua"
-	"AbilityTextureName"			"vera_tutorial_ability"
+	"AbilityTextureName"			"shadow_fiend_requiem_of_souls_lua"
 	"FightRecapLevel"				"2"
 	"MaxLevel"						"4"
-	
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+		"particle"	"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf"
+	}
+
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"

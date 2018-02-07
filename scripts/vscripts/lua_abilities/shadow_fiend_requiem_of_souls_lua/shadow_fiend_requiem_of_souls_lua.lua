@@ -37,41 +37,39 @@ function shadow_fiend_requiem_of_souls_lua:Explode( lines )
 	-- get references
 	self.damage =  self:GetAbilityDamage()
 	self.duration = self:GetSpecialValueFor("requiem_slow_duration")
-	self.reduction_ms_pct = self:GetSpecialValueFor("requiem_reduction_ms")
-	self.reduction_damage_pct = self:GetSpecialValueFor("requiem_reduction_damage")
 
-	local particle_line = "particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf"
+	-- get projectile
+	local particle_line = "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
 	local line_length = self:GetSpecialValueFor("requiem_radius")
 	local width_start = self:GetSpecialValueFor("requiem_line_width_start")
 	local width_end = self:GetSpecialValueFor("requiem_line_width_end")
 	local line_speed = self:GetSpecialValueFor("requiem_line_speed")
 
 	-- create linear projectile
-	self.lines = {}
-	local forward = self:GetCaster():GetForwardVector():Normalized() * line_length
-	local dif_degree = 360/lines;
-	local rotate = 0
+	local initial_angle_deg = self:GetCaster():GetAnglesAsVector().y
+	local delta_angle = 360/lines
+	for i=0,lines-1 do
+		-- Determine velocity
+		local facing_angle_deg = initial_angle_deg + delta_angle * i
+		if facing_angle_deg>360 then facing_angle_deg = facing_angle_deg - 360 end
+		local facing_angle = math.rad(facing_angle_deg)
+		local facing_vector = Vector( math.cos(facing_angle), math.sin(facing_angle), 0 ):Normalized()
+		local velocity = facing_vector * line_speed
 
-	for i=1,lines do
-		-- todo: get rotation
-		local rotation = 
-		local velocity = RotatePosition( self:GetCaster():GetOrigin(), rotation, forward )
+		-- create projectile
 		local info = {
+			Source = self:GetCaster(),
 			Ability = self,
 			EffectName = particle_line,
 			vSpawnOrigin = self:GetCaster():GetOrigin(),
 			fDistance = line_length,
+			vVelocity = velocity,
 			fStartRadius = width_start,
 			fEndRadius = width_end,
-			Source = self:GetCaster(),
-			bHasFrontalCone = false,
-			bReplaceExisting = false,
 			iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 			iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_SPELL_IMMUNE_ENEMIES,
 			iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-			fExpireTime = GameRules:GetGameTime() + 1 + line_length/line_speed,
-			bDeleteOnHit = false,
-			vVelocity = velocity,
+			bReplaceExisting = false,
 			bProvidesVision = false,
 		}
 		projectile = ProjectileManager:CreateLinearProjectile( info )
@@ -79,29 +77,37 @@ function shadow_fiend_requiem_of_souls_lua:Explode( lines )
 
 end
 
-function shadow_fiend_requiem_of_souls_lua:OnProjectileHit( hTarget, vLocation )
-	if hTarget ~= nil then
-		-- damage target
-		local damage = {
-			victim = hTarget,
-			attacker = self:GetCaster(),
-			damage = self.damage,
-			damage_type = DAMAGE_TYPE_MAGICAL,
-			ability = this,
-		}
-		ApplyDamage( damage )
+function shadow_fiend_requiem_of_souls_lua:OnProjectileHit_ExtraData( hTarget, vLocation, params )
+	for k,v in pairs(params) do
+		print(k,v)
+	end
 
-		-- apply modifier
-		hTarget:AddNewModifier(
-			self:GetCaster(),
-			self,
-			"modifier_shadow_fiend_requiem_of_souls_lua",
-			{
-				duration = self.duration,
-				reduction_ms_pct = self.reduction_ms_pct,
-				reduction_damage_pct = self.reduction_damage_pct
+	if hTarget ~= nil then
+		-- filter
+		pass = false
+		if hTarget:GetTeamNumber()~=self:GetCaster():GetTeamNumber() then
+			pass = true
+		end
+
+		if pass then
+			-- damage target
+			local damage = {
+				victim = hTarget,
+				attacker = self:GetCaster(),
+				damage = self.damage,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				ability = this,
 			}
-		)
+			ApplyDamage( damage )
+
+			-- apply modifier
+			hTarget:AddNewModifier(
+				self:GetCaster(),
+				self,
+				"modifier_shadow_fiend_requiem_of_souls_lua",
+				{ duration = self.duration }
+			)
+		end
 	end
 
 	return false
