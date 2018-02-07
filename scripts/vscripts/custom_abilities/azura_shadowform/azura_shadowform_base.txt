@@ -1,0 +1,90 @@
+//=================================================================================================================
+// Azura: Shadowform
+//=================================================================================================================
+"azura_shadowform"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"custom_abilities/azura_shadowform/azura_shadowform"
+	"AbilityTextureName"			"custom/azura_shadowform"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	//"precache"
+	//{
+	//	"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+	//	"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+	//}
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"200"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"24 21 18 15"
+	"AbilityManaCost"				"120"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"duration_tooltip"		"2 3 4 5"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"resist_ally_pct"		"-25"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"resist_enemy_pct"		"-30 -40 -50 -60"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"collision_radius"		"200"
+		}
+	}
+}
+
+// Template Ability
+"DOTA_Tooltip_ability_azura_shadowform"
+	"Shadowform"
+
+"DOTA_Tooltip_ability_azura_shadowform_Description"
+	"Azura slips into the Nothl Realm, becoming Ethereal and gain Hasted movement speed for %duration_tooltip% seconds. Any allied or enemy unit she passes through becomes Ethereal for the remaining duration of Shadowform."
+
+"DOTA_Tooltip_ability_azura_shadowform_Lore"
+	"Some role needed."
+
+"DOTA_Tooltip_ability_azura_shadowform_Note0"
+	"Has %collision_radius% search radius."
+
+"DOTA_Tooltip_ability_azura_shadowform_Note1"
+	"If Shadowform ends on Azura for any reason, the ethereal buff is removed from all other units as well."
+
+"DOTA_Tooltip_ability_azura_shadowform_resist_ally_pct"			"%MAGIC RESISTANCE REDUCTION (ALLY):"
+"DOTA_Tooltip_ability_azura_shadowform_resist_enemy_pct"		"%MAGIC RESISTANCE REDUCTION (ENEMY):"
+"DOTA_Tooltip_ability_azura_shadowform_duration_tooltip"		"DURATION:"
+
+"DOTA_Tooltip_modifier_azura_shadowform"		"Shadowform"
+"DOTA_Tooltip_modifier_azura_shadowform_Description"
+	"This unit become ethereal and have magical resistance reduced by %MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE%%%."

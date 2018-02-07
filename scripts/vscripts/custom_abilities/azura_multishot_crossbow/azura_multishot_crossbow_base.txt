@@ -1,0 +1,82 @@
+//=================================================================================================================
+// Azura: Multishot Crossbow
+//=================================================================================================================
+"azura_multishot_crossbow"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"custom_abilities/azura_multishot_crossbow/azura_multishot_crossbow"
+	"AbilityTextureName"			"custom/azura_multishot_crossbow"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	//"precache"
+	//{
+	//	"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+	//	"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+	//}
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"max_charge"			"2 3 4 5"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"bat_override"			"0.5"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"charge_restore"		"1.9 2.0 2.1 2.2"
+		}
+	}
+}
+
+// Template Ability
+"DOTA_Tooltip_ability_azura_multishot_crossbow"
+	"Multi-Shot Crossbow"
+
+"DOTA_Tooltip_ability_azura_multishot_crossbow_Description"
+	"Gives Azura a BAT of %bat_override% seconds, but limits her attacks by Bolt Charges. She has %max_charge% Bolt Charges and generates one Bolt Charge every %charge_restore% seconds, modified by attack speed. One Bolt Charge is consumed for each attack launched by Azura and she cannot attack while her Bolt Charges is at 0."
+
+"DOTA_Tooltip_ability_azura_multishot_crossbow_Lore"
+	"Some role needed."
+
+"DOTA_Tooltip_ability_azura_multishot_crossbow_Note0"
+	"Does not disabled by break."
+
+"DOTA_Tooltip_ability_azura_multishot_crossbow_Note1"
+	"Actual replenish time is charge_restore * (100/attack_speed).
+
+"DOTA_Tooltip_ability_azura_multishot_crossbow_Note2"
+	"Bolt recharge is delayed whenever an attack is launched."
+
+"DOTA_Tooltip_ability_azura_multishot_crossbow_bat_override"			"BASE ATTACK TIME:"
+"DOTA_Tooltip_ability_azura_multishot_crossbow_charge_restore"			"BASE RESTORE TIME:"
+"DOTA_Tooltip_ability_azura_multishot_crossbow_max_charge"				"MAXIMUM CHARGE:"
+
+"DOTA_Tooltip_modifier_azura_multishot_crossbow"		"Multishot Crossbow Charges"
+"DOTA_Tooltip_modifier_azura_multishot_crossbow_Description"
+	"Each normal attack consumes a charge; this unit can't attack without a charge."

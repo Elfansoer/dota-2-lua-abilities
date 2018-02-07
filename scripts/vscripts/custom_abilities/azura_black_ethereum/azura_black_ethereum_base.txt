@@ -1,0 +1,85 @@
+//=================================================================================================================
+// Azura: Black Ethereum
+//=================================================================================================================
+"azura_black_ethereum"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"custom_abilities/azura_black_ethereum/azura_black_ethereum"
+	"AbilityTextureName"			"custom/azura_black_ethereum"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+	}
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"600"
+	"AbilityCastPoint"				"0.3"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"15 14 13 12"
+	"AbilityManaCost"				"90 100 110 120"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"max_target"			"2 3 4 5"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"search_radius"			"500"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"damage_tooltip"		"100 150 200 250"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bolt_per_unit"			"1"
+		}
+	}
+}
+
+// Template Ability
+"DOTA_Tooltip_ability_azura_black_ethereum"
+	"Black Ethereum"
+
+"DOTA_Tooltip_ability_azura_black_ethereum_Description"
+	"Releases black lightning that deals %damage_tooltip% damage to enemy units in a cone and replenishes %bolt_per_unit% Bolt Charge for each unit hit."
+
+"DOTA_Tooltip_ability_azura_black_ethereum_Lore"
+	"Some role needed."
+
+"DOTA_Tooltip_ability_azura_black_ethereum_Note0"
+	"Can target up to %search_radius% range from initial target."
+
+"DOTA_Tooltip_ability_azura_black_ethereum_max_target"			"MAX TARGETS:"
+"DOTA_Tooltip_ability_azura_black_ethereum_damage_tooltip"		"DAMAGE:"
