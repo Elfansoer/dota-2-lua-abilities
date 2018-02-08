@@ -128,7 +128,7 @@ end
 function modifier_azura_multishot_crossbow:CalculateCharge()
 	if self:GetStackCount()==self.max_charge then
 		-- stop duration
-		self:SetDuration( 0, true )
+		self:SetDuration( 0, false )
 
 		-- stop charging
 		self:StartIntervalThink( -1 )

@@ -1,5 +1,7 @@
 azura_gaze_of_exile = class({})
 LinkLuaModifier( "modifier_azura_gaze_of_exile", "custom_abilities/azura_gaze_of_exile/modifier_azura_gaze_of_exile", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_azura_gaze_of_exile_buff", "custom_abilities/azura_gaze_of_exile/modifier_azura_gaze_of_exile_buff", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_azura_gaze_of_exile_debuff", "custom_abilities/azura_gaze_of_exile/modifier_azura_gaze_of_exile_debuff", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Ability Start

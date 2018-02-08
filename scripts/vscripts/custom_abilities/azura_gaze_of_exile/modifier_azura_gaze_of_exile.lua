@@ -17,18 +17,12 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_azura_gaze_of_exile:OnCreated( kv )
-	-- references
-	self.bonus_range = self:GetAbility():GetSpecialValueFor( "bonus_range" )
-	-- self:GetParent():NoTeamSelect()
 end
 
 function modifier_azura_gaze_of_exile:OnRefresh( kv )
-	-- references
-	self.bonus_range = self:GetAbility():GetSpecialValueFor( "bonus_range" )
 end
 
 function modifier_azura_gaze_of_exile:OnDestroy( kv )
-
 end
 
 --------------------------------------------------------------------------------
@@ -36,6 +30,7 @@ end
 function modifier_azura_gaze_of_exile:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ORDER,
+		MODIFIER_EVENT_ON_DEATH,
 	}
 
 	return funcs
@@ -57,21 +52,69 @@ function modifier_azura_gaze_of_exile:OnOrder( params )
 		if pass then
 			-- if enemies
 			if unit:GetTeamNumber()==self:GetParent():GetTeamNumber() then
-				print("stop!")
-				unit:Stop()
-				unit:Interrupt()
-				unit:SetOrigin(Vector(0,0,0))
+				if not unit:HasModifier("modifier_azura_gaze_of_exile_debuff") then
+					unit:AddNewModifier(
+						self:GetCaster(),
+						self:GetAbility(),
+						"modifier_azura_gaze_of_exile_debuff",
+						{}
+					)
+				end
+			else
+				if not unit:HasModifier("modifier_azura_gaze_of_exile_buff") then
+					unit:AddNewModifier(
+						self:GetCaster(),
+						self:GetAbility(),
+						"modifier_azura_gaze_of_exile_buff",
+						{}
+					)
+				end
 			end
 		end
 	end
 end
-		-- -- check order
-		-- local order = params.order_type
-		-- if (order==DOTA_UNIT_ORDER_ATTACK_TARGET) or
-		-- 	(order==DOTA_UNIT_ORDER_CAST_TARGET) or 
-		-- 	(order==DOTA_UNIT_ORDER_ATTACK_MOVE)
-		-- then
-		-- end
+
+function modifier_azura_gaze_of_exile:OnDeath( params )
+	if IsServer() then
+		-- filter
+		local pass = false
+		if params.unit==self:GetParent() then
+			pass = true
+		end
+
+		-- logic
+		if pass then
+			-- get caster
+			local caster = self:GetCaster()
+
+			-- refresh all basic abilities
+			local total = caster:GetAbilityCount()
+			for i=0,total-1 do
+				local ability = caster:GetAbilityByIndex( i )
+				if ability~=nil then
+					if ability:GetAbilityKeyValues().AbilityType=="DOTA_ABILITY_TYPE_BASIC" then
+						ability:EndCooldown()
+					end
+				end
+			end
+
+			-- replenish bolt charges
+			local modifier = caster:FindModifierByNameAndCaster( "modifier_azura_multishot_crossbow", caster )
+			if modifier~=nil then
+				modifier:AddStack( modifier:GetAbility():GetSpecialValueFor("max_charge") )
+			end
+		end
+	end
+end
+
+function modifier_azura_gaze_of_exile:CheckState()
+	local state = {
+	[MODIFIER_STATE_NO_TEAM_SELECT] = true,
+	}
+
+	return state
+end
+
 --------------------------------------------------------------------------------
 -- Graphics & Animations
 -- function modifier_azura_gaze_of_exile:GetEffectName()
