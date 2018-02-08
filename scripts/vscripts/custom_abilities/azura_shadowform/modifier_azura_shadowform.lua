@@ -84,7 +84,7 @@ end
 function modifier_azura_shadowform:OnDestroy( kv )
 	if IsServer() then
 		if self.isCaster then
-			self:GetAbility():ReleaseUnits()
+			self:GetAbility():CancelAbility()
 		end
 	end
 end

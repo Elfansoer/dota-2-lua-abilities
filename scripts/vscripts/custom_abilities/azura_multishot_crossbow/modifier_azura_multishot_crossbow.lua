@@ -3,7 +3,7 @@ modifier_azura_multishot_crossbow = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_azura_multishot_crossbow:IsHidden()
-	return false
+	return self:GetStackCount()==0
 end
 
 function modifier_azura_multishot_crossbow:IsDebuff()
@@ -74,6 +74,7 @@ function modifier_azura_multishot_crossbow:OnAttack( params )
 		-- logic
 		if pass then
 			self:RemoveStack( 1 )
+			self:StartCharge()
 		end
 	end
 end
@@ -127,20 +128,29 @@ end
 
 function modifier_azura_multishot_crossbow:CalculateCharge()
 	if self:GetStackCount()==self.max_charge then
-		-- stop duration
-		self:SetDuration( 0, false )
-
 		-- stop charging
-		self:StartIntervalThink( -1 )
+		self:StopCharge()
 	else
 		-- if not charging
 		if self:GetRemainingTime() <= 0.05 then
 			-- start charging
-			local charge_time = self:GetAbility().recharge_time
-			self:StartIntervalThink( charge_time )
-			self:SetDuration( charge_time, true )
+			self:StartCharge()
 		end
 	end
+end
+function modifier_azura_multishot_crossbow:StartCharge()
+	-- start charging
+	local charge_time = self:GetAbility().recharge_time
+	self:StartIntervalThink( charge_time )
+	self:SetDuration( charge_time, true )
+	if self:GetStackCount()==0 then
+		self:GetAbility():StartCooldown( charge_time )
+	end
+end
+function modifier_azura_multishot_crossbow:StopCharge()
+	self:SetDuration( -1, false )
+	self:StartIntervalThink( -1 )
+	self:GetAbility():EndCooldown()
 end
 
 --------------------------------------------------------------------------------

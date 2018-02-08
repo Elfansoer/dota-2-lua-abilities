@@ -12,6 +12,7 @@
 	"AbilityTextureName"			"custom/azura_shadowform"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
+	"LinkedAbility"					"azura_shadowform_cancel"
 	//"precache"
 	//{
 	//	"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
@@ -65,6 +66,36 @@
 	}
 }
 
+"azura_shadowform_cancel"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"custom_abilities/azura_shadowform/azura_shadowform"
+	"AbilityTextureName"			"custom/azura_shadowform"
+	"LinkedAbility"					"azura_shadowform"
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"1"
+	"AbilityManaCost"				"0"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+}
+
 // Template Ability
 "DOTA_Tooltip_ability_azura_shadowform"
 	"Shadowform"
@@ -87,4 +118,13 @@
 
 "DOTA_Tooltip_modifier_azura_shadowform"		"Shadowform"
 "DOTA_Tooltip_modifier_azura_shadowform_Description"
-	"This unit become ethereal and have magical resistance reduced by %MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE%%%."
+	"This unit become ethereal and has magical resistance reduced."
+
+"DOTA_Tooltip_ability_azura_shadowform_cancel"
+	"Cancel Shadowform"
+
+"DOTA_Tooltip_ability_azura_shadowform_cancel_Description"
+	"End Shadowform early."
+
+"DOTA_Tooltip_ability_azura_shadowform_cancel_Lore"
+	"Some role needed."

@@ -2203,6 +2203,7 @@
 		"ScriptFile"					"custom_abilities/azura_shadowform/azura_shadowform"
 		"AbilityTextureName"			"custom/azura_shadowform"
 		"FightRecapLevel"				"1"
+		"LinkedAbility"					"azura_shadowform_cancel"
 		"MaxLevel"						"4"
 		//"precache"
 		//{
@@ -2256,6 +2257,36 @@
 			}
 		}
 	}
+
+	"azura_shadowform_cancel"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/azura_shadowform/azura_shadowform"
+		"AbilityTextureName"			"custom/azura_shadowform"
+		"LinkedAbility"					"azura_shadowform"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1"
+		"AbilityManaCost"				"0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+	}
 	//=================================================================================================================
 	// Azura: Multishot Crossbow
 	//=================================================================================================================
@@ -2296,13 +2327,13 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"max_charge"			"2 3 4 5"
+				"var_type"				"FIELD_FLOAT"
+				"bat_override"			"0.5"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bat_override"			"0.5"
+				"var_type"				"FIELD_INTEGER"
+				"max_charge"			"2 3 4 5"
 			}
 			"03"
 			{

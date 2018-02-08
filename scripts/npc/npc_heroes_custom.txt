@@ -97,5 +97,14 @@
 		"Ability2"				"azura_shadowform"							// Ability 2
 		"Ability3"				"azura_multishot_crossbow"					// Ability 3
 		"Ability6"				"azura_gaze_of_exile"						// Ability 6
+		"Ability7"				"azura_shadowform_cancel"
+		"Ability10"				"special_bonus_magic_resistance_15"
+		"Ability11"				"special_bonus_attack_damage_25"
+		//"Ability12"				"special_bonus_unique_azura_1"
+		"Ability13"				"special_bonus_attack_range_100"
+		//"Ability14"				"special_bonus_unique_azura_2"
+		"Ability15"				"special_bonus_attack_speed_40"
+		//"Ability16"				"special_bonus_unique_azura_3"
+		//"Ability17"				"special_bonus_unique_azura_4"
 	}
 }

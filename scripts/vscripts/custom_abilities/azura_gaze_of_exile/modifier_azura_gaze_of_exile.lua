@@ -50,26 +50,24 @@ function modifier_azura_gaze_of_exile:OnOrder( params )
 
 		-- logic
 		if pass then
-			-- if enemies
+			-- set modifier
+			local modifier_name = ""
 			if unit:GetTeamNumber()==self:GetParent():GetTeamNumber() then
-				if not unit:HasModifier("modifier_azura_gaze_of_exile_debuff") then
-					unit:AddNewModifier(
-						self:GetCaster(),
-						self:GetAbility(),
-						"modifier_azura_gaze_of_exile_debuff",
-						{}
-					)
-				end
+				modifier_name = "modifier_azura_gaze_of_exile_debuff"
 			else
-				if not unit:HasModifier("modifier_azura_gaze_of_exile_buff") then
-					unit:AddNewModifier(
-						self:GetCaster(),
-						self:GetAbility(),
-						"modifier_azura_gaze_of_exile_buff",
-						{}
-					)
-				end
+				modifier_name = "modifier_azura_gaze_of_exile_buff"
 			end
+
+			-- add modifier
+			if not unit:HasModifier( modifier_name ) then
+				unit:AddNewModifier(
+					self:GetCaster(),
+					self:GetAbility(),
+					modifier_name,
+					{}
+				)
+			end
+			
 		end
 	end
 end

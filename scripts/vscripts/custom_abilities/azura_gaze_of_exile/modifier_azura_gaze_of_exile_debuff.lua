@@ -3,8 +3,7 @@ modifier_azura_gaze_of_exile_debuff = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_azura_gaze_of_exile_debuff:IsHidden()
-	-- final: true
-	return false
+	return true
 end
 
 function modifier_azura_gaze_of_exile_debuff:IsDebuff()
@@ -46,9 +45,11 @@ function modifier_azura_gaze_of_exile_debuff:OnOrder( params )
 		local unit = params.unit
 		local target = params.target
 		local pass = true
-		if target~=nil then
-			if not target:HasModifier("modifier_azura_gaze_of_exile") then
-				pass = false
+		if unit==self:GetParent() then
+			if target~=nil then
+				if target:HasModifier("modifier_azura_gaze_of_exile") then
+					pass = false
+				end
 			end
 		end
 
