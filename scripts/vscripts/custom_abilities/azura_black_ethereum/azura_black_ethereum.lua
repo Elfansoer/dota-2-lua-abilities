@@ -64,11 +64,15 @@ end
 --------------------------------------------------------------------------------
 -- Effects
 function azura_black_ethereum:PlayEffects()
+	-- get resources
+	local sound_cast = "Hero_ShadowShaman.EtherShock"
+
+	-- play effects
 	-- local nFXIndex = ParticleManager:CreateParticle( particle_target, PATTACH_WORLDORIGIN, nil )
 	-- ParticleManager:SetParticleControl( nFXIndex, 0, target:GetOrigin() )
 	-- ParticleManager:SetParticleControl( nFXIndex, 1, target:GetOrigin() )
 	-- ParticleManager:ReleaseParticleIndex( nFXIndex )
 
-	-- EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	-- EmitSoundOn( sound_target, target )
+	-- play sounds
+	EmitSoundOn( sound_target, self:GetCaster() )
 end

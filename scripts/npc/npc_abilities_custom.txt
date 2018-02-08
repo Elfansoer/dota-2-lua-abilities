@@ -2135,11 +2135,11 @@
 		"AbilityTextureName"			"custom/azura_black_ethereum"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-		//"precache"
-		//{
-		//	"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-		//	"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-		//}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
+			"particle"	"particles/units/heroes/hero_shadowshaman/shadowshaman_ether_shock.vpcf"
+		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
@@ -2206,11 +2206,11 @@
 		"FightRecapLevel"				"1"
 		"LinkedAbility"					"azura_shadowform_cancel"
 		"MaxLevel"						"4"
-		//"precache"
-		//{
-		//	"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-		//	"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-		//}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
+			// "particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------

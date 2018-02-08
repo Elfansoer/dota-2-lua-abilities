@@ -48,7 +48,6 @@ function azura_shadowform:CancelAbility()
 	self:SetLayout( true )
 end
 
---------------------------------------------------------------------------------
 function azura_shadowform:SetLayout( main )
 	-- if different ability is shown, swap
 	if self.layout_main~=main then
@@ -61,14 +60,20 @@ function azura_shadowform:SetLayout( main )
 	end
 end
 
+--------------------------------------------------------------------------------
+-- Effects
 function azura_shadowform:PlayEffects()
+	-- get resources
+	local sound_cast = "Hero_Necrolyte.SpiritForm.Cast"
+
+	-- play effects
 	-- local nFXIndex = ParticleManager:CreateParticle( particle_target, PATTACH_WORLDORIGIN, nil )
 	-- ParticleManager:SetParticleControl( nFXIndex, 0, target:GetOrigin() )
 	-- ParticleManager:SetParticleControl( nFXIndex, 1, target:GetOrigin() )
 	-- ParticleManager:ReleaseParticleIndex( nFXIndex )
 
-	-- EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	-- EmitSoundOn( sound_target, target )
+	-- play sounds
+	EmitSoundOn( sound_cast, self:GetCaster() )
 end
 
 --------------------------------------------------------------------------------

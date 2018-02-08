@@ -13,11 +13,11 @@
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
 	"LinkedAbility"					"azura_shadowform_cancel"
-	//"precache"
-	//{
-	//	"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-	//	"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-	//}
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
+		// "particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+	}
 	
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------
