@@ -46,6 +46,9 @@ function azura_shadowform:CancelAbility()
 
 	-- reset layout
 	self:SetLayout( true )
+
+	-- stop effects
+	-- self:StopEffects()
 end
 
 function azura_shadowform:SetLayout( main )
@@ -74,6 +77,20 @@ function azura_shadowform:PlayEffects()
 
 	-- play sounds
 	EmitSoundOn( sound_cast, self:GetCaster() )
+end
+
+function azura_shadowform:StopEffects()
+	-- get resources
+	local sound_cast = "Hero_Necrolyte.SpiritForm.Cast"
+
+	-- play effects
+	-- local nFXIndex = ParticleManager:CreateParticle( particle_target, PATTACH_WORLDORIGIN, nil )
+	-- ParticleManager:SetParticleControl( nFXIndex, 0, target:GetOrigin() )
+	-- ParticleManager:SetParticleControl( nFXIndex, 1, target:GetOrigin() )
+	-- ParticleManager:ReleaseParticleIndex( nFXIndex )
+
+	-- play sounds
+	StopSoundOn( sound_cast, self:GetCaster() )
 end
 
 --------------------------------------------------------------------------------

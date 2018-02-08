@@ -56,6 +56,9 @@ function azura_black_ethereum:OnSpellStart()
 
 		-- increase hit target
 		hit_target = hit_target + 1
+
+		-- play effects
+		self:PlayEffects2( enemy )
 	end
 
 	self:PlayEffects()
@@ -65,14 +68,29 @@ end
 -- Effects
 function azura_black_ethereum:PlayEffects()
 	-- get resources
-	local sound_cast = "Hero_ShadowShaman.EtherShock"
+	local sound_cast = "Hero_ShadowShaman.EtherShock.Cast"
 
-	-- play effects
+	-- -- play effects
 	-- local nFXIndex = ParticleManager:CreateParticle( particle_target, PATTACH_WORLDORIGIN, nil )
 	-- ParticleManager:SetParticleControl( nFXIndex, 0, target:GetOrigin() )
 	-- ParticleManager:SetParticleControl( nFXIndex, 1, target:GetOrigin() )
 	-- ParticleManager:ReleaseParticleIndex( nFXIndex )
 
 	-- play sounds
-	EmitSoundOn( sound_target, self:GetCaster() )
+	EmitSoundOn( sound_cast, self:GetCaster() )
+end
+
+function azura_black_ethereum:PlayEffects2( target )
+	-- get resources
+	local particle_cast = "particles/units/heroes/hero_shadowshaman/shadowshaman_ether_shock.vpcf"
+	local sound_target = "Hero_ShadowShaman.EtherShock.Target"
+
+	-- play effects
+	local nFXIndex = ParticleManager:CreateParticle( particle_cast, PATTACH_CUSTOMORIGIN, nil );
+	ParticleManager:SetParticleControlEnt( nFXIndex, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetOrigin() + Vector( 0, 0, 96 ), true );
+	ParticleManager:SetParticleControlEnt( nFXIndex, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetOrigin(), true );
+	ParticleManager:ReleaseParticleIndex( nFXIndex );
+
+	-- play sounds
+	EmitSoundOn( sound_target, target )
 end

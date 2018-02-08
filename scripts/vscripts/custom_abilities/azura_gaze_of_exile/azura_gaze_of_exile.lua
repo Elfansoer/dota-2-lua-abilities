@@ -23,16 +23,21 @@ function azura_gaze_of_exile:OnSpellStart()
 	)
 
 	-- play effects
-	self:PlayEffects()
+	self:PlayEffects( target )
 end
 
 --------------------------------------------------------------------------------
-function azura_gaze_of_exile:PlayEffects()
+function azura_gaze_of_exile:PlayEffects( target )
+	-- get resources
+	local sound_target = "Hero_Terrorblade.Sunder.Target"
+
+	-- play effects
 	-- local nFXIndex = ParticleManager:CreateParticle( particle_target, PATTACH_WORLDORIGIN, nil )
 	-- ParticleManager:SetParticleControl( nFXIndex, 0, target:GetOrigin() )
 	-- ParticleManager:SetParticleControl( nFXIndex, 1, target:GetOrigin() )
 	-- ParticleManager:ReleaseParticleIndex( nFXIndex )
 
+	-- play sounds
 	-- EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	-- EmitSoundOn( sound_target, target )
+	EmitSoundOn( sound_target, target )
 end

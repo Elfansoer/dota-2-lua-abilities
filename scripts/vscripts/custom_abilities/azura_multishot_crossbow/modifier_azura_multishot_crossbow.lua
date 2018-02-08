@@ -57,7 +57,7 @@ end
 function modifier_azura_multishot_crossbow:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ATTACK,
-		-- MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 	}
 
 	return funcs
@@ -79,22 +79,22 @@ function modifier_azura_multishot_crossbow:OnAttack( params )
 	end
 end
 
--- function modifier_azura_multishot_crossbow:GetModifierBaseAttackTimeConstant( params )
--- 	if self:GetStackCount()==0 then
--- 		return 10
--- 	else
--- 		return 0
--- 	end
--- end
+function modifier_azura_multishot_crossbow:GetModifierBaseAttackTimeConstant( params )
+	if self:GetStackCount()==0 then
+		return 10
+	else
+		return 0
+	end
+end
 --------------------------------------------------------------------------------
 -- Status Effects
-function modifier_azura_multishot_crossbow:CheckState()
-	local state = {
-	[MODIFIER_STATE_DISARMED] = (self:GetStackCount()==0),
-	}
+-- function modifier_azura_multishot_crossbow:CheckState()
+-- 	local state = {
+-- 	[MODIFIER_STATE_DISARMED] = (self:GetStackCount()==0),
+-- 	}
 
-	return state
-end
+-- 	return state
+-- end
 
 --------------------------------------------------------------------------------
 -- Interval Effects

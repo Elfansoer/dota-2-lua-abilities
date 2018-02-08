@@ -2359,11 +2359,11 @@
 		"AbilityTextureName"			"custom/azura_gaze_of_exile"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"3"
-		// "precache"
-		// {
-		// 	"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-		// 	"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-		// }
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+			"particle"	"particles/units/heroes/hero_warlock/warlock_fatal_bonds_icon.vpcf"
+		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------

@@ -152,10 +152,6 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_azura_shadowform:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
-
--- function modifier_azura_shadowform:GetEffectAttachType()
--- 	return PATTACH_XX
--- end
+function modifier_azura_shadowform:GetStatusEffectName()
+	return "particles/status_fx/status_effect_vengeful_venge_image.vpcf"
+end

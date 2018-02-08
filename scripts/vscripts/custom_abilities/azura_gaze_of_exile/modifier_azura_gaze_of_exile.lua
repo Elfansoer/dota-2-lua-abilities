@@ -115,10 +115,10 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_azura_gaze_of_exile:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_azura_gaze_of_exile:GetEffectName()
+	return "particles/units/heroes/hero_warlock/warlock_fatal_bonds_icon.vpcf"
+end
 
--- function modifier_azura_gaze_of_exile:GetEffectAttachType()
--- 	return PATTACH_XX
--- end
+function modifier_azura_gaze_of_exile:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
