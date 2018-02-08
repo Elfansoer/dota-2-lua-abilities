@@ -1,0 +1,63 @@
+//=================================================================================================================
+// Azura: Special Bonuses
+//=================================================================================================================
+"special_bonus_unique_azura_1"
+{
+	"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"		"FIELD_INTEGER"
+			"value"			"150"
+		}
+	}
+}
+"special_bonus_unique_azura_2"
+{
+	"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"		"FIELD_INTEGER"
+			"value"			"5"
+		}
+	}
+}
+"special_bonus_unique_azura_3"
+{
+	"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"		"FIELD_INTEGER"
+			"value"			"-30"
+		}
+	}
+}
+"special_bonus_unique_azura_4"
+{
+	"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"		"FIELD_INTEGER"
+			"value"			"1"
+		}
+	}
+}
+
+//-------------------------------------------------------------------------------------------------------------
+// Azura: Special Bonuses
+//-------------------------------------------------------------------------------------------------------------
+"DOTA_Tooltip_ability_special_bonus_unique_azura_1"		"+150 Black Ethereum Damage"
+"DOTA_Tooltip_ability_special_bonus_unique_azura_2"		"+5s Shadowform Duration"
+"DOTA_Tooltip_ability_special_bonus_unique_azura_3"		"-30s Gaze of Exile Cooldown"
+"DOTA_Tooltip_ability_special_bonus_unique_azura_4"		"+1 Max Bolt Charges"
