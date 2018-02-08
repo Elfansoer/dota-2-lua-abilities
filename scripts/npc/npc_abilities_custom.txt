@@ -2182,6 +2182,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_tooltip"		"100 150 200 250"
+				"LinkedSpecialBonus"		"special_bonus_unique_azura_1"
 			}
 			"04"
 			{
@@ -2239,6 +2240,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration_tooltip"		"2 3 4 5"
+				"LinkedSpecialBonus"	"special_bonus_unique_azura_2"
 			}
 			"02"
 			{
@@ -2334,6 +2336,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"max_charge"			"2 3 4 5"
+				"LinkedSpecialBonus"	"special_bonus_unique_azura_4"
 			}
 			"03"
 			{
@@ -2398,6 +2401,61 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"bonus_range"			"200 300 400"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Azura: Special Bonuses
+	//=================================================================================================================
+	"special_bonus_unique_azura_1"
+	{
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"value"			"150"
+			}
+		}
+	}
+	"special_bonus_unique_azura_2"
+	{
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"value"			"5"
+			}
+		}
+	}
+	"special_bonus_unique_azura_3"
+	{
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"value"			"-30"
+			}
+		}
+	}
+	"special_bonus_unique_azura_4"
+	{
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"value"			"1"
 			}
 		}
 	}
