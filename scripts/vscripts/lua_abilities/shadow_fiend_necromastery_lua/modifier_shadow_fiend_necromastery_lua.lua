@@ -28,7 +28,6 @@ function modifier_shadow_fiend_necromastery_lua:OnCreated( kv )
 	self.soul_release = self:GetAbility():GetSpecialValueFor("soul_release")
 	self.soul_damage = self:GetAbility():GetSpecialValueFor("soul_damage")
 	self.soul_hero_bonus = self:GetAbility():GetSpecialValueFor("soul_hero_bonus")
-	self.soul_damage = self:GetAbility():GetSpecialValueFor("soul_damage")
 end
 
 function modifier_shadow_fiend_necromastery_lua:OnRefresh( kv )
@@ -38,7 +37,6 @@ function modifier_shadow_fiend_necromastery_lua:OnRefresh( kv )
 	self.soul_release = self:GetAbility():GetSpecialValueFor("soul_release")
 	self.soul_damage = self:GetAbility():GetSpecialValueFor("soul_damage")
 	self.soul_hero_bonus = self:GetAbility():GetSpecialValueFor("soul_hero_bonus")
-	self.soul_damage = self:GetAbility():GetSpecialValueFor("soul_damage")
 end
 
 --------------------------------------------------------------------------------
@@ -97,6 +95,8 @@ function modifier_shadow_fiend_necromastery_lua:KillLogic( params )
 		if target:IsRealHero() then
 			self:AddStack(11)
 		end
+
+		self:PlayEffects( target )
 	end
 end
 
@@ -104,7 +104,7 @@ end
 function modifier_shadow_fiend_necromastery_lua:AddStack( value )
 	local current = self:GetStackCount()
 	local after = current + value
-	if self:GetParent():HasScepter() then
+	if not self:GetParent():HasScepter() then
 		if after > self.soul_max then
 			after = self.soul_max
 		end
@@ -114,4 +114,23 @@ function modifier_shadow_fiend_necromastery_lua:AddStack( value )
 		end
 	end
 	self:SetStackCount( after )
+end
+
+function modifier_shadow_fiend_necromastery_lua:PlayEffects( target )
+	-- Get Resources
+	local projectile_name = "particles/units/heroes/hero_nevermore/nevermore_necro_souls.vpcf"
+
+	-- CreateProjectile
+	local info = {
+		Target = self:GetParent(),
+		Source = target,
+		EffectName = projectile_name,
+		iMoveSpeed = 400,
+		vSourceLoc= target:GetAbsOrigin(),                -- Optional
+		bDodgeable = false,                                -- Optional
+		bReplaceExisting = false,                         -- Optional
+		flExpireTime = GameRules:GetGameTime() + 5,      -- Optional but recommended
+		bProvidesVision = false,                           -- Optional
+	}
+	projectile = ProjectileManager:CreateTrackingProjectile(info)
 end

@@ -58,6 +58,7 @@ function ursa_earthshock_lua:PlayEffects()
 	-- play particles
 	local nFXIndex = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
 	ParticleManager:SetParticleControl( nFXIndex, 0, self:GetCaster():GetOrigin() )
+	ParticleManager:SetParticleControlForward( nFXIndex, 0, self:GetCaster():GetForwardVector() )
 	ParticleManager:SetParticleControl( nFXIndex, 1, Vector(slow_radius/2, slow_radius/2, slow_radius/2) )
 	ParticleManager:ReleaseParticleIndex( nFXIndex )
 

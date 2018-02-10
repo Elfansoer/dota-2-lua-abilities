@@ -12,6 +12,10 @@
 	"AbilityTextureName"			"shadow_fiend_necromastery_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
+	"precache"
+	{
+		"particle"	"particles/units/heroes/hero_nevermore/nevermore_necromastery.vpcf"
+	}
 	
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------

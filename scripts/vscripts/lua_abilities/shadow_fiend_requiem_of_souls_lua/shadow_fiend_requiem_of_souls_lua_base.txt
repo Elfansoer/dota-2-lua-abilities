@@ -16,6 +16,7 @@
 	"precache"
 	{
 		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+		"particle"	"particles/units/heroes/hero_nevermore/nevermore_wings.vpcf"
 		"particle"	"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf"
 	}
 

@@ -145,13 +145,94 @@ end
 
 --------------------------------------------------------------------------------
 function template:PlayEffects()
+	-- Get Resources
+	local particle_cast = "string"
+	local sound_cast = "string"
+
+	-- Get Data
+
+	-- Create Particle
+	local nFXIndex = ParticleManager:CreateParticle(
+		"particleName",
+		iPATTACH,
+		hOwner
+	)
+
+	-- Control Particle
+	-- Set vector attachment
+	ParticleManager:SetParticleControl(
+		nFXIndex,
+		iControlPoint,
+		vControlVector
+	)
+	-- Set entity attachment
+	ParticleManager:SetParticleControlEnt(
+		nFXIndex,
+		iControlPoint,
+		hTarget,
+		PATTACH_NAME,
+		"attach_name",
+		vOffset, -- unknown
+		bool -- unknown, true
+	)
+	-- Set particle orientation
+	ParticleManager:SetParticleControlForward(
+		nFXIndex,
+		iControlPoint,
+		vForward
+	)
+	SetParticleControlOrientation(
+		nFXIndex,
+		iControlPoint,
+		vForward,
+		vRight,
+		vUp
+	)
+
+	-- Release Particle
+	ParticleManager:ReleaseParticleIndex( nFXIndex )
+
 	local nFXIndex = ParticleManager:CreateParticle( particle_target, PATTACH_WORLDORIGIN, nil )
 	ParticleManager:SetParticleControl( nFXIndex, 0, target:GetOrigin() )
 	ParticleManager:SetParticleControl( nFXIndex, 1, target:GetOrigin() )
 	ParticleManager:ReleaseParticleIndex( nFXIndex )
 
+	-- Create Sound
 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
 	EmitSoundOn( sound_target, target )
+
+	PATTACH_ABSORIGIN 				Attaches the particle to the an origin.
+	PATTACH_ABSORIGIN_FOLLOW		Attaches the particle to an origin, and causes it to follow the unit that is considered the source of the particle.
+	PATTACH_CUSTOMORIGIN			Attaches the particle to a custom origin. (Requires passing a vector to the Control points)
+	PATTACH_CUSTOMORIGIN_FOLLOW
+	PATTACH_POINT
+	PATTACH_POINT_FOLLOW
+	PATTACH_EYES_FOLLOW				Attaches the particle to the "eyes" of the entity.
+	PATTACH_OVERHEAD_FOLLOW			Attaches the particle to be set above the head of the entity.
+	PATTACH_WORLDORIGIN				Attaches the particle to the ground.
+	PATTACH_ROOTBONE_FOLLOW
+	PATTACH_RENDERORIGIN_FOLLOW
+	PATTACH_MAIN_VIEW
+	PATTACH_WATERWAKE
+	"attach_hitloc"
+	"attach_origin"
+	"attach_attack1"
+	"attach_attack2"
+	"attach_chest"
+	"attach_head"
+	"attach_foot1"
+	"attach_foot2"
+
+	-- buff particle
+	buff:AddParticle(
+		nFXIndex,
+		bDestroyImmediately,
+		bStatusEffect,
+		iPriority,
+		bHeroEffect,
+		bOverheadEffect
+	)
+
 end
 
 --------------------------------------------------------------------------------
@@ -259,4 +340,24 @@ function template:BitAND(a,b)--Bitwise and
         a,b,p=(a-ra)/2,(b-rb)/2,p*2
     end
     return c
+end
+
+function azura_shadowform:PrintTableRecursive( key, value, tab )
+	-- abort deep recursive
+	if tab>10 then
+		print("quit")
+		return
+	end
+
+	local tabText = ""
+	for i=0,tab do
+		tabText = tabText .. "\t"
+	end
+
+	print(tabText,key,value, type(value))
+	if (type(value)=='table') then
+		for k,v in pairs(value) do
+			self:PrintTableRecursive( k, v, tab + 1)
+		end
+	end
 end

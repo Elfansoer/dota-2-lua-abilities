@@ -2,6 +2,16 @@ shadow_fiend_requiem_of_souls_lua = class({})
 LinkLuaModifier( "modifier_shadow_fiend_requiem_of_souls_lua", "lua_abilities/shadow_fiend_requiem_of_souls_lua/modifier_shadow_fiend_requiem_of_souls_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
+-- Ability Phase Start
+function shadow_fiend_requiem_of_souls_lua:OnAbilityPhaseStart()
+	self:PlayEffects1()
+	return true -- if success
+end
+function shadow_fiend_requiem_of_souls_lua:OnAbilityPhaseInterrupted()
+	self:StopEffects1( false )
+end
+
+--------------------------------------------------------------------------------
 -- Ability Start
 function shadow_fiend_requiem_of_souls_lua:OnSpellStart()
 	-- get references
@@ -75,13 +85,12 @@ function shadow_fiend_requiem_of_souls_lua:Explode( lines )
 		projectile = ProjectileManager:CreateLinearProjectile( info )
 	end
 
+	-- Play effects
+	self:StopEffects1( true )
+	self:PlayEffects2( lines )
 end
 
 function shadow_fiend_requiem_of_souls_lua:OnProjectileHit_ExtraData( hTarget, vLocation, params )
-	for k,v in pairs(params) do
-		print(k,v)
-	end
-
 	if hTarget ~= nil then
 		-- filter
 		pass = false
@@ -111,4 +120,45 @@ function shadow_fiend_requiem_of_souls_lua:OnProjectileHit_ExtraData( hTarget, v
 	end
 
 	return false
+end
+
+--------------------------------------------------------------------------------
+-- Effects
+function shadow_fiend_requiem_of_souls_lua:PlayEffects1()
+	-- Get Resources
+	local particle_precast = "particles/units/heroes/hero_nevermore/nevermore_wings.vpcf"
+	local sound_precast = "Hero_Nevermore.RequiemOfSoulsCast"
+
+	-- Create Particles
+	self.effect_precast = ParticleManager:CreateParticle( particle_precast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )	
+
+	-- Play Sounds
+	EmitSoundOn(sound_precast, self:GetCaster())
+end
+function shadow_fiend_requiem_of_souls_lua:StopEffects1( success )
+	-- Get Resources
+	local sound_precast = "Hero_Nevermore.RequiemOfSoulsCast"
+
+	-- Destroy Particles
+	if not success then
+		ParticleManager:DestroyParticle( self.effect_precast, true )
+		StopSoundOn(sound_precast, self:GetCaster())
+	end
+
+	ParticleManager:ReleaseParticleIndex( self.effect_precast )
+end
+
+function shadow_fiend_requiem_of_souls_lua:PlayEffects2( lines )
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_nevermore/nevermore_requiemofsouls.vpcf"
+	local sound_cast = "Hero_Nevermore.RequiemOfSouls"
+
+	-- Create Particles
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector( lines, 0, 0 ) )	-- Lines
+	ParticleManager:SetParticleControlForward( effect_cast, 2, self:GetCaster():GetForwardVector() )		-- initial direction
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	-- Play Sounds
+	EmitSoundOn(sound_cast, self:GetCaster())
 end

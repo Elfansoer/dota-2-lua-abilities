@@ -1,7 +1,6 @@
 //=================================================================================================================
 // Shadow Fiend: Presence of the Dark Lord
 //=================================================================================================================
-
 "shadow_fiend_presence_of_the_dark_lord_lua"
 {
 	// Ability Technical Aspect
@@ -10,7 +9,7 @@
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"						"ability_lua"
 	"ScriptFile"					"lua_abilities/shadow_fiend_presence_of_the_dark_lord_lua/shadow_fiend_presence_of_the_dark_lord_lua"
-	"AbilityTextureName"			"vera_tutorial_ability"
+	"AbilityTextureName"			"shadow_fiend_presence_of_the_dark_lord_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
 	

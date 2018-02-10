@@ -6,11 +6,15 @@ function modifier_shadow_fiend_presence_of_the_dark_lord_lua:IsDebuff()
 end
 
 function modifier_shadow_fiend_presence_of_the_dark_lord_lua:IsHidden()
-	if self:GetParent()==self:GetCaster() then
-		return false
+	if self:GetAbility():GetCaster():IsInvisible() then
+		return true
 	else
-		return self:GetParent():CanEntityBeSeenByMyTeam( self:GetCaster() )
+		return self:GetParent()==self:GetAbility():GetCaster()
 	end
+end
+
+function modifier_shadow_fiend_presence_of_the_dark_lord_lua:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 --------------------------------------------------------------------------------
 
