@@ -30,3 +30,13 @@ end
 function modifier_ursa_earthshock_lua:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
 end
+
+--------------------------------------------------------------------------------
+-- Graphics & Animations
+function modifier_ursa_earthshock_lua:GetEffectName()
+	return "particles/units/heroes/hero_ursa/ursa_earthshock_modifier.vpcf"
+end
+
+function modifier_ursa_earthshock_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end

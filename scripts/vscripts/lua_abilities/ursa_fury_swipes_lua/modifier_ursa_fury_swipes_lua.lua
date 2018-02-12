@@ -48,6 +48,9 @@ function modifier_ursa_fury_swipes_lua:GetModifierProcAttack_BonusDamage_Physica
 	if IsServer() then
 		-- get target
 		local target = params.target if target==nil then target = params.unit end
+		if target:GetTeamNumber()==self:GetParent():GetTeamNumber() then
+			return 0
+		end
 
 		-- get modifier stack
 		local stack = 0

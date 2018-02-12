@@ -152,64 +152,43 @@ function template:PlayEffects()
 	-- Get Data
 
 	-- Create Particle
-	local nFXIndex = ParticleManager:CreateParticle(
-		"particleName",
-		iPATTACH,
-		hOwner
-	)
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
 
 	-- Control Particle
 	-- Set vector attachment
-	ParticleManager:SetParticleControl(
-		nFXIndex,
-		iControlPoint,
-		vControlVector
-	)
+	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
+
 	-- Set entity attachment
 	ParticleManager:SetParticleControlEnt(
-		nFXIndex,
+		effect_cast,
 		iControlPoint,
 		hTarget,
 		PATTACH_NAME,
 		"attach_name",
-		vOffset, -- unknown
+		vOrigin, -- unknown
 		bool -- unknown, true
 	)
+
 	-- Set particle orientation
-	ParticleManager:SetParticleControlForward(
-		nFXIndex,
-		iControlPoint,
-		vForward
-	)
-	SetParticleControlOrientation(
-		nFXIndex,
-		iControlPoint,
-		vForward,
-		vRight,
-		vUp
-	)
+	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
+	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
 
 	-- Release Particle
-	ParticleManager:ReleaseParticleIndex( nFXIndex )
-
-	local nFXIndex = ParticleManager:CreateParticle( particle_target, PATTACH_WORLDORIGIN, nil )
-	ParticleManager:SetParticleControl( nFXIndex, 0, target:GetOrigin() )
-	ParticleManager:SetParticleControl( nFXIndex, 1, target:GetOrigin() )
-	ParticleManager:ReleaseParticleIndex( nFXIndex )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
 	EmitSoundOn( sound_target, target )
 
-	PATTACH_ABSORIGIN 				Attaches the particle to the an origin.
-	PATTACH_ABSORIGIN_FOLLOW		Attaches the particle to an origin, and causes it to follow the unit that is considered the source of the particle.
-	PATTACH_CUSTOMORIGIN			Attaches the particle to a custom origin. (Requires passing a vector to the Control points)
+	PATTACH_ABSORIGIN 				-- Attaches the particle to the an origin.
+	PATTACH_ABSORIGIN_FOLLOW		-- Attaches the particle to an origin, and causes it to follow the unit that is considered the source of the particle.
+	PATTACH_CUSTOMORIGIN			-- Attaches the particle to a custom origin. (Requires passing a vector to the Control points)
 	PATTACH_CUSTOMORIGIN_FOLLOW
 	PATTACH_POINT
 	PATTACH_POINT_FOLLOW
-	PATTACH_EYES_FOLLOW				Attaches the particle to the "eyes" of the entity.
-	PATTACH_OVERHEAD_FOLLOW			Attaches the particle to be set above the head of the entity.
-	PATTACH_WORLDORIGIN				Attaches the particle to the ground.
+	PATTACH_EYES_FOLLOW				-- Attaches the particle to the "eyes" of the entity.
+	PATTACH_OVERHEAD_FOLLOW			-- Attaches the particle to be set above the head of the entity.
+	PATTACH_WORLDORIGIN				-- Attaches the particle to the ground.
 	PATTACH_ROOTBONE_FOLLOW
 	PATTACH_RENDERORIGIN_FOLLOW
 	PATTACH_MAIN_VIEW

@@ -103,5 +103,5 @@ function modifier_template:GetEffectName()
 end
 
 function modifier_template:GetEffectAttachType()
-	return PATTACH_XX
+	return PATTACH_ABSORIGIN_FOLLOW
 end
