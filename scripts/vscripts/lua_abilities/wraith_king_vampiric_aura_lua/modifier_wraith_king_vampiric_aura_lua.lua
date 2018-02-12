@@ -25,11 +25,11 @@ function modifier_wraith_king_vampiric_aura_lua:GetAuraSearchTeam()
 end
 
 function modifier_wraith_king_vampiric_aura_lua:GetAuraSearchType()
+	print("toggle:",self:GetAbility():GetToggleState())
 	if self:GetAbility():GetToggleState() then
-		return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC+ DOTA_UNIT_TARGET_MECHANICAL
-	else
-		return DOTA_UNIT_TARGET_HERO
+		return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 	end
+	
 	return DOTA_UNIT_TARGET_HERO
 end
 
@@ -43,6 +43,10 @@ function modifier_wraith_king_vampiric_aura_lua:OnCreated( kv )
 	self.aura_radius = self:GetAbility():GetSpecialValueFor( "vampiric_aura_radius" ) -- special value
 end
 
+function modifier_wraith_king_vampiric_aura_lua:OnRefresh( kv )
+	-- references
+	self.aura_radius = self:GetAbility():GetSpecialValueFor( "vampiric_aura_radius" ) -- special value
+end
 --------------------------------------------------------------------------------
 -- Modifier Effects
 -- function modifier_wraith_king_vampiric_aura_lua:DeclareFunctions()

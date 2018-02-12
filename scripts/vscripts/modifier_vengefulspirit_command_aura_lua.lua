@@ -27,7 +27,7 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_vengefulspirit_command_aura_lua:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP + DOTA_UNIT_TARGET_MECHANICAL
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP-- + DOTA_UNIT_TARGET_MECHANICAL
 end
 
 --------------------------------------------------------------------------------

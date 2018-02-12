@@ -2,10 +2,6 @@ modifier_wraith_king_vampiric_aura_lua_lifesteal = class({})
 
 --------------------------------------------------------------------------------
 -- Classifications
-function modifier_wraith_king_vampiric_aura_lua_lifesteal:IsHidden()
-	return false
-end
-
 function modifier_wraith_king_vampiric_aura_lua_lifesteal:IsDebuff()
 	return false
 end
@@ -25,13 +21,10 @@ function modifier_wraith_king_vampiric_aura_lua_lifesteal:OnRefresh( kv )
 	self.aura_lifesteal = self:GetAbility():GetSpecialValueFor( "vampiric_aura" ) -- special value
 end
 
-function modifier_wraith_king_vampiric_aura_lua_lifesteal:OnDestroy( kv )
-
-end
 
 --------------------------------------------------------------------------------
 -- Modifier Effects
-function modifier_wraith_king_vampiric_aura_lua:DeclareFunctions()
+function modifier_wraith_king_vampiric_aura_lua_lifesteal:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
@@ -40,12 +33,14 @@ function modifier_wraith_king_vampiric_aura_lua:DeclareFunctions()
 	return funcs
 end
 
-function modifier_wraith_king_vampiric_aura_lua:OnAttack( params )
+function modifier_wraith_king_vampiric_aura_lua_lifesteal:OnAttack( params )
 	if IsServer() then
 		-- filter
 		local pass = false
 		if params.attacker==self:GetParent() then
-			pass = true
+			if not params.unit:IsBuilding() then
+				pass = true
+			end
 		end
 
 		-- logic
@@ -56,7 +51,7 @@ function modifier_wraith_king_vampiric_aura_lua:OnAttack( params )
 	end
 end
 
-function modifier_wraith_king_vampiric_aura_lua:OnTakeDamage( params )
+function modifier_wraith_king_vampiric_aura_lua_lifesteal:OnTakeDamage( params )
 	if IsServer() then
 		-- filter
 		local pass = false
@@ -86,15 +81,15 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_wraith_king_vampiric_aura_lua:GetEffectName()
+-- function modifier_wraith_king_vampiric_aura_lua_lifesteal:GetEffectName()
 -- 	return "particles/string/here.vpcf"
 -- end
 
--- function modifier_wraith_king_vampiric_aura_lua:GetEffectAttachType()
+-- function modifier_wraith_king_vampiric_aura_lua_lifesteal:GetEffectAttachType()
 -- 	return PATTACH_XX
 -- end
 
-function modifier_wraith_king_vampiric_aura_lua:PlayEffects( target )
+function modifier_wraith_king_vampiric_aura_lua_lifesteal:PlayEffects( target )
 	-- get resource
 	local particle_cast = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
 
