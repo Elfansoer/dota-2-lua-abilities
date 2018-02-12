@@ -1,0 +1,176 @@
+//=================================================================================================================
+// Hero Name: Template
+//=================================================================================================================
+"hero_name_template"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/_hero_name_template/hero_name_template"
+	"AbilityTextureName"			"vera_tutorial_ability"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+		"particle"	"particles/units/heroes/hero_skeletonking/skeletonking_mortalstrike.vpcf"
+	}
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NONE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"600"
+	"AbilityCastRangeBuffer"		"250"
+	"AbilityCastPoint"				"0.3"
+	"AbilityChannelTime"			"0"
+	"AbilityDuration"				"0.0"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"10.0"
+	"AbilityManaCost"				"100"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityDamage"					"100 200 300 400"
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"special_one"			"1000"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"special_two"			"2.0"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"special_three"			"255"
+		}
+	}
+}
+
+// Template Ability
+"DOTA_Tooltip_ability_<ability_name>"
+	"Name"
+
+"DOTA_Tooltip_ability_<ability_name>_Description"
+	"Description, with %stat_value%"
+
+"DOTA_Tooltip_ability_<ability_name>_Lore"
+	"Role"
+
+"DOTA_Tooltip_ability_<ability_name>_Note<0-3>"
+	"Note # (When Alt is pressed)"
+
+"DOTA_Tooltip_ability_<ability_name>_<stats_value>"			"STAT NAME:"
+"DOTA_Tooltip_ability_<ability_name>_<stats_pct>"			"%PERCENT STAT NAME:"
+
+"DOTA_Tooltip_ability_<ability_name>_aghanim_description"
+	"Aghanim Description"
+
+"DOTA_Tooltip_ability_<ability_name>_<stats_scepter>"		"SCEPTER STAT NAME:"
+
+"DOTA_Tooltip_<modifier_name>"		"Modifier Name"
+"DOTA_Tooltip_<modifier_name>_Description"
+	"Description, with %dMODIFIER_PROPERTY_XX% flat and %dMODIFIER_PROPERTY_XX%%% percent"
+
+// Ability Behavior reference
+DOTA_ABILITY_BEHAVIOR_NONE 					{Just programming stuff}
+DOTA_ABILITY_BEHAVIOR_PASSIVE				Ability is classified as passive, and cannot be pressed.
+DOTA_ABILITY_BEHAVIOR_NO_TARGET				Ability fires immediately when pressed.
+DOTA_ABILITY_BEHAVIOR_POINT					Ability needs a target point to be cast.
+DOTA_ABILITY_BEHAVIOR_UNIT_TARGET			Ability needs a unit target to be cast.
+DOTA_ABILITY_BEHAVIOR_RUNE_TARGET			Ability can target runes. (Tiny's Toss)
+
+DOTA_ABILITY_BEHAVIOR_AOE					Ability is considered an AoE ability, respecting "AOERadius" KV when drawing the AoE overlay.
+DOTA_ABILITY_BEHAVIOR_ATTACK 				This is like orb effects; use attack animation instead of ability animation. (DR's Frost Arrows)
+DOTA_ABILITY_BEHAVIOR_AURA					Ability is considered an aura.
+DOTA_ABILITY_BEHAVIOR_AUTOCAST				Ability can be set to auto cast.
+DOTA_ABILITY_BEHAVIOR_CHANNELLED			Ability is considered a channeling ability.
+DOTA_ABILITY_BEHAVIOR_DIRECTIONAL			Affects visual effect when casting. (Mirana's Sacred Arrow)}
+DOTA_ABILITY_BEHAVIOR_IMMEDIATE				Ability ignores cast points and is fired as soon as the skill is pressed. (Sven's Warcry)
+DOTA_ABILITY_BEHAVIOR_TOGGLE				Ability can be toggled on and off.
+
+DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET		Ability does not give vision of the caster to its target  (SB's Charge)
+DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL	Ability can be used without cancelling the current channel. (Oracle's Fortune End)
+DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT	Ability doesn't stop the caster to be used. (Ursa's Enrage)
+DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK	After using ability, caster won't proceed to attack the nearby enemy (Nyx's Vendetta)
+DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT	After casting that ability, the caster won't resume its last order. (TA's Meld)
+DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE	Abiity can be cast while stunned (Abaddon's Borrowed Time)
+DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL		Ability can be cast without interrupting caster's channel (Juggernaut's Bladefury}
+DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES			Ability cannot be cast while rooted.
+
+DOTA_ABILITY_BEHAVIOR_HIDDEN				Ability doesn't appear on the HUD. (Invoker's hidden spells)
+DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING		Ability ignores backswing animation. (Pudge's Rot)
+DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN	Rubick must use initial cast points. (Sniper's Assassinate)
+DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE			Ability cannot be skilled. (Monkey King's Mischief)
+DOTA_ABILITY_BEHAVIOR_UNRESTRICTED			Ability can be cast at any condition. (Techies' Focused Detonate)
+DOTA_ABILITY_LAST_BEHAVIOR 					{Just programming stuff}
+
+// Ability Unit Target Team reference
+DOTA_UNIT_TARGET_TEAM_NONE
+DOTA_UNIT_TARGET_TEAM_FRIENDLY				Targets all those that are in the same team as the team that was declared the source.
+DOTA_UNIT_TARGET_TEAM_ENEMY					Targets all those that are not in the same team as the team that was declared the source.
+DOTA_UNIT_TARGET_TEAM_BOTH					Targets all entities from every team.
+DOTA_UNIT_TARGET_TEAM_CUSTOM
+
+// Ability Target Type reference
+DOTA_UNIT_TARGET_HERO						Targets heroes.
+DOTA_UNIT_TARGET_BASIC						Targets units. (not necessarily creeps)
+DOTA_UNIT_TARGET_CREEP						Targets creeps.
+
+DOTA_UNIT_TARGET_BUILDING					Targets buildings.
+DOTA_UNIT_TARGET_COURIER					Targets couriers.
+DOTA_UNIT_TARGET_TREE						Targets trees.
+DOTA_UNIT_TARGET_ALL						Targets everything (including buildings, couriers, Shrines etc)
+DOTA_UNIT_TARGET_CUSTOM
+
+// Ability Target Flags reference
+DOTA_UNIT_TARGET_NONE
+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES		Targets magic immune enemies as well.
+DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES	Targets non-magic immune allies as well.
+DOTA_UNIT_TARGET_FLAG_MELEE_ONLY				Targets only melee units and heroes.
+DOTA_UNIT_TARGET_FLAG_RANGED_ONLY				Targets only ranged units and heroes.
+DOTA_UNIT_TARGET_FLAG_INVULNERABLE				Targets invulnerable units/heroes as well.
+
+DOTA_UNIT_TARGET_FLAG_MANA_ONLY					Targets only those that has a mana bar.
+DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS				Targets only those that are not considered ancients.
+DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO			Targets only those that are not considered creep heroes.
+DOTA_UNIT_TARGET_FLAG_NOT_DOMINATED				Targets only those that are not being dominated.
+DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS				Targets only those that are not illusions.
+DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED				Targets only those that are not summoned creatures.
+DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED			Targets player controlled units (ignores the rest of basic units).
+
+DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE			Targets only those that are not immune to attacks.
+DOTA_UNIT_TARGET_FLAG_DEAD						Targets dead units and heroes as well.
+DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE				Targets only those that are visible through the fog of war.
+DOTA_UNIT_TARGET_FLAG_NO_INVIS					Targets only those that are not invisible.
+DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP		Targets only allied player who isn't disable help from its caster's player
+DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD				Targets units/heroes that are hidden as well.
+DOTA_UNIT_TARGET_FLAG_NOT_NIGHTMARED			Targets only those that are not nightmared.
+
+// Damage Type reference
+DAMAGE_TYPE_NONE
+DAMAGE_TYPE_PHYSICAL						Physical, reduced by armor.
+DAMAGE_TYPE_MAGICAL							Magical, reduced by magic resistance.
+DAMAGE_TYPE_PURE							Pure, not reduced by anything.
+DAMAGE_TYPE_ALL
