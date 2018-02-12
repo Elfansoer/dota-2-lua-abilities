@@ -58,7 +58,6 @@ function wraith_king_wraithfire_blast_lua:PlayEffects1()
 	local sound_cast = "Hero_SkeletonKing.Hellfire_Blast"
 
 	-- play sound
-	print("emit sound")
 	EmitSoundOn( sound_cast, self:GetCaster() )
 end
 function wraith_king_wraithfire_blast_lua:PlayEffects2( target )

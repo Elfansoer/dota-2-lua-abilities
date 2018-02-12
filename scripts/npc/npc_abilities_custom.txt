@@ -2322,6 +2322,175 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Wraith King: Mortal Strike (lua version)
+	//=================================================================================================================
+	"wraith_king_mortal_strike_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/wraith_king_mortal_strike_lua/wraith_king_mortal_strike_lua"
+		"AbilityTextureName"			"wraith_king_mortal_strike_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			"particle"	"particles/units/heroes/hero_skeletonking/skeletonking_mortalstrike.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.1"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50"
+		"AbilityManaCost"				"75"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_mult"					"300"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_chance"				"40"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"mortal_chance"				"40"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"skeleton_duration"			"90"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_skeleton_charges"		"4 5 6 7"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spawn_interval"			"0.25"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Wraith King: Reincarnation
+	//=================================================================================================================
+	"wraith_king_reincarnation_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/wraith_king_reincarnation_lua/wraith_king_reincarnation_lua"
+		"AbilityTextureName"			"wraith_king_reincarnation_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			"particle"	"particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf"
+			"particle"	"particles/units/heroes/hero_skeletonking/wraith_king_reincarnate_slow_debuff.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"HasScepterUpgrade"			"1"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastPoint"				"0.3"
+		"AbilityChannelTime"			"0"
+		"AbilityDuration"				"0.0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"200 120 40"
+		"AbilityManaCost"				"160"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100 200 300 400"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"reincarnate_time"		"3.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_radius"			"900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed"				"-75"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attackslow_tooltip"	"-75"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_duration"			"5.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_duration"		"7"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"	"1200"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius_tooltip_scepter"	"1200"
+			}
+		}
+	}
 	// AUTHOR: NON-SELF
     //=================================================================================================================
     // Plague Doctor: Healing Shield

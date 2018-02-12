@@ -7,9 +7,6 @@ function modifier_wraith_king_vampiric_aura_lua_lifesteal:IsDebuff()
 end
 
 --------------------------------------------------------------------------------
--- Aura
-
---------------------------------------------------------------------------------
 -- Initializations
 function modifier_wraith_king_vampiric_aura_lua_lifesteal:OnCreated( kv )
 	-- references
@@ -20,7 +17,6 @@ function modifier_wraith_king_vampiric_aura_lua_lifesteal:OnRefresh( kv )
 	-- references
 	self.aura_lifesteal = self:GetAbility():GetSpecialValueFor( "vampiric_aura" ) -- special value
 end
-
 
 --------------------------------------------------------------------------------
 -- Modifier Effects
@@ -38,14 +34,16 @@ function modifier_wraith_king_vampiric_aura_lua_lifesteal:OnAttack( params )
 		-- filter
 		local pass = false
 		if params.attacker==self:GetParent() then
-			if not params.unit:IsBuilding() then
-				pass = true
+			if params.target:GetTeamNumber()~=self:GetParent():GetTeamNumber() then
+				if not params.target:IsBuilding() then
+					pass = true
+				end
 			end
 		end
 
 		-- logic
 		if pass then
-			-- get heal value
+			-- save attack record
 			self.attack_record = params.record
 		end
 	end
@@ -74,21 +72,7 @@ function modifier_wraith_king_vampiric_aura_lua_lifesteal:OnTakeDamage( params )
 end
 
 --------------------------------------------------------------------------------
--- Status Effects
-
---------------------------------------------------------------------------------
--- Interval Effects
-
---------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_wraith_king_vampiric_aura_lua_lifesteal:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
-
--- function modifier_wraith_king_vampiric_aura_lua_lifesteal:GetEffectAttachType()
--- 	return PATTACH_XX
--- end
-
 function modifier_wraith_king_vampiric_aura_lua_lifesteal:PlayEffects( target )
 	-- get resource
 	local particle_cast = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"

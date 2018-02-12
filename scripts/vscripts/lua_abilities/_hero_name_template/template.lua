@@ -90,7 +90,21 @@ function template:OnSpellStart()
 		0,	-- int, order filter
 		false	-- bool, can grow cache
 	)
-		
+	
+	-- summon units
+	local summoned_unit = CreateUnitByName(
+		"unit_name", -- szUnitName
+		cast_position, -- vLocation,
+		true, -- bFindClearSpace,
+		self:GetCaster(), -- hNPCOwner,
+		self:GetCaster():GetOwner(), -- hUnitOwner,
+		self:GetCaster():GetTeamNumber() -- iTeamNumber
+	)
+
+	-- dominate units
+	summoned_unit:SetControllableByPlayer( self:GetCaster():GetPlayerID(), false ) -- (playerID, bSkipAdjustingPosition)
+	summoned_unit:SetOwner( self:GetCaster() )
+	summoned_unit:AddNewModifier(self:GetCaster(), self, "modifier_timer", {duration = summon_duration})
 end
 
 --------------------------------------------------------------------------------

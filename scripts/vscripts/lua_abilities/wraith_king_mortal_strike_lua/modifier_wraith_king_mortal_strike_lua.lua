@@ -1,107 +1,120 @@
-modifier_template = class({})
+modifier_wraith_king_mortal_strike_lua = class({})
 
 --------------------------------------------------------------------------------
 -- Classifications
-function modifier_template:IsHidden()
-	return false
+function modifier_wraith_king_mortal_strike_lua:IsHidden()
+	return self:GetStackCount()==0
 end
 
-function modifier_template:IsDebuff()
-	return false
-end
-
-function modifier_template:IsStunDebuff()
-	return false
-end
-
-function modifier_template:GetAttributes()
-	return MODIFIER_ATRRIBUTE_XX + MODIFIER_ATRRIBUTE_YY 
-end
-
-function modifier_template:IsPurgable()
-	return true
-end
---------------------------------------------------------------------------------
--- Aura
-function modifier_template:IsAura()
-	return true
-end
-
-function modifier_template:GetModifierAura()
-	return "modifier_template_effect"
-end
-
-function modifier_template:GetAuraRadius()
-	return float
-end
-
-function modifier_template:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_XX
-end
-
-function modifier_template:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_XX + DOTA_UNIT_TARGET_YY + ...
-end
-
-function modifier_template:GetAuraEntityReject( hEntity )
-	if IsServer() then
-		
-	end
-
+function modifier_wraith_king_mortal_strike_lua:IsDebuff()
 	return false
 end
 
 --------------------------------------------------------------------------------
 -- Initializations
-function modifier_template:OnCreated( kv )
+function modifier_wraith_king_mortal_strike_lua:OnCreated( kv )
 	-- references
-	self.special_value = self:GetAbility():GetSpecialValueFor( "special_value" ) -- special value
-
-	-- Start interval
-	self:StartIntervalThink( self.interval )
-	self:OnIntervalThink()
+	self.crit_chance = self:GetAbility():GetSpecialValueFor( "crit_chance" ) -- special value
+	self.crit_mult = self:GetAbility():GetSpecialValueFor( "crit_mult" ) -- special value
+	self.mortal_chance = self:GetAbility():GetSpecialValueFor( "mortal_chance" ) -- special value
+	self.max_skeleton_charges = self:GetAbility():GetSpecialValueFor( "max_skeleton_charges" ) -- special value
 end
 
-function modifier_template:OnRefresh( kv )
-	
+function modifier_wraith_king_mortal_strike_lua:OnRefresh( kv )
+	-- references
+	self.crit_chance = self:GetAbility():GetSpecialValueFor( "crit_chance" ) -- special value
+	self.crit_mult = self:GetAbility():GetSpecialValueFor( "crit_mult" ) -- special value
+	self.mortal_chance = self:GetAbility():GetSpecialValueFor( "mortal_chance" ) -- special value
+	self.max_skeleton_charges = self:GetAbility():GetSpecialValueFor( "max_skeleton_charges" ) -- special value
 end
 
-function modifier_template:OnDestroy( kv )
+function modifier_wraith_king_mortal_strike_lua:OnDestroy( kv )
 
 end
 
 --------------------------------------------------------------------------------
 -- Modifier Effects
-function modifier_template:DeclareFunctions()
+function modifier_wraith_king_mortal_strike_lua:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_XX,
-		MODIFIER_EVENT_YY,
+		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
 	}
 
 	return funcs
 end
 
---------------------------------------------------------------------------------
--- Status Effects
-function modifier_template:CheckState()
-	local state = {
-	[MODIFIER_STATE_XX] = true,
-	}
+function modifier_wraith_king_mortal_strike_lua:GetModifierPreAttack_CriticalStrike( params )
+	if IsServer() then
+		-- filter
+		local pass = true
+		if params.target:IsCreep() then
+			if not params.target:IsAncient() then
+				pass = false
+			end
+		end
+		if params.target:GetTeamNumber()==self:GetParent():GetTeamNumber() then
+			pass = false
+		end
 
-	return state
+		if pass then
+			if self:RollChance(self.crit_chance) then
+				return self.crit_mult
+			end
+		end
+	end
+	return 0
 end
 
---------------------------------------------------------------------------------
--- Interval Effects
-function modifier_template:OnIntervalThink()
-end
+function modifier_wraith_king_mortal_strike_lua:OnAttackLanded( params )
+	if IsServer() then
+		-- filter
+		local pass = false
+		if params.attacker==self:GetParent() then
+			if params.target:IsCreep() then
+				if not params.target:IsAncient() then
+					pass = true
+				end
+			end
+		end
+		if params.target:GetTeamNumber()==self:GetParent():GetTeamNumber() then
+			pass = false
+		end
 
+		-- logic
+		if pass then
+			if self:RollChance( self.mortal_chance ) then
+				self:PlayEffects( params.target )
+
+				params.target:Kill( self:GetAbility(), self:GetParent() )
+				self:AddStack()
+			end
+		end
+	end
+end
 --------------------------------------------------------------------------------
 -- Graphics & Animations
-function modifier_template:GetEffectName()
-	return "particles/string/here.vpcf"
+function modifier_wraith_king_mortal_strike_lua:PlayEffects( target )
+	-- get resource
+	local particle_impact = "particles/units/heroes/hero_skeletonking/skeletonking_mortalstrike.vpcf"
+
+	-- play effect
+	local effect_impact = ParticleManager:CreateParticle( particle_impact, PATTACH_ABSORIGIN_FOLLOW, target )
+	ParticleManager:ReleaseParticleIndex( effect_impact )
 end
 
-function modifier_template:GetEffectAttachType()
-	return PATTACH_XX
+--------------------------------------------------------------------------------
+-- Helper function
+function modifier_wraith_king_mortal_strike_lua:RollChance( chance )
+	local rand = math.random()
+	if rand<chance/100 then
+		return true
+	end
+	return false
+end
+
+function modifier_wraith_king_mortal_strike_lua:AddStack()
+	local target = self:GetStackCount() + 1
+	if target <= self.max_skeleton_charges then
+		self:IncrementStackCount()
+	end
 end

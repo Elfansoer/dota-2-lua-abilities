@@ -7,3 +7,10 @@ LinkLuaModifier( "modifier_wraith_king_vampiric_aura_lua_lifesteal", "lua_abilit
 function wraith_king_vampiric_aura_lua:GetIntrinsicModifierName()
 	return "modifier_wraith_king_vampiric_aura_lua"
 end
+
+function wraith_king_vampiric_aura_lua:ProcsMagicStick()
+	return false
+end
+
+function wraith_king_vampiric_aura_lua:OnToggle()
+end
