@@ -70,38 +70,21 @@ function modifier_wraith_king_reincarnation_lua:DeclareFunctions()
 	return funcs
 end
 
-function modifier_wraith_king_reincarnation_lua:ReincarnateTime()
-	-- if IsServer() then
-	-- 	if self.reincarnate then
-	-- 		return self.reincarnate_time
-	-- 	end
-	-- end
-	return 3
-end
-
-function modifier_wraith_king_reincarnation_lua:OnDeath( params )
+function modifier_wraith_king_reincarnation_lua:ReincarnateTime( params )
 	if IsServer() then
-		-- filter
-		local pass = false
-		if params.unit==self:GetParent() then
-			pass = true
+		if self:GetAbility():IsFullyCastable() then
+			self:Reincarnate()
+			return self.reincarnate_time
 		end
-
-		-- logic
-		if pass then
-			self.reincarnate = false
-			-- check if ability is ready
-			if self:GetAbility():IsFullyCastable() then
-				self:Reincarnate()
-			end
-		end
+		return 0
 	end
 end
+
 --------------------------------------------------------------------------------
 -- Helper Function
 function modifier_wraith_king_reincarnation_lua:Reincarnate()
-	-- set reincarnate flag to true
-	self.reincarnate = true
+	-- spend resources
+	self:GetAbility():UseResources(true, false, true)
 
 	-- find affected enemies
 	local enemies = FindUnitsInRadius(
@@ -121,22 +104,26 @@ function modifier_wraith_king_reincarnation_lua:Reincarnate()
 		enemy:AddNewModifier(
 			self:GetParent(),
 			self:GetAbility(),
-			"modifier_wraith_king_reincarnation_lua_slow",
+			"modifier_wraith_king_reincarnation_lua_debuff",
 			{ duration = self.slow_duration }
 		)
 	end
+
+	-- play effects
+	self:PlayEffects()
 end
 --------------------------------------------------------------------------------
 -- Graphics & Animations
 function modifier_wraith_king_reincarnation_lua:PlayEffects()
 	-- get resources
 	local particle_cast = "particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf"
-	local sound_cast = ""
+	local sound_cast = "Hero_SkeletonKing.Reincarnate"
 
 	-- play particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- play sound
-	-- EmitSoundOn( sound_cast, self:GetParent() )
+	EmitSoundOn( sound_cast, self:GetParent() )
 end
