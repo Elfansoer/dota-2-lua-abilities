@@ -90,7 +90,9 @@ function template:OnSpellStart()
 		0,	-- int, order filter
 		false	-- bool, can grow cache
 	)
-		
+	
+	-- Purge
+	caster:Purge(bool bRemovePositiveBuffs, bool bRemoveDebuffs, bool bFrameOnly, bool bRemoveStuns, bool bRemoveExceptions)
 end
 
 --------------------------------------------------------------------------------
