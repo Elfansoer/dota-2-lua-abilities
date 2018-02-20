@@ -1,3 +1,5 @@
+-- dotadoc = require "util/sublime_json"
+
 -- Generated from template
 
 if CAddonTemplateGameMode == nil then
@@ -23,6 +25,8 @@ end
 function CAddonTemplateGameMode:InitGameMode()
 	print( "Template addon is loaded." )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
+
+	-- dotadoc.mainFunction()
 end
 
 -- Evaluate the state of the game
