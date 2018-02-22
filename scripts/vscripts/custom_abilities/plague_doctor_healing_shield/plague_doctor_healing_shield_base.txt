@@ -9,7 +9,7 @@
 	// base texture folder	: resource/flash3/images/spellicons
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"						"ability_lua"
-	"ScriptFile"					"lua_abilities/plague_doctor_healing_shield/plague_doctor_healing_shield"
+	"ScriptFile"					"custom_abilities/plague_doctor_healing_shield/plague_doctor_healing_shield"
 	"AbilityTextureName"			"plague_doctor_healing_shield"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
