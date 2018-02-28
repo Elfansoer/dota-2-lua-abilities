@@ -1,0 +1,66 @@
+//=================================================================================================================
+// Hero Name: Template
+//=================================================================================================================
+"phantom_assassin_phantom_strike_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/phantom_assassin_phantom_strike_lua/phantom_assassin_phantom_strike_lua"
+	"AbilityTextureName"			"phantom_assassin_phantom_strike_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+//	"precache"
+//	{
+//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//	}
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"1000"
+	"AbilityCastPoint"				"0.3"
+	"AbilityDuration"				"3"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"14 11 8 5"
+	"AbilityManaCost"				"50"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_attack_speed"	"130"
+		}
+		
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_max_attack_count"	"4"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"tooltip_range"			"1000"
+		}
+	}
+}
