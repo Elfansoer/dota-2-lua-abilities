@@ -1,0 +1,62 @@
+//=================================================================================================================
+// Slardar: Guardian Sprint (Lua version)
+//=================================================================================================================
+"slardar_guardian_sprint_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/slardar_guardian_sprint_lua/slardar_guardian_sprint_lua"
+	"AbilityTextureName"			"slardar_guardian_sprint_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+//	"precache"
+//	{
+//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//	}
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"17.0"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"bonus_speed"				"20 28 36 44"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"bonus_damage"				"15"
+		}
+		"03"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"duration"					"12"
+		}
+		"04"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"river_speed"				"700"
+		}
+	}
+}
