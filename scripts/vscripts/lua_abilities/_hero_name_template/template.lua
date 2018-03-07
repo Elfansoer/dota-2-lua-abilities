@@ -32,12 +32,12 @@ end
 -- Ability Start
 function template:OnSpellStart()
 	-- unit identifier
-	caster = self:GetCaster()
-	target = self:GetCursorTarget()
-	point = self:GetCursorPosition()
+	local caster = self:GetCaster()
+	local target = self:GetCursorTarget()
+	local point = self:GetCursorPosition()
 
 	-- load data
-	self.value1 = self:GetSpecialValueFor("some_value")
+	local value1 = self:GetSpecialValueFor("some_value")
 
 	-- Add modifier
 	playerHero:AddNewModifier(

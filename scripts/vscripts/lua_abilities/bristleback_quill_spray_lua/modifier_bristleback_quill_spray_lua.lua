@@ -34,10 +34,10 @@ function modifier_bristleback_quill_spray_lua:OnCreated( kv )
 				modifier = at,
 			}
 		)
-	end
 
-	-- set stack
-	self:SetStackCount( 1 )
+		-- set stack
+		self:SetStackCount( 1 )
+	end
 end
 
 function modifier_bristleback_quill_spray_lua:OnRefresh( kv )
@@ -55,14 +55,13 @@ function modifier_bristleback_quill_spray_lua:OnRefresh( kv )
 				modifier = at,
 			}
 		)
-	end
 
-	-- increment stack
-	self:IncrementStackCount()
+		-- increment stack
+		self:IncrementStackCount()
+	end
 end
 
 function modifier_bristleback_quill_spray_lua:OnDestroy( kv )
-
 end
 
 --------------------------------------------------------------------------------
@@ -76,10 +75,10 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_bristleback_quill_spray_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_bristleback_quill_spray_lua:GetEffectName()
+	return "particles/units/heroes/hero_bristleback/bristleback_quill_spray_hit_creep.vpcf"
+end
 
--- function modifier_bristleback_quill_spray_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+function modifier_bristleback_quill_spray_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end

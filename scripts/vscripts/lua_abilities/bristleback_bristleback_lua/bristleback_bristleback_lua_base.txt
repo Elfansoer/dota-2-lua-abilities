@@ -1,0 +1,66 @@
+//=================================================================================================================
+// Bristleback: Bristleback (Lua version)
+//=================================================================================================================
+"bristleback_bristleback_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/bristleback_bristleback_lua/bristleback_bristleback_lua"
+	"AbilityTextureName"			"bristleback_bristleback_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts"
+		"particle"	"particles/units/heroes/hero_bristleback/bristleback_side_dmg.vpcf"
+		"particle"	"particles/units/heroes/hero_bristleback/bristleback_back_dmg.vpcf"
+	}
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"side_damage_reduction"			"8 12 16 20"
+		}
+		"02"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"back_damage_reduction"			"16 24 32 40"
+		}
+		"03"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"side_angle"					"110"
+		}
+		"04"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"back_angle"					"70"
+		}
+		"05"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"quill_release_threshold"				"210"
+		}
+	}
+}

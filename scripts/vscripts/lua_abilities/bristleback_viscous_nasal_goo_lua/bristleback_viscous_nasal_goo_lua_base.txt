@@ -1,0 +1,91 @@
+//=================================================================================================================
+// Bristleback: Viscous Nasal Goo
+//=================================================================================================================
+"bristleback_viscous_nasal_goo_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/bristleback_viscous_nasal_goo_lua/bristleback_viscous_nasal_goo_lua"
+	"AbilityTextureName"			"bristleback_viscous_nasal_goo_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	"HasScepterUpgrade"				"1"
+
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts"
+		"particle"	"particles/units/heroes/hero_bristleback/bristleback_viscous_nasal_goo.vpcf"
+		"particle"	"particles/units/heroes/hero_bristleback/bristleback_viscous_nasal_goo_debuff.vpcf"
+	}
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"600"
+	"AbilityCastPoint"				"0.3"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"1.5"
+	"AbilityManaCost"				"25"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"goo_speed"				"1000"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"goo_duration"			"5.0"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"armor_per_stack"		"1 1.4 1.8 2.2"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"base_move_slow"		"20"
+		}
+		"05"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"move_slow_per_stack"	"3 6 9 12"
+		}
+		"06"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"stack_limit"			"4"
+		}
+		"07"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"goo_duration_creep"			"10.0"
+		}
+		"08"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"radius_scepter"				"750"
+		}
+	}
+}

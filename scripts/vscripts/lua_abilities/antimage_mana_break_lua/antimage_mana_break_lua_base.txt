@@ -1,0 +1,52 @@
+//=================================================================================================================
+// Anti-mage: Mana Break (Lua version)
+//=================================================================================================================
+"antimage_mana_break_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/antimage_mana_break_lua/antimage_mana_break_lua"
+	"AbilityTextureName"			"antimage_mana_break_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+	}
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"damage_per_burn"		"0.5"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"mana_per_hit"			"28 40 52 64"
+		}
+	}
+}

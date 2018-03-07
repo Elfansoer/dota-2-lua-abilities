@@ -22,23 +22,26 @@ end
 -- Initializations
 function modifier_bristleback_viscous_nasal_goo_lua:OnCreated( kv )
 	-- references
-	self.armor_stack = self:GetAbility():GetSpecialValueFor( "special_value" ) -- special value
-	self.slow_base = self:GetAbility():GetSpecialValueFor( "special_value" ) -- special value
-	self.slow_stack = self:GetAbility():GetSpecialValueFor( "special_value" ) -- special value
-	self.max_stack = self:GetAbility():GetSpecialValueFor( "special_value" ) -- special value
+	self.armor_stack = self:GetAbility():GetSpecialValueFor( "armor_per_stack" )
+	self.slow_base = self:GetAbility():GetSpecialValueFor( "base_move_slow" )
+	self.slow_stack = self:GetAbility():GetSpecialValueFor( "move_slow_per_stack" )
 
-	self:SetStackCount(1)
+	if IsServer() then
+		self:SetStackCount(1)
+	end
 end
 
 function modifier_bristleback_viscous_nasal_goo_lua:OnRefresh( kv )
 	-- references
-	self.armor_stack = self:GetAbility():GetSpecialValueFor( "special_value" ) -- special value
-	self.slow_base = self:GetAbility():GetSpecialValueFor( "special_value" ) -- special value
-	self.slow_stack = self:GetAbility():GetSpecialValueFor( "special_value" ) -- special value
-	local max_stack = self:GetAbility():GetSpecialValueFor( "special_value" ) -- special value
+	self.armor_stack = self:GetAbility():GetSpecialValueFor( "armor_per_stack" )
+	self.slow_base = self:GetAbility():GetSpecialValueFor( "base_move_slow" )
+	self.slow_stack = self:GetAbility():GetSpecialValueFor( "move_slow_per_stack" )
+	local max_stack = self:GetAbility():GetSpecialValueFor( "stack_limit" )
 
-	if self:GetStackCount()<max_stack then
-		self:IncrementStackCount()
+	if IsServer() then
+		if self:GetStackCount()<max_stack then
+			self:IncrementStackCount()
+		end
 	end
 end
 
@@ -57,18 +60,18 @@ function modifier_bristleback_viscous_nasal_goo_lua:DeclareFunctions()
 	return funcs
 end
 function modifier_bristleback_viscous_nasal_goo_lua:GetModifierPhysicalArmorBonus()
-	return self.armor_stack * self:GetStackCount()
+	return -self.armor_stack * self:GetStackCount()
 end
 function modifier_bristleback_viscous_nasal_goo_lua:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow_base + self.slow_stack * self:GetStackCount()
+	return -(self.slow_base + self.slow_stack * self:GetStackCount())
 end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_bristleback_viscous_nasal_goo_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_bristleback_viscous_nasal_goo_lua:GetEffectName()
+	return "particles/units/heroes/hero_bristleback/bristleback_viscous_nasal_goo_debuff.vpcf"
+end
 
--- function modifier_bristleback_viscous_nasal_goo_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+function modifier_bristleback_viscous_nasal_goo_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
