@@ -7,7 +7,7 @@ function modifier_bristleback_warpath_lua_stack:IsHidden()
 end
 
 function modifier_bristleback_warpath_lua_stack:GetAttributes()
-	return MODIFIER_ATRRIBUTE_MULTIPLE 
+	return MODIFIER_ATTRIBUTE_MULTIPLE 
 end
 
 function modifier_bristleback_warpath_lua_stack:IsPurgable()

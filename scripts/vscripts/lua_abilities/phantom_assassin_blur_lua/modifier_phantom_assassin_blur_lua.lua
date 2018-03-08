@@ -4,9 +4,9 @@ modifier_phantom_assassin_blur_lua = class({})
 -- Classifications
 function modifier_phantom_assassin_blur_lua:IsHidden()
 	-- dynamic
-	if IsServer() then
-		return not self.blurOn
-	end
+	-- if IsServer() then
+		return not (self.blurOn and (not self:GetParent():PassivesDisabled()))
+	-- end
 end
 
 function modifier_phantom_assassin_blur_lua:IsDebuff()
@@ -25,7 +25,7 @@ function modifier_phantom_assassin_blur_lua:OnCreated( kv )
 	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
 	self.interval = 0.5
 
-	self.blurOn = false
+	self.blurOn = true
 
 	-- Start interval
 	self:StartIntervalThink( self.interval )
@@ -61,7 +61,7 @@ end
 -- Status Effects
 function modifier_phantom_assassin_blur_lua:CheckState()
 	local state = {
-	[MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES] = self.blurOn,
+		[MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES] = (self.blurOn and (not self:GetParent():PassivesDisabled())),
 	}
 
 	return state
@@ -72,7 +72,7 @@ end
 function modifier_phantom_assassin_blur_lua:OnIntervalThink()
 	if IsServer() then
 		-- Hero search flag based on detecting or undetecting
-		local flag = nil
+		local flag = 0
 		if self.blurOn then
 			flag = DOTA_UNIT_TARGET_FLAG_NO_INVIS
 		else
@@ -82,7 +82,7 @@ function modifier_phantom_assassin_blur_lua:OnIntervalThink()
 		-- Find Enemy Heroes in Radius
 		local enemies = FindUnitsInRadius(
 			self:GetParent():GetTeamNumber(),	-- int, your team number
-			self:GetParent:GetOrigin(),	-- point, center point
+			self:GetParent():GetOrigin(),	-- point, center point
 			nil,	-- handle, cacheUnit. (not known)
 			self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 			DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
@@ -93,7 +93,7 @@ function modifier_phantom_assassin_blur_lua:OnIntervalThink()
 		)
 
 		-- Flip if detected
-		if #enemies>0 then
+		if (self.blurOn) == (#enemies>0) then
 			self.blurOn = (not self.blurOn)
 		end
 	end
@@ -101,10 +101,10 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_phantom_assassin_blur_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_phantom_assassin_blur_lua:GetEffectName()
+	return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf"
+end
 
--- function modifier_phantom_assassin_blur_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+function modifier_phantom_assassin_blur_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end

@@ -1,5 +1,5 @@
 //=================================================================================================================
-// Hero Name: Template
+// Phantom Assassin: Phantom Strike (Lua version)
 //=================================================================================================================
 "phantom_assassin_phantom_strike_lua"
 {
@@ -12,11 +12,12 @@
 	"AbilityTextureName"			"phantom_assassin_phantom_strike_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
-//	"precache"
-//	{
-//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-//	}
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+		"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_start.vpcf"
+		"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
+	}
 	
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------

@@ -45,15 +45,15 @@ function modifier_phantom_assassin_stifling_dagger_lua:DeclareFunctions()
 end
 
 function modifier_phantom_assassin_stifling_dagger_lua:GetModifierMoveSpeedBonus_Percentage()
-	self.move_slow
+	return self.move_slow
 end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_phantom_assassin_stifling_dagger_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_phantom_assassin_stifling_dagger_lua:GetEffectName()
+	return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
+end
 
--- function modifier_phantom_assassin_stifling_dagger_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+function modifier_phantom_assassin_stifling_dagger_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end

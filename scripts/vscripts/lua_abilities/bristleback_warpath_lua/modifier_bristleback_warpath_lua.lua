@@ -17,60 +17,31 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_bristleback_warpath_lua:OnCreated( kv )
-	self.stack_max = self:GetAbility():GetSpecialValueFor("stack_max")
-	self.stack_damage = self:GetAbility():GetSpecialValueFor("stack_damage")
-	self.stack_movespeed = self:GetAbility():GetSpecialValueFor("stack_movespeed")
+	self.stack_max = self:GetAbility():GetSpecialValueFor("max_stacks")
+	self.stack_damage = self:GetAbility():GetSpecialValueFor("damage_per_stack")
+	self.stack_movespeed = self:GetAbility():GetSpecialValueFor("move_speed_per_stack")
+	self.stack_duration = self:GetAbility():GetSpecialValueFor("stack_duration")
+	self.stack_actual = 0
 	self.stack_size = 5
 
 	if IsServer() then
-		-- get AT value
-		local at = self:GetAbility():AddATValue( self )
-
-		-- Add stack
-		self:GetParent():AddNewModifier(
-			self:GetCaster(),
-			self:GetAbility(),
-			"modifier_bristleback_warpath_lua_stack",
-			{
-				duration = kv.stack_duration,
-				modifier = at,
-			}
-		)
+		self:PlayEffects()
 	end
-
-	-- set stack
-	self:SetStackCount( 1 )
-
-	self:PlayEffects()
 end
 
 function modifier_bristleback_warpath_lua:OnRefresh( kv )
-	self.stack_max = self:GetAbility():GetSpecialValueFor("stack_max")
-	self.stack_damage = self:GetAbility():GetSpecialValueFor("stack_damage")
-	self.stack_movespeed = self:GetAbility():GetSpecialValueFor("stack_movespeed")
+	self.stack_max = self:GetAbility():GetSpecialValueFor("max_stacks")
+	self.stack_damage = self:GetAbility():GetSpecialValueFor("damage_per_stack")
+	self.stack_movespeed = self:GetAbility():GetSpecialValueFor("move_speed_per_stack")
+	self.stack_duration = self:GetAbility():GetSpecialValueFor("stack_duration")
 
-	if IsServer() then
-		-- get AT value
-		local at = self:GetAbility():AddATValue( self )
-
-		-- Add stack
-		self:GetParent():AddNewModifier(
-			self:GetCaster(),
-			self:GetAbility(),
-			"modifier_bristleback_warpath_lua_stack",
-			{
-				duration = kv.stack_duration,
-				modifier = at,
-			}
-		)
-	end
-
-	-- increment stack
-	self:IncrementStackCount()
+	self:SetStackCount( math.min(self.stack_actual,self.stack_max) )
 end
 
 function modifier_bristleback_warpath_lua:OnDestroy( kv )
-	ParticleManager:ReleaseParticleIndex( self.effect_cast )
+	if IsServer() then
+		ParticleManager:ReleaseParticleIndex( self.effect_cast )
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -97,17 +68,15 @@ function modifier_bristleback_warpath_lua:OnAbilityExecuted( params )
 		-- filter
 		local pass = false
 		if params.unit==self:GetParent() then
-			pass==true
+			pass=true
 		end
 
 		-- logic
 		if pass then
 			-- check item ability
 			local hAbility = params.ability
-			if hAbility ~= nil and ( not hAbility:IsItem() ) and ( not hAbility:IsToggle() ) then
-				if self:GetStackCount()<self.stack_max then
-					self:IncrementStackCount()
-				end
+			if hAbility ~= nil and ( not hAbility:IsItem() ) and ( not hAbility:IsToggle() ) and ( not self:GetParent():PassivesDisabled() ) then
+				self:AddStack()
 			end
 		end
 	end
@@ -118,8 +87,27 @@ function modifier_bristleback_warpath_lua:GetModifierModelScale( params )
 end
 --------------------------------------------------------------------------------
 -- Helper
-function modifier_bristleback_warpath_lua:RemoveStack( kv )
-	self:DecrementStackCount()
+function modifier_bristleback_warpath_lua:AddStack()
+	-- get AT value
+	local at = self:GetAbility():AddATValue( self )
+
+	-- Add stack
+	self:GetParent():AddNewModifier(
+		self:GetCaster(),
+		self:GetAbility(),
+		"modifier_bristleback_warpath_lua_stack",
+		{
+			duration = self.stack_duration,
+			modifier = at,
+		}
+	)
+
+	self.stack_actual = self.stack_actual + 1
+	self:SetStackCount( math.min(self.stack_actual,self.stack_max) )
+end
+function modifier_bristleback_warpath_lua:RemoveStack()
+	self.stack_actual = self.stack_actual - 1
+	self:SetStackCount( math.min(self.stack_actual,self.stack_max) )
 end
 
 --------------------------------------------------------------------------------
@@ -131,7 +119,7 @@ function modifier_bristleback_warpath_lua:PlayEffects()
 	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	-- Set entity attachment
 	ParticleManager:SetParticleControlEnt(
-		effect_cast,
+		self.effect_cast,
 		3,
 		self:GetParent(),
 		PATTACH_POINT_FOLLOW,
@@ -140,7 +128,7 @@ function modifier_bristleback_warpath_lua:PlayEffects()
 		true -- unknown, true
 	)
 	ParticleManager:SetParticleControlEnt(
-		effect_cast,
+		self.effect_cast,
 		4,
 		self:GetParent(),
 		PATTACH_POINT_FOLLOW,
@@ -148,7 +136,7 @@ function modifier_bristleback_warpath_lua:PlayEffects()
 		self:GetParent():GetOrigin(), -- unknown
 		true -- unknown, true
 	)
-	ParticleManager:SetParticleControl( effect_cast, 5, Vector( 1, 0, 0 ) )
+	ParticleManager:SetParticleControl( self.effect_cast, 5, Vector( 1, 0, 0 ) )
 end
 
 function modifier_bristleback_warpath_lua:GetEffectName()

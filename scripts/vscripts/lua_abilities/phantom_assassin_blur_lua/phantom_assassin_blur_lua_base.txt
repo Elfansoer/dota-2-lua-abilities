@@ -1,5 +1,5 @@
 //=================================================================================================================
-// Phantom Assassin: Blur
+// Phantom Assassin: Blur (Lua version)
 //=================================================================================================================
 "phantom_assassin_blur_lua"
 {
@@ -12,11 +12,11 @@
 	"AbilityTextureName"			"phantom_assassin_blur_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
-//	"precache"
-//	{
-//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-//	}
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+		"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf"
+	}
 	
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------

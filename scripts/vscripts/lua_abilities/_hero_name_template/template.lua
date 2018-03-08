@@ -105,56 +105,40 @@ function template:OnSpellStart()
 	summoned_unit:SetControllableByPlayer( self:GetCaster():GetPlayerID(), false ) -- (playerID, bSkipAdjustingPosition)
 	summoned_unit:SetOwner( self:GetCaster() )
 	summoned_unit:AddNewModifier(self:GetCaster(), self, "modifier_timer", {duration = summon_duration})
+
+	-- Perform attack
+	caster:PerformAttack(
+		 -- handle hTarget,
+		 -- bool bUseCastAttackOrb,
+		 -- bool bProcessProcs,
+		-- bool bSkipCooldown,
+		-- bool bIgnoreInvis,
+		-- bool bUseProjectile,
+		-- bool bFakeAttack,
+		-- bool bNeverMiss
+	)
 end
 
 --------------------------------------------------------------------------------
--- Ability Channeling
-function template:GetChannelTime()
+-- Ability Considerations
+function template:AbilityConsiderations()
+	-- Scepter
+	local bScepter = caster:HasScepter()
 
-end
+	-- Linken & Lotus
+	local bBlocked = target:TriggerSpellAbsorb( self )
 
-function template:OnChannelFinish( bInterrupted )
+	-- Break
+	local bBroken = caster:PassivesDisabled()
 
-end
+	-- Advanced Status
+	local bInvulnerable = target:IsInvulnerable()
+	local bInvisible = target:IsInvisible()
+	local bHexed = target:IsHexed()
+	local bMagicImmune = target:IsMagicImmune()
 
---------------------------------------------------------------------------------
--- Hero Events
-function template:OnOwnerSpawned()
-
-end
-
-function template:OnOwnerDied()
-
-end
-
-function template:OnHeroLevelUp()
-
-end
-
-function template:OnHeroCalculateStatBonus()
-
-end
-
---------------------------------------------------------------------------------
--- Ability Events
-function template:OnUpgrade()
-
-end
-
---------------------------------------------------------------------------------
--- Item Events
-function template:OnInventoryContentsChanged()
-
-end
-
-function template:OnItemEquipped(handle hItem)
-
-end
-
---------------------------------------------------------------------------------
--- Other Events
-function template:OnHeroDiedNearby(handle unit, handle attacker, handle table)
-
+	-- Illusion Copy
+	local bIllusion = target:IsIllusion()
 end
 
 --------------------------------------------------------------------------------
@@ -225,6 +209,56 @@ function template:PlayEffects()
 		bHeroEffect,
 		bOverheadEffect
 	)
+
+end
+
+--------------------------------------------------------------------------------
+-- Ability Channeling
+function template:GetChannelTime()
+
+end
+
+function template:OnChannelFinish( bInterrupted )
+
+end
+
+--------------------------------------------------------------------------------
+-- Hero Events
+function template:OnOwnerSpawned()
+
+end
+
+function template:OnOwnerDied()
+
+end
+
+function template:OnHeroLevelUp()
+
+end
+
+function template:OnHeroCalculateStatBonus()
+
+end
+
+--------------------------------------------------------------------------------
+-- Ability Events
+function template:OnUpgrade()
+
+end
+
+--------------------------------------------------------------------------------
+-- Item Events
+function template:OnInventoryContentsChanged()
+
+end
+
+function template:OnItemEquipped(handle hItem)
+
+end
+
+--------------------------------------------------------------------------------
+-- Other Events
+function template:OnHeroDiedNearby(handle unit, handle attacker, handle table)
 
 end
 

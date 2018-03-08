@@ -26,6 +26,11 @@ function antimage_mana_void_lua:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
+	-- cancel if got linken
+	if target == nil or target:IsInvulnerable() or target:TriggerSpellAbsorb( self ) then
+		return
+	end
+
 	-- load data
 	local mana_damage_pct = self:GetSpecialValueFor("mana_void_damage_per_mana")
 	local mana_stun = self:GetSpecialValueFor("mana_void_ministun")

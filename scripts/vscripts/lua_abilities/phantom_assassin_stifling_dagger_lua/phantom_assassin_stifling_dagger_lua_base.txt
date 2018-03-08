@@ -1,5 +1,5 @@
 //=================================================================================================================
-// Hero Name: Template
+// Phantom Assassin: Stifling Dagger (Lua version)
 //=================================================================================================================
 "phantom_assassin_stifling_dagger_lua"
 {
@@ -12,11 +12,12 @@
 	"AbilityTextureName"			"phantom_assassin_stifling_dagger_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"4"
-//	"precache"
-//	{
-//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-//	}
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+		"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+		"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
+	}
 	
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------

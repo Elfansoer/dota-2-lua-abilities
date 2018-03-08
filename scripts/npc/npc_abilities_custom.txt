@@ -1558,27 +1558,32 @@
 		}
 	}
 	//=================================================================================================================
-	// Troll Warlord: Fervor (Lua version)
+	// Bristleback: Warpath (Lua version)
 	//=================================================================================================================
-	"troll_warlord_fervor_lua"
+	"bristleback_warpath_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/troll_warlord_fervor_lua/troll_warlord_fervor_lua"
-		"AbilityTextureName"			"troll_warlord_fervor_lua"
+		"ScriptFile"					"lua_abilities/bristleback_warpath_lua/bristleback_warpath_lua"
+		"AbilityTextureName"			"bristleback_warpath_lua"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts"
+			"particle"	"particles/units/heroes/hero_bristleback/bristleback_warpath.vpcf"
+			"particle"	"particles/units/heroes/hero_bristleback/bristleback_warpath_dust.vpcf"
+		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 
-
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
 
@@ -1594,78 +1599,23 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"max_stacks"			"7"
+				"var_type"						"FIELD_INTEGER"
+				"damage_per_stack"					"18 24 30"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"attack_speed"			"15 20 25 30"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ogre Magi: Fireblast
-	//=================================================================================================================
-	"ogre_magi_fireblast_lua"
-	{
-		// Ability Technical Aspect
-		// base script folder	: scripts/vscripts
-		// base texture folder	: resource/flash3/images/spellicons
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/ogre_magi_fireblast_lua/ogre_magi_fireblast_lua"
-		"AbilityTextureName"			"ogre_magi_fireblast_lua"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
-			"particle"	"particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf"
-		}
-
-		// Ability General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-
-		// Ability Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"475"
-		"AbilityCastPoint"				"0.45"
-
-		// Ability Resource
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0"
-		"AbilityManaCost"				"75 85 95 105"
-
-		// Damage
-		//-------------------------------------------------------------------------------------------------------------
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"1.5"
-			}
-
-			"02"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"multicast_delay"	"0.5"
+				"var_type"						"FIELD_INTEGER"
+				"move_speed_per_stack"				"3 4 5"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"fireblast_damage"		"55 110 165 220"
+				"var_type"						"FIELD_FLOAT"
+				"stack_duration"				"14.0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"max_stacks"					"5 7 9"
 			}
 		}
 	}
@@ -1746,48 +1696,47 @@
 		}
 	}
 	//=================================================================================================================
-	// Slardar: Slithereen Crush (Lua version)
+	// Ogre Magi: Fireblast
 	//=================================================================================================================
-	"slardar_slithereen_crush_lua"
+	"ogre_magi_fireblast_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/slardar_slithereen_crush_lua/slardar_slithereen_crush_lua"
-		"AbilityTextureName"			"slardar_slithereen_crush_lua"
+		"ScriptFile"					"lua_abilities/ogre_magi_fireblast_lua/ogre_magi_fireblast_lua"
+		"AbilityTextureName"			"ogre_magi_fireblast_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
-			"particle"	"particles/units/heroes/hero_slardar/slardar_crush.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+			"particle"	"particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf"
 		}
-		
+
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"350"
-		"AbilityCastPoint"				"0.35"
-		"AbilityDuration"				"1.25 1.5 1.75 2.0"
+		"AbilityCastRange"				"475"
+		"AbilityCastPoint"				"0.45"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8"
-		"AbilityManaCost"				"80 95 105 115"
+		"AbilityCooldown"				"12.0"
+		"AbilityManaCost"				"75 85 95 105"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"75 125 175 225"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -1795,192 +1744,63 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"crush_radius"				"350"
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"1.5"
 			}
+
 			"02"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"crush_extra_slow"				"-20"
+				"var_type"			"FIELD_FLOAT"
+				"multicast_delay"	"0.5"
 			}
 			"03"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"crush_attack_slow_tooltip"		"-20"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"crush_extra_slow_duration"		"2.0"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"stun_duration"					"1.25 1.5 1.75 2.0"
+				"var_type"				"FIELD_INTEGER"
+				"fireblast_damage"		"55 110 165 220"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Tidehunter: Anchor Smash
+	// Phantom Assassin: Stifling Dagger (Lua version)
 	//=================================================================================================================
-	"tidehunter_anchor_smash_lua"
+	"phantom_assassin_stifling_dagger_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/tidehunter_anchor_smash_lua/tidehunter_anchor_smash_lua"
-		"AbilityTextureName"			"tidehunter_anchor_smash_lua"
+		"ScriptFile"					"lua_abilities/phantom_assassin_stifling_dagger_lua/phantom_assassin_stifling_dagger_lua"
+		"AbilityTextureName"			"phantom_assassin_stifling_dagger_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
-			"particle"	"particles/units/heroes/hero_tidehunter/tidehunter_anchor_hero.vpcf"
-		}
-
-		// Ability General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-
-
-		// Ability Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"375"
-		"AbilityCastPoint"				"0.4"
-
-		// Ability Resource
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7.0 6.0 5.0 4.0"
-		"AbilityManaCost"				"30 40 50 60"
-
-		// Damage
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"100 175 250 325"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-45 -50 -55 -60"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"reduction_duration"	"6.0 6.0 6.0 6.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"375"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ursa: Earthshock (lua version)
-	//=================================================================================================================
-	"ursa_earthshock_lua"
-	{
-		// Ability Technical Aspect
-		// base script folder	: scripts/vscripts
-		// base texture folder	: resource/flash3/images/spellicons
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/ursa_earthshock_lua/ursa_earthshock_lua"
-		"AbilityTextureName"			"ursa_earthshock_lua"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
-			"particle"	"particles/units/heroes/hero_ursa/ursa_earthshock.vpcf"
-			"particle"	"particles/units/heroes/hero_ursa/ursa_earthshock_modifier.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+			"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+			"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"385"
+		"AbilityCastRange"				"525 750 975 1200"
 		"AbilityCastPoint"				"0.3"
-		"AbilityDuration"				"4.0"
+		"AbilityDuration"				"1 2 3 4"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5"
-		"AbilityManaCost"				"75"
-
-		// Damage
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"90 140 190 240"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"shock_radius"				"385"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movement_slow"				"-25 -35 -45 -55"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ursa: Overpower (lua version)
-	//=================================================================================================================
-	"ursa_overpower_lua"
-	{
-		// Ability Technical Aspect
-		// base script folder	: scripts/vscripts
-		// base texture folder	: resource/flash3/images/spellicons
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/ursa_overpower_lua/ursa_overpower_lua"
-		"AbilityTextureName"			"ursa_overpower_lua"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
-			"particle"	"particles/units/heroes/hero_ursa/ursa_overpower_buff.vpcf"
-			"particle"	"particles/units/heroes/hero_ursa/ursa_overpower_cast.vpcf"
-		}
-
-		// Ability General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-
-		// Ability Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.3"
-		"AbilityDuration"				"15.0"
-
-		// Ability Resource
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0"
-		"AbilityManaCost"				"45 55 65 75"
+		"AbilityCooldown"				"6"
+		"AbilityManaCost"				"30 25 20 15"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -1991,48 +1811,132 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"max_attacks"				"3 4 5 6"
+				"var_type"				"FIELD_INTEGER"
+				"move_slow"					"-50"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_speed_bonus"		"400"
+				"var_type"				"FIELD_INTEGER"
+				"dagger_speed"			"1200"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"duration_tooltip"			"15"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1 2 3 4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"65"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_factor"			"-75 -60 -45 -30"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_factor_tooltip"	"25 40 55 70"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_range"			"525 750 975 1200"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Ursa: Fury Swipes (lua version)
+	// Phantom Assassin: Phantom Strike (Lua version)
 	//=================================================================================================================
-	"ursa_fury_swipes_lua"
+	"phantom_assassin_phantom_strike_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/ursa_fury_swipes_lua/ursa_fury_swipes_lua"
-		"AbilityTextureName"			"ursa_fury_swipes_lua"
+		"ScriptFile"					"lua_abilities/phantom_assassin_phantom_strike_lua/phantom_assassin_phantom_strike_lua"
+		"AbilityTextureName"			"phantom_assassin_phantom_strike_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"precache"
 		{
-			"particle"	"particles/units/heroes/hero_ursa/ursa_fury_swipes.vpcf"
-			"particle"	"particles/units/heroes/hero_ursa/ursa_fury_swipes_debuff.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+			"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_start.vpcf"
+			"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
 		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.3"
+		"AbilityDuration"				"3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"14 11 8 5"
+		"AbilityManaCost"				"50"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"130"
+			}
+			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_max_attack_count"	"4"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_range"			"1000"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Phantom Assassin: Blur (Lua version)
+	//=================================================================================================================
+	"phantom_assassin_blur_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/phantom_assassin_blur_lua/phantom_assassin_blur_lua"
+		"AbilityTextureName"			"phantom_assassin_blur_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+			"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf"
+		}
+		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2049,57 +1953,53 @@
 		{
 			"01"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_reset_time"				"20"
+				"var_type"					"FIELD_INTEGER"
+				"bonus_evasion"				"20 30 40 50"
 			}
 			"02"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_reset_time_roshan"		"6"
+				"var_type"					"FIELD_FLOAT"
+				"transparency_fade"			"0.0"
 			}
 			"03"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_per_stack"				"15 20 25 30"
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"1600"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Ursa: Enrage (lua version)
+	// Phantom Assassin: Coup de Grace (Lua version)
 	//=================================================================================================================
-	"ursa_enrage_lua"
+	"phantom_assassin_coup_de_grace_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/ursa_enrage_lua/ursa_enrage_lua"
-		"AbilityTextureName"			"ursa_enrage_lua"
+		"ScriptFile"					"lua_abilities/phantom_assassin_coup_de_grace_lua/phantom_assassin_coup_de_grace_lua"
+		"AbilityTextureName"			"phantom_assassin_coup_de_grace_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"3"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
-			"particle"	"particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+			"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+			"particle"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_mechanical.vpcf"
 		}
+		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-
-		"HasScepterUpgrade"				"1"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"50 40 30"
-		"AbilityManaCost"				"0"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -2110,23 +2010,13 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"enrage_multiplier"			"1.5 1.75 2.0"
+				"var_type"					"FIELD_INTEGER"
+				"crit_chance"				"15"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_reduction"			"80"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4.0"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cooldown_scepter"			"30 24 18"
+				"crit_bonus"				"230 340 450"
 			}
 		}
 	}
@@ -2592,6 +2482,438 @@
 				"var_type"					"FIELD_FLOAT"
 				"requiem_damage_pct_scepter"	"40"
 			}		
+		}
+	}
+	//=================================================================================================================
+	// Slardar: Slithereen Crush (Lua version)
+	//=================================================================================================================
+	"slardar_slithereen_crush_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/slardar_slithereen_crush_lua/slardar_slithereen_crush_lua"
+		"AbilityTextureName"			"slardar_slithereen_crush_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+			"particle"	"particles/units/heroes/hero_slardar/slardar_crush.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"350"
+		"AbilityCastPoint"				"0.35"
+		"AbilityDuration"				"1.25 1.5 1.75 2.0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+		"AbilityManaCost"				"80 95 105 115"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"75 125 175 225"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crush_radius"				"350"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"crush_extra_slow"				"-20"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"crush_attack_slow_tooltip"		"-20"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"crush_extra_slow_duration"		"2.0"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_duration"					"1.25 1.5 1.75 2.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Tidehunter: Anchor Smash
+	//=================================================================================================================
+	"tidehunter_anchor_smash_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/tidehunter_anchor_smash_lua/tidehunter_anchor_smash_lua"
+		"AbilityTextureName"			"tidehunter_anchor_smash_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+			"particle"	"particles/units/heroes/hero_tidehunter/tidehunter_anchor_hero.vpcf"
+		}
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"375"
+		"AbilityCastPoint"				"0.4"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"7.0 6.0 5.0 4.0"
+		"AbilityManaCost"				"30 40 50 60"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100 175 250 325"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"-45 -50 -55 -60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"reduction_duration"	"6.0 6.0 6.0 6.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"375"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Troll Warlord: Fervor (Lua version)
+	//=================================================================================================================
+	"troll_warlord_fervor_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/troll_warlord_fervor_lua/troll_warlord_fervor_lua"
+		"AbilityTextureName"			"troll_warlord_fervor_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_stacks"			"7"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_speed"			"15 20 25 30"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ursa: Earthshock (lua version)
+	//=================================================================================================================
+	"ursa_earthshock_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/ursa_earthshock_lua/ursa_earthshock_lua"
+		"AbilityTextureName"			"ursa_earthshock_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_earthshock.vpcf"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_earthshock_modifier.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"385"
+		"AbilityCastPoint"				"0.3"
+		"AbilityDuration"				"4.0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"5"
+		"AbilityManaCost"				"75"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"90 140 190 240"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"shock_radius"				"385"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"movement_slow"				"-25 -35 -45 -55"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ursa: Overpower (lua version)
+	//=================================================================================================================
+	"ursa_overpower_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/ursa_overpower_lua/ursa_overpower_lua"
+		"AbilityTextureName"			"ursa_overpower_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_overpower_buff.vpcf"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_overpower_cast.vpcf"
+		}
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.3"
+		"AbilityDuration"				"15.0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10.0"
+		"AbilityManaCost"				"45 55 65 75"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_attacks"				"3 4 5 6"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_speed_bonus"		"400"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration_tooltip"			"15"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ursa: Fury Swipes (lua version)
+	//=================================================================================================================
+	"ursa_fury_swipes_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/ursa_fury_swipes_lua/ursa_fury_swipes_lua"
+		"AbilityTextureName"			"ursa_fury_swipes_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_ursa/ursa_fury_swipes.vpcf"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_fury_swipes_debuff.vpcf"
+		}
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_reset_time"				"20"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_reset_time_roshan"		"6"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_per_stack"				"15 20 25 30"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ursa: Enrage (lua version)
+	//=================================================================================================================
+	"ursa_enrage_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/ursa_enrage_lua/ursa_enrage_lua"
+		"AbilityTextureName"			"ursa_enrage_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+		}
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"HasScepterUpgrade"				"1"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50 40 30"
+		"AbilityManaCost"				"0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"enrage_multiplier"			"1.5 1.75 2.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_reduction"			"80"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"4.0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"cooldown_scepter"			"30 24 18"
+			}
 		}
 	}
 	//=================================================================================================================

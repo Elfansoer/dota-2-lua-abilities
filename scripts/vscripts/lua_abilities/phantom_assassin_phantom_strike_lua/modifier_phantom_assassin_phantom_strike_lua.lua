@@ -22,7 +22,9 @@ function modifier_phantom_assassin_phantom_strike_lua:OnCreated( kv )
 	self.attack_speed = self:GetAbility():GetSpecialValueFor( "bonus_attack_speed" ) -- special value
 
 	-- Set Stack Count
-	self:SetStackCount(attack_count)
+	if IsServer() then
+		self:SetStackCount(attack_count)
+	end
 end
 
 function modifier_phantom_assassin_phantom_strike_lua:OnRefresh( kv )
@@ -30,7 +32,9 @@ function modifier_phantom_assassin_phantom_strike_lua:OnRefresh( kv )
 	self.attack_speed = self:GetAbility():GetSpecialValueFor( "bonus_attack_speed" ) -- special value
 
 	-- Set Stack Count
-	self:SetStackCount(attack_count)
+	if IsServer() then
+		self:SetStackCount(attack_count)
+	end
 end
 
 function modifier_phantom_assassin_phantom_strike_lua:OnDestroy( kv )
@@ -57,7 +61,7 @@ function modifier_phantom_assassin_phantom_strike_lua:GetModifierPreAttack( para
 			DOTA_UNIT_TARGET_TEAM_ENEMY,	-- Team Filter
 			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,	-- Unit Filter
 			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	-- Unit Flag
-			self:GetCaster():GetTeamNumber()	-- Team reference
+			self:GetParent():GetTeamNumber()	-- Team reference
 		)
 
 		if result~=UF_SUCCESS then

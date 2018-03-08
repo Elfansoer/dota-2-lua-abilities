@@ -9,6 +9,11 @@ function ogre_magi_fireblast_lua:OnSpellStart()
 	local damage = self:GetSpecialValueFor("fireblast_damage")
 	local duration = self:GetSpecialValueFor("stun_duration")
 
+	-- stop if got linken
+	if target:TriggerSpellAbsorb( self ) then
+		return
+	end
+
 	-- Apply damage
 	local damageTable = {
 		victim = target,

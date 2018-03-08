@@ -24,7 +24,7 @@
 		"Ability1"					"bristleback_viscous_nasal_goo_lua"				// Ability 1
 		"Ability2"					"bristleback_quill_spray_lua"				// Ability 2
 		"Ability3"					"bristleback_bristleback_lua"
-		"Ability4"					"pudge_dismember_lua"
+		"Ability4"					"bristleback_warpath_lua"
 	}
 
 	//=================================================================================================================
@@ -33,10 +33,10 @@
 	"npc_dota_hero_furion_lua"
 	{
 		"override_hero"				"npc_dota_hero_furion"			// Hero to override
-		"Ability1"					"furion_sprout_lua"				// Ability 1
-		"Ability2"					"furion_teleportation_lua"
-		"Ability3"					"furion_force_of_nature_lua"
-		"Ability4"					"furion_wrath_of_nature_lua"
+		"Ability1"					"phantom_assassin_stifling_dagger_lua"				// Ability 1
+		"Ability2"					"phantom_assassin_phantom_strike_lua"
+		"Ability3"					"phantom_assassin_blur_lua"
+		"Ability6"					"phantom_assassin_coup_de_grace_lua"
 	}
 
 

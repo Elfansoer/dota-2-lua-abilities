@@ -56,6 +56,17 @@ function bristleback_viscous_nasal_goo_lua:OnSpellStart()
 end
 
 function bristleback_viscous_nasal_goo_lua:OnProjectileHit( hTarget, vLocation )
+	-- cancel if got linken
+	if hTarget == nil or hTarget:IsInvulnerable() then
+		return
+	end
+
+	if not self:GetCaster():HasScepter() then
+		if hTarget:TriggerSpellAbsorb( self ) then
+			return
+		end
+	end
+
 	local stack_duration = self:GetSpecialValueFor("goo_duration")
 
 	-- Add modifier
