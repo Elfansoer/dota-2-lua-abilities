@@ -22,10 +22,6 @@ if shadowraze==nil then
 end
 
 function shadowraze.OnSpellStart( this )
-	-- effects
-	local particle_blast = "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
-	local sound_blast = "Hero_Nevermore.Shadowraze"
-
 	-- get references
 	local distance = this:GetSpecialValueFor("shadowraze_range")
 	local front = this:GetCaster():GetForwardVector():Normalized()
@@ -34,12 +30,6 @@ function shadowraze.OnSpellStart( this )
 	local base_damage = this:GetSpecialValueFor("shadowraze_damage")
 	local stack_damage = this:GetSpecialValueFor("stack_bonus_damage")
 	local stack_duration = this:GetSpecialValueFor("duration")
-
-	local nFXIndex = ParticleManager:CreateParticle( particle_blast, PATTACH_WORLDORIGIN, nil )
-	ParticleManager:SetParticleControl( nFXIndex, 0, target_pos )
-	ParticleManager:SetParticleControl( nFXIndex, 1, Vector( target_radius, 1, 1 ) )
-	ParticleManager:ReleaseParticleIndex( nFXIndex )
-	EmitSoundOnLocationWithCaster(target_pos, sound_blast, this:GetCaster())
 
 	-- get affected enemies
 	local enemies = FindUnitsInRadius(
@@ -86,4 +76,18 @@ function shadowraze.OnSpellStart( this )
 			modifier:ForceRefresh()
 		end
 	end
+
+	-- Effects
+	shadowraze.PlayEffects( this, target_pos, target_radius )
+end
+
+function shadowraze.PlayEffects( this, position, radius )
+	local particle_blast = "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+	local sound_blast = "Hero_Nevermore.Shadowraze"
+
+	local nFXIndex = ParticleManager:CreateParticle( particle_blast, PATTACH_WORLDORIGIN, nil )
+	ParticleManager:SetParticleControl( nFXIndex, 0, position )
+	ParticleManager:SetParticleControl( nFXIndex, 1, Vector( radius, 1, 1 ) )
+	ParticleManager:ReleaseParticleIndex( nFXIndex )
+	EmitSoundOnLocationWithCaster( position, sound_blast, this:GetCaster() )
 end

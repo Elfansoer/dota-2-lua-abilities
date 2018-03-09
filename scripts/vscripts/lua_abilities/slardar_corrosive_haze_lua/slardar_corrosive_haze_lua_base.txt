@@ -12,11 +12,11 @@
 	"AbilityTextureName"			"slardar_corrosive_haze_lua"
 	"FightRecapLevel"				"1"
 	"MaxLevel"						"3"
-//	"precache"
-//	{
-//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-//	}
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+		"particle"	"particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
+	}
 	
 	// Ability General
 	//-------------------------------------------------------------------------------------------------------------

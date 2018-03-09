@@ -23,6 +23,10 @@ end
 function modifier_slardar_corrosive_haze_lua:OnCreated( kv )
 	-- references
 	self.armor_reduction = self:GetAbility():GetSpecialValueFor( "armor_reduction" ) -- special value
+
+	if IsServer() then
+		self:PlayEffects()
+	end
 end
 
 function modifier_slardar_corrosive_haze_lua:OnRefresh( kv )
@@ -30,7 +34,7 @@ function modifier_slardar_corrosive_haze_lua:OnRefresh( kv )
 end
 
 function modifier_slardar_corrosive_haze_lua:OnDestroy( kv )
-
+	
 end
 
 --------------------------------------------------------------------------------
@@ -53,11 +57,54 @@ function modifier_slardar_corrosive_haze_lua:GetModifierProvidesFOWVision()
 end
 
 --------------------------------------------------------------------------------
--- Graphics & Animations
--- function modifier_slardar_corrosive_haze_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
 
--- function modifier_slardar_corrosive_haze_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+function modifier_slardar_corrosive_haze_lua:CheckState()
+	local state = {
+		[MODIFIER_STATE_INVISIBLE] = false,
+	}
+
+	return state
+end
+--------------------------------------------------------------------------------
+-- Graphics & Animations
+
+function modifier_slardar_corrosive_haze_lua:PlayEffects()
+	local particle_cast = "particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
+	
+	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
+	ParticleManager:SetParticleControlEnt(
+		self.effect_cast,
+		0,
+		self:GetParent(),
+		PATTACH_OVERHEAD_FOLLOW,
+		nil,
+		self:GetParent():GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControlEnt(
+		self.effect_cast,
+		1,
+		self:GetParent(),
+		PATTACH_OVERHEAD_FOLLOW,
+		nil,
+		self:GetParent():GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControlEnt(
+		self.effect_cast,
+		2,
+		self:GetParent(),
+		PATTACH_OVERHEAD_FOLLOW,
+		nil,
+		self:GetParent():GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	self:AddParticle(
+		self.effect_cast,
+		false,
+		false,
+		-1,
+		false,
+		true
+	)
+end

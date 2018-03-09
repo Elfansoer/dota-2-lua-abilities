@@ -14,9 +14,10 @@ function modifier_ursa_overpower_lua:OnCreated( kv )
 	self.max_attacks = self:GetAbility():GetSpecialValueFor("max_attacks")
 
 	-- Increase stack
-	self:SetStackCount(self.max_attacks)
 
 	if IsServer() then
+		self:SetStackCount(self.max_attacks)
+
 		self:AddEffects()
 	end
 end
@@ -27,7 +28,9 @@ function modifier_ursa_overpower_lua:OnRefresh( kv )
 	self.max_attacks = self:GetAbility():GetSpecialValueFor("max_attacks")
 
 	-- Increase stack
-	self:SetStackCount(self.max_attacks)
+	if IsServer() then
+		self:SetStackCount(self.max_attacks)
+	end
 end
 
 function modifier_ursa_overpower_lua:OnDestroy( kv )
@@ -53,12 +56,14 @@ function modifier_ursa_overpower_lua:GetModifierAttackSpeedBonus_Constant()
 end
 
 function modifier_ursa_overpower_lua:GetModifierProcAttack_Feedback( params )
-	-- decrement stack
-	self:DecrementStackCount()
+	if IsServer() then
+		-- decrement stack
+		self:DecrementStackCount()
 
-	-- destroy if reach zero
-	if self:GetStackCount() < 1 then
-		self:Destroy()
+		-- destroy if reach zero
+		if self:GetStackCount() < 1 then
+			self:Destroy()
+		end
 	end
 end
 

@@ -21,13 +21,16 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_shadow_fiend_necromastery_lua:OnCreated( kv )
-	self:SetStackCount(0)
 	-- get references
 	self.soul_max = self:GetAbility():GetSpecialValueFor("soul_max")
 	self.soul_max_scepter = self:GetAbility():GetSpecialValueFor("soul_max_scepter")
 	self.soul_release = self:GetAbility():GetSpecialValueFor("soul_release")
 	self.soul_damage = self:GetAbility():GetSpecialValueFor("soul_damage")
 	self.soul_hero_bonus = self:GetAbility():GetSpecialValueFor("soul_hero_bonus")
+
+	if IsServer() then
+		self:SetStackCount(0)
+	end
 end
 
 function modifier_shadow_fiend_necromastery_lua:OnRefresh( kv )
@@ -60,36 +63,45 @@ function modifier_shadow_fiend_necromastery_lua:OnDeath( params )
 end
 
 function modifier_shadow_fiend_necromastery_lua:GetModifierPreAttack_BonusDamage( params )
-	return self:GetStackCount() * self.soul_damage
+	if not self:GetParent():IsIllusion() then
+		local max_stack = self.soul_max
+		if self:GetParent():HasScepter() then
+			return self:GetStackCount() * self.soul_damage
+		else
+			return math.min(self.soul_max,self:GetStackCount()) * self.soul_damage
+		end
+	end
 end
 
 --------------------------------------------------------------------------------
 function modifier_shadow_fiend_necromastery_lua:DeathLogic( params )
 	-- filter
-	local unit = params.unit if unit==nil then unit = params.target end
+	local unit = params.unit
 	local pass = false
-	if unit==self:GetParent() then
+	if unit==self:GetParent() and params.reincarnate==false then
 		pass = true
 	end
 
 	-- logic
 	if pass then
-		local after_death = self:GetStackCount() * self.soul_release
-		self:SetStackCount(math.ceil(after_death))
+		local after_death = math.floor(self:GetStackCount() * self.soul_release)
+		self:SetStackCount(math.max(after_death,1))
 	end
 end
 
 function modifier_shadow_fiend_necromastery_lua:KillLogic( params )
 	-- filter
-	local target = params.target if target==nil then target = params.unit end
+	local target = params.unit
 	local attacker = params.attacker
 	local pass = false
-	if attacker==self:GetParent() then
-		pass = true
+	if attacker==self:GetParent() and target~=self:GetParent() then
+		if (not target:IsIllusion()) and (not target:IsBuilding()) then
+			pass = true
+		end
 	end
 
 	-- logic
-	if pass then
+	if pass and (not self:GetParent():PassivesDisabled()) then
 		self:AddStack(1)
 		-- check if it is a hero
 		if target:IsRealHero() then
@@ -99,7 +111,6 @@ function modifier_shadow_fiend_necromastery_lua:KillLogic( params )
 		self:PlayEffects( target )
 	end
 end
-
 
 function modifier_shadow_fiend_necromastery_lua:AddStack( value )
 	local current = self:GetStackCount()

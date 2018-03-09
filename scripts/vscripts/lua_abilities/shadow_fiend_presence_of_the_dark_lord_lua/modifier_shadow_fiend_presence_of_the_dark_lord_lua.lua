@@ -6,11 +6,7 @@ function modifier_shadow_fiend_presence_of_the_dark_lord_lua:IsDebuff()
 end
 
 function modifier_shadow_fiend_presence_of_the_dark_lord_lua:IsHidden()
-	if self:GetAbility():GetCaster():IsInvisible() then
-		return true
-	else
-		return self:GetParent()==self:GetAbility():GetCaster()
-	end
+	return self:GetParent()==self:GetAbility():GetCaster()
 end
 
 function modifier_shadow_fiend_presence_of_the_dark_lord_lua:GetAttributes()
@@ -20,7 +16,9 @@ end
 
 function modifier_shadow_fiend_presence_of_the_dark_lord_lua:IsAura()
 	if self:GetCaster() == self:GetParent() then
-		return true
+		if not self:GetCaster():PassivesDisabled() then
+			return true
+		end
 	end
 	
 	return false
@@ -40,11 +38,17 @@ function modifier_shadow_fiend_presence_of_the_dark_lord_lua:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 end
 
+function modifier_shadow_fiend_presence_of_the_dark_lord_lua:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+end
 
 function modifier_shadow_fiend_presence_of_the_dark_lord_lua:GetAuraRadius()
 	return self.aura_radius
 end
 
+function modifier_shadow_fiend_presence_of_the_dark_lord_lua:GetAuraEntityReject( hEntity )
+	return not hEntity:CanEntityBeSeenByMyTeam(self:GetCaster())
+end
 --------------------------------------------------------------------------------
 
 function modifier_shadow_fiend_presence_of_the_dark_lord_lua:OnCreated( kv )

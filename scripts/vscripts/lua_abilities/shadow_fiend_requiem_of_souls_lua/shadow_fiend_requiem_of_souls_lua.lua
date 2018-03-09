@@ -29,6 +29,9 @@ function shadow_fiend_requiem_of_souls_lua:OnSpellStart()
 end
 
 function shadow_fiend_requiem_of_souls_lua:OnOwnerDied()
+	-- do nothing if not learned
+	if self:GetLevel()<1 then return end
+
 	-- get references
 	local soul_per_line = self:GetSpecialValueFor("requiem_soul_conversion")
 

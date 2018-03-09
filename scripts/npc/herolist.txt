@@ -10,6 +10,8 @@
 	"npc_dota_hero_furion"			"1"
 	"npc_dota_hero_vengefulspirit"		"1"
 	"npc_dota_hero_lina"			"1"
+
 	"npc_dota_hero_phantom_assassin"	"1"
 	"npc_dota_hero_drow_ranger"	"1"
+	"npc_dota_hero_juggernaut"			"1"
 }

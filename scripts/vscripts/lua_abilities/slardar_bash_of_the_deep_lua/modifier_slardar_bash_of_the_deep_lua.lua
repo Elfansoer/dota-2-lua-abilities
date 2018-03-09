@@ -3,8 +3,7 @@ modifier_slardar_bash_of_the_deep_lua = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_slardar_bash_of_the_deep_lua:IsHidden()
-	-- actual true
-	return false
+	return true
 end
 
 function modifier_slardar_bash_of_the_deep_lua:IsPurgable()
@@ -16,7 +15,7 @@ end
 function modifier_slardar_bash_of_the_deep_lua:OnCreated( kv )
 	-- references
 	self.chance = self:GetAbility():GetSpecialValueFor( "chance" )
-	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
+	self.damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" )
 	self.duration = self:GetAbility():GetSpecialValueFor( "duration" )
 	self.duration_creep = self:GetAbility():GetSpecialValueFor( "duration_creep" )
 end
@@ -24,7 +23,7 @@ end
 function modifier_slardar_bash_of_the_deep_lua:OnRefresh( kv )
 	-- references
 	self.chance = self:GetAbility():GetSpecialValueFor( "chance" )
-	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
+	self.damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" )
 	self.duration = self:GetAbility():GetSpecialValueFor( "duration" )
 	self.duration_creep = self:GetAbility():GetSpecialValueFor( "duration_creep" )
 end
@@ -43,11 +42,28 @@ function modifier_slardar_bash_of_the_deep_lua:DeclareFunctions()
 
 	return funcs
 end
+
+function modifier_slardar_bash_of_the_deep_lua:GetModifierProcAttack_BonusDamage_Physical( params )
+	if IsServer() then
+		-- fail if target is invalid
+		if params.target:IsBuilding() or params.target:IsOther() then
+			return 0
+		end
+
+		-- fail if status is invalid
+		if self:GetParent():IsIllusion() or self:GetParent():PassivesDisabled() then
+			return 0
+		end
+
+		if self:RollChance( self.chance ) then
+			self.record = params.record
+			return self.damage
+		end
+	end
+end
 function modifier_slardar_bash_of_the_deep_lua:GetModifierProcAttack_Feedback( params )
 	if IsServer() then
-		if self.proc then
-			self.proc = false
-			
+		if params.record==self.record then
 			-- set duration
 			local act_duration = self.duration_creep
 			if params.target:IsHero() then
@@ -60,29 +76,14 @@ function modifier_slardar_bash_of_the_deep_lua:GetModifierProcAttack_Feedback( p
 				"modifier_generic_bashed_lua",
 				{ duration = act_duration }
 			)
-		end
-	end
-end
-function modifier_slardar_bash_of_the_deep_lua:GetModifierProcAttack_BonusDamage_Physical( params )
-	if IsServer() then
-		self.proc = self:RollChance( self.chance )
-		local dmg = 0
-		if self.proc then
-			dmg = self.damage
-		end
-		return dmg
-	end
-end
 
+			-- Effects
+			EmitSoundOn( "Hero_Slardar.Bash", params.target )
+		end
+	end
+end
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_slardar_bash_of_the_deep_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
-
--- function modifier_slardar_bash_of_the_deep_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
 
 --------------------------------------------------------------------------------
 -- Helper

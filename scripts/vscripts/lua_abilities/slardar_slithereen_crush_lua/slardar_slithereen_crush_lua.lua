@@ -60,8 +60,8 @@ function slardar_slithereen_crush_lua:PlayEffects()
 
 	local nFXIndex = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
 	ParticleManager:SetParticleControl( nFXIndex, 0, self:GetCaster():GetOrigin() )
-	ParticleManager:SetParticleControl( nFXIndex, 1, Vector(radius, radius, 0) )
+	ParticleManager:SetParticleControl( nFXIndex, 1, Vector(radius, radius, radius) )
 	ParticleManager:ReleaseParticleIndex( nFXIndex )
 
-	EmitSoundOn( sound_cast, self:GetCaster() )
+	EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), sound_cast, self:GetCaster() )
 end
