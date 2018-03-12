@@ -9,26 +9,29 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_wraith_king_wraithfire_blast_lua_slow:OnCreated( kv )
-	self.dot_damage = kv.damage
-	self.dot_slow = kv.slow
+	self.dot_damage = self:GetAbility():GetSpecialValueFor( "blast_dot_damage" )
+	self.dot_slow = self:GetAbility():GetSpecialValueFor( "blast_slow" )
 	self.tick = 0
 	self.interval = self:GetRemainingTime()/kv.duration -- in case of status resistance
+	self.duration = kv.duration
 
 	self:StartIntervalThink( self.interval )
 end
 
 function modifier_wraith_king_wraithfire_blast_lua_slow:OnRefresh( kv )
-	self.dot_damage = kv.damage
+	self.dot_damage = self:GetAbility():GetSpecialValueFor( "blast_dot_damage" )
+	self.dot_slow = self:GetAbility():GetSpecialValueFor( "blast_slow" )
 	self.tick = 0
-	self.interval = self:GetRemainingTime()/kv.duration
+	self.interval = self:GetRemainingTime()/kv.duration -- in case of status resistance
+	self.duration = kv.duration
 
 	self:StartIntervalThink( self.interval )
 end
 
-function modifier_wraith_king_wraithfire_blast_lua_slow:OnDestroy( kv )
+function modifier_wraith_king_wraithfire_blast_lua_slow:OnDestroy()
 	if IsServer() then
 		-- make sure last tick must happened
-		if self.tick < kv.duration then
+		if self.tick < self.duration then
 			self:OnIntervalThink()
 		end
 	end

@@ -120,8 +120,9 @@ function modifier_wraith_king_reincarnation_lua:PlayEffects()
 	local sound_cast = "Hero_SkeletonKing.Reincarnate"
 
 	-- play particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, self:GetParent() )
 	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector( self.reincarnate_time, 0, 0 ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- play sound

@@ -24,12 +24,10 @@ end
 
 function wraith_king_wraithfire_blast_lua:OnProjectileHit( hTarget, vLocation )
 	-- check target
-	if hTarget ~= nil and ( not hTarget:IsInvulnerable() ) and ( not hTarget:TriggerSpellAbsorb( self ) ) and ( not hTarget:IsMagicImmune() ) then
+	if hTarget ~= nil and ( not hTarget:IsInvulnerable() ) and ( not hTarget:IsMagicImmune() ) and ( not hTarget:TriggerSpellAbsorb( self ) ) then
 		local stun_duration = self:GetSpecialValueFor( "blast_stun_duration" )
 		local stun_damage = self:GetAbilityDamage()
 		local dot_duration = self:GetSpecialValueFor( "blast_dot_duration" )
-		local dot_damage = self:GetSpecialValueFor( "blast_dot_damage" )
-		local dot_slow = self:GetSpecialValueFor( "blast_slow" )
 
 		-- apply initial damage
 		local damage = {
@@ -45,7 +43,7 @@ function wraith_king_wraithfire_blast_lua:OnProjectileHit( hTarget, vLocation )
 		hTarget:AddNewModifier( self:GetCaster(), self, "modifier_generic_stunned_lua", { duration = stun_duration } )
 		
 		-- apply slow debuff
-		hTarget:AddNewModifier( self:GetCaster(), self, "modifier_wraith_king_wraithfire_blast_lua_slow", { duration = dot_duration, damage = dot_damage, slow = dot_slow } )
+		hTarget:AddNewModifier( self:GetCaster(), self, "modifier_wraith_king_wraithfire_blast_lua_slow", { duration = dot_duration } )
 
 		self:PlayEffects2( hTarget )
 	end

@@ -2,7 +2,7 @@ ursa_enrage_lua = class({})
 LinkLuaModifier( "modifier_ursa_enrage_lua", "lua_abilities/ursa_enrage_lua/modifier_ursa_enrage_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
-function ursa_enrage_luaGetBehavior()
+function ursa_enrage_lua:GetBehavior()
 	local behavior = DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
  	if self:GetCaster():HasScepter() then
  		behavior = behavior + DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
@@ -23,6 +23,9 @@ end
 function ursa_enrage_lua:OnSpellStart()
 	-- get references
 	local bonus_duration = self:GetSpecialValueFor("duration")
+
+	-- Purge
+	self:GetCaster():Purge(false, true, false, true, false)
 
 	-- Add buff modifier
 	self:GetCaster():AddNewModifier(

@@ -21,7 +21,9 @@ function modifier_wraith_king_vampiric_aura_lua:GetAuraRadius()
 end
 
 function modifier_wraith_king_vampiric_aura_lua:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+	if not self:GetParent():PassivesDisabled() then
+		return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+	end
 end
 
 function modifier_wraith_king_vampiric_aura_lua:GetAuraSearchType()
