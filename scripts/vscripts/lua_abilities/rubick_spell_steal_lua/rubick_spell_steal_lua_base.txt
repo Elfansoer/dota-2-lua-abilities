@@ -1,0 +1,70 @@
+//=================================================================================================================
+// Rubick: Spell Steal (Lua version)
+//=================================================================================================================
+"rubick_spell_steal_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua"
+	"AbilityTextureName"			"rubick_spell_steal_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"3"
+//	"precache"
+//	{
+//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//	}
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"1000"
+	"AbilityCastRangeBuffer"		"250"
+	"AbilityCastPoint"				"0.1"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"20 18 16"
+	"AbilityManaCost"				"25"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"duration"					"180.0 240.0 300.0"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"projectile_speed"			"900"
+		}
+		"03"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"cast_range_scepter"			"1400"
+		}
+		"04"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"cooldown_scepter"			"2"
+		}
+	}
+}

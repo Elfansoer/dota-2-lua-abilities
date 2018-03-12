@@ -99,6 +99,17 @@
 		"Ability6"				"slardar_corrosive_haze_lua"							// Ability 6
 	}
 	//=================================================================================================================
+	// HERO: Rubick
+	//=================================================================================================================
+	"npc_dota_hero_rubick_lua"
+	{
+		"override_hero"					"npc_dota_hero_rubick"	// Hero to override
+//		"Ability1"				"slardar_guardian_sprint_lua"						// Ability 1
+//		"Ability2"				"slardar_slithereen_crush_lua"						// Ability 2
+//		"Ability3"				"slardar_bash_of_the_deep_lua"						// Ability 3
+		"Ability6"				"rubick_spell_steal_lua"							// Ability 6
+	}
+	//=================================================================================================================
 	// HERO: Azura (Drow Ranger)
 	//=================================================================================================================
 	"npc_dota_hero_azura"
