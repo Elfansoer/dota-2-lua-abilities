@@ -46,30 +46,11 @@ function modifier_rubick_spell_steal_lua_hidden:OnAbilityFullyCast( params )
 		if params.unit==self:GetParent() then
 			return
 		end
+		-- Filter
+		if params.unit:IsIllusion() then
+			return
+		end
+
 		self:GetAbility():SetLastSpell( params.unit, params.ability )
 	end
 end
---------------------------------------------------------------------------------
--- Status Effects
--- function modifier_rubick_spell_steal_lua_hidden:CheckState()
--- 	local state = {
--- 	[MODIFIER_STATE_XX] = true,
--- 	}
-
--- 	return state
--- end
-
---------------------------------------------------------------------------------
--- Interval Effects
--- function modifier_rubick_spell_steal_lua_hidden:OnIntervalThink()
--- end
-
---------------------------------------------------------------------------------
--- Graphics & Animations
--- function modifier_rubick_spell_steal_lua_hidden:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
-
--- function modifier_rubick_spell_steal_lua_hidden:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end

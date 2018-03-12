@@ -25,7 +25,7 @@ function shadowraze.OnSpellStart( this )
 	-- get references
 	local distance = this:GetSpecialValueFor("shadowraze_range")
 	local front = this:GetCaster():GetForwardVector():Normalized()
-	local target_pos = this:GetOrigin() + front * distance
+	local target_pos = this:GetCaster():GetOrigin() + front * distance
 	local target_radius = this:GetSpecialValueFor("shadowraze_radius")
 	local base_damage = this:GetSpecialValueFor("shadowraze_damage")
 	local stack_damage = this:GetSpecialValueFor("stack_bonus_damage")

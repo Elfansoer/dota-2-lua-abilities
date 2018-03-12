@@ -2058,7 +2058,8 @@
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 18 16"
+//		"AbilityCooldown"				"20 18 16"
+		"AbilityCooldown"				"2"
 		"AbilityManaCost"				"25"
 
 		// Damage
@@ -2071,7 +2072,8 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"5"
+//				"duration"					"180.0 240.0 300.0"
+				"duration"					"20"
 			}
 			"02"
 			{
@@ -2089,6 +2091,34 @@
 				"cooldown_scepter"			"2"
 			}
 		}
+	}
+	"rubick_spell_steal_lua_slot1"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua"
+		"AbilityTextureName"			"rubick_spell_steal_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"0"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+	"rubick_spell_steal_lua_slot2"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua"
+		"AbilityTextureName"			"rubick_spell_steal_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"0"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 	}
 	//=================================================================================================================
 	// Shadow Fiend: Shadowrazes (lua version)

@@ -68,3 +68,31 @@
 		}
 	}
 }
+"rubick_spell_steal_lua_slot1"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua"
+	"AbilityTextureName"			"rubick_spell_steal_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"0"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+}
+"rubick_spell_steal_lua_slot2"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua"
+	"AbilityTextureName"			"rubick_spell_steal_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"0"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+}

@@ -1,21 +1,36 @@
 rubick_spell_steal_lua = class({})
+rubick_spell_steal_lua_slot1 = class({})
+rubick_spell_steal_lua_slot2 = class({})
 LinkLuaModifier( "modifier_rubick_spell_steal_lua", "lua_abilities/rubick_spell_steal_lua/modifier_rubick_spell_steal_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_rubick_spell_steal_lua_hidden", "lua_abilities/rubick_spell_steal_lua/modifier_rubick_spell_steal_lua_hidden", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Passive Modifier
-function rubick_spell_steal_lua:GetIntrinsicModifierName()
-	return "modifier_rubick_spell_steal_lua_hidden"
+-- function rubick_spell_steal_lua:GetIntrinsicModifierName()
+-- 	return "modifier_rubick_spell_steal_lua_hidden"
+-- end
+
+rubick_spell_steal_lua.firstTime = true
+function rubick_spell_steal_lua:OnHeroCalculateStatBonus()
+	if self.firstTime then
+		self:GetCaster():AddNewModifier(
+			self:GetCaster(),
+			self,
+			"modifier_rubick_spell_steal_lua_hidden",
+			{}
+		)
+		self.firstTime = false
+	end
 end
 --------------------------------------------------------------------------------
 -- Ability Cast Filter
 rubick_spell_steal_lua.failState = nil
 function rubick_spell_steal_lua:CastFilterResultTarget( hTarget )
-	-- print( hTarget, self:GetLastSpell( hTarget ) )
-	if self:GetLastSpell( hTarget )==nil then
-		self.failState = "nevercast"
-		print("fail")
-		return UF_FAIL_CUSTOM
+	if IsServer() then
+		if self:GetLastSpell( hTarget )==nil then
+			self.failState = "nevercast"
+			return UF_FAIL_CUSTOM
+		end
 	end
 
 	local nResult = UnitFilter(
@@ -28,11 +43,13 @@ function rubick_spell_steal_lua:CastFilterResultTarget( hTarget )
 	if nResult ~= UF_SUCCESS then
 		return nResult
 	end
+
 	return UF_SUCCESS
 end
 
 function rubick_spell_steal_lua:GetCustomCastErrorTarget( hTarget )
 	if self.failState and self.failState=="nevercast" then
+		self.failState = nil
 		return "#dota_hud_error_never_cast"
 	end
 	
@@ -49,10 +66,14 @@ end
 
 --------------------------------------------------------------------------------
 -- Ability Start
+rubick_spell_steal_lua.stolenSpell = nil
 function rubick_spell_steal_lua:OnSpellStart()
 	-- unit identifier
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
+
+	-- Get last used spell
+	self.stolenSpell = self:GetLastSpell( target )
 
 	-- load data
 	local projectile_name = "particles/units/heroes/hero_rubick/rubick_spell_steal.vpcf"
@@ -75,13 +96,21 @@ function rubick_spell_steal_lua:OnSpellStart()
 
 	-- Play effects
 	local sound_cast = "Hero_Rubick.SpellSteal.Cast"
-	EmitSoundOn( sound_cast, target )
+	EmitSoundOn( sound_cast, caster )
+	local sound_target = "Hero_Rubick.SpellSteal.Target"
+	EmitSoundOn( sound_target, target )
 end
 
 function rubick_spell_steal_lua:OnProjectileHit( target, location )
-	local steal_duration = self:GetSpecialValueFor("duration")
+	-- Cancel if blocked
+	
+
+	-- Add ability
+	self:SetStolenSpell( self.stolenSpell )
+	self.stolenSpell = nil
 
 	-- Add modifier
+	local steal_duration = self:GetSpecialValueFor("duration")
 	target:AddNewModifier(
 		self:GetCaster(), -- player source
 		self, -- ability source
@@ -89,12 +118,12 @@ function rubick_spell_steal_lua:OnProjectileHit( target, location )
 		{ duration = steal_duration } -- kv
 	)
 
-	local sound_cast = "Hero_Rubick.SpellSteal.Target"
+	local sound_cast = "Hero_Rubick.SpellSteal.Complete"
 	EmitSoundOn( sound_cast, target )
 end
 
 --------------------------------------------------------------------------------
--- Helper
+-- Helper: Heroes Data
 rubick_spell_steal_lua.heroesData = {}
 --[[
 heroesData:
@@ -122,14 +151,13 @@ function rubick_spell_steal_lua:SetLastSpell( hHero, hSpell )
 		table.insert( rubick_spell_steal_lua.heroesData, newData )
 	end
 
-	self:PrintStatus()
+	-- self:PrintStatus()
 end
 
 function rubick_spell_steal_lua:GetLastSpell( hHero )
 	-- find hero in list
 	local heroData = nil
 	for _,data in pairs(rubick_spell_steal_lua.heroesData) do
-		print(IsServer(), hHero:GetUnitName(), hHero, data.handle, data.lastSpell)
 		if data.handle==hHero then
 			heroData = data
 			break
@@ -147,6 +175,33 @@ function rubick_spell_steal_lua:PrintStatus()
 	print("Heroes and spells:")
 	for _,heroData in pairs(rubick_spell_steal_lua.heroesData) do
 		print( heroData.handle:GetUnitName(), heroData.handle, heroData.lastSpell:GetAbilityName(), heroData.lastSpell )
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Helper: Current spell
+rubick_spell_steal_lua.currentSpell = nil
+rubick_spell_steal_lua.slot1 = "rubick_spell_steal_lua_slot1"
+rubick_spell_steal_lua.slot2 = "rubick_spell_steal_lua_slot2"
+
+-- Add new stolen spell
+function rubick_spell_steal_lua:SetStolenSpell( spell )
+	-- Forget previous one
+	self:ForgetSpell()
+
+	-- Add new spell
+	self.currentSpell = self:GetCaster():AddAbility( spell:GetAbilityName() )
+	self.currentSpell:SetLevel( spell:GetLevel() )
+	self.currentSpell:SetStolen( true )
+	self:GetCaster():SwapAbilities( self.slot1, self.currentSpell:GetAbilityName(), false, true )
+end
+
+-- Remove currently stolen spell
+function rubick_spell_steal_lua:ForgetSpell()
+	if self.currentSpell~=nil then
+		self:GetCaster():SwapAbilities( self.slot1, self.currentSpell:GetAbilityName(), true, false )
+		self:GetCaster():RemoveAbility( self.currentSpell:GetAbilityName() )
+		self.currentSpell = nil
 	end
 end
 --------------------------------------------------------------------------------

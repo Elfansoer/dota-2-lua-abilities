@@ -107,6 +107,8 @@
 //		"Ability1"				"slardar_guardian_sprint_lua"						// Ability 1
 //		"Ability2"				"slardar_slithereen_crush_lua"						// Ability 2
 //		"Ability3"				"slardar_bash_of_the_deep_lua"						// Ability 3
+		"Ability4"				"rubick_spell_steal_lua_slot1"
+		"Ability5"				"rubick_spell_steal_lua_slot2"
 		"Ability6"				"rubick_spell_steal_lua"							// Ability 6
 	}
 	//=================================================================================================================
