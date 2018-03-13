@@ -3,6 +3,7 @@ rubick_spell_steal_lua_slot1 = class({})
 rubick_spell_steal_lua_slot2 = class({})
 LinkLuaModifier( "modifier_rubick_spell_steal_lua", "lua_abilities/rubick_spell_steal_lua/modifier_rubick_spell_steal_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_rubick_spell_steal_lua_hidden", "lua_abilities/rubick_spell_steal_lua/modifier_rubick_spell_steal_lua_hidden", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_rubick_spell_steal_lua_animation", "lua_abilities/rubick_spell_steal_lua/modifier_rubick_spell_steal_lua_animation", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Passive Modifier
@@ -103,7 +104,7 @@ end
 
 function rubick_spell_steal_lua:OnProjectileHit( target, location )
 	-- Cancel if blocked
-	
+
 
 	-- Add ability
 	self:SetStolenSpell( self.stolenSpell )
@@ -257,6 +258,13 @@ function rubick_spell_steal_lua:RetATValue( key )
 	local ret = table[key]
 	table[key] = nil
 	return ret
+end
+
+function rubick_spell_steal_lua:DisplayAT()
+	local table = self:GetAT()
+	for k,v in pairs(table) do
+		print(k,v)
+	end
 end
 
 -- Helper: Flag operations

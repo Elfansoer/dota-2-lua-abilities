@@ -30,29 +30,26 @@ end
 -- Modifier Effects
 function modifier_rubick_spell_steal_lua:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
 		MODIFIER_EVENT_ON_ABILITY_START,
 	}
 
 	return funcs
 end
 
-function modifier_rubick_spell_steal_lua:GetActivityTranslationModifiers()
-	local translate = self.gestures[self:GetAbility().currentSpell:GetAbilityName()]
-	if translate then
-		print("translate:",translate)
-		return translate
-	end
-end
 function modifier_rubick_spell_steal_lua:OnAbilityStart( params )
 	if IsServer() then
 		if params.unit==self:GetParent() and params.ability==self:GetAbility().currentSpell then
-			self:GetParent():StartGesture(59)
+			-- Animate
+			local animate = self:GetParent():AddNewModifier(
+				self:GetParent(),
+				self:GetAbility(),
+				"modifier_rubick_spell_steal_lua_animation",
+				{
+					spellName = params.ability:GetAbilityName(),
+					duration = 1,
+				}
+			)
 		end
 	end
 end
 
---------------------------------------------------------------------------------
--- Ability Gesture Table
-modifier_rubick_spell_steal_lua.gestures = {}
-modifier_rubick_spell_steal_lua.gestures["antimage_blink_lua"] = "am_blink"
