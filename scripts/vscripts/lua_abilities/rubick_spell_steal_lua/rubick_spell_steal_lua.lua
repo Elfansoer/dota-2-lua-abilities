@@ -7,10 +7,6 @@ LinkLuaModifier( "modifier_rubick_spell_steal_lua_animation", "lua_abilities/rub
 
 --------------------------------------------------------------------------------
 -- Passive Modifier
--- function rubick_spell_steal_lua:GetIntrinsicModifierName()
--- 	return "modifier_rubick_spell_steal_lua_hidden"
--- end
-
 rubick_spell_steal_lua.firstTime = true
 function rubick_spell_steal_lua:OnHeroCalculateStatBonus()
 	if self.firstTime then
@@ -23,6 +19,7 @@ function rubick_spell_steal_lua:OnHeroCalculateStatBonus()
 		self.firstTime = false
 	end
 end
+
 --------------------------------------------------------------------------------
 -- Ability Cast Filter
 rubick_spell_steal_lua.failState = nil
@@ -73,6 +70,11 @@ function rubick_spell_steal_lua:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
+	-- Cancel if blocked
+	if target:TriggerSpellAbsorb( self ) then
+		return
+	end
+
 	-- Get last used spell
 	self.stolenSpell = self:GetLastSpell( target )
 
@@ -103,9 +105,6 @@ function rubick_spell_steal_lua:OnSpellStart()
 end
 
 function rubick_spell_steal_lua:OnProjectileHit( target, location )
-	-- Cancel if blocked
-
-
 	-- Add ability
 	self:SetStolenSpell( self.stolenSpell )
 	self.stolenSpell = nil
@@ -184,6 +183,7 @@ end
 rubick_spell_steal_lua.currentSpell = nil
 rubick_spell_steal_lua.slot1 = "rubick_spell_steal_lua_slot1"
 rubick_spell_steal_lua.slot2 = "rubick_spell_steal_lua_slot2"
+rubick_spell_steal_lua.animations = require "lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_animation_reference"
 
 -- Add new stolen spell
 function rubick_spell_steal_lua:SetStolenSpell( spell )
@@ -195,6 +195,12 @@ function rubick_spell_steal_lua:SetStolenSpell( spell )
 	self.currentSpell:SetLevel( spell:GetLevel() )
 	self.currentSpell:SetStolen( true )
 	self:GetCaster():SwapAbilities( self.slot1, self.currentSpell:GetAbilityName(), false, true )
+
+	-- Animations override
+	self.animations:SetCurrentReference( self.currentSpell:GetAbilityName() )
+	if not self.animations:IsNormal() then
+		self.currentSpell:SetOverrideCastPoint( 0.1 )
+	end
 end
 
 -- Remove currently stolen spell

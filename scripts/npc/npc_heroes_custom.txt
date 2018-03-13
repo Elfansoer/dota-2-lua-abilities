@@ -9,9 +9,9 @@
 	"npc_dota_hero_test_sven_lua"
 	{
 		"override_hero"				"npc_dota_hero_sven"			// Hero to override
-		"Ability1"					"antimage_mana_break_lua"				// Ability 1
+		"Ability1"					"sven_storm_bolt_lua"				// Ability 1
 		"Ability2"					"antimage_blink_lua"
-		"Ability3"					"antimage_spell_shield_lua"
+		"Ability3"					"sven_warcry_lua"
 		"Ability6"					"antimage_mana_void_lua"
 	}
 
@@ -23,8 +23,8 @@
 		"override_hero"				"npc_dota_hero_pudge"			// Hero to override
 		"Ability1"					"bristleback_viscous_nasal_goo_lua"				// Ability 1
 		"Ability2"					"bristleback_quill_spray_lua"				// Ability 2
-		"Ability3"					"bristleback_bristleback_lua"
-		"Ability4"					"bristleback_warpath_lua"
+		"Ability3"					"lina_light_strike_array_lua"
+		"Ability6"					"lina_laguna_blade_lua"
 	}
 
 	//=================================================================================================================
@@ -33,10 +33,12 @@
 	"npc_dota_hero_furion_lua"
 	{
 		"override_hero"				"npc_dota_hero_furion"			// Hero to override
-		"Ability1"					"phantom_assassin_stifling_dagger_lua"				// Ability 1
-		"Ability2"					"phantom_assassin_phantom_strike_lua"
-		"Ability3"					"phantom_assassin_blur_lua"
-		"Ability6"					"phantom_assassin_coup_de_grace_lua"
+		"Ability1"					"furion_sprout_lua"
+		"Ability2"					"furion_teleport_lua"
+		"Ability3"					"furion_force_of_nature_lua"
+		"Ability4"					"phantom_assassin_stifling_dagger_lua"				// Ability 1
+		"Ability5"					"phantom_assassin_phantom_strike_lua"
+		"Ability6"					"furion_wrath_of_nature_lua"
 	}
 
 
@@ -46,10 +48,11 @@
 	"npc_dota_hero_vengefulspirit_lua"
 	{
 		"override_hero"					"npc_dota_hero_vengefulspirit"			// Hero to override
-		"Ability1"				"wraith_king_wraithfire_blast_lua"				// Ability 1
-		"Ability2"				"wraith_king_vampiric_aura_lua"				// Ability 2
-		"Ability3"				"wraith_king_mortal_strike_lua"				// Ability 3
-		"Ability6"				"wraith_king_reincarnation_lua"				// Ability 4
+		"Ability1"				"vengefulspirit_magic_missile_lua"				// Ability 2
+		"Ability2"				"vengefulspirit_wave_of_terror_lua"				// Ability 3
+		"Ability3"				"wraith_king_wraithfire_blast_lua"				// Ability 1
+		"Ability4"				"chaos_knight_chaos_bolt_lua"				// Ability 3
+		"Ability6"				"vengefulspirit_nether_swap_lua"				// Ability 4
 	}
 	//=================================================================================================================
 	// HERO: Lina
@@ -61,7 +64,7 @@
 		"Ability2"				"shadow_fiend_shadowraze_b_lua"				// Ability 3
 		"Ability3"				"shadow_fiend_shadowraze_c_lua"				// Ability 1
 		"Ability4"				"shadow_fiend_necromastery_lua"			// Ability 4
-		"Ability5"				"shadow_fiend_presence_of_the_dark_lord_lua"				// Ability 2
+		"Ability5"				"lina_dragon_slave_lua"				// Ability 2
 		"Ability6"				"shadow_fiend_requiem_of_souls_lua"					// Ability 6
 
 		//"AttackDamageMin"		"0"

@@ -12,7 +12,7 @@ function ursa_earthshock_lua:OnSpellStart()
 	-- get list of affected enemies
 	local enemies = FindUnitsInRadius (
 		self:GetCaster():GetTeamNumber(),
-		self:GetOrigin(),
+		self:GetCaster():GetOrigin(),
 		nil,
 		slow_radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,

@@ -3,7 +3,7 @@ modifier_rubick_spell_steal_lua_hidden = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_rubick_spell_steal_lua_hidden:IsHidden()
-	return false
+	return true
 end
 
 function modifier_rubick_spell_steal_lua_hidden:IsDebuff()
@@ -43,7 +43,7 @@ end
 
 function modifier_rubick_spell_steal_lua_hidden:OnAbilityFullyCast( params )
 	if IsServer() then
-		if params.unit==self:GetParent() then
+		if params.unit==self:GetParent() and (not params.ability:IsItem()) then
 			return
 		end
 		-- Filter

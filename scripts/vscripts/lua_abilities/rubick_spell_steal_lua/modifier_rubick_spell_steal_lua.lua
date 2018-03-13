@@ -39,14 +39,20 @@ end
 function modifier_rubick_spell_steal_lua:OnAbilityStart( params )
 	if IsServer() then
 		if params.unit==self:GetParent() and params.ability==self:GetAbility().currentSpell then
+			-- Destroy previous animation
+			local modifier = self:GetParent():FindModifierByNameAndCaster( "modifier_rubick_spell_steal_lua_animation", self:GetParent() )
+			if modifier then
+				modifier:Destroy()
+			end
+
 			-- Animate
 			local animate = self:GetParent():AddNewModifier(
 				self:GetParent(),
 				self:GetAbility(),
 				"modifier_rubick_spell_steal_lua_animation",
 				{
+					duration = math.max( 1, params.ability:GetCastPoint() ),
 					spellName = params.ability:GetAbilityName(),
-					duration = 1,
 				}
 			)
 		end
