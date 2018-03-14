@@ -25,6 +25,11 @@ reference.animations = {
     {"phantom_assassin_stifling_dagger_lua", false, ACT_DOTA_ATTACK,"", 2.0},
     {"phantom_assassin_shadow_strike_lua", false, nil, "qop_blink"},
 
+    {"queen_of_pain_shadow_strike_lua", false, nil, "shadow_strike"},
+    {"queen_of_pain_blink_lua", false, nil, "qop_blink"},
+    {"queen_of_pain_scream_of_pain_lua", false, nil, "scream"},
+    {"queen_of_pain_sonic_wave_lua", false, nil, "sonic_wave"},
+
     {"shadow_fiend_shadowraze_a_lua", false, ACT_DOTA_CAST_ABILITY_5, "shadowraze", 2.0},
     {"shadow_fiend_shadowraze_b_lua", false, ACT_DOTA_CAST_ABILITY_5, "shadowraze", 2.0},
     {"shadow_fiend_shadowraze_c_lua", false, ACT_DOTA_CAST_ABILITY_5, "shadowraze", 2.0},

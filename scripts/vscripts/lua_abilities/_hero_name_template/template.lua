@@ -81,24 +81,62 @@ function template:OnSpellStart()
 	ApplyDamage(damageTable)
 
 	-- Create Projectile
+	local projectile_name = "string"
+	local projectile_speed = 500
 	local info = {
 		Target = target,
 		Source = caster,
-		Ability = caster:GetAbilityByIndex(0),	
-		EffectName = "some_particle_effect",
-		iMoveSpeed = 400,
+		Ability = self,	
+		
+		EffectName = projectile_name,
+		iMoveSpeed = projectile_speed,
 		vSourceLoc= caster:GetAbsOrigin(),                -- Optional (HOW)
-		bDrawsOnMinimap = false,                          -- Optional
+
 		bDodgeable = true,                                -- Optional
 		bIsAttack = false,                                -- Optional
-		bVisibleToEnemies = true,                         -- Optional
 		bReplaceExisting = false,                         -- Optional
 		flExpireTime = GameRules:GetGameTime() + 10,      -- Optional but recommended
+		
+		bDrawsOnMinimap = false,                          -- Optional
+		bVisibleToEnemies = true,                         -- Optional
 		bProvidesVision = true,                           -- Optional
 		iVisionRadius = 400,                              -- Optional
 		iVisionTeamNumber = caster:GetTeamNumber()        -- Optional
 	}
 	projectile = ProjectileManager:CreateTrackingProjectile(info)
+
+	--A Liner Projectile must have a table with projectile info
+	local projectile_name = "string"
+	local projectile_distance = 500
+	local projectile_speed = 500
+	local projectile_start_radius = 300
+	local projectile_end_radius = 300
+	local projectile_direction = point:Normalized()
+	local info = {
+    	Source = caster,
+		Ability = self,
+    	vSpawnOrigin = caster:GetAbsOrigin(),
+    	
+    	EffectName = projectile_name,
+    	fDistance = projectile_distance,
+    	fStartRadius = 64,
+    	fEndRadius = 64,
+    	bHasFrontalCone = false,
+		vVelocity = caster:GetForwardVector() * 1800,
+    	
+		bDeleteOnHit = true,
+    	bReplaceExisting = false,
+    	fExpireTime = GameRules:GetGameTime() + 10.0,
+    	
+    	iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+    	iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+    	iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		
+		bProvidesVision = true,
+		iVisionRadius = 1000,
+		iVisionTeamNumber = caster:GetTeamNumber()
+	}
+	projectile = ProjectileManager:CreateLinearProjectile(info)
 
 	-- Find Units in Radius
 	local enemies = FindUnitsInRadius(
@@ -139,6 +177,10 @@ function template:OnSpellStart()
 		-- bool bFakeAttack,
 		-- bool bNeverMiss
 	)
+end
+--------------------------------------------------------------------------------
+-- Projectile
+function template:OnProjectileHit( target, location )
 end
 
 --------------------------------------------------------------------------------
