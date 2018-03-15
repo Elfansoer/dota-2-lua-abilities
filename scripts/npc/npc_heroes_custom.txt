@@ -33,12 +33,12 @@
 	"npc_dota_hero_furion_lua"
 	{
 		"override_hero"				"npc_dota_hero_furion"			// Hero to override
-		"Ability1"					"furion_sprout_lua"
-		"Ability2"					"furion_teleport_lua"
-		"Ability3"					"furion_force_of_nature_lua"
+		"Ability1"					"omniknight_purification_lua"
+		"Ability2"					"omniknight_repel_lua"
+		"Ability3"					"omniknight_degen_aura_lua"
 		"Ability4"					"phantom_assassin_stifling_dagger_lua"				// Ability 1
 		"Ability5"					"phantom_assassin_phantom_strike_lua"
-		"Ability6"					"furion_wrath_of_nature_lua"
+		"Ability6"					"omniknight_guardian_angel_lua"
 	}
 
 

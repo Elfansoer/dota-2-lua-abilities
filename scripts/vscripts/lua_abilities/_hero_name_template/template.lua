@@ -238,6 +238,16 @@ function template:PlayEffects()
 	-- Release Particle
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
+	-- buff particle
+	buff:AddParticle(
+		nFXIndex,
+		bDestroyImmediately,
+		bStatusEffect,
+		iPriority,
+		bHeroEffect,
+		bOverheadEffect
+	)
+
 	-- Create Sound
 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
 	EmitSoundOn( sound_target, target )
@@ -263,17 +273,6 @@ function template:PlayEffects()
 	"attach_head"
 	"attach_foot1"
 	"attach_foot2"
-
-	-- buff particle
-	buff:AddParticle(
-		nFXIndex,
-		bDestroyImmediately,
-		bStatusEffect,
-		iPriority,
-		bHeroEffect,
-		bOverheadEffect
-	)
-
 end
 
 --------------------------------------------------------------------------------

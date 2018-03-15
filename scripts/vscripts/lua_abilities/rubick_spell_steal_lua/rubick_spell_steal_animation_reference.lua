@@ -22,6 +22,10 @@ reference.animations = {
 
     {"ogre_magi_fireblast_lua", false, nil, "frostbite"},
 
+    {"omniknight_purification_lua", true, nil, "purification", 1.4},
+    {"omniknight_repel_lua", false, nil, "repel"},
+    {"omniknight_guardian_angel_lua", true, nil, "guardian_angel", 1.3},
+
     {"phantom_assassin_stifling_dagger_lua", false, ACT_DOTA_ATTACK,"", 2.0},
     {"phantom_assassin_shadow_strike_lua", false, nil, "qop_blink"},
 
