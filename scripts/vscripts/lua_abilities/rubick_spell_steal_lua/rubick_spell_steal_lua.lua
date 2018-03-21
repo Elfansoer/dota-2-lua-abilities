@@ -76,7 +76,8 @@ function rubick_spell_steal_lua:OnSpellStart()
 	end
 
 	-- Get last used spell
-	self.stolenSpell = self:GetLastSpell( target )
+	self.stolenSpell = {}
+	self.stolenSpell.lastSpell = self:GetLastSpell( target )
 
 	-- load data
 	local projectile_name = "particles/units/heroes/hero_rubick/rubick_spell_steal.vpcf"

@@ -2,7 +2,8 @@ reference = {}
 
 reference.animations = {
 -- AbilityName, bNormalWhenStolen, nActivity, nTranslate, fPlaybackRate
-    {"default", nil, nil, nil},
+    {"default", nil, ACT_DOTA_CAST_ABILITY_5, "bolt"},
+    -- {"default"},
 
     {"antimage_blink_lua", nil, nil, "am_blink"},
     {"antimage_mana_void_lua", false, ACT_DOTA_CAST_ABILITY_5, "mana_void"},
