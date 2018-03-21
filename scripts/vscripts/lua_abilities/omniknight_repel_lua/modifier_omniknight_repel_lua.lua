@@ -17,7 +17,11 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_omniknight_repel_lua:OnCreated( kv )
-
+	if IsServer() then
+		-- Play Effects
+		self.sound_cast = "Hero_Omniknight.Repel"
+		EmitSoundOn( self.sound_cast, self:GetParent() )
+	end
 end
 
 function modifier_omniknight_repel_lua:OnRefresh( kv )
@@ -25,7 +29,9 @@ function modifier_omniknight_repel_lua:OnRefresh( kv )
 end
 
 function modifier_omniknight_repel_lua:OnDestroy( kv )
-
+	if IsServer() then
+		StopSoundOn( self.sound_cast, self:GetParent() )
+	end
 end
 
 --------------------------------------------------------------------------------

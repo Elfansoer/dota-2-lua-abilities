@@ -125,6 +125,7 @@ end
 --------------------------------------------------------------------------------
 -- Helper: Heroes Data
 rubick_spell_steal_lua.heroesData = {}
+rubick_spell_steal_lua.interactions = require "lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_interaction_reference"
 --[[
 heroesData:
 - data.handle = Hero handle
@@ -165,6 +166,10 @@ function rubick_spell_steal_lua:GetLastSpell( hHero )
 	end
 
 	if heroData then
+		-- local table = {}
+		-- table.lastSpell = heroData.lastSpell
+		-- table.interaction = self.interactions.Init( table.lastSpell, self )
+		-- return table
 		return heroData.lastSpell
 	end
 
@@ -186,7 +191,10 @@ rubick_spell_steal_lua.slot2 = "rubick_spell_steal_lua_slot2"
 rubick_spell_steal_lua.animations = require "lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_animation_reference"
 
 -- Add new stolen spell
-function rubick_spell_steal_lua:SetStolenSpell( spell )
+function rubick_spell_steal_lua:SetStolenSpell( spellData )
+	local spell = spellData.lastSpell
+	local interaction = spellData.interaction
+
 	-- Forget previous one
 	self:ForgetSpell()
 
