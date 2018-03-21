@@ -113,6 +113,18 @@
 		"Ability6"				"queen_of_pain_sonic_wave_lua"							// Ability 6
 	}
 	//=================================================================================================================
+	// HERO: WD
+	//=================================================================================================================
+	"npc_dota_hero_dedoctor"
+	{
+		"override_hero"					"npc_dota_hero_witch_doctor"	// Hero to override
+		"Ability1"				"crystal_maiden_crystal_nova_lua"						// Ability 1
+		"Ability2"				"crystal_maiden_frostbite_lua"						// Ability 2
+		"Ability3"				"crystal_maiden_arcane_aura_lua"						// Ability 3
+		"Ability6"				"crystal_maiden_freezing_field_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Rubick
 	//=================================================================================================================
 	"npc_dota_hero_rubick_lua"

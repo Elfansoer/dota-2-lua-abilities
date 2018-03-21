@@ -15,5 +15,7 @@
 	"npc_dota_hero_drow_ranger"	"1"
 	"npc_dota_hero_juggernaut"			"1"
 	"npc_dota_hero_templar_assassin"			"1"
+	"npc_dota_hero_witch_doctor"		"1"
+
 	"npc_dota_hero_rubick"			"1"
 }

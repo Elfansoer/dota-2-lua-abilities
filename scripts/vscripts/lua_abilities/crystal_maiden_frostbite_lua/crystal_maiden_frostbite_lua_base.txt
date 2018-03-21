@@ -1,0 +1,80 @@
+//=================================================================================================================
+// Crystal Maiden: Frostbite (Lua version)
+//=================================================================================================================
+"crystal_maiden_frostbite_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/crystal_maiden_frostbite_lua/crystal_maiden_frostbite_lua"
+	"AbilityTextureName"			"crystal_maiden_frostbite_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+		"particle"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
+		"particle"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+	}
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"525"
+	"AbilityCastPoint"				"0.3"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"9 8 7 6"
+	"AbilityManaCost"				"140 145 150 155"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"damage_per_second_tooltip"			"50"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"duration"				"1.5 2.0 2.5 3.0"
+		}
+		"03"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"hero_damage_tooltip"			"150 200 250 300"
+		}
+		"04"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"creep_duration"	"10.0 10.0 10.0 10.0"
+		}
+		"05"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"creep_damage_tooltip"	"1000"
+		}
+		"06"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"damage"			"100"
+		}
+	}
+}
