@@ -1,0 +1,5 @@
+Logic:
+- Aghanim cooldown not implemented
+- bug: Aghanim can target illusion
+- optimization: lag when spawning >2 illusions
+- Stolen: stolen abilities not copied

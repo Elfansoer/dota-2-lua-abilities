@@ -21,27 +21,6 @@ function chaos_knight_chaos_bolt_lua:OnSpellStart()
 	ProjectileManager:CreateTrackingProjectile( info )
 
 	self:PlayEffect1()
-
-	-- TESTING
-	-- Find Units in Radius
-	local enemies = FindUnitsInRadius(
-		self:GetCaster():GetTeamNumber(),	-- int, your team number
-		target:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
-		600,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
-		0,	-- int, flag filter
-		FIND_CLOSEST,	-- int, order filter
-		false	-- bool, can grow cache
-	)
-	if #enemies>0 then
-		for _,enemy in pairs(enemies) do
-			print(_,enemy)
-			print("cast this ability on:",enemy,self,self:GetCaster():GetPlayerID())
-			target:CastAbilityOnTarget(enemy, self, self:GetCaster():GetPlayerID())
-		end
-	end
 end
 
 function chaos_knight_chaos_bolt_lua:OnProjectileHit( hTarget, vLocation )
