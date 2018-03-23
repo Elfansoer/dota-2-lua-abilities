@@ -251,28 +251,6 @@ function template:PlayEffects()
 	-- Create Sound
 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
 	EmitSoundOn( sound_target, target )
-
-	PATTACH_ABSORIGIN 				-- Attaches the particle to the an origin.
-	PATTACH_ABSORIGIN_FOLLOW		-- Attaches the particle to an origin, and causes it to follow the unit that is considered the source of the particle.
-	PATTACH_CUSTOMORIGIN			-- Attaches the particle to a custom origin. (Requires passing a vector to the Control points)
-	PATTACH_CUSTOMORIGIN_FOLLOW
-	PATTACH_POINT
-	PATTACH_POINT_FOLLOW
-	PATTACH_EYES_FOLLOW				-- Attaches the particle to the "eyes" of the entity.
-	PATTACH_OVERHEAD_FOLLOW			-- Attaches the particle to be set above the head of the entity.
-	PATTACH_WORLDORIGIN				-- Attaches the particle to the ground.
-	PATTACH_ROOTBONE_FOLLOW
-	PATTACH_RENDERORIGIN_FOLLOW
-	PATTACH_MAIN_VIEW
-	PATTACH_WATERWAKE
-	"attach_hitloc"
-	"attach_origin"
-	"attach_attack1"
-	"attach_attack2"
-	"attach_chest"
-	"attach_head"
-	"attach_foot1"
-	"attach_foot2"
 end
 
 --------------------------------------------------------------------------------
