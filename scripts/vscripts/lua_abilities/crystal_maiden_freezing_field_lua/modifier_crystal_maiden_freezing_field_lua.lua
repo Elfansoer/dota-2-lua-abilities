@@ -103,6 +103,7 @@ end
 
 function modifier_crystal_maiden_freezing_field_lua:OnDestroy( kv )
 	if IsServer() then
+		self:StartIntervalThink( -1 )
 		self:StopEffects1()
 	end
 end

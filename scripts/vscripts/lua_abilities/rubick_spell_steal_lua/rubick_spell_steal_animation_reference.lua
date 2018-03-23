@@ -11,6 +11,12 @@ reference.animations = {
     {"bristleback_viscous_nasal_goo_lua", false, ACT_DOTA_ATTACK,"",2.0},
 
     {"chaos_knight_chaos_bolt_lua", false, ACT_DOTA_ATTACK,"", 2.0},
+    {"chaos_knight_reality_rift_lua", true, ACT_DOTA_CAST_ABILITY_5, "strike", 2.0},
+    {"chaos_knight_phantasm_lua", true, ACT_DOTA_CAST_ABILITY_5, "remnant"},
+
+    {"crystal_maiden_crystal_nova_lua", false, ACT_DOTA_CAST_ABILITY_5, "crystal_nova"},
+    {"crystal_maiden_frostbite_lua", false, ACT_DOTA_CAST_ABILITY_5, "frostbite"},
+    {"crystal_maiden_freezing_field_lua", false, ACT_DOTA_CHANNEL_ABILITY_5, "freezing_field"},
 
     {"furion_sprout_lua", false, ACT_DOTA_CAST_ABILITY_5, "sprout"},
     {"furion_teleportation_lua", true, ACT_DOTA_CAST_ABILITY_5, "teleport"},

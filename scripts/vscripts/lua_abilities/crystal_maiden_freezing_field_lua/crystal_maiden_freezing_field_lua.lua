@@ -13,7 +13,7 @@ function crystal_maiden_freezing_field_lua:OnSpellStart()
 		caster, -- player source
 		self, -- ability source
 		"modifier_crystal_maiden_freezing_field_lua", -- modifier name
-		{} -- kv
+		{ duration = self:GetChannelTime() } -- kv
 	)
 end
 

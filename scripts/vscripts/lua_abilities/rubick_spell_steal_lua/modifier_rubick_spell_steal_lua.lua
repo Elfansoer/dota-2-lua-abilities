@@ -46,12 +46,16 @@ function modifier_rubick_spell_steal_lua:OnAbilityStart( params )
 			end
 
 			-- Animate
+			local anim_duration = math.max( 1, params.ability:GetCastPoint() )
+			if params.ability:GetChannelTime()>0 then
+				anim_duration = params.ability:GetChannelTime()
+			end
 			local animate = self:GetParent():AddNewModifier(
 				self:GetParent(),
 				self:GetAbility(),
 				"modifier_rubick_spell_steal_lua_animation",
 				{
-					duration = math.max( 1, params.ability:GetCastPoint() ),
+					duration = anim_duration,
 					spellName = params.ability:GetAbilityName(),
 				}
 			)
