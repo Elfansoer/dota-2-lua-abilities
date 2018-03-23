@@ -1,0 +1,63 @@
+//=================================================================================================================
+// Chaos Knight: Reality Rift (Lua version)
+//=================================================================================================================
+"chaos_knight_reality_rift_lua"
+{
+	// Ability Technical Aspect
+	// base script folder	: scripts/vscripts
+	// base texture folder	: resource/flash3/images/spellicons
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"lua_abilities/chaos_knight_reality_rift_lua/chaos_knight_reality_rift_lua"
+	"AbilityTextureName"			"chaos_knight_reality_rift_lua"
+	"FightRecapLevel"				"1"
+	"MaxLevel"						"4"
+	"precache"
+	{
+		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+		"particle"	"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+	}
+	
+	// Ability General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+	// Ability Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"550 600 650 700"
+	"AbilityCastPoint"				"0.3"
+
+	// Ability Resource
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"18 14 10 6"
+	"AbilityManaCost"				"50"
+
+	// Damage
+	//-------------------------------------------------------------------------------------------------------------
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"cast_range"				"550 600 650 700"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"armor_reduction"			"-1 -3 -5 -7"
+		}		
+		"03"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"armor_duration"			"8"
+		}
+	}
+}

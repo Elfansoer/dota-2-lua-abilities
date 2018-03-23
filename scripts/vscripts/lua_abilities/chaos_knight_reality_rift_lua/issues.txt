@@ -1,2 +1,2 @@
-Logic:
-- Not implemented
+Effects:
+- Illusion pull effect not implemented

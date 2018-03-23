@@ -131,7 +131,7 @@
 	{
 		"override_hero"					"npc_dota_hero_naga_siren"	// Hero to override
 		"Ability1"				"chaos_knight_chaos_bolt_lua"						// Ability 1
-		"Ability2"				"crystal_maiden_frostbite_lua"						// Ability 2
+		"Ability2"				"chaos_knight_reality_rift_lua"						// Ability 2
 		"Ability3"				"chaos_knight_chaos_strike_lua"						// Ability 3
 		"Ability6"				"chaos_knight_phantasm_lua"							// Ability 6
 	}
