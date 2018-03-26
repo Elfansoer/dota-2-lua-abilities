@@ -1,2 +1,4 @@
 Effects:
 - The particle effect is still AM's model
+	- Cause: Particle's relative model is turned off
+	- Viable Solution: recreate the particle.

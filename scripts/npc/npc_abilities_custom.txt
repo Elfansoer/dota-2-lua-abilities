@@ -1124,7 +1124,6 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
-	//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
 		}
 		
 		// Ability General
@@ -1228,7 +1227,15 @@
 		"AbilityTextureName"			"antimage_spell_shield_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-		
+		"HasScepterUpgrade"				"1"
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+			"particle"	"particles/units/heroes/hero_antimage/antimage_spellshield.vpcf"
+			"particle"	"particles/units/heroes/hero_antimage/antimage_spellshield_reflect.vpcf"
+		}
+
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
@@ -1239,6 +1246,7 @@
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------

@@ -18,7 +18,6 @@ function antimage_blink_lua:OnSpellStart()
 	end
 
 	-- teleport
-	-- caster:SetOrigin( origin + direction )
 	FindClearSpaceForUnit( caster, origin + direction, true )
 
 	-- Play effects
@@ -35,7 +34,7 @@ function antimage_blink_lua:PlayEffects( origin, direction )
 	local sound_cast_b = "Hero_Antimage.Blink_in"
 
 	-- At original position
-	local effect_cast_a = ParticleManager:CreateParticle( particle_cast_a, PATTACH_ABSORIGIN, self:GetCaster() )
+	local effect_cast_a = ParticleManager:CreateParticle( particle_cast_a, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
 	ParticleManager:SetParticleControl( effect_cast_a, 0, origin )
 	ParticleManager:SetParticleControlForward( effect_cast_a, 0, direction:Normalized() )
 	ParticleManager:ReleaseParticleIndex( effect_cast_a )
