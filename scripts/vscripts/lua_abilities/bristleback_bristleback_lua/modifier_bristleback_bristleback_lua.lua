@@ -58,6 +58,10 @@ function modifier_bristleback_bristleback_lua:GetModifierIncomingDamage_Percenta
 		local attacker = params.attacker
 		local reduction = 0
 
+		if attacker:IsTower() then
+			return 0
+		end
+
 		-- Check target position
 		local facing_direction = parent:GetAnglesAsVector().y
 		local attacker_vector = (attacker:GetOrigin() - parent:GetOrigin()):Normalized()

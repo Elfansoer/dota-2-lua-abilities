@@ -11,13 +11,11 @@ function ursa_enrage_lua:GetBehavior()
 end
 
 function ursa_enrage_lua:GetCooldown( level )
-	local cooldown = 0
 	if self:GetCaster():HasScepter() then
-		cooldown = self:GetLevelSpecialValueFor( "cooldown_scepter", level )
-	else
-		cooldown = self:GetLevelSpecialValueFor( "cooldown_normal", level )
+		return self:GetSpecialValueFor( "cooldown_scepter" )
 	end
-	return cooldown
+
+	return self.BaseClass.GetCooldown( self, level )
 end
 
 function ursa_enrage_lua:OnSpellStart()

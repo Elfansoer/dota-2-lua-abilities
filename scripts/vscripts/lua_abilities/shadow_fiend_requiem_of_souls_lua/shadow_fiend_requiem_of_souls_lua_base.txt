@@ -1,7 +1,6 @@
 //=================================================================================================================
 // Shadow Fiend: Requiem of Souls (lua version)
 //=================================================================================================================
-
 "shadow_fiend_requiem_of_souls_lua"
 {
 	// Ability Technical Aspect
@@ -12,7 +11,9 @@
 	"ScriptFile"					"lua_abilities/shadow_fiend_requiem_of_souls_lua/shadow_fiend_requiem_of_souls_lua"
 	"AbilityTextureName"			"shadow_fiend_requiem_of_souls_lua"
 	"FightRecapLevel"				"2"
-	"MaxLevel"						"4"
+	"MaxLevel"						"3"
+	"HasScepterUpgrade"				"1"
+
 	"precache"
 	{
 		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"

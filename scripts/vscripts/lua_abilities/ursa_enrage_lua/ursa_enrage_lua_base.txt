@@ -64,11 +64,6 @@
 		"04"
 		{
 			"var_type"					"FIELD_FLOAT"
-			"cooldown_normal"			"50 40 30"
-		}
-		"05"
-		{
-			"var_type"					"FIELD_FLOAT"
 			"cooldown_scepter"			"30 24 18"
 		}
 	}

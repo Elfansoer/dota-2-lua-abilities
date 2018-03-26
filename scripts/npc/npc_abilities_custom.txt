@@ -3523,6 +3523,8 @@
 		"AbilityTextureName"			"shadow_fiend_requiem_of_souls_lua"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"3"
+		"HasScepterUpgrade"				"1"
+
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
@@ -4240,11 +4242,6 @@
 				"duration"					"4.0"
 			}
 			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cooldown_normal"			"50 40 30"
-			}
-			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"cooldown_scepter"			"30 24 18"

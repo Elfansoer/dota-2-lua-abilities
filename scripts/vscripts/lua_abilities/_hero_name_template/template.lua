@@ -8,9 +8,18 @@ function template:GetIntrinsicModifierName()
 end
 
 --------------------------------------------------------------------------------
+-- Custom KV
 -- AOE Radius
 function template:GetAOERadius()
 	return self:GetSpecialValueFor( "radius" )
+end
+
+function template:GetCooldown( level )
+	if self:GetCaster():HasScepter() then
+		return self:GetSpecialValueFor( "cooldown_scepter" )
+	end
+
+	return self.BaseClass.GetCooldown( self, level )
 end
 
 --------------------------------------------------------------------------------

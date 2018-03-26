@@ -1,2 +1,1 @@
-Logic:
-- Tower damages still get reduced
+none

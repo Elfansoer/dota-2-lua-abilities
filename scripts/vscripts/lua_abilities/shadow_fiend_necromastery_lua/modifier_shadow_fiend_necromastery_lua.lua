@@ -94,7 +94,7 @@ function modifier_shadow_fiend_necromastery_lua:KillLogic( params )
 	local target = params.unit
 	local attacker = params.attacker
 	local pass = false
-	if attacker==self:GetParent() and target~=self:GetParent() then
+	if attacker==self:GetParent() and target~=self:GetParent() and attacker:IsAlive() then
 		if (not target:IsIllusion()) and (not target:IsBuilding()) then
 			pass = true
 		end
