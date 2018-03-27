@@ -146,6 +146,21 @@
 		"Ability5"				"rubick_spell_steal_lua_slot2"
 		"Ability6"				"rubick_spell_steal_lua"							// Ability 6
 	}
+
+	//=================================================================================================================
+	// HERO: Bakedanuki
+	//=================================================================================================================
+	"npc_dota_bakedanuki"
+	{
+		"override_hero"					"npc_dota_hero_dark_willow"	// Hero to override
+		"Ability1"				"bakedanuki_tricksters_insight"						// Ability 1
+		"Ability2"				"bakedanuki_tomfoolery_blink"						// Ability 2
+		"Ability3"				"bakedanuki_tomfoolery_summon"						// Ability 2
+		"Ability4"				"bakedanuki_frolic_aura"						// Ability 3
+		"Ability5"				"generic_hidden"						// Ability 3
+		"Ability6"				"bakedanuki_futatsuiwas_curse"							// Ability 6
+	}
+
 	//=================================================================================================================
 	// HERO: Azura (Drow Ranger)
 	//=================================================================================================================

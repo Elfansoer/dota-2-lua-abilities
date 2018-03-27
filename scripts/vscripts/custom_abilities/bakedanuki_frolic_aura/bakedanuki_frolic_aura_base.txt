@@ -1,0 +1,59 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Bake-Danuki: Frolic Aura
+	//=================================================================================================================
+	"bakedanuki_frolic_aura"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/bakedanuki_frolic_aura/bakedanuki_frolic_aura"
+		"AbilityTextureName"			"custom/bakedanuki_frolic_aura"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+	//	"precache"
+	//	{
+	//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+	//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+	//	}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"			"900"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"evasion_self"			"15.0 22.5 30.0 37.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"evasion_ally"			"6.0 9.0 12.0 15.0"
+			}
+		}
+	}
+}

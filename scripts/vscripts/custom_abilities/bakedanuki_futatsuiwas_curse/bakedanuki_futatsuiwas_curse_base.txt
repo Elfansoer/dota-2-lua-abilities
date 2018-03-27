@@ -1,0 +1,70 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Bake-Danuki: Futatsuiwa's Curse
+	//=================================================================================================================
+	"bakedanuki_futatsuiwas_curse"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/bakedanuki_futatsuiwas_curse/bakedanuki_futatsuiwas_curse"
+		"AbilityTextureName"			"custom/bakedanuki_futatsuiwas_curse"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+	//	"precache"
+	//	{
+	//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+	//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+	//	}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.6"
+		"AbilityCastRange"				"150"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20.0"
+		"AbilityManaCost"				"200"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hex_base_speed"			"225"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"search_radius"			"180"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"search_range"			"150"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hex_duration"			"4 5 6"
+			}
+		}
+	}
+}

@@ -1,3 +1,9 @@
+// Includes
+#base "../vscripts/custom_abilities/bakedanuki_tricksters_insight/bakedanuki_tricksters_insight_base.txt"
+#base "../vscripts/custom_abilities/bakedanuki_tomfoolery/bakedanuki_tomfoolery_base.txt"
+#base "../vscripts/custom_abilities/bakedanuki_frolic_aura/bakedanuki_frolic_aura_base.txt"
+#base "../vscripts/custom_abilities/bakedanuki_futatsuiwas_curse/bakedanuki_futatsuiwas_curse_base.txt"
+
 // Dota Heroes File
 "DOTAAbilities"
 {

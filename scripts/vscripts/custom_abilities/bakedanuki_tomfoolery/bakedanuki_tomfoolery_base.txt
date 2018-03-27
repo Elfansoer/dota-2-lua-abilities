@@ -1,0 +1,137 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Bake-Danuki: Tomfoolery (Blink)
+	//=================================================================================================================
+	"bakedanuki_tomfoolery_blink"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/bakedanuki_tomfoolery/bakedanuki_tomfoolery"
+		"AbilityTextureName"			"custom/bakedanuki_tomfoolery_blink"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"LinkedAbility"					"bakedanuki_tomfoolery_summon"
+		"AbilitySharedCooldown"			"bakedanuki_tomfoolery_summon"
+
+	//	"precache"
+	//	{
+	//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+	//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+	//	}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"17 14 11 8"
+		"AbilityManaCost"				"75"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_outgoing"		"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_incoming"		"400"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_duration"		"8"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_range"		"600 675 750 825"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Bake-Danuki: Tomfoolery (Summon)
+	//=================================================================================================================
+	"bakedanuki_tomfoolery_summon"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/bakedanuki_tomfoolery/bakedanuki_tomfoolery"
+		"AbilityTextureName"			"custom/bakedanuki_tomfoolery_summon"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"LinkedAbility"					"bakedanuki_tomfoolery_blink"
+		"AbilitySharedCooldown"			"bakedanuki_tomfoolery_blink"
+
+	//	"precache"
+	//	{
+	//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+	//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+	//	}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"17 14 11 8"
+		"AbilityManaCost"				"75"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_outgoing"		"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_incoming"		"400"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_duration"		"8"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_range"		"600 675 750 825"
+			}
+		}
+	}
+}
