@@ -3,8 +3,7 @@ modifier_bakedanuki_tomfoolery = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_bakedanuki_tomfoolery:IsHidden()
-	return false
-	-- return true
+	return true
 end
 
 function modifier_bakedanuki_tomfoolery:IsPurgable()
@@ -31,7 +30,7 @@ function modifier_bakedanuki_tomfoolery:OnRefresh( kv )
 	
 end
 
-function modifier_bakedanuki_tomfoolery:OnDestroy( kv )
+function modifier_bakedanuki_tomfoolery:OnDestroy()
 
 end
 
@@ -45,7 +44,7 @@ function modifier_bakedanuki_tomfoolery:DeclareFunctions()
 		-- MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 
-		MODIFIER_EVENT_ON_ABILITY_START,
+		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		
 		MODIFIER_PROPERTY_MIN_HEALTH,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
@@ -65,12 +64,14 @@ function modifier_bakedanuki_tomfoolery:GetModifierIncomingDamage_Percentage()
 	return self.illusion_incoming-100
 end
 
-function modifier_bakedanuki_tomfoolery:OnAbilityStart( params )
+function modifier_bakedanuki_tomfoolery:OnAbilityFullyCast( params )
 	if IsServer() then
 		-- filter
 		local pass = false
 		if params.unit==self:GetCaster() then
-			pass = true
+			if params.ability~=self:GetAbility().tomfoolery.ability1 and params.ability~=self:GetAbility().tomfoolery.ability2 then
+				pass = true
+			end
 		end
 
 		-- logic

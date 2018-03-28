@@ -26,7 +26,7 @@
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 
 		// Ability Casting
@@ -93,7 +93,7 @@
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 
 		// Ability Casting
@@ -104,6 +104,72 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"17 14 11 8"
 		"AbilityManaCost"				"75"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_outgoing"		"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_incoming"		"400"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_duration"		"8"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_range"		"600 675 750 825"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Bake-Danuki: Tomfoolery (Summon)
+	//=================================================================================================================
+	"bakedanuki_tomfoolery_end"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/bakedanuki_tomfoolery/bakedanuki_tomfoolery"
+		"AbilityTextureName"			"custom/bakedanuki_tomfoolery_end"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+
+	//	"precache"
+	//	{
+	//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+	//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+	//	}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1"
+		"AbilityManaCost"				"0"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
