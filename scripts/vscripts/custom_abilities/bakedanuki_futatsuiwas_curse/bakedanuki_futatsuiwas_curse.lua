@@ -2,40 +2,9 @@ bakedanuki_futatsuiwas_curse = class({})
 LinkLuaModifier( "modifier_bakedanuki_futatsuiwas_curse", "custom_abilities/bakedanuki_futatsuiwas_curse/modifier_bakedanuki_futatsuiwas_curse", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
--- Ability Cast Filter
--- function bakedanuki_futatsuiwas_curse:CastFilterResult()
--- 	if self:GetCaster() == hTarget then
--- 		return UF_FAIL_CUSTOM
--- 	end
-
--- 	local nResult = UnitFilter(
--- 		hTarget,
--- 		DOTA_UNIT_TARGET_TEAM_BOTH,
--- 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
--- 		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
--- 		self:GetCaster():GetTeamNumber()
--- 	)
--- 	if nResult ~= UF_SUCCESS then
--- 		return nResult
--- 	end
-
--- 	return UF_SUCCESS
--- end
-
--- function bakedanuki_futatsuiwas_curse:GetCustomCastErrorTarget( hTarget )
--- 	if self:GetCaster() == hTarget then
--- 		return "#dota_hud_error_cant_cast_on_self"
--- 	end
-
--- 	return ""
--- end
---------------------------------------------------------------------------------
 -- Ability Phase Start
--- function bakedanuki_futatsuiwas_curse:OnAbilityPhaseInterrupted()
-
--- end
 function bakedanuki_futatsuiwas_curse:OnAbilityPhaseStart()
-	self:PlayEffects()
+	self:PlayEffects1()
 	return true -- if success
 end
 
@@ -97,6 +66,8 @@ function bakedanuki_futatsuiwas_curse:OnSpellStart()
 		"modifier_bakedanuki_futatsuiwas_curse", -- modifier name
 		{ duration = hexDuration } -- kv
 	)
+
+	self:PlayEffects2()
 end
 
 --------------------------------------------------------------------------------
@@ -122,9 +93,29 @@ function bakedanuki_futatsuiwas_curse:AbilityConsiderations()
 end
 
 --------------------------------------------------------------------------------
-function bakedanuki_futatsuiwas_curse:PlayEffects()
+function bakedanuki_futatsuiwas_curse:PlayEffects1()
 	-- Get Resources
-	local particle_cast = "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_ring.vpcf"
+	local particle_cast = "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_marker.vpcf"
+	local sound_cast = "Hero_DarkWillow.Fear.Location"
+
+	-- Get data
+	local caster = self:GetCaster()
+	local radius = self:GetSpecialValueFor( "search_radius" )
+	local range = self:GetSpecialValueFor( "search_range" )
+	local point = caster:GetOrigin() + caster:GetForwardVector() * range
+	
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	ParticleManager:SetParticleControl( effect_cast, 0, point )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector(radius, radius, radius) )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	EmitSoundOnLocationWithCaster( point, sound_cast, caster )
+end
+
+function bakedanuki_futatsuiwas_curse:PlayEffects2()
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell.vpcf"
 
 	-- Get data
 	local caster = self:GetCaster()
