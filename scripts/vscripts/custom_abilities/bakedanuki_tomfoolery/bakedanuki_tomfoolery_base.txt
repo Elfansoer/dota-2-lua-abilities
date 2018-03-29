@@ -48,22 +48,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"illusion_outgoing"		"30"
+				"illusion_range"		"600 675 750 825"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"illusion_incoming"		"400"
+				"illusion_duration"		"8"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"illusion_duration"		"8"
+				"illusion_outgoing"		"30"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"illusion_range"		"600 675 750 825"
+				"illusion_incoming"		"400"
 			}
 		}
 	}

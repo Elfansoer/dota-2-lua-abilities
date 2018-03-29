@@ -4,32 +4,26 @@
 	"Tokens"
 	{	
 		//-------------------------------------------------------------------------------------------------------------
-		// Bakedanuki: Trickster's Insight
+		// Bakedanuki: Frolic Aura
 		//-------------------------------------------------------------------------------------------------------------
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight"
-			"Trickster's Insight"
+		"DOTA_Tooltip_ability_bakedanuki_frolic_aura"
+			"Frolic Aura"
 
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_Description"
-			"Mamizou studies her opponent, allowing her to see right through their schemes. Breaks passives, and makes them more vulnerable to Mamizou's attacks, resulting in critical hits. She also gains spell-block against all targeted spells of the debuffed unit."
+		"DOTA_Tooltip_ability_bakedanuki_frolic_aura_Description"
+			"Mamizou's allies have increased evasion, Mamizou have a much higher bonus."
 
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_Lore"
-			"She knows what you're up to."
+		"DOTA_Tooltip_ability_bakedanuki_frolic_aura_Lore"
+			"Just watch her how it's done!"
 
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_Note0"
-			"The critical only benefits Mamizou and her illusions."
+		"DOTA_Tooltip_ability_bakedanuki_frolic_aura_Note0"
+			"Mamizou's illusions have the self evasion bonus and fully carries the aura."
 
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_Note1"
-			"Debuffed enemy can still target spells on any units other than Mamizou."
+		"DOTA_Tooltip_ability_bakedanuki_frolic_aura_radius"			"RADIUS:"
+		"DOTA_Tooltip_ability_bakedanuki_frolic_aura_evasion_self"		"%EVASION BONUS (SELF):"
+		"DOTA_Tooltip_ability_bakedanuki_frolic_aura_evasion_ally"		"%EVASION BONUS (ALLY):"
 
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_Note2"
-			"Any other enemy units without the debuff can still target Mamizou."
-
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_crit_duration"			"DURATION:"
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_crit_chance"			"CRITICAL CHANCE:"
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_crit_mult"			"%CRITICAL MULTIPLIER:"
-
-		"DOTA_Tooltip_modifier_bakedanuki_tricksters_insight"		"Trickster's Insight"
-		"DOTA_Tooltip_modifier_bakedanuki_tricksters_insight_Description"
-			"This unit has their passives disabled, prone to critical strikes and unable to cast targeted spells to its caster."
+		"DOTA_Tooltip_modifier_bakedanuki_frolic_aura_effect"		"Frolic Aura"
+		"DOTA_Tooltip_modifier_bakedanuki_frolic_aura_Description"
+			"Grants %dMODIFIER_PROPERTY_EVASION_CONSTANT%%% evasion bonus."
 	}
 }

@@ -4,32 +4,30 @@
 	"Tokens"
 	{	
 		//-------------------------------------------------------------------------------------------------------------
-		// Bakedanuki: Trickster's Insight
+		// Bakedanuki: Futatsuiwa's Curse
 		//-------------------------------------------------------------------------------------------------------------
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight"
-			"Trickster's Insight"
+		"DOTA_Tooltip_ability_bakedanuki_futatsuiwas_curse"
+			"Futatsuiwa's Curse"
 
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_Description"
-			"Mamizou studies her opponent, allowing her to see right through their schemes. Breaks passives, and makes them more vulnerable to Mamizou's attacks, resulting in critical hits. She also gains spell-block against all targeted spells of the debuffed unit."
+		"DOTA_Tooltip_ability_bakedanuki_futatsuiwas_curse_Description"
+			"Hexes 1 enemy unit from a small area in front of her."
 
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_Lore"
-			"She knows what you're up to."
+		"DOTA_Tooltip_ability_bakedanuki_futatsuiwas_curse_Lore"
+			"A master of transformations. Mamizou is most fearsome not when she transform, but when YOU transform."
 
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_Note0"
-			"The critical only benefits Mamizou and her illusions."
+		"DOTA_Tooltip_ability_bakedanuki_futatsuiwas_curse_Note0"
+			"Instantly destroys illusion."
 
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_Note1"
-			"Debuffed enemy can still target spells on any units other than Mamizou."
+		"DOTA_Tooltip_ability_bakedanuki_futatsuiwas_curse_Note1"
+			"Priority order: heroes, creep-heroes, illusions, summoned units, creeps"
 
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_Note2"
-			"Any other enemy units without the debuff can still target Mamizou."
+		"DOTA_Tooltip_ability_bakedanuki_futatsuiwas_curse_search_range"			"SEARCH RANGE:"
+		"DOTA_Tooltip_ability_bakedanuki_futatsuiwas_curse_search_radius"			"SEARCH RADIUS:"
+		"DOTA_Tooltip_ability_bakedanuki_futatsuiwas_curse_hex_base_speed"			"BASE SPEED:"
+		"DOTA_Tooltip_ability_bakedanuki_futatsuiwas_curse_hex_duration"			"DURATION:"
 
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_crit_duration"			"DURATION:"
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_crit_chance"			"CRITICAL CHANCE:"
-		"DOTA_Tooltip_ability_bakedanuki_tricksters_insight_crit_mult"			"%CRITICAL MULTIPLIER:"
-
-		"DOTA_Tooltip_modifier_bakedanuki_tricksters_insight"		"Trickster's Insight"
-		"DOTA_Tooltip_modifier_bakedanuki_tricksters_insight_Description"
-			"This unit has their passives disabled, prone to critical strikes and unable to cast targeted spells to its caster."
+		"DOTA_Tooltip_modifier_bakedanuki_futatsuiwas_curse"		"Hexed"
+		"DOTA_Tooltip_modifier_bakedanuki_futatsuiwas_curse_Description"
+			"This unit cannot attack, cast spells or use items. Has base movement speed of %dMODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE%."
 	}
 }

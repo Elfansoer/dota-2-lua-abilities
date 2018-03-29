@@ -107,7 +107,7 @@ function bakedanuki_futatsuiwas_curse:PlayEffects1()
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
 	ParticleManager:SetParticleControl( effect_cast, 0, point )
-	ParticleManager:SetParticleControl( effect_cast, 1, Vector(radius, radius, radius) )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector(radius+50, radius+50, radius+50) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	EmitSoundOnLocationWithCaster( point, sound_cast, caster )
