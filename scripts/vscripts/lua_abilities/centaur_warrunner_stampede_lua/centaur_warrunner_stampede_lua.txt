@@ -1,0 +1,92 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Centaur Warrunner: Stampede (Lua version)
+	//=================================================================================================================
+	"centaur_warrunner_stampede_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/centaur_warrunner_stampede_lua/centaur_warrunner_stampede_lua"
+		"AbilityTextureName"			"centaur_warrunner_stampede_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+//		"precache"
+//		{
+//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"90 75 60"
+		"AbilityManaCost"				"100"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"4.0"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"base_damage"		"0"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"strength_damage"	"1.0 2.0 3.0"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"slow_duration"		"1.8"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"105"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"slow_movement_speed"			"100"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"cooldown_scepter"			"90 75 60"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage_reduction"	"40"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage_reduction_tooltip_scepter"	"40"
+			}
+		}
+	}
+}

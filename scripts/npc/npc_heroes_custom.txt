@@ -33,12 +33,12 @@
 	"npc_dota_hero_furion_lua"
 	{
 		"override_hero"				"npc_dota_hero_furion"			// Hero to override
-		"Ability1"					"omniknight_purification_lua"
-		"Ability2"					"omniknight_repel_lua"
-		"Ability3"					"omniknight_degen_aura_lua"
-		"Ability4"					"phantom_assassin_stifling_dagger_lua"				// Ability 1
-		"Ability5"					"phantom_assassin_phantom_strike_lua"
-		"Ability6"					"omniknight_guardian_angel_lua"
+		"Ability1"					"juggernaut_blade_fury_lua"
+		"Ability2"					"juggernaut_blade_dance_lua"
+		"Ability3"					"dazzle_shallow_grave_lua"
+		"Ability4"					"dazzle_shadow_wave_lua"				// Ability 1
+		"Ability5"					"generic_hidden"
+		"Ability6"					"dazzle_weave_lua"
 	}
 
 
@@ -49,7 +49,7 @@
 	{
 		"override_hero"					"npc_dota_hero_vengefulspirit"			// Hero to override
 		"Ability1"				"vengefulspirit_magic_missile_lua"				// Ability 2
-		"Ability2"				"vengefulspirit_wave_of_terror_lua"				// Ability 3
+		"Ability2"				"queen_of_pain_shadow_strike_lua"				// Ability 3
 		"Ability3"				"wraith_king_wraithfire_blast_lua"				// Ability 1
 		"Ability4"				"chaos_knight_chaos_bolt_lua"				// Ability 3
 		"Ability6"				"vengefulspirit_nether_swap_lua"				// Ability 4
@@ -110,7 +110,7 @@
 		"Ability1"				"queen_of_pain_shadow_strike_lua"						// Ability 1
 		"Ability2"				"queen_of_pain_blink_lua"						// Ability 2
 		"Ability3"				"queen_of_pain_scream_of_pain_lua"						// Ability 3
-		"Ability6"				"queen_of_pain_sonic_wave_lua"							// Ability 6
+		"Ability6"				"tiny_grow"							// Ability 6
 	}
 	//=================================================================================================================
 	// HERO: WD

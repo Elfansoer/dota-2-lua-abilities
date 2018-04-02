@@ -1,0 +1,52 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Juggernaut: Blade Dance (Lua version)
+	//=================================================================================================================
+	"juggernaut_blade_dance_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/juggernaut_blade_dance_lua/juggernaut_blade_dance_lua"
+		"AbilityTextureName"			"juggernaut_blade_dance_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"blade_dance_crit_chance"	"20 25 30 35"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"blade_dance_crit_mult"		"180"
+			}
+		}
+	}
+}

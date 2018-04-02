@@ -4896,6 +4896,18 @@
 
 // Includes
 // Lua abilities
+#base "../vscripts/lua_abilities/centaur_warrunner_hoof_stomp_lua/centaur_warrunner_hoof_stomp_lua.txt"
+#base "../vscripts/lua_abilities/centaur_warrunner_double_edge_lua/centaur_warrunner_double_edge_lua.txt"
+#base "../vscripts/lua_abilities/centaur_warrunner_return_lua/centaur_warrunner_return_lua.txt"
+#base "../vscripts/lua_abilities/centaur_warrunner_stampede_lua/centaur_warrunner_stampede_lua.txt"
+
+#base "../vscripts/lua_abilities/dazzle_shallow_grave_lua/dazzle_shallow_grave_lua.txt"
+#base "../vscripts/lua_abilities/dazzle_shadow_wave_lua/dazzle_shadow_wave_lua.txt"
+#base "../vscripts/lua_abilities/dazzle_weave_lua/dazzle_weave_lua.txt"
+
+#base "../vscripts/lua_abilities/juggernaut_blade_fury_lua/juggernaut_blade_fury_lua.txt"
+#base "../vscripts/lua_abilities/juggernaut_blade_dance_lua/juggernaut_blade_dance_lua.txt"
+
 #base "../vscripts/lua_abilities/slark_dark_pact_lua/slark_dark_pact_lua.txt"
 #base "../vscripts/lua_abilities/slark_essence_shift_lua/slark_essence_shift_lua.txt"
 #base "../vscripts/lua_abilities/slark_shadow_dance_lua/slark_shadow_dance_lua.txt"

@@ -1,0 +1,71 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Dazzle: Weave (Lua version)
+	//=================================================================================================================
+	"dazzle_weave_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/dazzle_weave_lua/dazzle_weave_lua"
+		"AbilityTextureName"			"dazzle_weave_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+			"particle"	"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
+			"particle"	"particles/units/heroes/hero_dazzle/dazzle_armor_enemy.vpcf"
+			"particle"	"particles/units/heroes/hero_dazzle/dazzle_armor_friend.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"2000"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"40.0"
+		"AbilityManaCost"				"100"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"575 575 575"
+			}
+			"02"
+			{	
+				"var_type"					"FIELD_INTEGER"
+				"vision"					"800"
+			}
+			"03"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"armor_per_second"			"0.75 1 1.25"
+			}
+			"04"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"24.0"
+			}
+		}
+	}
+}

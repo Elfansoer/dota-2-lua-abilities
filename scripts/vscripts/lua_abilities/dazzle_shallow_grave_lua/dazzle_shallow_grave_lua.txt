@@ -1,0 +1,67 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Dazzle: Shallow Grave (Lua version)
+	//=================================================================================================================
+	"dazzle_shallow_grave_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/dazzle_shallow_grave_lua/dazzle_shallow_grave_lua"
+		"AbilityTextureName"			"dazzle_shallow_grave_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+			"particle"	"particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"550 700 850 1000"
+		"AbilityCastPoint"				"0.4"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60 45 30 15"
+		"AbilityManaCost"				"150"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{	
+				"var_type"			"FIELD_FLOAT"
+				"duration_tooltip"		"5 5 5 5"
+			}
+			"02"
+			{	
+				"var_type"			"FIELD_INTEGER"
+				"range_tooltip"		"550 700 850 1000"
+			}
+			"03"
+			{	
+				"var_type"			"FIELD_INTEGER"
+				"scepter_radius"		"450"
+			}
+		}
+	}
+}

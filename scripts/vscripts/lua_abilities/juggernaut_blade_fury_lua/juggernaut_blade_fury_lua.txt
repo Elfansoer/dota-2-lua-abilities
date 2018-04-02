@@ -1,0 +1,70 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Juggernaut: Blade Fury (Lua version)
+	//=================================================================================================================
+	"juggernaut_blade_fury_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/juggernaut_blade_fury_lua/juggernaut_blade_fury_lua"
+		"AbilityTextureName"			"juggernaut_blade_fury_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"particle"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
+			"particle"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury_tgt.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"250"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"42 34 26 18"
+		"AbilityManaCost"				"120 110 100 90"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"blade_fury_damage_tick"	"0.2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"blade_fury_radius"			"250"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"blade_fury_damage"			"80 105 130 155"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5.0"
+			}
+		}
+	}
+}
