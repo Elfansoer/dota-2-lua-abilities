@@ -75,6 +75,7 @@ end
 -- Modifier Effects
 function modifier_centaur_warrunner_stampede_lua:DeclareFunctions()
 	local funcs = {
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
 		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
 	}
 
@@ -82,6 +83,9 @@ function modifier_centaur_warrunner_stampede_lua:DeclareFunctions()
 end
 function modifier_centaur_warrunner_stampede_lua:GetModifierMoveSpeed_AbsoluteMin()
 	return self.haste
+end
+function modifier_centaur_warrunner_stampede_lua:GetActivityTranslationModifiers()
+	return "haste"
 end
 
 --------------------------------------------------------------------------------

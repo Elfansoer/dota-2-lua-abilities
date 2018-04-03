@@ -22,6 +22,10 @@ reference.animations = {
     {"crystal_maiden_frostbite_lua", false, ACT_DOTA_CAST_ABILITY_5, "frostbite"},
     {"crystal_maiden_freezing_field_lua", false, ACT_DOTA_CHANNEL_ABILITY_5, "freezing_field"},
 
+    {"dazzle_shallow_grave_lua", false, ACT_DOTA_CAST_ABILITY_5, "repel"},
+    {"dazzle_shadow_wave_lua", false, ACT_DOTA_CAST_ABILITY_3, ""},
+    {"dazzle_weave_lua", false, ACT_DOTA_CAST_ABILITY_5, "crystal_nova"},
+
     {"furion_sprout_lua", false, ACT_DOTA_CAST_ABILITY_5, "sprout"},
     {"furion_teleportation_lua", true, ACT_DOTA_CAST_ABILITY_5, "teleport"},
     {"furion_force_of_nature_lua", false, ACT_DOTA_CAST_ABILITY_5, "summon"},
