@@ -50,52 +50,42 @@ function centaur_warrunner_double_edge_lua:OnSpellStart()
 	ApplyDamage( damageTable )
 
 	-- Play effects
+	self:PlayEffects( target )
 end
 
 --------------------------------------------------------------------------------
-function centaur_warrunner_double_edge_lua:PlayEffects()
+function centaur_warrunner_double_edge_lua:PlayEffects( target )
 	-- Get Resources
-	local particle_cast = "string"
-	local sound_cast = "string"
+	local particle_cast = "particles/units/heroes/hero_centaur/centaur_double_edge.vpcf"
+	local sound_cast = "Hero_Centaur.DoubleEdge"
 
 	-- Get Data
+	local forward = (target:GetOrigin()-self:GetCaster():GetOrigin()):Normalized()
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-
-	-- Control Particle
-	-- Set vector attachment
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-
-	-- Set entity attachment
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
+		0,
+		self:GetCaster(),
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self:GetCaster():GetOrigin(), -- unknown
+		true -- unknown, true
 	)
-
-	-- Set particle orientation
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-
-	-- Release Particle
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		1,
+		target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		target:GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControlForward( effect_cast, 2, forward )
+	ParticleManager:SetParticleControlForward( effect_cast, 5, forward )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
-	-- buff particle
-	buff:AddParticle(
-		nFXIndex,
-		bDestroyImmediately,
-		bStatusEffect,
-		iPriority,
-		bHeroEffect,
-		bOverheadEffect
-	)
-
 	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
+	EmitSoundOn( sound_cast, target )
 end

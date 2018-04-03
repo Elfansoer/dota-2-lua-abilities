@@ -14,6 +14,10 @@ reference.animations = {
     {"chaos_knight_reality_rift_lua", true, ACT_DOTA_CAST_ABILITY_5, "strike", 2.0},
     {"chaos_knight_phantasm_lua", true, ACT_DOTA_CAST_ABILITY_5, "remnant"},
 
+    {"centaur_warrunner_hoof_stomp_lua", false, ACT_DOTA_CAST_ABILITY_5, "slam", 2.0},
+    {"centaur_warrunner_double_edge_lua", false, ACT_DOTA_ATTACK, "", 2.0},
+    {"centaur_warrunner_stampede_lua", false, ACT_DOTA_OVERRIDE_ABILITY_4, "strength"},
+
     {"crystal_maiden_crystal_nova_lua", false, ACT_DOTA_CAST_ABILITY_5, "crystal_nova"},
     {"crystal_maiden_frostbite_lua", false, ACT_DOTA_CAST_ABILITY_5, "frostbite"},
     {"crystal_maiden_freezing_field_lua", false, ACT_DOTA_CHANNEL_ABILITY_5, "freezing_field"},

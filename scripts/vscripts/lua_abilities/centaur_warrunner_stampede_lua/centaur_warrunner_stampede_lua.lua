@@ -38,52 +38,32 @@ function centaur_warrunner_stampede_lua:OnSpellStart()
 	end
 
 	-- Play effects
+	self:PlayEffects()
 end
 
+function centaur_warrunner_stampede_lua:HasTrampled( target )
+	-- search in tables
+	for _,enemy in pairs(self.hitEnemies) do
+		if target==enemy then return true end
+	end
+	return false
+end
+
+function centaur_warrunner_stampede_lua:AddTrampled( target )
+	table.insert( self.hitEnemies, target )
+end
 --------------------------------------------------------------------------------
 function centaur_warrunner_stampede_lua:PlayEffects()
 	-- Get Resources
-	local particle_cast = "string"
-	local sound_cast = "string"
+	local particle_cast = "particles/units/heroes/hero_centaur/centaur_stampede_cast.vpcf"
+	local sound_cast = "Hero_Centaur.Stampede.Cast"
 
 	-- Get Data
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-
-	-- Control Particle
-	-- Set vector attachment
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-
-	-- Set entity attachment
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
-	)
-
-	-- Set particle orientation
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-
-	-- Release Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
-	-- buff particle
-	buff:AddParticle(
-		nFXIndex,
-		bDestroyImmediately,
-		bStatusEffect,
-		iPriority,
-		bHeroEffect,
-		bOverheadEffect
-	)
-
 	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
+	EmitSoundOn( sound_cast, self:GetCaster() )
 end

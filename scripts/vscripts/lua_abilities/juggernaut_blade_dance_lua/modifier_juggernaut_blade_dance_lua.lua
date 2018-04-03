@@ -39,7 +39,11 @@ function modifier_juggernaut_blade_dance_lua:DeclareFunctions()
 	return funcs
 end
 function modifier_juggernaut_blade_dance_lua:GetModifierPreAttack_CriticalStrike( params )
-	if IsServer() then
+	if IsServer() and (not self:GetParent():PassivesDisabled()) then
+		if params.target:GetTeamNumber()==self:GetParent():GetTeamNumber() then
+			return
+		end
+
 		-- Throw dice
 		if RandomInt(0, 100)<self.crit_chance then
 			self.record = params.record
@@ -58,13 +62,3 @@ function modifier_juggernaut_blade_dance_lua:GetModifierProcAttack_Feedback( par
 		end
 	end
 end
-
---------------------------------------------------------------------------------
--- Graphics & Animations
--- function modifier_juggernaut_blade_dance_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
-
--- function modifier_juggernaut_blade_dance_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end

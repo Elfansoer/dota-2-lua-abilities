@@ -20,8 +20,8 @@ function modifier_centaur_warrunner_stampede_lua:OnCreated( kv )
 	-- references
 	self.radius = self:GetAbility():GetSpecialValueFor( "radius" ) -- special value
 	self.slow_duration = self:GetAbility():GetSpecialValueFor( "slow_duration" ) -- special value
-	local base_damage = self:GetAbility():GetSpecialValueFor( "radius" ) -- special value
-	local strength_pct = self:GetAbility():GetSpecialValueFor( "radius" ) -- special value
+	local base_damage = self:GetAbility():GetSpecialValueFor( "base_damage" ) -- special value
+	local strength_pct = self:GetAbility():GetSpecialValueFor( "strength_damage" ) -- special value
 
 	self.interval = 0.1
 	self.haste = 550
@@ -37,7 +37,11 @@ function modifier_centaur_warrunner_stampede_lua:OnCreated( kv )
 			ability = self:GetAbility(), --Optional.
 		}
 
+		-- Stampede
 		self:StartIntervalThink( self.interval )
+
+		-- Effects
+		self:PlayEffects1()
 	end
 end
 
@@ -108,10 +112,9 @@ function modifier_centaur_warrunner_stampede_lua:OnIntervalThink()
 
 	local target = nil
 	for _,enemy in pairs(enemies) do
-		if not self:GetAbility():HasTrampled() then
+		if not self:GetAbility():HasTrampled( enemy ) then
 			target = enemy
-			self:GetAbility():AddTrampled( target )
-			self:StartIntervalThink( -1 )
+			self:GetAbility():AddTrampled( enemy )
 		end
 	end
 
@@ -127,15 +130,54 @@ function modifier_centaur_warrunner_stampede_lua:OnIntervalThink()
 			"modifier_centaur_warrunner_stampede_lua_debuff",
 			{ duration = self.slow_duration }
 		)
+
+		-- Effects
+		self:PlayEffects2( target )
 	end
 end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_centaur_warrunner_stampede_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_centaur_warrunner_stampede_lua:GetEffectName()
+	return "particles/units/heroes/hero_centaur/centaur_stampede_overhead.vpcf"
+end
 
--- function modifier_centaur_warrunner_stampede_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+function modifier_centaur_warrunner_stampede_lua:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+function modifier_centaur_warrunner_stampede_lua:PlayEffects1()
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_centaur/centaur_stampede.vpcf"
+	local particle_cast2 = "particles/units/heroes/hero_centaur/centaur_stampede_haste.vpcf"
+	local sound_cast = "Hero_Centaur.Stampede.Movement"
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	self:AddParticle(
+		effect_cast,
+		false,
+		false,
+		-1,
+		false,
+		false
+	)
+	-- ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	local effect_cast2 = ParticleManager:CreateParticle( particle_cast2, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	self:AddParticle(
+		effect_cast2,
+		false,
+		false,
+		-1,
+		false,
+		false
+	)
+
+	-- Create Sound
+	EmitSoundOn( sound_cast, self:GetParent() )
+end
+
+function modifier_centaur_warrunner_stampede_lua:PlayEffects2( target )
+	local sound_cast = "Hero_Centaur.Stampede.Stun"
+	EmitSoundOn( sound_cast, target )
+end

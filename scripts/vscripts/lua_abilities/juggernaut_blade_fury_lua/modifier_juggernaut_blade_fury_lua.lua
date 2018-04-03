@@ -59,7 +59,9 @@ function modifier_juggernaut_blade_fury_lua:OnRefresh( kv )
 end
 
 function modifier_juggernaut_blade_fury_lua:OnDestroy( kv )
-
+	-- Stop effects
+	local sound_cast = "Hero_Juggernaut.BladeFuryStart"
+	StopSoundOn( sound_cast, self:GetParent() )
 end
 
 --------------------------------------------------------------------------------
@@ -94,6 +96,7 @@ function modifier_juggernaut_blade_fury_lua:OnIntervalThink()
 		ApplyDamage( self.damageTable )
 
 		-- Play effects
+		self:PlayEffects2( enemy )
 	end
 
 	-- counter
@@ -105,13 +108,6 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_juggernaut_blade_fury_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
-
--- function modifier_juggernaut_blade_fury_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
 function modifier_juggernaut_blade_fury_lua:PlayEffects()
 		-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
@@ -130,8 +126,13 @@ function modifier_juggernaut_blade_fury_lua:PlayEffects()
 		false,
 		false
 	)
-	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Emit sound
 	EmitSoundOn( sound_cast, self:GetParent() )
+end
+
+function modifier_juggernaut_blade_fury_lua:PlayEffects2( target )
+	local particle_cast = "particles/units/heroes/hero_juggernaut/juggernaut_blade_fury_tgt.vpcf"
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 end

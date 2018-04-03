@@ -42,12 +42,12 @@ function modifier_centaur_warrunner_return_lua:OnAttacked( params )
 		if self:GetParent():IsIllusion() or self:GetParent():PassivesDisabled() then
 			return
 		end
-		if params.unit~=self:GetParent() or self:FlagExist( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
+		if params.unit==self:GetParent() or self:FlagExist( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
 			return
 		end
 
 		-- get damage
-		local damage = self.base_damage + self:GetParent():GetStrength()*self.strength_pct
+		local damage = self.base_damage + self:GetParent():GetStrength()*(self.strength_pct/100)
 
 		-- Apply Damage
 		local damageTable = {
@@ -61,6 +61,9 @@ function modifier_centaur_warrunner_return_lua:OnAttacked( params )
 		ApplyDamage(damageTable)
 
 		-- Play effects
+		if params.attacker:IsConsideredHero() then
+			self:PlayEffects( params.attacker )
+		end
 	end
 end
 
@@ -84,3 +87,26 @@ end
 -- function modifier_centaur_warrunner_return_lua:GetEffectAttachType()
 -- 	return PATTACH_ABSORIGIN_FOLLOW
 -- end
+function modifier_centaur_warrunner_return_lua:PlayEffects( target )
+	local particle_cast = "particles/units/heroes/hero_centaur/centaur_return.vpcf"
+
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		0,
+		self:GetParent(),
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self:GetParent():GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		1,
+		target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		target:GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+end

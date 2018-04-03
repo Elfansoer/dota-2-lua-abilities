@@ -40,22 +40,40 @@ function centaur_warrunner_hoof_stomp_lua:OnSpellStart()
 	end
 
 	-- Play effects
-	-- self:PlayEffects()
+	self:PlayEffects()
 end
 
 function centaur_warrunner_hoof_stomp_lua:PlayEffects()
 	-- get particles
-	local particle_cast = "particles/units/heroes/hero_slardar/slardar_crush.vpcf"
-	local sound_cast = "Hero_Slardar.Slithereen_Crush"
+	local particle_cast = "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+	local sound_cast = "Hero_Centaur.HoofStomp"
 
 	-- get data
-	local radius = self:GetSpecialValueFor("crush_radius")
+	local radius = self:GetSpecialValueFor("radius")
 
 
-	local nFXIndex = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
-	ParticleManager:SetParticleControl( nFXIndex, 0, self:GetCaster():GetOrigin() )
-	ParticleManager:SetParticleControl( nFXIndex, 1, Vector(radius, radius, radius) )
-	ParticleManager:ReleaseParticleIndex( nFXIndex )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
+	ParticleManager:SetParticleControl( effect_cast, 0, self:GetCaster():GetOrigin() )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector(radius, radius, radius) )
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		2,
+		self:GetCaster(),
+		PATTACH_POINT_FOLLOW,
+		"attach_hoof_L",
+		self:GetCaster():GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		2,
+		self:GetCaster(),
+		PATTACH_POINT_FOLLOW,
+		"attach_hoof_R",
+		self:GetCaster():GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), sound_cast, self:GetCaster() )
 end

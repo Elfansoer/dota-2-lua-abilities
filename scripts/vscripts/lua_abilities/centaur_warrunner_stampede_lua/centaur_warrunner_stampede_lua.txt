@@ -14,11 +14,13 @@
 		"AbilityTextureName"			"centaur_warrunner_stampede_lua"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"3"
-//		"precache"
-//		{
-//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-//		}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
+			"particle"	"particles/units/heroes/hero_centaur/centaur_stampede.vpcf"
+			"particle"	"particles/units/heroes/hero_centaur/centaur_stampede_cast.vpcf"
+			"particle"	"particles/units/heroes/hero_centaur/centaur_stampede_overhead.vpcf"
+		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
