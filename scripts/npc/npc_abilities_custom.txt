@@ -4896,6 +4896,12 @@
 
 // Includes
 // Lua abilities
+#base "../vscripts/lua_abilities/abaddon_mist_coil_lua/abaddon_mist_coil_lua.txt"
+
+#base "../vscripts/lua_abilities/bane_enfeeble_lua/bane_enfeeble_lua.txt"
+#base "../vscripts/lua_abilities/bane_brain_sap_lua/bane_brain_sap_lua.txt"
+#base "../vscripts/lua_abilities/bane_fiends_grip_lua/bane_fiends_grip_lua.txt"
+
 #base "../vscripts/lua_abilities/centaur_warrunner_hoof_stomp_lua/centaur_warrunner_hoof_stomp_lua.txt"
 #base "../vscripts/lua_abilities/centaur_warrunner_double_edge_lua/centaur_warrunner_double_edge_lua.txt"
 #base "../vscripts/lua_abilities/centaur_warrunner_return_lua/centaur_warrunner_return_lua.txt"

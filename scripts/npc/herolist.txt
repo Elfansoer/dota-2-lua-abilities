@@ -18,6 +18,7 @@
 	"npc_dota_hero_witch_doctor"		"1"
 	"npc_dota_hero_naga_siren"		"1"
 	"npc_dota_hero_dark_willow"		"1"
+	"npc_dota_hero_death_prophet"		"1"
 
 	"npc_dota_hero_rubick"			"1"
 }

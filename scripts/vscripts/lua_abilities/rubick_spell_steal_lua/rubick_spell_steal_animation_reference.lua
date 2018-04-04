@@ -3,10 +3,14 @@ reference = {}
 reference.animations = {
 -- AbilityName, bNormalWhenStolen, nActivity, nTranslate, fPlaybackRate
     {"default", nil, ACT_DOTA_CAST_ABILITY_5, "bolt"},
-    -- {"default"},
+
+    {"abaddon_mist_coil_lua", false, ACT_DOTA_CAST_ABILITY_3, "", 1.4},
 
     {"antimage_blink_lua", nil, nil, "am_blink"},
     {"antimage_mana_void_lua", false, ACT_DOTA_CAST_ABILITY_5, "mana_void"},
+
+    {"bane_brain_sap_lua", false, ACT_DOTA_CAST_ABILITY_5,"brain_sap"},
+    {"bane_fiends_grip_lua", false, ACT_DOTA_CHANNEL_ABILITY_5,"fiends_grip"},
 
     {"bristleback_viscous_nasal_goo_lua", false, ACT_DOTA_ATTACK,"",2.0},
 

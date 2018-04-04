@@ -1,0 +1,74 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Hero Name: bane_fiends_grip_lua
+	//=================================================================================================================
+	"bane_fiends_grip_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/bane_fiends_grip_lua/bane_fiends_grip_lua"
+		"AbilityTextureName"			"bane_fiends_grip_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+			"particle"	"particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"625"
+		"AbilityCastPoint"				"0.4"
+		"AbilityChannelTime"			"5.0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100.0"
+		"AbilityManaCost"				"200 300 400"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"fiend_grip_tick_interval"		"0.5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"fiend_grip_mana_drain"			"5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"fiend_grip_duration"			"5.0 5.0 5.0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"fiend_grip_damage"				"100 155 215"
+			}
+		}
+	}
+}

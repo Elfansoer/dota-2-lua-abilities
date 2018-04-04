@@ -1,0 +1,66 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Bane: Brain Sap (Lua version)
+	//=================================================================================================================
+	"bane_brain_sap_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/bane_brain_sap_lua/bane_brain_sap_lua"
+		"AbilityTextureName"			"bane_brain_sap_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+			"particle"	"particles/units/heroes/hero_bane/bane_sap.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.4"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"14 13 12 11"
+		"AbilityManaCost"				"70 100 130 160"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"brain_sap_damage"				"75 150 225 300"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"tooltip_brain_sap_heal_amt"	"75 150 225 300"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"cooldown_scepter"				"1.5"
+			}
+		}
+	}
+}

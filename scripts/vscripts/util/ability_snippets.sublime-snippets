@@ -1,0 +1,98 @@
+<snippet>
+    <content><![CDATA[AddNewModifier(
+		${1:caster}, -- player source
+		${2:self}, -- ability source
+		"${3:modifier_some_modifier_lua}", -- modifier name
+		{ ${4:duration = duration} } -- kv
+	)]]></content>
+    <tabTrigger>AddNewModifier</tabTrigger>
+    <scope>source.lua</scope>
+    <description>Add new modifier</description>
+</snippet>
+<snippet>
+    <content><![CDATA[damageTable = {
+		victim = ${1:target},
+		attacker = ${2:caster},
+		damage = ${3:500},
+		damage_type = ${4:DAMAGE_TYPE_MAGICAL},
+		ability = ${5:self}, --Optional.
+		${6:damage_flags = DOTA_DAMAGE_FLAG_NONE, --Optional.
+	}}
+	ApplyDamage(damageTable)]]></content>
+    <tabTrigger>ApplyDamage</tabTrigger>
+    <scope>source.lua</scope>
+    <description>Apply damage</description>
+</snippet>
+<snippet>
+    <content><![CDATA[local info = {
+		Target = ${1:target},
+		Source = ${2:caster},
+		Ability = ${3:self},	
+		
+		EffectName = ${4:projectile_name},
+		iMoveSpeed = ${5:projectile_speed},
+		bDodgeable = ${6:true},                                -- Optional
+${7:
+		vSourceLoc= caster:GetAbsOrigin(),                -- Optional (HOW)
+		bIsAttack = false,                                -- Optional
+		bReplaceExisting = false,                         -- Optional
+		flExpireTime = GameRules:GetGameTime() + 10,      -- Optional but recommended
+		
+		bDrawsOnMinimap = false,                          -- Optional
+		bVisibleToEnemies = true,                         -- Optional
+		bProvidesVision = true,                           -- Optional
+		iVisionRadius = 400,                              -- Optional
+		iVisionTeamNumber = caster:GetTeamNumber()        -- Optional
+	}}
+	projectile = ProjectileManager:CreateTrackingProjectile(info)]]></content>
+    <tabTrigger>TrackingProjectile</tabTrigger>
+    <scope>source.lua</scope>
+    <description>Tracking projectile</description>
+</snippet>
+<snippet>
+    <content><![CDATA[FindUnitsInRadius(
+		${1:self:GetCaster():GetTeamNumber()},	-- int, your team number
+		${2:caster:GetOrigin()},	-- point, center point
+		nil,	-- handle, cacheUnit. (not known)
+		${3:radius},	-- float, radius. or use FIND_UNITS_EVERYWHERE
+		${4:DOTA_UNIT_TARGET_TEAM_ENEMY},	-- int, team filter
+		${5:DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC},	-- int, type filter
+		${6:0},	-- int, flag filter
+		${7:0},	-- int, order filter
+		false	-- bool, can grow cache
+	)]]></content>
+    <tabTrigger>FindUnitsInRadius</tabTrigger>
+    <scope>source.lua</scope>
+    <description>Find units</description>
+</snippet>
+<snippet>
+    <content><![CDATA[local info = {
+    	Source = ${1:caster},
+		Ability = ${2:self},
+    	vSpawnOrigin = ${3:caster:GetAbsOrigin()},
+    	
+		vVelocity = ${4:caster:GetForwardVector() * 1800},
+		bDeleteOnHit = ${5:true},
+    	
+    	iUnitTargetTeam = ${6:DOTA_UNIT_TARGET_TEAM_ENEMY},
+    	iUnitTargetFlags = ${7:DOTA_UNIT_TARGET_FLAG_NONE},
+    	iUnitTargetType = ${8:DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC},
+    	
+    	EffectName = projectile_name,
+    	fDistance = projectile_distance,
+    	fStartRadius = projectile_start_radius,
+    	fEndRadius =projectile_end_radius,
+${9:
+    	bHasFrontalCone = false,
+    	bReplaceExisting = false,
+    	fExpireTime = GameRules:GetGameTime() + 10.0,
+		
+		bProvidesVision = true,
+		iVisionRadius = 300,
+		iVisionTeamNumber = caster:GetTeamNumber()
+	}}
+	projectile = ProjectileManager:CreateLinearProjectile(info)]]></content>
+    <tabTrigger>LinearProjectile</tabTrigger>
+    <scope>source.lua</scope>
+    <description>Linear projectile</description>
+</snippet>

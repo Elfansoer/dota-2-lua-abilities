@@ -70,122 +70,8 @@ function template:OnSpellStart()
 	-- load data
 	local value1 = self:GetSpecialValueFor("some_value")
 
-	-- Add modifier
-	playerHero:AddNewModifier(
-		caster, -- player source
-		self, -- ability source
-		"modifier_some_modifier_lua", -- modifier name
-		{ duration = bolt_stun_duration } -- kv
-	)
+	-- logic
 
-	-- Apply Damage	 
-	local damageTable = {
-		victim = target,
-		attacker = caster,
-		damage = 500,
-		damage_type = DAMAGE_TYPE_PURE,
-		damage_flags = DOTA_DAMAGE_FLAG_NONE, --Optional.
-		ability = self, --Optional.
-	}
-	ApplyDamage(damageTable)
-
-	-- Create Projectile
-	local projectile_name = "string"
-	local projectile_speed = 500
-	local info = {
-		Target = target,
-		Source = caster,
-		Ability = self,	
-		
-		EffectName = projectile_name,
-		iMoveSpeed = projectile_speed,
-		vSourceLoc= caster:GetAbsOrigin(),                -- Optional (HOW)
-
-		bDodgeable = true,                                -- Optional
-		bIsAttack = false,                                -- Optional
-		bReplaceExisting = false,                         -- Optional
-		flExpireTime = GameRules:GetGameTime() + 10,      -- Optional but recommended
-		
-		bDrawsOnMinimap = false,                          -- Optional
-		bVisibleToEnemies = true,                         -- Optional
-		bProvidesVision = true,                           -- Optional
-		iVisionRadius = 400,                              -- Optional
-		iVisionTeamNumber = caster:GetTeamNumber()        -- Optional
-	}
-	projectile = ProjectileManager:CreateTrackingProjectile(info)
-
-	--A Liner Projectile must have a table with projectile info
-	local projectile_name = "string"
-	local projectile_distance = 500
-	local projectile_speed = 500
-	local projectile_start_radius = 300
-	local projectile_end_radius = 300
-	local projectile_direction = point:Normalized()
-	local info = {
-    	Source = caster,
-		Ability = self,
-    	vSpawnOrigin = caster:GetAbsOrigin(),
-    	
-    	EffectName = projectile_name,
-    	fDistance = projectile_distance,
-    	fStartRadius = 64,
-    	fEndRadius = 64,
-    	bHasFrontalCone = false,
-		vVelocity = caster:GetForwardVector() * 1800,
-    	
-		bDeleteOnHit = true,
-    	bReplaceExisting = false,
-    	fExpireTime = GameRules:GetGameTime() + 10.0,
-    	
-    	iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-    	iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
-    	iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		
-		bProvidesVision = true,
-		iVisionRadius = 1000,
-		iVisionTeamNumber = caster:GetTeamNumber()
-	}
-	projectile = ProjectileManager:CreateLinearProjectile(info)
-
-	-- Find Units in Radius
-	local enemies = FindUnitsInRadius(
-		self:GetCaster():GetTeamNumber(),	-- int, your team number
-		hTarget:GetOrigin(),	-- point, center point
-		nil,	-- handle, cacheUnit. (not known)
-		bolt_aoe,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
-		0,	-- int, flag filter
-		0,	-- int, order filter
-		false	-- bool, can grow cache
-	)
-	
-	-- summon units
-	local summoned_unit = CreateUnitByName(
-		"unit_name", -- szUnitName
-		cast_position, -- vLocation,
-		true, -- bFindClearSpace,
-		self:GetCaster(), -- hNPCOwner,
-		self:GetCaster():GetOwner(), -- hUnitOwner,
-		self:GetCaster():GetTeamNumber() -- iTeamNumber
-	)
-
-	-- dominate units
-	summoned_unit:SetControllableByPlayer( self:GetCaster():GetPlayerID(), false ) -- (playerID, bSkipAdjustingPosition)
-	summoned_unit:SetOwner( self:GetCaster() )
-	summoned_unit:AddNewModifier(self:GetCaster(), self, "modifier_timer", {duration = summon_duration})
-
-	-- Perform attack
-	caster:PerformAttack(
-		 -- handle hTarget,
-		 -- bool bUseCastAttackOrb,
-		 -- bool bProcessProcs,
-		-- bool bSkipCooldown,
-		-- bool bIgnoreInvis,
-		-- bool bUseProjectile,
-		-- bool bFakeAttack,
-		-- bool bNeverMiss
-	)
 end
 --------------------------------------------------------------------------------
 -- Projectile
@@ -224,12 +110,7 @@ function template:PlayEffects()
 
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-
-	-- Control Particle
-	-- Set vector attachment
 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-
-	-- Set entity attachment
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		iControlPoint,
@@ -239,23 +120,9 @@ function template:PlayEffects()
 		vOrigin, -- unknown
 		bool -- unknown, true
 	)
-
-	-- Set particle orientation
 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-
-	-- Release Particle
 	ParticleManager:ReleaseParticleIndex( effect_cast )
-
-	-- buff particle
-	buff:AddParticle(
-		nFXIndex,
-		bDestroyImmediately,
-		bStatusEffect,
-		iPriority,
-		bHeroEffect,
-		bOverheadEffect
-	)
 
 	-- Create Sound
 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )

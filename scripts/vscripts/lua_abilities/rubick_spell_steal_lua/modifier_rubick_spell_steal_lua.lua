@@ -46,7 +46,7 @@ function modifier_rubick_spell_steal_lua:OnAbilityStart( params )
 			end
 
 			-- Animate
-			local anim_duration = math.max( 1, params.ability:GetCastPoint() )
+			local anim_duration = math.max( 1.5, params.ability:GetCastPoint() )
 			if params.ability:GetChannelTime()>0 then
 				anim_duration = params.ability:GetChannelTime()
 			end
