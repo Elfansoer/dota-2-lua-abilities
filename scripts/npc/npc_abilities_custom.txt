@@ -4919,6 +4919,9 @@
 #base "../vscripts/lua_abilities/slark_shadow_dance_lua/slark_shadow_dance_lua.txt"
 
 #base "../vscripts/lua_abilities/sniper_shrapnel_lua/sniper_shrapnel_lua.txt"
+#base "../vscripts/lua_abilities/sniper_headshot_lua/sniper_headshot_lua.txt"
+#base "../vscripts/lua_abilities/sniper_take_aim_lua/sniper_take_aim_lua.txt"
+#base "../vscripts/lua_abilities/sniper_assassinate_lua/sniper_assassinate_lua.txt"
 
 // Custom abilities
 #base "../vscripts/custom_abilities/bakedanuki_tricksters_insight/bakedanuki_tricksters_insight_base.txt"

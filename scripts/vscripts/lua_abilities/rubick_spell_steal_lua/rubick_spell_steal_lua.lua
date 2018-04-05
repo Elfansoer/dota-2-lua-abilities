@@ -207,7 +207,7 @@ function rubick_spell_steal_lua:SetStolenSpell( spellData )
 
 	-- Animations override
 	self.animations:SetCurrentReference( self.currentSpell:GetAbilityName() )
-	if not self.animations:IsNormal() then
+	if not self.animations:IsNormal() and (not self:FlagExist( self.currentSpell:GetBehavior(), DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN )) then
 		self.currentSpell:SetOverrideCastPoint( 0.1 )
 	end
 end

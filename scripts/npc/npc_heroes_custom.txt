@@ -34,11 +34,11 @@
 	{
 		"override_hero"				"npc_dota_hero_furion"			// Hero to override
 		"Ability1"					"sniper_shrapnel_lua"
-		"Ability2"					"centaur_warrunner_double_edge_lua"
-		"Ability3"					"centaur_warrunner_return_lua"
+		"Ability2"					"sniper_headshot_lua"
+		"Ability3"					"sniper_take_aim_lua"
 		"Ability4"					"generic_hidden"				// Ability 1
 		"Ability5"					"generic_hidden"
-		"Ability6"					"centaur_warrunner_stampede_lua"
+		"Ability6"					"sniper_assassinate_lua"
 	}
 
 
