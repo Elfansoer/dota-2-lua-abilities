@@ -1,0 +1,86 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Mirana: Leap (Lua version)
+	//=================================================================================================================
+	"mirana_leap_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/mirana_leap_lua/mirana_leap_lua"
+		"AbilityTextureName"			"mirana_leap_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"550"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60 50 40 30"
+		"AbilityManaCost"				"40"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"leap_distance"			"550"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"leap_speed"			"1300.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"leap_acceleration"		"6000.0"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"leap_speedbonus"	"8 16 24 32"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"leap_speedbonus_as"	"25 50 75 100"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"leap_bonus_duration"	"2.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_charges"			"3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"charge_restore_time"	"60 50 40 30"
+			}
+		}
+	}
+}

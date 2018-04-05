@@ -33,7 +33,7 @@
 	"npc_dota_hero_furion_lua"
 	{
 		"override_hero"				"npc_dota_hero_furion"			// Hero to override
-		"Ability1"					"sniper_shrapnel_lua"
+		"Ability1"					"mirana_leap_lua"
 		"Ability2"					"sniper_headshot_lua"
 		"Ability3"					"sniper_take_aim_lua"
 		"Ability4"					"generic_hidden"				// Ability 1

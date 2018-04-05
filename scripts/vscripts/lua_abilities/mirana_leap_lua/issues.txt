@@ -1,0 +1,2 @@
+Logic:
+- Vertical motion still buggy
