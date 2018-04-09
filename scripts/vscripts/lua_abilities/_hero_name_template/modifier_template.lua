@@ -15,7 +15,7 @@ function modifier_template:IsStunDebuff()
 end
 
 function modifier_template:GetAttributes()
-	return MODIFIER_ATRRIBUTE_XX + MODIFIER_ATRRIBUTE_YY 
+	return MODIFIER_ATTRIBUTE_XX + MODIFIER_ATTRIBUTE_YY 
 end
 
 function modifier_template:IsPurgable()

@@ -1,1 +1,2 @@
-none
+Effects:
+- Dust particles not used

@@ -4931,3 +4931,6 @@
 #base "../vscripts/custom_abilities/bakedanuki_tomfoolery/bakedanuki_tomfoolery_base.txt"
 #base "../vscripts/custom_abilities/bakedanuki_frolic_aura/bakedanuki_frolic_aura_base.txt"
 #base "../vscripts/custom_abilities/bakedanuki_futatsuiwas_curse/bakedanuki_futatsuiwas_curse_base.txt"
+
+#base "../vscripts/custom_abilities/sandra_undeniable_torture/sandra_undeniable_torture.txt"
+#base "../vscripts/custom_abilities/sandra_heal_without_heal/sandra_heal_without_heal.txt"

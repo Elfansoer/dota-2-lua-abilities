@@ -23,13 +23,13 @@ function mirana_sacred_arrow_lua:OnSpellStart()
 	local max_stun = self:GetSpecialValueFor( "arrow_max_stun" )
 	local max_distance = self:GetSpecialValueFor( "arrow_max_stunrange" )
 
-	local projectile_direction = (point-origin):Normalized()
+	local projectile_direction = (Vector( point.x-origin.x, point.y-origin.y, 0 )):Normalized()
 
 	-- logic
 	local info = {
 		Source = caster,
 		Ability = self,
-		vSpawnOrigin = caster:GetAbsOrigin(),
+		vSpawnOrigin = caster:GetOrigin(),
 		
 	    bDeleteOnHit = true,
 	    
@@ -111,6 +111,8 @@ function mirana_sacred_arrow_lua:OnProjectileHit_ExtraData( hTarget, vLocation, 
 		"modifier_generic_stunned_lua", -- modifier name
 		{ duration = math.max(extraData.min_stun, extraData.max_stun*bonus_pct) } -- kv
 	)
+
+	AddFOWViewer( self:GetCaster():GetTeamNumber(), vLocation, 500, 3, false )
 
 	-- effects
 	local sound_cast = "Hero_Mirana.ArrowImpact"
