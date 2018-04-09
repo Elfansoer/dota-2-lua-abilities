@@ -4914,6 +4914,7 @@
 #base "../vscripts/lua_abilities/juggernaut_blade_fury_lua/juggernaut_blade_fury_lua.txt"
 #base "../vscripts/lua_abilities/juggernaut_blade_dance_lua/juggernaut_blade_dance_lua.txt"
 
+#base "../vscripts/lua_abilities/mirana_sacred_arrow_lua/mirana_sacred_arrow_lua.txt"
 #base "../vscripts/lua_abilities/mirana_leap_lua/mirana_leap_lua.txt"
 
 #base "../vscripts/lua_abilities/slark_dark_pact_lua/slark_dark_pact_lua.txt"

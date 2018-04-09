@@ -1,2 +1,2 @@
-Logic:
-- Vertical motion still buggy
+Effects:
+- Arc motion should consider height differences at start/end positions.

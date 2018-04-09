@@ -1,6 +1,13 @@
 mirana_leap_lua = class({})
 LinkLuaModifier( "modifier_mirana_leap_lua", "lua_abilities/mirana_leap_lua/modifier_mirana_leap_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_mirana_leap_lua_charges", "lua_abilities/mirana_leap_lua/modifier_mirana_leap_lua_charges", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_mirana_leap_lua_movement", "lua_abilities/mirana_leap_lua/modifier_mirana_leap_lua_movement", LUA_MODIFIER_MOTION_BOTH )
+
+--------------------------------------------------------------------------------
+-- Passive modifier
+function mirana_leap_lua:GetIntrinsicModifierName()
+	return "modifier_mirana_leap_lua_charges"
+end
 
 --------------------------------------------------------------------------------
 -- Ability Start
