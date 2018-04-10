@@ -46,17 +46,22 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"threshold_base"		"10 20 30 40"
+				"threshold_base"		"10 15 20 25"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"threshold_stack"		"5 6 7 8"
+				"threshold_stack"		"5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stack_duration"		"7"
+				"threshold_stack_creep"		"1"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stack_duration"		"4 5 6 7"
 			}
 		}
 	}

@@ -41,6 +41,10 @@ function modifier_sandra_undeniable_torture:GetModifierTotal_ConstantBlock( para
 			return 0
 		end
 
+		if self:FlagExist( params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL ) then
+			return
+		end
+
 		local damage = params.damage
 		local block = 0
 
@@ -48,6 +52,8 @@ function modifier_sandra_undeniable_torture:GetModifierTotal_ConstantBlock( para
 		if params.damage>self:GetParent():GetHealth() then
 			damage = self:GetParent():GetHealth()
 			block = params.damage-self:GetParent():GetHealth()+1
+			print("health", self:GetParent():GetHealth(), "damage", params.damage, "block", block)
+			print("health-(damage-block):",self:GetParent():GetHealth()-(params.damage-block))
 		end
 
 		params.attacker:Heal( damage, self:GetAbility() )
@@ -65,6 +71,18 @@ function modifier_sandra_undeniable_torture:CheckState()
 	}
 
 	return state
+end
+
+--------------------------------------------------------------------------------
+-- Helper: Flag operations
+function modifier_sandra_undeniable_torture:FlagExist(a,b)--Bitwise Exist
+	local p,c,d=1,0,b
+	while a>0 and b>0 do
+		local ra,rb=a%2,b%2
+		if ra+rb>1 then c=c+p end
+		a,b,p=(a-ra)/2,(b-rb)/2,p*2
+	end
+	return c==d
 end
 
 --------------------------------------------------------------------------------

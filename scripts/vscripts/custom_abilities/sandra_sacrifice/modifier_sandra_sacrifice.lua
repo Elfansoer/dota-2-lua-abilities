@@ -19,8 +19,16 @@ end
 function modifier_sandra_sacrifice:OnCreated( kv )
 	if IsServer() then
 		-- references
-		self.radius = self:GetAbility():GetSpecialValueFor( "leash_radius" ) -- special value
 		local master = self:GetAbility():RetATValue( kv.master )
+		self.leash_radius = self:GetAbility():GetSpecialValueFor("leash_radius")
+		self.buffer_length = self:GetAbility():GetSpecialValueFor("leash_buffer")
+		self.ms_bonus = self:GetAbility():GetSpecialValueFor("ms_bonus")
+
+		-- load data
+		local interval = 0.1
+		self.normal_ms_limit = 550
+		self.dragged = false
+		self.buffer_radius = self.leash_radius - self.buffer_length
 
 		-- create master's modifier
 		local modifier = self:GetAbility():AddATValue( self )
@@ -35,8 +43,7 @@ function modifier_sandra_sacrifice:OnCreated( kv )
 		)
 
 		-- Start interval
-		-- self:StartIntervalThink( self.interval )
-		-- self:OnIntervalThink()
+		self:StartIntervalThink( interval )
 
 		-- effects
 		self:PlayEffects()
@@ -55,9 +62,75 @@ function modifier_sandra_sacrifice:OnDestroy( kv )
 end
 
 --------------------------------------------------------------------------------
+-- Modifier Effects
+function modifier_sandra_sacrifice:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+	}
+
+	return funcs
+end
+
+function modifier_sandra_sacrifice:GetModifierMoveSpeedBonus_Constant()
+	return self.ms_bonus
+end
+
+function modifier_sandra_sacrifice:GetModifierMoveSpeed_Limit()
+	if IsServer() then
+		-- zero is no limit
+		return self.limit
+	end
+end
+
+--------------------------------------------------------------------------------
 -- Interval Effects
--- function modifier_sandra_sacrifice:OnIntervalThink()
--- end
+function modifier_sandra_sacrifice:OnIntervalThink()
+	if IsServer() then
+		-- if dragged, just pass
+		if not self.dragged then
+			-- get info
+			local vectorToMaster = self.master:GetParent():GetOrigin() - self:GetParent():GetOrigin()
+
+			-- calculate facing angle
+			local angleToMaster = VectorToAngles(vectorToMaster).y
+			local slaveFacingAngle = self:GetParent():GetAnglesAsVector().y
+			local angleDifference = math.abs(slaveFacingAngle - angleToMaster)
+			if angleDifference > 180 then
+				angleDifference = math.abs(angleDifference - 360)
+			end
+
+			-- calculate distance
+			local distanceToMaster = vectorToMaster:Length2D()
+
+			-- check if it is within boundaries
+			if distanceToMaster < self.buffer_radius then
+				-- within limit
+				self.limit = self.normal_ms_limit
+			elseif distanceToMaster < self.leash_radius + 0.1*self.buffer_length then
+				-- about to be slowed. true limit is maximum + 0.1 * buffer length
+				if angleDifference > 90 then
+					self.limit = (1-(distanceToMaster-self.buffer_radius)/self.buffer_length) * self.normal_ms_limit
+					if self.limit < 1 then
+						self.limit = 0.01
+					end
+				else
+					self.limit = self.normal_ms_limit
+				end
+			else
+				-- outside, dragged
+				local modifier = self:GetAbility():AddATValue( self )
+				self:GetParent():AddNewModifier(
+					self:GetParent(), -- player source
+					self:GetAbility(), -- ability source
+					"modifier_sandra_sacrifice_pull", -- modifier name
+					{ modifier = modifier } -- kv
+				)
+				self.dragged = true
+			end
+		end
+	end
+end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations

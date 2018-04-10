@@ -1,6 +1,7 @@
 sandra_sacrifice = class({})
 LinkLuaModifier( "modifier_sandra_sacrifice", "custom_abilities/sandra_sacrifice/modifier_sandra_sacrifice", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_sandra_sacrifice_master", "custom_abilities/sandra_sacrifice/modifier_sandra_sacrifice_master", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_sandra_sacrifice_pull", "custom_abilities/sandra_sacrifice/modifier_sandra_sacrifice_pull", LUA_MODIFIER_MOTION_HORIZONTAL )
 
 --------------------------------------------------------------------------------
 -- Ability Cast Filter

@@ -21,6 +21,7 @@ function modifier_sandra_will_to_live:OnCreated( kv )
 	self.delay = self:GetAbility():GetSpecialValueFor( "damage_delay" ) -- special value
 	self.threshold_base = self:GetAbility():GetSpecialValueFor( "threshold_base" ) -- special value
 	self.threshold_stack = self:GetAbility():GetSpecialValueFor( "threshold_stack" ) -- special value
+	self.threshold_stack_creep = self:GetAbility():GetSpecialValueFor( "threshold_stack_creep" ) -- special value
 	self.stack_duration = self:GetAbility():GetSpecialValueFor( "stack_duration" ) -- special value
 
 	self.bonus_stack = 0
@@ -35,6 +36,7 @@ function modifier_sandra_will_to_live:OnRefresh( kv )
 	self.delay = self:GetAbility():GetSpecialValueFor( "damage_delay" ) -- special value
 	self.threshold_base = self:GetAbility():GetSpecialValueFor( "threshold_base" ) -- special value
 	self.threshold_stack = self:GetAbility():GetSpecialValueFor( "threshold_stack" ) -- special value
+	self.threshold_stack_creep = self:GetAbility():GetSpecialValueFor( "threshold_stack_creep" ) -- special value
 	self.stack_duration = self:GetAbility():GetSpecialValueFor( "stack_duration" ) -- special value
 
 	if IsServer() then
@@ -90,7 +92,11 @@ function modifier_sandra_will_to_live:OnTakeDamage( params )
 
 		-- add threshold stack
 		if params.attacker:GetTeamNumber()~=self:GetParent():GetTeamNumber() then
-			self:AddStack( self.threshold_stack )
+			local stack = self.threshold_stack
+			if params.attacker:IsCreep() then
+				stack = self.threshold_stack_creep
+			end
+			self:AddStack( stack )
 		end
 	end
 end
