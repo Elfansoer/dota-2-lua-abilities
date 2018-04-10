@@ -4933,5 +4933,6 @@
 #base "../vscripts/custom_abilities/bakedanuki_futatsuiwas_curse/bakedanuki_futatsuiwas_curse_base.txt"
 
 #base "../vscripts/custom_abilities/sandra_undeniable_torture/sandra_undeniable_torture.txt"
-#base "../vscripts/custom_abilities/sandra_heal_without_heal/sandra_heal_without_heal.txt"
+#base "../vscripts/custom_abilities/sandra_ironical_healing/sandra_ironical_healing.txt"
 #base "../vscripts/custom_abilities/sandra_will_to_live/sandra_will_to_live.txt"
+#base "../vscripts/custom_abilities/sandra_sacrifice/sandra_sacrifice.txt"

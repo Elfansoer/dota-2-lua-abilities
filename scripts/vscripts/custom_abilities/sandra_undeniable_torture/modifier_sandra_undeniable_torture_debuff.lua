@@ -19,6 +19,7 @@ end
 function modifier_sandra_undeniable_torture_debuff:OnCreated( kv )
 	-- references
 	self.lifeshare = self:GetAbility():GetSpecialValueFor( "lifeshare" ) -- special value
+	self.lifeshare_exception = "sandra_sacrifice"
 end
 
 function modifier_sandra_undeniable_torture_debuff:OnRefresh( kv )
@@ -41,8 +42,14 @@ function modifier_sandra_undeniable_torture_debuff:DeclareFunctions()
 end
 function modifier_sandra_undeniable_torture_debuff:OnTakeDamage( params )
 	if IsServer() then
-		if params.unit~=self:GetCaster() or self:FlagExist( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
+		if params.unit~=self:GetCaster()  then
 			return
+		end
+
+		if self:FlagExist( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
+			if (not params.inflictor) or params.inflictor:GetAbilityName()~=self.lifeshare_exception then 
+				return
+			end
 		end
 
 		-- set attacker
@@ -61,6 +68,9 @@ function modifier_sandra_undeniable_torture_debuff:OnTakeDamage( params )
 			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION, --Optional.
 		}
 		ApplyDamage(damageTable)
+
+		-- effects
+		self:PlayEffects()
 	end
 end
 
@@ -84,4 +94,30 @@ end
 
 function modifier_sandra_undeniable_torture_debuff:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
+end
+
+function modifier_sandra_undeniable_torture_debuff:PlayEffects()
+	local particle_cast = "particles/units/heroes/hero_spectre/spectre_dispersion.vpcf"
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		0,
+		self:GetCaster(),
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self:GetCaster():GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		1,
+		self:GetParent(),
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self:GetParent():GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 end
