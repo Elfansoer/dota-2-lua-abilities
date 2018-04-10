@@ -4934,3 +4934,4 @@
 
 #base "../vscripts/custom_abilities/sandra_undeniable_torture/sandra_undeniable_torture.txt"
 #base "../vscripts/custom_abilities/sandra_heal_without_heal/sandra_heal_without_heal.txt"
+#base "../vscripts/custom_abilities/sandra_will_to_live/sandra_will_to_live.txt"

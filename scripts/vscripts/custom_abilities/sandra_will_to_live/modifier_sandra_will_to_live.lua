@@ -21,6 +21,13 @@ function modifier_sandra_will_to_live:OnCreated( kv )
 	self.delay = self:GetAbility():GetSpecialValueFor( "damage_delay" ) -- special value
 	self.threshold_base = self:GetAbility():GetSpecialValueFor( "threshold_base" ) -- special value
 	self.threshold_stack = self:GetAbility():GetSpecialValueFor( "threshold_stack" ) -- special value
+	self.stack_duration = self:GetAbility():GetSpecialValueFor( "stack_duration" ) -- special value
+
+	self.bonus_stack = 0
+
+	if IsServer() then
+		self:SetStackCount( self.threshold_base )
+	end
 end
 
 function modifier_sandra_will_to_live:OnRefresh( kv )
@@ -28,6 +35,11 @@ function modifier_sandra_will_to_live:OnRefresh( kv )
 	self.delay = self:GetAbility():GetSpecialValueFor( "damage_delay" ) -- special value
 	self.threshold_base = self:GetAbility():GetSpecialValueFor( "threshold_base" ) -- special value
 	self.threshold_stack = self:GetAbility():GetSpecialValueFor( "threshold_stack" ) -- special value
+	self.stack_duration = self:GetAbility():GetSpecialValueFor( "stack_duration" ) -- special value
+
+	if IsServer() then
+		self:SetStackCount( self.threshold_base + self.bonus_stack )
+	end
 end
 
 function modifier_sandra_will_to_live:OnDestroy( kv )
@@ -39,72 +51,73 @@ end
 function modifier_sandra_will_to_live:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_PROPERTY_MIN_HEALTH,
 	}
 
 	return funcs
 end
 
+function modifier_sandra_will_to_live:GetMinHealth()
+	if IsServer() then
+		self.currentHealth = self:GetParent():GetHealth()
+	end
+end
 function modifier_sandra_will_to_live:OnTakeDamage( params )
 	if IsServer() then
-		if params.unit~=self:GetParent() or params.ability==self:GetAbility() then
+		if params.unit~=self:GetParent() or params.inflictor==self:GetAbility() then
 			return
 		end
 
-		-- heal
-		local heal = params.damage*((100-self.delay)/100)
-		ModifyHealth( iDesiredHealthValue, hAbility, bLethal, iAdditionalFlags )
+		-- cover up damage
+		self:GetParent():SetHealth( self.currentHealth )
+
+		-- add delay damage if bigger than base threshold
+		if params.damage > self.threshold_base then
+			local attacker = self:GetAbility():AddATValue( params.attacker )
+			local modifier = self:GetAbility():AddATValue( self )
+			self:GetParent():AddNewModifier(
+				self:GetParent(), -- player source
+				self:GetAbility(), -- ability source
+				"modifier_sandra_will_to_live_delay", -- modifier name
+				{ 
+					damage = params.damage,
+					source = attacker,
+					flags = params.damage_flags,
+					modifier = modifier,
+				} -- kv
+			)
+		end
+
+		-- add threshold stack
+		if params.attacker:GetTeamNumber()~=self:GetParent():GetTeamNumber() then
+			self:AddStack( self.threshold_stack )
+		end
 	end
 end
 
 --------------------------------------------------------------------------------
--- Interval Effects
-function modifier_sandra_will_to_live:OnIntervalThink()
-end
+-- Helper
+function modifier_sandra_will_to_live:AddStack( value )
+	-- increment stack
+	self.bonus_stack = self.bonus_stack + value
+	self:SetStackCount( self.threshold_base + self.bonus_stack )
 
---------------------------------------------------------------------------------
--- Graphics & Animations
-function modifier_sandra_will_to_live:GetEffectName()
-	return "particles/string/here.vpcf"
-end
-
-function modifier_sandra_will_to_live:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function modifier_sandra_will_to_live:PlayEffects()
-	-- Get Resources
-	local particle_cast = "string"
-	local sound_cast = "string"
-
-	-- Get Data
-
-	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
+	-- add stack modifier
+	local modifier = self:GetAbility():AddATValue( self )
+	self:GetParent():AddNewModifier(
+		self:GetParent(), -- player source
+		self:GetAbility(), -- ability source
+		"modifier_sandra_will_to_live_threshold", -- modifier name
+		{ 
+			duration = self.stack_duration,
+			modifier = modifier,
+			stack = value,
+		} -- kv
 	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
+end
 
-	-- buff particle
-	self:AddParticle(
-		nFXIndex,
-		bDestroyImmediately,
-		bStatusEffect,
-		iPriority,
-		bHeroEffect,
-		bOverheadEffect
-	)
-
-	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
+function modifier_sandra_will_to_live:RemoveStack( value )
+	-- decrement stack
+	self.bonus_stack = self.bonus_stack - value
+	self:SetStackCount( self.threshold_base + self.bonus_stack )
 end

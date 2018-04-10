@@ -87,7 +87,7 @@
 		"override_hero"					"npc_dota_hero_phantom_assassin"	// Hero to override
 		"Ability1"				"sandra_undeniable_torture"						// Ability 1
 		"Ability2"				"sandra_heal_without_heal"						// Ability 2
-		"Ability3"				"ursa_fury_swipes_lua"						// Ability 3
+		"Ability3"				"sandra_will_to_live"						// Ability 3
 		"Ability6"				"ursa_enrage_lua"							// Ability 6
 	}
 	//=================================================================================================================
