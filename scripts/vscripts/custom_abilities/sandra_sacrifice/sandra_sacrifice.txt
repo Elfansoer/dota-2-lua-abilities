@@ -34,13 +34,13 @@
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
+		"AbilityCastRange"				"736"
 		"AbilityCastPoint"				"0.3"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"100 80 60"
-		"AbilityManaCost"				"200"
+		"AbilityCooldown"				"98 82 66"
+		"AbilityManaCost"				"186"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"leash_radius"			"700 850 1000"
+				"leash_radius"			"736 872 1008"
 			}
 			"02"
 			{
@@ -62,12 +62,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"leash_duration"		"30"
+				"leash_duration"		"42"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ms_bonus"				"50 100 150"
+				"ms_bonus"				"41 94 147"
 			}
 		}
 	}
