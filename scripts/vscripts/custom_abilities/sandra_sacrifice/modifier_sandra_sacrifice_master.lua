@@ -19,6 +19,7 @@ end
 function modifier_sandra_sacrifice_master:OnCreated( kv )
 	if IsServer() then
 		self.slave = self:GetAbility():RetATValue( kv.modifier )
+		self:PlayEffects()
 	end
 end
 
@@ -80,7 +81,7 @@ function modifier_sandra_sacrifice_master:OnTakeDamage( params )
 		ApplyDamage(damageTable)
 
 		-- effects
-		self:PlayEffects()
+		self:PlayEffects1()
 	end
 end
 
@@ -94,7 +95,8 @@ function modifier_sandra_sacrifice_master:OnAbilityExecuted( params )
 		params.unit:SetCursorCastTarget( self.slave:GetParent() )
 
 		-- effects
-		self:PlayEffects()
+		self:PlayEffects1()
+		self:PlayEffects2()
 	end
 end
 
@@ -127,8 +129,30 @@ function modifier_sandra_sacrifice_master:FlagMin(a,b)--Bitwise and
 end
 
 function modifier_sandra_sacrifice_master:PlayEffects()
+	local particle_cast = "particles/items3_fx/lotus_orb_rings.vpcf"
+
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		0,
+		self:GetParent(),
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self:GetParent():GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	self:AddParticle(
+		effect_cast,
+		false,
+		false,
+		-1,
+		false,
+		false
+	)
+end
+
+function modifier_sandra_sacrifice_master:PlayEffects1()
 	-- Get Resources
-	-- local particle_cast = "particles/units/heroes/hero_juggernaut/juggernaut_blade_fury_tgt_rope.vpcf"
 	local particle_cast = "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_rope.vpcf"
 
 	-- Create Particle
@@ -151,5 +175,20 @@ function modifier_sandra_sacrifice_master:PlayEffects()
 		self.slave:GetParent():GetOrigin(), -- unknown
 		true -- unknown, true
 	)
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+end
+
+function modifier_sandra_sacrifice_master:PlayEffects2()
+	-- Get Resources
+	local particle_cast = "particles/items4_fx/combo_breaker_spell_burst.vpcf"
+
+	-- Get data
+	local effect_constant = 100
+	local direction = (self.slave:GetParent():GetOrigin()-self:GetParent():GetOrigin()):Normalized() * effect_constant
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, self:GetParent() )
+	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() + Vector( 0, 0, 90 ) - direction*1 )
+	ParticleManager:SetParticleControl( effect_cast, 1, self:GetParent():GetOrigin() + Vector( 0, 0, 90 ) + direction*0 )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 end

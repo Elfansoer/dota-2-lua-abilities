@@ -70,6 +70,11 @@ function modifier_sandra_will_to_live:OnTakeDamage( params )
 			return
 		end
 
+		-- cancel if break
+		if self:GetParent():PassivesDisabled() and (not self:GetParent():HasScepter()) then
+			return
+		end
+
 		-- cover up damage
 		self:GetParent():SetHealth( self.currentHealth )
 

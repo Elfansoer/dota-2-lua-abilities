@@ -45,9 +45,7 @@ function modifier_sandra_will_to_live_delay:OnCreated( kv )
 		self:StartIntervalThink( self.interval )
 
 		-- effects
-		if self.damage_left>self:GetParent():GetHealth() then
-			self:PlayEffects()
-		end
+		self:PlayEffects( true )
 	end
 end
 
@@ -66,14 +64,9 @@ function modifier_sandra_will_to_live_delay:OnIntervalThink()
 	local damage = math.min( self.damage_tick, self.damage_left )
 
 	-- check threshold
-	local not_die = false
 	local flags = self.flags
 	if damage<=self.modifier:GetStackCount() then
 		flags = self:FlagAdd( flags, DOTA_DAMAGE_FLAG_NON_LETHAL )
-
-		if damage>=self:GetParent():GetHealth() then
-			not_die = true
-		end
 	end
 
 	-- damage
@@ -88,9 +81,7 @@ function modifier_sandra_will_to_live_delay:OnIntervalThink()
 	ApplyDamage(damageTable)
 
 	-- effects
-	if not_die then
-		self:PlayEffects()
-	end
+	self:PlayEffects( false )
 
 	-- diminish
 	self.damage_left = self.damage_left - self.damage_tick
@@ -127,21 +118,14 @@ function modifier_sandra_will_to_live_delay:FlagMin(a,b)--Bitwise and
 	end
 end
 
-function modifier_sandra_will_to_live_delay:PlayEffects()
-	local particle_cast = "particles/units/heroes/hero_dazzle/dazzle_shallow_grave_glyph_flare.vpcf"
+--------------------------------------------------------------------------------
+-- Play Effects
+function modifier_sandra_will_to_live_delay:PlayEffects( bStart )
+	local particle_cast = "particles/items2_fx/soul_ring_blood.vpcf"
+	if bStart then
+		particle_cast = "particles/units/heroes/hero_dazzle/dazzle_shallow_grave_glyph_flare.vpcf"
+	end
 
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
-	-- ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	-- ParticleManager:SetParticleControlEnt(
-	-- 	effect_cast,
-	-- 	iControlPoint,
-	-- 	hTarget,
-	-- 	PATTACH_NAME,
-	-- 	"attach_name",
-	-- 	vOrigin, -- unknown
-	-- 	bool -- unknown, true
-	-- )
-	-- ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	-- SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 end

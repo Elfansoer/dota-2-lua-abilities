@@ -58,6 +58,7 @@ function sandra_ironical_healing:PlayEffects()
 		caster:GetOrigin(), -- unknown
 		true -- unknown, true
 	)
+	ParticleManager:SetParticleControl( effect_cast, 1, caster:GetOrigin() )
 	ParticleManager:SetParticleControlForward( effect_cast, 1, -caster:GetForwardVector() )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 

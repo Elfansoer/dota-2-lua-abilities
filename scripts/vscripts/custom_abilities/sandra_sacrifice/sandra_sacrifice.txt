@@ -19,7 +19,8 @@
 //			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
 			"particle"	"particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf"
 			"particle"	"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_rope.vpcf"
-			"particle"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury_tgt_rope.vpcf"
+			"particle"	"particles/items3_fx/lotus_orb_rings.vpcf"
+			"particle"	"particles/items4_fx/combo_breaker_spell_burst.vpcf"
 		}
 		
 		// Ability General

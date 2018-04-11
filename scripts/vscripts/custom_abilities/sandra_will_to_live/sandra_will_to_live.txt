@@ -14,11 +14,14 @@
 		"AbilityTextureName"			"sandra_will_to_live"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-//		"precache"
-//		{
+		"HasScepterUpgrade"				"1"
+
+		"precache"
+		{
 //			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-//		}
+			"particle"	"particles/units/heroes/hero_dazzle/dazzle_shallow_grave_glyph_flare.vpcf"
+			"particle"	"particles/items2_fx/soul_ring_blood.vpcf"
+		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
