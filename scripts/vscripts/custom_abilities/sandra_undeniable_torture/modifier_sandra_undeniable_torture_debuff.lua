@@ -46,6 +46,10 @@ function modifier_sandra_undeniable_torture_debuff:OnTakeDamage( params )
 			return
 		end
 
+		if params.inflictor==self:GetAbility() then
+			return
+		end
+
 		if self:FlagExist( params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION ) then
 			if (not params.inflictor) or params.inflictor:GetAbilityName()~=self.lifeshare_exception then 
 				return
@@ -62,9 +66,9 @@ function modifier_sandra_undeniable_torture_debuff:OnTakeDamage( params )
 		local damageTable = {
 			victim = self:GetParent(),
 			attacker = source,
-			damage = params.damage,
+			damage = params.original_damage * (self.lifeshare/100),
 			damage_type = params.damage_type,
-			ability = self, --Optional.
+			ability = self:GetAbility(), --Optional.
 			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION, --Optional.
 		}
 		ApplyDamage(damageTable)
