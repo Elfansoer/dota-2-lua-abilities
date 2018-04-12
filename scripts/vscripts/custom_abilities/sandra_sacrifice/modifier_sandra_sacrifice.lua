@@ -1,4 +1,5 @@
 modifier_sandra_sacrifice = class({})
+local tempTable = require("util/tempTable")
 
 --------------------------------------------------------------------------------
 -- Classifications
@@ -19,7 +20,7 @@ end
 function modifier_sandra_sacrifice:OnCreated( kv )
 	if IsServer() then
 		-- references
-		local master = self:GetAbility():RetATValue( kv.master )
+		local master = tempTable:RetATValue( kv.master )
 		self.leash_radius = self:GetAbility():GetSpecialValueFor("leash_radius")
 		self.buffer_length = self:GetAbility():GetSpecialValueFor("leash_buffer")
 		self.ms_bonus = self:GetAbility():GetSpecialValueFor("ms_bonus")
@@ -31,7 +32,7 @@ function modifier_sandra_sacrifice:OnCreated( kv )
 		self.buffer_radius = self.leash_radius - self.buffer_length
 
 		-- create master's modifier
-		local modifier = self:GetAbility():AddATValue( self )
+		local modifier = tempTable:AddATValue( self )
 		self.master = master:AddNewModifier(
 			self:GetParent(), -- player source
 			self:GetAbility(), -- ability source
@@ -119,7 +120,7 @@ function modifier_sandra_sacrifice:OnIntervalThink()
 				end
 			else
 				-- outside, dragged
-				local modifier = self:GetAbility():AddATValue( self )
+				local modifier = tempTable:AddATValue( self )
 				self:GetParent():AddNewModifier(
 					self:GetParent(), -- player source
 					self:GetAbility(), -- ability source

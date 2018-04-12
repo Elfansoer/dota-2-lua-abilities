@@ -2,6 +2,7 @@ sandra_sacrifice = class({})
 LinkLuaModifier( "modifier_sandra_sacrifice", "custom_abilities/sandra_sacrifice/modifier_sandra_sacrifice", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_sandra_sacrifice_master", "custom_abilities/sandra_sacrifice/modifier_sandra_sacrifice_master", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_sandra_sacrifice_pull", "custom_abilities/sandra_sacrifice/modifier_sandra_sacrifice_pull", LUA_MODIFIER_MOTION_HORIZONTAL )
+local tempTable = require("util/tempTable")
 
 --------------------------------------------------------------------------------
 -- Ability Cast Filter
@@ -49,7 +50,7 @@ function sandra_sacrifice:OnSpellStart()
 	end
 
 	-- add slave modifier
-	local master = self:AddATValue( target )
+	local master = tempTable:AddATValue( target )
 	caster:AddNewModifier(
 		caster, -- player source
 		self, -- ability source
@@ -62,38 +63,6 @@ function sandra_sacrifice:OnSpellStart()
 end
 
 --------------------------------------------------------------------------------
--- Built-in functions
--- Helper: Ability Table (AT)
-function sandra_sacrifice:GetAT()
-	if self.abilityTable==nil then
-		self.abilityTable = {}
-	end
-	return self.abilityTable
-end
-
-function sandra_sacrifice:GetATEmptyKey()
-	local table = self:GetAT()
-	local i = 1
-	while table[i]~=nil do
-		i = i+1
-	end
-	return i
-end
-
-function sandra_sacrifice:AddATValue( value )
-	local table = self:GetAT()
-	local i = self:GetATEmptyKey()
-	table[i] = value
-	return i
-end
-
-function sandra_sacrifice:RetATValue( key )
-	local table = self:GetAT()
-	local ret = table[key]
-	table[key] = nil
-	return ret
-end
-
 -- Helper: Flag operations
 function sandra_sacrifice:FlagExist(a,b)--Bitwise Exist
 	local p,c,d=1,0,b

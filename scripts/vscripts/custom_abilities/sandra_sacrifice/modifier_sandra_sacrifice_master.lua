@@ -1,4 +1,5 @@
 modifier_sandra_sacrifice_master = class({})
+local tempTable = require("util/tempTable")
 
 --------------------------------------------------------------------------------
 -- Classifications
@@ -18,7 +19,7 @@ end
 -- Initializations
 function modifier_sandra_sacrifice_master:OnCreated( kv )
 	if IsServer() then
-		self.slave = self:GetAbility():RetATValue( kv.modifier )
+		self.slave = tempTable:RetATValue( kv.modifier )
 		self:PlayEffects()
 	end
 end

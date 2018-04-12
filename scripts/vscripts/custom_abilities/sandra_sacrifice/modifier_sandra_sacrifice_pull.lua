@@ -1,4 +1,5 @@
 modifier_sandra_sacrifice_pull = class({})
+local tempTable = require("util/tempTable")
 
 --------------------------------------------------------------------------------
 -- Classifications
@@ -26,7 +27,7 @@ end
 function modifier_sandra_sacrifice_pull:OnCreated( kv )
 	if IsServer() then
 		-- get reference
-		self.modifier = self:GetAbility():RetATValue( kv.modifier )
+		self.modifier = tempTable:RetATValue( kv.modifier )
 		self.master = self.modifier.master:GetParent()
 		self.minimum_radius = self.modifier.buffer_radius
 
