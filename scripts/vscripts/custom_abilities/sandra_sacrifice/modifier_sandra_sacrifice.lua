@@ -141,11 +141,13 @@ function modifier_sandra_sacrifice:PlayEffects()
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_POINT_FOLLOW, self:GetParent() )
 
-	local attach = self.master:GetParent():ScriptLookupAttachment( "attach_attack2" )
-	if attach~=0 then
+	local attach = ""
+	if self.master:GetParent():ScriptLookupAttachment( "attach_attack2" )~=0 then
 		attach = "attach_attack2"
-	else
+	elseif self.master:GetParent():ScriptLookupAttachment( "attach_attack1" )~=0 then
 		attach = "attach_attack1"
+	else
+		attach = "attach_hitloc"
 	end
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
