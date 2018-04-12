@@ -1,5 +1,5 @@
 modifier_sandra_will_to_live_delay = class({})
-
+local tempTable = require("util/tempTable")
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_sandra_will_to_live_delay:IsHidden()
@@ -23,7 +23,7 @@ function modifier_sandra_will_to_live_delay:OnCreated( kv )
 
 	if IsServer() then
 		-- attacker
-		self.attacker = self:GetAbility():RetATValue( kv.source )
+		self.attacker = tempTable:RetATValue( kv.source )
 
 		-- flags
 		self.flags = kv.flags
@@ -38,10 +38,9 @@ function modifier_sandra_will_to_live_delay:OnCreated( kv )
 		self.damage_tick = kv.damage * (self.delay/100)
 
 		-- modifier
-		self.modifier = self:GetAbility():RetATValue( kv.modifier )
+		self.modifier = tempTable:RetATValue( kv.modifier )
 
 		-- Start interval
-		-- self:OnIntervalThink()
 		self:StartIntervalThink( self.interval )
 	end
 end

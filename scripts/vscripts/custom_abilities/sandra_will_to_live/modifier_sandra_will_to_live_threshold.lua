@@ -1,5 +1,5 @@
 modifier_sandra_will_to_live_threshold = class({})
-
+local tempTable = require("util/tempTable")
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_sandra_will_to_live_threshold:IsHidden()
@@ -19,7 +19,7 @@ end
 function modifier_sandra_will_to_live_threshold:OnCreated( kv )
 	if IsServer() then
 		-- references
-		self.modifier = self:GetAbility():RetATValue( kv. modifier )
+		self.modifier = tempTable:RetATValue( kv.modifier )
 		self.stack = kv.stack
 	end
 end

@@ -1,5 +1,5 @@
 modifier_sandra_will_to_live = class({})
-
+local tempTable = require("util/tempTable")
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_sandra_will_to_live:IsHidden()
@@ -80,8 +80,8 @@ function modifier_sandra_will_to_live:OnTakeDamage( params )
 
 		-- add delay damage if bigger than base threshold
 		if params.damage > self.threshold_base then
-			local attacker = self:GetAbility():AddATValue( params.attacker )
-			local modifier = self:GetAbility():AddATValue( self )
+			local attacker = tempTable:AddATValue( params.attacker )
+			local modifier = tempTable:AddATValue( self )
 			self:GetParent():AddNewModifier(
 				self:GetParent(), -- player source
 				self:GetAbility(), -- ability source
@@ -117,7 +117,7 @@ function modifier_sandra_will_to_live:AddStack( value )
 	self:SetStackCount( self.threshold_base + self.bonus_stack )
 
 	-- add stack modifier
-	local modifier = self:GetAbility():AddATValue( self )
+	local modifier = tempTable:AddATValue( self )
 	self:GetParent():AddNewModifier(
 		self:GetParent(), -- player source
 		self:GetAbility(), -- ability source
