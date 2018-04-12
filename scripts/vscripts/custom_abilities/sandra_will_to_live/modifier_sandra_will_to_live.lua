@@ -103,6 +103,9 @@ function modifier_sandra_will_to_live:OnTakeDamage( params )
 			end
 			self:AddStack( stack )
 		end
+
+		-- effects
+		self:PlayEffects( params.attacker )
 	end
 end
 
@@ -131,4 +134,21 @@ function modifier_sandra_will_to_live:RemoveStack( value )
 	-- decrement stack
 	self.bonus_stack = self.bonus_stack - value
 	self:SetStackCount( self.threshold_base + self.bonus_stack )
+end
+
+--------------------------------------------------------------------------------
+-- Play Effects
+function modifier_sandra_will_to_live:PlayEffects( attacker )
+	-- references
+	local particle_cast = "particles/items_fx/backdoor_protection_tube.vpcf"
+
+	-- load data
+	local direction = (self:GetParent():GetOrigin()-attacker:GetOrigin()):Normalized()
+	local size = 150
+
+	-- effect
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector( size, 0, 0 ) )
+	ParticleManager:SetParticleControlForward( effect_cast, 2, direction )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 end

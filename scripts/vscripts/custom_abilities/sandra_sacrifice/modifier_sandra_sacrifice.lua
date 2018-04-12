@@ -139,13 +139,20 @@ function modifier_sandra_sacrifice:PlayEffects()
 	local particle_cast = "particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf"
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_POINT_FOLLOW, self:GetParent() )
+
+	local attach = self.master:GetParent():ScriptLookupAttachment( "attach_attack2" )
+	if attach~=0 then
+		attach = "attach_attack2"
+	else
+		attach = "attach_attack1"
+	end
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		0,
 		self.master:GetParent(),
 		PATTACH_POINT_FOLLOW,
-		"attach_attack2",
+		attach,
 		self.master:GetParent():GetOrigin(), -- unknown
 		true -- unknown, true
 	)

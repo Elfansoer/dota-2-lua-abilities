@@ -154,6 +154,7 @@ end
 function modifier_sandra_sacrifice_master:PlayEffects1()
 	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_rope.vpcf"
+	local sound_cast = "DOTA_Item.BladeMail.Damage"
 
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
@@ -176,11 +177,15 @@ function modifier_sandra_sacrifice_master:PlayEffects1()
 		true -- unknown, true
 	)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	-- sound
+	EmitSoundOnClient( sound_cast, self.slave:GetParent():GetPlayerOwner() )
 end
 
 function modifier_sandra_sacrifice_master:PlayEffects2()
 	-- Get Resources
 	local particle_cast = "particles/items4_fx/combo_breaker_spell_burst.vpcf"
+	local sound_cast = "Item.LotusOrb.Target"
 
 	-- Get data
 	local effect_constant = 100
@@ -191,4 +196,6 @@ function modifier_sandra_sacrifice_master:PlayEffects2()
 	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() + Vector( 0, 0, 90 ) - direction*1 )
 	ParticleManager:SetParticleControl( effect_cast, 1, self:GetParent():GetOrigin() + Vector( 0, 0, 90 ) + direction*0 )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	EmitSoundOn( sound_cast, self:GetParent() )
 end

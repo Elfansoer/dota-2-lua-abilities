@@ -43,9 +43,6 @@ function modifier_sandra_will_to_live_delay:OnCreated( kv )
 		-- Start interval
 		-- self:OnIntervalThink()
 		self:StartIntervalThink( self.interval )
-
-		-- effects
-		self:PlayEffects( true )
 	end
 end
 
@@ -64,9 +61,14 @@ function modifier_sandra_will_to_live_delay:OnIntervalThink()
 	local damage = math.min( self.damage_tick, self.damage_left )
 
 	-- check threshold
+	local not_die = false
 	local flags = self.flags
 	if damage<=self.modifier:GetStackCount() then
 		flags = self:FlagAdd( flags, DOTA_DAMAGE_FLAG_NON_LETHAL )
+
+		if damage>=self:GetParent():GetHealth() then
+			not_die = true
+		end
 	end
 
 	-- damage
@@ -82,6 +84,9 @@ function modifier_sandra_will_to_live_delay:OnIntervalThink()
 
 	-- effects
 	self:PlayEffects( false )
+	if not_die then
+		self:PlayEffects( true )
+	end
 
 	-- diminish
 	self.damage_left = self.damage_left - self.damage_tick
@@ -120,12 +125,20 @@ end
 
 --------------------------------------------------------------------------------
 -- Play Effects
-function modifier_sandra_will_to_live_delay:PlayEffects( bStart )
-	local particle_cast = "particles/items2_fx/soul_ring_blood.vpcf"
-	if bStart then
+function modifier_sandra_will_to_live_delay:PlayEffects( bSurvive )
+	local particle_cast = ""
+	local sound_cast = "DOTA_Item.Maim"
+
+	local effect_cast = nil
+	if bSurvive then
 		particle_cast = "particles/units/heroes/hero_dazzle/dazzle_shallow_grave_glyph_flare.vpcf"
+		effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_CENTER_FOLLOW, self:GetParent() )
+	else
+		particle_cast = "particles/items2_fx/soul_ring_blood.vpcf"
+		effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	end
 
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	EmitSoundOn( sound_cast, self:GetParent() )
 end
