@@ -19,7 +19,8 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+			"particle"	"particles/units/heroes/hero_tinker/tinker_machine.vpcf"
+			"particle"	"particles/units/heroes/hero_tinker/tinker_motm.vpcf"
 		}
 		
 		// Ability General

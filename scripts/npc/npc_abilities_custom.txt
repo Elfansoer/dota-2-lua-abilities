@@ -4927,6 +4927,7 @@
 
 #base "../vscripts/lua_abilities/tinker_laser_lua/tinker_laser_lua.txt"
 #base "../vscripts/lua_abilities/tinker_heat_seeking_missile_lua/tinker_heat_seeking_missile_lua.txt"
+#base "../vscripts/lua_abilities/tinker_march_of_the_machines_lua/tinker_march_of_the_machines_lua.txt"
 #base "../vscripts/lua_abilities/tinker_rearm_lua/tinker_rearm_lua.txt"
 
 // Custom abilities

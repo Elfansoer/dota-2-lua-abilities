@@ -149,14 +149,14 @@
 	}
 
 	//=================================================================================================================
-	// HERO: Prophet
+	// HERO: Maiden
 	//=================================================================================================================
 	"npc_dota_hero_maiden"
 	{
 		"override_hero"					"npc_dota_hero_crystal_maiden"	// Hero to override
 		"Ability1"				"tinker_laser_lua"						// Ability 1
 		"Ability2"				"tinker_heat_seeking_missile_lua"						// Ability 2
-		"Ability3"				"bane_brain_sap_lua"						// Ability 3
+		"Ability3"				"tinker_march_of_the_machines_lua"						// Ability 3
 		"Ability6"				"tinker_rearm_lua"							// Ability 6
 	}
 
