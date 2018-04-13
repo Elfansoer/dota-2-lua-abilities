@@ -1,0 +1,98 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Puck: Dream Coil (Lua version)
+	//=================================================================================================================
+	"puck_dream_coil_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/puck_dream_coil_lua/puck_dream_coil_lua"
+		"AbilityTextureName"			"puck_dream_coil_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"HasScepterUpgrade"				"1"
+
+//		"precache"
+//		{
+//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"750"
+		"AbilityCastPoint"				"0.1"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"70 65 60"
+		"AbilityManaCost"				"100 150 200"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"coil_duration"				"6.0 6.0 6.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"coil_break_radius"			"600 600 600"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"0.5"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"coil_stun_duration"		"1.5 2.25 3.0"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"coil_break_damage"			"300 400 500"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"coil_radius"				"375 375 375"
+			}			
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"coil_duration_scepter"		"8"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"coil_break_damage_scepter"	"400 550 700"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"coil_stun_duration_scepter"		"1.5 3 4.5"
+			}
+		}
+	}
+}
