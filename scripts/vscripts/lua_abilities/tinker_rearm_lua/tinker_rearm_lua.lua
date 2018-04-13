@@ -33,7 +33,7 @@ function tinker_rearm_lua:OnChannelFinish( bInterrupted )
 		local item = caster:GetItemInSlot(i)
 		if item then
 			local pass = false
-			if item:GetPurchaser()==caster and not self:CheckItemException( item ) then
+			if item:GetPurchaser()==caster and not self:IsItemException( item ) then
 				pass = true
 			end
 

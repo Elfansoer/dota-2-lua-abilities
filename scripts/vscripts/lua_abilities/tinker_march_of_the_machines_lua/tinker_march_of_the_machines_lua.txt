@@ -1,21 +1,21 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Tinker: Laser (Lua version)
+	// Tinker: March of the Machines (Lua version)
 	//=================================================================================================================
-	"tinker_laser_lua"
+	"tinker_march_of_the_machines_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/tinker_laser_lua/tinker_laser_lua"
-		"AbilityTextureName"			"tinker_laser_lua"
+		"ScriptFile"					"lua_abilities/tinker_march_of_the_machines_lua/tinker_march_of_the_machines_lua"
+		"AbilityTextureName"			"tinker_march_of_the_machines_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
-		
+
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
@@ -25,25 +25,23 @@
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"650"
-		"AbilityCastPoint"				"0.4"
+		"AbilityCastRange"				"300"
+		"AbilityCastPoint"				"0.53"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 18 16 14"
-		"AbilityManaCost"				"110 130 150 170"
+		"AbilityCooldown"				"35.0"
+		"AbilityManaCost"				"145 150 165 190"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"16 24 32 40"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -52,32 +50,42 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"miss_rate"				"100 100 100 100"
+				"radius"				"900"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_hero"			"3 3.5 4 4.5"
+				"var_type"				"FIELD_INTEGER"
+				"collision_radius"		"50 50 50 50"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_creep"		"6.0 6.0 6.0 6.0"
-			}	
-			"04"	
-			{
 				"var_type"				"FIELD_INTEGER"
-				"laser_damage"			"80 160 240 320"
-			}	
+				"splash_radius"			"150 150 150 150"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range_tooltip"	"650"
+				"speed"					"400 400 400 400"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"scepter_bounce_range"	"400"
+				"machines_per_sec"		"24"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"1800"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance_scepter"		"1800"
 			}
 		}
 	}
