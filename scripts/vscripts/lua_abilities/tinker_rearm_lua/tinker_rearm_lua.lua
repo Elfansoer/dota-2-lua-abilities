@@ -20,7 +20,7 @@ function tinker_rearm_lua:OnChannelFinish( bInterrupted )
 	if bInterrupted then return end
 
 	-- find all refreshable abilities
-	for i=1,caster:GetAbilityCount() do
+	for i=0,caster:GetAbilityCount()-1 do
 		local ability = caster:GetAbilityByIndex( i )
 		if ability and ability:GetAbilityType()~=DOTA_ABILITY_TYPE_ATTRIBUTES then
 			ability:RefreshCharges()
@@ -42,40 +42,42 @@ function tinker_rearm_lua:OnChannelFinish( bInterrupted )
 			end
 		end
 	end
+
+	-- effects
+	self:PlayEffects()
 end
 
+--------------------------------------------------------------------------------
+-- Helper
 function tinker_rearm_lua:IsItemException( item )
 	return self.ItemException[item:GetName()]
 end
 tinker_rearm_lua.ItemException = {
-	["npc_dota_item_refresher_orb"] = true
+	["item_aeon_disk"] = true,
+	["item_arcane_boots"] = true,
+	["item_black_king_bar"] = true,
+	["item_hand_of_midas"] = true,
+	["item_helm_of_the_dominator"] = true,
+	["item_meteor_hammer"] = true,
+	["item_necronomicon"] = true,
+	["item_necronomicon_2"] = true,
+	["item_necronomicon_3"] = true,
+	["item_refresher"] = true,
+	["item_refresher_shard"] = true,
+	["item_pipe"] = true,
+	["item_sphere"] = true,
 }
 
 --------------------------------------------------------------------------------
+-- Effects
 function tinker_rearm_lua:PlayEffects()
 	-- Get Resources
-	local particle_cast = "string"
-	local sound_cast = "string"
-
-	-- Get Data
+	local particle_cast = "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+	local sound_cast = "Hero_Tinker.RearmStart"
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
-	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
-	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
+	EmitSoundOn( sound_cast, self:GetCaster() )
 end

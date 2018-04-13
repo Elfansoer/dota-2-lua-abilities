@@ -13,7 +13,7 @@ function tinker_heat_seeking_missile_lua:OnSpellStart()
 	if caster:HasScepter() then
 		targets = self:GetSpecialValueFor("targets_scepter")
 	end
-	local projectile_name = ""
+	local projectile_name = "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
 	local projectile_speed = self:GetSpecialValueFor("speed")
 
 	-- find enemies
@@ -47,10 +47,10 @@ function tinker_heat_seeking_missile_lua:OnSpellStart()
 	end
 
 	-- effects
-	local sound_cast = "Hero_Tinker.MissileAnim"
-	EmitSoundOn( sound_cast, caster )
 	if #enemies<1 then
-		sound_cast = "Hero_Tinker.MissileAnim"
+		self:PlayEffects2()
+	else
+		local sound_cast = "Hero_Tinker.Heat-Seeking_Missile"
 		EmitSoundOn( sound_cast, caster )
 	end
 end
@@ -68,6 +68,34 @@ function tinker_heat_seeking_missile_lua:OnProjectileHit_ExtraData( target, loca
 	ApplyDamage( damage )
 
 	-- effects
+	self:PlayEffects1( target )
+end
+
+--------------------------------------------------------------------------------
+-- Effects
+function tinker_heat_seeking_missile_lua:PlayEffects1( target )
+	local particle_cast = "particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf"
 	local sound_cast = "Hero_Tinker.Heat-Seeking_Missile.Impact"
+
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+
 	EmitSoundOn( sound_cast, target )
+end
+
+function tinker_heat_seeking_missile_lua:PlayEffects2()
+	local particle_cast = "particles/units/heroes/hero_tinker/tinker_missile_dud.vpcf"
+	local sound_cast = "Hero_Tinker.Heat-Seeking_Missile_Dud"
+
+	local attach = "attach_attack1"
+	if self:GetCaster():ScriptLookupAttachment( "attach_attack3" )~=0 then attach = "attach_attack3" end
+	local point = self:GetCaster():GetAttachmentOrigin( self:GetCaster():ScriptLookupAttachment( attach ) )
+
+	-- play particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, self:GetCaster() )
+	ParticleManager:SetParticleControl( effect_cast, 0, point )
+	ParticleManager:SetParticleControlForward( effect_cast, 0, self:GetCaster():GetForwardVector() )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	EmitSoundOn( sound_cast, self:GetCaster() )
 end

@@ -4925,6 +4925,10 @@
 #base "../vscripts/lua_abilities/sniper_take_aim_lua/sniper_take_aim_lua.txt"
 #base "../vscripts/lua_abilities/sniper_assassinate_lua/sniper_assassinate_lua.txt"
 
+#base "../vscripts/lua_abilities/tinker_laser_lua/tinker_laser_lua.txt"
+#base "../vscripts/lua_abilities/tinker_heat_seeking_missile_lua/tinker_heat_seeking_missile_lua.txt"
+#base "../vscripts/lua_abilities/tinker_rearm_lua/tinker_rearm_lua.txt"
+
 // Custom abilities
 #base "../vscripts/custom_abilities/bakedanuki_tricksters_insight/bakedanuki_tricksters_insight_base.txt"
 #base "../vscripts/custom_abilities/bakedanuki_tomfoolery/bakedanuki_tomfoolery_base.txt"
