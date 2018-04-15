@@ -23,3 +23,13 @@ function modifier_generic_silenced_lua:CheckState()
 
 	return state
 end
+
+--------------------------------------------------------------------------------
+-- Graphics and animations
+function modifier_generic_silenced_lua:GetEffectName()
+	return "particles/generic_gameplay/generic_silenced.vpcf"
+end
+
+function modifier_generic_silenced_lua:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end

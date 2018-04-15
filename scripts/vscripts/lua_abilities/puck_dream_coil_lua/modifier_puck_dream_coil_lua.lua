@@ -28,7 +28,7 @@ function modifier_puck_dream_coil_lua:OnCreated( kv )
 	-- references
 	self.center = Vector( kv.coil_x, kv.coil_y, kv.coil_z )
 	if self:GetCaster():HasScepter() then
-		self.break_radius = self:GetAbility():GetSpecialValueFor( "coil_break_radius_scepter" ) -- special value
+		self.break_radius = self:GetAbility():GetSpecialValueFor( "coil_break_radius" ) -- special value
 		self.break_stun = self:GetAbility():GetSpecialValueFor( "coil_stun_duration_scepter" ) -- special value
 		self.break_damage = self:GetAbility():GetSpecialValueFor( "coil_break_damage_scepter" ) -- special value
 		self.scepter = true
@@ -36,6 +36,10 @@ function modifier_puck_dream_coil_lua:OnCreated( kv )
 		self.break_radius = self:GetAbility():GetSpecialValueFor( "coil_break_radius" ) -- special value
 		self.break_stun = self:GetAbility():GetSpecialValueFor( "coil_stun_duration" ) -- special value
 		self.break_damage = self:GetAbility():GetSpecialValueFor( "coil_break_damage" ) -- special value
+	end
+
+	if IsServer() then
+		self:PlayEffects()
 	end
 end
 
@@ -63,32 +67,36 @@ function modifier_puck_dream_coil_lua:OnUnitMoved( params )
 			return
 		end
 
-		for k,v in pairs(params) do
-			print(k,v)
-		end
-
 		-- if too far
-		-- if (params.new_pos-self.center):Length2D()>self.break_radius then
-		-- 	-- damage
-		-- 	local damageTable = {
-		-- 		victim = self:GetParent(),
-		-- 		attacker = self:GetCaster(),
-		-- 		damage = self.break_damage,
-		-- 		damage_type = DAMAGE_TYPE_MAGICAL,
-		-- 		ability = self:GetAbility(), --Optional.
-		-- 	}
-		-- 	ApplyDamage(damageTable)
+		if (params.new_pos-self.center):Length2D()>self.break_radius then
+			-- damage
+			local damageTable = {
+				victim = self:GetParent(),
+				attacker = self:GetCaster(),
+				damage = self.break_damage,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				ability = self:GetAbility(), --Optional.
+			}
+			ApplyDamage(damageTable)
 
-		-- 	-- stun
-		-- 	if self.scepter then
-		-- 		self:GetParent():AddNewModifier(
-		-- 			self:GetCaster(), -- player source
-		-- 			self, -- ability source
-		-- 			"modifier_generic_stunned_lua", -- modifier name
-		-- 			{ duration = self.break_stun } -- kv
-		-- 		)
-		-- 	end
-		-- end
+			-- stun
+			if not self:GetParent():IsMagicImmune() or self.scepter then
+				self:GetParent():AddNewModifier(
+					self:GetCaster(), -- player source
+					self, -- ability source
+					"modifier_generic_stunned_lua", -- modifier name
+					{ duration = self.break_stun } -- kv
+				)
+
+			end
+
+			-- effects
+			local sound_cast = "Hero_Puck.Dream_Coil_Snap"
+			EmitSoundOn( sound_cast, self:GetParent() )
+
+			-- destroy
+			self:Destroy()
+		end
 	end
 end
 
@@ -99,7 +107,7 @@ function modifier_puck_dream_coil_lua:PlayEffects()
 	local particle_cast = "particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf"
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, self:GetParent() )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, self:GetParent() )
 	ParticleManager:SetParticleControl( effect_cast, 0, self.center )
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,

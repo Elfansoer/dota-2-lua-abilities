@@ -18,8 +18,8 @@ end
 -- Initializations
 function modifier_puck_phase_shift_lua:OnCreated( kv )
 	if IsServer() then
-		self:GetParent():AddNoDraw()
 		self:PlayEffects()
+		self:GetParent():AddNoDraw()
 	end
 end
 
@@ -33,16 +33,6 @@ function modifier_puck_phase_shift_lua:OnDestroy( kv )
 		self:StopEffects()
 	end
 end
-
---------------------------------------------------------------------------------
--- Modifier Effects
--- function modifier_puck_phase_shift_lua:DeclareFunctions()
--- 	local funcs = {
--- 		MODIFIER_EVENT_ON_ORDER,
--- 	}
-
--- 	return funcs
--- end
 
 --------------------------------------------------------------------------------
 -- Status Effects
@@ -59,47 +49,23 @@ end
 --------------------------------------------------------------------------------
 -- Graphics & Animations
 -- function modifier_puck_phase_shift_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
+-- 	return "particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 -- end
 
 -- function modifier_puck_phase_shift_lua:GetEffectAttachType()
 -- 	return PATTACH_ABSORIGIN_FOLLOW
 -- end
 
--- function modifier_puck_phase_shift_lua:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "string"
--- 	local sound_cast = "string"
+function modifier_puck_phase_shift_lua:PlayEffects()
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 
--- 	-- Get Data
+	-- Create Particle
+	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, self:GetParent() )
+	ParticleManager:SetParticleControl( self.effect_cast, 0, self:GetParent():GetOrigin() )
+end
 
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
-
--- 	-- buff particle
--- 	self:AddParticle(
--- 		nFXIndex,
--- 		bDestroyImmediately,
--- 		bStatusEffect,
--- 		iPriority,
--- 		bHeroEffect,
--- 		bOverheadEffect
--- 	)
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end
+function modifier_puck_phase_shift_lua:StopEffects()
+	ParticleManager:DestroyParticle( self.effect_cast, false )
+	ParticleManager:ReleaseParticleIndex( self.effect_cast )
+end

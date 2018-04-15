@@ -14,11 +14,13 @@
 		"AbilityTextureName"			"puck_illusory_orb_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-//		"precache"
-//		{
-//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-//		}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
+			"particle"	"particles/units/heroes/hero_puck/puck_illusory_orb.vpcf"
+			"particle"	"particles/units/heroes/hero_puck/puck_illusory_orb_blink_out.vpcf"
+			"particle"	"particles/units/heroes/hero_puck/puck_orb_damage.vpcf"
+		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
@@ -76,17 +78,17 @@
 	//=================================================================================================================
 	// Puck: Ethereal Jaunt (Lua version)
 	//=================================================================================================================
-	"puck_ethereal_jaunt"
+	"puck_ethereal_jaunt_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/puck_ethereal_jaunt/puck_ethereal_jaunt"
-		"AbilityTextureName"			"puck_ethereal_jaunt"
+		"ScriptFile"					"lua_abilities/puck_illusory_orb_lua/puck_illusory_orb_lua"
+		"AbilityTextureName"			"puck_ethereal_jaunt_lua"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"4"
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------

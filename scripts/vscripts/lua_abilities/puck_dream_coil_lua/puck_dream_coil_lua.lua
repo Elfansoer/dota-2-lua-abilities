@@ -1,6 +1,7 @@
 puck_dream_coil_lua = class({})
 LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_puck_dream_coil_lua", "lua_abilities/puck_dream_coil_lua/modifier_puck_dream_coil_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_puck_dream_coil_lua_thinker", "lua_abilities/puck_dream_coil_lua/modifier_puck_dream_coil_lua_thinker", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Custom KV
@@ -24,6 +25,17 @@ function puck_dream_coil_lua:OnSpellStart()
 		duration = self:GetSpecialValueFor("coil_duration_scepter")
 	end
 
+	-- center point
+	local center = CreateModifierThinker(
+		self:GetCaster(),
+		self,
+		"modifier_puck_dream_coil_lua_thinker",
+		{ duration = duration },
+		point,
+		self:GetCaster():GetTeamNumber(),
+		false
+	)
+
 	-- find enemies
 	local enemies = FindUnitsInRadius(
 		caster:GetTeamNumber(),	-- int, your team number
@@ -32,7 +44,7 @@ function puck_dream_coil_lua:OnSpellStart()
 		radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO,	-- int, type filter
-		0,	-- int, flag filter
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	-- int, flag filter
 		0,	-- int, order filter
 		false	-- bool, can grow cache
 	)
@@ -45,7 +57,7 @@ function puck_dream_coil_lua:OnSpellStart()
 			{ duration = stun_duration } -- kv
 		)
 
-		enemy:AddNewModifier(
+		local modifier = enemy:AddNewModifier(
 			caster, -- player source
 			self, -- ability source
 			"modifier_puck_dream_coil_lua", -- modifier name
@@ -57,33 +69,14 @@ function puck_dream_coil_lua:OnSpellStart()
 			} -- kv
 		)
 	end
+
+	-- play effects
+	self:PlayEffects( point, duration )
 end
 
 --------------------------------------------------------------------------------
-function puck_dream_coil_lua:PlayEffects()
+function puck_dream_coil_lua:PlayEffects( point, duration )
 	-- Get Resources
-	local particle_cast = "string"
-	local sound_cast = "string"
-
-	-- Get Data
-
-	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
-	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
-
-	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
+	local sound_cast = "Hero_Puck.Dream_Coil"
+	EmitSoundOnLocationWithCaster( point, sound_cast, self:GetCaster() )
 end

@@ -14,7 +14,7 @@
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/test/test"
+		"ScriptFile"					"lua_abilities/_test/test"
 		"AbilityTextureName"			"test"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
@@ -22,12 +22,15 @@
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
@@ -4910,13 +4913,18 @@
 #base "../vscripts/lua_abilities/dazzle_shadow_wave_lua/dazzle_shadow_wave_lua.txt"
 #base "../vscripts/lua_abilities/dazzle_weave_lua/dazzle_weave_lua.txt"
 
+#base "../vscripts/lua_abilities/drow_ranger_frost_arrows_lua/drow_ranger_frost_arrows_lua.txt"
+
 #base "../vscripts/lua_abilities/juggernaut_blade_fury_lua/juggernaut_blade_fury_lua.txt"
 #base "../vscripts/lua_abilities/juggernaut_blade_dance_lua/juggernaut_blade_dance_lua.txt"
 
 #base "../vscripts/lua_abilities/mirana_sacred_arrow_lua/mirana_sacred_arrow_lua.txt"
 #base "../vscripts/lua_abilities/mirana_leap_lua/mirana_leap_lua.txt"
 
+#base "../vscripts/lua_abilities/puck_illusory_orb_lua/puck_illusory_orb_lua.txt"
 #base "../vscripts/lua_abilities/puck_waning_rift_lua/puck_waning_rift_lua.txt"
+#base "../vscripts/lua_abilities/puck_phase_shift_lua/puck_phase_shift_lua.txt"
+#base "../vscripts/lua_abilities/puck_dream_coil_lua/puck_dream_coil_lua.txt"
 
 #base "../vscripts/lua_abilities/slark_dark_pact_lua/slark_dark_pact_lua.txt"
 #base "../vscripts/lua_abilities/slark_essence_shift_lua/slark_essence_shift_lua.txt"

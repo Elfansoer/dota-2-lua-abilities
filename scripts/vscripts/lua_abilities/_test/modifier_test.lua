@@ -16,65 +16,66 @@ end
 
 --------------------------------------------------------------------------------
 -- Initializations
+function modifier_test:OnCreated( kv )
 
+end
 --------------------------------------------------------------------------------
 -- Modifier Effects
 function modifier_test:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_MODIFIER_ADDED,
-		MODIFIER_EVENT_ON_STATE_CHANGED,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,	
-		MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE,
+		MODIFIER_EVENT_ON_ATTACK,
+		MODIFIER_EVENT_ON_ATTACKED,
+		MODIFIER_EVENT_ON_ATTACK_ALLIED,
+		MODIFIER_EVENT_ON_ATTACK_FAIL,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_ATTACK_RECORD,
+		MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY,
+		MODIFIER_PROPERTY_PRE_ATTACK,
+		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
+
+		MODIFIER_EVENT_ON_ORDER,
 	}
 
 	return funcs
 end
 
-
---------------------------------------------------------------------------------
--- Event functions (follows order, but not necessarily happens directly after another)
-function modifier_test:OnModifierAdded( params )
-	print("MODIFIER_EVENT_ON_MODIFIER_ADDED")
-	if IsServer() then
-		for k,v in pairs(params) do
-			print(k,v)
-		end
-	end
+function modifier_test:GetModifierPreAttack( params )
+	print("PreAttack",params.record,params.attacker,params.unit,params.target)
+end
+function modifier_test:GetModifierProcAttack_Feedback( params )
+	print("ProcAttack",params.record,params.attacker,params.unit,params.target)
 end
 
-function modifier_test:OnStateChanged( params )
-	if IsServer() then
-		if params.unit == self:GetParent() then
-			print("MODIFIER_EVENT_ON_STATE_CHANGED")
-			for k,v in pairs(params) do
-				print(k,v)
-			end
-		end
-	end
+function modifier_test:OnAttack( params )
+	print("OnAttack",params.record,params.attacker:GetUnitName(),params.unit,params.target)
+end
+function modifier_test:OnAttacked( params )
+	print("OnAttacked",params.record,params.attacker:GetUnitName(),params.unit,params.target)
+end
+function modifier_test:OnAttackFail( params )
+	print("OnFail",params.record,params.attacker:GetUnitName(),params.unit,params.target)
+end
+function modifier_test:OnAttackLanded( params )
+	print("OnLanded",params.record,params.attacker:GetUnitName(),params.unit,params.target)
+end
+function modifier_test:OnAttackRecord( params )
+	print("OnRecord",params.record,params.attacker:GetUnitName(),params.unit,params.target)
+end
+function modifier_test:OnAttackRecordDestroy( params )
+	print("OnDestroy",params.record,params.attacker:GetUnitName(),params.unit,params.target)
 end
 
-function modifier_test:GetModifierSpellAmplify_Percentage(params)
-	print("MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE")
-	if IsServer() then
-		for k,v in pairs(params) do
-			print(k,v)
-		end
+function modifier_test:OnOrder( params )
+	print("OnOrder")
+	for k,v in pairs(params) do
+		print("",k,v)
 	end
 end
-function modifier_test:GetModifierHealAmplify_Percentage(params)
-	print("MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE")
-	if IsServer() then
-		for k,v in pairs(params) do
-			print(k,v)
-		end
-	end
-end
-
 --------------------------------------------------------------------------------
 -- Unused
 function modifier_test:printImportant( params )
 	if IsServer() then
-	if params.attacker ~= nil then print("","attacker",params.attacker,"health",params.attacker:GetHealth()) end
+	if params.attacker:GetUnitName() ~= nil then print("","attacker",params.attacker:GetUnitName(),"health",params.attacker:GetUnitName():GetHealth()) end
 	if params.unit ~= nil then print("","unit\t",params.unit,"health",params.unit:GetHealth()) end
 	if params.target ~= nil then print("","target\t",params.target,"health",params.target:GetHealth()) end
 	if params.damage ~= nil then print("","damage\t",params.damage) end

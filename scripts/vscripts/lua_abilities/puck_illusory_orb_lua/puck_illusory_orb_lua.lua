@@ -1,7 +1,11 @@
 puck_illusory_orb_lua = class({})
-LinkLuaModifier( "modifier_puck_illusory_orb_lua", "lua_abilities/puck_illusory_orb_lua/modifier_puck_illusory_orb_lua", LUA_MODIFIER_MOTION_NONE )
+puck_ethereal_jaunt_lua = class({})
+LinkLuaModifier( "modifier_puck_illusory_orb_lua_thinker", "lua_abilities/puck_illusory_orb_lua/modifier_puck_illusory_orb_lua_thinker", LUA_MODIFIER_MOTION_NONE )
 
+--------------------------------------------------------------------------------
+-- Shared data
 puck_illusory_orb_lua.projectiles = {}
+
 --------------------------------------------------------------------------------
 -- Ability Start
 function puck_illusory_orb_lua:OnSpellStart()
@@ -10,6 +14,7 @@ function puck_illusory_orb_lua:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	-- load data
+	local damage = self:GetAbilityDamage()
 	local projectile_speed = self:GetSpecialValueFor("orb_speed")
 	local projectile_distance = self:GetSpecialValueFor("max_distance")
 	local projectile_radius = self:GetSpecialValueFor("radius")
@@ -18,8 +23,9 @@ function puck_illusory_orb_lua:OnSpellStart()
 
 	local projectile_direction = point-caster:GetOrigin()
 	projectile_direction = Vector( projectile_direction.x, projectile_direction.y, 0 ):Normalized()
-	local projectile_name = ""
+	local projectile_name = "particles/units/heroes/hero_puck/puck_illusory_orb.vpcf"
 
+	-- create projectile
 	local info = {
 		Source = caster,
 		Ability = self,
@@ -40,79 +46,153 @@ function puck_illusory_orb_lua:OnSpellStart()
 		
 		bProvidesVision = true,
 		iVisionRadius = vision_radius,
-		iVisionTeamNumber = caster:GetTeamNumber()
+		iVisionTeamNumber = caster:GetTeamNumber(),
 	}
 	projectile = ProjectileManager:CreateLinearProjectile(info)
+
+	-- sound modifier
+	local modifier = CreateModifierThinker(
+		caster,
+		self,
+		"modifier_puck_illusory_orb_lua_thinker",
+		{ duration = 20 },
+		caster:GetOrigin(),
+		caster:GetTeamNumber(),
+		false		
+	)
+	modifier = modifier:FindModifierByName( "modifier_puck_illusory_orb_lua_thinker" )
+
+	-- register projectile
+	local extraData = {}
+	extraData.damage = damage
+	extraData.location = caster:GetOrigin()
+	extraData.time = GameRules:GetGameTime()
+	extraData.modifier = modifier
+	self.projectiles[projectile] = extraData
+
+	-- activate sub
+	self.jaunt:SetActivated( true )
 end
 --------------------------------------------------------------------------------
 -- Projectile
-function puck_illusory_orb_lua:OnProjectileHit( target, location )
+function puck_illusory_orb_lua:OnProjectileThinkHandle( proj )
+	-- update location
+	local location = ProjectileManager:GetLinearProjectileLocation( proj )
+	self.projectiles[proj].location = location
+	self.projectiles[proj].modifier:GetParent():SetOrigin( location )
+end
+
+function puck_illusory_orb_lua:OnProjectileHitHandle( target, location, proj )
+	if not target then 
+		-- destroy reference
+		self.projectiles[proj].modifier:Destroy()
+		self.projectiles[proj] = nil
+		self.jaunt:Deactivate()
+		return true
+	end
+
+	-- damage
+	local damageTable = {
+		victim = target,
+		attacker = self:GetCaster(),
+		damage = self.projectiles[proj].damage,
+		damage_type = DAMAGE_TYPE_MAGICAL,
+		ability = self, --Optional.
+	}
+	ApplyDamage(damageTable)
+
+	-- effects
+	self:PlayEffects( target )
+	return false
 end
 
 --------------------------------------------------------------------------------
-function puck_illusory_orb_lua:PlayEffects()
-	-- Get Resources
-	local particle_cast = "string"
-	local sound_cast = "string"
+-- Ability Events
+function puck_illusory_orb_lua:OnUpgrade()
+	if not self.jaunt then
+		-- init
+		self.jaunt = self:GetCaster():FindAbilityByName( "puck_ethereal_jaunt_lua" )
+		self.jaunt.projectiles = self.projectiles
+		self.jaunt:SetActivated( false )
+	end
 
-	-- Get Data
+	self.jaunt:UpgradeAbility( true )
+end
+
+--------------------------------------------------------------------------------
+-- Effects
+function puck_illusory_orb_lua:PlayEffects( target )
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_puck/puck_orb_damage.vpcf"
+	local sound_cast = "Hero_Puck.IIllusory_Orb_Damage"
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
-	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
+	EmitSoundOn( sound_cast, target )
 end
 
 --------------------------------------------------------------------------------
--- Built-in functions
--- Helper: Ability Table (AT)
-function puck_illusory_orb_lua:GetAT()
-	if self.abilityTable==nil then
-		self.abilityTable = {}
+-- Sub-ability
+--------------------------------------------------------------------------------
+function puck_ethereal_jaunt_lua:OnSpellStart()
+	-- get first index projectile
+	local first = false
+	for k,v in pairs(self.projectiles) do
+		first = k
+		break
 	end
-	return self.abilityTable
-end
+	if not first then return end
 
-function puck_illusory_orb_lua:GetATEmptyKey()
-	local table = self:GetAT()
-	local i = 1
-	while table[i]~=nil do
-		i = i+1
+	-- find oldest projectile
+	for idx,projectile in pairs(self.projectiles) do
+		if projectile.time < self.projectiles[first].time then
+			first = idx
+		end
 	end
-	return i
+
+	-- jump to oldest
+	local old_pos = self:GetCaster():GetOrigin()
+	FindClearSpaceForUnit( self:GetCaster(), ProjectileManager:GetLinearProjectileLocation( first ), true )
+	ProjectileManager:ProjectileDodge( self:GetCaster() )
+
+	-- destroy the oldest
+	ProjectileManager:DestroyLinearProjectile( first )
+	self.projectiles[first].modifier:Destroy()
+	self.projectiles[first] = nil
+	self:Deactivate()
+
+	-- effects
+	self:PlayEffects( old_pos )
 end
 
-function puck_illusory_orb_lua:AddATValue( value )
-	local table = self:GetAT()
-	local i = self:GetATEmptyKey()
-	table[i] = value
-	return i
+--------------------------------------------------------------------------------
+-- Helper: Deactivate
+function puck_ethereal_jaunt_lua:Deactivate()
+	local any = false
+	for k,v in pairs(self.projectiles) do
+		any = true
+		break
+	end
+	if not any then
+		self:SetActivated( false )
+	end
 end
 
-function puck_illusory_orb_lua:GetATValue( key )
-	local table = self:GetAT()
-	local ret = table[key]
-	return ret
-end
+--------------------------------------------------------------------------------
+-- Effects
+function puck_ethereal_jaunt_lua:PlayEffects( point )
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_puck/puck_illusory_orb_blink_out.vpcf"
+	local sound_cast = "Hero_Puck.EtherealJaunt"
 
-function puck_illusory_orb_lua:RetATValue( key )
-	local table = self:GetAT()
-	local ret = table[key]
-	table[key] = nil
-	return ret
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, self:GetCaster() )
+	ParticleManager:SetParticleControl( effect_cast, 0, point )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	-- Create Sound
+	EmitSoundOn( sound_cast, self:GetCaster() )
 end

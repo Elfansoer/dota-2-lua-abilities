@@ -47,4 +47,19 @@ function puck_waning_rift_lua:OnSpellStart()
 			{ duration = duration } -- kv
 		)
 	end
+
+	self:PlayEffects( radius )
+end
+
+function puck_waning_rift_lua:PlayEffects( radius )
+	local particle_cast = "particles/units/heroes/hero_puck/puck_waning_rift.vpcf"
+	local sound_cast = "Hero_Puck.Waning_Rift"
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, self:GetCaster() )
+	ParticleManager:SetParticleControl( effect_cast, 0, self:GetCaster():GetOrigin() )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, radius, radius ) )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), sound_cast, self:GetCaster() )
 end
