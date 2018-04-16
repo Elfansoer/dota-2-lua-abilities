@@ -20,7 +20,7 @@ function queen_of_pain_shadow_strike_lua:OnSpellStart()
 		bReplaceExisting = false,                         -- Optional
 		bProvidesVision = false,                           -- Optional
 	}
-	projectile = ProjectileManager:CreateTrackingProjectile(info)
+	ProjectileManager:CreateTrackingProjectile(info)
 
 	-- Play effects
 	local sound_cast = "Hero_QueenOfPain.ShadowStrike"

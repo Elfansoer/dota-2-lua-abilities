@@ -143,5 +143,5 @@ function modifier_shadow_fiend_necromastery_lua:PlayEffects( target )
 		flExpireTime = GameRules:GetGameTime() + 5,      -- Optional but recommended
 		bProvidesVision = false,                           -- Optional
 	}
-	projectile = ProjectileManager:CreateTrackingProjectile(info)
+	ProjectileManager:CreateTrackingProjectile(info)
 end

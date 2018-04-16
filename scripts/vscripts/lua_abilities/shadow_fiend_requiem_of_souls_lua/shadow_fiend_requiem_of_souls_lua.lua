@@ -151,7 +151,7 @@ function shadow_fiend_requiem_of_souls_lua:Explode( lines )
 			bReplaceExisting = false,
 			bProvidesVision = false,
 		}
-		projectile = ProjectileManager:CreateLinearProjectile( info )
+		ProjectileManager:CreateLinearProjectile( info )
 	end
 
 	-- Play effects
@@ -207,7 +207,7 @@ function shadow_fiend_requiem_of_souls_lua:Implode( lines, modifier )
 				modifier = modifierAT,
 			}
 		}
-		projectile = ProjectileManager:CreateLinearProjectile( info )
+		ProjectileManager:CreateLinearProjectile( info )
 	end
 end
 

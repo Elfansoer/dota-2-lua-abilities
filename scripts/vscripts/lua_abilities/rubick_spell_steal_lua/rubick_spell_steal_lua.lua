@@ -96,7 +96,7 @@ function rubick_spell_steal_lua:OnSpellStart()
 		bVisibleToEnemies = true,                         -- Optional
 		bReplaceExisting = false,                         -- Optional
 	}
-	projectile = ProjectileManager:CreateTrackingProjectile(info)
+	ProjectileManager:CreateTrackingProjectile(info)
 
 	-- Play effects
 	local sound_cast = "Hero_Rubick.SpellSteal.Cast"

@@ -52,7 +52,7 @@ function bane_brain_sap_lua:OnSpellStart()
 	caster:Heal( heal, self )
 
 	-- damage
-	damageTable = {
+	local damageTable = {
 		victim = target,
 		attacker = caster,
 		damage = damage,

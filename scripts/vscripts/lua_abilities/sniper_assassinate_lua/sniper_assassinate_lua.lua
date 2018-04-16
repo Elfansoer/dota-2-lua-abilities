@@ -64,7 +64,7 @@ function sniper_assassinate_lua:OnSpellStart()
 		bDodgeable = true,                           -- Optional
 		ExtraData = { modifier = self.modifier }
 	}
-	projectile = ProjectileManager:CreateTrackingProjectile(info)
+	ProjectileManager:CreateTrackingProjectile(info)
 	self.modifier = nil
 
 	-- effects
@@ -83,7 +83,7 @@ function sniper_assassinate_lua:OnProjectileHit_ExtraData( target, location, ext
 
 	-- apply damage
 	local damage = self:GetAbilityDamage()
-	damageTable = {
+	local damageTable = {
 		victim = target,
 		attacker = self:GetCaster(),
 		damage = damage,

@@ -44,12 +44,12 @@ function bristleback_viscous_nasal_goo_lua:OnSpellStart()
 
 		for _,enemy in pairs(enemies) do
 			info.Target = enemy
-			projectile = ProjectileManager:CreateTrackingProjectile(info)
+			ProjectileManager:CreateTrackingProjectile(info)
 		end
 	else
 		info.Target = target
 		-- Create Projectile
-		projectile = ProjectileManager:CreateTrackingProjectile(info)
+		ProjectileManager:CreateTrackingProjectile(info)
 	end
 
 	self:PlayEffects1()

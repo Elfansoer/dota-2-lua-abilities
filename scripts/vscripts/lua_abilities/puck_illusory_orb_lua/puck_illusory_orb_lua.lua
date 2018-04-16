@@ -48,7 +48,7 @@ function puck_illusory_orb_lua:OnSpellStart()
 		iVisionRadius = vision_radius,
 		iVisionTeamNumber = caster:GetTeamNumber(),
 	}
-	projectile = ProjectileManager:CreateLinearProjectile(info)
+	local projectile = ProjectileManager:CreateLinearProjectile(info)
 
 	-- sound modifier
 	local modifier = CreateModifierThinker(

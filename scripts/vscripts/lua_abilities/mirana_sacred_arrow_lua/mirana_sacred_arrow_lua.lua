@@ -64,7 +64,7 @@ function mirana_sacred_arrow_lua:OnSpellStart()
 			bonus_damage = bonus_damage,
 		}
 	}
-	projectile = ProjectileManager:CreateLinearProjectile(info)
+	ProjectileManager:CreateLinearProjectile(info)
 
 	-- Effects
 	local sound_cast = "Hero_Mirana.ArrowCast"
@@ -83,7 +83,7 @@ function mirana_sacred_arrow_lua:OnProjectileHit_ExtraData( hTarget, vLocation, 
 
 	-- damage
 	if (not hTarget:IsConsideredHero()) and (not hTarget:IsAncient()) and (not hTarget:IsMagicImmune()) then
-		damageTable = {
+		local damageTable = {
 			victim = hTarget,
 			attacker = self:GetCaster(),
 			damage = hTarget:GetHealth() + 1,
@@ -95,7 +95,7 @@ function mirana_sacred_arrow_lua:OnProjectileHit_ExtraData( hTarget, vLocation, 
 		return true
 	end
 
-	damageTable = {
+	local damageTable = {
 		victim = hTarget,
 		attacker = self:GetCaster(),
 		damage = extraData.min_damage + extraData.bonus_damage*bonus_pct,

@@ -37,7 +37,7 @@ function queen_of_pain_sonic_wave_lua:OnSpellStart()
 		
 		bProvidesVision = false,
 	}
-	projectile = ProjectileManager:CreateLinearProjectile(info)
+	ProjectileManager:CreateLinearProjectile(info)
 
 	-- Play effects
 	local sound_cast = "Hero_QueenOfPain.SonicWave"

@@ -44,7 +44,7 @@ function queen_of_pain_scream_of_pain_lua:OnSpellStart()
 	-- create projectile to all enemies hit
 	for _,enemy in pairs(enemies) do
 		info.Target = enemy
-		projectile = ProjectileManager:CreateTrackingProjectile(info)
+		ProjectileManager:CreateTrackingProjectile(info)
 	end
 
 	-- Play effects

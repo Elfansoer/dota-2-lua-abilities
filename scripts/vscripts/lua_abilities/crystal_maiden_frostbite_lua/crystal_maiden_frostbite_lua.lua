@@ -72,5 +72,5 @@ function crystal_maiden_frostbite_lua:PlayEffects( caster, target )
 
 		bDodgeable = false,                                -- Optional
 	}
-	projectile = ProjectileManager:CreateTrackingProjectile(info)
+	ProjectileManager:CreateTrackingProjectile(info)
 end

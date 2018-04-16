@@ -23,10 +23,10 @@ function abaddon_mist_coil_lua:OnSpellStart()
 		iMoveSpeed = projectile_speed,
 		bDodgeable = true,                           -- Optional
 	}
-	projectile = ProjectileManager:CreateTrackingProjectile(info)
+	ProjectileManager:CreateTrackingProjectile(info)
 
 	-- self damage
-	damageTable = {
+	local damageTable = {
 		victim = caster,
 		attacker = caster,
 		damage = self_damage,
@@ -59,7 +59,7 @@ function abaddon_mist_coil_lua:OnProjectileHit( target, location )
 		end
 
 		local target_damage = self:GetSpecialValueFor("target_damage")
-		damageTable = {
+		local damageTable = {
 			victim = target,
 			attacker = self:GetCaster(),
 			damage = target_damage,

@@ -26,7 +26,7 @@ function phantom_assassin_stifling_dagger_lua:OnSpellStart()
 		iVisionRadius = projectile_vision,				-- Optional
 		iVisionTeamNumber = caster:GetTeamNumber()        -- Optional
 	}
-	projectile = ProjectileManager:CreateTrackingProjectile(info)
+	ProjectileManager:CreateTrackingProjectile(info)
 
 	self:PlayEffects1()
 end
