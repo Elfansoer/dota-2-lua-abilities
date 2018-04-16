@@ -1,62 +1,65 @@
-//=================================================================================================================
-// Bristleback: Warpath (Lua version)
-//=================================================================================================================
-"bristleback_warpath_lua"
+"DOTAAbilities"
 {
-	// Ability Technical Aspect
-	// base script folder	: scripts/vscripts
-	// base texture folder	: resource/flash3/images/spellicons
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_lua"
-	"ScriptFile"					"lua_abilities/bristleback_warpath_lua/bristleback_warpath_lua"
-	"AbilityTextureName"			"bristleback_warpath_lua"
-	"FightRecapLevel"				"1"
-	"MaxLevel"						"3"
-	"precache"
+	//=================================================================================================================
+	// Bristleback: Warpath (Lua version)
+	//=================================================================================================================
+	"bristleback_warpath_lua"
 	{
-		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts"
-		"particle"	"particles/units/heroes/hero_bristleback/bristleback_warpath.vpcf"
-		"particle"	"particles/units/heroes/hero_bristleback/bristleback_warpath_dust.vpcf"
-	}
-	
-	// Ability General
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-
-	// Ability Casting
-	//-------------------------------------------------------------------------------------------------------------
-
-	// Ability Resource
-	//-------------------------------------------------------------------------------------------------------------
-
-	// Damage
-	//-------------------------------------------------------------------------------------------------------------
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
-	{
-		"01"
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/bristleback_warpath_lua/bristleback_warpath_lua"
+		"AbilityTextureName"			"bristleback_warpath_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+		"precache"
 		{
-			"var_type"						"FIELD_INTEGER"
-			"damage_per_stack"					"18 24 30"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts"
+			"particle"	"particles/units/heroes/hero_bristleback/bristleback_warpath.vpcf"
+			"particle"	"particles/units/heroes/hero_bristleback/bristleback_warpath_dust.vpcf"
 		}
-		"02"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"var_type"						"FIELD_INTEGER"
-			"move_speed_per_stack"				"3 4 5"
-		}
-		"03"
-		{
-			"var_type"						"FIELD_FLOAT"
-			"stack_duration"				"14.0"
-		}
-		"04"
-		{
-			"var_type"						"FIELD_INTEGER"
-			"max_stacks"					"5 7 9"
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_per_stack"					"18 24 30"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"move_speed_per_stack"				"3 4 5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stack_duration"				"14.0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"max_stacks"					"5 7 9"
+			}
 		}
 	}
 }

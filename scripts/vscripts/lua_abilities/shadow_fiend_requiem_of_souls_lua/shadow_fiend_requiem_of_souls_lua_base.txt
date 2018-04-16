@@ -1,123 +1,126 @@
-//=================================================================================================================
-// Shadow Fiend: Requiem of Souls (lua version)
-//=================================================================================================================
-"shadow_fiend_requiem_of_souls_lua"
+"DOTAAbilities"
 {
-	// Ability Technical Aspect
-	// base script folder	: scripts/vscripts
-	// base texture folder	: resource/flash3/images/spellicons
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_lua"
-	"ScriptFile"					"lua_abilities/shadow_fiend_requiem_of_souls_lua/shadow_fiend_requiem_of_souls_lua"
-	"AbilityTextureName"			"shadow_fiend_requiem_of_souls_lua"
-	"FightRecapLevel"				"2"
-	"MaxLevel"						"3"
-	"HasScepterUpgrade"				"1"
-
-	"precache"
+	//=================================================================================================================
+	// Shadow Fiend: Requiem of Souls (lua version)
+	//=================================================================================================================
+	"shadow_fiend_requiem_of_souls_lua"
 	{
-		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
-		"particle"	"particles/units/heroes/hero_nevermore/nevermore_wings.vpcf"
-		"particle"	"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf"
-	}
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/shadow_fiend_requiem_of_souls_lua/shadow_fiend_requiem_of_souls_lua"
+		"AbilityTextureName"			"shadow_fiend_requiem_of_souls_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"HasScepterUpgrade"				"1"
 
-	// Ability General
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+			"particle"	"particles/units/heroes/hero_nevermore/nevermore_wings.vpcf"
+			"particle"	"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls.vpcf"
+		}
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 
 
-	// Ability Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"1000"
-	"AbilityCastPoint"				"1.67"
-	"AbilityDuration"				"5.0"
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"1.67"
+		"AbilityDuration"				"5.0"
 
-	// Ability Resource
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"120 110 100"
-	"AbilityManaCost"				"150 175 200"
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120 110 100"
+		"AbilityManaCost"				"150 175 200"
 
-	// Damage
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityDamage"					"80 120 160"
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"80 120 160"
 
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
-	{
-		"01"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"var_type"				"FIELD_FLOAT"
-			"cast_time_tooltip"	"1.67"
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_time_tooltip"	"1.67"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"requiem_radius"	"1000"		
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"requiem_reduction_ms"	"-25"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"requiem_reduction_damage"	"-50"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"requiem_reduction_tooltip"	"-50"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"requiem_slow_duration"	"5.0"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"requiem_reduction_radius"	"700"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"requiem_soul_conversion"	"2 2 2"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"requiem_line_width_start"	"125"
+			}
+			"10"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"requiem_line_width_end"	"425"
+			}
+			"11"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"requiem_line_speed"	"700"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"soul_death_release"	"0.5"
+			}		
+			"13"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"requiem_heal_pct_scepter"	"100"
+			}	
+			"14"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"requiem_damage_pct_scepter"	"40"
+			}		
 		}
-		"02"
-		{
-			"var_type"			"FIELD_INTEGER"
-			"requiem_radius"	"1000"		
-		}
-		"03"
-		{
-			"var_type"			"FIELD_INTEGER"
-			"requiem_reduction_ms"	"-25"
-		}
-		"04"
-		{
-			"var_type"			"FIELD_INTEGER"
-			"requiem_reduction_damage"	"-50"
-		}
-		"05"
-		{
-			"var_type"			"FIELD_INTEGER"
-			"requiem_reduction_tooltip"	"-50"
-		}
-		"06"
-		{
-			"var_type"				"FIELD_INTEGER"
-			"requiem_slow_duration"	"5.0"
-		}
-		"07"
-		{
-			"var_type"			"FIELD_INTEGER"
-			"requiem_reduction_radius"	"700"
-		}
-		"08"
-		{
-			"var_type"			"FIELD_INTEGER"
-			"requiem_soul_conversion"	"2 2 2"
-		}
-		"09"
-		{
-			"var_type"			"FIELD_INTEGER"
-			"requiem_line_width_start"	"125"
-		}
-		"10"
-		{
-			"var_type"			"FIELD_INTEGER"
-			"requiem_line_width_end"	"425"
-		}
-		"11"
-		{
-			"var_type"			"FIELD_INTEGER"
-			"requiem_line_speed"	"700"
-		}
-		"12"
-		{
-			"var_type"				"FIELD_FLOAT"
-			"soul_death_release"	"0.5"
-		}		
-		"13"
-		{
-			"var_type"					"FIELD_FLOAT"
-			"requiem_heal_pct_scepter"	"100"
-		}	
-		"14"
-		{
-			"var_type"					"FIELD_FLOAT"
-			"requiem_damage_pct_scepter"	"40"
-		}		
 	}
 }

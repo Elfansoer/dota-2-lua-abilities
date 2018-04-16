@@ -1,41 +1,52 @@
-//=================================================================================================================
-// Anti-mage: Spell Shield
-//=================================================================================================================
-"antimage_spell_shield_lua"
+"DOTAAbilities"
 {
-	// Ability Technical Aspect
-	// base script folder	: scripts/vscripts
-	// base texture folder	: resource/flash3/images/spellicons
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_lua"
-	"ScriptFile"					"lua_abilities/antimage_spell_shield_lua/antimage_spell_shield_lua"
-	"AbilityTextureName"			"antimage_spell_shield_lua"
-	"FightRecapLevel"				"1"
-	"MaxLevel"						"4"
-	
-	// Ability General
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-	// Ability Casting
-	//-------------------------------------------------------------------------------------------------------------
-
-	// Ability Resource
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"15 12 9 6"
-
-	// Damage
-	//-------------------------------------------------------------------------------------------------------------
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=================================================================================================================
+	// Anti-mage: Spell Shield
+	//=================================================================================================================
+	"antimage_spell_shield_lua"
 	{
-		"01"
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/antimage_spell_shield_lua/antimage_spell_shield_lua"
+		"AbilityTextureName"			"antimage_spell_shield_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"HasScepterUpgrade"				"1"
+
+		"precache"
 		{
-			"var_type"				"FIELD_INTEGER"
-			"bonus_resist_pct"		"20 30 40 50"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+			"particle"	"particles/units/heroes/hero_antimage/antimage_spellshield.vpcf"
+			"particle"	"particles/units/heroes/hero_antimage/antimage_spellshield_reflect.vpcf"
+		}
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_resist_pct"		"20 30 40 50"
+			}
 		}
 	}
 }

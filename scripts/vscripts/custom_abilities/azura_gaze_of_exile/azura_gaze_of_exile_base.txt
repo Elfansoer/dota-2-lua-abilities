@@ -1,88 +1,62 @@
-//=================================================================================================================
-// Azura: Gaze of Exile
-//=================================================================================================================
-"azura_gaze_of_exile"
+"DOTAAbilities"
 {
-	// Ability Technical Aspect
-	// base script folder	: scripts/vscripts
-	// base texture folder	: resource/flash3/images/spellicons
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_lua"
-	"ScriptFile"					"custom_abilities/azura_gaze_of_exile/azura_gaze_of_exile"
-	"AbilityTextureName"			"custom/azura_gaze_of_exile"
-	"FightRecapLevel"				"1"
-	"MaxLevel"						"3"
-	"precache"
+	//=================================================================================================================
+	// Azura: Gaze of Exile
+	//=================================================================================================================
+	"azura_gaze_of_exile"
 	{
-		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
-	//	"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-	}
-	
-	// Ability General
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-
-	// Ability Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"700"
-	"AbilityCastPoint"				"0.3"
-
-	// Ability Resource
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"80 60 40"
-	"AbilityManaCost"				"200"
-
-	// Damage
-	//-------------------------------------------------------------------------------------------------------------
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
-	{
-		"01"
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/azura_gaze_of_exile/azura_gaze_of_exile"
+		"AbilityTextureName"			"custom/azura_gaze_of_exile"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+		"precache"
 		{
-			"var_type"				"FIELD_INTEGER"
-			"duration_tooltip"		"10"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+			"particle"	"particles/units/heroes/hero_warlock/warlock_fatal_bonds_icon.vpcf"
 		}
-		"02"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"80 60 40"
+		"AbilityManaCost"				"200"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"var_type"				"FIELD_FLOAT"
-			"bonus_range"			"200 300 400"
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration_tooltip"		"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_range"			"200 300 400"
+			}
 		}
 	}
 }
-
-// Template Ability
-"DOTA_Tooltip_ability_azura_gaze_of_exile"
-	"Gaze of Exile"
-
-"DOTA_Tooltip_ability_azura_gaze_of_exile_Description"
-	"Azura's piercing gaze isolates the target, causing it to become Untargetable by its allies for %duration_tooltip% seconds. Any unit gains 100% accuracy and an additional %bonus_range% attack & cast range against the target. If the target dies before the duration ends, all of Azura's cooldowns and Bolt Charges are replenished."
-
-"DOTA_Tooltip_ability_azura_gaze_of_exile_Lore"
-	"Some role needed."
-
-"DOTA_Tooltip_ability_azura_gaze_of_exile_Note0"
-	"Does not refresh cooldown of this ability."
-
-"DOTA_Tooltip_ability_azura_gaze_of_exile_Note1"
-	"The bonus attack range is halved for melee units."
-
-"DOTA_Tooltip_ability_azura_gaze_of_exile_Note2"
-	"A unit affected by Gaze of Exile cannot target itself."
-
-"DOTA_Tooltip_ability_azura_gaze_of_exile_Note3"
-	"Azura and her allies can still target a unit affected by Gaze of Exile."
-
-"DOTA_Tooltip_ability_azura_gaze_of_exile_duration_tooltip"			"DURATION:"
-"DOTA_Tooltip_ability_azura_gaze_of_exile_bonus_range"				"BONUS RANGE:"
-
-"DOTA_Tooltip_modifier_azura_gaze_of_exile"		"Gaze of Exile"
-"DOTA_Tooltip_modifier_azura_gaze_of_exile_Description"
-	"This unit cannot be targeted by their allies, and enemies have increased attack and cast range when targetting this unit."
