@@ -1,0 +1,2 @@
+Logic:
+- Fissure not blocking path

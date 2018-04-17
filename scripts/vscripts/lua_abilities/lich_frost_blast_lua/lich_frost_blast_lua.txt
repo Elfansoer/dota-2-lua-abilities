@@ -1,0 +1,76 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Hero Name: lich_frost_blast_lua
+	//=================================================================================================================
+	"lich_frost_blast_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/lich_frost_blast_lua/lich_frost_blast_lua"
+		"AbilityTextureName"			"lich_frost_blast_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+			"particle"	"particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
+			"particle"	"particles/units/heroes/hero_lich/lich_slowed_cold.vpcf"
+			"particle"	"particles/status_fx/status_effect_frost_lich.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.4"
+		"AbilityDuration"				"4.0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0"
+		"AbilityManaCost"				"125 150 170 190"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"50 100 150 200"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"200 200 200 200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_movement_speed"	"-30 -30 -30 -30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_attack_speed"		"-20 -20 -20 -20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aoe_damage"			"75 100 125 150"
+			}
+		}
+	}
+}

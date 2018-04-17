@@ -3577,9 +3577,9 @@
 // Lua abilities
 #base "../vscripts/lua_abilities/abaddon_mist_coil_lua/abaddon_mist_coil_lua.txt"
 
-#base "../vscripts/lua_abilities/antimage_mana_void_lua/antimage_mana_void_lua_base.txt"
+#base "../vscripts/lua_abilities/antimage_mana_break_lua/antimage_mana_break_lua_base.txt"
 #base "../vscripts/lua_abilities/antimage_blink_lua/antimage_blink_lua_base.txt"
-#base "../vscripts/lua_abilities/antimage_mana_burn_lua/antimage_mana_burn_lua_base.txt"
+#base "../vscripts/lua_abilities/antimage_mana_void_lua/antimage_mana_void_lua_base.txt"
 #base "../vscripts/lua_abilities/antimage_spell_shield_lua/antimage_spell_shield_lua_base.txt"
 
 #base "../vscripts/lua_abilities/bristleback_viscous_nasal_goo_lua/bristleback_viscous_nasal_goo_lua_base.txt"
@@ -3601,6 +3601,8 @@
 #base "../vscripts/lua_abilities/dazzle_weave_lua/dazzle_weave_lua.txt"
 
 #base "../vscripts/lua_abilities/drow_ranger_frost_arrows_lua/drow_ranger_frost_arrows_lua.txt"
+
+#base "../vscripts/lua_abilities/earthshaker_fissure_lua/earthshaker_fissure_lua.txt"
 
 #base "../vscripts/lua_abilities/juggernaut_blade_fury_lua/juggernaut_blade_fury_lua.txt"
 #base "../vscripts/lua_abilities/juggernaut_blade_dance_lua/juggernaut_blade_dance_lua.txt"
