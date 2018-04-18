@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[AddNewModifier(
+	${1:caster}, -- player source
+	${2:self}, -- ability source
+	"${3:modifier_some_modifier_lua}", -- modifier name
+	{ ${4:duration = ${5:duration}} } -- kv
+)]]></content>
+    <tabTrigger>addnewmodifier</tabTrigger>
+    <scope>source.lua</scope>
+    <description>Add new modifier</description>
+</snippet>

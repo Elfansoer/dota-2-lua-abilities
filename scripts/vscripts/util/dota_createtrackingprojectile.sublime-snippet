@@ -1,0 +1,26 @@
+<snippet>
+    <content><![CDATA[local info = {
+	Target = ${1:target},
+	Source = ${2:caster},
+	Ability = ${3:self},	
+	
+	EffectName = projectile_name,
+	iMoveSpeed = projectile_speed,
+	bDodgeable = ${4:true},                           -- Optional
+${5:
+	vSourceLoc= caster:GetAbsOrigin(),                -- Optional (HOW)
+	bIsAttack = false,                                -- Optional
+	bReplaceExisting = false,                         -- Optional
+	flExpireTime = GameRules:GetGameTime() + 10,      -- Optional but recommended
+	
+	bDrawsOnMinimap = false,                          -- Optional
+	bVisibleToEnemies = true,                         -- Optional
+	bProvidesVision = true,                           -- Optional
+	iVisionRadius = 400,                              -- Optional
+	iVisionTeamNumber = caster:GetTeamNumber()        -- Optional
+}}
+ProjectileManager:CreateTrackingProjectile(info)]]></content>
+    <tabTrigger>createtrackingprojectile</tabTrigger>
+    <scope>source.lua</scope>
+    <description>Tracking projectile</description>
+</snippet>

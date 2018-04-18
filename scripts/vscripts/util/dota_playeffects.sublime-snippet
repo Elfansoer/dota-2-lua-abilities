@@ -1,0 +1,42 @@
+<snippet>
+    <content><![CDATA[PlayEffects()
+	-- Get Resources
+	local particle_cast = "string"
+	local sound_cast = "string"
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
+	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
+	local attach = "attach_hitloc"
+	if self:GetCaster():ScriptLookupAttachment( "attach_attack3" ) then attach = "attach_attack3" end
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		iControlPoint,
+		hTarget,
+		PATTACH_POINT_FOLLOW,
+		attach,
+		Vector(0,0,0), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
+	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	-- buff particle
+	self:AddParticle(
+		effect_cast,
+		false, -- bDestroyImmediately
+		false, -- bStatusEffect
+		-1, -- iPriority
+		false, -- bHeroEffect
+		false -- bOverheadEffect
+	)
+
+	-- Create Sound
+	EmitSoundOnLocationWithCaster( point, sound_cast, self:GetCaster() )
+	EmitSoundOn( sound_cast, self:GetCaster() )
+end]]></content>
+    <tabTrigger>playeffects</tabTrigger>
+    <scope>source.lua</scope>
+    <description>Play Effects</description>
+</snippet>

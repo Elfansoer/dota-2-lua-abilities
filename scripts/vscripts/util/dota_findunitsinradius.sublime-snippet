@@ -1,0 +1,16 @@
+<snippet>
+    <content><![CDATA[FindUnitsInRadius(
+	${1:self:GetCaster()}:GetTeamNumber(),	-- int, your team number
+	${2:caster:GetOrigin()},	-- point, center point
+	nil,	-- handle, cacheUnit. (not known)
+	${3:radius},	-- float, radius. or use FIND_UNITS_EVERYWHERE
+	${4:DOTA_UNIT_TARGET_TEAM_ENEMY},	-- int, team filter
+	${5:DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC},	-- int, type filter
+	${6:0},	-- int, flag filter
+	${7:0},	-- int, order filter
+	false	-- bool, can grow cache
+)]]></content>
+    <tabTrigger>findunitsinradius</tabTrigger>
+    <scope>source.lua</scope>
+    <description>Find units</description>
+</snippet>

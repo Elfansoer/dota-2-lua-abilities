@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[local damageTable = {
+	victim = ${1:target},
+	attacker = ${2:caster},
+	damage = ${3:500},
+	damage_type = DAMAGE_TYPE_${4:MAGICAL},
+	ability = ${5:self}, --Optional.
+${6:	damage_flags = DOTA_DAMAGE_FLAG_NONE, --Optional.
+}}
+ApplyDamage(damageTable)]]></content>
+    <tabTrigger>applydamage</tabTrigger>
+    <scope>source.lua</scope>
+    <description>Apply damage</description>
+</snippet>

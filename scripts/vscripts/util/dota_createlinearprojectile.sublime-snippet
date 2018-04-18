@@ -1,0 +1,31 @@
+<snippet>
+    <content><![CDATA[local info = {
+	Source = ${1:caster},
+	Ability = ${2:self},
+	vSpawnOrigin = ${3:caster:GetAbsOrigin()},
+	
+    bDeleteOnHit = ${4:true},
+    
+    iUnitTargetTeam = ${5:DOTA_UNIT_TARGET_TEAM_ENEMY},
+    iUnitTargetFlags = ${6:DOTA_UNIT_TARGET_FLAG_NONE},
+    iUnitTargetType = ${7:DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC},
+    
+    EffectName = projectile_name,
+    fDistance = projectile_distance,
+    fStartRadius = projectile_start_radius,
+    fEndRadius =projectile_end_radius,
+	vVelocity = projectile_direction * projectile_speed,
+${9:
+	bHasFrontalCone = false,
+	bReplaceExisting = false,
+	fExpireTime = GameRules:GetGameTime() + 10.0,
+	
+	bProvidesVision = true,
+	iVisionRadius = 300,
+	iVisionTeamNumber = caster:GetTeamNumber()
+}}
+ProjectileManager:CreateLinearProjectile(info)]]></content>
+    <tabTrigger>createlinearprojectile</tabTrigger>
+    <scope>source.lua</scope>
+    <description>Linear projectile</description>
+</snippet>
