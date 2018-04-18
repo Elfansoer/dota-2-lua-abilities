@@ -13,9 +13,7 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_earthshaker_fissure_lua_thinker:OnCreated( kv )
-	if IsServer() then
-
-	end
+	
 end
 
 function modifier_earthshaker_fissure_lua_thinker:OnRefresh( kv )

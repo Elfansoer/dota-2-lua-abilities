@@ -48,7 +48,7 @@
 	"npc_dota_hero_vengefulspirit_lua"
 	{
 		"override_hero"					"npc_dota_hero_vengefulspirit"			// Hero to override
-		"Ability1"				"earthshaker_fissure_lua"				// Ability 2
+		"Ability1"				"vengefulspirit_magic_missile_lua"				// Ability 2
 		"Ability2"				"queen_of_pain_shadow_strike_lua"				// Ability 3
 		"Ability3"				"wraith_king_wraithfire_blast_lua"				// Ability 1
 		"Ability4"				"chaos_knight_chaos_bolt_lua"				// Ability 3
@@ -161,7 +161,7 @@
 	}
 
 	//=================================================================================================================
-	// HERO: Maiden
+	// HERO: Bane
 	//=================================================================================================================
 	"npc_dota_hero_ben"
 	{
@@ -171,6 +171,18 @@
 		"Ability3"				"puck_phase_shift_lua"						// Ability 3
 		"Ability4"				"puck_ethereal_jaunt_lua"						// Ability 3
 		"Ability6"				"puck_dream_coil_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Magnus
+	//=================================================================================================================
+	"npc_dota_hero_magnus"
+	{
+		"override_hero"					"npc_dota_hero_magnataur"	// Hero to override
+		"Ability1"				"earthshaker_fissure_lua"						// Ability 1
+		"Ability2"				"earthshaker_enchant_totem_lua"						// Ability 2
+		"Ability3"				"earthshaker_aftershock_lua"						// Ability 3
+		"Ability6"				"earthshaker_echo_slam_lua"							// Ability 6
 	}
 
 	//=================================================================================================================

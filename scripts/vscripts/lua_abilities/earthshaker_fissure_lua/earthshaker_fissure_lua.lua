@@ -26,25 +26,13 @@ function earthshaker_fissure_lua:OnSpellStart()
 	direction = direction:Normalized()
 	local wall_vector = direction * distance
 
-	-- find enemies in line
-	local enemies = FindUnitsInLine(
-		caster:GetTeamNumber(),
-		caster:GetOrigin() + direction*caster:GetHullRadius(),
-		caster:GetOrigin() + direction*caster:GetHullRadius() + wall_vector,
-		nil,
-		radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		0
-	)
-
 	-- Create blocker along path
 	local block_spacing = (block_delta+2*block_width)
 	local blocks = distance/block_spacing
-	local block_pos = 8.25 + caster:GetHullRadius()
+	local block_pos = caster:GetHullRadius() + block_delta + block_width
 
 	for i=1,blocks do
-		local block_vec = direction * block_pos
+		local block_vec = caster:GetOrigin() + direction*block_pos
 		local blocker = CreateModifierThinker(
 			caster, -- player source
 			self, -- ability source
@@ -52,12 +40,23 @@ function earthshaker_fissure_lua:OnSpellStart()
 			{ duration = duration }, -- kv
 			block_vec,
 			caster:GetTeamNumber(),
-			false
+			true
 		)
 		blocker:SetHullRadius( block_width )
-		print("hull",blocker:GetHullRadius(),"pad",blocker:GetCollisionPadding(),"all",blocker:GetPaddedCollisionRadius())
 		block_pos = block_pos + block_spacing
 	end
+
+	-- find units in line
+	local units = FindUnitsInLine(
+		caster:GetTeamNumber(),
+		caster:GetOrigin() + direction*caster:GetHullRadius(),
+		caster:GetOrigin() + direction*caster:GetHullRadius() + wall_vector,
+		nil,
+		radius,
+		DOTA_UNIT_TARGET_TEAM_BOTH,
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		0
+	)
 
 	-- precache damage
 	local damageTable = {
@@ -67,22 +66,25 @@ function earthshaker_fissure_lua:OnSpellStart()
 		damage_type = DAMAGE_TYPE_MAGICAL,
 		ability = self, --Optional.
 	}
+
 	-- apply damage, shove and stun
-	for _,enemy in pairs(enemies) do
-		-- damage
-		damageTable.victim = enemy
-		ApplyDamage(damageTable)
-
+	for _,unit in pairs(units) do
 		-- shove
-		FindClearSpaceForUnit( enemy, enemy:GetOrigin(), true )
+		FindClearSpaceForUnit( unit, unit:GetOrigin(), true )
 
-		-- stun
-		enemy:AddNewModifier(
-			caster, -- player source
-			self, -- ability source
-			"modifier_generic_stunned_lua", -- modifier name
-			{ duration = stun_duration } -- kv
-		)
+		if unit:GetTeamNumber()~=caster:GetTeamNumber() then
+			-- damage
+			damageTable.victim = unit
+			ApplyDamage(damageTable)
+
+			-- stun
+			unit:AddNewModifier(
+				caster, -- player source
+				self, -- ability source
+				"modifier_generic_stunned_lua", -- modifier name
+				{ duration = stun_duration } -- kv
+			)
+		end
 	end
 
 	-- Effects
