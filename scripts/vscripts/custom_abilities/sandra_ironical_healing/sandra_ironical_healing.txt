@@ -11,7 +11,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"custom_abilities/sandra_ironical_healing/sandra_ironical_healing"
-		"AbilityTextureName"			"sandra_ironical_healing"
+		"AbilityTextureName"			"custom/sandra_ironical_healing"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"precache"

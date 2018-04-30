@@ -22,6 +22,7 @@
 	"npc_dota_hero_crystal_maiden"		"1"
 	"npc_dota_hero_bane"		"1"
 	"npc_dota_hero_magnataur"		"1"
+	"npc_dota_hero_earthshaker"		"1"
 
 	"npc_dota_hero_rubick"			"1"
 }

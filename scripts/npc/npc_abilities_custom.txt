@@ -3582,6 +3582,8 @@
 #base "../vscripts/lua_abilities/antimage_mana_void_lua/antimage_mana_void_lua_base.txt"
 #base "../vscripts/lua_abilities/antimage_spell_shield_lua/antimage_spell_shield_lua_base.txt"
 
+#base "../vscripts/lua_abilities/axe_culling_blade_lua/axe_culling_blade_lua.txt"
+
 #base "../vscripts/lua_abilities/bristleback_viscous_nasal_goo_lua/bristleback_viscous_nasal_goo_lua_base.txt"
 #base "../vscripts/lua_abilities/bristleback_quill_spray_lua/bristleback_quill_spray_lua_base.txt"
 #base "../vscripts/lua_abilities/bristleback_bristleback_lua/bristleback_bristleback_lua_base.txt"
@@ -3590,6 +3592,9 @@
 #base "../vscripts/lua_abilities/bane_enfeeble_lua/bane_enfeeble_lua.txt"
 #base "../vscripts/lua_abilities/bane_brain_sap_lua/bane_brain_sap_lua.txt"
 #base "../vscripts/lua_abilities/bane_fiends_grip_lua/bane_fiends_grip_lua.txt"
+
+#base "../vscripts/lua_abilities/bloodseeker_bloodrage_lua/bloodseeker_bloodrage_lua.txt"
+#base "../vscripts/lua_abilities/bloodseeker_blood_rite_lua/bloodseeker_blood_rite_lua.txt"
 
 #base "../vscripts/lua_abilities/centaur_warrunner_hoof_stomp_lua/centaur_warrunner_hoof_stomp_lua.txt"
 #base "../vscripts/lua_abilities/centaur_warrunner_double_edge_lua/centaur_warrunner_double_edge_lua.txt"

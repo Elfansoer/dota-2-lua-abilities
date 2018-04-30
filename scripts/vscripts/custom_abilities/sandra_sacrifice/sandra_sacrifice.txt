@@ -11,7 +11,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"custom_abilities/sandra_sacrifice/sandra_sacrifice"
-		"AbilityTextureName"			"sandra_sacrifice"
+		"AbilityTextureName"			"custom/sandra_sacrifice"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"3"
 		"precache"

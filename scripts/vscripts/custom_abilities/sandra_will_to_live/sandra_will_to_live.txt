@@ -11,14 +11,13 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"custom_abilities/sandra_will_to_live/sandra_will_to_live"
-		"AbilityTextureName"			"sandra_will_to_live"
+		"AbilityTextureName"			"custom/sandra_will_to_live"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"HasScepterUpgrade"				"1"
 
 		"precache"
 		{
-//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
 			"particle"	"particles/units/heroes/hero_dazzle/dazzle_shallow_grave_glyph_flare.vpcf"
 			"particle"	"particles/items2_fx/soul_ring_blood.vpcf"
 			"particle"	"particles/items_fx/backdoor_protection_tube.vpcf"

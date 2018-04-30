@@ -11,7 +11,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"custom_abilities/sandra_undeniable_torture/sandra_undeniable_torture"
-		"AbilityTextureName"			"sandra_undeniable_torture"
+		"AbilityTextureName"			"custom/sandra_undeniable_torture"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"precache"

@@ -1,0 +1,83 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Bloodseeker: Bloodrage (Lua version)
+	//=================================================================================================================
+	"bloodseeker_bloodrage_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/bloodseeker_bloodrage_lua/bloodseeker_bloodrage_lua"
+		"AbilityTextureName"			"bloodseeker_bloodrage_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+			"particle"	"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodrage.vpcf"
+			"particle"	"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.2"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12 10 8 6"
+		"AbilityManaCost"				"0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"9 10 11 12"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_increase_pct"		"25 30 35 40"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_bonus_pct"			"19 21 23 25"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_bonus_creep_pct"	"19 21 23 25"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_bonus_aoe"	"300"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_bonus_share_percent"	"50"
+			}
+		}
+	}
+}
