@@ -13,6 +13,9 @@ end
 function modifier_slark_shadow_dance_lua:IsPurgable()
 	return false
 end
+function modifier_slark_shadow_dance_lua:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 --------------------------------------------------------------------------------
 -- Aura
 function modifier_slark_shadow_dance_lua:IsAura()
@@ -60,7 +63,24 @@ function modifier_slark_shadow_dance_lua:OnRefresh( kv )
 end
 
 function modifier_slark_shadow_dance_lua:OnDestroy( kv )
+	if IsServer() then
+		local sound_cast = "Hero_Slark.ShadowDance"
+		StopSoundOn( sound_cast, self:GetParent() )
+	end
+end
 
+--------------------------------------------------------------------------------
+-- Modifier Effects
+function modifier_slark_shadow_dance_lua:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
+	}
+
+	return funcs
+end
+
+function modifier_slark_shadow_dance_lua:GetModifierInvisibilityLevel()
+	return 2
 end
 
 --------------------------------------------------------------------------------

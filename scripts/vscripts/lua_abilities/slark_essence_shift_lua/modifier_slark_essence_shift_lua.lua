@@ -1,5 +1,5 @@
 modifier_slark_essence_shift_lua = class({})
-
+local tempTable = require("util/tempTable")
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_slark_essence_shift_lua:IsHidden()
@@ -79,7 +79,7 @@ end
 -- Helper
 function modifier_slark_essence_shift_lua:AddStack( duration )
 	-- Add counter
-	local parent = self:GetAbility():AddATValue( self )
+	local parent = tempTable:AddATValue( self )
 	self:GetParent():AddNewModifier(
 		self:GetParent(),
 		self:GetAbility(),

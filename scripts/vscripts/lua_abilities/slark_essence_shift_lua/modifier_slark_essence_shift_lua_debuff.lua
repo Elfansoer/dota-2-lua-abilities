@@ -1,5 +1,5 @@
 modifier_slark_essence_shift_lua_debuff = class({})
-
+local tempTable = require("util/tempTable")
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_slark_essence_shift_lua_debuff:IsHidden()
@@ -65,7 +65,8 @@ end
 --------------------------------------------------------------------------------
 -- Helper
 function modifier_slark_essence_shift_lua_debuff:AddStack( duration )
-	local parent = self:GetAbility():AddATValue( self )
+	-- Add modifier
+	local parent = tempTable:AddATValue( self )
 	self:GetParent():AddNewModifier(
 		self:GetParent(),
 		self:GetAbility(),
@@ -75,6 +76,9 @@ function modifier_slark_essence_shift_lua_debuff:AddStack( duration )
 			modifier = parent,
 		}
 	)
+
+	-- Add stack
+	self:IncrementStackCount()
 end
 
 function modifier_slark_essence_shift_lua_debuff:RemoveStack()
@@ -84,5 +88,3 @@ function modifier_slark_essence_shift_lua_debuff:RemoveStack()
 		self:Destroy()
 	end
 end
---------------------------------------------------------------------------------
--- Graphics & Animations

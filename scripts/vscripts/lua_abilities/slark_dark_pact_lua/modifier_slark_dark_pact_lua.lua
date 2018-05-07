@@ -3,7 +3,7 @@ modifier_slark_dark_pact_lua = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_slark_dark_pact_lua:IsHidden()
-	return false
+	return true
 end
 
 function modifier_slark_dark_pact_lua:IsDebuff()
@@ -22,7 +22,7 @@ end
 -- Initializations
 function modifier_slark_dark_pact_lua:OnCreated( kv )
 	-- references
-	self.delay = self:GetAbility():GetSpecialValueFor( "delay" )
+	self.delay_time = self:GetAbility():GetSpecialValueFor( "delay" )
 	self.pulse_duration = self:GetAbility():GetSpecialValueFor( "pulse_duration" )
 	self.total_pulses = self:GetAbility():GetSpecialValueFor( "total_pulses" )
 	self.total_damage = self:GetAbility():GetSpecialValueFor( "total_damage" )
@@ -45,7 +45,7 @@ function modifier_slark_dark_pact_lua:OnCreated( kv )
 		}
 
 		-- begin delay
-		self:StartIntervalThink( self.interval )
+		self:StartIntervalThink( self.delay_time )
 
 		-- play effects
 		self:PlayEffects1()
@@ -54,7 +54,7 @@ end
 
 function modifier_slark_dark_pact_lua:OnRefresh( kv )
 	-- references
-	self.delay = self:GetAbility():GetSpecialValueFor( "delay" )
+	self.delay_time = self:GetAbility():GetSpecialValueFor( "delay" )
 	self.pulse_duration = self:GetAbility():GetSpecialValueFor( "pulse_duration" )
 	self.total_pulses = self:GetAbility():GetSpecialValueFor( "total_pulses" )
 	self.total_damage = self:GetAbility():GetSpecialValueFor( "total_damage" )
@@ -77,7 +77,7 @@ function modifier_slark_dark_pact_lua:OnRefresh( kv )
 		}
 
 		-- begin delay
-		self:StartIntervalThink( self.interval )
+		self:StartIntervalThink( self.delay_time )
 
 		-- play effects
 		self:PlayEffects1()
@@ -92,6 +92,7 @@ end
 -- Interval Effects
 function modifier_slark_dark_pact_lua:OnIntervalThink()
 	if self.delay then
+		self.delay = false
 		-- start pulse
 		self:StartIntervalThink( self.pulse_duration/self.total_pulses )
 
@@ -128,9 +129,6 @@ function modifier_slark_dark_pact_lua:OnIntervalThink()
 		self.damageTable.victim = self:GetParent()
 		ApplyDamage( self.damageTable )
 
-		-- Play effects
-		self:PlayEffects3()
-
 		-- Counter
 		self.count = self.count + 1
 		if self.count>=self.total_pulses then
@@ -148,6 +146,15 @@ function modifier_slark_dark_pact_lua:PlayEffects1()
 
 	-- play particle
 	local effect_cast = ParticleManager:CreateParticleForTeam( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), self:GetParent():GetTeamNumber() )
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		1,
+		self:GetParent(),
+		PATTACH_ABSORIGIN_FOLLOW,
+		"attach_hitoc",
+		self:GetParent():GetOrigin(),
+		true
+	)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- play sound
@@ -156,16 +163,22 @@ end
 
 function modifier_slark_dark_pact_lua:PlayEffects2()
 	local sound_cast = "Hero_Slark.DarkPact.Cast"
-
-	-- play sound
-	EmitSoundOn( sound_cast, self:GetParent() )
-end
-
-function modifier_slark_dark_pact_lua:PlayEffects3()
 	local particle_cast = "particles/units/heroes/hero_slark/slark_dark_pact_pulses.vpcf"
 
 	-- play particle
-	local effect_cast = ParticleManager:CreateParticleForTeam( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), self:GetParent():GetTeamNumber() )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		1,
+		self:GetParent(),
+		PATTACH_ABSORIGIN_FOLLOW,
+		"attach_hitloc",
+		self:GetParent():GetOrigin(),
+		true
+	)
 	ParticleManager:SetParticleControl( effect_cast, 2, Vector( self.radius, 0, 0 ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	-- play sound
+	EmitSoundOn( sound_cast, self:GetParent() )
 end

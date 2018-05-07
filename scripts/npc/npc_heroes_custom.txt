@@ -1,6 +1,9 @@
 // Dota Heroes File
 // NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
 // the specified key-value combinations.  Use override_hero <hero_to_override> for this.
+
+#base "heroes/sandra_olivia.txt"
+
 "DOTAHeroes"
 {
 	//=================================================================================================================
@@ -52,7 +55,7 @@
 		"Ability2"				"queen_of_pain_shadow_strike_lua"				// Ability 3
 		"Ability3"				"wraith_king_wraithfire_blast_lua"				// Ability 1
 		"Ability4"				"chaos_knight_chaos_bolt_lua"				// Ability 3
-		"Ability6"				"vengefulspirit_nether_swap_lua"				// Ability 4
+		"Ability6"				"slardar_corrosive_haze_lua"				// Ability 4
 	}
 	//=================================================================================================================
 	// HERO: Lina
@@ -78,17 +81,6 @@
 		//"AttributeIntelligenceGain"		"0.0"
 		//"AttributeBaseAgility"		"0"
 		//"AttributeAgilityGain"		"0.0"
-	}
-	//=================================================================================================================
-	// HERO: Sandra (PA)
-	//=================================================================================================================
-	"npc_dota_hero_sandra"
-	{
-		"override_hero"					"npc_dota_hero_phantom_assassin"	// Hero to override
-		"Ability1"				"sandra_undeniable_torture"						// Ability 1
-		"Ability2"				"sandra_ironical_healing"						// Ability 2
-		"Ability3"				"sandra_will_to_live"						// Ability 3
-		"Ability6"				"sandra_sacrifice"							// Ability 6
 	}
 	//=================================================================================================================
 	// HERO: Juggernaut
@@ -195,6 +187,14 @@
 		"Ability2"				"bloodseeker_blood_rite_lua"						// Ability 2
 		"Ability3"				"lion_hex_lua"						// Ability 3
 		"Ability6"				"lion_finger_of_death_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Magnus
+	//=================================================================================================================
+	"npc_dota_hero_x"
+	{
+		"override_hero"					"npc_dota_hero_axe"	// Hero to override
 	}
 
 	//=================================================================================================================
