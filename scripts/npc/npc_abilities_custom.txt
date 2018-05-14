@@ -3658,6 +3658,11 @@
 
 #base "../vscripts/custom_abilities/plague_doctor_healing_shield/plague_doctor_healing_shield_base.txt"
 
+#base "../vscripts/custom_abilities/riven_broken_wings/riven_broken_wings.txt"
+#base "../vscripts/custom_abilities/riven_ki_burst/riven_ki_burst.txt"
+#base "../vscripts/custom_abilities/riven_runic_blade/riven_runic_blade.txt"
+#base "../vscripts/custom_abilities/riven_blade_of_the_exile/riven_blade_of_the_exile.txt"
+
 #base "../vscripts/custom_abilities/sandra_undeniable_torture/sandra_undeniable_torture.txt"
 #base "../vscripts/custom_abilities/sandra_ironical_healing/sandra_ironical_healing.txt"
 #base "../vscripts/custom_abilities/sandra_will_to_live/sandra_will_to_live.txt"

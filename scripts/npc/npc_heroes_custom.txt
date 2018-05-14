@@ -88,10 +88,10 @@
 	"npc_dota_hero_jugg"
 	{
 		"override_hero"					"npc_dota_hero_juggernaut"	// Hero to override
-		"Ability1"				"slark_dark_pact_lua"						// Ability 1
-		"Ability2"				"slardar_slithereen_crush_lua"						// Ability 2
-		"Ability3"				"slark_essence_shift_lua"						// Ability 3
-		"Ability6"				"slark_shadow_dance_lua"							// Ability 6
+		"Ability1"				"riven_broken_wings"						// Ability 1
+		"Ability2"				"riven_ki_burst"						// Ability 2
+		"Ability3"				"riven_runic_blade"						// Ability 3
+		"Ability6"				"riven_blade_of_the_exile"							// Ability 6
 	}
 	//=================================================================================================================
 	// HERO: Lanaya
