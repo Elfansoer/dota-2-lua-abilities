@@ -53,7 +53,7 @@
 		"override_hero"					"npc_dota_hero_vengefulspirit"			// Hero to override
 		"Ability1"				"vengefulspirit_magic_missile_lua"				// Ability 2
 		"Ability2"				"queen_of_pain_shadow_strike_lua"				// Ability 3
-		"Ability3"				"wraith_king_wraithfire_blast_lua"				// Ability 1
+		"Ability3"				"shaco_haunting_presence"				// Ability 1
 		"Ability4"				"chaos_knight_chaos_bolt_lua"				// Ability 3
 		"Ability6"				"slardar_corrosive_haze_lua"				// Ability 4
 	}
