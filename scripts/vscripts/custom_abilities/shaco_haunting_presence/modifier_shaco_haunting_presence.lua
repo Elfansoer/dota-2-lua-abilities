@@ -27,7 +27,6 @@ function modifier_shaco_haunting_presence:OnCreated( kv )
 		local facing_angle = self.target:GetAnglesAsVector().y
 		local starting_angle = VectorToAngles(self:GetParent():GetOrigin()-self.target:GetOrigin()).y
 		self.angle_diff = AngleDiff( facing_angle, starting_angle )
-		print("facing, starting, diff:",facing_angle, starting_angle, self.angle_diff)
 
 		-- start motion
 		if self:ApplyHorizontalMotionController() == false then
@@ -42,6 +41,8 @@ end
 
 function modifier_shaco_haunting_presence:OnDestroy( kv )
 	if IsServer() then
+		self:GetParent():StopFacing()
+		
 		-- IMPORTANT: this is a must, or else the game will crash!
 		self:GetParent():InterruptMotionControllers( true )
 	end
@@ -58,17 +59,16 @@ function modifier_shaco_haunting_presence:UpdateHorizontalMotion( me, dt )
 
 		-- get relative position
 		local forward_angle = VectorToAngles(self.target:GetForwardVector()).y
-		local target_angle = forward_angle + self.angle_diff
-		if target_angle > 360 then target_angle = target_angle - 360 end
+		local target_angle = forward_angle - self.angle_diff
 		target_angle = math.rad(target_angle)
-		local target_vec = Vector( math.cos(forward_angle), math.sin(forward_angle), 0 ):Normalized() * 128
-
+		local target_vec = Vector( math.cos(target_angle), math.sin(target_angle), 0 ):Normalized() * self.distance
 
 		-- actual position
 		target_vec = self.target:GetOrigin() + target_vec
 
 		-- move to position
 		self:GetParent():SetOrigin( target_vec )
+		self:GetParent():FaceTowards(self.target:GetOrigin())
 	end
 end
 
