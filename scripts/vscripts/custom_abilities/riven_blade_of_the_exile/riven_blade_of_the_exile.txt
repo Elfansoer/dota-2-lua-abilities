@@ -46,12 +46,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"refresh_interval"			"1"
+				"refresh_interval"		"1"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"			"2 3 4"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1.5 2.5 3.5"
 			}
 		}
 	}

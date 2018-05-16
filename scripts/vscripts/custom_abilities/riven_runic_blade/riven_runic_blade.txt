@@ -42,7 +42,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_per_stack"			"15 20 25 30"
+				"crit_per_stack"			"10 15 20 25"
 			}
 			"02"
 			{

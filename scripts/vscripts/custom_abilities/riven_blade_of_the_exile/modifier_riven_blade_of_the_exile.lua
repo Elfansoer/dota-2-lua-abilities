@@ -36,13 +36,28 @@ function modifier_riven_blade_of_the_exile:OnRefresh( kv )
 	if IsServer() then
 		-- Start interval
 		self:RefreshCooldown()
-		self:StartIntervalThink( -1 )
-		self:StartIntervalThink( self.refresh_interval )
+		-- self:StartIntervalThink( -1 )
+		-- self:StartIntervalThink( self.refresh_interval )
 	end
 end
 
 function modifier_riven_blade_of_the_exile:OnDestroy( kv )
 
+end
+
+--------------------------------------------------------------------------------
+-- Modifier Effects
+function modifier_riven_blade_of_the_exile:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
+	}
+
+	return funcs
+end
+function modifier_riven_blade_of_the_exile:GetModifierPercentageCooldown( params )
+	if not params.ability:IsItem() then
+		return 100
+	end
 end
 
 --------------------------------------------------------------------------------

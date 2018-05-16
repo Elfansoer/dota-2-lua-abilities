@@ -31,11 +31,11 @@
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"300"
-		"AbilityCastPoint"				"0.2"
+		"AbilityCastPoint"				"0.3"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"18 15 12 9"
+		"AbilityCooldown"				"15 12 9 6"
 		"AbilityManaCost"				"25"
 
 		// Damage

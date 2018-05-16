@@ -1,41 +1,40 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Riven: Ki Burst
+	// Sona: Aria of Perseverance
 	//=================================================================================================================
-	"riven_ki_burst"
+	"sona_aria_of_perseverance"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"custom_abilities/riven_ki_burst/riven_ki_burst"
-		"AbilityTextureName"			"custom/riven_ki_burst"
+		"ScriptFile"					"custom_abilities/sona_aria_of_perseverance/sona_aria_of_perseverance"
+		"AbilityTextureName"			"custom/sona_aria_of_perseverance"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
-			"particle"	"particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf"
-		}
+//		"precache"
+//		{
+//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"150"
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.3"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7"
-		"AbilityManaCost"				"90 100 110 120"
+		"AbilityCooldown"				"14 13 12 11"
+		"AbilityManaCost"				"90 105 120 135"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,22 +46,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"150"
+				"heal"					"90 180 270 360"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"0.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.4"
-			}
-			"01"
-			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"60 120 180 240"
+				"targets"				"1"
 			}
 		}
 	}

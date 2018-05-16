@@ -101,34 +101,25 @@ function riven_broken_wings:OnSpellStart()
 	end
 
 	-- effects
-
+	self:PlayEffects( origin )
 end
 
 --------------------------------------------------------------------------------
-function riven_broken_wings:PlayEffects()
+function riven_broken_wings:PlayEffects( origin )
 	-- Get Resources
-	local particle_cast = "string"
-	local sound_cast = "string"
-
-	-- Get Data
+	local particle_cast = "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf"
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, self:GetCaster() )
+	ParticleManager:SetParticleControl( effect_cast, 0, origin )
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
+		1,
+		self:GetCaster(),
+		PATTACH_ABSORIGIN,
+		"attach_hitloc",
+		Vector(0,0,0), -- unknown
+		true -- unknown, true
 	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
-
-	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
 end
