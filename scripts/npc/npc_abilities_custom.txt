@@ -3669,6 +3669,8 @@
 #base "../vscripts/custom_abilities/sandra_sacrifice/sandra_sacrifice.txt"
 
 #base "../vscripts/custom_abilities/shaco_haunting_presence/shaco_haunting_presence.txt"
+#base "../vscripts/custom_abilities/shaco_deceive/shaco_deceive.txt"
+#base "../vscripts/custom_abilities/shaco_jack_in_the_box/shaco_jack_in_the_box.txt"
 
 #base "../vscripts/custom_abilities/sona_hymn_of_valor/sona_hymn_of_valor.txt"
 #base "../vscripts/custom_abilities/sona_song_of_celerity/sona_song_of_celerity.txt"
