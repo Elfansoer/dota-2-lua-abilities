@@ -54,7 +54,7 @@
 		"Ability1"				"shaco_haunting_presence"				// Ability 1
 		"Ability2"				"shaco_deceive"				// Ability 3
 		"Ability3"				"shaco_jack_in_the_box"				// Ability 2
-		"Ability6"				"slardar_corrosive_haze_lua"				// Ability 4
+		"Ability6"				"shaco_hallucinate"				// Ability 4
 	}
 	//=================================================================================================================
 	// HERO: Lina

@@ -22,6 +22,8 @@ function shaco_haunting_presence:OnSpellStart()
 			target = enemy,
 		} -- kv
 	)
+
+	print("target:", target:GetUnitName(),", Illusion",target:IsIllusion())
 end
 
 --------------------------------------------------------------------------------
