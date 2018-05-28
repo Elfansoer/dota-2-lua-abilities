@@ -21,18 +21,17 @@
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ATTACK"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600"
+		"AbilityCastRange"				"00"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1.0"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -3611,6 +3610,11 @@
 #base "../vscripts/lua_abilities/earthshaker_enchant_totem_lua/earthshaker_enchant_totem_lua.txt"
 #base "../vscripts/lua_abilities/earthshaker_aftershock_lua/earthshaker_aftershock_lua.txt"
 #base "../vscripts/lua_abilities/earthshaker_echo_slam_lua/earthshaker_echo_slam_lua.txt"
+
+#base "../vscripts/lua_abilities/invoker_quas_lua/invoker_quas_lua.txt"
+#base "../vscripts/lua_abilities/invoker_wex_lua/invoker_wex_lua.txt"
+#base "../vscripts/lua_abilities/invoker_exort_lua/invoker_exort_lua.txt"
+#base "../vscripts/lua_abilities/invoker_invoke_lua/invoker_invoke_lua.txt"
 
 #base "../vscripts/lua_abilities/juggernaut_blade_fury_lua/juggernaut_blade_fury_lua.txt"
 #base "../vscripts/lua_abilities/juggernaut_blade_dance_lua/juggernaut_blade_dance_lua.txt"

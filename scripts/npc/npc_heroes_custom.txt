@@ -51,10 +51,12 @@
 	"npc_dota_hero_vengefulspirit_lua"
 	{
 		"override_hero"					"npc_dota_hero_vengefulspirit"			// Hero to override
-		"Ability1"				"shaco_haunting_presence"				// Ability 1
-		"Ability2"				"shaco_deceive"				// Ability 3
-		"Ability3"				"shaco_jack_in_the_box"				// Ability 2
-		"Ability6"				"shaco_hallucinate"				// Ability 4
+		"Ability1"				"invoker_quas_lua"				// Ability 1
+		"Ability2"				"invoker_wex_lua"				// Ability 3
+		"Ability3"				"invoker_exort_lua"				// Ability 2
+		"Ability4"				"invoker_empty_1_lua"				// Ability 2
+		"Ability5"				"invoker_empty_2_lua"				// Ability 2
+		"Ability6"				"invoker_invoke_lua"				// Ability 4
 	}
 	//=================================================================================================================
 	// HERO: Lina
