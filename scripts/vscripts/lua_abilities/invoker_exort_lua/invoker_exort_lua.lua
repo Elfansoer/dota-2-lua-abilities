@@ -27,13 +27,8 @@ function invoker_exort_lua:OnUpgrade()
 		local invoke = self:GetCaster():FindAbilityByName( "invoker_invoke_lua" )
 		if invoke:GetLevel()<1 then invoke:UpgradeAbility(true) end
 		self.invoke = invoke
-	end
-
-	-- update modifiers
-	local modifiers = self:GetCaster():FindAllModifiersByName( "modifier_invoker_exort_lua" )
-	for _,modifier in pairs(modifiers) do
-		if modifier:GetCaster()==self:GetCaster() then
-			modifier:ForceRefresh()
-		end
+	else
+		-- update status
+		self.invoke:UpdateOrb("modifier_invoker_quas_lua")
 	end
 end

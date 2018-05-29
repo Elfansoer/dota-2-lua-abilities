@@ -1,5 +1,6 @@
 invoker_cold_snap_lua = class({})
 LinkLuaModifier( "modifier_invoker_cold_snap_lua", "lua_abilities/invoker_cold_snap_lua/modifier_invoker_cold_snap_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Ability Start
@@ -9,7 +10,7 @@ function invoker_cold_snap_lua:OnSpellStart()
 	local target = self:GetCursorTarget()
 
 	-- load data
-	local duration = self:GetSpecialValueFor("duration")
+	local duration = self:GetOrbSpecialValueFor("duration", "q")
 
 	-- logic
 	target:AddNewModifier(
@@ -19,9 +20,14 @@ function invoker_cold_snap_lua:OnSpellStart()
 		{ duration = duration } -- kv
 	)
 
-	self:PlayEffects()
+	-- self:PlayEffects()
 end
 
+function invoker_cold_snap_lua:GetOrbSpecialValueFor( key_name, orb_name )
+	if not IsServer() then return 0 end
+	if not self.orbs[orb_name] then return 0 end
+	return self:GetLevelSpecialValueFor( key_name, self.orbs[orb_name] )
+end
 --------------------------------------------------------------------------------
 function invoker_cold_snap_lua:PlayEffects()
 	-- Get Resources

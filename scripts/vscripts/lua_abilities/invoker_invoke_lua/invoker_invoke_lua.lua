@@ -40,26 +40,90 @@ function invoker_invoke_lua:AddOrb( modifier )
 	self.orb_manager:Add( modifier )
 end
 
+function invoker_invoke_lua:UpdateOrb( modifer_name )
+	updates = self.orb_manager:UpdateOrb( modifer_name )
+	self.ability_manager:UpgradeAbilities()
+end
+
+function invoker_invoke_lua:GetOrbLevel( orb_name )
+	if not self.orb_manager.status[orb_name] then return 0 end
+	return self.orb_manager.status[orb_name].level
+end
+
+function invoker_invoke_lua:GetOrbInstances( orb_name )
+	if not self.orb_manager.status[orb_name] then return 0 end
+	return self.orb_manager.status[orb_name].instances
+end
+
+function invoker_invoke_lua:GetOrbs()
+	local ret = {}
+	for k,v in pairs(self.orb_manager.status) do
+		ret[k] = v.level
+	end
+	return ret
+end
+
 --------------------------------------------------------------------------------
 -- Orb management
 orb_manager.MAX_ORB = 3
+orb_manager.status = {}
 orb_manager.modifiers = {}
 orb_manager.names = {}
+
 function orb_manager:Add( modifier )
-	-- add new orb
+	-- register new orb type if not exist
+	local orb_name = self.modifier_list[modifier:GetName()]
+	if not self.status[orb_name] then
+		self.status[orb_name] = {
+			["instances"] = 0,
+			["level"] = modifier:GetAbility():GetLevel(),
+		}
+	end
+
+	-- add new orb instance
 	table.insert(self.modifiers,modifier)
-	table.insert(self.names,self.modifier_list[modifier:GetName()])
+	table.insert(self.names,orb_name)
+	self.status[orb_name].instances = self.status[orb_name].instances + 1
 
 	-- remove last orb
 	if #self.modifiers>self.MAX_ORB then
+		self.status[self.names[1]].instances = self.status[self.names[1]].instances - 1
 		self.modifiers[1]:Destroy()
+
 		table.remove(self.modifiers,1)
 		table.remove(self.names,1)
 	end
 end
 
 function orb_manager:GetInvokedAbility()
-	return self.invoke_list[ self.names[1] .. self.names[2] .. self.names[3] ]
+	-- check instances
+	local key = ""
+	for i=1,string.len(self.orb_order) do
+		k = string.sub(self.orb_order,i,i)
+
+		if self.status[k] then 
+			for i=1,self.status[k].instances do
+				key = key .. k
+			end
+		end
+	end
+	return self.invoke_list[key]
+
+	-- if allows permutation
+	-- return self.invoke_list[ self.names[1] .. self.names[2] .. self.names[3] ]
+end
+
+function orb_manager:UpdateOrb( modifer_name )
+	-- refresh orb instances
+	for _,modifier in pairs(self.modifiers) do
+		if modifier:GetName()==modifer_name then
+			modifier:ForceRefresh()
+		end
+	end
+
+	-- update its level
+	local orb_name = self.modifier_list[modifer_name]
+	self.status[orb_name].level = self.status[orb_name].level + 1
 end
 
 --------------------------------------------------------------------------------
@@ -69,7 +133,10 @@ ability_manager.ability_slot = {}
 ability_manager.MAX_ABILITY = 2
 
 function ability_manager:Invoke( ability_name )
+	if not ability_name then return end
+
 	local ability = self:GetAbilityHandle( ability_name )
+	ability.orbs = self.ability:GetOrbs()
 
 	-- nothing to invoke
 	if self.ability_slot[1] and self.ability_slot[1]==ability then
@@ -152,6 +219,12 @@ function ability_manager:GetAbilityHandle( ability_name )
 	return ability
 end
 
+function ability_manager:UpgradeAbilities()
+	for _,ability in pairs(self.abilities) do
+		ability.orbs = self.ability:GetOrbs()
+	end
+end
+
 --------------------------------------------------------------------------------
 -- Effects
 function invoker_invoke_lua:PlayEffects()
@@ -224,44 +297,19 @@ orb_manager.invoke_list = {
 	-- ["ewq"] = "invoker_deafening_blast_lua",
 
 
-	["qqq"] = "bloodseeker_bloodrage_lua",
-
+	["qqq"] = "invoker_cold_snap_lua",
 	["qqw"] = "bloodseeker_blood_rite_lua",
-	["qwq"] = "bloodseeker_blood_rite_lua",
-	["wqq"] = "bloodseeker_blood_rite_lua",
-
 	["qqe"] = "shadow_fiend_necromastery_lua",
-	["qeq"] = "shadow_fiend_necromastery_lua",
-	["eqq"] = "shadow_fiend_necromastery_lua",
-
 	["www"] = "shadow_fiend_presence_of_the_dark_lord_lua",
-
-	["wwq"] = "dazzle_shallow_grave_lua",
-	["wqw"] = "dazzle_shallow_grave_lua",
 	["qww"] = "dazzle_shallow_grave_lua",
-
 	["wwe"] = "dazzle_shadow_wave_lua",
-	["wew"] = "dazzle_shadow_wave_lua",
-	["eww"] = "dazzle_shadow_wave_lua",
-
 	["eee"] = "dazzle_weave_lua",
-
-	["eeq"] = "earthshaker_fissure_lua",
-	["eqe"] = "earthshaker_fissure_lua",
 	["qee"] = "earthshaker_fissure_lua",
-
-	["eew"] = "earthshaker_enchant_totem_lua",
-	["ewe"] = "earthshaker_enchant_totem_lua",
 	["wee"] = "earthshaker_enchant_totem_lua",
-
 	["qwe"] = "lion_finger_of_death_lua",
-	["qew"] = "lion_finger_of_death_lua",
-	["wqe"] = "lion_finger_of_death_lua",
-	["weq"] = "lion_finger_of_death_lua",
-	["eqw"] = "lion_finger_of_death_lua",
-	["ewq"] = "lion_finger_of_death_lua",
 }
 
+orb_manager.orb_order = "qwe"
 orb_manager.modifier_list = {
 	["q"] = "modifier_invoker_quas_lua",
 	["w"] = "modifier_invoker_wex_lua",

@@ -14,7 +14,6 @@
 		"AbilityTextureName"			"invoker_invoke_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"1"
 		"HasScepterUpgrade"				"1"
 
 //		"precache"
@@ -73,6 +72,7 @@
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/invoker_invoke_lua/invoker_invoke_lua"
 		"AbilityTextureName"			"invoker_empty_lua"
 		"MaxLevel"						"0"
 
@@ -92,6 +92,7 @@
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/invoker_invoke_lua/invoker_invoke_lua"
 		"AbilityTextureName"			"invoker_empty_lua"
 		"MaxLevel"						"0"
 
