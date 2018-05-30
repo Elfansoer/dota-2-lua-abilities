@@ -1,5 +1,6 @@
 modifier_test = class({})
-
+local intPack = require("util/intPack")
+print("intpack: ",intPack)
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_test:IsHidden()
@@ -17,70 +18,85 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_test:OnCreated( kv )
+	print("Modifier created:",IsServer(),"----------------------")
+	print("intpack: ",intPack,IsServer())
+	for k,v in pairs(kv) do
+		print(k,v)
+	end
+	if IsServer() then
+		print("Server start")
+		self.bonus1, self.bonus2 = self:GetAbility():GetValue()
+		print("Server pre-stack",self:GetStackCount())
+
+		local pack = { self.bonus1, self.bonus2 }
+		self:SetStackCount( intPack.Pack( pack, 120 ) )
+		print("Server post-stack",self:GetStackCount())
+	else
+		print("Client start")
+		print("Client pre-stack",self:GetStackCount())
+		print("Client post-stack",self:GetStackCount())
+	end
+	print("Second Part:",IsServer(),"----------------------")
+	if IsServer() then
+		print("Server pre-stack",self:GetStackCount())
+		print("Server post-stack",self:GetStackCount())
+	else
+		print("Client pre-stack",self:GetStackCount())
+		local unPack = intPack.Unpack( self:GetStackCount(), 2, 120 )
+		self.bonus1 = unPack[1]
+		self.bonus2 = unPack[2]
+		self:SetStackCount(0)
+		print("Client post-stack",self:GetStackCount())
+	end
+	print("Modifier end:",IsServer(),"----------------------")
+	print("Bonus 1, 2:",IsServer(),self.bonus1, self.bonus2)
+end
+function modifier_test:OnRefresh( kv )
+	print("Modifier created:",IsServer(),"----------------------")
+	for k,v in pairs(kv) do
+		print(k,v)
+	end
+	if IsServer() then
+		print("Server start")
+		self.bonus1, self.bonus2 = self:GetAbility():GetValue()
+		print("Server pre-stack",self:GetStackCount())
+
+		local pack = { self.bonus1, self.bonus2 }
+		self:SetStackCount( intPack.Pack( pack, 120 ) )
+		print("Server post-stack",self:GetStackCount())
+	else
+		print("Client start")
+		print("Client pre-stack",self:GetStackCount())
+		print("Client post-stack",self:GetStackCount())
+	end
+	print("Second Part:",IsServer(),"----------------------")
+	if IsServer() then
+		print("Server pre-stack",self:GetStackCount())
+		print("Server post-stack",self:GetStackCount())
+	else
+		print("Client pre-stack",self:GetStackCount())
+		local unPack = intPack.Unpack( self:GetStackCount(), 2, 120 )
+		self.bonus1 = unPack[1]
+		self.bonus2 = unPack[2]
+		self:SetStackCount(0)
+		print("Client post-stack",self:GetStackCount())
+	end
+	print("Modifier end:",IsServer(),"----------------------")
+	print("Bonus 1, 2:",IsServer(),self.bonus1, self.bonus2)
+end
+function modifier_test:OnDestroy( kv )
 
 end
 --------------------------------------------------------------------------------
 -- Modifier Effects
 function modifier_test:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK,
-		MODIFIER_EVENT_ON_ATTACKED,
-		MODIFIER_EVENT_ON_ATTACK_ALLIED,
-		MODIFIER_EVENT_ON_ATTACK_FAIL,
-		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_EVENT_ON_ATTACK_RECORD,
-		MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY,
-		MODIFIER_PROPERTY_PRE_ATTACK,
-		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
-
-		MODIFIER_EVENT_ON_ORDER,
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 	}
 
 	return funcs
 end
 
-function modifier_test:GetModifierPreAttack( params )
-	print("PreAttack",params.record,params.attacker,params.unit,params.target)
-end
-function modifier_test:GetModifierProcAttack_Feedback( params )
-	print("ProcAttack",params.record,params.attacker,params.unit,params.target)
-end
-
-function modifier_test:OnAttack( params )
-	print("OnAttack",params.record,params.attacker:GetUnitName(),params.unit,params.target)
-end
-function modifier_test:OnAttacked( params )
-	print("OnAttacked",params.record,params.attacker:GetUnitName(),params.unit,params.target)
-end
-function modifier_test:OnAttackFail( params )
-	print("OnFail",params.record,params.attacker:GetUnitName(),params.unit,params.target)
-end
-function modifier_test:OnAttackLanded( params )
-	print("OnLanded",params.record,params.attacker:GetUnitName(),params.unit,params.target)
-end
-function modifier_test:OnAttackRecord( params )
-	print("OnRecord",params.record,params.attacker:GetUnitName(),params.unit,params.target)
-end
-function modifier_test:OnAttackRecordDestroy( params )
-	print("OnDestroy",params.record,params.attacker:GetUnitName(),params.unit,params.target)
-end
-
-function modifier_test:OnOrder( params )
-	print("OnOrder")
-	for k,v in pairs(params) do
-		print("",k,v)
-	end
-end
---------------------------------------------------------------------------------
--- Unused
-function modifier_test:printImportant( params )
-	if IsServer() then
-	if params.attacker:GetUnitName() ~= nil then print("","attacker",params.attacker:GetUnitName(),"health",params.attacker:GetUnitName():GetHealth()) end
-	if params.unit ~= nil then print("","unit\t",params.unit,"health",params.unit:GetHealth()) end
-	if params.target ~= nil then print("","target\t",params.target,"health",params.target:GetHealth()) end
-	if params.damage ~= nil then print("","damage\t",params.damage) end
-	if params.original_damage ~= nil then print("","original_damage",params.original_damage) end
-	if params.damage_type ~= nil then print("","damage_type",params.damage_type) end
-		print("","health",self:GetParent():GetHealth())
-	end
+function modifier_test:GetModifierPreAttack_BonusDamage()
+	return self.bonus
 end

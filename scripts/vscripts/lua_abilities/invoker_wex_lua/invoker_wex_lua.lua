@@ -29,6 +29,6 @@ function invoker_wex_lua:OnUpgrade()
 		self.invoke = invoke
 	else
 		-- update status
-		self.invoke:UpdateOrb("modifier_invoker_quas_lua")
+		self.invoke:UpdateOrb("modifier_invoker_wex_lua", self:GetLevel())
 	end
 end

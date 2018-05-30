@@ -68,8 +68,8 @@ function invoker_invoke_lua:AddOrb( modifier )
 	self.orb_manager:Add( modifier )
 end
 
-function invoker_invoke_lua:UpdateOrb( modifer_name )
-	updates = self.orb_manager:UpdateOrb( modifer_name )
+function invoker_invoke_lua:UpdateOrb( modifer_name, level )
+	updates = self.orb_manager:UpdateOrb( modifer_name, level )
 	self.ability_manager:UpgradeAbilities()
 end
 
@@ -152,7 +152,7 @@ function orb_manager:GetInvokedAbility()
 	-- return self.invoke_list[ self.names[1] .. self.names[2] .. self.names[3] ]
 end
 
-function orb_manager:UpdateOrb( modifer_name )
+function orb_manager:UpdateOrb( modifer_name, level )
 	-- refresh orb instances
 	for _,modifier in pairs(self.modifiers) do
 		if modifier:GetName()==modifer_name then
@@ -162,7 +162,14 @@ function orb_manager:UpdateOrb( modifer_name )
 
 	-- update its level
 	local orb_name = self.modifier_list[modifer_name]
-	self.status[orb_name].level = self.status[orb_name].level + 1
+	if not self.status[orb_name] then
+		self.status[orb_name] = {
+			["instances"] = 0,
+			["level"] = level,
+		}
+	else
+		self.status[orb_name].level = level
+	end
 end
 
 --------------------------------------------------------------------------------

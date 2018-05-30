@@ -24,7 +24,7 @@
 	"npc_dota_hero_test_pudge_lua"
 	{
 		"override_hero"				"npc_dota_hero_pudge"			// Hero to override
-		"Ability1"					"bristleback_viscous_nasal_goo_lua"				// Ability 1
+		"Ability1"					"test_lua"				// Ability 1
 		"Ability2"					"dazzle_shallow_grave_lua"				// Ability 2
 		"Ability3"					"dazzle_shadow_wave_lua"
 		"Ability6"					"dazzle_weave_lua"
