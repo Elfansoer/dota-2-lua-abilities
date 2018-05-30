@@ -20,34 +20,34 @@ function invoker_cold_snap_lua:OnSpellStart()
 		{ duration = duration } -- kv
 	)
 
-	-- self:PlayEffects()
+	self:PlayEffects( target )
 end
 
 --------------------------------------------------------------------------------
-function invoker_cold_snap_lua:PlayEffects()
+function invoker_cold_snap_lua:PlayEffects( target )
 	-- Get Resources
-	local particle_cast = "string"
-	local sound_cast = "string"
+	local particle_cast = "particles/units/heroes/hero_invoker/invoker_cold_snap.vpcf"
+	local sound_cast = "Hero_Invoker.ColdSnap.Cast"
+	local sound_target = "Hero_Invoker.ColdSnap"
 
 	-- Get Data
+	local direction = target:GetOrigin()-self:GetCaster():GetOrigin()
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_POINT_FOLLOW, target )
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
+		0,
+		target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		Vector(0,0,0), -- unknown
+		true -- unknown, true
 	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
+	ParticleManager:SetParticleControl( effect_cast, 1, self:GetCaster():GetOrigin() + direction )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
+	EmitSoundOn( sound_cast, self:GetCaster() )
 	EmitSoundOn( sound_target, target )
 end

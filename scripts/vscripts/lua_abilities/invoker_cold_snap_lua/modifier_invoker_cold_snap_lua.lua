@@ -64,7 +64,9 @@ function modifier_invoker_cold_snap_lua:OnTakeDamage( params )
 		if params.unit~=self:GetParent() then return end
 		if params.damage<self.threshold then return end
 		if self.onCooldown then return end
-		self:Freeze() 
+		self:Freeze()
+
+		self:PlayEffects( params.attacker )
 	end
 end
 
@@ -90,48 +92,36 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_invoker_cold_snap_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_invoker_cold_snap_lua:GetEffectName()
+	return "particles/units/heroes/hero_invoker/invoker_cold_snap_status.vpcf"
+end
 
--- function modifier_invoker_cold_snap_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+function modifier_invoker_cold_snap_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
 
--- function modifier_invoker_cold_snap_lua:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "string"
--- 	local sound_cast = "string"
+function modifier_invoker_cold_snap_lua:PlayEffects( attacker )
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_invoker/invoker_cold_snap.vpcf"
+	local sound_cast = "Hero_Invoker.ColdSnap.Freeze"
 
--- 	-- Get Data
+	-- Get Data
+	local direction = self:GetParent():GetOrigin()-attacker:GetOrigin()
 
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_POINT_FOLLOW, target )
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		0,
+		target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		Vector(0,0,0), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControl( effect_cast, 1,  self:GetParent():GetOrigin()+direction )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 
--- 	-- buff particle
--- 	self:AddParticle(
--- 		nFXIndex,
--- 		bDestroyImmediately,
--- 		bStatusEffect,
--- 		iPriority,
--- 		bHeroEffect,
--- 		bOverheadEffect
--- 	)
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end
+	-- Create Sound
+	EmitSoundOn( sound_cast, self:GetParent() )
+end

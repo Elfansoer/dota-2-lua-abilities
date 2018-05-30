@@ -41,6 +41,9 @@ function invoker_invoke_lua:OnSpellStart()
 
 	-- invoke
 	self.ability_manager:Invoke( ability_name )
+
+	-- Effects
+	self:PlayEffects()
 end
 
 --------------------------------------------------------------------------------
@@ -89,6 +92,30 @@ function invoker_invoke_lua:GetOrbs()
 		ret[k] = v.level
 	end
 	return ret
+end
+
+--------------------------------------------------------------------------------
+-- Effects
+function invoker_invoke_lua:PlayEffects()
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_invoker/invoker_invoke.vpcf"
+	local sound_cast = "Hero_Invoker.Invoke"
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_POINT_FOLLOW, self:GetCaster() )
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		0,
+		self:GetCaster(),
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		Vector(0,0,0), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	-- Create Sound
+	EmitSoundOn( sound_cast, self:GetCaster() )
 end
 
 --------------------------------------------------------------------------------
@@ -291,34 +318,4 @@ function ability_manager:UpgradeAbilities()
 	for _,ability in pairs(self.abilities) do
 		ability.orbs = self.ability:GetOrbs()
 	end
-end
-
---------------------------------------------------------------------------------
--- Effects
-function invoker_invoke_lua:PlayEffects()
-	-- Get Resources
-	local particle_cast = "string"
-	local sound_cast = "string"
-
-	-- Get Data
-
-	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
-	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
-
-	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
 end

@@ -18,12 +18,18 @@ end
 -- Initializations
 function modifier_invoker_alacrity_lua:OnCreated( kv )
 	if IsServer() then
+		-- get references
 		self.damage = self:GetAbility():GetOrbSpecialValueFor( "bonus_damage", "e" )
 		self.as_bonus = self:GetAbility():GetOrbSpecialValueFor( "bonus_attack_speed", "w" )
 
+		-- send to client
 		local pack = { self.damage, self.as_bonus }
 		self:SetStackCount( intPack.Pack( pack, 120 ) )
+
+		-- Effects
+		self:PlayEffects()
 	else
+		-- get data from server
 		local unPack = intPack.Unpack( self:GetStackCount(), 2, 120 )
 		self.damage = unPack[1]
 		self.as_bonus = unPack[2]
@@ -33,12 +39,18 @@ end
 
 function modifier_invoker_alacrity_lua:OnRefresh( kv )
 	if IsServer() then
+		-- get references
 		self.damage = self:GetAbility():GetOrbSpecialValueFor( "bonus_damage", "e" )
 		self.as_bonus = self:GetAbility():GetOrbSpecialValueFor( "bonus_attack_speed", "w" )
 
+		-- send to client
 		local pack = { self.damage, self.as_bonus }
 		self:SetStackCount( intPack.Pack( pack, 120 ) )
+
+		-- Effects
+		self:PlayEffects()
 	else
+		-- get data from server
 		local unPack = intPack.Unpack( self:GetStackCount(), 2, 120 )
 		self.damage = unPack[1]
 		self.as_bonus = unPack[2]
@@ -69,48 +81,33 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_invoker_alacrity_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_invoker_alacrity_lua:GetEffectName()
+	return "particles/units/heroes/hero_invoker/invoker_alacrity_buff.vpcf"
+end
 
--- function modifier_invoker_alacrity_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+function modifier_invoker_alacrity_lua:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
 
--- function modifier_invoker_alacrity_lua:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "string"
--- 	local sound_cast = "string"
+--------------------------------------------------------------------------------
+function modifier_invoker_alacrity_lua:PlayEffects()
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_invoker/invoker_alacrity.vpcf"
 
--- 	-- Get Data
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
+	-- buff particle
+	self:AddParticle(
+		effect_cast,
+		false,
+		false,
+		-1,
+		false,
+		false
+	)
 
--- 	-- buff particle
--- 	self:AddParticle(
--- 		nFXIndex,
--- 		bDestroyImmediately,
--- 		bStatusEffect,
--- 		iPriority,
--- 		bHeroEffect,
--- 		bOverheadEffect
--- 	)
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end
+	-- Emit Sounds
+	local sound_cast = "Hero_Invoker.Alacrity"
+	EmitSoundOn( sound_cast, self:GetParent() )
+end
