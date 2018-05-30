@@ -13,7 +13,7 @@
 		"ScriptFile"					"lua_abilities/invoker_wex_lua/invoker_wex_lua"
 		"AbilityTextureName"			"invoker_wex_lua"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
+		"MaxLevel"						"7"
 //		"precache"
 //		{
 //			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"

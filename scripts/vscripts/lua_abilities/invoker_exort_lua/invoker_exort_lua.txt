@@ -13,7 +13,7 @@
 		"ScriptFile"					"lua_abilities/invoker_exort_lua/invoker_exort_lua"
 		"AbilityTextureName"			"invoker_exort_lua"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
+		"MaxLevel"						"7"
 //		"precache"
 //		{
 //			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"

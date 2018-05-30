@@ -1,30 +1,27 @@
-invoker_cold_snap_lua = class({})
-LinkLuaModifier( "modifier_invoker_cold_snap_lua", "lua_abilities/invoker_cold_snap_lua/modifier_invoker_cold_snap_lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
+invoker_alacrity_lua = class({})
+LinkLuaModifier( "modifier_invoker_alacrity_lua", "lua_abilities/invoker_alacrity_lua/modifier_invoker_alacrity_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Ability Start
-function invoker_cold_snap_lua:OnSpellStart()
+function invoker_alacrity_lua:OnSpellStart()
 	-- unit identifier
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
 	-- load data
-	local duration = self:GetOrbSpecialValueFor("duration", "q")
+	local duration = self:GetSpecialValueFor("duration")
 
-	-- logic
+	-- add modifier
 	target:AddNewModifier(
 		caster, -- player source
 		self, -- ability source
-		"modifier_invoker_cold_snap_lua", -- modifier name
+		"modifier_invoker_alacrity_lua", -- modifier name
 		{ duration = duration } -- kv
 	)
-
-	-- self:PlayEffects()
 end
 
 --------------------------------------------------------------------------------
-function invoker_cold_snap_lua:PlayEffects()
+function invoker_alacrity_lua:PlayEffects()
 	-- Get Resources
 	local particle_cast = "string"
 	local sound_cast = "string"

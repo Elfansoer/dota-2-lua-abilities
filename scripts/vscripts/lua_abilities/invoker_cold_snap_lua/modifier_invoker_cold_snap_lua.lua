@@ -21,25 +21,28 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_invoker_cold_snap_lua:OnCreated( kv )
-	-- references
-	self.damage = self:GetAbility():GetOrbSpecialValueFor( "freeze_damage", "q" )
-	self.duration = self:GetAbility():GetOrbSpecialValueFor( "freeze_duration", "q" )
-	self.cooldown = self:GetAbility():GetOrbSpecialValueFor( "freeze_cooldown", "q" )
-	self.threshold = self:GetAbility():GetOrbSpecialValueFor( "damage_trigger", "q" )
-
-	self.onCooldown = false
-
-	-- Start interval
 	if IsServer() then
+		-- references
+		self.damage = self:GetAbility():GetOrbSpecialValueFor( "freeze_damage", "q" )
+		self.duration = self:GetAbility():GetOrbSpecialValueFor( "freeze_duration", "q" )
+		self.cooldown = self:GetAbility():GetOrbSpecialValueFor( "freeze_cooldown", "q" )
+		self.threshold = self:GetAbility():GetOrbSpecialValueFor( "damage_trigger", "q" )
+
+		self.onCooldown = false
+
+		-- Start interval
 		self:Freeze()
 	end
 end
 
 function modifier_invoker_cold_snap_lua:OnRefresh( kv )
-	self.damage = self:GetAbility():GetOrbSpecialValueFor( "freeze_damage", "q" )
-	self.duration = self:GetAbility():GetOrbSpecialValueFor( "freeze_duration", "q" )
-	self.cooldown = self:GetAbility():GetOrbSpecialValueFor( "freeze_cooldown", "q" )
-	self.threshold = self:GetAbility():GetOrbSpecialValueFor( "damage_trigger", "q" )
+	if IsServer() then
+		-- references
+		self.damage = self:GetAbility():GetOrbSpecialValueFor( "freeze_damage", "q" )
+		self.duration = self:GetAbility():GetOrbSpecialValueFor( "freeze_duration", "q" )
+		self.cooldown = self:GetAbility():GetOrbSpecialValueFor( "freeze_cooldown", "q" )
+		self.threshold = self:GetAbility():GetOrbSpecialValueFor( "damage_trigger", "q" )
+	end
 end
 
 function modifier_invoker_cold_snap_lua:OnDestroy( kv )

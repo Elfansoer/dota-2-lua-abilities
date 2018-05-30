@@ -1,6 +1,34 @@
 invoker_invoke_lua = class({})
+invoker_empty_1_lua = class({})
+invoker_empty_2_lua = class({})
+
 orb_manager = {}
 ability_manager = {}
+
+--------------------------------------------------------------------------------
+-- Invoke List and Constants
+orb_manager.orb_order = "qwe"
+orb_manager.invoke_list = {
+	["qqq"] = "invoker_cold_snap_lua",
+	["qqw"] = "bloodseeker_blood_rite_lua",
+	["qqe"] = "shadow_fiend_necromastery_lua",
+	["www"] = "shadow_fiend_presence_of_the_dark_lord_lua",
+	["qww"] = "dazzle_shallow_grave_lua",
+	["wwe"] = "invoker_alacrity_lua",
+	["eee"] = "dazzle_weave_lua",
+	["qee"] = "earthshaker_fissure_lua",
+	["wee"] = "earthshaker_enchant_totem_lua",
+	["qwe"] = "lion_finger_of_death_lua",
+}
+orb_manager.modifier_list = {
+	["q"] = "modifier_invoker_quas_lua",
+	["w"] = "modifier_invoker_wex_lua",
+	["e"] = "modifier_invoker_exort_lua",
+
+	["modifier_invoker_quas_lua"] = "q",
+	["modifier_invoker_wex_lua"] = "w",
+	["modifier_invoker_exort_lua"] = "e",
+}
 
 --------------------------------------------------------------------------------
 -- Ability Start
@@ -229,16 +257,27 @@ function ability_manager:GetAbilityHandle( ability_name )
 	if not ability then
 		ability = self.caster:FindAbilityByName( ability_name )
 		self.abilities[ability_name] = ability
-	end
+		
+		-- if not exist, create one
+		if not ability then
+			ability = self.caster:AddAbility( ability_name )
+			self.abilities[ability_name] = ability
+		end
 
-	-- if not exist, create one
-	if not ability then
-		ability = self.caster:AddAbility( ability_name )
-		self.abilities[ability_name] = ability
-		ability:SetLevel(1)
+		-- ability:SetLevel(1)
+		self:InitAbility( ability )
 	end
 
 	return ability
+end
+
+function ability_manager:InitAbility( ability )
+	ability:SetLevel(1)
+	ability.GetOrbSpecialValueFor = function( self, key_name, orb_name )
+		if not IsServer() then return 0 end
+		if not self.orbs[orb_name] then return 0 end
+		return self:GetLevelSpecialValueFor( key_name, self.orbs[orb_name] )
+	end
 end
 
 function ability_manager:UpgradeAbilities()
@@ -276,28 +315,3 @@ function invoker_invoke_lua:PlayEffects()
 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
 	EmitSoundOn( sound_target, target )
 end
-
---------------------------------------------------------------------------------
--- Invoke List and Constants
-orb_manager.invoke_list = {
-	["qqq"] = "invoker_cold_snap_lua",
-	["qqw"] = "bloodseeker_blood_rite_lua",
-	["qqe"] = "shadow_fiend_necromastery_lua",
-	["www"] = "shadow_fiend_presence_of_the_dark_lord_lua",
-	["qww"] = "dazzle_shallow_grave_lua",
-	["wwe"] = "dazzle_shadow_wave_lua",
-	["eee"] = "dazzle_weave_lua",
-	["qee"] = "earthshaker_fissure_lua",
-	["wee"] = "earthshaker_enchant_totem_lua",
-	["qwe"] = "lion_finger_of_death_lua",
-}
-orb_manager.orb_order = "qwe"
-orb_manager.modifier_list = {
-	["q"] = "modifier_invoker_quas_lua",
-	["w"] = "modifier_invoker_wex_lua",
-	["e"] = "modifier_invoker_exort_lua",
-
-	["modifier_invoker_quas_lua"] = "q",
-	["modifier_invoker_wex_lua"] = "w",
-	["modifier_invoker_exort_lua"] = "e",
-}

@@ -1,19 +1,19 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Invoker: Quas (Lua version)
+	// Invoker: Alacrity (Lua version)
 	//=================================================================================================================
-	"invoker_quas_lua"
+	"invoker_alacrity_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/invoker_quas_lua/invoker_quas_lua"
-		"AbilityTextureName"			"invoker_quas_lua"
+		"ScriptFile"					"lua_abilities/invoker_alacrity_lua/invoker_alacrity_lua"
+		"AbilityTextureName"			"invoker_alacrity_lua"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
+		"MaxLevel"						"1"
 //		"precache"
 //		{
 //			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
@@ -23,17 +23,21 @@
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0"
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.05"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0"
-		"AbilityManaCost"				"0"
+		"AbilityCooldown"				"17"
+		"AbilityManaCost"				"60"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -44,8 +48,18 @@
 		{
 			"01"
 			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_attack_speed"		"10 25 40 55 70 85 100 115"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"10 25 40 55 70 85 100 115"
+			}
+			"03"
+			{
 				"var_type"					"FIELD_FLOAT"
-				"health_regen_per_instance"	"1 3 5 7 9 11 13"
+				"duration"					"9"
 			}
 		}
 	}
