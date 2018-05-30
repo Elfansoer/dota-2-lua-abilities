@@ -20,10 +20,10 @@ end
 -- Initializations (OnOwnerSpawned does not work)
 function invoker_invoke_lua:OnUpgrade()
 	-- add orb manager
-	self.orb_manager = orb_manager
+	self.orb_manager = orb_manager:init()
 
 	-- add ability manager
-	self.ability_manager = ability_manager
+	self.ability_manager = ability_manager:init()
 	self.ability_manager.caster = self:GetCaster()
 	self.ability_manager.ability = self
 
@@ -65,10 +65,21 @@ end
 
 --------------------------------------------------------------------------------
 -- Orb management
-orb_manager.MAX_ORB = 3
-orb_manager.status = {}
-orb_manager.modifiers = {}
-orb_manager.names = {}
+function orb_manager:init()
+	local ret = {}
+
+	-- initialize fields
+	ret.MAX_ORB = 3
+	ret.status = {}
+	ret.modifiers = {}
+	ret.names = {}
+
+	-- initialize methods and constants
+	for k,v in pairs(self) do
+		ret[k] = v
+	end
+	return ret
+end
 
 function orb_manager:Add( modifier )
 	-- register new orb type if not exist
@@ -128,9 +139,20 @@ end
 
 --------------------------------------------------------------------------------
 -- Ability Management
-ability_manager.abilities = {}
-ability_manager.ability_slot = {}
-ability_manager.MAX_ABILITY = 2
+function ability_manager:init()
+	local ret = {}
+
+	-- initialize fields
+	ret.abilities = {}
+	ret.ability_slot = {}
+	ret.MAX_ABILITY = 2
+
+	-- initialize methods and constants
+	for k,v in pairs(self) do
+		ret[k] = v
+	end
+	return ret
+end
 
 function ability_manager:Invoke( ability_name )
 	if not ability_name then return end
@@ -255,48 +277,9 @@ function invoker_invoke_lua:PlayEffects()
 	EmitSoundOn( sound_target, target )
 end
 
-
 --------------------------------------------------------------------------------
--- Invoke List
+-- Invoke List and Constants
 orb_manager.invoke_list = {
-	-- ["qqq"] = "invoker_cold_snap_lua",
-
-	-- ["qqw"] = "invoker_ghost_walk_lua",
-	-- ["qwq"] = "invoker_ghost_walk_lua",
-	-- ["wqq"] = "invoker_ghost_walk_lua",
-
-	-- ["qqe"] = "invoker_ice_wall_lua",
-	-- ["qeq"] = "invoker_ice_wall_lua",
-	-- ["eqq"] = "invoker_ice_wall_lua",
-
-	-- ["www"] = "invoker_emp_lua",
-
-	-- ["wwq"] = "invoker_tornado_lua",
-	-- ["wqw"] = "invoker_tornado_lua",
-	-- ["qww"] = "invoker_tornado_lua",
-
-	-- ["wwe"] = "invoker_alacrity_lua",
-	-- ["wew"] = "invoker_alacrity_lua",
-	-- ["eww"] = "invoker_alacrity_lua",
-
-	-- ["eee"] = "invoker_sun_strike_lua",
-
-	-- ["eeq"] = "invoker_forge_spirit_lua",
-	-- ["eqe"] = "invoker_forge_spirit_lua",
-	-- ["qee"] = "invoker_forge_spirit_lua",
-
-	-- ["eew"] = "invoker_chaos_meteor_lua",
-	-- ["ewe"] = "invoker_chaos_meteor_lua",
-	-- ["wee"] = "invoker_chaos_meteor_lua",
-
-	-- ["qwe"] = "invoker_deafening_blast_lua",
-	-- ["qew"] = "invoker_deafening_blast_lua",
-	-- ["wqe"] = "invoker_deafening_blast_lua",
-	-- ["weq"] = "invoker_deafening_blast_lua",
-	-- ["eqw"] = "invoker_deafening_blast_lua",
-	-- ["ewq"] = "invoker_deafening_blast_lua",
-
-
 	["qqq"] = "invoker_cold_snap_lua",
 	["qqw"] = "bloodseeker_blood_rite_lua",
 	["qqe"] = "shadow_fiend_necromastery_lua",
@@ -308,7 +291,6 @@ orb_manager.invoke_list = {
 	["wee"] = "earthshaker_enchant_totem_lua",
 	["qwe"] = "lion_finger_of_death_lua",
 }
-
 orb_manager.orb_order = "qwe"
 orb_manager.modifier_list = {
 	["q"] = "modifier_invoker_quas_lua",
