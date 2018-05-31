@@ -17,7 +17,8 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+			"particle"	"particles/units/heroes/hero_invoker/invoker_ghost_walk.vpcf"
+			"particle"	"particles/units/heroes/hero_invoker/invoker_ghost_walk_debuff.vpcf"
 		}
 		
 		// Ability General

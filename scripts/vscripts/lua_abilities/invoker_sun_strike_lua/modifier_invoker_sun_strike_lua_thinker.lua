@@ -64,26 +64,14 @@ end
 -- Graphics & Animations
 function modifier_invoker_sun_strike_lua_thinker:PlayEffects1()
 	-- Get Resources
-	-- local particle_cast = "string"
+	local particle_cast = "particles/units/heroes/hero_invoker/invoker_sun_strike_team.vpcf"
 	local sound_cast = "Hero_Invoker.SunStrike.Charge"
 
-	-- Get Data
-
 	-- Create Particle
-	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	-- ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	-- ParticleManager:SetParticleControlEnt(
-	-- 	effect_cast,
-	-- 	iControlPoint,
-	-- 	hTarget,
-	-- 	PATTACH_NAME,
-	-- 	"attach_name",
-	-- 	vOrigin, -- unknown
-	-- 	bool -- unknown, true
-	-- )
-	-- ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	-- SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	-- ParticleManager:ReleaseParticleIndex( effect_cast )
+	local effect_cast = ParticleManager:CreateParticleForTeam( particle_cast, PATTACH_WORLDORIGIN, self:GetCaster(), self:GetCaster():GetTeamNumber() )
+	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector( self.radius, 0, 0 ) )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
 	EmitSoundOnLocationForAllies( self:GetParent():GetOrigin(), sound_cast, self:GetCaster() )
@@ -91,26 +79,14 @@ end
 
 function modifier_invoker_sun_strike_lua_thinker:PlayEffects2()
 	-- Get Resources
-	-- local particle_cast = "string"
+	local particle_cast = "particles/units/heroes/hero_invoker/invoker_sun_strike.vpcf"
 	local sound_cast = "Hero_Invoker.SunStrike.Ignite"
 
-	-- Get Data
-
 	-- Create Particle
-	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	-- ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	-- ParticleManager:SetParticleControlEnt(
-	-- 	effect_cast,
-	-- 	iControlPoint,
-	-- 	hTarget,
-	-- 	PATTACH_NAME,
-	-- 	"attach_name",
-	-- 	vOrigin, -- unknown
-	-- 	bool -- unknown, true
-	-- )
-	-- ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	-- SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	-- ParticleManager:ReleaseParticleIndex( effect_cast )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, self:GetCaster() )
+	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector( self.radius, 0, 0 ) )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
 	EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), sound_cast, self:GetCaster() )

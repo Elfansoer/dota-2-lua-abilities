@@ -20,6 +20,18 @@ function invoker_ghost_walk_lua:OnSpellStart()
 	)
 
 	-- Effects
+	self:PlayEffects()
+end
+
+function invoker_ghost_walk_lua:PlayEffects()
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_invoker/invoker_ghost_walk.vpcf"
 	local sound_cast = "Hero_Invoker.GhostWalk"
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+
+	-- Create Sound
 	EmitSoundOn( sound_cast, caster )
 end

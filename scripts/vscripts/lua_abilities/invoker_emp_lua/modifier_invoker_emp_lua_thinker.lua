@@ -76,25 +76,13 @@ end
 
 function modifier_invoker_emp_lua_thinker:PlayEffects1()
 	-- Get Resources
-	-- local particle_cast = "string"
+	local particle_cast = "particles/units/heroes/hero_invoker/invoker_emp.vpcf"
 	local sound_cast = "Hero_Invoker.EMP.Charge"
 
-	-- Get Data
-
 	-- Create Particle
-	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	-- ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	-- ParticleManager:SetParticleControlEnt(
-	-- 	effect_cast,
-	-- 	iControlPoint,
-	-- 	hTarget,
-	-- 	PATTACH_NAME,
-	-- 	"attach_name",
-	-- 	vOrigin, -- unknown
-	-- 	bool -- unknown, true
-	-- )
-	-- ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	-- SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
+	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, self:GetCaster() )
+	ParticleManager:SetParticleControl( self.effect_cast, 0, self:GetParent():GetOrigin() )
+	ParticleManager:SetParticleControl( self.effect_cast, 1, Vector( self.radius, 0, 0 ) )
 	-- ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
@@ -103,26 +91,10 @@ end
 
 function modifier_invoker_emp_lua_thinker:PlayEffects2()
 	-- Get Resources
-	-- local particle_cast = "string"
 	local sound_cast = "Hero_Invoker.EMP.Discharge"
 
-	-- Get Data
-
-	-- Create Particle
-	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	-- ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	-- ParticleManager:SetParticleControlEnt(
-	-- 	effect_cast,
-	-- 	iControlPoint,
-	-- 	hTarget,
-	-- 	PATTACH_NAME,
-	-- 	"attach_name",
-	-- 	vOrigin, -- unknown
-	-- 	bool -- unknown, true
-	-- )
-	-- ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	-- SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	-- ParticleManager:ReleaseParticleIndex( effect_cast )
+	ParticleManager:DestroyParticle( self.effect_cast, false )
+	ParticleManager:ReleaseParticleIndex( self.effect_cast )
 
 	-- Create Sound
 	EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), sound_cast, self:GetCaster() )
