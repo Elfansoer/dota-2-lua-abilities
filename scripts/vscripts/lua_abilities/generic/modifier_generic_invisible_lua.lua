@@ -53,6 +53,8 @@ end
 function modifier_generic_invisible_lua:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
+		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+		MODIFIER_EVENT_ON_ATTACK,
 	}
 
 	return funcs
@@ -62,6 +64,23 @@ function modifier_generic_invisible_lua:GetModifierInvisibilityLevel()
 	return 1
 end
 
+function modifier_generic_invisible_lua:OnAbilityExecuted( params )
+	if IsServer() then
+		if not self.ability_reveal then return end
+		if params.unit~=self:GetParent() then return end
+
+		self:Destroy()
+	end
+end
+
+function modifier_generic_invisible_lua:OnAttack( params )
+	if IsServer() then
+		if not self.attack_reveal then return end
+		if params.attacker~=self:GetParent() then return end
+
+		self:Destroy()
+	end
+end
 --------------------------------------------------------------------------------
 -- Status Effects
 function modifier_generic_invisible_lua:CheckState()

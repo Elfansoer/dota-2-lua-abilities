@@ -3616,7 +3616,10 @@
 #base "../vscripts/lua_abilities/invoker_exort_lua/invoker_exort_lua.txt"
 #base "../vscripts/lua_abilities/invoker_invoke_lua/invoker_invoke_lua.txt"
 #base "../vscripts/lua_abilities/invoker_cold_snap_lua/invoker_cold_snap_lua.txt"
+#base "../vscripts/lua_abilities/invoker_ghost_walk_lua/invoker_ghost_walk_lua.txt"
+#base "../vscripts/lua_abilities/invoker_emp_lua/invoker_emp_lua.txt"
 #base "../vscripts/lua_abilities/invoker_alacrity_lua/invoker_alacrity_lua.txt"
+#base "../vscripts/lua_abilities/invoker_sun_strike_lua/invoker_sun_strike_lua.txt"
 
 #base "../vscripts/lua_abilities/juggernaut_blade_fury_lua/juggernaut_blade_fury_lua.txt"
 #base "../vscripts/lua_abilities/juggernaut_blade_dance_lua/juggernaut_blade_dance_lua.txt"
