@@ -33,5 +33,5 @@ function invoker_ghost_walk_lua:PlayEffects()
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
-	EmitSoundOn( sound_cast, caster )
+	EmitSoundOn( sound_cast, self:GetCaster() )
 end
