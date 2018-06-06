@@ -63,7 +63,7 @@ function riven_broken_wings:OnSpellStart()
 		-- victim = enemy,
 		attacker = caster,
 		damage = damage,
-		damage_type = DAMAGE_TYPE_PHYSICAL,
+		damage_type = DAMAGE_TYPE_MAGICAL,
 		ability = self,
 	}
 	

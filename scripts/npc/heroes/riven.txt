@@ -1,50 +1,50 @@
 "DOTAHeroes"
 {
 	//=================================================================================================================
-	// HERO: Sandra Olivia (PA)
+	// HERO: Riven (Juggernaut)
 	//=================================================================================================================
-	"npc_dota_hero_sandra"
+	"npc_dota_hero_riven"
 	{
 		// Base Hero Override
-		"override_hero"			"npc_dota_hero_phantom_assassin"			// Hero to override
+		"override_hero"			"npc_dota_hero_juggernaut"			// Hero to override
 		
 		// General Override
 		//-------------------------------------------------------------------------------------------------------------
-		"Portrait"		"portrait_sandra"
-		"Role"			"Support,Carry,Durable,Nuker,Initiator"
-		"Rolelevels"	"2,1,3,1,1"
+		"Portrait"		"portrait_riven"
+		"Role"			"Carry,Nuker,Disabler,Pusher,Escape"
+		"Rolelevels"	"2,2,1,1,1"
 
 		// Attributes
 		//-------------------------------------------------------------------------------------------------------------
-		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"		"26"
-		"AttributeStrengthGain"		"2.990000"
+		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"		"15"
+		"AttributeStrengthGain"		"1.60000"
 		"AttributeBaseAgility"		"24"
-		"AttributeAgilityGain"		"1.660000"
-		"AttributeBaseIntelligence"		"13"
-		"AttributeIntelligenceGain"		"1.330000"
+		"AttributeAgilityGain"		"2.500000"
+		"AttributeBaseIntelligence"		"26"
+		"AttributeIntelligenceGain"		"3.10000"
 
 		// Base Stats
 		//-------------------------------------------------------------------------------------------------------------
-		"ArmorPhysical"			"2.82"
-		"MagicalResistance"		"29"
-		"MovementSpeed"			"283"
-		"VisionDaytimeRange"		"1673"
-		"VisionNighttimeRange"		"942"
+		"ArmorPhysical"			"7.32"
+		"MagicalResistance"		"25"
+		"MovementSpeed"			"300"
+		"VisionDaytimeRange"		"1800"
+		"VisionNighttimeRange"		"800"
 
 		// Attack
 		//-------------------------------------------------------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"60"
-		"AttackDamageMax"		"70"
-		"AttackRate"		"1.860000"
-		"AttackRange"		"79"
+		"AttackDamageMin"		"45"
+		"AttackDamageMax"		"55"
+		"AttackRate"		"1.700000"
+		"AttackRange"		"150"
 
 		//-------------------------------------------------------------------------------------------------------------
 		// Ability Override
-		"Ability1"				"sandra_undeniable_torture"						// Ability 1
-		"Ability2"				"sandra_ironical_healing"						// Ability 2
-		"Ability3"				"sandra_will_to_live"						// Ability 3
-		"Ability6"				"sandra_sacrifice"							// Ability 6
+		"Ability1"				"riven_ki_burst"						// Ability 1
+		"Ability2"				"riven_broken_wings"					// Ability 2
+		"Ability3"				"riven_runic_blade"						// Ability 3
+		"Ability6"				"riven_blade_of_the_exile"				// Ability 6
 	}
 }
