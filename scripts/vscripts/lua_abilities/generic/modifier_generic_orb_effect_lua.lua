@@ -50,17 +50,9 @@ end
 function modifier_generic_orb_effect_lua:OnAttack( params )
 	if params.attacker~=self:GetParent() then return end
 
-	print("onattack")
-	for k,v in pairs(params) do
-		print("",k,v)
-	end
-
-	-- Check instant attacks:
-	-- params.process_procs
-	-- params.no_attack_cooldown
-
 	-- check autocast
 	if self.ability:GetAutoCastState() then
+		-- filter whether target is valid 
 		local nResult = UnitFilter(
 			params.target,
 			self.ability:GetAbilityTargetTeam(),
@@ -75,19 +67,26 @@ function modifier_generic_orb_effect_lua:OnAttack( params )
 
 	-- register attack if being cast and fully castable
 	if self.cast and self.ability:IsFullyCastable() then
+		-- use mana and cd
 		self.ability:UseResources( true, false, true )
+
+		-- record the attack
 		self.records[params.record] = true
+
+		-- run OrbFire script if available
 		if self.ability.OnOrbFire then self.ability:OnOrbFire( params ) end
-		if self.ability.GetProjectileName then 
-			local info = {
-				Target = params.target,
-				Source = self:GetParent(),
-				Ability = self.ability,	
-				EffectName = self.ability:GetProjectileName(),
-				iMoveSpeed = self:GetParent():GetProjectileSpeed(),
-			}
-			ProjectileManager:CreateTrackingProjectile(info)
-		end
+
+		-- create custom projectile
+		-- if self.ability.GetProjectileName then 
+		-- 	local info = {
+		-- 		Target = params.target,
+		-- 		Source = self:GetParent(),
+		-- 		Ability = self.ability,	
+		-- 		EffectName = self.ability:GetProjectileName(),
+		-- 		iMoveSpeed = self:GetParent():GetProjectileSpeed(),
+		-- 	}
+		-- 	ProjectileManager:CreateTrackingProjectile(info)
+		-- end
 	end
 
 	self.cast = false
