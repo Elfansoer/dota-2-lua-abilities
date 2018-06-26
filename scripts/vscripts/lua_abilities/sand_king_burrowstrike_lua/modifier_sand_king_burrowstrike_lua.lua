@@ -18,10 +18,6 @@ function modifier_sand_king_burrowstrike_lua:OnCreated( kv )
 		self.point = Vector( kv.pos_x, kv.pos_y, kv.pos_z )
 
 		-- Start interval
-		print(self:GetDuration())
-		for k,v in pairs(kv) do
-			print(k,v)
-		end
 		self:StartIntervalThink( self:GetDuration()/2 )
 	end
 end

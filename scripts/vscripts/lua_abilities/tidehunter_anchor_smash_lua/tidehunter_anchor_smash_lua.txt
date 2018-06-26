@@ -14,11 +14,11 @@
 		"AbilityTextureName"			"tidehunter_anchor_smash_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-//		"precache"
-//		{
-//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
 //			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-//		}
+		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------

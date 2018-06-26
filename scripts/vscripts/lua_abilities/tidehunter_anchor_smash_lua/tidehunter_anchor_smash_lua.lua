@@ -45,7 +45,7 @@ function tidehunter_anchor_smash_lua:OnSpellStart()
 		ApplyDamage( damage )
 	end
 
-	-- self:PlayEffects()
+	self:PlayEffects()
 end
 
 function tidehunter_anchor_smash_lua:PlayEffects()
