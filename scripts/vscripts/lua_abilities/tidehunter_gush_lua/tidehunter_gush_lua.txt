@@ -1,0 +1,93 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Tidehunter: Gush (Lua version)
+	//=================================================================================================================
+	"tidehunter_gush_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/tidehunter_gush_lua/tidehunter_gush_lua"
+		"AbilityTextureName"			"tidehunter_gush_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+//		"precache"
+//		{
+//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+		"AbilityDuration"				"4.0 4.0 4.0 4.0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"90 100 110 120"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"gush_damage"		"110 160 210 260"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"projectile_speed"	"2500"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"movement_speed"	"-40 -40 -40 -40"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"negative_armor"		"3 4 5 6"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed_scepter"		"1500"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aoe_scepter"		"240"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"cooldown_scepter"		"7"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"cast_range_scepter"		"1800"
+			}
+		}
+	}
+}

@@ -21,18 +21,17 @@ function tidehunter_anchor_smash_lua:OnSpellStart()
 		false
 	)
 
+	-- precache damage
+	local damage = {
+		-- victim = enemy,
+		attacker = self:GetCaster(),
+		damage = ability_damage,
+		damage_type = DAMAGE_TYPE_PHYSICAL,
+		ability = self
+	}
+
 	-- Do for each affected enemies
 	for _,enemy in pairs(enemies) do
-		-- Apply damage
-		local damage = {
-			victim = enemy,
-			attacker = self:GetCaster(),
-			damage = ability_damage,
-			damage_type = DAMAGE_TYPE_PHYSICAL,
-			ability = self
-		}
-		ApplyDamage( damage )
-
 		-- Add reduction modifier
 		enemy:AddNewModifier(
 			self:GetCaster(),
@@ -40,9 +39,13 @@ function tidehunter_anchor_smash_lua:OnSpellStart()
 			"modifier_tidehunter_anchor_smash_lua",
 			{ duration = reduction_duration }
 		)
+
+		-- Apply damage
+		damage.victim = enemy
+		ApplyDamage( damage )
 	end
 
-	self:PlayEffects()
+	-- self:PlayEffects()
 end
 
 function tidehunter_anchor_smash_lua:PlayEffects()
