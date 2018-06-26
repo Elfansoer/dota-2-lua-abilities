@@ -3635,6 +3635,8 @@
 #base "../vscripts/lua_abilities/puck_phase_shift_lua/puck_phase_shift_lua.txt"
 #base "../vscripts/lua_abilities/puck_dream_coil_lua/puck_dream_coil_lua.txt"
 
+#base "../vscripts/lua_abilities/sand_king_burrowstrike_lua/sand_king_burrowstrike_lua.txt"
+
 #base "../vscripts/lua_abilities/shadow_fiend_shadowraze_lua/shadow_fiend_shadowraze_lua_base.txt"
 #base "../vscripts/lua_abilities/shadow_fiend_necromastery_lua/shadow_fiend_necromastery_lua_base.txt"
 #base "../vscripts/lua_abilities/shadow_fiend_presence_of_the_dark_lord_lua/shadow_fiend_presence_of_the_dark_lord_lua_base.txt"
@@ -3648,6 +3650,9 @@
 #base "../vscripts/lua_abilities/sniper_headshot_lua/sniper_headshot_lua.txt"
 #base "../vscripts/lua_abilities/sniper_take_aim_lua/sniper_take_aim_lua.txt"
 #base "../vscripts/lua_abilities/sniper_assassinate_lua/sniper_assassinate_lua.txt"
+
+#base "../vscripts/lua_abilities/tidehunter_gush_lua/tidehunter_gush_lua.txt"
+#base "../vscripts/lua_abilities/tidehunter_anchor_smash_lua/tidehunter_anchor_smash_lua.txt"
 
 #base "../vscripts/lua_abilities/tinker_laser_lua/tinker_laser_lua.txt"
 #base "../vscripts/lua_abilities/tinker_heat_seeking_missile_lua/tinker_heat_seeking_missile_lua.txt"

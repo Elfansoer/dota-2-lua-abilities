@@ -24,6 +24,7 @@
 	"npc_dota_hero_magnataur"		"1"
 	"npc_dota_hero_earthshaker"		"1"
 	"npc_dota_hero_axe"		"1"
+	"npc_dota_hero_tidehunter"		"1"
 
 	"npc_dota_hero_rubick"			"1"
 }

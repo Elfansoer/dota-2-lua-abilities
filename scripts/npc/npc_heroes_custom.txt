@@ -188,6 +188,10 @@
 	"npc_dota_hero_x"
 	{
 		"override_hero"					"npc_dota_hero_axe"	// Hero to override
+		"Ability1"				"sand_king_burrowstrike_lua"						// Ability 1
+		"Ability2"				"tidehunter_anchor_smash_lua"						// Ability 2
+		"Ability3"				"tidehunter_gush_lua"						// Ability 3
+		"Ability6"				"lion_finger_of_death_lua"							// Ability 6
 	}
 
 	//=================================================================================================================
