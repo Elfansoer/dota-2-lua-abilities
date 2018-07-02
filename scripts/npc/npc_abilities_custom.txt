@@ -3636,7 +3636,9 @@
 #base "../vscripts/lua_abilities/puck_dream_coil_lua/puck_dream_coil_lua.txt"
 
 #base "../vscripts/lua_abilities/sand_king_burrowstrike_lua/sand_king_burrowstrike_lua.txt"
+#base "../vscripts/lua_abilities/sand_king_sand_storm_lua/sand_king_sand_storm_lua.txt"
 #base "../vscripts/lua_abilities/sand_king_caustic_finale_lua/sand_king_caustic_finale_lua.txt"
+#base "../vscripts/lua_abilities/sand_king_epicenter_lua/sand_king_epicenter_lua.txt"
 
 #base "../vscripts/lua_abilities/shadow_fiend_shadowraze_lua/shadow_fiend_shadowraze_lua_base.txt"
 #base "../vscripts/lua_abilities/shadow_fiend_necromastery_lua/shadow_fiend_necromastery_lua_base.txt"
