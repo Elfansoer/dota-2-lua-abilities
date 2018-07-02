@@ -14,16 +14,24 @@ end
 -- Initializations
 function modifier_generic_knockback_lua:OnCreated( kv )
 	if IsServer() then
+		-- creation data (default)
+			-- kv.distance (0)
+			-- kv.duration (0)
+			-- kv.x, kv.y, kv.z (xy:-forward vector, z:0)
+			-- kv.IsStun (false)
+			-- kv.damage (nil)
+			-- kv.IsPurgable () // later 
+
 		-- references
-		self.distance = kv.distance or 150
-		self.duration = kv.duration or 1
-		if kv.direction_x and kv.direction_y then
-			self.direction = Vector(kv.direction_x,kv.direction_y,0):Normalized()
+		self.distance = kv.distance or 0
+		self.duration = kv.duration or 0
+		if kv.x and kv.y then
+			self.direction = Vector(kv.x,kv.y,0):Normalized()
 		else
 			self.direction = -(self:GetParent():GetForwardVector())
 		end
-		self.height = kv.height or 100
-		self.stun = kv.stun
+		self.height = kv.z or 0
+		self.stun = kv.IsStun
 
 		-- load data
 		self.origin = self:GetParent():GetOrigin()
@@ -40,11 +48,18 @@ function modifier_generic_knockback_lua:OnCreated( kv )
 		self.gravity = -self.height/(self.duration*self.duration*0.125)
 		self.vVelocity = (-0.5)*self.gravity*self.duration
 
-		if self:ApplyVerticalMotionController() == false then 
-			self:Destroy()
+		self.both = 0
+		if self.z~=0 then
+			self.both = self.both+1
+			if self:ApplyVerticalMotionController() == false then 
+				self:Destroy()
+			end
 		end
-		if self:ApplyHorizontalMotionController() == false then 
-			self:Destroy()
+		if self.distance~=0 then
+			self.both = self.both+1
+			if self:ApplyHorizontalMotionController() == false then 
+				self:Destroy()
+			end
 		end
 	end
 end
@@ -62,6 +77,15 @@ end
 --------------------------------------------------------------------------------
 -- Motion effects
 function modifier_generic_knockback_lua:SyncTime( iDir, dt )
+	-- check if sync is not required
+	if self.both<2 then
+		self.elapsedTime = self.elapsedTime + dt
+		if self.elapsedTime > self.duration then
+			self:Destroy()
+		end
+		return
+	end
+
 	-- check if already synced
 	if self.motionTick[1]==self.motionTick[2] then
 		self.motionTick[0] = self.motionTick[0] + 1

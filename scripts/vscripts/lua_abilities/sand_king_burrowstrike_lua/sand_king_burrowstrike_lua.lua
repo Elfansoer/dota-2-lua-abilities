@@ -1,6 +1,7 @@
 sand_king_burrowstrike_lua = class({})
 LinkLuaModifier( "modifier_sand_king_burrowstrike_lua", "lua_abilities/sand_king_burrowstrike_lua/modifier_sand_king_burrowstrike_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_generic_knockback_lua", "lua_abilities/generic/modifier_generic_knockback_lua", LUA_MODIFIER_MOTION_BOTH )
 
 --------------------------------------------------------------------------------
 -- Custom KV
@@ -85,6 +86,18 @@ function sand_king_burrowstrike_lua:OnProjectileHit( target, location )
 		self, -- ability source
 		"modifier_generic_stunned_lua", -- modifier name
 		{ duration = duration } -- kv
+	)
+
+	-- apply knockback
+	target:AddNewModifier(
+		self:GetCaster(), -- player source
+		self, -- ability source
+		"modifier_generic_knockback_lua", -- modifier name
+		{
+			duration = 0.52,
+			z = 350,
+			IsStun = true,
+		} -- kv
 	)
 
 	-- apply damage
