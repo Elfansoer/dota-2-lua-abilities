@@ -36,6 +36,9 @@ function modifier_sand_king_sand_storm_lua:OnCreated( kv )
 		-- Start interval
 		self:StartIntervalThink( self.interval )
 		self:OnIntervalThink()
+
+		-- start effects
+		self:PlayEffects( self.radius )
 	end
 end
 
@@ -53,7 +56,10 @@ function modifier_sand_king_sand_storm_lua:OnRefresh( kv )
 end
 
 function modifier_sand_king_sand_storm_lua:OnDestroy( kv )
-
+	if IsServer() then
+		-- stop effects
+		self:StopEffects()
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -103,52 +109,35 @@ function modifier_sand_king_sand_storm_lua:OnIntervalThink()
 		self.damageTable.victim = enemy
 		ApplyDamage( self.damageTable )
 	end
+
+	-- effects: reposition cloud
+	if self.effect_cast then
+		ParticleManager:SetParticleControl( self.effect_cast, 0, self:GetParent():GetOrigin() )
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_sand_king_sand_storm_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_sand_king_sand_storm_lua:PlayEffects( radius )
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_sandking/sandking_sandstorm.vpcf"
+	local sound_cast = "Ability.SandKing_SandStorm.loop"
 
--- function modifier_sand_king_sand_storm_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+	-- Create Particle
+	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	ParticleManager:SetParticleControl( self.effect_cast, 0, self:GetParent():GetOrigin() )
+	ParticleManager:SetParticleControl( self.effect_cast, 1, Vector( radius, radius, radius ) )
 
--- function modifier_sand_king_sand_storm_lua:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "string"
--- 	local sound_cast = "string"
+	-- Create Sound
+	EmitSoundOn( sound_cast, self:GetParent() )
+end
 
--- 	-- Get Data
+function modifier_sand_king_sand_storm_lua:StopEffects()
+	-- Stop particles
+	ParticleManager:DestroyParticle( self.effect_cast, false )
+	ParticleManager:ReleaseParticleIndex( self.effect_cast )
 
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
-
--- 	-- buff particle
--- 	self:AddParticle(
--- 		nFXIndex,
--- 		bDestroyImmediately,
--- 		bStatusEffect,
--- 		iPriority,
--- 		bHeroEffect,
--- 		bOverheadEffect
--- 	)
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end
+	-- Stop sound
+	local sound_cast = "Ability.SandKing_SandStorm.loop"
+	StopSoundOn( sound_cast, self:GetParent() )
+end

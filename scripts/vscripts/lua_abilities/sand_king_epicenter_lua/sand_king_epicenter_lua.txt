@@ -17,7 +17,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+			"particle"	"particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
 		}
 		
 		// Ability General

@@ -120,48 +120,23 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_sand_king_caustic_finale_lua_debuff:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_sand_king_caustic_finale_lua_debuff:GetEffectName()
+	return "particles/units/heroes/hero_sandking/sandking_caustic_finale_debuff.vpcf"
+end
 
--- function modifier_sand_king_caustic_finale_lua_debuff:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+function modifier_sand_king_caustic_finale_lua_debuff:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
 
 function modifier_sand_king_caustic_finale_lua_debuff:PlayEffects()
 	-- Get Resources
-	-- local particle_cast = "string"
+	local particle_cast = "particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf"
 	local sound_cast = "Ability.SandKing_CausticFinale"
 
-	-- -- Get Data
-
-	-- -- Create Particle
-	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	-- ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	-- ParticleManager:SetParticleControlEnt(
-	-- 	effect_cast,
-	-- 	iControlPoint,
-	-- 	hTarget,
-	-- 	PATTACH_NAME,
-	-- 	"attach_name",
-	-- 	vOrigin, -- unknown
-	-- 	bool -- unknown, true
-	-- )
-	-- ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	-- SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	-- ParticleManager:ReleaseParticleIndex( effect_cast )
-
-	-- -- buff particle
-	-- self:AddParticle(
-	-- 	nFXIndex,
-	-- 	bDestroyImmediately,
-	-- 	bStatusEffect,
-	-- 	iPriority,
-	-- 	bHeroEffect,
-	-- 	bOverheadEffect
-	-- )
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
-	-- EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
 	EmitSoundOn( sound_cast, self:GetParent() )
 end
