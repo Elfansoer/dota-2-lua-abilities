@@ -1,46 +1,49 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Tidehunter: Anchor Smash (Lua version)
+	// Chaos Knight: Chaos Bolt
 	//=================================================================================================================
-	"tidehunter_anchor_smash_lua"
+	"chaos_knight_chaos_bolt_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/tidehunter_anchor_smash_lua/tidehunter_anchor_smash_lua"
-		"AbilityTextureName"			"tidehunter_anchor_smash_lua"
+		"ScriptFile"					"lua_abilities/chaos_knight_chaos_bolt_lua/chaos_knight_chaos_bolt_lua"
+		"AbilityTextureName"			"chaos_knight_chaos_bolt_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
-			"particle"	"particles/units/heroes/hero_tidehunter/tidehunter_anchor_hero.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+			"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_chaos_bolt.vpcf"
+			"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_bolt_msg.vpcf"
 		}
-		
+
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"375"
+		"AbilityCastRange"				"500"
 		"AbilityCastPoint"				"0.4"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7 6 5 4"
-		"AbilityManaCost"				"30 40 50 60"
+		"AbilityCooldown"				"10.0"
+		"AbilityManaCost"				"140"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"75 125 175 225"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -49,17 +52,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-45 -50 -55 -60"
+				"chaos_bolt_speed"		"1000"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"reduction_duration"	"6.0 6.0 6.0 6.0"
+				"var_type"				"FIELD_INTEGER"
+				"stun_min"				"1 1 1 2"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"375"
+				"stun_max"				"2 3 4 4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_min"			"75 100 125 150"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_max"			"200 225 250 275"
 			}
 		}
 	}

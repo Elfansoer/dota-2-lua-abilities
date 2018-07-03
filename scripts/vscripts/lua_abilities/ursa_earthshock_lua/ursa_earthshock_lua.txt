@@ -1,46 +1,48 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Tidehunter: Anchor Smash (Lua version)
+	// Ursa: Earthshock (lua version)
 	//=================================================================================================================
-	"tidehunter_anchor_smash_lua"
+	"ursa_earthshock_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/tidehunter_anchor_smash_lua/tidehunter_anchor_smash_lua"
-		"AbilityTextureName"			"tidehunter_anchor_smash_lua"
+		"ScriptFile"					"lua_abilities/ursa_earthshock_lua/ursa_earthshock_lua"
+		"AbilityTextureName"			"ursa_earthshock_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
-			"particle"	"particles/units/heroes/hero_tidehunter/tidehunter_anchor_hero.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_earthshock.vpcf"
+			"particle"	"particles/units/heroes/hero_ursa/ursa_earthshock_modifier.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"375"
-		"AbilityCastPoint"				"0.4"
+		"AbilityCastRange"				"385"
+		"AbilityCastPoint"				"0.3"
+		"AbilityDuration"				"4.0"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7 6 5 4"
-		"AbilityManaCost"				"30 40 50 60"
+		"AbilityCooldown"				"5"
+		"AbilityManaCost"				"75"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"75 125 175 225"
+		"AbilityDamage"					"90 140 190 240"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -48,18 +50,13 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-45 -50 -55 -60"
+				"var_type"					"FIELD_INTEGER"
+				"shock_radius"				"385"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"reduction_duration"	"6.0 6.0 6.0 6.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"375"
+				"var_type"					"FIELD_INTEGER"
+				"movement_slow"				"-25 -35 -45 -55"
 			}
 		}
 	}
