@@ -1370,6 +1370,8 @@
 #base "../vscripts/lua_abilities/earthshaker_aftershock_lua/earthshaker_aftershock_lua.txt"
 #base "../vscripts/lua_abilities/earthshaker_echo_slam_lua/earthshaker_echo_slam_lua.txt"
 
+#base "../vscripts/lua_abilities/enchantress_untouchable_lua/enchantress_untouchable_lua.txt"
+
 #base "../vscripts/lua_abilities/invoker_quas_lua/invoker_quas_lua.txt"
 #base "../vscripts/lua_abilities/invoker_wex_lua/invoker_wex_lua.txt"
 #base "../vscripts/lua_abilities/invoker_exort_lua/invoker_exort_lua.txt"
