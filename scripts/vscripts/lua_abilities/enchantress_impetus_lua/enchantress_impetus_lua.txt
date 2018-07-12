@@ -1,41 +1,44 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Enchantress: Nature's Attendants (Lua version)
+	// Enchantress: Impetus (Lua version)
 	//=================================================================================================================
-	"enchantress_natures_attendants_lua"
+	"enchantress_impetus_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/enchantress_natures_attendants_lua/enchantress_natures_attendants_lua"
-		"AbilityTextureName"			"enchantress_natures_attendants_lua"
+		"ScriptFile"					"lua_abilities/enchantress_impetus_lua/enchantress_impetus_lua"
+		"AbilityTextureName"			"enchantress_impetus_lua"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
+		"MaxLevel"						"3"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+			"particle"	"particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"275"
-		"AbilityCastPoint"				"0.3"
-		"AbilityDuration"				"11"
+		"AbilityCastRange"				"550"
+		"AbilityCastPoint"				"0"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"35"
-		"AbilityManaCost"				"110 120 130 140"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"40 55 70"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,22 +50,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal_interval"			"1.0"
+				"distance_damage_pct"	"16 20 24"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"heal"					"10.0 10.0 10.0 10.0"
+				"var_type"				"FIELD_INTEGER"
+				"distance_cap"			"1750"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"275 275 275 275"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"wisp_count"			"4 6 8 10"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_attack_range_scepter"	"190 190 190"
 			}
 		}
 	}

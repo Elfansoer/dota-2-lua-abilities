@@ -24,10 +24,14 @@ function modifier_enchantress_natures_attendants_lua:OnCreated( kv )
 	self.radius = self:GetAbility():GetSpecialValueFor( "radius" ) -- special value
 
 	if IsServer() then
-		self:SetDuration(kv.duration+0.1)
+		self:SetDuration(kv.duration+0.1,false)
 
 		-- Start interval
 		self:StartIntervalThink( self.interval )
+
+		-- play effects
+		local sound_cast = "Hero_Enchantress.NaturesAttendantsCast"
+		EmitSoundOn( sound_cast, self:GetParent() )
 	end
 end
 
@@ -39,7 +43,7 @@ function modifier_enchantress_natures_attendants_lua:OnRefresh( kv )
 	self.radius = self:GetAbility():GetSpecialValueFor( "radius" ) -- special value
 
 	if IsServer() then
-		self:SetDuration(kv.duration+0.1)
+		self:SetDuration(kv.duration+0.1,false)
 		
 		-- Start interval
 		self:StartIntervalThink( self.interval )
@@ -47,7 +51,12 @@ function modifier_enchantress_natures_attendants_lua:OnRefresh( kv )
 end
 
 function modifier_enchantress_natures_attendants_lua:OnDestroy( kv )
+	if IsServer() then
 
+		-- stop effects
+		local sound_cast = "Hero_Enchantress.NaturesAttendantsCast"
+		StopSoundOn( sound_cast, self:GetParent() )
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -59,7 +68,7 @@ function modifier_enchantress_natures_attendants_lua:OnIntervalThink()
 		self:GetParent():GetOrigin(),	-- point, center point
 		nil,	-- handle, cacheUnit. (not known)
 		self.radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
-		DOTA_UNIT_TARGET_TEAM_ALLY,	-- int, team filter
+		DOTA_UNIT_TARGET_TEAM_FRIENDLY,	-- int, team filter
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
 		DOTA_UNIT_TARGET_FLAG_INVULNERABLE,	-- int, flag filter
 		0,	-- int, order filter
@@ -78,7 +87,7 @@ function modifier_enchantress_natures_attendants_lua:OnIntervalThink()
 
 	-- heal random target
 	for i=1,self.count do
-		targets[RandomInt(1,n)]:Heal( self.heal, self:GetAbility() )
+		allies[targets[RandomInt(1,n)]]:Heal( self.heal, self:GetAbility() )
 	end
 end
 

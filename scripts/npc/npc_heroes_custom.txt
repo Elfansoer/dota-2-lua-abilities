@@ -201,8 +201,8 @@
 		"override_hero"					"npc_dota_hero_queenofpain"	// Hero to override
 		"Ability1"				"enchantress_untouchable"						// Ability 1
 		"Ability2"				"sand_king_sand_storm_lua"						// Ability 2
-		"Ability3"				"sand_king_caustic_finale_lua"						// Ability 3
-		"Ability6"				"sand_king_epicenter_lua"							// Ability 6
+		"Ability3"				"enchantress_natures_attendants_lua"						// Ability 3
+		"Ability6"				"enchantress_impetus_lua"							// Ability 6
 	}
 
 	//=================================================================================================================

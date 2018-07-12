@@ -1371,6 +1371,8 @@
 #base "../vscripts/lua_abilities/earthshaker_echo_slam_lua/earthshaker_echo_slam_lua.txt"
 
 #base "../vscripts/lua_abilities/enchantress_untouchable_lua/enchantress_untouchable_lua.txt"
+#base "../vscripts/lua_abilities/enchantress_natures_attendants_lua/enchantress_natures_attendants_lua.txt"
+#base "../vscripts/lua_abilities/enchantress_impetus_lua/enchantress_impetus_lua.txt"
 
 #base "../vscripts/lua_abilities/invoker_quas_lua/invoker_quas_lua.txt"
 #base "../vscripts/lua_abilities/invoker_wex_lua/invoker_wex_lua.txt"
