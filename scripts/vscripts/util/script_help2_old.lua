@@ -127,18 +127,11 @@ function CreateModifierThinker( handle_1, handle_2, string_3, handle_4, Vector_5
 -- @param string_1 string
 function CreateSceneEntity( string_1 ) end
 
----[[ CreateTempTree  Create a temporary tree, uses a default tree model. (vLocation, flDuration). ])
--- @return handle
+---[[ CreateTempTree  Create a temporary tree. (vLocation, flDuration). ])
+-- @return void
 -- @param Vector_1 Vector
 -- @param float_2 float
 function CreateTempTree( Vector_1, float_2 ) end
-
----[[ CreateTempTreeWithModel  Create a temporary tree, specifying the tree model name. (vLocation, flDuration, szModelName). ])
--- @return handle
--- @param Vector_1 Vector
--- @param float_2 float
--- @param string_3 string
-function CreateTempTreeWithModel( Vector_1, float_2, string_3 ) end
 
 ---[[ CreateTrigger  CreateTrigger( vecMin, vecMax ) : Creates and returns an AABB trigger ])
 -- @return handle
@@ -515,6 +508,32 @@ function GetEntityIndexForTreeId( unsigned_1 ) end
 -- @return int
 function GetFrameCount(  ) end
 
+---[[ GetFrostyBoostAmount   ])
+-- @return float
+-- @param int_1 int
+-- @param int_2 int
+function GetFrostyBoostAmount( int_1, int_2 ) end
+
+---[[ GetFrostyPointsForRound   ])
+-- @return int
+-- @param int_1 int
+-- @param int_2 int
+-- @param int_3 int
+function GetFrostyPointsForRound( int_1, int_2, int_3 ) end
+
+---[[ GetGoldFrostyBoostAmount   ])
+-- @return float
+-- @param int_1 int
+-- @param int_2 int
+function GetGoldFrostyBoostAmount( int_1, int_2 ) end
+
+---[[ GetGoldFrostyPointsForRound   ])
+-- @return int
+-- @param int_1 int
+-- @param int_2 int
+-- @param int_3 int
+function GetGoldFrostyPointsForRound( int_1, int_2, int_3 ) end
+
 ---[[ GetGroundHeight   ])
 -- @return float
 -- @param Vector_1 Vector
@@ -883,6 +902,15 @@ function Say( handle_1, string_2, bool_3 ) end
 -- @param bool_7 bool
 function ScreenShake( Vector_1, float_2, float_3, float_4, float_5, int_6, bool_7 ) end
 
+---[[ SendFrostivusTimeElapsedToGC   ])
+-- @return void
+function SendFrostivusTimeElapsedToGC(  ) end
+
+---[[ SendFrostyPointsMessageToGC   ])
+-- @return void
+-- @param handle_1 handle
+function SendFrostyPointsMessageToGC( handle_1 ) end
+
 ---[[ SendOverheadEventMessage  ( DOTAPlayer sendToPlayer, int iMessageType, Entity targetEntity, int iValue, DOTAPlayer sourcePlayer ) - sendToPlayer and sourcePlayer can be nil - iMessageType is one of OVERHEAD_ALERT_* ])
 -- @return void
 -- @param handle_1 handle
@@ -980,12 +1008,6 @@ function ShowGenericPopupToPlayer( handle_1, string_2, string_3, string_4, strin
 -- @return void
 -- @param string_1 string
 function ShowMessage( string_1 ) end
-
----[[ SpawnDOTAShopTriggerRadiusApproximate  (Vector vOrigin, float flRadius ) ])
--- @return handle
--- @param Vector_1 Vector
--- @param float_2 float
-function SpawnDOTAShopTriggerRadiusApproximate( Vector_1, float_2 ) end
 
 ---[[ SpawnEntityFromTableSynchronous  Synchronously spawns a single entity from a table ])
 -- @return handle
@@ -1192,6 +1214,11 @@ function UnloadSpawnGroup( string_1 ) end
 -- @param int_1 int
 function UnloadSpawnGroupByHandle( int_1 ) end
 
+---[[ UpdateEventPoints   ])
+-- @return void
+-- @param handle_1 handle
+function UpdateEventPoints( handle_1 ) end
+
 ---[[ VectorAngles   ])
 -- @return QAngle
 -- @param Vector_1 Vector
@@ -1249,19 +1276,18 @@ ABILITY_CAN_BE_UPGRADED = 0
 ABILITY_NOT_LEARNABLE = 4
 
 --- Enum AttributeDerivedStats
-DOTA_ATTRIBUTE_AGILITY_ARMOR = 6
-DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED = 7
-DOTA_ATTRIBUTE_AGILITY_DAMAGE = 5
-DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT = 8
-DOTA_ATTRIBUTE_INTELLIGENCE_DAMAGE = 9
-DOTA_ATTRIBUTE_INTELLIGENCE_MAGIC_RESISTANCE_PERCENT = 13
-DOTA_ATTRIBUTE_INTELLIGENCE_MANA = 10
-DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN_PERCENT = 11
-DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT = 12
+DOTA_ATTRIBUTE_AGILITY_ARMOR = 5
+DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED = 6
+DOTA_ATTRIBUTE_AGILITY_DAMAGE = 4
+DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT = 7
+DOTA_ATTRIBUTE_INTELLIGENCE_DAMAGE = 8
+DOTA_ATTRIBUTE_INTELLIGENCE_MAGIC_RESISTANCE_PERCENT = 12
+DOTA_ATTRIBUTE_INTELLIGENCE_MANA = 9
+DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN_PERCENT = 10
+DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT = 11
 DOTA_ATTRIBUTE_STRENGTH_DAMAGE = 0
 DOTA_ATTRIBUTE_STRENGTH_HP = 1
 DOTA_ATTRIBUTE_STRENGTH_HP_REGEN_PERCENT = 2
-DOTA_ATTRIBUTE_STRENGTH_MAGIC_RESISTANCE_PERCENT = 4
 DOTA_ATTRIBUTE_STRENGTH_STATUS_RESISTANCE_PERCENT = 3
 
 --- Enum Attributes
@@ -1421,11 +1447,9 @@ DOTA_LOADOUT_TYPE_BACK = 10
 DOTA_LOADOUT_TYPE_BELT = 8
 DOTA_LOADOUT_TYPE_BLINK_EFFECT = 41
 DOTA_LOADOUT_TYPE_BODY_HEAD = 15
-DOTA_LOADOUT_TYPE_COUNT = 47
+DOTA_LOADOUT_TYPE_COUNT = 45
 DOTA_LOADOUT_TYPE_COURIER = 29
 DOTA_LOADOUT_TYPE_CURSOR_PACK = 39
-DOTA_LOADOUT_TYPE_DIRE_CREEPS = 45
-DOTA_LOADOUT_TYPE_EMBLEM = 42
 DOTA_LOADOUT_TYPE_GLOVES = 12
 DOTA_LOADOUT_TYPE_HEAD = 4
 DOTA_LOADOUT_TYPE_HEROIC_STATUE = 37
@@ -1439,10 +1463,10 @@ DOTA_LOADOUT_TYPE_MOUNT = 16
 DOTA_LOADOUT_TYPE_MULTIKILL_BANNER = 38
 DOTA_LOADOUT_TYPE_MUSIC = 32
 DOTA_LOADOUT_TYPE_NECK = 9
-DOTA_LOADOUT_TYPE_NONE = 46
+DOTA_LOADOUT_TYPE_NONE = 44
 DOTA_LOADOUT_TYPE_OFFHAND_WEAPON = 1
 DOTA_LOADOUT_TYPE_OFFHAND_WEAPON2 = 3
-DOTA_LOADOUT_TYPE_RADIANT_CREEPS = 44
+DOTA_LOADOUT_TYPE_RELIC = 42
 DOTA_LOADOUT_TYPE_SHAPESHIFT = 18
 DOTA_LOADOUT_TYPE_SHOULDER = 5
 DOTA_LOADOUT_TYPE_SUMMON = 17
@@ -1455,7 +1479,7 @@ DOTA_LOADOUT_TYPE_WARD = 33
 DOTA_LOADOUT_TYPE_WEAPON = 0
 DOTA_LOADOUT_TYPE_WEAPON2 = 2
 DOTA_LOADOUT_TYPE_WEATHER = 36
-DOTA_PLAYER_LOADOUT_END = 45
+DOTA_PLAYER_LOADOUT_END = 43
 DOTA_PLAYER_LOADOUT_START = 28
 
 --- Enum DOTASpeechType_t
@@ -1490,11 +1514,9 @@ DOTA_TEAM_NEUTRALS = 4
 DOTA_TEAM_NOTEAM = 5
 
 --- Enum DOTAUnitAttackCapability_t
-DOTA_UNIT_ATTACK_CAPABILITY_BIT_COUNT = 3
 DOTA_UNIT_CAP_MELEE_ATTACK = 1
 DOTA_UNIT_CAP_NO_ATTACK = 0
 DOTA_UNIT_CAP_RANGED_ATTACK = 2
-DOTA_UNIT_CAP_RANGED_ATTACK_DIRECTIONAL = 4
 
 --- Enum DOTAUnitMoveCapability_t
 DOTA_UNIT_CAP_MOVE_FLY = 2
@@ -1854,8 +1876,6 @@ ACT_DOTA_GREEVIL_CAST = 1617
 ACT_DOTA_GREEVIL_HOOK_END = 1620
 ACT_DOTA_GREEVIL_HOOK_START = 1619
 ACT_DOTA_GREEVIL_OVERRIDE_ABILITY = 1618
-ACT_DOTA_GS_INK_CREATURE = 1730
-ACT_DOTA_GS_SOUL_CHAIN = 1729
 ACT_DOTA_ICE_VORTEX = 1672
 ACT_DOTA_IDLE = 1500
 ACT_DOTA_IDLE_IMPATIENT = 1636
@@ -2040,7 +2060,6 @@ UF_SUCCESS = 0
 
 --- Enum attackfail
 DOTA_ATTACK_RECORD_CANNOT_FAIL = 6
-DOTA_ATTACK_RECORD_FAIL_BLOCKED_BY_OBSTRUCTION = 7
 DOTA_ATTACK_RECORD_FAIL_NO = 0
 DOTA_ATTACK_RECORD_FAIL_SOURCE_MISS = 2
 DOTA_ATTACK_RECORD_FAIL_TARGET_EVADED = 3
@@ -2049,53 +2068,52 @@ DOTA_ATTACK_RECORD_FAIL_TARGET_OUT_OF_RANGE = 5
 DOTA_ATTACK_RECORD_FAIL_TERRAIN_MISS = 1
 
 --- Enum modifierfunction
-MODIFIER_EVENT_ON_ABILITY_END_CHANNEL = 144 -- OnAbilityEndChannel
-MODIFIER_EVENT_ON_ABILITY_EXECUTED = 141 -- OnAbilityExecuted
-MODIFIER_EVENT_ON_ABILITY_FULLY_CAST = 142 -- OnAbilityFullyCast
-MODIFIER_EVENT_ON_ABILITY_START = 140 -- OnAbilityStart
-MODIFIER_EVENT_ON_ATTACK = 133 -- OnAttack
-MODIFIER_EVENT_ON_ATTACKED = 150 -- OnAttacked
-MODIFIER_EVENT_ON_ATTACK_ALLIED = 136 -- OnAttackAllied
-MODIFIER_EVENT_ON_ATTACK_FAIL = 135 -- OnAttackFail
-MODIFIER_EVENT_ON_ATTACK_FINISHED = 182 -- OnAttackFinished
-MODIFIER_EVENT_ON_ATTACK_LANDED = 134 -- OnAttackLanded
-MODIFIER_EVENT_ON_ATTACK_RECORD = 131 -- OnAttackRecord
-MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY = 189 -- OnAttackRecordDestroy
-MODIFIER_EVENT_ON_ATTACK_START = 132 -- OnAttackStart
-MODIFIER_EVENT_ON_BREAK_INVISIBILITY = 143 -- OnBreakInvisibility
-MODIFIER_EVENT_ON_BUILDING_KILLED = 162 -- OnBuildingKilled
-MODIFIER_EVENT_ON_DEATH = 151 -- OnDeath
-MODIFIER_EVENT_ON_DOMINATED = 179 -- OnDominated
-MODIFIER_EVENT_ON_HEALTH_GAINED = 157 -- OnHealthGained
-MODIFIER_EVENT_ON_HEAL_RECEIVED = 161 -- OnHealReceived
-MODIFIER_EVENT_ON_HERO_KILLED = 160 -- OnHeroKilled
-MODIFIER_EVENT_ON_MANA_GAINED = 158 -- OnManaGained
-MODIFIER_EVENT_ON_MODEL_CHANGED = 163 -- OnModelChanged
-MODIFIER_EVENT_ON_MODIFIER_ADDED = 164 -- OnModifierAdded
-MODIFIER_EVENT_ON_ORB_EFFECT = 149
-MODIFIER_EVENT_ON_ORDER = 138 -- OnOrder
-MODIFIER_EVENT_ON_PROCESS_UPGRADE = 145
-MODIFIER_EVENT_ON_PROJECTILE_DODGE = 137 -- OnProjectileDodge
-MODIFIER_EVENT_ON_PROJECTILE_OBSTRUCTION_HIT = 190 -- OnProjectileObstructionHit
-MODIFIER_EVENT_ON_REFRESH = 146
-MODIFIER_EVENT_ON_RESPAWN = 152 -- OnRespawn
-MODIFIER_EVENT_ON_SET_LOCATION = 156 -- OnSetLocation
-MODIFIER_EVENT_ON_SPELL_TARGET_READY = 130 -- OnSpellTargetReady
-MODIFIER_EVENT_ON_SPENT_MANA = 153 -- OnSpentMana
-MODIFIER_EVENT_ON_STATE_CHANGED = 148 -- OnStateChanged
-MODIFIER_EVENT_ON_TAKEDAMAGE = 147 -- OnTakeDamage
-MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT = 159 -- OnTakeDamageKillCredit
-MODIFIER_EVENT_ON_TELEPORTED = 155 -- OnTeleported
-MODIFIER_EVENT_ON_TELEPORTING = 154 -- OnTeleporting
-MODIFIER_EVENT_ON_UNIT_MOVED = 139 -- OnUnitMoved
+MODIFIER_EVENT_ON_ABILITY_END_CHANNEL = 143 -- OnAbilityEndChannel
+MODIFIER_EVENT_ON_ABILITY_EXECUTED = 140 -- OnAbilityExecuted
+MODIFIER_EVENT_ON_ABILITY_FULLY_CAST = 141 -- OnAbilityFullyCast
+MODIFIER_EVENT_ON_ABILITY_START = 139 -- OnAbilityStart
+MODIFIER_EVENT_ON_ATTACK = 132 -- OnAttack
+MODIFIER_EVENT_ON_ATTACKED = 149 -- OnAttacked
+MODIFIER_EVENT_ON_ATTACK_ALLIED = 135 -- OnAttackAllied
+MODIFIER_EVENT_ON_ATTACK_FAIL = 134 -- OnAttackFail
+MODIFIER_EVENT_ON_ATTACK_FINISHED = 181 -- OnAttackFinished
+MODIFIER_EVENT_ON_ATTACK_LANDED = 133 -- OnAttackLanded
+MODIFIER_EVENT_ON_ATTACK_RECORD = 130 -- OnAttackRecord
+MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY = 188 -- OnAttackRecordDestroy
+MODIFIER_EVENT_ON_ATTACK_START = 131 -- OnAttackStart
+MODIFIER_EVENT_ON_BREAK_INVISIBILITY = 142 -- OnBreakInvisibility
+MODIFIER_EVENT_ON_BUILDING_KILLED = 161 -- OnBuildingKilled
+MODIFIER_EVENT_ON_DEATH = 150 -- OnDeath
+MODIFIER_EVENT_ON_DOMINATED = 178 -- OnDominated
+MODIFIER_EVENT_ON_HEALTH_GAINED = 156 -- OnHealthGained
+MODIFIER_EVENT_ON_HEAL_RECEIVED = 160 -- OnHealReceived
+MODIFIER_EVENT_ON_HERO_KILLED = 159 -- OnHeroKilled
+MODIFIER_EVENT_ON_MANA_GAINED = 157 -- OnManaGained
+MODIFIER_EVENT_ON_MODEL_CHANGED = 162 -- OnModelChanged
+MODIFIER_EVENT_ON_MODIFIER_ADDED = 163 -- OnModifierAdded
+MODIFIER_EVENT_ON_ORB_EFFECT = 148
+MODIFIER_EVENT_ON_ORDER = 137 -- OnOrder
+MODIFIER_EVENT_ON_PROCESS_UPGRADE = 144
+MODIFIER_EVENT_ON_PROJECTILE_DODGE = 136 -- OnProjectileDodge
+MODIFIER_EVENT_ON_REFRESH = 145
+MODIFIER_EVENT_ON_RESPAWN = 151 -- OnRespawn
+MODIFIER_EVENT_ON_SET_LOCATION = 155 -- OnSetLocation
+MODIFIER_EVENT_ON_SPELL_TARGET_READY = 129 -- OnSpellTargetReady
+MODIFIER_EVENT_ON_SPENT_MANA = 152 -- OnSpentMana
+MODIFIER_EVENT_ON_STATE_CHANGED = 147 -- OnStateChanged
+MODIFIER_EVENT_ON_TAKEDAMAGE = 146 -- OnTakeDamage
+MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT = 158 -- OnTakeDamageKillCredit
+MODIFIER_EVENT_ON_TELEPORTED = 154 -- OnTeleported
+MODIFIER_EVENT_ON_TELEPORTING = 153 -- OnTeleporting
+MODIFIER_EVENT_ON_UNIT_MOVED = 138 -- OnUnitMoved
 MODIFIER_FUNCTION_INVALID = 255
-MODIFIER_FUNCTION_LAST = 192
-MODIFIER_PROPERTY_ABILITY_LAYOUT = 178 -- GetModifierAbilityLayout
+MODIFIER_FUNCTION_LAST = 189
+MODIFIER_PROPERTY_ABILITY_LAYOUT = 177 -- GetModifierAbilityLayout
 MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL = 114 -- GetAbsoluteNoDamageMagical
 MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL = 113 -- GetAbsoluteNoDamagePhysical
 MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE = 115 -- GetAbsoluteNoDamagePure
 MODIFIER_PROPERTY_ABSORB_SPELL = 103 -- GetAbsorbSpell
-MODIFIER_PROPERTY_ALWAYS_ALLOW_ATTACK = 123 -- GetAlwaysAllowAttack
+MODIFIER_PROPERTY_ALWAYS_ALLOW_ATTACK = 122 -- GetAlwaysAllowAttack
 MODIFIER_PROPERTY_ATTACKSPEED_BASE_OVERRIDE = 23 -- GetModifierAttackSpeedBaseOverride
 MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT = 25 -- GetModifierAttackSpeedBonus_Constant
 MODIFIER_PROPERTY_ATTACK_POINT_CONSTANT = 28 -- GetModifierAttackPointConstant
@@ -2113,14 +2131,14 @@ MODIFIER_PROPERTY_BONUS_DAY_VISION = 106 -- GetBonusDayVision
 MODIFIER_PROPERTY_BONUS_NIGHT_VISION = 107 -- GetBonusNightVision
 MODIFIER_PROPERTY_BONUS_NIGHT_VISION_UNIQUE = 108 -- GetBonusNightVisionUnique
 MODIFIER_PROPERTY_BONUS_VISION_PERCENTAGE = 109 -- GetBonusVisionPercentage
-MODIFIER_PROPERTY_BOUNTY_CREEP_MULTIPLIER = 126 -- GetModifierBountyCreepMultiplier
-MODIFIER_PROPERTY_BOUNTY_OTHER_MULTIPLIER = 127 -- GetModifierBountyOtherMultiplier
-MODIFIER_PROPERTY_CAN_ATTACK_TREES = 184 -- GetModifierCanAttackTrees
+MODIFIER_PROPERTY_BOUNTY_CREEP_MULTIPLIER = 125 -- GetModifierBountyCreepMultiplier
+MODIFIER_PROPERTY_BOUNTY_OTHER_MULTIPLIER = 126 -- GetModifierBountyOtherMultiplier
+MODIFIER_PROPERTY_CAN_ATTACK_TREES = 183 -- GetModifierCanAttackTrees
 MODIFIER_PROPERTY_CASTTIME_PERCENTAGE = 88 -- GetModifierPercentageCasttime
 MODIFIER_PROPERTY_CAST_RANGE_BONUS = 73 -- GetModifierCastRangeBonus
 MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING = 75 -- GetModifierCastRangeBonusStacking
 MODIFIER_PROPERTY_CAST_RANGE_BONUS_TARGET = 74 -- GetModifierCastRangeBonusTarget
-MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE = 177 -- GetModifierChangeAbilityValue
+MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE = 176 -- GetModifierChangeAbilityValue
 MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE = 86 -- GetModifierPercentageCooldown
 MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING = 87 -- GetModifierPercentageCooldownStacking
 MODIFIER_PROPERTY_COOLDOWN_REDUCTION_CONSTANT = 26 -- GetModifierCooldownReduction_Constant
@@ -2128,10 +2146,10 @@ MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE = 29 -- GetModifierDamageOutgoing_Pe
 MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_ILLUSION = 30 -- GetModifierDamageOutgoing_Percentage_Illusion
 MODIFIER_PROPERTY_DEATHGOLDCOST = 91 -- GetModifierConstantDeathGoldCost
 MODIFIER_PROPERTY_DISABLE_AUTOATTACK = 105 -- GetDisableAutoAttack
-MODIFIER_PROPERTY_DISABLE_HEALING = 122 -- GetDisableHealing
-MODIFIER_PROPERTY_DISABLE_TURNING = 175 -- GetModifierDisableTurning
-MODIFIER_PROPERTY_DODGE_PROJECTILE = 129 -- GetModifierDodgeProjectile
-MODIFIER_PROPERTY_DONT_GIVE_VISION_OF_ATTACKER = 187 -- GetModifierNoVisionOfAttacker
+MODIFIER_PROPERTY_DISABLE_HEALING = 121 -- GetDisableHealing
+MODIFIER_PROPERTY_DISABLE_TURNING = 174 -- GetModifierDisableTurning
+MODIFIER_PROPERTY_DODGE_PROJECTILE = 128 -- GetModifierDodgeProjectile
+MODIFIER_PROPERTY_DONT_GIVE_VISION_OF_ATTACKER = 186
 MODIFIER_PROPERTY_EVASION_CONSTANT = 43 -- GetModifierEvasion_Constant
 MODIFIER_PROPERTY_EXP_RATE_BOOST = 92 -- GetModifierPercentageExpRateBoost
 MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS = 67 -- GetModifierExtraHealthBonus
@@ -2141,25 +2159,25 @@ MODIFIER_PROPERTY_EXTRA_STRENGTH_BONUS = 66 -- GetModifierExtraStrengthBonus
 MODIFIER_PROPERTY_FIXED_ATTACK_RATE = 24 -- GetModifierFixedAttackRate
 MODIFIER_PROPERTY_FIXED_DAY_VISION = 110 -- GetFixedDayVision
 MODIFIER_PROPERTY_FIXED_NIGHT_VISION = 111 -- GetFixedNightVision
-MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP = 174 -- GetForceDrawOnMinimap
+MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP = 173 -- GetForceDrawOnMinimap
 MODIFIER_PROPERTY_HEALTH_BONUS = 64 -- GetModifierHealthBonus
 MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT = 61 -- GetModifierConstantHealthRegen
 MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE = 62 -- GetModifierHealthRegenPercentage
 MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE_UNIQUE = 63 -- GetModifierHealthRegenPercentageUnique
 MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE = 34 -- GetModifierHPRegenAmplify_Percentage
-MODIFIER_PROPERTY_IGNORE_CAST_ANGLE = 176 -- GetModifierIgnoreCastAngle
-MODIFIER_PROPERTY_IGNORE_COOLDOWN = 183 -- GetModifierIgnoreCooldown
+MODIFIER_PROPERTY_IGNORE_CAST_ANGLE = 175 -- GetModifierIgnoreCastAngle
+MODIFIER_PROPERTY_IGNORE_COOLDOWN = 182 -- GetModifierIgnoreCooldown
 MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR = 53 -- GetModifierIgnorePhysicalArmor
 MODIFIER_PROPERTY_ILLUSION_LABEL = 117 -- GetModifierIllusionLabel
-MODIFIER_PROPERTY_INCOMING_DAMAGE_ILLUSION = 186
+MODIFIER_PROPERTY_INCOMING_DAMAGE_ILLUSION = 185
 MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE = 39 -- GetModifierIncomingDamage_Percentage
 MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_CONSTANT = 41 -- GetModifierIncomingPhysicalDamageConstant
 MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE = 40 -- GetModifierIncomingPhysicalDamage_Percentage
 MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT = 42 -- GetModifierIncomingSpellDamageConstant
 MODIFIER_PROPERTY_INVISIBILITY_LEVEL = 10 -- GetModifierInvisibilityLevel
 MODIFIER_PROPERTY_IS_ILLUSION = 116 -- GetIsIllusion
-MODIFIER_PROPERTY_IS_SCEPTER = 168 -- GetModifierScepter
-MODIFIER_PROPERTY_LIFETIME_FRACTION = 171 -- GetUnitLifetimeFraction
+MODIFIER_PROPERTY_IS_SCEPTER = 167 -- GetModifierScepter
+MODIFIER_PROPERTY_LIFETIME_FRACTION = 170 -- GetUnitLifetimeFraction
 MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK = 95 -- GetModifierMagical_ConstantBlock
 MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS = 55 -- GetModifierMagicalResistanceBonus
 MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE = 56 -- GetModifierMagicalResistanceDecrepifyUnique
@@ -2174,8 +2192,8 @@ MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE = 60 -- GetModifierTotalPercentage
 MODIFIER_PROPERTY_MAX_ATTACK_RANGE = 79 -- GetModifierMaxAttackRange
 MODIFIER_PROPERTY_MIN_HEALTH = 112 -- GetMinHealth
 MODIFIER_PROPERTY_MISS_PERCENTAGE = 49 -- GetModifierMiss_Percentage
-MODIFIER_PROPERTY_MODEL_CHANGE = 166 -- GetModifierModelChange
-MODIFIER_PROPERTY_MODEL_SCALE = 167 -- GetModifierModelScale
+MODIFIER_PROPERTY_MODEL_CHANGE = 165 -- GetModifierModelChange
+MODIFIER_PROPERTY_MODEL_SCALE = 166 -- GetModifierModelScale
 MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE = 19 -- GetModifierMoveSpeed_Absolute
 MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN = 20 -- GetModifierMoveSpeed_AbsoluteMin
 MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE = 13 -- GetModifierMoveSpeedOverride
@@ -2193,7 +2211,7 @@ MODIFIER_PROPERTY_OVERRIDE_ANIMATION = 100 -- GetOverrideAnimation
 MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE = 102 -- GetOverrideAnimationRate
 MODIFIER_PROPERTY_OVERRIDE_ANIMATION_WEIGHT = 101 -- GetOverrideAnimationWeight
 MODIFIER_PROPERTY_OVERRIDE_ATTACK_DAMAGE = 8 -- GetModifierOverrideAttackDamage
-MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL = 124 -- GetOverrideAttackMagical
+MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL = 123 -- GetOverrideAttackMagical
 MODIFIER_PROPERTY_PERSISTENT_INVISIBILITY = 11 -- GetModifierPersistentInvisibility
 MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS = 50 -- GetModifierPhysicalArmorBonus
 MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE = 51 -- GetModifierPhysicalArmorBonusUnique
@@ -2205,7 +2223,7 @@ MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_POST_CRIT = 2 -- GetModifierPreAttack_B
 MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_PROC = 1 -- GetModifierPreAttack_BonusDamage_Proc
 MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE = 93 -- GetModifierPreAttack_CriticalStrike
 MODIFIER_PROPERTY_PREATTACK_TARGET_CRITICALSTRIKE = 94 -- GetModifierPreAttack_Target_CriticalStrike
-MODIFIER_PROPERTY_PRESERVE_PARTICLES_ON_MODEL_CHANGE = 181 -- PreserveParticlesOnModelChanged
+MODIFIER_PROPERTY_PRESERVE_PARTICLES_ON_MODEL_CHANGE = 180 -- PreserveParticlesOnModelChanged
 MODIFIER_PROPERTY_PRE_ATTACK = 9 -- GetModifierPreAttack
 MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_MAGICAL = 5 -- GetModifierProcAttack_BonusDamage_Magical
 MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL = 4 -- GetModifierProcAttack_BonusDamage_Physical
@@ -2213,13 +2231,13 @@ MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PURE = 6 -- GetModifierProcAttack_Bonu
 MODIFIER_PROPERTY_PROCATTACK_FEEDBACK = 7 -- GetModifierProcAttack_Feedback
 MODIFIER_PROPERTY_PROJECTILE_NAME = 81 -- GetModifierProjectileName
 MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS = 80 -- GetModifierProjectileSpeedBonus
-MODIFIER_PROPERTY_PROVIDES_FOW_POSITION = 172 -- GetModifierProvidesFOWVision
+MODIFIER_PROPERTY_PROVIDES_FOW_POSITION = 171 -- GetModifierProvidesFOWVision
 MODIFIER_PROPERTY_REFLECT_SPELL = 104 -- GetReflectSpell
 MODIFIER_PROPERTY_REINCARNATION = 82 -- ReincarnateTime
 MODIFIER_PROPERTY_RESPAWNTIME = 83 -- GetModifierConstantRespawnTime
 MODIFIER_PROPERTY_RESPAWNTIME_PERCENTAGE = 84 -- GetModifierPercentageRespawnTime
 MODIFIER_PROPERTY_RESPAWNTIME_STACKING = 85 -- GetModifierStackingRespawnTime
-MODIFIER_PROPERTY_SPELLS_REQUIRE_HP = 173 -- GetModifierSpellsRequireHP
+MODIFIER_PROPERTY_SPELLS_REQUIRE_HP = 172 -- GetModifierSpellsRequireHP
 MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE = 32 -- GetModifierSpellAmplify_Percentage
 MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE_UNIQUE = 33 -- GetModifierSpellAmplify_PercentageUnique
 MODIFIER_PROPERTY_STATS_AGILITY_BONUS = 71 -- GetModifierBonusStats_Agility
@@ -2229,20 +2247,18 @@ MODIFIER_PROPERTY_STATUS_RESISTANCE = 45 -- GetModifierStatusResistance
 MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING = 46 -- GetModifierStatusResistanceStacking
 MODIFIER_PROPERTY_SUPER_ILLUSION = 118 -- GetModifierSuperIllusion
 MODIFIER_PROPERTY_SUPER_ILLUSION_WITH_ULTIMATE = 119 -- GetModifierSuperIllusionWithUltimate
-MODIFIER_PROPERTY_SUPPRESS_TELEPORT = 191 -- GetSuppressTeleport
-MODIFIER_PROPERTY_TEMPEST_DOUBLE = 180 -- GetModifierTempestDouble
-MODIFIER_PROPERTY_TOOLTIP = 165 -- OnTooltip
-MODIFIER_PROPERTY_TOOLTIP2 = 188 -- OnTooltip2
+MODIFIER_PROPERTY_TEMPEST_DOUBLE = 179 -- GetModifierTempestDouble
+MODIFIER_PROPERTY_TOOLTIP = 164 -- OnTooltip
+MODIFIER_PROPERTY_TOOLTIP2 = 187
 MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE = 31 -- GetModifierTotalDamageOutgoing_Percentage
 MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK = 99 -- GetModifierTotal_ConstantBlock
 MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_UNAVOIDABLE_PRE_ARMOR = 98 -- GetModifierPhysical_ConstantBlockUnavoidablePreArmor
-MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS = 169 -- GetActivityTranslationModifiers
-MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND = 170 -- GetAttackSound
-MODIFIER_PROPERTY_TURN_RATE_OVERRIDE = 121 -- GetModifierTurnRate_Override
+MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS = 168 -- GetActivityTranslationModifiers
+MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND = 169 -- GetAttackSound
 MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE = 120 -- GetModifierTurnRate_Percentage
-MODIFIER_PROPERTY_UNIT_DISALLOW_UPGRADING = 128 -- GetModifierUnitDisllowUpgrading
-MODIFIER_PROPERTY_UNIT_STATS_NEEDS_REFRESH = 125 -- GetModifierUnitStatsNeedsRefresh
-MODIFIER_PROPERTY_VISUAL_Z_DELTA = 185 -- GetVisualZDelta
+MODIFIER_PROPERTY_UNIT_DISALLOW_UPGRADING = 127 -- GetModifierUnitDisllowUpgrading
+MODIFIER_PROPERTY_UNIT_STATS_NEEDS_REFRESH = 124 -- GetModifierUnitStatsNeedsRefresh
+MODIFIER_PROPERTY_VISUAL_Z_DELTA = 184 -- GetVisualZDelta
 
 --- Enum modifierpriority
 MODIFIER_PRIORITY_HIGH = 2
@@ -2320,10 +2336,6 @@ function CBaseAnimating:GetAttachmentAngles( iAttachment ) end
 -- @param iAttachment int
 function CBaseAnimating:GetAttachmentOrigin( iAttachment ) end
 
----[[ CBaseAnimating:GetCycle  Get the cycle of the animation. ])
--- @return float
-function CBaseAnimating:GetCycle(  ) end
-
 ---[[ CBaseAnimating:GetGraphParameter  Get the value of the given animGraph parameter ])
 -- @return table
 -- @param pszParam string
@@ -2368,10 +2380,10 @@ function CBaseAnimating:SetBodygroup( iGroup, iValue ) end
 -- @param iValue int
 function CBaseAnimating:SetBodygroupByName( pName, iValue ) end
 
----[[ CBaseAnimating:SetGraphLookTarget  Pass the desired look target in world space to the graph ])
+---[[ CBaseAnimating:SetGraphLookDirection  Pass the vector value to the specified param in the graph ])
 -- @return void
 -- @param vValue Vector
-function CBaseAnimating:SetGraphLookTarget( vValue ) end
+function CBaseAnimating:SetGraphLookDirection( vValue ) end
 
 ---[[ CBaseAnimating:SetGraphParameter  Set the specific param value, type is inferred from the type in script ])
 -- @return void
@@ -2419,6 +2431,21 @@ function CBaseAnimating:SetModelScale( flScale ) end
 -- @param szName string
 -- @param fValue float
 function CBaseAnimating:SetPoseParameter( szName, fValue ) end
+
+---[[ CBaseAnimating:SetProceduralIKTarget  Sets the named procedural IK target. ])
+-- @return bool
+-- @param pChainName string
+-- @param pTargetName string
+-- @param vTargetPosition Vector
+-- @param qTargetRotation QAngle
+function CBaseAnimating:SetProceduralIKTarget( pChainName, pTargetName, vTargetPosition, qTargetRotation ) end
+
+---[[ CBaseAnimating:SetProceduralIKTargetWeight  Sets the named procedural IK targets weight: 0 = full animation, 1 = full IK. ])
+-- @return bool
+-- @param pChainName string
+-- @param pTargetName string
+-- @param flWeight float
+function CBaseAnimating:SetProceduralIKTargetWeight( pChainName, pTargetName, flWeight ) end
 
 ---[[ CBaseAnimating:SetSequence  Sets the active sequence by name, keeping the current cycle. ])
 -- @return void
@@ -2880,7 +2907,7 @@ function CBaseFlex:ScriptPlayScene( pszScene, flDelay ) end
 function CBaseModelEntity:GetMaterialGroupHash(  ) end
 
 ---[[ CBaseModelEntity:GetMaterialGroupMask  GetMaterialGroupMask(): Get the mesh group mask of this entity. ])
--- @return uint64
+-- @return <unknown>
 function CBaseModelEntity:GetMaterialGroupMask(  ) end
 
 ---[[ CBaseModelEntity:GetRenderAlpha  GetRenderAlpha(): Get the alpha modulation of this entity. ])
@@ -2908,7 +2935,7 @@ function CBaseModelEntity:SetMaterialGroupHash( nHash ) end
 
 ---[[ CBaseModelEntity:SetMaterialGroupMask  SetMaterialGroupMask( uint64 ): Set the mesh group mask of this entity. ])
 -- @return void
--- @param nMeshGroupMask uint64
+-- @param nMeshGroupMask <unknown>
 function CBaseModelEntity:SetMaterialGroupMask( nMeshGroupMask ) end
 
 ---[[ CBaseModelEntity:SetModel   ])
@@ -2986,6 +3013,10 @@ function CBasePlayer:IsVRControllerButtonPressed( nButton ) end
 -- @return bool
 function CBasePlayer:IsVRDashboardShowing(  ) end
 
+---[[ CBasePlayer:Quit  Quit the game from script. ])
+-- @return void
+function CBasePlayer:Quit(  ) end
+
 ---[[ CBaseTrigger:Disable  Disable's the trigger ])
 -- @return void
 function CBaseTrigger:Disable(  ) end
@@ -3045,6 +3076,11 @@ function CBodyComponent:SetAngularVelocity( Vector_1 ) end
 -- @param string_1 string
 function CBodyComponent:SetAnimation( string_1 ) end
 
+---[[ CBodyComponent:SetBodyGroup   ])
+-- @return void
+-- @param string_1 string
+function CBodyComponent:SetBodyGroup( string_1 ) end
+
 ---[[ CBodyComponent:SetMaterialGroup   ])
 -- @return void
 -- @param utlstringtoken_1 utlstringtoken
@@ -3087,7 +3123,7 @@ function CCustomGameEventManager:Send_ServerToTeam( int_1, string_2, handle_3 ) 
 function CCustomGameEventManager:UnregisterListener( int_1 ) end
 
 ---[[ CCustomNetTableManager:GetTableValue  ( string TableName, string KeyName ) ])
--- @return table
+-- @return handle
 -- @param string_1 string
 -- @param string_2 string
 function CCustomNetTableManager:GetTableValue( string_1, string_2 ) end
@@ -3663,8 +3699,7 @@ function CDOTABaseGameMode:GetCameraDistanceOverride(  ) end
 ---[[ CDOTABaseGameMode:GetCustomAttributeDerivedStatValue  Get current derived stat value constant. ])
 -- @return float
 -- @param nDerivedStatType int
--- @param hHero handle
-function CDOTABaseGameMode:GetCustomAttributeDerivedStatValue( nDerivedStatType, hHero ) end
+function CDOTABaseGameMode:GetCustomAttributeDerivedStatValue( nDerivedStatType ) end
 
 ---[[ CDOTABaseGameMode:GetCustomBuybackCooldownEnabled  Turns on capability to define custom buyback cooldowns. ])
 -- @return bool
@@ -3677,10 +3712,6 @@ function CDOTABaseGameMode:GetCustomBuybackCostEnabled(  ) end
 ---[[ CDOTABaseGameMode:GetCustomHeroMaxLevel  Allows definition of the max level heroes can achieve (default is 25). ])
 -- @return int
 function CDOTABaseGameMode:GetCustomHeroMaxLevel(  ) end
-
----[[ CDOTABaseGameMode:GetCustomScanCooldown  Get the current custom scan cooldown. ])
--- @return float
-function CDOTABaseGameMode:GetCustomScanCooldown(  ) end
 
 ---[[ CDOTABaseGameMode:GetFixedRespawnTime  Gets the fixed respawn time. ])
 -- @return float
@@ -3794,11 +3825,6 @@ function CDOTABaseGameMode:SetBotsMaxPushTier( nMaxTier ) end
 -- @param hContext handle
 function CDOTABaseGameMode:SetBountyRunePickupFilter( hFunction, hContext ) end
 
----[[ CDOTABaseGameMode:SetBountyRuneSpawnInterval  Set bounty rune spawn rate ])
--- @return void
--- @param flInterval float
-function CDOTABaseGameMode:SetBountyRuneSpawnInterval( flInterval ) end
-
 ---[[ CDOTABaseGameMode:SetBuybackEnabled  Enables or disables buyback completely. ])
 -- @return void
 -- @param bEnabled bool
@@ -3840,11 +3866,6 @@ function CDOTABaseGameMode:SetCustomGameForceHero( pHeroName ) end
 -- @param int_1 int
 function CDOTABaseGameMode:SetCustomHeroMaxLevel( int_1 ) end
 
----[[ CDOTABaseGameMode:SetCustomScanCooldown  Set a custom cooldown for team Scan ability. ])
--- @return void
--- @param flCooldown float
-function CDOTABaseGameMode:SetCustomScanCooldown( flCooldown ) end
-
 ---[[ CDOTABaseGameMode:SetCustomTerrainWeatherEffect  Set the effect used as a custom weather effect, when units are on non-default terrain, in this mode. ])
 -- @return void
 -- @param pszEffectName string
@@ -3870,16 +3891,6 @@ function CDOTABaseGameMode:SetDaynightCycleDisabled( bDisable ) end
 -- @return void
 -- @param bDisabled bool
 function CDOTABaseGameMode:SetDeathOverlayDisabled( bDisabled ) end
-
----[[ CDOTABaseGameMode:SetDraftingBanningTimeOverride  Set drafting hero banning time ])
--- @return void
--- @param flValue float
-function CDOTABaseGameMode:SetDraftingBanningTimeOverride( flValue ) end
-
----[[ CDOTABaseGameMode:SetDraftingHeroPickSelectTimeOverride  Set drafting hero pick time ])
--- @return void
--- @param flValue float
-function CDOTABaseGameMode:SetDraftingHeroPickSelectTimeOverride( flValue ) end
 
 ---[[ CDOTABaseGameMode:SetExecuteOrderFilter  Set a filter function to control the behavior when a unit picks up an item. (Modify the table and Return true to use new values, return false to cancel the event) ])
 -- @return void
@@ -3945,11 +3956,6 @@ function CDOTABaseGameMode:SetHudCombatEventsDisabled( bDisabled ) end
 -- @param hContext handle
 function CDOTABaseGameMode:SetItemAddedToInventoryFilter( hFunction, hContext ) end
 
----[[ CDOTABaseGameMode:SetKillableTombstones  Set whether tombstones can be channeled to be removed by enemy heroes. ])
--- @return void
--- @param bEnabled bool
-function CDOTABaseGameMode:SetKillableTombstones( bEnabled ) end
-
 ---[[ CDOTABaseGameMode:SetKillingSpreeAnnouncerDisabled  Mutes the in-game killing spree announcer. ])
 -- @return void
 -- @param bDisabled bool
@@ -3992,16 +3998,6 @@ function CDOTABaseGameMode:SetModifyGoldFilter( hFunction, hContext ) end
 -- @return void
 -- @param hOverrideEntity handle
 function CDOTABaseGameMode:SetOverrideSelectionEntity( hOverrideEntity ) end
-
----[[ CDOTABaseGameMode:SetPauseEnabled  Set pausing enabled/disabled ])
--- @return void
--- @param bEnabled bool
-function CDOTABaseGameMode:SetPauseEnabled( bEnabled ) end
-
----[[ CDOTABaseGameMode:SetPowerRuneSpawnInterval  Set power rune spawn rate ])
--- @return void
--- @param flInterval float
-function CDOTABaseGameMode:SetPowerRuneSpawnInterval( flInterval ) end
 
 ---[[ CDOTABaseGameMode:SetRecommendedItemsDisabled  Turn the panel for showing recommended items at the shop off/on. ])
 -- @return void
@@ -4081,11 +4077,6 @@ function CDOTABaseGameMode:SetUnseenFogOfWarEnabled( bEnabled ) end
 -- @return void
 -- @param bEnabled bool
 function CDOTABaseGameMode:SetUseCustomHeroLevels( bEnabled ) end
-
----[[ CDOTABaseGameMode:SetUseDefaultDOTARuneSpawnLogic  If set to true, use current rune spawn rules.  Either setting respects custom spawn intervals. ])
--- @return void
--- @param bEnabled bool
-function CDOTABaseGameMode:SetUseDefaultDOTARuneSpawnLogic( bEnabled ) end
 
 ---[[ CDOTABaseGameMode:SetWeatherEffectsDisabled  Set if weather effects are disabled. ])
 -- @return void
@@ -4644,10 +4635,6 @@ function CDOTA_BaseNPC:GetAttacksPerSecond(  ) end
 -- @param hTarget handle
 function CDOTA_BaseNPC:GetAverageTrueAttackDamage( hTarget ) end
 
----[[ CDOTA_BaseNPC:GetBaseAttackRange   ])
--- @return int
-function CDOTA_BaseNPC:GetBaseAttackRange(  ) end
-
 ---[[ CDOTA_BaseNPC:GetBaseAttackTime   ])
 -- @return float
 function CDOTA_BaseNPC:GetBaseAttackTime(  ) end
@@ -4733,10 +4720,6 @@ function CDOTA_BaseNPC:GetDayTimeVisionRange(  ) end
 -- @return int
 function CDOTA_BaseNPC:GetDeathXP(  ) end
 
----[[ CDOTA_BaseNPC:GetEvasion   ])
--- @return float
-function CDOTA_BaseNPC:GetEvasion(  ) end
-
 ---[[ CDOTA_BaseNPC:GetForceAttackTarget   ])
 -- @return handle
 function CDOTA_BaseNPC:GetForceAttackTarget(  ) end
@@ -4780,10 +4763,6 @@ function CDOTA_BaseNPC:GetIncreasedAttackSpeed(  ) end
 ---[[ CDOTA_BaseNPC:GetInitialGoalEntity  Returns the initial waypoint goal for this NPC. ])
 -- @return handle
 function CDOTA_BaseNPC:GetInitialGoalEntity(  ) end
-
----[[ CDOTA_BaseNPC:GetInitialGoalPosition  Get waypoint position for this NPC. ])
--- @return Vector
-function CDOTA_BaseNPC:GetInitialGoalPosition(  ) end
 
 ---[[ CDOTA_BaseNPC:GetItemInSlot  Returns nth item in inventory slot (index is zero based). ])
 -- @return handle
@@ -4914,15 +4893,6 @@ function CDOTA_BaseNPC:GetRangedProjectileName(  ) end
 ---[[ CDOTA_BaseNPC:GetSecondsPerAttack   ])
 -- @return float
 function CDOTA_BaseNPC:GetSecondsPerAttack(  ) end
-
----[[ CDOTA_BaseNPC:GetSpellAmplification   ])
--- @return float
--- @param bBaseOnly bool
-function CDOTA_BaseNPC:GetSpellAmplification( bBaseOnly ) end
-
----[[ CDOTA_BaseNPC:GetStatusResistance   ])
--- @return float
-function CDOTA_BaseNPC:GetStatusResistance(  ) end
 
 ---[[ CDOTA_BaseNPC:GetTotalPurchasedUpgradeGoldCost  Get how much gold has been spent on ability upgrades. ])
 -- @return int
@@ -5264,8 +5234,7 @@ function CDOTA_BaseNPC:MakePhantomBlocker(  ) end
 ---[[ CDOTA_BaseNPC:MakeVisibleDueToAttack   ])
 -- @return void
 -- @param iTeam int
--- @param flRadius float
-function CDOTA_BaseNPC:MakeVisibleDueToAttack( iTeam, flRadius ) end
+function CDOTA_BaseNPC:MakeVisibleDueToAttack( iTeam ) end
 
 ---[[ CDOTA_BaseNPC:MakeVisibleToTeam   ])
 -- @return void
@@ -5588,11 +5557,6 @@ function CDOTA_BaseNPC:SetIdleAcquire( bIdleAcquire ) end
 -- @param hGoal handle
 function CDOTA_BaseNPC:SetInitialGoalEntity( hGoal ) end
 
----[[ CDOTA_BaseNPC:SetInitialGoalPosition  Set waypoint position for this NPC. ])
--- @return void
--- @param vPosition Vector
-function CDOTA_BaseNPC:SetInitialGoalPosition( vPosition ) end
-
 ---[[ CDOTA_BaseNPC:SetMana  Set the mana on this unit. ])
 -- @return void
 -- @param flMana float
@@ -5659,11 +5623,6 @@ function CDOTA_BaseNPC:SetRangedProjectileName( pProjectileName ) end
 -- @return void
 -- @param revealRadius float
 function CDOTA_BaseNPC:SetRevealRadius( revealRadius ) end
-
----[[ CDOTA_BaseNPC:SetShouldDoFlyHeightVisual   ])
--- @return void
--- @param bShouldVisuallyFly bool
-function CDOTA_BaseNPC:SetShouldDoFlyHeightVisual( bShouldVisuallyFly ) end
 
 ---[[ CDOTA_BaseNPC:SetStolenScepter   ])
 -- @return void
@@ -5939,8 +5898,7 @@ function CDOTA_BaseNPC_Hero:GetBuybackCooldownTime(  ) end
 
 ---[[ CDOTA_BaseNPC_Hero:GetBuybackCost  Return integer value for the gold cost of a buyback. ])
 -- @return int
--- @param bReturnOldValues bool
-function CDOTA_BaseNPC_Hero:GetBuybackCost( bReturnOldValues ) end
+function CDOTA_BaseNPC_Hero:GetBuybackCost(  ) end
 
 ---[[ CDOTA_BaseNPC_Hero:GetBuybackGoldLimitTime  Returns the amount of time gold gain is limited after buying back. ])
 -- @return float
@@ -6280,15 +6238,6 @@ function CDOTA_BaseNPC_Hero:UpgradeAbility( hAbility ) end
 -- @return bool
 function CDOTA_BaseNPC_Hero:WillReincarnate(  ) end
 
----[[ CDOTA_BaseNPC_Shop:GetShopType  Get the DOTA_SHOP_TYPE ])
--- @return int
-function CDOTA_BaseNPC_Shop:GetShopType(  ) end
-
----[[ CDOTA_BaseNPC_Shop:SetShopType  Set the DOTA_SHOP_TYPE. ])
--- @return void
--- @param eShopType int
-function CDOTA_BaseNPC_Shop:SetShopType( eShopType ) end
-
 ---[[ CDOTA_BaseNPC_Trap_Ward:GetTrapTarget  Get the trap target for this entity. ])
 -- @return Vector
 function CDOTA_BaseNPC_Trap_Ward:GetTrapTarget(  ) end
@@ -6351,10 +6300,6 @@ function CDOTA_Buff:GetDuration(  ) end
 ---[[ CDOTA_Buff:GetElapsedTime   ])
 -- @return float
 function CDOTA_Buff:GetElapsedTime(  ) end
-
----[[ CDOTA_Buff:GetLastAppliedTime   ])
--- @return float
-function CDOTA_Buff:GetLastAppliedTime(  ) end
 
 ---[[ CDOTA_Buff:GetName   ])
 -- @return string
@@ -6452,10 +6397,6 @@ function CDOTA_Item:GetInitialCharges(  ) end
 ---[[ CDOTA_Item:GetItemState  Gets whether item is unequipped or ready. ])
 -- @return int
 function CDOTA_Item:GetItemState(  ) end
-
----[[ CDOTA_Item:GetParent  Get the parent for this item. ])
--- @return handle
-function CDOTA_Item:GetParent(  ) end
 
 ---[[ CDOTA_Item:GetPurchaseTime  Get the purchase time of this item ])
 -- @return float
@@ -6867,10 +6808,6 @@ function CDOTA_MapTree:IsStanding(  ) end
 ---[[ CDOTA_Modifier_Lua:AllowIllusionDuplicate  True/false if this modifier is active on illusions. ])
 -- @return bool
 function CDOTA_Modifier_Lua:AllowIllusionDuplicate(  ) end
-
----[[ CDOTA_Modifier_Lua:CanParentBeAutoAttacked   ])
--- @return bool
-function CDOTA_Modifier_Lua:CanParentBeAutoAttacked(  ) end
 
 ---[[ CDOTA_Modifier_Lua:DestroyOnExpire  True/false if this buff is removed when the duration expires. ])
 -- @return bool
@@ -7330,11 +7267,6 @@ function CDOTA_PlayerResource:GetMisses( iPlayerID ) end
 -- @param iPlayerID int
 function CDOTA_PlayerResource:GetNearbyCreepDeaths( iPlayerID ) end
 
----[[ CDOTA_PlayerResource:GetNetWorth   ])
--- @return int
--- @param iPlayerID int
-function CDOTA_PlayerResource:GetNetWorth( iPlayerID ) end
-
 ---[[ CDOTA_PlayerResource:GetNthCourierForTeam   ])
 -- @return handle
 -- @param nCourierIndex int
@@ -7361,11 +7293,6 @@ function CDOTA_PlayerResource:GetNumCouriersForTeam( nTeamNumber ) end
 -- @return int
 -- @param iPlayerID int
 function CDOTA_PlayerResource:GetNumItemsPurchased( iPlayerID ) end
-
----[[ CDOTA_PlayerResource:GetPartyID   ])
--- @return uint64
--- @param iPlayerID int
-function CDOTA_PlayerResource:GetPartyID( iPlayerID ) end
 
 ---[[ CDOTA_PlayerResource:GetPlayer   ])
 -- @return handle
@@ -7437,7 +7364,7 @@ function CDOTA_PlayerResource:GetSelectedHeroName( iPlayerID ) end
 function CDOTA_PlayerResource:GetSteamAccountID( iPlayerID ) end
 
 ---[[ CDOTA_PlayerResource:GetSteamID  Get the 64 bit steam ID for a given player. ])
--- @return uint64
+-- @return <unknown>
 -- @param iPlayerID int
 function CDOTA_PlayerResource:GetSteamID( iPlayerID ) end
 
@@ -7666,14 +7593,6 @@ function CDOTA_PlayerResource:IsValidTeamPlayerID( iPlayerID ) end
 -- @param nReason int
 function CDOTA_PlayerResource:ModifyGold( iPlayerID, iGoldChange, bReliable, nReason ) end
 
----[[ CDOTA_PlayerResource:NumPlayers   ])
--- @return int
-function CDOTA_PlayerResource:NumPlayers(  ) end
-
----[[ CDOTA_PlayerResource:NumTeamPlayers   ])
--- @return int
-function CDOTA_PlayerResource:NumTeamPlayers(  ) end
-
 ---[[ CDOTA_PlayerResource:ReplaceHeroWith  (playerID, heroClassName, gold, XP) - replaces the player's hero with a new one of the specified class, gold and XP ])
 -- @return handle
 -- @param iPlayerID int
@@ -7792,15 +7711,6 @@ function CDOTA_PlayerResource:UpdateTeamSlot( iPlayerID, iTeamNumber, desiredSlo
 -- @return int
 -- @param pHeroFilename string
 function CDOTA_PlayerResource:WhoSelectedHero( pHeroFilename ) end
-
----[[ CDOTA_ShopTrigger:GetShopType  Get the DOTA_SHOP_TYPE ])
--- @return int
-function CDOTA_ShopTrigger:GetShopType(  ) end
-
----[[ CDOTA_ShopTrigger:SetShopType  Set the DOTA_SHOP_TYPE. ])
--- @return void
--- @param eShopType int
-function CDOTA_ShopTrigger:SetShopType( eShopType ) end
 
 ---[[ CDOTA_SimpleObstruction:IsEnabled  Returns whether the obstruction is currently active ])
 -- @return bool
@@ -8865,12 +8775,6 @@ function CScriptParticleManager:SetParticleControlOrientation( int_1, int_2, Vec
 -- @param int_3 int
 -- @param float_4 float
 function CScriptParticleManager:SetParticleFoWProperties( int_1, int_2, int_3, float_4 ) end
-
----[[ CScriptParticleManager:SetParticleShouldCheckFoW  int nfxindex, bool bCheckFoW ])
--- @return bool
--- @param int_1 int
--- @param bool_2 bool
-function CScriptParticleManager:SetParticleShouldCheckFoW( int_1, bool_2 ) end
 
 ---[[ CScriptPrecacheContext:AddResource  Precaches a specific resource ])
 -- @return void
