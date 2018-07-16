@@ -199,8 +199,8 @@
 	"npc_dota_hero_qop"
 	{
 		"override_hero"					"npc_dota_hero_queenofpain"	// Hero to override
-		"Ability1"				"enchantress_untouchable"						// Ability 1
-		"Ability2"				"sand_king_sand_storm_lua"						// Ability 2
+		"Ability1"				"enchantress_untouchable_lua"						// Ability 1
+		"Ability2"				"enchantress_enchant_lua"						// Ability 2
 		"Ability3"				"enchantress_natures_attendants_lua"						// Ability 3
 		"Ability6"				"enchantress_impetus_lua"							// Ability 6
 	}

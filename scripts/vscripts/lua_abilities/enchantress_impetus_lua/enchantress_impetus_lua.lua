@@ -13,7 +13,7 @@ function enchantress_impetus_lua:OnSpellStart()
 end
 
 function enchantress_impetus_lua:GetProjectileName()
-	return "particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf.vpcf"
+	return "particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf"
 end
 
 --------------------------------------------------------------------------------

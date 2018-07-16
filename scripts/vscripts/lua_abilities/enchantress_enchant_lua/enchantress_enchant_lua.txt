@@ -1,0 +1,66 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Hero Name: enchantress_enchant_lua
+	//=================================================================================================================
+	"enchantress_enchant_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/enchantress_enchant_lua/enchantress_enchant_lua"
+		"AbilityTextureName"			"enchantress_enchant_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
+			"particle"	"particles/units/heroes/hero_enchantress/enchantress_enchant_slow.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+		"AbilityDuration"				"3.75 4.5 5.25 6"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"55 40 25 10"
+		"AbilityManaCost"				"65 65 65 65"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dominate_duration"		"50 60 70 80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_movement_speed"	"-55"
+			}			
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tooltip_duration"		"3.75 4.5 5.25 6"
+			}
+		}
+	}
+}
