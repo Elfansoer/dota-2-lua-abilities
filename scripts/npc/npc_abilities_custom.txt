@@ -1388,6 +1388,10 @@
 #base "../vscripts/lua_abilities/juggernaut_blade_fury_lua/juggernaut_blade_fury_lua.txt"
 #base "../vscripts/lua_abilities/juggernaut_blade_dance_lua/juggernaut_blade_dance_lua.txt"
 
+#base "../vscripts/lua_abilities/lifestealer_rage_lua/lifestealer_rage_lua.txt"
+#base "../vscripts/lua_abilities/lifestealer_feast_lua/lifestealer_feast_lua.txt"
+#base "../vscripts/lua_abilities/lifestealer_open_wounds_lua/lifestealer_open_wounds_lua.txt"
+
 #base "../vscripts/lua_abilities/lion_hex_lua/lion_hex_lua.txt"
 #base "../vscripts/lua_abilities/lion_finger_of_death_lua/lion_finger_of_death_lua.txt"
 

@@ -204,6 +204,19 @@
 		"Ability3"				"enchantress_natures_attendants_lua"						// Ability 3
 		"Ability6"				"enchantress_impetus_lua"							// Ability 6
 	}
+	
+
+	//=================================================================================================================
+	// HERO: Ember
+	//=================================================================================================================
+	"npc_dota_hero_ember"
+	{
+		"override_hero"					"npc_dota_hero_ember_spirit"	// Hero to override
+		"Ability1"				"lifestealer_rage_lua"						// Ability 1
+		"Ability2"				"lifestealer_feast_lua"						// Ability 2
+		"Ability3"				"lifestealer_open_wounds_lua"						// Ability 3
+		"Ability6"				"enchantress_impetus_lua"							// Ability 6
+	}
 
 	//=================================================================================================================
 	// HERO: Rubick

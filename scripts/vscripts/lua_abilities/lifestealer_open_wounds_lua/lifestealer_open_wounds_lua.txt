@@ -1,0 +1,78 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Lifestealer: Open Wounds (Lua version)
+	//=================================================================================================================
+	"lifestealer_open_wounds_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/lifestealer_open_wounds_lua/lifestealer_open_wounds_lua"
+		"AbilityTextureName"			"lifestealer_open_wounds_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+			"particle"	"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"200 300 400 500"
+		"AbilityCastPoint"				"0.2"
+		"AbilityDuration"				"8 8 8 8"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"24 20 16 12"
+		"AbilityManaCost"				"140"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_steps"			"-70 -70 -60 -50 -30 -10 -10 -10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_percent"			"50"
+				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_2"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_tooltip"			"70"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"8"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_range"			"200 300 400 500"
+			}
+		}
+	}
+}
