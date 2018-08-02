@@ -3,12 +3,11 @@ modifier_slark_dark_pact_lua = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_slark_dark_pact_lua:IsHidden()
-	-- final: true
-	return false
+	return true
 end
 
 function modifier_slark_dark_pact_lua:GetAttributes()
-	return MODIFIER_ATRRIBUTE_MULTIPLE 
+	return MODIFIER_ATTRIBUTE_MULTIPLE 
 end
 
 function modifier_slark_dark_pact_lua:IsPurgable()
@@ -30,9 +29,10 @@ function modifier_slark_dark_pact_lua:OnCreated( kv )
 	self.cast = false
 	self.current_pulse = 0
 
-	-- Start interval
-	self:StartIntervalThink( self.delay )
-
+	if IsServer() then
+		-- Start interval
+		self:StartIntervalThink( self.delay )
+	end
 end
 
 function modifier_slark_dark_pact_lua:OnDestroy( kv )
@@ -42,14 +42,24 @@ end
 --------------------------------------------------------------------------------
 -- Interval Effects
 function modifier_slark_dark_pact_lua:OnIntervalThink()
-	if IsServer() then
-		if not self.cast then
-			self.cast = true
+	if not self.cast then
+		self:Splash()
 
-			self:Splash()
-			self:StartIntervalThink( self.pulse_interval )
-		else
-			self:Splash()
+		-- add counter
+		self.current_pulse = self.current_pulse + 1
+
+		self.cast = true
+		self:StartIntervalThink( self.pulse_interval )
+	else
+		self:Splash()
+
+		-- add counter
+		self.current_pulse = self.current_pulse + 1
+		
+		-- self destruct
+		if self.current_pulse >=10 then
+			self:StartIntervalThink( -1 )
+			self:Destroy()
 		end
 	end
 end
@@ -96,11 +106,4 @@ function modifier_slark_dark_pact_lua:Splash()
 		ability = self:GetAbility()
 	}
 	ApplyDamage(damageTable)
-
-	-- add counter
-	self.current_pulse = self.current_pulse + 1
-	if self.current_pulse >=10 then
-		self:StartIntervalThink( -1 )
-		self:Destroy()
-	end
 end
