@@ -17,7 +17,7 @@ orb_manager.invoke_list = {
 	["wwe"] = "invoker_alacrity_lua",
 	["eee"] = "invoker_sun_strike_lua",
 	["qee"] = "earthshaker_fissure_lua",
-	["wee"] = "earthshaker_enchant_totem_lua",
+	["wee"] = "invoker_chaos_meteor_lua",
 	["qwe"] = "lion_finger_of_death_lua",
 }
 orb_manager.modifier_list = {

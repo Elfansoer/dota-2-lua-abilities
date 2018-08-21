@@ -1,0 +1,2 @@
+Logic:
+- Cannot apply motion to remnant (or other thinker)
