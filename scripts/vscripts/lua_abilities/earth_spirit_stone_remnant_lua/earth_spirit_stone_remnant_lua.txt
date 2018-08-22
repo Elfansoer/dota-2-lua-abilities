@@ -14,11 +14,11 @@
 		"AbilityTextureName"			"earth_spirit_stone_remnant_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"1"
-//		"precache"
-//		{
-//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-//		}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+			"particle"	"particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
+		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------

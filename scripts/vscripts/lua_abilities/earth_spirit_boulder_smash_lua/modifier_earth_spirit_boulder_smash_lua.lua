@@ -18,9 +18,9 @@ function modifier_earth_spirit_boulder_smash_lua:IsPurgable()
 	return false
 end
 
-function modifier_earth_spirit_boulder_smash_lua:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
-end
+-- function modifier_earth_spirit_boulder_smash_lua:GetAttributes()
+-- 	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
+-- end
 
 --------------------------------------------------------------------------------
 -- Initializations
@@ -35,7 +35,7 @@ function modifier_earth_spirit_boulder_smash_lua:OnCreated( kv )
 		self.origin = self:GetParent():GetOrigin()
 
 		-- apply motion controller
-		if self:ApplyHorizontalMotionController() == false then 
+		if self:ApplyHorizontalMotionController() == false then
 			self:Destroy()
 		end
 	end
@@ -104,13 +104,13 @@ end
 
 --------------------------------------------------------------------------------
 -- Status Effects
-function modifier_earth_spirit_boulder_smash_lua:CheckState()
-	local state = {
-		[MODIFIER_STATE_STUNNED] = true,
-	}
+-- function modifier_earth_spirit_boulder_smash_lua:CheckState()
+-- 	local state = {
+-- 		[MODIFIER_STATE_STUNNED] = true,
+-- 	}
 
-	return state
-end
+-- 	return state
+-- end
 
 --------------------------------------------------------------------------------
 -- Interval Effects
