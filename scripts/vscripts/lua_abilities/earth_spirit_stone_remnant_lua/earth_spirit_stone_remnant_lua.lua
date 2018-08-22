@@ -5,9 +5,9 @@ LinkLuaModifier( "modifier_earth_spirit_stone_remnant_lua_effect", "lua_abilitie
 
 --------------------------------------------------------------------------------
 -- Passive Modifier
--- function earth_spirit_stone_remnant_lua:GetIntrinsicModifierName()
--- 	return "modifier_earth_spirit_stone_remnant_lua"
--- end
+function earth_spirit_stone_remnant_lua:GetIntrinsicModifierName()
+	return "modifier_generic_charges"
+end
 
 --------------------------------------------------------------------------------
 -- Ability Start
@@ -17,8 +17,7 @@ function earth_spirit_stone_remnant_lua:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	-- load data
-	local duration = 7
-	-- local duration = self:GetSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("duration")
 
 	-- summon stone
 	local stone = CreateUnitByName( "npc_dota_earth_spirit_stone", point, true, nil, nil, self:GetCaster():GetTeamNumber() )
