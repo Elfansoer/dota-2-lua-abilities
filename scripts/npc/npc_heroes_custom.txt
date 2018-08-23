@@ -190,7 +190,7 @@
 		"override_hero"					"npc_dota_hero_axe"	// Hero to override
 		"Ability1"				"earth_spirit_stone_remnant_lua"						// Ability 1
 		"Ability2"				"earth_spirit_boulder_smash_lua"						// Ability 2
-		"Ability3"				"sand_king_caustic_finale_lua"						// Ability 3
+		"Ability3"				"earth_spirit_rolling_boulder_lua"						// Ability 3
 		"Ability6"				"sand_king_epicenter_lua"							// Ability 6
 	}
 	//=================================================================================================================

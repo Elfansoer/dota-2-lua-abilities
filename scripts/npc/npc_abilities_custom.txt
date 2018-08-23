@@ -1372,6 +1372,7 @@
 
 #base "../vscripts/lua_abilities/earth_spirit_stone_remnant_lua/earth_spirit_stone_remnant_lua.txt"
 #base "../vscripts/lua_abilities/earth_spirit_boulder_smash_lua/earth_spirit_boulder_smash_lua.txt"
+#base "../vscripts/lua_abilities/earth_spirit_rolling_boulder_lua/earth_spirit_rolling_boulder_lua.txt"
 
 #base "../vscripts/lua_abilities/enchantress_untouchable_lua/enchantress_untouchable_lua.txt"
 #base "../vscripts/lua_abilities/enchantress_enchant_lua/enchantress_enchant_lua.txt"
