@@ -92,12 +92,20 @@ function earth_spirit_rolling_boulder_lua:OnProjectileHitHandle( target, locatio
 		if self.upgrade then
 			self.upgrade = nil
 
-			target:AddNewModifier(
-				self:GetCaster(), -- player source
-				self, -- ability source
-				"modifier_earth_spirit_rolling_boulder_lua_slow", -- modifier name
-				{ duration = slow_duration } -- kv
-			)
+			-- check if have magnetize debuff
+			local modifier = target:FindModifierByNameAndCaster( "modifier_earth_spirit_magnetize_lua", self:GetCaster() )
+			if modifier then
+				-- apply to all magnetize units
+				modifier:ApplyDebuff( self, "modifier_earth_spirit_rolling_boulder_lua_slow", slow_duration )
+			else
+				-- apply modifier
+				target:AddNewModifier(
+					self:GetCaster(), -- player source
+					self, -- ability source
+					"modifier_earth_spirit_rolling_boulder_lua_slow", -- modifier name
+					{ duration = slow_duration } -- kv
+				)
+			end
 		end
 
 		return true

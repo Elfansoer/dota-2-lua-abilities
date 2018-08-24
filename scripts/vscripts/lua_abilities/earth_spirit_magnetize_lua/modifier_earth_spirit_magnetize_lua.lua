@@ -43,6 +43,9 @@ function modifier_earth_spirit_magnetize_lua:OnCreated( kv )
 
 		-- Start interval
 		self:StartIntervalThink( self.interval )
+
+		-- register debuff
+		self:GetAbility():AddDebuff( self )
 	end
 end
 
@@ -66,6 +69,10 @@ end
 
 function modifier_earth_spirit_magnetize_lua:OnRemoved( kv )
 	if IsServer() then
+		-- unregister debuff
+		self:GetAbility():RemoveDebuff( self )
+
+		-- Play effects
 		local sound_end = "Hero_EarthSpirit.Magnetize.End"
 		EmitSoundOn( sound_end, self:GetParent() )
 	end
@@ -75,11 +82,18 @@ end
 -- Modifier Effects
 -- function modifier_earth_spirit_magnetize_lua:DeclareFunctions()
 -- 	local funcs = {
--- 		MODIFIER_PROPERTY_XX,
--- 		MODIFIER_EVENT_YY,
+-- 		MODIFIER_EVENT_ON_MODIFIER_ADDED,
 -- 	}
 
 -- 	return funcs
+-- end
+-- function modifier_earth_spirit_magnetize_lua:OnModifierAdded( params )
+-- 	if params.unit==self:GetParent() then
+-- 		print("================================")
+-- 		print("modifier added",params.unit:GetUnitName())
+-- 		local mod = self:GetParent():FindModifierByNameAndCaster( "modifier_earth_spirit_rolling_boulder_lua_slow", self:GetCaster() )
+-- 		if 
+-- 	end
 -- end
 
 --------------------------------------------------------------------------------
@@ -117,7 +131,7 @@ function modifier_earth_spirit_magnetize_lua:OnIntervalThink()
 			self.explode,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 			DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
 			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
-			0,	-- int, flag filter
+			DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	-- int, flag filter
 			0,	-- int, order filter
 			false	-- bool, can grow cache
 		)
@@ -166,6 +180,13 @@ function modifier_earth_spirit_magnetize_lua:SearchRemnant( point, radius )
 	end
 	return ret
 end
+
+--------------------------------------------------------------------------------
+-- External function
+function modifier_earth_spirit_magnetize_lua:ApplyDebuff( ability, modifier_name, duration )
+	self:GetAbility():ApplyDebuff( ability, modifier_name, duration )
+end
+
 --------------------------------------------------------------------------------
 -- Graphics & Animations
 -- function modifier_earth_spirit_magnetize_lua:GetEffectName()

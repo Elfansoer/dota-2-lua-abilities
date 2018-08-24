@@ -41,6 +41,34 @@ function earth_spirit_magnetize_lua:OnSpellStart()
 end
 
 --------------------------------------------------------------------------------
+-- External function
+earth_spirit_magnetize_lua.debuff_tracker = {}
+function earth_spirit_magnetize_lua:AddDebuff( modifier )
+	table.insert( self.debuff_tracker, modifier )
+end
+
+function earth_spirit_magnetize_lua:RemoveDebuff( modifier )
+	for i,mod in pairs(self.debuff_tracker) do
+		if mod==modifier then
+			table.remove( self.debuff_tracker, i )
+		end
+	end
+end
+
+function earth_spirit_magnetize_lua:ApplyDebuff( ability, modifier_name, duration )
+	for _,mod in pairs(self.debuff_tracker) do
+		local parent = mod:GetParent()
+		if parent:IsAlive() and (not parent:IsMagicImmune()) and (not parent:IsInvulnerable()) then
+			parent:AddNewModifier(
+				self:GetCaster(), -- player source
+				ability, -- ability source
+				modifier_name, -- modifier name
+				{ duration = duration } -- kv
+			)
+		end
+	end
+end
+--------------------------------------------------------------------------------
 function earth_spirit_magnetize_lua:PlayEffects()
 	-- Get Resources
 	local particle_cast = "string"
