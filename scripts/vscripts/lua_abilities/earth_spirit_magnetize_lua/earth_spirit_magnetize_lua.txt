@@ -1,0 +1,95 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Earth Spirit: Magnetize (Lua version)
+	//=================================================================================================================
+	"earth_spirit_magnetize_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/earth_spirit_magnetize_lua/earth_spirit_magnetize_lua"
+		"AbilityTextureName"			"earth_spirit_magnetize_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"300"
+		"AbilityCastPoint"				"0.01"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100 90 80"
+		"AbilityManaCost"				"100"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_radius"			"300"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_second"			"50 75 100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_duration"			"6.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rock_search_radius"			"400"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rock_explosion_radius"			"600"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_interval"			"1.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"rock_explosion_delay"			"8.0"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"silence_duration"			"5.0"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_duration"			"2.0"
+			}
+		}
+	}
+}

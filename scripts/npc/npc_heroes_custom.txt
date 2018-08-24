@@ -191,7 +191,7 @@
 		"Ability1"				"earth_spirit_stone_remnant_lua"						// Ability 1
 		"Ability2"				"earth_spirit_boulder_smash_lua"						// Ability 2
 		"Ability3"				"earth_spirit_rolling_boulder_lua"						// Ability 3
-		"Ability6"				"sand_king_epicenter_lua"							// Ability 6
+		"Ability6"				"earth_spirit_magnetize_lua"							// Ability 6
 	}
 	//=================================================================================================================
 	// HERO: QOP
