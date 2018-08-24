@@ -30,8 +30,7 @@ function modifier_earth_spirit_rolling_boulder_lua:OnCreated( kv )
 		self:StartIntervalThink( self.delay )
 
 		-- effects
-		local sound_loop = "Hero_EarthSpirit.RollingBoulder.Loop"
-		EmitSoundOn( sound_loop, self:GetParent() )
+		self:PlayEffects()
 	end
 end
 
@@ -40,27 +39,27 @@ end
 
 function modifier_earth_spirit_rolling_boulder_lua:OnDestroy( kv )
 	if IsServer() then
+		self:GetParent():InterruptMotionControllers( true )
+	end
+end
+
+function modifier_earth_spirit_rolling_boulder_lua:OnRemoved( kv )
+	if IsServer() then
 		-- effects
+		if self.pre_collide then
+			ParticleManager:SetParticleControl( self.effect_cast, 3, self.pre_collide )
+		else
+			ParticleManager:SetParticleControl( self.effect_cast, 3, self:GetParent():GetOrigin() )
+		end
+
 		local sound_loop = "Hero_EarthSpirit.RollingBoulder.Loop"
 		StopSoundOn( sound_loop, self:GetParent() )
 
 		local sound_end = "Hero_EarthSpirit.RollingBoulder.Destroy"
 		EmitSoundOn( sound_end, self:GetParent() )
 
-		self:GetParent():InterruptMotionControllers( true )
 	end
 end
-
---------------------------------------------------------------------------------
--- Modifier Effects
--- function modifier_earth_spirit_rolling_boulder_lua:DeclareFunctions()
--- 	local funcs = {
--- 		MODIFIER_PROPERTY_XX,
--- 		MODIFIER_EVENT_YY,
--- 	}
-
--- 	return funcs
--- end
 
 --------------------------------------------------------------------------------
 -- Status Effects
@@ -137,50 +136,33 @@ function modifier_earth_spirit_rolling_boulder_lua:Upgrade()
 	self.distance = self:GetAbility():GetSpecialValueFor( "rock_distance" )
 end
 
+function modifier_earth_spirit_rolling_boulder_lua:End( vector )
+	self.pre_collide = vector
+	self:Destroy()
+end
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_earth_spirit_rolling_boulder_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_earth_spirit_rolling_boulder_lua:PlayEffects()
+	-- Get Resources
+	-- local particle_cast = "particles/units/heroes/hero_earth_spirit/espirit_rollingboulder.vpcf"
+	local particle_cast = "particles/econ/items/earth_spirit/earth_spirit_ti6_boulder/espirit_ti6_rollingboulder.vpcf"
+	local sound_loop = "Hero_EarthSpirit.RollingBoulder.Loop"
 
--- function modifier_earth_spirit_rolling_boulder_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+	-- Get Data
 
--- function modifier_earth_spirit_rolling_boulder_lua:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "string"
--- 	local sound_cast = "string"
+	-- Create Particle
+	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 
--- 	-- Get Data
+	-- buff particle
+	self:AddParticle(
+		self.effect_cast,
+		false,
+		false,
+		-1,
+		false,
+		false
+	)
 
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
-
--- 	-- buff particle
--- 	self:AddParticle(
--- 		nFXIndex,
--- 		bDestroyImmediately,
--- 		bStatusEffect,
--- 		iPriority,
--- 		bHeroEffect,
--- 		bOverheadEffect
--- 	)
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end
+	-- Create Sound
+	EmitSoundOn( sound_loop, self:GetParent() )
+end

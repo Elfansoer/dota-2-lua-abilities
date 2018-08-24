@@ -17,7 +17,8 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+			"particle"	"particles/units/heroes/hero_earth_spirit/espirit_rollingboulder.vpcf"
+			"particle"	"particles/econ/items/earth_spirit/earth_spirit_ti6_boulder/espirit_ti6_rollingboulder.vpcf"
 		}
 		
 		// Ability General

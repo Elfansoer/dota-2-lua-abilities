@@ -18,6 +18,7 @@
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
 			"particle"	"particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
+			"particle"	"particles/econ/items/earth_spirit/earth_spirit_vanquishingdemons_summons/espirit_stoneremnant_vanquishingdemons.vpcf"
 		}
 		
 		// Ability General

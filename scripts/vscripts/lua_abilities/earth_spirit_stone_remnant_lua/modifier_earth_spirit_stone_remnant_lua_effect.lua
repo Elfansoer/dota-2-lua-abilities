@@ -31,7 +31,8 @@ end
 -- Graphics & Animations
 function modifier_earth_spirit_stone_remnant_lua_effect:PlayEffects()
 	-- Get Resources
-	local particle_cast = "particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
+	-- local particle_cast = "particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
+	local particle_cast = "particles/econ/items/earth_spirit/earth_spirit_vanquishingdemons_summons/espirit_stoneremnant_vanquishingdemons.vpcf"
 	local sound_cast = "Hero_EarthSpirit.StoneRemnant.Impact"
 
 	-- Get Data

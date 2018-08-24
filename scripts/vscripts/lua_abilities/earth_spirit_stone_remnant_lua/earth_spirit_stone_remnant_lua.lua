@@ -3,6 +3,7 @@ LinkLuaModifier( "modifier_generic_charges", "lua_abilities/generic/modifier_gen
 LinkLuaModifier( "modifier_earth_spirit_stone_remnant_lua", "lua_abilities/earth_spirit_stone_remnant_lua/modifier_earth_spirit_stone_remnant_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_earth_spirit_stone_remnant_lua_effect", "lua_abilities/earth_spirit_stone_remnant_lua/modifier_earth_spirit_stone_remnant_lua_effect", LUA_MODIFIER_MOTION_NONE )
 
+
 --------------------------------------------------------------------------------
 -- Passive Modifier
 function earth_spirit_stone_remnant_lua:GetIntrinsicModifierName()
@@ -42,6 +43,5 @@ end
 function earth_spirit_stone_remnant_lua:OnHeroCalculateStatBonus()
 	if self:GetLevel()<1 then
 		self:SetLevel(1)
-		self.OnHeroCalculateStatBonus = nil
 	end
 end
