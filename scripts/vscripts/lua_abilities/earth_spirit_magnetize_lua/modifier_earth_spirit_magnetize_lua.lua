@@ -79,34 +79,6 @@ function modifier_earth_spirit_magnetize_lua:OnRemoved( kv )
 end
 
 --------------------------------------------------------------------------------
--- Modifier Effects
--- function modifier_earth_spirit_magnetize_lua:DeclareFunctions()
--- 	local funcs = {
--- 		MODIFIER_EVENT_ON_MODIFIER_ADDED,
--- 	}
-
--- 	return funcs
--- end
--- function modifier_earth_spirit_magnetize_lua:OnModifierAdded( params )
--- 	if params.unit==self:GetParent() then
--- 		print("================================")
--- 		print("modifier added",params.unit:GetUnitName())
--- 		local mod = self:GetParent():FindModifierByNameAndCaster( "modifier_earth_spirit_rolling_boulder_lua_slow", self:GetCaster() )
--- 		if 
--- 	end
--- end
-
---------------------------------------------------------------------------------
--- Status Effects
--- function modifier_earth_spirit_magnetize_lua:CheckState()
--- 	local state = {
--- 	[MODIFIER_STATE_XX] = true,
--- 	}
-
--- 	return state
--- end
-
---------------------------------------------------------------------------------
 -- Interval Effects
 function modifier_earth_spirit_magnetize_lua:OnIntervalThink()
 	-- apply damage
@@ -147,13 +119,11 @@ function modifier_earth_spirit_magnetize_lua:OnIntervalThink()
 		end
 
 		-- play effects
-		local sound_cast = "Hero_EarthSpirit.Magnetize.StoneBolt"
-		EmitSoundOn( sound_cast, remnant )
+		self:PlayEffects2( remnant, enemies )
 	end
 
 	-- play effects
-	local sound_tick = "Hero_EarthSpirit.Magnetize.Target.Tick"
-	EmitSoundOn( sound_tick, self:GetParent() )
+	self:PlayEffects1()
 end
 
 --------------------------------------------------------------------------------
@@ -189,48 +159,44 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_earth_spirit_magnetize_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_earth_spirit_magnetize_lua:PlayEffects1()
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_earth_spirit/espirit_magnetize_target.vpcf"
+	local sound_tick = "Hero_EarthSpirit.Magnetize.Target.Tick"
 
--- function modifier_earth_spirit_magnetize_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	ParticleManager:SetParticleControl( effect_cast, 1, self:GetParent():GetOrigin() )
+	ParticleManager:SetParticleControl( effect_cast, 2, Vector( self.search, 0, 0 ) )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 
--- function modifier_earth_spirit_magnetize_lua:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "string"
--- 	local sound_cast = "string"
+	-- Create Sound
+	EmitSoundOn( sound_tick, self:GetParent() )
+end
 
--- 	-- Get Data
+--------------------------------------------------------------------------------
+-- Graphics & Animations
+function modifier_earth_spirit_magnetize_lua:PlayEffects2( remnant, enemies )
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_earth_spirit/espirit_magnet_arclightning.vpcf"
+	local sound_cast = "Hero_EarthSpirit.Magnetize.StoneBolt"
 
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
+	-- Create Particle
+	local effect_cast = 0
+	for _,enemy in pairs(enemies) do
+		effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, remnant )
+		ParticleManager:SetParticleControlEnt(
+			effect_cast,
+			1,
+			enemy,
+			PATTACH_POINT_FOLLOW,
+			"attach_hitloc",
+			Vector(0,0,0), -- unknown
+			true -- unknown, true
+		)
+		ParticleManager:ReleaseParticleIndex( effect_cast )
+	end
 
--- 	-- buff particle
--- 	self:AddParticle(
--- 		nFXIndex,
--- 		bDestroyImmediately,
--- 		bStatusEffect,
--- 		iPriority,
--- 		bHeroEffect,
--- 		bOverheadEffect
--- 	)
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end
+	-- Create Sound
+	EmitSoundOn( sound_cast, remnant )
+end

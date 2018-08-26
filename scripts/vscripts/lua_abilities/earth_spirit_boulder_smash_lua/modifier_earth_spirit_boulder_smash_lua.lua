@@ -18,10 +18,6 @@ function modifier_earth_spirit_boulder_smash_lua:IsPurgable()
 	return false
 end
 
--- function modifier_earth_spirit_boulder_smash_lua:GetAttributes()
--- 	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
--- end
-
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_earth_spirit_boulder_smash_lua:OnCreated( kv )

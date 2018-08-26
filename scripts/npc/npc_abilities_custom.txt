@@ -1380,6 +1380,10 @@
 #base "../vscripts/lua_abilities/enchantress_natures_attendants_lua/enchantress_natures_attendants_lua.txt"
 #base "../vscripts/lua_abilities/enchantress_impetus_lua/enchantress_impetus_lua.txt"
 
+#base "../vscripts/lua_abilities/grimstroke_stroke_of_fate_lua/grimstroke_stroke_of_fate_lua.txt"
+#base "../vscripts/lua_abilities/grimstroke_phantoms_embrace_lua/grimstroke_phantoms_embrace_lua.txt"
+#base "../vscripts/lua_abilities/grimstroke_ink_swell_lua/grimstroke_ink_swell_lua.txt"
+
 #base "../vscripts/lua_abilities/invoker_quas_lua/invoker_quas_lua.txt"
 #base "../vscripts/lua_abilities/invoker_wex_lua/invoker_wex_lua.txt"
 #base "../vscripts/lua_abilities/invoker_exort_lua/invoker_exort_lua.txt"

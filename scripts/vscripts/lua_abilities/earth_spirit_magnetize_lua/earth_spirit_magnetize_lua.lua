@@ -36,8 +36,7 @@ function earth_spirit_magnetize_lua:OnSpellStart()
 	end
 
 	-- effects
-	local sound_cast = "Hero_EarthSpirit.Magnetize.Cast"
-	EmitSoundOn( sound_cast, caster )
+	self:PlayEffects( radius )
 end
 
 --------------------------------------------------------------------------------
@@ -69,30 +68,16 @@ function earth_spirit_magnetize_lua:ApplyDebuff( ability, modifier_name, duratio
 	end
 end
 --------------------------------------------------------------------------------
-function earth_spirit_magnetize_lua:PlayEffects()
+function earth_spirit_magnetize_lua:PlayEffects( radius )
 	-- Get Resources
-	local particle_cast = "string"
-	local sound_cast = "string"
-
-	-- Get Data
+	local particle_cast = "particles/units/heroes/hero_earth_spirit/espirit_magnetize_pulse.vpcf"
+	local sound_cast = "Hero_EarthSpirit.Magnetize.Cast"
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
-	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
+	ParticleManager:SetParticleControl( effect_cast, 2, Vector( radius, 0, 0 ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
+	EmitSoundOn( sound_cast, self:GetCaster() )
 end

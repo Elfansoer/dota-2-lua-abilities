@@ -1,0 +1,115 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Grimstroke: Ink Swell (Lua version)
+	//=================================================================================================================
+	"grimstroke_ink_swell_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/grimstroke_ink_swell_lua/grimstroke_ink_swell_lua"
+		"AbilityTextureName"			"grimstroke_ink_swell_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_grimstroke.vsndevts"
+			"particle"	"particles/status_fx/status_effect_grimstroke_ink_swell.vpcf"
+			"particle"	"particles/units/heroes/hero_grimstroke/grimstroke_cast_ink_swell.vpcf"
+			"particle"	"particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_buff.vpcf"
+			"particle"	"particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_tick_damage.vpcf"
+			"particle"	"particles/units/heroes/hero_grimstroke/grimstroke_ink_swell_aoe.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"400 500 600 700"
+		"AbilityCastPoint"				"0.15"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30 25 20 15"
+		"AbilityManaCost"				"90 100 110 120"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_tooltip"	"400 500 600 700"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"buff_duration"			"3.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed_bonus_pct"	"28 32 36 40"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"55 70 85 100"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_damage_tooltip"	"220 280 340 400"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_duration"		"0.55 0.7 0.85 1.0"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_stun_tooltip"		"2.2 2.8 3.4 4.0"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_tick"		"5 7 9 11"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tick_rate"				"0.2"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tick_dps_tooltip"		"25 35 45 55"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_bonus_multiplier"	"3.0"
+			}
+		}
+	}
+}

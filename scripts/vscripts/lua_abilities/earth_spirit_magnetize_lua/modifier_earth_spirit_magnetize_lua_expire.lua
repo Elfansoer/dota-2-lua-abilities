@@ -13,7 +13,9 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_earth_spirit_magnetize_lua_expire:OnCreated( kv )
-
+	if IsServer() then
+		self:PlayEffects()
+	end
 end
 
 function modifier_earth_spirit_magnetize_lua_expire:OnRefresh( kv )
@@ -38,47 +40,27 @@ end
 --------------------------------------------------------------------------------
 -- Graphics & Animations
 -- function modifier_earth_spirit_magnetize_lua_expire:GetEffectName()
--- 	return "particles/string/here.vpcf"
+-- 	return "particles/units/heroes/hero_earth_spirit/espirit_stoneismagnetized_xpld.vpcf"
 -- end
 
 -- function modifier_earth_spirit_magnetize_lua_expire:GetEffectAttachType()
 -- 	return PATTACH_ABSORIGIN_FOLLOW
 -- end
 
--- function modifier_earth_spirit_magnetize_lua_expire:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "string"
--- 	local sound_cast = "string"
+function modifier_earth_spirit_magnetize_lua_expire:PlayEffects()
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_earth_spirit/espirit_stoneismagnetized_xpld.vpcf"
 
--- 	-- Get Data
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
-
--- 	-- buff particle
--- 	self:AddParticle(
--- 		nFXIndex,
--- 		bDestroyImmediately,
--- 		bStatusEffect,
--- 		iPriority,
--- 		bHeroEffect,
--- 		bOverheadEffect
--- 	)
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end
+	-- buff particle
+	self:AddParticle(
+		effect_cast,
+		false,
+		false,
+		-1,
+		false,
+		false
+	)
+end

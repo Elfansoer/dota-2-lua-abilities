@@ -52,6 +52,7 @@ function earth_spirit_rolling_boulder_lua:OnProjectileHitHandle( target, locatio
 		ProjectileManager:UpdateLinearProjectileDirection( iHandle, self.direction*rock_speed, rock_distance )
 		self.modifier:Upgrade()
 		self.upgrade = true
+		return false
 	end
 
 	-- unit filter
