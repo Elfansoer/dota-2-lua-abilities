@@ -19,8 +19,7 @@ function grimstroke_soulbind_lua:OnSpellStart()
 	if target:TriggerSpellAbsorb( self ) then return end
 
 	-- load data
-	-- local duration = self:GetSpecialValueFor( "chain_duration" )
-	local duration = 10
+	local duration = self:GetSpecialValueFor( "chain_duration" )
 
 	-- add modifier
 	target:AddNewModifier(
