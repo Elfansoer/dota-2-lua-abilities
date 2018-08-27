@@ -22,7 +22,6 @@ function grimstroke_stroke_of_fate_lua:OnSpellStart()
 
 	-- load data
 	local spawnDelta = 150
-	local value1 = self:GetSpecialValueFor("some_value")
 
 	-- set up projectile
 	local projectile_name = "particles/units/heroes/hero_grimstroke/grimstroke_darkartistry_proj.vpcf"
@@ -58,6 +57,12 @@ function grimstroke_stroke_of_fate_lua:OnSpellStart()
 		bReplaceExisting = false,
 		
 		bProvidesVision = false,
+
+		EffectSound = "Hero_Grimstroke.DarkArtistry.Projectile",
+		ProjectileSound = "Hero_Grimstroke.DarkArtistry.Projectile",
+		SoundName = "Hero_Grimstroke.DarkArtistry.Projectile",
+		Sound = "Hero_Grimstroke.DarkArtistry.Projectile",
+		SoundEvent = "Hero_Grimstroke.DarkArtistry.Projectile",
 	}
 	ProjectileManager:CreateLinearProjectile(info)
 

@@ -1,0 +1,93 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Grimstroke: Soulbind (Lua version)
+	//=================================================================================================================
+	"grimstroke_soulbind_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/grimstroke_soulbind_lua/grimstroke_soulbind_lua"
+		"AbilityTextureName"			"grimstroke_soulbind_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+//		"precache"
+//		{
+//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700 800 900"
+		"AbilityCastPoint"				"0.15"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"80 65 50"
+		"AbilityManaCost"				"150 200 250"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"chain_duration"		"4.0 6.0 8.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chain_latch_radius"	"550"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chain_break_distance"	"700"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"leash_limit_multiplier"	"1.3"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"leash_radius_buffer"		"50"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"creep_duration_pct"		"50.0"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"movement_slow"				"15 30 45"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range_tooltip"		"700 800 900"
+			}
+		}
+	}
+}

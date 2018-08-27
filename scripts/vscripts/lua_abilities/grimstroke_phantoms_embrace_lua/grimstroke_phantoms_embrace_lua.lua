@@ -1,5 +1,4 @@
 grimstroke_phantoms_embrace_lua = class({})
-LinkLuaModifier( "modifier_grimstroke_phantoms_embrace_lua", "lua_abilities/grimstroke_phantoms_embrace_lua/modifier_grimstroke_phantoms_embrace_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_grimstroke_phantoms_embrace_lua_thinker", "lua_abilities/grimstroke_phantoms_embrace_lua/modifier_grimstroke_phantoms_embrace_lua_thinker", LUA_MODIFIER_MOTION_HORIZONTAL )
 LinkLuaModifier( "modifier_grimstroke_phantoms_embrace_lua_target", "lua_abilities/grimstroke_phantoms_embrace_lua/modifier_grimstroke_phantoms_embrace_lua_target", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_grimstroke_phantoms_embrace_lua_debuff", "lua_abilities/grimstroke_phantoms_embrace_lua/modifier_grimstroke_phantoms_embrace_lua_debuff", LUA_MODIFIER_MOTION_NONE )
@@ -38,6 +37,7 @@ function grimstroke_phantoms_embrace_lua:OnSpellStart()
 	-- play effects
 	self:PlayEffects()
 end
+
 --------------------------------------------------------------------------------
 -- Projectile
 function grimstroke_phantoms_embrace_lua:OnProjectileHit( target, location )
@@ -46,28 +46,6 @@ function grimstroke_phantoms_embrace_lua:OnProjectileHit( target, location )
 	-- play effects
 	local sound_cast = "Hero_Grimstroke.InkCreature.Returned"
 	EmitSoundOn( sound_cast, self:GetCaster() )
-end
-
---------------------------------------------------------------------------------
--- Ability Considerations
-function grimstroke_phantoms_embrace_lua:AbilityConsiderations()
-	-- Scepter
-	local bScepter = caster:HasScepter()
-
-	-- Linken & Lotus
-	local bBlocked = target:TriggerSpellAbsorb( self )
-
-	-- Break
-	local bBroken = caster:PassivesDisabled()
-
-	-- Advanced Status
-	local bInvulnerable = target:IsInvulnerable()
-	local bInvisible = target:IsInvisible()
-	local bHexed = target:IsHexed()
-	local bMagicImmune = target:IsMagicImmune()
-
-	-- Illusion Copy
-	local bIllusion = target:IsIllusion()
 end
 
 --------------------------------------------------------------------------------
