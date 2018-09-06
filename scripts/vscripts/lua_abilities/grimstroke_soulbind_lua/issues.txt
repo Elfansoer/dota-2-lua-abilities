@@ -1,1 +1,49 @@
-none
+Possible Special Scenarios:
+React on Spell Cast, proc twice?
+- Nether Ward
+- Fiery Soul
+- Warpath
+
+Does not affect target, targets primary or secondary?
+- Spell Steal
+- Morph
+- Omni Slash: only A (intended)
+
+Affect caster as well (movement), targets primary or secondary?
+- Blink Strike: to A, then to B (intended)
+- Phantom Strike: idem (intended)
+- Nether Strike: only A (okay)
+- Burrowstrike: to A and B both, then move to A (okay)
+- Charge of Darkness: only A (okay)
+- Snowball: only A, with effect bug (okay)
+- Nether Swap: swaps A, then swap B (intended)
+- Life Break: projectile to A and B, self-damage twice, jumps only to A (okay but risky)
+
+Affect caster as well (other), targets primary or secondary?
+- Duel: Volatile between attacking A or B (not recommended)
+- Sunder: Swaps A then Swaps B (intended)
+- Focus Fire: only B (okay)
+
+Channeling, cancelled channel?
+- Dismember
+- Fiends Grip
+- Shackles
+- Mana Drain
+
+Bouncing, differentiate projectiles?
+- Chain Frost
+- Paralyzing Cask
+- Shuriken Toss
+- Spirit Lance
+- Fade Bolt
+- Arc of Lightning
+- Lightning Storm
+
+Charged, spend twice?
+- Tree Throw
+- Astral Imprisonment
+- Rupture
+- Tree Throw
+
+Other
+- Toss, only one unit around for toss?
