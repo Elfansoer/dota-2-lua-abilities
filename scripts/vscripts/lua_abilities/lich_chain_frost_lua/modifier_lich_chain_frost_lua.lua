@@ -1,145 +1,60 @@
-modifier_template = class({})
+modifier_lich_chain_frost_lua = class({})
 
 --------------------------------------------------------------------------------
 -- Classifications
-function modifier_template:IsHidden()
+function modifier_lich_chain_frost_lua:IsHidden()
 	return false
 end
 
-function modifier_template:IsDebuff()
-	return false
-end
-
-function modifier_template:IsStunDebuff()
-	return false
-end
-
-function modifier_template:GetAttributes()
-	return MODIFIER_ATTRIBUTE_XX + MODIFIER_ATTRIBUTE_YY 
-end
-
-function modifier_template:IsPurgable()
-	return true
-end
---------------------------------------------------------------------------------
--- Aura
-function modifier_template:IsAura()
+function modifier_lich_chain_frost_lua:IsDebuff()
 	return true
 end
 
-function modifier_template:GetModifierAura()
-	return "modifier_template_effect"
-end
-
-function modifier_template:GetAuraRadius()
-	return float
-end
-
-function modifier_template:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_XX
-end
-
-function modifier_template:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_XX + DOTA_UNIT_TARGET_YY + ...
-end
-
-function modifier_template:GetAuraEntityReject( hEntity )
-	if IsServer() then
-		
-	end
-
+function modifier_lich_chain_frost_lua:IsStunDebuff()
 	return false
+end
+
+function modifier_lich_chain_frost_lua:IsPurgable()
+	return true
 end
 
 --------------------------------------------------------------------------------
 -- Initializations
-function modifier_template:OnCreated( kv )
+function modifier_lich_chain_frost_lua:OnCreated( kv )
 	-- references
-	self.special_value = self:GetAbility():GetSpecialValueFor( "special_value" ) -- special value
-
-	-- Start interval
-	self:StartIntervalThink( self.interval )
-	self:OnIntervalThink()
+	self.as_slow = self:GetAbility():GetSpecialValueFor( "slow_attack_speed" ) -- special value
+	self.ms_slow = self:GetAbility():GetSpecialValueFor( "slow_movement_speed" ) -- special value
 end
 
-function modifier_template:OnRefresh( kv )
-	
+function modifier_lich_chain_frost_lua:OnRefresh( kv )
+	-- references
+	self.as_slow = self:GetAbility():GetSpecialValueFor( "slow_attack_speed" ) -- special value
+	self.ms_slow = self:GetAbility():GetSpecialValueFor( "slow_movement_speed" ) -- special value	
 end
 
-function modifier_template:OnDestroy( kv )
+function modifier_lich_chain_frost_lua:OnDestroy( kv )
 
 end
 
 --------------------------------------------------------------------------------
 -- Modifier Effects
-function modifier_template:DeclareFunctions()
+function modifier_lich_chain_frost_lua:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_XX,
-		MODIFIER_EVENT_YY,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 	}
 
 	return funcs
 end
-
---------------------------------------------------------------------------------
--- Status Effects
-function modifier_template:CheckState()
-	local state = {
-	[MODIFIER_STATE_XX] = true,
-	}
-
-	return state
+function modifier_lich_chain_frost_lua:GetModifierMoveSpeedBonus_Percentage()
+	return self.ms_slow
 end
-
---------------------------------------------------------------------------------
--- Interval Effects
-function modifier_template:OnIntervalThink()
+function modifier_lich_chain_frost_lua:GetModifierAttackSpeedBonus_Constant()
+	return self.as_slow
 end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
-function modifier_template:GetEffectName()
-	return "particles/string/here.vpcf"
-end
-
-function modifier_template:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function modifier_template:PlayEffects()
-	-- Get Resources
-	local particle_cast = "string"
-	local sound_cast = "string"
-
-	-- Get Data
-
-	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
-	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
-
-	-- buff particle
-	self:AddParticle(
-		nFXIndex,
-		bDestroyImmediately,
-		bStatusEffect,
-		iPriority,
-		bHeroEffect,
-		bOverheadEffect
-	)
-
-	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
+function modifier_lich_chain_frost_lua:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost_lich.vpcf"
 end

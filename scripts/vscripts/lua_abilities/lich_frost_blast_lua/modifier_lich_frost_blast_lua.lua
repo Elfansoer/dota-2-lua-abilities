@@ -51,13 +51,13 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
-function modifier_lich_frost_blast_lua:GetEffectName()
-	return "particles/units/heroes/hero_lich/lich_slowed_cold.vpcf"
-end
+-- function modifier_lich_frost_blast_lua:GetEffectName()
+-- 	return "particles/units/heroes/hero_lich/lich_slowed_cold.vpcf"
+-- end
 
-function modifier_lich_frost_blast_lua:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
+-- function modifier_lich_frost_blast_lua:GetEffectAttachType()
+-- 	return PATTACH_ABSORIGIN_FOLLOW
+-- end
 
 function modifier_lich_frost_blast_lua:GetStatusEffectName()
 	return "particles/status_fx/status_effect_frost_lich.vpcf"

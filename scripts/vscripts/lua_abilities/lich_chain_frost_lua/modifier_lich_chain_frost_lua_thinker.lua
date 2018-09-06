@@ -1,145 +1,78 @@
-modifier_template = class({})
+modifier_lich_chain_frost_lua_thinker = class({})
+local tempTable = require( "util/tempTable" )
 
 --------------------------------------------------------------------------------
 -- Classifications
-function modifier_template:IsHidden()
+function modifier_lich_chain_frost_lua_thinker:IsHidden()
 	return false
 end
 
-function modifier_template:IsDebuff()
+function modifier_lich_chain_frost_lua_thinker:IsPurgable()
 	return false
 end
 
-function modifier_template:IsStunDebuff()
-	return false
-end
-
-function modifier_template:GetAttributes()
-	return MODIFIER_ATTRIBUTE_XX + MODIFIER_ATTRIBUTE_YY 
-end
-
-function modifier_template:IsPurgable()
-	return true
-end
---------------------------------------------------------------------------------
--- Aura
-function modifier_template:IsAura()
-	return true
-end
-
-function modifier_template:GetModifierAura()
-	return "modifier_template_effect"
-end
-
-function modifier_template:GetAuraRadius()
-	return float
-end
-
-function modifier_template:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_XX
-end
-
-function modifier_template:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_XX + DOTA_UNIT_TARGET_YY + ...
-end
-
-function modifier_template:GetAuraEntityReject( hEntity )
-	if IsServer() then
-		
-	end
-
+function modifier_lich_chain_frost_lua_thinker:RemoveOnDeath()
 	return false
 end
 
 --------------------------------------------------------------------------------
 -- Initializations
-function modifier_template:OnCreated( kv )
-	-- references
-	self.special_value = self:GetAbility():GetSpecialValueFor( "special_value" ) -- special value
-
-	-- Start interval
-	self:StartIntervalThink( self.interval )
-	self:OnIntervalThink()
+function modifier_lich_chain_frost_lua_thinker:OnCreated( kv )
+	if IsServer() then
+		self.key = kv.key
+	end
 end
 
-function modifier_template:OnRefresh( kv )
+function modifier_lich_chain_frost_lua_thinker:OnRefresh( kv )
 	
 end
 
-function modifier_template:OnDestroy( kv )
+function modifier_lich_chain_frost_lua_thinker:OnDestroy( kv )
+	if IsServer() then
+		local castTable = tempTable:GetATValue( self.key )
 
-end
+		-- update values
+		if not castTable.scepter then
+			castTable.jump = castTable.jump + 1
+		end
 
---------------------------------------------------------------------------------
--- Modifier Effects
-function modifier_template:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_XX,
-		MODIFIER_EVENT_YY,
-	}
+		if castTable.jump>castTable.jumps then
+			-- stop bouncing
+			castTable = tempTable:RetATValue( self.key )
+			return
+		end
 
-	return funcs
-end
+		-- find enemies
+		local enemies = FindUnitsInRadius(
+			self:GetCaster():GetTeamNumber(),	-- int, your team number
+			self:GetParent():GetOrigin(),	-- point, center point
+			nil,	-- handle, cacheUnit. (not known)
+			castTable.jump_range,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+			DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
+			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
+			0,	-- int, flag filter
+			0,	-- int, order filter
+			false	-- bool, can grow cache
+		)
 
---------------------------------------------------------------------------------
--- Status Effects
-function modifier_template:CheckState()
-	local state = {
-	[MODIFIER_STATE_XX] = true,
-	}
+		-- get random enemy
+		local target = nil
+		for _,enemy in pairs(enemies) do
+			if enemy~=self:GetParent() then
+				target = enemy
+				break
+			end
+		end
 
-	return state
-end
+		if not target then
+			-- stop bouncing
+			castTable = tempTable:RetATValue( self.key )
+			return
+		end
 
---------------------------------------------------------------------------------
--- Interval Effects
-function modifier_template:OnIntervalThink()
-end
-
---------------------------------------------------------------------------------
--- Graphics & Animations
-function modifier_template:GetEffectName()
-	return "particles/string/here.vpcf"
-end
-
-function modifier_template:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function modifier_template:PlayEffects()
-	-- Get Resources
-	local particle_cast = "string"
-	local sound_cast = "string"
-
-	-- Get Data
-
-	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
-	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
-
-	-- buff particle
-	self:AddParticle(
-		nFXIndex,
-		bDestroyImmediately,
-		bStatusEffect,
-		iPriority,
-		bHeroEffect,
-		bOverheadEffect
-	)
-
-	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
+		-- bounce to enemy
+		castTable.projectile.Target = target
+		castTable.projectile.Source = self:GetParent()
+		ProjectileManager:CreateTrackingProjectile( castTable.projectile )
+	end
 end

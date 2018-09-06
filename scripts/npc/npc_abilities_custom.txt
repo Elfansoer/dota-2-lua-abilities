@@ -1403,6 +1403,11 @@
 #base "../vscripts/lua_abilities/lifestealer_feast_lua/lifestealer_feast_lua.txt"
 #base "../vscripts/lua_abilities/lifestealer_open_wounds_lua/lifestealer_open_wounds_lua.txt"
 
+#base "../vscripts/lua_abilities/lich_frost_blast_lua/lich_frost_blast_lua.txt"
+#base "../vscripts/lua_abilities/lich_frost_armor_lua/lich_frost_armor_lua.txt"
+#base "../vscripts/lua_abilities/lich_sacrifice_lua/lich_sacrifice_lua.txt"
+#base "../vscripts/lua_abilities/lich_chain_frost_lua/lich_chain_frost_lua.txt"
+
 #base "../vscripts/lua_abilities/lion_hex_lua/lion_hex_lua.txt"
 #base "../vscripts/lua_abilities/lion_finger_of_death_lua/lion_finger_of_death_lua.txt"
 
