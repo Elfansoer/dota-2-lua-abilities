@@ -1,0 +1,53 @@
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Azura (Drow Ranger)
+	//=================================================================================================================
+	"npc_dota_hero_azura"
+	{
+		// Base Hero Override
+		"override_hero"			"npc_dota_hero_drow_ranger"			// Hero to override
+		
+		// General Override
+		//-------------------------------------------------------------------------------------------------------------
+		
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"		"19"
+		"AttributeStrengthGain"		"2.300000"
+		"AttributeBaseAgility"		"22"
+		"AttributeAgilityGain"		"2.500000"
+		"AttributeBaseIntelligence"		"18"
+		"AttributeIntelligenceGain"		"2.000000"
+
+		// Base Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"			"1"
+		"MovementSpeed"			"295"
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"		"28"
+		"AttackDamageMax"		"36"
+		"AttackRate"		"1.800000"
+		"AttackRange"		"500"
+
+		//-------------------------------------------------------------------------------------------------------------
+		// Ability Override
+		"Ability1"				"azura_black_ethereum"						// Ability 1
+		"Ability2"				"azura_shadowform"							// Ability 2
+		"Ability3"				"azura_multishot_crossbow"					// Ability 3
+		"Ability6"				"azura_gaze_of_exile"						// Ability 6
+		"Ability7"				"azura_shadowform_cancel"
+		"Ability10"				"special_bonus_magic_resistance_15"
+		"Ability11"				"special_bonus_attack_damage_25"
+		//"Ability12"				"special_bonus_unique_azura_a"
+		"Ability13"				"special_bonus_attack_range_100"
+		//"Ability14"				"special_bonus_unique_azura_b"
+		"Ability15"				"special_bonus_attack_speed_40"
+		//"Ability16"				"special_bonus_unique_azura_c"
+		//"Ability17"				"special_bonus_unique_azura_d"
+	}
+}

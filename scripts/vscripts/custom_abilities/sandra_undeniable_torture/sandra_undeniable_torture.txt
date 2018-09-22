@@ -19,7 +19,7 @@
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
 			"particle"	"particles/units/heroes/hero_warlock/warlock_fatal_bonds_icon.vpcf"
 			"particle"	"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_explode.vpcf"
-			"particle"	"particles/units/heroes/hero_spectre/spectre_dispersion.vpcf"
+			"particle"	"particles/units/heroes/hero_sandra/sandra_undeniable_torture.vpcf"
 		}
 		
 		// Ability General

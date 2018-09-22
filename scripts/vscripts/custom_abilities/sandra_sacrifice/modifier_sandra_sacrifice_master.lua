@@ -130,7 +130,7 @@ function modifier_sandra_sacrifice_master:FlagMin(a,b)--Bitwise and
 end
 
 function modifier_sandra_sacrifice_master:PlayEffects()
-	local particle_cast = "particles/items3_fx/lotus_orb_rings.vpcf"
+	local particle_cast = "particles/units/heroes/hero_sandra/sandra_sacrifice_sphere.vpcf"
 
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	ParticleManager:SetParticleControlEnt(
@@ -142,6 +142,7 @@ function modifier_sandra_sacrifice_master:PlayEffects()
 		self:GetParent():GetOrigin(), -- unknown
 		true -- unknown, true
 	)
+	ParticleManager:SetParticleControl( effect_cast, 2, Vector(0,255,0) )
 	self:AddParticle(
 		effect_cast,
 		false,

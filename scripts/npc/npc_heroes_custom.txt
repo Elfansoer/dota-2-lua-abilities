@@ -2,76 +2,19 @@
 // NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
 // the specified key-value combinations.  Use override_hero <hero_to_override> for this.
 
-#base "heroes/sandra_olivia.txt"
-#base "heroes/riven.txt"
-
 "DOTAHeroes"
 {
 	//=================================================================================================================
-	// HERO: Sven
-	//=================================================================================================================
-	"npc_dota_hero_test_sven_lua"
-	{
-		"override_hero"				"npc_dota_hero_sven"			// Hero to override
-		"Ability1"					"antimage_mana_break_lua"				// Ability 1
-		"Ability2"					"antimage_blink_lua"
-		"Ability3"					"antimage_spell_shield_lua"
-		"Ability6"					"antimage_mana_void_lua"
-	}
-
-	//=================================================================================================================
-	// HERO: Pudge
-	//=================================================================================================================
-	"npc_dota_hero_test_pudge_lua"
-	{
-		"override_hero"				"npc_dota_hero_pudge"			// Hero to override
-		"Ability1"					"mirana_leap_lua"
-		"Ability2"					"mirana_sacred_arrow_lua"
-		"Ability3"					"sniper_take_aim_lua"
-		"Ability4"					"generic_hidden"				// Ability 1
-		"Ability5"					"generic_hidden"
-		"Ability6"					"sniper_assassinate_lua"
-	}
-
-	//=================================================================================================================
-	// HERO: Nature's Prophet
-	//=================================================================================================================
-	"npc_dota_hero_furion_lua"
-	{
-		"override_hero"				"npc_dota_hero_furion"			// Hero to override
-		"Ability1"					"drow_ranger_frost_arrows_lua"				// Ability 1
-		"Ability2"					"monkey_king_boundless_strike"				// Ability 2
-		"Ability3"					"phantom_assassin_stifling_dagger"
-		"Ability4"					"gyrocopter_flak_cannon"
-		"Ability5"					"test_lua"
-		"Ability6"					"riki_tricks_of_the_trade"
-	}
-
-
-	//=================================================================================================================
-	// HERO: Vengeful Spirit
-	//=================================================================================================================
-	"npc_dota_hero_vengefulspirit_lua"
-	{
-		"override_hero"					"npc_dota_hero_vengefulspirit"			// Hero to override
-		"Ability1"				"invoker_quas_lua"				// Ability 1
-		"Ability2"				"invoker_wex_lua"				// Ability 3
-		"Ability3"				"invoker_exort_lua"				// Ability 2
-		"Ability4"				"invoker_empty_1_lua"				// Ability 2
-		"Ability5"				"invoker_empty_2_lua"				// Ability 2
-		"Ability6"				"invoker_invoke_lua"				// Ability 4
-	}
-	//=================================================================================================================
-	// HERO: Lina
+	// HERO: Queen of Pain (Sacrificial Test Hero)
 	//=================================================================================================================
 	"npc_dota_hero_lina_lua"
 	{
-		"override_hero"					"npc_dota_hero_lina"			// Hero to override
+		"override_hero"					"npc_dota_hero_queenofpain"			// Hero to override
 		"Ability1"				"shadow_fiend_shadowraze_a_lua"			// Ability 5
 		"Ability2"				"shadow_fiend_shadowraze_b_lua"				// Ability 3
 		"Ability3"				"shadow_fiend_shadowraze_c_lua"				// Ability 1
 		"Ability4"				"shadow_fiend_necromastery_lua"			// Ability 4
-		"Ability5"				"lina_dragon_slave_lua"				// Ability 2
+		"Ability5"				"shadow_fiend_presence_of_the_dark_lord_lua"				// Ability 2
 		"Ability6"				"shadow_fiend_requiem_of_souls_lua"					// Ability 6
 
 		//"AttackDamageMin"		"0"
@@ -86,80 +29,98 @@
 		//"AttributeBaseAgility"		"0"
 		//"AttributeAgilityGain"		"0.0"
 	}
+
+//=================================================================================================================
+//=================================================================================================================
+// Implemented Hero abilities, alphabetical order
+//=================================================================================================================
+
 	//=================================================================================================================
-	// HERO: Lanaya
+	// HERO: Sven (Antimage)
 	//=================================================================================================================
-	"npc_dota_hero_lanaya"
+	"npc_dota_hero_sven_lua"
 	{
-		"override_hero"					"npc_dota_hero_templar_assassin"	// Hero to override
-		"Ability1"				"queen_of_pain_shadow_strike_lua"						// Ability 1
-		"Ability2"				"queen_of_pain_blink_lua"						// Ability 2
-		"Ability3"				"queen_of_pain_scream_of_pain_lua"						// Ability 3
-		"Ability6"				"tiny_grow"							// Ability 6
-	}
-	//=================================================================================================================
-	// HERO: WD
-	//=================================================================================================================
-	"npc_dota_hero_dedoctor"
-	{
-		"override_hero"					"npc_dota_hero_witch_doctor"	// Hero to override
-		"Ability1"				"lich_frost_blast_lua"						// Ability 1
-		"Ability2"				"lich_frost_armor_lua"						// Ability 2
-		"Ability3"				"lich_sacrifice_lua"						// Ability 2
-		"Ability6"				"lich_chain_frost_lua"							// Ability 6
+		"override_hero"				"npc_dota_hero_sven"			// Hero to override
+		"Ability1"					"antimage_mana_break_lua"				// Ability 1
+		"Ability2"					"antimage_blink_lua"
+		"Ability3"					"antimage_spell_shield_lua"
+		"Ability6"					"antimage_mana_void_lua"
 	}
 
 	//=================================================================================================================
-	// HERO: Siren
+	// HERO: Death Prophet (Bane)
 	//=================================================================================================================
-	"npc_dota_hero_siren"
-	{
-		"override_hero"					"npc_dota_hero_naga_siren"	// Hero to override
-		"Ability1"				"sona_hymn_of_valor"						// Ability 1
-		"Ability2"				"sona_song_of_celerity"						// Ability 2
-		"Ability3"				"sona_aria_of_perseverance"						// Ability 3
-		"Ability6"				"sona_crescendo"							// Ability 6
-	}
-
-	//=================================================================================================================
-	// HERO: Prophet
-	//=================================================================================================================
-	"npc_dota_hero_prophet"
+	"npc_dota_hero_death_prophet_lua"
 	{
 		"override_hero"					"npc_dota_hero_death_prophet"	// Hero to override
-		"Ability1"				"abaddon_mist_coil_lua"						// Ability 1
-		"Ability2"				"bane_enfeeble_lua"						// Ability 2
-		"Ability3"				"bane_brain_sap_lua"						// Ability 3
+		"Ability1"				"bane_enfeeble_lua"						// Ability 2
+		"Ability2"				"bane_brain_sap_lua"						// Ability 3
 		"Ability6"				"bane_fiends_grip_lua"							// Ability 6
 	}
 
 	//=================================================================================================================
-	// HERO: Maiden
+	// HERO: Pudge (Bristleback)
 	//=================================================================================================================
-	"npc_dota_hero_maiden"
+	"npc_dota_hero_pudge_lua"
 	{
-		"override_hero"					"npc_dota_hero_crystal_maiden"	// Hero to override
-		"Ability1"				"tinker_laser_lua"						// Ability 1
-		"Ability2"				"tinker_heat_seeking_missile_lua"						// Ability 2
-		"Ability3"				"tinker_march_of_the_machines_lua"						// Ability 3
-		"Ability6"				"tinker_rearm_lua"							// Ability 6
+		"override_hero"				"npc_dota_hero_pudge"			// Hero to override
+		"Ability1"					"bristleback_viscous_nasal_goo_lua"
+		"Ability2"					"bristleback_quill_spray_lua"
+		"Ability3"					"bristleback_bristleback_lua"
+		"Ability6"					"bristleback_warpath_lua"
 	}
 
 	//=================================================================================================================
-	// HERO: Bane
+	// HERO: Dazzle (Centaur Warrunner)
 	//=================================================================================================================
-	"npc_dota_hero_ben"
+	"npc_dota_hero_dazzle_lua"
 	{
-		"override_hero"					"npc_dota_hero_bane"	// Hero to override
-		"Ability1"				"puck_illusory_orb_lua"						// Ability 1
-		"Ability2"				"puck_waning_rift_lua"						// Ability 2
-		"Ability3"				"puck_phase_shift_lua"						// Ability 3
-		"Ability4"				"puck_ethereal_jaunt_lua"						// Ability 3
-		"Ability6"				"puck_dream_coil_lua"							// Ability 6
+		"override_hero"				"npc_dota_hero_dazzle"			// Hero to override
+		"Ability1"					"centaur_warrunner_hoof_stomp_lua"
+		"Ability2"					"centaur_warrunner_double_edge_lua"
+		"Ability3"					"centaur_warrunner_return_lua"
+		"Ability6"					"centaur_warrunner_stampede_lua"
+	}
+
+
+	//=================================================================================================================
+	// HERO: Enchantress (Chaos Knight)
+	//=================================================================================================================
+	"npc_dota_hero_enchantress_lua"
+	{
+		"override_hero"				"npc_dota_hero_enchantress"			// Hero to override
+		"Ability1"					"chaos_knight_chaos_bolt_lua"
+		"Ability2"					"chaos_knight_reality_rift_lua"
+		"Ability3"					"chaos_knight_chaos_strike_lua"
+		"Ability6"					"chaos_knight_phantasm_lua"
 	}
 
 	//=================================================================================================================
-	// HERO: Magnus
+	// HERO: Abaddon (Crystal Maiden)
+	//=================================================================================================================
+	"npc_dota_hero_abaddon_lua"
+	{
+		"override_hero"				"npc_dota_hero_abaddon"			// Hero to override
+		"Ability1"					"crystal_maiden_crystal_nova_lua"
+		"Ability2"					"crystal_maiden_frostbite_lua"
+		"Ability3"					"crystal_maiden_arcane_aura_lua"
+		"Ability6"					"crystal_maiden_freezing_field_lua"
+	}
+
+	//=================================================================================================================
+	// HERO: Bloodseeker (Dazzle)
+	//=================================================================================================================
+	"npc_dota_hero_bloodseeker_lua"
+	{
+		"override_hero"				"npc_dota_hero_bloodseeker"			// Hero to override
+		"Ability1"					"drow_ranger_frost_arrows_lua"
+		"Ability2"					"dazzle_shallow_grave_lua"
+		"Ability3"					"dazzle_shadow_wave_lua"
+		"Ability6"					"dazzle_weave_lua"
+	}
+
+	//=================================================================================================================
+	// HERO: Magnus (Earthshaker)
 	//=================================================================================================================
 	"npc_dota_hero_magnus"
 	{
@@ -171,21 +132,9 @@
 	}
 
 	//=================================================================================================================
-	// HERO: Es
+	// HERO: Axe (Earth Spirit)
 	//=================================================================================================================
-	"npc_dota_hero_es"
-	{
-		"override_hero"					"npc_dota_hero_earthshaker"	// Hero to override
-		"Ability1"				"bloodseeker_bloodrage_lua"						// Ability 1
-		"Ability2"				"bloodseeker_blood_rite_lua"						// Ability 2
-		"Ability3"				"lion_hex_lua"						// Ability 3
-		"Ability6"				"lion_finger_of_death_lua"							// Ability 6
-	}
-
-	//=================================================================================================================
-	// HERO: Axe
-	//=================================================================================================================
-	"npc_dota_hero_x"
+	"npc_dota_hero_axe_lua"
 	{
 		"override_hero"					"npc_dota_hero_axe"	// Hero to override
 		"Ability1"				"earth_spirit_stone_remnant_lua"						// Ability 1
@@ -193,30 +142,259 @@
 		"Ability3"				"earth_spirit_rolling_boulder_lua"						// Ability 3
 		"Ability6"				"earth_spirit_magnetize_lua"							// Ability 6
 	}
+
 	//=================================================================================================================
-	// HERO: QOP
+	// HERO: Nature's Prophet (Enchantress)
 	//=================================================================================================================
-	"npc_dota_hero_qop"
+	"npc_dota_hero_furion_lua"
 	{
-		"override_hero"					"npc_dota_hero_queenofpain"	// Hero to override
+		"override_hero"					"npc_dota_hero_furion"	// Hero to override
 		"Ability1"				"enchantress_untouchable_lua"						// Ability 1
 		"Ability2"				"enchantress_enchant_lua"						// Ability 2
 		"Ability3"				"enchantress_natures_attendants_lua"						// Ability 3
 		"Ability6"				"enchantress_impetus_lua"							// Ability 6
 	}
-	
 
 	//=================================================================================================================
-	// HERO: Ember
+	// HERO: Lion (Grimstroke)
 	//=================================================================================================================
-	"npc_dota_hero_ember"
+	"npc_dota_hero_lion_lua"
+	{
+		"override_hero"					"npc_dota_hero_lion"	// Hero to override
+		"Ability1"				"grimstroke_stroke_of_fate_lua"						// Ability 1
+		"Ability2"				"grimstroke_phantoms_embrace_lua"						// Ability 2
+		"Ability3"				"grimstroke_ink_swell_lua"						// Ability 3
+		"Ability6"				"grimstroke_soulbind_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Vengeful Spirit (Invoker)
+	//=================================================================================================================
+	"npc_dota_hero_vengefulspirit_lua"
+	{
+		"override_hero"					"npc_dota_hero_vengefulspirit"			// Hero to override
+		"Ability1"				"invoker_quas_lua"				// Ability 1
+		"Ability2"				"invoker_wex_lua"				// Ability 3
+		"Ability3"				"invoker_exort_lua"				// Ability 2
+		"Ability4"				"invoker_empty_1_lua"				// Ability 2
+		"Ability5"				"invoker_empty_2_lua"				// Ability 2
+		"Ability6"				"invoker_invoke_lua"				// Ability 4
+	}
+
+	//=================================================================================================================
+	// HERO: Witch Doctor (Lich)
+	//=================================================================================================================
+	"npc_dota_hero_witch_doctor_lua"
+	{
+		"override_hero"					"npc_dota_hero_witch_doctor"	// Hero to override
+		"Ability1"				"lich_frost_blast_lua"						// Ability 1
+		"Ability2"				"lich_frost_armor_lua"						// Ability 2
+		"Ability3"				"lich_sacrifice_lua"						// Ability 2
+		"Ability6"				"lich_chain_frost_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Ember Spirit (Lifestealer)
+	//=================================================================================================================
+	"npc_dota_hero_ember_spirit_lua"
 	{
 		"override_hero"					"npc_dota_hero_ember_spirit"	// Hero to override
 		"Ability1"				"lifestealer_rage_lua"						// Ability 1
 		"Ability2"				"lifestealer_feast_lua"						// Ability 2
 		"Ability3"				"lifestealer_open_wounds_lua"						// Ability 3
-		"Ability6"				"enchantress_impetus_lua"							// Ability 6
 	}
+
+	//=================================================================================================================
+	// HERO: Earthshaker (Mirana & Lion)
+	//=================================================================================================================
+	"npc_dota_hero_earthshaker_lua"
+	{
+		"override_hero"					"npc_dota_hero_earthshaker"	// Hero to override
+		"Ability1"				"mirana_leap_lua"						// Ability 1
+		"Ability2"				"mirana_sacred_arrow_lua"						// Ability 2
+		"Ability3"				"lion_hex_lua"						// Ability 3
+		"Ability6"				"lion_finger_of_death_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Shadow Fiend (Omniknight)
+	//=================================================================================================================
+	"npc_dota_hero_nevermore_lua"
+	{
+		"override_hero"					"npc_dota_hero_nevermore"	// Hero to override
+		"Ability1"				"omniknight_purification_lua"						// Ability 1
+		"Ability2"				"omniknight_repel_lua"						// Ability 2
+		"Ability3"				"omniknight_degen_aura_lua"						// Ability 2
+		"Ability4"				"generic_hidden"						// Ability 2
+		"Ability5"				"generic_hidden"						// Ability 2
+		"Ability6"				"omniknight_guardian_angel_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Ursa (Phantom Assassin)
+	//=================================================================================================================
+	"npc_dota_hero_ursa_lua"
+	{
+		"override_hero"					"npc_dota_hero_ursa"	// Hero to override
+		"Ability1"				"phantom_assassin_stifling_dagger_lua"						// Ability 1
+		"Ability2"				"phantom_assassin_phantom_strike_lua"						// Ability 2
+		"Ability3"				"phantom_assassin_blur_lua"						// Ability 2
+		"Ability6"				"phantom_assassin_coup_de_grace_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Bane (Puck)
+	//=================================================================================================================
+	"npc_dota_hero_bane_lua"
+	{
+		"override_hero"					"npc_dota_hero_bane"	// Hero to override
+		"Ability1"				"puck_illusory_orb_lua"						// Ability 1
+		"Ability2"				"puck_waning_rift_lua"						// Ability 2
+		"Ability3"				"puck_phase_shift_lua"						// Ability 3
+		"Ability4"				"puck_ethereal_jaunt_lua"						// Ability 3
+		"Ability6"				"puck_dream_coil_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Lanaya (Queen of Pain)
+	//=================================================================================================================
+	"npc_dota_hero_lanaya_lua"
+	{
+		"override_hero"					"npc_dota_hero_templar_assassin"	// Hero to override
+		"Ability1"				"queen_of_pain_shadow_strike_lua"						// Ability 1
+		"Ability2"				"queen_of_pain_blink_lua"						// Ability 2
+		"Ability3"				"queen_of_pain_scream_of_pain_lua"						// Ability 3
+		"Ability4"				"generic_hidden"						// Ability 3
+		"Ability6"				"queen_of_pain_sonic_wave_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Omniknight (Sand king)
+	//=================================================================================================================
+	"npc_dota_hero_omniknight_lua"
+	{
+		"override_hero"					"npc_dota_hero_omniknight"	// Hero to override
+		"Ability1"				"sand_king_burrowstrike_lua"						// Ability 1
+		"Ability2"				"sand_king_sand_storm_lua"						// Ability 2
+		"Ability3"				"sand_king_caustic_finale_lua"						// Ability 3
+		"Ability6"				"sand_king_epicenter_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Lina (Shadow Fiend)
+	//=================================================================================================================
+	"npc_dota_hero_lina_lua"
+	{
+		"override_hero"					"npc_dota_hero_lina"			// Hero to override
+		"Ability1"				"shadow_fiend_shadowraze_a_lua"			// Ability 5
+		"Ability2"				"shadow_fiend_shadowraze_b_lua"				// Ability 3
+		"Ability3"				"shadow_fiend_shadowraze_c_lua"				// Ability 1
+		"Ability4"				"shadow_fiend_necromastery_lua"			// Ability 4
+		"Ability5"				"shadow_fiend_presence_of_the_dark_lord_lua"				// Ability 2
+		"Ability6"				"shadow_fiend_requiem_of_souls_lua"					// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Centaur Warrunner (Slardar)
+	//=================================================================================================================
+	"npc_dota_hero_centaur_lua"
+	{
+		"override_hero"					"npc_dota_hero_centaur"	// Hero to override
+		"Ability1"				"slardar_guardian_sprint_lua"						// Ability 1
+		"Ability2"				"slardar_slithereen_crush_lua"						// Ability 2
+		"Ability3"				"slardar_bash_of_the_deep_lua"						// Ability 3
+		"Ability6"				"slardar_corrosive_haze_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Luna (Slark)
+	//=================================================================================================================
+	"npc_dota_hero_luna_lua"
+	{
+		"override_hero"					"npc_dota_hero_luna"	// Hero to override
+		"Ability1"				"slark_dark_pact_lua"						// Ability 2
+		"Ability3"				"slark_essence_shift_lua"						// Ability 3
+		"Ability6"				"slark_shadow_dance_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Windranger (Sniper)
+	//=================================================================================================================
+	"npc_dota_hero_windrunner_lua"
+	{
+		"override_hero"					"npc_dota_hero_windrunner"	// Hero to override
+		"Ability1"				"sniper_shrapnel_lua"						// Ability 1
+		"Ability2"				"sniper_headshot_lua"						// Ability 2
+		"Ability3"				"sniper_take_aim_lua"						// Ability 3
+		"Ability6"				"sniper_assassinate_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Crystal Maiden (Tinker)
+	//=================================================================================================================
+	"npc_dota_hero_crystal_maiden_lua"
+	{
+		"override_hero"					"npc_dota_hero_crystal_maiden"	// Hero to override
+		"Ability1"				"tinker_laser_lua"						// Ability 1
+		"Ability2"				"tinker_heat_seeking_missile_lua"						// Ability 2
+		"Ability3"				"tinker_march_of_the_machines_lua"						// Ability 3
+		"Ability6"				"tinker_rearm_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Earth Spirit (Ursa)
+	//=================================================================================================================
+	"npc_dota_hero_earth_spirit_lua"
+	{
+		"override_hero"					"npc_dota_hero_earth_spirit"	// Hero to override
+		"Ability1"				"ursa_earthshock_lua"						// Ability 1
+		"Ability2"				"ursa_overpower_lua"						// Ability 2
+		"Ability3"				"ursa_fury_swipes_lua"						// Ability 3
+		"Ability4"				"generic_hidden"						// Ability 3
+		"Ability5"				"generic_hidden"						// Ability 3
+		"Ability6"				"ursa_earthshock_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Tidehunter (Wraith King)
+	//=================================================================================================================
+	"npc_dota_hero_tidehunter_lua"
+	{
+		"override_hero"					"npc_dota_hero_tidehunter"	// Hero to override
+		"Ability1"				"wraith_king_wraithfire_blast_lua"						// Ability 1
+		"Ability2"				"wraith_king_vampiric_aura_lua"						// Ability 2
+		"Ability3"				"wraith_king_mortal_strike_lua"						// Ability 3
+		"Ability6"				"wraith_king_reincarnation_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Antimage (Collection 1)
+	//=================================================================================================================
+	"npc_dota_hero_antimage_lua"
+	{
+		"override_hero"					"npc_dota_hero_antimage"	// Hero to override
+		"Ability1"				"abaddon_mist_coil_lua"						// Ability 2
+		"Ability2"				"axe_battle_hunger_lua"						// Ability 3
+		"Ability3"				"axe_counter_helix_lua"						// Ability 1
+		"Ability6"				"axe_culling_blade_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Bristleback (Collection 2)
+	//=================================================================================================================
+	"npc_dota_hero_bristleback_lua"
+	{
+		"override_hero"					"npc_dota_hero_bristleback"	// Hero to override
+		"Ability1"				"juggernaut_blade_fury_lua"						// Ability 2
+		"Ability2"				"juggernaut_blade_dance_lua"						// Ability 3
+		"Ability3"				"tidehunter_gush_lua"						// Ability 1
+		"Ability4"				"tidehunter_anchor_smash_lua"							// Ability 6
+	}
+
+//=================================================================================================================
+//=================================================================================================================
+// Special Project
+//=================================================================================================================
 
 	//=================================================================================================================
 	// HERO: Rubick
@@ -228,69 +406,11 @@
 		"Ability5"				"rubick_spell_steal_lua_slot2"
 		"Ability6"				"rubick_spell_steal_lua"							// Ability 6
 	}
-
-	//=================================================================================================================
-	// HERO: Bakedanuki
-	//=================================================================================================================
-	"npc_dota_bakedanuki"
-	{
-		"override_hero"					"npc_dota_hero_dark_willow"	// Hero to override
-		"Ability1"				"bakedanuki_tricksters_insight"						// Ability 1
-		"Ability2"				"bakedanuki_tomfoolery_blink"						// Ability 2
-		"Ability3"				"bakedanuki_tomfoolery_summon"						// Ability 2
-		"Ability4"				"bakedanuki_tomfoolery_end"						// Ability 3
-		"Ability5"				"bakedanuki_frolic_aura"						// Ability 3
-		"Ability6"				"bakedanuki_futatsuiwas_curse"							// Ability 6
-	}
-
-	//=================================================================================================================
-	// HERO: Azura (Drow Ranger)
-	//=================================================================================================================
-	"npc_dota_hero_azura"
-	{
-		// Base Hero Override
-		"override_hero"			"npc_dota_hero_drow_ranger"			// Hero to override
-		
-		// General Override
-		//-------------------------------------------------------------------------------------------------------------
-		
-		// Attributes
-		//-------------------------------------------------------------------------------------------------------------
-		"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"
-		"AttributeBaseStrength"		"19"
-		"AttributeStrengthGain"		"2.300000"
-		"AttributeBaseAgility"		"22"
-		"AttributeAgilityGain"		"2.500000"
-		"AttributeBaseIntelligence"		"18"
-		"AttributeIntelligenceGain"		"2.000000"
-
-		// Base Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"ArmorPhysical"			"1"
-		"MovementSpeed"			"295"
-
-		// Attack
-		//-------------------------------------------------------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"		"28"
-		"AttackDamageMax"		"36"
-		"AttackRate"		"1.800000"
-		"AttackRange"		"500"
-
-		//-------------------------------------------------------------------------------------------------------------
-		// Ability Override
-		"Ability1"				"azura_black_ethereum"						// Ability 1
-		"Ability2"				"azura_shadowform"							// Ability 2
-		"Ability3"				"azura_multishot_crossbow"					// Ability 3
-		"Ability6"				"azura_gaze_of_exile"						// Ability 6
-		"Ability7"				"azura_shadowform_cancel"
-		"Ability10"				"special_bonus_magic_resistance_15"
-		"Ability11"				"special_bonus_attack_damage_25"
-		//"Ability12"				"special_bonus_unique_azura_a"
-		"Ability13"				"special_bonus_attack_range_100"
-		//"Ability14"				"special_bonus_unique_azura_b"
-		"Ability15"				"special_bonus_attack_speed_40"
-		//"Ability16"				"special_bonus_unique_azura_c"
-		//"Ability17"				"special_bonus_unique_azura_d"
-	}
 }
+
+// Custom heroes
+#base "heroes/azura.txt" 			// Drow Ranger
+#base "heroes/bakedanuki.txt"		// Dark Willow
+#base "heroes/riven.txt"			// Juggernaut
+#base "heroes/sona.txt"				// Naga Siren
+#base "heroes/sandra_olivia.txt"	// Phantom Assassin

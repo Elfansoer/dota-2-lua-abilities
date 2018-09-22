@@ -101,7 +101,7 @@ function modifier_sandra_undeniable_torture_debuff:GetEffectAttachType()
 end
 
 function modifier_sandra_undeniable_torture_debuff:PlayEffects()
-	local particle_cast = "particles/units/heroes/hero_spectre/spectre_dispersion.vpcf"
+	local particle_cast = "particles/units/heroes/hero_sandra/sandra_undeniable_torture.vpcf"
 
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
@@ -123,5 +123,6 @@ function modifier_sandra_undeniable_torture_debuff:PlayEffects()
 		self:GetParent():GetOrigin(), -- unknown
 		true -- unknown, true
 	)
+	ParticleManager:SetParticleControl( effect_cast, 3, Vector(0,255,0) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 end

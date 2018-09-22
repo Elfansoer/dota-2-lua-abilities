@@ -1,0 +1,15 @@
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Sona
+	//=================================================================================================================
+	"npc_dota_hero_naga_siren_lua"
+	{
+		"override_hero"					"npc_dota_hero_naga_siren"	// Hero to override
+		"Ability1"				"sona_hymn_of_valor"						// Ability 1
+		"Ability2"				"sona_song_of_celerity"						// Ability 2
+		"Ability3"				"sona_aria_of_perseverance"						// Ability 3
+		"Ability6"				"sona_crescendo"							// Ability 6
+	}
+
+}
