@@ -148,11 +148,11 @@ function modifier_generic_orb_effect_lua:OnOrder( params )
 end
 
 function modifier_generic_orb_effect_lua:GetModifierProjectileName( params )
-	print("MODIFIER_PROPERTY_PROJECTILE_NAME")
-	for k,v in pairs(params) do
-		print(k,v)
+	if self.ability.GetProjectileName then
+		if self.cast or (self.ability:GetAutoCastState() and self.ability:IsFullyCastable()) then
+			return self.ability:GetProjectileName()
+		end
 	end
-	return true
 end
 
 --------------------------------------------------------------------------------
