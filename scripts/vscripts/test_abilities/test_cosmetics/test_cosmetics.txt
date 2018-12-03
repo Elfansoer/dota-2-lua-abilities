@@ -1,0 +1,60 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Hero Name: test_cosmetics
+	//=================================================================================================================
+	"test_cosmetics"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"test_abilities/test_cosmetics/test_cosmetics"
+		"AbilityTextureName"			"test_cosmetics"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+//		"precache"
+//		{
+//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"special_one"			"1000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"special_two"			"2.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"special_three"			"255"
+			}
+		}
+	}
+}

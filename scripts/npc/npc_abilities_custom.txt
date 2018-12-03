@@ -1387,6 +1387,11 @@
 #base "../vscripts/lua_abilities/grimstroke_ink_swell_lua/grimstroke_ink_swell_lua.txt"
 #base "../vscripts/lua_abilities/grimstroke_soulbind_lua/grimstroke_soulbind_lua.txt"
 
+#base "../vscripts/lua_abilities/huskar_inner_vitality_lua/huskar_inner_vitality_lua.txt"
+#base "../vscripts/lua_abilities/huskar_burning_spear_lua/huskar_burning_spear_lua.txt"
+#base "../vscripts/lua_abilities/huskar_berserkers_blood_lua/huskar_berserkers_blood_lua.txt"
+#base "../vscripts/lua_abilities/huskar_life_break_lua/huskar_life_break_lua.txt"
+
 #base "../vscripts/lua_abilities/invoker_quas_lua/invoker_quas_lua.txt"
 #base "../vscripts/lua_abilities/invoker_wex_lua/invoker_wex_lua.txt"
 #base "../vscripts/lua_abilities/invoker_exort_lua/invoker_exort_lua.txt"
@@ -1512,3 +1517,6 @@
 #base "../vscripts/custom_abilities/sona_song_of_celerity/sona_song_of_celerity.txt"
 #base "../vscripts/custom_abilities/sona_aria_of_perseverance/sona_aria_of_perseverance.txt"
 #base "../vscripts/custom_abilities/sona_crescendo/sona_crescendo.txt"
+
+// Test abilities
+#base "../vscripts/test_abilities/test_cosmetics/test_cosmetics.txt"
