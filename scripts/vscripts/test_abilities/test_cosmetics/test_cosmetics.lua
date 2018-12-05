@@ -1,12 +1,11 @@
--- Created by Elfansoer
 --[[
-Ability checklist (erase if done/checked):
-- Scepter Upgrade
-- Break behavior
-- Linken/Reflect behavior
-- Spell Immune/Invulnerable/Invisible behavior
-- Illusion behavior
-- Stolen behavior
+Test Results:
+- Arcana models has no wearables by default
+- Only "npc_dota_creature" baseClass can have custom wearables
+- Particle effect of PA Arcana model loads automatically
+- Particle effect of PA custom wearables must be loaded manually (through modifier)
+- Death particle effect of PA Arcana model must be loaded manually (through modifier)
+- Arcana animation activity must be translated with "arcana" tag (through modifier)
 ]]
 --------------------------------------------------------------------------------
 test_cosmetics = class({})

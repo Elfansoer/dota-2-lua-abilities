@@ -14,11 +14,11 @@
 		"AbilityTextureName"			"test_cosmetics"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-//		"precache"
-//		{
-//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-//		}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+			"particle_folder"	"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/"
+		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------

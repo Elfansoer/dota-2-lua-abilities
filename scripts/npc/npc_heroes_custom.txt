@@ -11,11 +11,11 @@
 	{
 		"override_hero"					"npc_dota_hero_queenofpain"			// Hero to override
 		"Ability1"				"test_cosmetics"			// Ability 5
-		"Ability2"				"shadow_fiend_shadowraze_b_lua"				// Ability 3
+		"Ability2"				"zuus_thundergods_wrath"				// Ability 3
 		"Ability3"				"shadow_fiend_shadowraze_c_lua"				// Ability 1
 		"Ability4"				"shadow_fiend_necromastery_lua"			// Ability 4
 		"Ability5"				"shadow_fiend_presence_of_the_dark_lord_lua"				// Ability 2
-		"Ability6"				"shadow_fiend_requiem_of_souls_lua"					// Ability 6
+		"Ability6"				"monkey_king_wukongs_command"					// Ability 6
 
 		//"AttackDamageMin"		"0"
 		//"AttackDamageMax"		"0"
