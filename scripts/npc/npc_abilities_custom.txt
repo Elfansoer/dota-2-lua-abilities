@@ -1060,7 +1060,11 @@
 		"BaseClass"					"ability_lua"
 		"AbilityTextureName"				"lina_laguna_blade_lua"
 		"ScriptFile"					"lina_laguna_blade_lua"
-		
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+		}
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"600"

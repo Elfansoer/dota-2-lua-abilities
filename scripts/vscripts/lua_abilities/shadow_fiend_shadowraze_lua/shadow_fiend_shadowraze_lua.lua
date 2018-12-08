@@ -82,12 +82,17 @@ function shadowraze.OnSpellStart( this )
 end
 
 function shadowraze.PlayEffects( this, position, radius )
-	local particle_blast = "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
-	local sound_blast = "Hero_Nevermore.Shadowraze"
+	-- get resources
+	local particle_cast = "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+	local sound_cast = "Hero_Nevermore.Shadowraze"
 
-	local nFXIndex = ParticleManager:CreateParticle( particle_blast, PATTACH_WORLDORIGIN, nil )
-	ParticleManager:SetParticleControl( nFXIndex, 0, position )
-	ParticleManager:SetParticleControl( nFXIndex, 1, Vector( radius, 1, 1 ) )
-	ParticleManager:ReleaseParticleIndex( nFXIndex )
-	EmitSoundOnLocationWithCaster( position, sound_blast, this:GetCaster() )
+	-- create particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	ParticleManager:SetParticleControl( effect_cast, 0, position )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, 1, 1 ) )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+	
+	-- create sound
+	EmitSoundOnLocationWithCaster( position, sound_cast, this:GetCaster() )
 end

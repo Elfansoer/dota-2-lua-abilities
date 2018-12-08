@@ -92,6 +92,7 @@ function axe_culling_blade_lua:PlayEffects( target, success )
 	ParticleManager:SetParticleControl( effect_cast, 4, target:GetOrigin() )
 	ParticleManager:SetParticleControlForward( effect_cast, 3, direction )
 	ParticleManager:SetParticleControlForward( effect_cast, 4, direction )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_target)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound

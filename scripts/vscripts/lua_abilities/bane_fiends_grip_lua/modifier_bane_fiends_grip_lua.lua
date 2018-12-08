@@ -42,7 +42,7 @@ function modifier_bane_fiends_grip_lua:OnCreated( kv )
 		self:StartIntervalThink( self.interval )
 
 		-- play effects
-		-- self:PlayEffects()
+		self:PlayEffects()
 	end
 end
 
@@ -110,48 +110,29 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
-function modifier_bane_fiends_grip_lua:GetEffectName()
-	return "particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
-end
-
-function modifier_bane_fiends_grip_lua:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
--- function modifier_bane_fiends_grip_lua:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "string"
--- 	local sound_cast = "string"
-
--- 	-- Get Data
-
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
-
--- 	-- buff particle
--- 	self:AddParticle(
--- 		nFXIndex,
--- 		bDestroyImmediately,
--- 		bStatusEffect,
--- 		iPriority,
--- 		bHeroEffect,
--- 		bOverheadEffect
--- 	)
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
+-- function modifier_bane_fiends_grip_lua:GetEffectName()
+-- 	return "particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
 -- end
+
+-- function modifier_bane_fiends_grip_lua:GetEffectAttachType()
+-- 	return PATTACH_ABSORIGIN_FOLLOW
+-- end
+
+function modifier_bane_fiends_grip_lua:PlayEffects()
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
+
+	-- buff particle
+	self:AddParticle(
+		effect_cast,
+		false,
+		false,
+		-1,
+		false,
+		false
+	)
+end

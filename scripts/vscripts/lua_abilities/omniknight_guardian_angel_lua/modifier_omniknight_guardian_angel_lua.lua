@@ -76,6 +76,7 @@ function modifier_omniknight_guardian_angel_lua:PlayEffects()
 			self:GetParent():GetOrigin(), -- unknown
 			true -- unknown, true
 		)
+		assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 
 		self:AddParticle(
 			effect_cast,

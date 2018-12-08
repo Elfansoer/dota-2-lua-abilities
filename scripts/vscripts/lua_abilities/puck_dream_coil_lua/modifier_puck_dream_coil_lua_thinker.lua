@@ -38,5 +38,6 @@ function modifier_puck_dream_coil_lua_thinker:PlayEffects()
 
 	-- Create Particle
 	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, self:GetParent() )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,self.effect_cast)
 	ParticleManager:SetParticleControl( self.effect_cast, 0, self:GetParent():GetOrigin() )
 end

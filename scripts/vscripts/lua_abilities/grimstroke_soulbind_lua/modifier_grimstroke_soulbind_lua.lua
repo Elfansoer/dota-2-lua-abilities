@@ -281,6 +281,7 @@ function modifier_grimstroke_soulbind_lua:PlayEffects1( primary )
 
 	-- Create Particle
 	local effect_cast1 = ParticleManager:CreateParticle( particle_cast1, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast1)
 	ParticleManager:SetParticleControlEnt(
 		effect_cast1,
 		2,
@@ -327,6 +328,7 @@ function modifier_grimstroke_soulbind_lua:PlayEffects2( connect )
 	if connect then
 		-- Create Particle
 		self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+		assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,self.effect_cast)
 		ParticleManager:SetParticleControlEnt(
 			self.effect_cast,
 			0,
@@ -361,6 +363,7 @@ function modifier_grimstroke_soulbind_lua:PlayEffects3()
 
 	-- Create chain proc particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast1, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		0,
@@ -383,6 +386,7 @@ function modifier_grimstroke_soulbind_lua:PlayEffects3()
 
 	-- Create main proc particle
 	effect_cast = ParticleManager:CreateParticle( particle_cast2, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		0,
@@ -396,6 +400,7 @@ function modifier_grimstroke_soulbind_lua:PlayEffects3()
 
 	-- Create pair proc particle
 	effect_cast = ParticleManager:CreateParticle( particle_cast2, PATTACH_ABSORIGIN_FOLLOW, self.pair:GetParent() )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		0,

@@ -19,6 +19,9 @@ end
 function modifier_lifestealer_rage_lua:OnCreated( kv )
 	-- references
 	self.as_bonus = self:GetAbility():GetSpecialValueFor( "attack_speed_bonus" ) -- special value
+	if IsServer() then
+		self:PlayEffects()
+	end
 end
 
 function modifier_lifestealer_rage_lua:OnRefresh( kv )
@@ -56,48 +59,48 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
-function modifier_lifestealer_rage_lua:GetEffectName()
-	return "particles/units/heroes/hero_life_stealer/life_stealer_rage.vpcf"
+function modifier_lifestealer_rage_lua:PlayEffects()
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_life_stealer/life_stealer_rage.vpcf"
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		0,
+		self:GetParent(),
+		PATTACH_POINT_FOLLOW,
+		"attach_attack1",
+		self:GetParent():GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		1,
+		self:GetParent(),
+		PATTACH_POINT_FOLLOW,
+		"attach_attack2",
+		self:GetParent():GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		2,
+		self:GetParent(),
+		PATTACH_CENTER_FOLLOW,
+		"attach_hitloc",
+		self:GetParent():GetOrigin(), -- unknown
+		true -- unknown, true
+	)
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
+
+	-- buff particle
+	self:AddParticle(
+		effect_cast,
+		false,
+		false,
+		-1,
+		false,
+		false
+	)
 end
-
-function modifier_lifestealer_rage_lua:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
--- function modifier_lifestealer_rage_lua:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "string"
--- 	local sound_cast = "string"
-
--- 	-- Get Data
-
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
-
--- 	-- buff particle
--- 	self:AddParticle(
--- 		nFXIndex,
--- 		bDestroyImmediately,
--- 		bStatusEffect,
--- 		iPriority,
--- 		bHeroEffect,
--- 		bOverheadEffect
--- 	)
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end

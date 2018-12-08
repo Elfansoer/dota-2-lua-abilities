@@ -108,6 +108,7 @@ function earthshaker_fissure_lua:PlayEffects( wall_vector, duration )
 	ParticleManager:SetParticleControl( effect_cast, 0, start_pos )
 	ParticleManager:SetParticleControl( effect_cast, 1, end_pos )
 	ParticleManager:SetParticleControl( effect_cast, 2, Vector( duration, 0, 0 ) )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound

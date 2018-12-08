@@ -115,6 +115,7 @@ function lion_finger_of_death_lua:PlayEffects( target )
 	ParticleManager:SetParticleControl( effect_cast, 2, target:GetOrigin() )
 	ParticleManager:SetParticleControl( effect_cast, 3, target:GetOrigin() )
 	ParticleManager:SetParticleControlForward( effect_cast, 3, (target:GetOrigin()-caster:GetOrigin()):Normalized() )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound

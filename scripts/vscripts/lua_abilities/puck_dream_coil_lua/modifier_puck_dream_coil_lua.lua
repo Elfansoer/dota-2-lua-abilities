@@ -118,6 +118,7 @@ function modifier_puck_dream_coil_lua:PlayEffects()
 		self:GetParent():GetOrigin(), -- unknown
 		true -- unknown, true
 	)
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	-- buff particle
 	self:AddParticle(
 		effect_cast,

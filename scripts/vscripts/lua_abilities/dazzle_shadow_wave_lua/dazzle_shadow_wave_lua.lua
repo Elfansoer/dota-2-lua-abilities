@@ -121,6 +121,7 @@ function dazzle_shadow_wave_lua:PlayEffects1( source, target )
 
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, source )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		0,
@@ -148,6 +149,7 @@ function dazzle_shadow_wave_lua:PlayEffects2( target )
 
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		0,

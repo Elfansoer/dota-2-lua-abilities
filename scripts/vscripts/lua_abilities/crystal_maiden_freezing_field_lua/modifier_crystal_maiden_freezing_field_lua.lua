@@ -155,6 +155,7 @@ function modifier_crystal_maiden_freezing_field_lua:PlayEffects1()
 	-- Create Particle
 	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
 	ParticleManager:SetParticleControl( self.effect_cast, 1, Vector( self.slow_radius, self.slow_radius, 1 ) )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,self.effect_cast)
 	self:AddParticle(
 		self.effect_cast,
 		false,
@@ -172,6 +173,7 @@ function modifier_crystal_maiden_freezing_field_lua:PlayEffects2( point )
 	-- Play particles
 	local particle_cast = "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf"
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:SetParticleControl( effect_cast, 0, point )
 
 	-- Play sound
