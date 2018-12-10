@@ -1386,6 +1386,10 @@
 #base "../vscripts/lua_abilities/enchantress_natures_attendants_lua/enchantress_natures_attendants_lua.txt"
 #base "../vscripts/lua_abilities/enchantress_impetus_lua/enchantress_impetus_lua.txt"
 
+#base "../vscripts/lua_abilities/enigma_black_hole_lua/enigma_black_hole_lua.txt"
+
+#base "../vscripts/lua_abilities/faceless_void_chronosphere_lua/faceless_void_chronosphere_lua.txt"
+
 #base "../vscripts/lua_abilities/grimstroke_stroke_of_fate_lua/grimstroke_stroke_of_fate_lua.txt"
 #base "../vscripts/lua_abilities/grimstroke_phantoms_embrace_lua/grimstroke_phantoms_embrace_lua.txt"
 #base "../vscripts/lua_abilities/grimstroke_ink_swell_lua/grimstroke_ink_swell_lua.txt"
@@ -1454,6 +1458,8 @@
 #base "../vscripts/lua_abilities/shadow_fiend_necromastery_lua/shadow_fiend_necromastery_lua_base.txt"
 #base "../vscripts/lua_abilities/shadow_fiend_presence_of_the_dark_lord_lua/shadow_fiend_presence_of_the_dark_lord_lua_base.txt"
 #base "../vscripts/lua_abilities/shadow_fiend_requiem_of_souls_lua/shadow_fiend_requiem_of_souls_lua_base.txt"
+
+#base "../vscripts/lua_abilities/skywrath_mage_mystic_flare_lua/skywrath_mage_mystic_flare_lua.txt"
 
 #base "../vscripts/lua_abilities/slardar_guardian_sprint_lua/slardar_guardian_sprint_lua.txt"
 #base "../vscripts/lua_abilities/slardar_slithereen_crush_lua/slardar_slithereen_crush_lua.txt"

@@ -116,7 +116,7 @@ function modifier_template:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 end
 
-function modifier_template:GetAuraSearchType()
+function modifier_template:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 end
 

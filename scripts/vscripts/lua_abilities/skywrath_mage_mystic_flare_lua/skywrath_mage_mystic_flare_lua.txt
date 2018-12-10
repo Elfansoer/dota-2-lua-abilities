@@ -1,0 +1,76 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Skywrath Mage: Mystic Flare (Lua version)
+	//=================================================================================================================
+	"skywrath_mage_mystic_flare_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/skywrath_mage_mystic_flare_lua/skywrath_mage_mystic_flare_lua"
+		"AbilityTextureName"			"skywrath_mage_mystic_flare_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"HasScepterUpgrade"			"1"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.1"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60.0 40.0 20.0"
+		"AbilityManaCost"				"300 550 800"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"170"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2.4"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"600 1000 1400"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_interval"		"0.1"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_radius"		"700"
+			}
+		}
+	}
+}
