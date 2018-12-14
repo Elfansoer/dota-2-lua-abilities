@@ -90,7 +90,7 @@ function shadowraze.PlayEffects( this, position, radius )
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
 	ParticleManager:SetParticleControl( effect_cast, 0, position )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, 1, 1 ) )
-	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(this,effect_cast)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 	
 	-- create sound
