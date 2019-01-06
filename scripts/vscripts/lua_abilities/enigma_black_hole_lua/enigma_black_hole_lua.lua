@@ -46,7 +46,7 @@ end
 --------------------------------------------------------------------------------
 -- Ability Channeling
 function enigma_black_hole_lua:OnChannelFinish( bInterrupted )
-	if self.thinker then
+	if self.thinker and not self.thinker:IsNull() then
 		self.thinker:Destroy()
 	end
 end

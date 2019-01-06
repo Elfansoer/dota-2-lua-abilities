@@ -124,6 +124,15 @@ function rubick_spell_steal_lua:OnProjectileHit( target, location )
 end
 
 --------------------------------------------------------------------------------
+-- Change Texture
+function rubick_spell_steal_lua:GetAbilityTextureName()
+	if self:GetLevel()==1 then return "rubick_spell_steal_lua_red"
+	elseif self:GetLevel()==2 then return "rubick_spell_steal_lua_green"
+	elseif self:GetLevel()==3 then return "rubick_spell_steal_lua_blue"
+	else return "rubick_spell_steal_lua" end
+end
+
+--------------------------------------------------------------------------------
 -- Helper: Heroes Data
 rubick_spell_steal_lua.heroesData = {}
 rubick_spell_steal_lua.interactions = require "lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_interaction_reference"
@@ -203,6 +212,7 @@ function rubick_spell_steal_lua:SetStolenSpell( spellData )
 	self.currentSpell = self:GetCaster():AddAbility( spell:GetAbilityName() )
 	self.currentSpell:SetLevel( spell:GetLevel() )
 	self.currentSpell:SetStolen( true )
+	if self.currentSpell.OnStolen then self.currentSpell:OnStolen( spell ) end
 	self:GetCaster():SwapAbilities( self.slot1, self.currentSpell:GetAbilityName(), false, true )
 
 	-- Animations override

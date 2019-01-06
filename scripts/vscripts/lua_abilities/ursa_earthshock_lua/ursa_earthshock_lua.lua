@@ -56,11 +56,12 @@ function ursa_earthshock_lua:PlayEffects()
 	local slow_radius = self:GetSpecialValueFor("shock_radius")
 
 	-- play particles
-	local nFXIndex = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
-	ParticleManager:SetParticleControl( nFXIndex, 0, self:GetCaster():GetOrigin() )
-	ParticleManager:SetParticleControlForward( nFXIndex, 0, self:GetCaster():GetForwardVector() )
-	ParticleManager:SetParticleControl( nFXIndex, 1, Vector(slow_radius/2, slow_radius/2, slow_radius/2) )
-	ParticleManager:ReleaseParticleIndex( nFXIndex )
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_WORLDORIGIN, nil )
+	ParticleManager:SetParticleControl( effect_cast, 0, self:GetCaster():GetOrigin() )
+	ParticleManager:SetParticleControlForward( effect_cast, 0, self:GetCaster():GetForwardVector() )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector(slow_radius/2, slow_radius/2, slow_radius/2) )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- play sounds
 	EmitSoundOn( sound_cast, self:GetCaster() )

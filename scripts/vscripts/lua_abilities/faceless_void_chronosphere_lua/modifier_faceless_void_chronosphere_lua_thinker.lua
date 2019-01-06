@@ -98,10 +98,10 @@ function modifier_faceless_void_chronosphere_lua_thinker:PlayEffects()
 	local sound_cast = "Hero_FacelessVoid.Chronosphere"
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, self:GetParent() )
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, self:GetParent() )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN, self:GetParent() )
 	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( self.radius, self.radius, self.radius ) )
-	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 
 	-- buff particle
 	self:AddParticle(

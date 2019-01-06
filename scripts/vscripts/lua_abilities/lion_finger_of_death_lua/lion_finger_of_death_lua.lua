@@ -91,7 +91,8 @@ function lion_finger_of_death_lua:PlayEffects( target )
 	local caster = self:GetCaster()
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, caster )
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, caster )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN, caster )
 	local attach = "attach_attack1"
 	if caster:ScriptLookupAttachment( "attach_attack2" )~=0 then attach = "attach_attack2" end
 	ParticleManager:SetParticleControlEnt(
@@ -115,7 +116,6 @@ function lion_finger_of_death_lua:PlayEffects( target )
 	ParticleManager:SetParticleControl( effect_cast, 2, target:GetOrigin() )
 	ParticleManager:SetParticleControl( effect_cast, 3, target:GetOrigin() )
 	ParticleManager:SetParticleControlForward( effect_cast, 3, (target:GetOrigin()-caster:GetOrigin()):Normalized() )
-	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound

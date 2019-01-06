@@ -107,7 +107,8 @@ function modifier_puck_dream_coil_lua:PlayEffects()
 	local particle_cast = "particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf"
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, self:GetParent() )
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, self:GetParent() )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN, self:GetParent() )
 	ParticleManager:SetParticleControl( effect_cast, 0, self.center )
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
@@ -118,7 +119,7 @@ function modifier_puck_dream_coil_lua:PlayEffects()
 		self:GetParent():GetOrigin(), -- unknown
 		true -- unknown, true
 	)
-	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
+	
 	-- buff particle
 	self:AddParticle(
 		effect_cast,

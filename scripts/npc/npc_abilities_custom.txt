@@ -1177,106 +1177,6 @@
 		}
 	}
 	//=================================================================================================================
-	// Rubick: Spell Steal (Lua version)
-	//=================================================================================================================
-	"rubick_spell_steal_lua"
-	{
-		// Ability Technical Aspect
-		// base script folder	: scripts/vscripts
-		// base texture folder	: resource/flash3/images/spellicons
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua"
-		"AbilityTextureName"			"rubick_spell_steal_lua"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"3"
-	//	"precache"
-	//	{
-	//		"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-	//		"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-	//	}
-		
-		// Ability General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-
-		// Ability Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
-		"AbilityCastRangeBuffer"		"250"
-		"AbilityCastPoint"				"0.1"
-
-		// Ability Resource
-		//-------------------------------------------------------------------------------------------------------------
-//		"AbilityCooldown"				"20 18 16"
-		"AbilityCooldown"				"2"
-		"AbilityManaCost"				"25"
-
-		// Damage
-		//-------------------------------------------------------------------------------------------------------------
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-//				"duration"					"180.0 240.0 300.0"
-				"duration"					"7"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"projectile_speed"			"900"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range_scepter"			"1400"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cooldown_scepter"			"2"
-			}
-		}
-	}
-	"rubick_spell_steal_lua_slot1"
-	{
-		// Ability Technical Aspect
-		// base script folder	: scripts/vscripts
-		// base texture folder	: resource/flash3/images/spellicons
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua"
-		"AbilityTextureName"			"rubick_spell_steal_lua"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"0"
-
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-	}
-	"rubick_spell_steal_lua_slot2"
-	{
-		// Ability Technical Aspect
-		// base script folder	: scripts/vscripts
-		// base texture folder	: resource/flash3/images/spellicons
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua"
-		"AbilityTextureName"			"rubick_spell_steal_lua"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"0"
-
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-	}
-	//=================================================================================================================
 	// Troll Warlord: Fervor (Lua version)
 	//=================================================================================================================
 	"troll_warlord_fervor_lua"
@@ -1426,6 +1326,8 @@
 #base "../vscripts/lua_abilities/lion_hex_lua/lion_hex_lua.txt"
 #base "../vscripts/lua_abilities/lion_finger_of_death_lua/lion_finger_of_death_lua.txt"
 
+#base "../vscripts/lua_abilities/luna_lucent_beam_lua/luna_lucent_beam_lua.txt"
+
 #base "../vscripts/lua_abilities/mirana_sacred_arrow_lua/mirana_sacred_arrow_lua.txt"
 #base "../vscripts/lua_abilities/mirana_leap_lua/mirana_leap_lua.txt"
 
@@ -1448,6 +1350,8 @@
 #base "../vscripts/lua_abilities/queen_of_pain_blink_lua/queen_of_pain_blink_lua.txt"
 #base "../vscripts/lua_abilities/queen_of_pain_scream_of_pain_lua/queen_of_pain_scream_of_pain_lua.txt"
 #base "../vscripts/lua_abilities/queen_of_pain_sonic_wave_lua/queen_of_pain_sonic_wave_lua.txt"
+
+#base "../vscripts/lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua.txt"
 
 #base "../vscripts/lua_abilities/sand_king_burrowstrike_lua/sand_king_burrowstrike_lua.txt"
 #base "../vscripts/lua_abilities/sand_king_sand_storm_lua/sand_king_sand_storm_lua.txt"

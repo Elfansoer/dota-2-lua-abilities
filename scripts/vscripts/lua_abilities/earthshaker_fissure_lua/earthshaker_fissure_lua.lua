@@ -30,6 +30,7 @@ function earthshaker_fissure_lua:OnSpellStart()
 	local block_spacing = (block_delta+2*block_width)
 	local blocks = distance/block_spacing
 	local block_pos = caster:GetHullRadius() + block_delta + block_width
+	local start_pos = caster:GetOrigin() + direction*block_pos
 
 	for i=1,blocks do
 		local block_vec = caster:GetOrigin() + direction*block_pos
@@ -47,10 +48,13 @@ function earthshaker_fissure_lua:OnSpellStart()
 	end
 
 	-- find units in line
+	local end_pos = start_pos + wall_vector
 	local units = FindUnitsInLine(
 		caster:GetTeamNumber(),
-		caster:GetOrigin() + direction*caster:GetHullRadius(),
-		caster:GetOrigin() + direction*caster:GetHullRadius() + wall_vector,
+		start_pos,
+		end_pos,
+		-- caster:GetOrigin() + direction*caster:GetHullRadius(),
+		-- caster:GetOrigin() + direction*caster:GetHullRadius() + wall_vector,
 		nil,
 		radius,
 		DOTA_UNIT_TARGET_TEAM_BOTH,
@@ -88,27 +92,24 @@ function earthshaker_fissure_lua:OnSpellStart()
 	end
 
 	-- Effects
-	self:PlayEffects( wall_vector, duration )
+	self:PlayEffects( start_pos, end_pos, duration )
 end
 
 --------------------------------------------------------------------------------
-function earthshaker_fissure_lua:PlayEffects( wall_vector, duration )
+function earthshaker_fissure_lua:PlayEffects( start_pos, end_pos, duration )
 	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_earthshaker/earthshaker_fissure.vpcf"
 	local sound_cast = "Hero_EarthShaker.Fissure"
 
 	-- generate data
 	local caster = self:GetCaster()
-	local direction = wall_vector:Normalized()
-	local start_pos = caster:GetOrigin() + direction*caster:GetHullRadius()
-	local end_pos = caster:GetOrigin() + direction*caster:GetHullRadius() + wall_vector
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, caster )
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, caster )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_WORLDORIGIN, caster )
 	ParticleManager:SetParticleControl( effect_cast, 0, start_pos )
 	ParticleManager:SetParticleControl( effect_cast, 1, end_pos )
 	ParticleManager:SetParticleControl( effect_cast, 2, Vector( duration, 0, 0 ) )
-	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound

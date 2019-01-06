@@ -17,7 +17,8 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
-			"particle"	"particles/units/heroes/hero_earthshaker/earthshaker_fissure.vpcf"
+			//"particle"	"particles/units/heroes/hero_earthshaker/earthshaker_fissure.vpcf"
+			"particle"	"particles/rubick_fissure.vpcf"
 		}
 		
 		// Ability General

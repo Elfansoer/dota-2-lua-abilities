@@ -312,7 +312,7 @@ function ability_manager:InitAbility( ability )
 		if not self.orbs[orb_name] then return 0 end
 		return self:GetLevelSpecialValueFor( key_name, self.orbs[orb_name] )
 	end
-end
+end 
 
 function ability_manager:UpgradeAbilities()
 	for _,ability in pairs(self.abilities) do

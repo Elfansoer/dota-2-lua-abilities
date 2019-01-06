@@ -6,26 +6,18 @@ function modifier_invoker_chaos_meteor_lua_thinker:IsHidden()
 	return true
 end
 
-function modifier_invoker_chaos_meteor_lua_thinker:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
-end
-
-function modifier_invoker_chaos_meteor_lua_thinker:IsPurgable()
-	return false
-end
-
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_invoker_chaos_meteor_lua_thinker:OnCreated( kv )
 	if IsServer() then
 		-- references
-		self.caster_origin = Vector( kv.x, kv.y, kv.z )
+		self.caster_origin = self:GetCaster():GetOrigin()
 		self.parent_origin = self:GetParent():GetOrigin()
 		self.direction = self.parent_origin - self.caster_origin
 		self.direction.z = 0
 		self.direction = self.direction:Normalized()
 
-		local delay = self:GetAbility():GetSpecialValueFor( "land_time" )
+		self.delay = self:GetAbility():GetSpecialValueFor( "land_time" )
 		self.radius = self:GetAbility():GetSpecialValueFor( "area_of_effect" )
 		self.distance = self:GetAbility():GetOrbSpecialValueFor( "travel_distance", "w" )
 		self.speed = self:GetAbility():GetSpecialValueFor( "travel_speed" )
@@ -51,16 +43,10 @@ function modifier_invoker_chaos_meteor_lua_thinker:OnCreated( kv )
 		self:GetParent():SetNightTimeVisionRange( self.vision )
 
 		-- Start interval
-		self:StartIntervalThink( delay )
-
-		-- roll forward
-		-- self:GetParent():SetMoveCapability( DOTA_UNIT_CAP_MOVE_FLY )
-		-- local ret2 = self:ApplyHorizontalMotionController()
-		-- print("apply motion",ret2)
+		self:StartIntervalThink( self.delay )
 
 		-- play effects
-		local sound_impact = "Hero_Invoker.ChaosMeteor.Cast"
-		EmitSoundOnLocationWithCaster( self.caster_origin, sound_impact, self:GetCaster() )
+		self:PlayEffects1()
 	end
 end
 
@@ -76,23 +62,9 @@ function modifier_invoker_chaos_meteor_lua_thinker:OnDestroy( kv )
 		-- stop effects
 		local sound_loop = "Hero_Invoker.ChaosMeteor.Loop"
 		local sound_stop = "Hero_Invoker.ChaosMeteor.Destroy"
-		StopSoundOn( sound_loop, self:GetCaster() )
+		StopSoundOn( sound_loop, self:GetParent() )
 		EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), sound_stop, self:GetCaster() )
-
-		-- clean up
-		self:GetParent():InterruptMotionControllers( true )
-		-- UTIL_Remove( self:GetParent() )
 	end
-end
-
---------------------------------------------------------------------------------
--- Status Effects
-function modifier_invoker_chaos_meteor_lua_thinker:CheckState()
-	-- local state = {
-	-- 	[MODIFIER_STATE_FLYING] = true
-	-- }
-
-	-- return state
 end
 
 --------------------------------------------------------------------------------
@@ -103,54 +75,15 @@ function modifier_invoker_chaos_meteor_lua_thinker:OnIntervalThink()
 		self.fallen = true
 		self:StartIntervalThink( self.interval )
 		self:Burn()
-
-		print("","Start",self:GetParent():GetOrigin())
-		local ret2 = self:ApplyHorizontalMotionController()
-		print("apply motion",ret2)
 		
-		-- play effects
-		local info = {
-			Source = self:GetCaster(),
-			Ability = self:GetAbility(),
-			vSpawnOrigin = self.parent_origin,
-			
-		    bDeleteOnHit = false,
-		    
-		    iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-		    iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
-		    iUnitTargetType = DOTA_UNIT_TARGET_HERO,
-		    
-		    EffectName = "particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf",
-		    fDistance = self.distance,
-		    fStartRadius = self.radius,
-		    fEndRadius =self.radius,
-			vVelocity = self.direction * self.speed,
-		
-			bReplaceExisting = false,
-			
-			bProvidesVision = true,
-			iVisionRadius = self.vision,
-			iVisionTeamNumber = self:GetCaster():GetTeamNumber()
-		}
-		ProjectileManager:CreateLinearProjectile(info)
-
-		local sound_impact = "Hero_Invoker.ChaosMeteor.Impact"
-		local sound_loop = "Hero_Invoker.ChaosMeteor.Loop"
-		EmitSoundOnLocationWithCaster( self.parent_origin, sound_impact, self:GetCaster() )
-		EmitSoundOn( sound_loop, self:GetCaster() )
+		self:PlayEffects2()
 	else
-		-- damages
-		self:Burn()
+		-- move & damages
+		self:Move_Burn()
 	end
 end
 
 function modifier_invoker_chaos_meteor_lua_thinker:Burn()
-	local particle_blast = "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
-	local nFXIndex = ParticleManager:CreateParticle( particle_blast, PATTACH_WORLDORIGIN, nil )
-	ParticleManager:SetParticleControl( nFXIndex, 0, self:GetParent():GetOrigin() )
-	ParticleManager:SetParticleControl( nFXIndex, 1, Vector( self.radius, 1, 1 ) )
-	ParticleManager:ReleaseParticleIndex( nFXIndex )
-
 	-- find enemies
 	local enemies = FindUnitsInRadius(
 		self:GetCaster():GetTeamNumber(),	-- int, your team number
@@ -181,74 +114,71 @@ end
 
 --------------------------------------------------------------------------------
 -- Motion effects
-function modifier_invoker_chaos_meteor_lua_thinker:UpdateHorizontalMotion( me, dt )
-	print("","Tick",self:GetParent():GetOrigin())
+function modifier_invoker_chaos_meteor_lua_thinker:Move_Burn()
 	local parent = self:GetParent()
-	
-	-- check distance
-	if (parent:GetOrigin()-self.parent_origin):Length2D()>self.distance then
-		self:Destroy()
-		return
-	end
 
 	-- set position
-	local target = self.direction*self.speed*dt
-
-	-- change position
+	local target = self.direction*self.speed*self.interval
 	parent:SetOrigin( parent:GetOrigin() + target )
-end
 
-function modifier_invoker_chaos_meteor_lua_thinker:OnHorizontalMotionInterrupted()
-	if IsServer() then
-		print("interrupted")
+	-- Burn
+	self:Burn()
+	
+	-- check distance for next step
+	if (parent:GetOrigin() - self.parent_origin + target):Length2D()>self.distance then
 		self:Destroy()
+		return
 	end
 end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_invoker_chaos_meteor_lua_thinker:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_invoker_chaos_meteor_lua_thinker:PlayEffects1()
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_invoker/invoker_chaos_meteor_fly.vpcf"
+	local sound_impact = "Hero_Invoker.ChaosMeteor.Cast"
 
--- function modifier_invoker_chaos_meteor_lua_thinker:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+	-- Get Data
+	local height = 1000
+	local height_target = -0
 
--- function modifier_invoker_chaos_meteor_lua_thinker:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "string"
--- 	local sound_cast = "string"
+	-- Create Particle
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_WORLDORIGIN, nil )
+	ParticleManager:SetParticleControl( effect_cast, 0, self.caster_origin + Vector( 0, 0, height ) )
+	ParticleManager:SetParticleControl( effect_cast, 1, self.parent_origin + Vector( 0, 0, height_target) )
+	ParticleManager:SetParticleControl( effect_cast, 2, Vector( self.delay, 0, 0 ) )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 
--- 	-- Get Data
+	-- Create Sound
+	EmitSoundOnLocationWithCaster( self.caster_origin, sound_impact, self:GetCaster() )
+end
 
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
+function modifier_invoker_chaos_meteor_lua_thinker:PlayEffects2()
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf"
+	local sound_impact = "Hero_Invoker.ChaosMeteor.Impact"
+	local sound_loop = "Hero_Invoker.ChaosMeteor.Loop"
 
--- 	-- buff particle
--- 	self:AddParticle(
--- 		nFXIndex,
--- 		bDestroyImmediately,
--- 		bStatusEffect,
--- 		iPriority,
--- 		bHeroEffect,
--- 		bOverheadEffect
--- 	)
+	-- Create Particle
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_WORLDORIGIN, nil )
+	ParticleManager:SetParticleControl( effect_cast, 0, self.parent_origin )
+	ParticleManager:SetParticleControlForward( effect_cast, 0, self.direction )
+	ParticleManager:SetParticleControl( effect_cast, 1, self.direction * self.speed )
+	-- ParticleManager:ReleaseParticleIndex( effect_cast )
 
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end
+	-- -- buff particle
+	self:AddParticle(
+		effect_cast,
+		false,
+		false,
+		-1,
+		false,
+		false
+	)
+
+	-- Create Sound
+	EmitSoundOnLocationWithCaster( self.parent_origin, sound_impact, self:GetCaster() )
+	EmitSoundOn( sound_loop, self:GetParent() )
+end

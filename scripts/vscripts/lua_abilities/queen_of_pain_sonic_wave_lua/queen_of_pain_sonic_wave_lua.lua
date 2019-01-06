@@ -66,11 +66,11 @@ function queen_of_pain_sonic_wave_lua:PlayProjectile( info )
 	local particle_cast = "particles/units/heroes/hero_queenofpain/queen_sonic_wave.vpcf"
 
 	-- create particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, self:GetCaster() )
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, self:GetCaster() )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN, self:GetCaster() )
 	ParticleManager:SetParticleControl( effect_cast, 0, self:GetCaster():GetOrigin() )
 	ParticleManager:SetParticleControlForward( effect_cast, 0, self:GetCaster():GetForwardVector() )
 	ParticleManager:SetParticleControl( effect_cast, 1, info.vVelocity )
 
-	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 end

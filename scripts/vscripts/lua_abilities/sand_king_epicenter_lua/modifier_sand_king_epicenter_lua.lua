@@ -102,21 +102,19 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
-
 function modifier_sand_king_epicenter_lua:PlayEffects( radius )
 	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
 	local particle_cast2 = "particles/units/heroes/hero_sandking/sandking_epicenter_ring.vpcf"
 
-
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, radius, radius ) )
-	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
-	local effect_cast = ParticleManager:CreateParticle( particle_cast2, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast2, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast2, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, radius, radius ) )
-	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 end

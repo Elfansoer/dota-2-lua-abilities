@@ -31,6 +31,7 @@
 	"npc_dota_hero_luna"			"1"
 	"npc_dota_hero_lion"			"1"
 	"npc_dota_hero_magnataur"		"1"
+	"npc_dota_hero_mirana"			"1"
 	"npc_dota_hero_naga_siren"		"1"
 	"npc_dota_hero_nevermore"			"1"
 	"npc_dota_hero_omniknight"			"1"

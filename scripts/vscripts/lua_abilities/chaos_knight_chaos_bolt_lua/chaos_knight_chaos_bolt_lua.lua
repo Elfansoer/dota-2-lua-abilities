@@ -1,6 +1,6 @@
 chaos_knight_chaos_bolt_lua = class({})
 LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
-
+LinkLuaModifier( "modifier_generic_tracking_projectile", "lua_abilities/generic/modifier_generic_tracking_projectile", LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------
 
 function chaos_knight_chaos_bolt_lua:OnSpellStart()
@@ -18,12 +18,15 @@ function chaos_knight_chaos_bolt_lua:OnSpellStart()
 		EffectName = projectile,
 		bDodgeable = true,
 	}
+	info = self:PlayProjectile( info )
 	ProjectileManager:CreateTrackingProjectile( info )
 
 	self:PlayEffect1()
 end
 
-function chaos_knight_chaos_bolt_lua:OnProjectileHit( hTarget, vLocation )
+function chaos_knight_chaos_bolt_lua:OnProjectileHit_ExtraData( hTarget, vLocation, kv )
+	self:StopProjectile( kv )
+
 	if hTarget==nil or hTarget:IsInvulnerable() then
 		return
 	end
@@ -100,4 +103,26 @@ function chaos_knight_chaos_bolt_lua:PlayEffect2( target, stun, damage )
 
 	-- play sound
 	EmitSoundOn( sound_target, target )
+end
+
+function chaos_knight_chaos_bolt_lua:PlayProjectile( info )
+	local tempTable = require('util/tempTable')
+	local tracker = info.Target:AddNewModifier(
+		info.Source, -- player source
+		self, -- ability source
+		"modifier_generic_tracking_projectile", -- modifier name
+		{ duration = 4 } -- kv
+	)
+	tracker:PlayTrackingProjectile( info )
+	
+	info.EffectName = nil
+	if not info.ExtraData then info.ExtraData = {} end
+	info.ExtraData.tracker = tempTable:AddATValue( tracker )
+
+	return info
+end
+
+function chaos_knight_chaos_bolt_lua:StopProjectile( kv )
+	local tracker = tempTable:RetATValue( kv.tracker )
+	if not tracker:IsNull() then tracker:Destroy() end
 end

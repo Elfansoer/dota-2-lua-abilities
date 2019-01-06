@@ -97,9 +97,9 @@ function antimage_mana_void_lua:PlayEffects2( target, radius )
 	local sound_target = "Hero_Antimage.ManaVoid"
 
 	-- Create Particle
-	local effect_target = ParticleManager:CreateParticle( particle_target, PATTACH_POINT_FOLLOW, target )
+	-- local effect_target = ParticleManager:CreateParticle( particle_target, PATTACH_POINT_FOLLOW, target )
+	local effect_target = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_target, PATTACH_POINT_FOLLOW, target )
 	ParticleManager:SetParticleControl( effect_target, 1, Vector( radius, 0, 0 ) )
-	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_target)
 	ParticleManager:ReleaseParticleIndex( effect_target )
 
 	-- Create Sound

@@ -11,8 +11,8 @@
 	{
 		"override_hero"					"npc_dota_hero_queenofpain"			// Hero to override
 		"Ability1"				"test_cosmetics"			// Ability 5
-		"Ability2"				"zuus_thundergods_wrath"				// Ability 3
-		"Ability3"				"shadow_fiend_shadowraze_c_lua"				// Ability 1
+		"Ability2"				"luna_lucent_beam"				// Ability 3
+		"Ability3"				"luna_lucent_beam_lua"				// Ability 1
 		"Ability4"				"faceless_void_chronosphere_lua"				// Ability 2
 		"Ability5"				"enigma_black_hole_lua"					// Ability 6
 		"Ability6"				"skywrath_mage_mystic_flare_lua"			// Ability 4
@@ -229,12 +229,21 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Mirana (Luna)
+	//=================================================================================================================
+	"npc_dota_hero_mirana_lua"
+	{
+		"override_hero"					"npc_dota_hero_mirana"	// Hero to override
+		"Ability1"				"luna_lucent_beam_lua"						// Ability 1
+	}
+
+	//=================================================================================================================
 	// HERO: Earthshaker (Mirana & Lion)
 	//=================================================================================================================
 	"npc_dota_hero_earthshaker_lua"
 	{
 		"override_hero"					"npc_dota_hero_earthshaker"	// Hero to override
-		"Ability1"				"bloodseeker_blood_rite_lua"						// Ability 1
+		"Ability1"				"mirana_leap_lua"						// Ability 1
 		"Ability2"				"mirana_sacred_arrow_lua"						// Ability 2
 		"Ability3"				"lion_hex_lua"						// Ability 3
 		"Ability6"				"lion_finger_of_death_lua"							// Ability 6

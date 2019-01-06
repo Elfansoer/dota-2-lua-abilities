@@ -71,8 +71,8 @@ end
 function modifier_slardar_corrosive_haze_lua:PlayEffects()
 	local particle_cast = "particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
 	
-	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
-	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,self.effect_cast)
+	-- self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
+	self.effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
 	ParticleManager:SetParticleControlEnt(
 		self.effect_cast,
 		0,

@@ -136,10 +136,9 @@ function modifier_enigma_black_hole_lua_thinker:PlayEffects()
 	local sound_cast = "Hero_Enigma.Black_Hole"
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, self:GetCaster() )
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, self:GetCaster() )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN, self:GetCaster() )
 	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() )
-	ParticleManager:SetParticleControl( effect_cast, 61, Vector(0,0,0) )
-	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
 
 	-- buff particle
 	self:AddParticle(

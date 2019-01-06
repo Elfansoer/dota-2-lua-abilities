@@ -1,3 +1,6 @@
+--[[ Use this to import:
+	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
+]]
 -- init
 if not arcanaColor then
 	arcanaColor = {}
@@ -107,5 +110,6 @@ if self.GetAbility then
 	self = self:GetAbility()
 end
 
-arcanaColor:SetTargetHSV360( 270 )
+-- arcanaColor:SetTargetHSV360( 270 )
+arcanaColor:SetTargetHSV255( RandomInt(0,255) )
 arcanaColor:SetParticleColor( self, effect_name, false )
