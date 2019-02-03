@@ -1,0 +1,359 @@
+"DOTAUnits"
+{
+	"npc_dota_midas_golden_valkyrie_a"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"					"npc_dota_creature"
+		"Level"						"6"
+		"ConsideredHero"			"1"
+		"WakesNeutrals"				"1"
+		
+		"Model"						"models/heroes/phantom_assassin/pa_arcana.vmdl"
+		"ModelScale" 				"0.9"
+		"particle_folder"		"particles/units/heroes/hero_phantom_assassin"
+		"HasAggressiveStance"		"1"
+		
+		"SoundSet"					"Hero_PhantomAssassin"
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_phantom_assassin.vsndevts"
+
+		// Abilities
+		//----------------------------------------------------------------
+
+		// Armor
+		//----------------------------------------------------------------
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.7"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackRange"		"150"
+		"AttackAcquisitionRange"		"1000"
+		"AttackSpeedActivityModifiers"
+		{
+			"fast"		"249"
+			"faster"	"350"
+			"fastest"	"450"
+		}
+		"ProjectileModel"			""
+		"ProjectileSpeed"			""
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"		"0"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"0"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"0"
+		"AttributeAgilityGain"		"0"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"
+		"BountyGoldMin"				"0"
+		"BountyGoldMax"				"0"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"RingRadius"				"70"
+		"HealthBarOffset"			"150"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"325"
+		"MovementTurnRate"			"0.5"
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"250"
+		"StatusHealthRegen"			"5.0"
+		"StatusMana"				"150"
+		"StatusManaRegen"			"20"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"0"
+		"VisionNighttimeRange"		"0"
+		"HasInventory"				"0"
+
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"			"4932" // head, "Penumbral Hood"
+				}
+				"Wearable2"
+				{
+					"ItemDef"			"7247" // weapon, "Manifold Paradox"
+				}
+				"Wearable3"
+				{
+					"ItemDef"			"5655" // back, "Gleaming seal"
+				}
+				"Wearable4"
+				{
+					"ItemDef"			"4931" // shoulder, "Penumbral shawl"
+				}
+				"Wearable5"
+				{
+					"ItemDef"			"7115" // belt, "Carreau"
+				}
+			}
+		}
+	}
+
+	"npc_dota_midas_golden_valkyrie_b"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"					"npc_dota_creature"
+		"Level"						"6"
+		"ConsideredHero"			"1"
+		"WakesNeutrals"				"1"
+		
+		"Model"						"models/heroes/phantom_assassin/pa_arcana.vmdl"
+		"ModelScale" 				"0.9"
+		"particle_folder"		"particles/units/heroes/hero_phantom_assassin"
+		"HasAggressiveStance"		"1"
+		
+		"SoundSet"					"Hero_PhantomAssassin"
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_phantom_assassin.vsndevts"
+
+		// Abilities
+		//----------------------------------------------------------------
+
+		// Armor
+		//----------------------------------------------------------------
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.7"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackRange"		"150"
+		"AttackAcquisitionRange"		"1000"
+		"AttackSpeedActivityModifiers"
+		{
+			"fast"		"249"
+			"faster"	"350"
+			"fastest"	"450"
+		}
+		"ProjectileModel"			""
+		"ProjectileSpeed"			""
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"		"0"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"0"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"0"
+		"AttributeAgilityGain"		"0"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"
+		"BountyGoldMin"				"0"
+		"BountyGoldMax"				"0"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"RingRadius"				"70"
+		"HealthBarOffset"			"150"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"325"
+		"MovementTurnRate"			"0.5"
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"250"
+		"StatusHealthRegen"			"5.0"
+		"StatusMana"				"150"
+		"StatusManaRegen"			"20"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"0"
+		"VisionNighttimeRange"		"0"
+		"HasInventory"				"0"
+
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"			"7247" // weapon, "Manifold Paradox"
+				}
+				"Wearable2"
+				{
+					"ItemDef"			"4970" // belt, "Nimble Edge"
+				}
+				"Wearable3"
+				{
+					"ItemDef"			"5350" // cape, "Dark wraith"
+				}
+				"Wearable3"
+				{
+					"ItemDef"			"137" // head, standard
+				}
+				"Wearable4"
+				{
+					"ItemDef"			"5353" // shoulder, "Dark Wraith"
+				}
+			}
+		}
+	}
+
+	"npc_dota_midas_golden_valkyrie_c"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"					"npc_dota_creature"
+		"Level"						"6"
+		"ConsideredHero"			"1"
+		"WakesNeutrals"				"1"
+		
+		"Model"						"models/heroes/phantom_assassin/pa_arcana.vmdl"
+		"ModelScale" 				"0.9"
+		"particle_folder"		"particles/units/heroes/hero_phantom_assassin"
+		"HasAggressiveStance"		"1"
+		
+		"SoundSet"					"Hero_PhantomAssassin"
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_phantom_assassin.vsndevts"
+
+		// Abilities
+		//----------------------------------------------------------------
+
+		// Armor
+		//----------------------------------------------------------------
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.7"
+		"AttackAnimationPoint"		"0.300000"
+		"AttackRange"		"150"
+		"AttackAcquisitionRange"		"1000"
+		"AttackSpeedActivityModifiers"
+		{
+			"fast"		"249"
+			"faster"	"350"
+			"fastest"	"450"
+		}
+		"ProjectileModel"			""
+		"ProjectileSpeed"			""
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"		"0"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"0"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"0"
+		"AttributeAgilityGain"		"0"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"
+		"BountyGoldMin"				"0"
+		"BountyGoldMax"				"0"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"RingRadius"				"70"
+		"HealthBarOffset"			"150"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"325"
+		"MovementTurnRate"			"0.5"
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"250"
+		"StatusHealthRegen"			"5.0"
+		"StatusMana"				"150"
+		"StatusManaRegen"			"20"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"0"
+		"VisionNighttimeRange"		"0"
+		"HasInventory"				"0"
+
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"			"9320" // head, "Style of the Fearful Aria"
+				}
+				"Wearable2"
+				{
+					"ItemDef"			"7247" // weapon, "Manifold Paradox"
+				}
+				"Wearable3"
+				{
+					"ItemDef"			"139" // back, Standard cape
+				}
+				"Wearable4"
+				{
+					"ItemDef"			"138" // shoulder, Standard shoulder
+				}
+				"Wearable5"
+				{
+					"ItemDef"			"141" // belt, Standard belt
+				}
+			}
+		}
+	}
+}

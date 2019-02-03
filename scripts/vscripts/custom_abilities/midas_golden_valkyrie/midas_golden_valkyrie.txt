@@ -1,0 +1,254 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Midas: Golden Valkyrie
+	//=================================================================================================================
+	"midas_golden_valkyrie_a"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/midas_golden_valkyrie/midas_golden_valkyrie"
+		"AbilityTextureName"			"custom/midas_golden_valkyrie"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts"
+			"particle_folder"	"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100"
+		"AbilityManaCost"				"100"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"idle_radius"			"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_radius"			"600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"far_radius"			"1000"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"start_delay"			"1"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attack_rate_mult"		"1"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attack_dmg_mult"		"0.6"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"use_modifier"			"0"
+			}
+		}
+	}
+
+	"midas_golden_valkyrie_b"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/midas_golden_valkyrie/midas_golden_valkyrie"
+		"AbilityTextureName"			"custom/midas_golden_valkyrie"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts"
+			"particle_folder"	"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100"
+		"AbilityManaCost"				"100"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"idle_radius"			"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_radius"			"600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"far_radius"			"1000"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"start_delay"			"1"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attack_rate_mult"		"0.6"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attack_dmg_mult"		"1"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"use_modifier"			"0"
+			}
+		}
+	}
+
+	"midas_golden_valkyrie_c"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/midas_golden_valkyrie/midas_golden_valkyrie"
+		"AbilityTextureName"			"custom/midas_golden_valkyrie"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts"
+			"particle_folder"	"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100"
+		"AbilityManaCost"				"100"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"idle_radius"			"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_radius"			"600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"far_radius"			"1000"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"start_delay"			"1"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attack_rate_mult"		"0.6"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attack_dmg_mult"		"0.6"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"use_modifier"			"1"
+			}
+		}
+	}
+}

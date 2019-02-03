@@ -1,48 +1,43 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Midas: Golden Touch
+	// Midas: Golden Aura
 	//=================================================================================================================
-	"midas_golden_touch"
+	"midas_golden_burst"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"custom_abilities/midas_golden_touch/midas_golden_touch"
-		"AbilityTextureName"			"custom/midas_golden_touch"
+		"ScriptFile"					"custom_abilities/midas_golden_burst/midas_golden_burst"
+		"AbilityTextureName"			"custom/midas_golden_burst"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
-			"particle"	"particles/midas_golden_touch.vpcf"
-			"particle"	"particles/midas_golden_touch_explode.vpcf"
-			"particle"	"particles/midas_golden_touch_tree_dire.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts"
+			"particle"	"particles/midas_golden_burst.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_TREE"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"100"
-		"AbilityCastRangeBuffer"		"250"
-		"AbilityCastPoint"				"0.1"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70 60 50 40"
-		"AbilityManaCost"				"140"
+		"AbilityCooldown"				"30 26 22 18"
+		"AbilityManaCost"				"100"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -53,18 +48,23 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"hero_duration"			"2 2.5 3 3.5"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"tree_gold"				"75 100 125 150"
+				"duration"				"3 4 5 6"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_gold"		"10 12 14 16"
+				"armor_reduction"			"3 4 5 6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"gold_return"			"70 80 90 100"
 			}
 		}
 	}

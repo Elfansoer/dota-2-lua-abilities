@@ -21,7 +21,10 @@
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 
@@ -1286,6 +1289,8 @@
 #base "../vscripts/lua_abilities/enchantress_natures_attendants_lua/enchantress_natures_attendants_lua.txt"
 #base "../vscripts/lua_abilities/enchantress_impetus_lua/enchantress_impetus_lua.txt"
 
+#base "../vscripts/lua_abilities/enigma_malefice_lua/enigma_malefice_lua.txt"
+#base "../vscripts/lua_abilities/enigma_midnight_pulse_lua/enigma_midnight_pulse_lua.txt"
 #base "../vscripts/lua_abilities/enigma_black_hole_lua/enigma_black_hole_lua.txt"
 
 #base "../vscripts/lua_abilities/faceless_void_chronosphere_lua/faceless_void_chronosphere_lua.txt"
@@ -1409,6 +1414,9 @@
 #base "../vscripts/custom_abilities/bakedanuki_futatsuiwas_curse/bakedanuki_futatsuiwas_curse_base.txt"
 
 #base "../vscripts/custom_abilities/midas_golden_touch/midas_golden_touch.txt"
+#base "../vscripts/custom_abilities/midas_golden_sword/midas_golden_sword.txt"
+#base "../vscripts/custom_abilities/midas_golden_burst/midas_golden_burst.txt"
+#base "../vscripts/custom_abilities/midas_golden_valkyrie/midas_golden_valkyrie.txt"
 
 #base "../vscripts/custom_abilities/plague_doctor_healing_shield/plague_doctor_healing_shield_base.txt"
 

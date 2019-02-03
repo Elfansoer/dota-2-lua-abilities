@@ -1,0 +1,17 @@
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Midas
+	//=================================================================================================================
+	"npc_dota_hero_midas"
+	{
+		"override_hero"					"npc_dota_hero_dragon_knight"	// Hero to override
+		"Ability1"				"midas_golden_touch"						// Ability 1
+		"Ability2"				"midas_golden_sword"						// Ability 2
+		"Ability3"				"midas_golden_burst"						// Ability 3
+		"Ability4"				"midas_golden_valkyrie_a"							// Ability 6
+		"Ability5"				"midas_golden_valkyrie_b"							// Ability 6
+		"Ability6"				"midas_golden_valkyrie_c"							// Ability 6
+	}
+
+}

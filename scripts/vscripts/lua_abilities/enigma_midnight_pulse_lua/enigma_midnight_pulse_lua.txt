@@ -1,48 +1,41 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Midas: Golden Touch
+	// Enigma: Midnight Pulse (Lua version)
 	//=================================================================================================================
-	"midas_golden_touch"
+	"enigma_midnight_pulse_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"custom_abilities/midas_golden_touch/midas_golden_touch"
-		"AbilityTextureName"			"custom/midas_golden_touch"
+		"ScriptFile"					"lua_abilities/enigma_midnight_pulse_lua/enigma_midnight_pulse_lua"
+		"AbilityTextureName"			"enigma_midnight_pulse_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
-			"particle"	"particles/midas_golden_touch.vpcf"
-			"particle"	"particles/midas_golden_touch_explode.vpcf"
-			"particle"	"particles/midas_golden_touch_tree_dire.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+			"particle"	"particles/units/heroes/hero_enigma/enigma_midnight_pulse.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_TREE"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"100"
-		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0.1"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70 60 50 40"
-		"AbilityManaCost"				"140"
+		"AbilityCooldown"				"50 45 40 35"
+		"AbilityManaCost"				"75 95 115 135"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -53,18 +46,18 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"hero_duration"			"2 2.5 3 3.5"
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"550"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"tree_gold"				"75 100 125 150"
+				"var_type"					"FIELD_FLOAT"
+				"damage_percent"			"3.75 4.25 4.75 5.25"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_gold"		"10 12 14 16"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"9 10 11 12"
 			}
 		}
 	}
