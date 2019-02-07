@@ -43,24 +43,34 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow_per_attack"		"4 6 8 10"
+				"slow_per_attack"		"10"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_stack"				"100"
+				"max_stack"				"40 60 80 100"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"decay_time"			"2"
+				"var_type"				"FIELD_FLOAT"
+				"chance_per_slow"		"0.15"
 			}
 			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_chance_tooltip"	"6 9 12 15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"decay_time"			"2.5 3 3.5 4"
+			}
+			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"decay_rate"			"0.1"
 			}
-			"05"
+			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"decay_stack"			"10"

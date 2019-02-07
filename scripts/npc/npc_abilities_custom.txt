@@ -1442,3 +1442,4 @@
 
 // Test abilities
 #base "../vscripts/test_abilities/test_cosmetics/test_cosmetics.txt"
+#base "../vscripts/test_abilities/test_getbehavior/test_getbehavior.txt"

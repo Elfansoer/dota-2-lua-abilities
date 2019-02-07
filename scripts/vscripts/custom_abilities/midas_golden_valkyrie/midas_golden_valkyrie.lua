@@ -14,20 +14,21 @@ midas_golden_valkyrie_b = class({})
 midas_golden_valkyrie_c = class({})
 LinkLuaModifier( "modifier_midas_golden_valkyrie", "custom_abilities/midas_golden_valkyrie/modifier_midas_golden_valkyrie", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_midas_golden_valkyrie_buff", "custom_abilities/midas_golden_valkyrie/modifier_midas_golden_valkyrie_buff", LUA_MODIFIER_MOTION_NONE )
--- LinkLuaModifier( "modifier_midas_golden_valkyrie_passive", "custom_abilities/midas_golden_valkyrie/modifier_midas_golden_valkyrie_passive", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_midas_golden_valkyrie_passive", "custom_abilities/midas_golden_valkyrie/modifier_midas_golden_valkyrie_passive", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_midas_golden_valkyrie_ambient", "custom_abilities/midas_golden_valkyrie/modifier_midas_golden_valkyrie_ambient", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Ability Behavior
--- function midas_golden_valkyrie_a:GetBehavior()
--- 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
--- end
--- function midas_golden_valkyrie_b:GetBehavior()
--- 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
--- end
--- function midas_golden_valkyrie_c:GetBehavior()
--- 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
--- end
+-- not using instance methods, but class methods
+function midas_golden_valkyrie_a:GetBehavior()
+	return midas_golden_valkyrie:GetBehavior( self, "rheva" )
+end
+function midas_golden_valkyrie_b:GetBehavior()
+	return midas_golden_valkyrie:GetBehavior( self, "alena" )
+end
+function midas_golden_valkyrie_c:GetBehavior()
+	return midas_golden_valkyrie:GetBehavior( self, "moren" )
+end
 
 --------------------------------------------------------------------------------
 -- Ability Start
@@ -39,7 +40,8 @@ function midas_golden_valkyrie_a:OnSpellStart()
 	-- load data
 	local duration = self:GetSpecialValueFor("duration")
 	local idle = self:GetSpecialValueFor("idle_radius")/2
-	local location = caster:GetOrigin() - idle*caster:GetRightVector()
+	local direction = RotatePosition( Vector(0,0,0), QAngle( 0, -120, 0 ), caster:GetForwardVector() )
+	local location = caster:GetOrigin() + idle*direction
 
 	-- summon
 	midas_golden_valkyrie:SummonValkyrie( self, "rheva", location, duration )
@@ -53,7 +55,8 @@ function midas_golden_valkyrie_b:OnSpellStart()
 	-- load data
 	local duration = self:GetSpecialValueFor("duration")
 	local idle = self:GetSpecialValueFor("idle_radius")/2
-	local location = caster:GetOrigin() + idle*caster:GetRightVector()
+	local direction = RotatePosition( Vector(0,0,0), QAngle( 0, 120, 0 ), caster:GetForwardVector() )
+	local location = caster:GetOrigin() + idle*direction
 
 	-- summon
 	midas_golden_valkyrie:SummonValkyrie( self, "alena", location, duration )
@@ -76,29 +79,29 @@ end
 --------------------------------------------------------------------------------
 -- Ability Upgrade
 function midas_golden_valkyrie_a:OnUpgrade()
-	if not midas_golden_valkyrie.init then
+	if not self.shared then
 		midas_golden_valkyrie:Initialize( self:GetCaster() )
 	end
 
-	midas_golden_valkyrie:OnUpgrade("rheva")
+	midas_golden_valkyrie:OnUpgrade( self, "rheva" )
 end
 function midas_golden_valkyrie_b:OnUpgrade()
-	if not midas_golden_valkyrie.init then
+	if not self.shared then
 		midas_golden_valkyrie:Initialize( self:GetCaster() )
 	end
 
-	midas_golden_valkyrie:OnUpgrade("alena")
+	midas_golden_valkyrie:OnUpgrade( self, "alena")
 end
 function midas_golden_valkyrie_c:OnUpgrade()
-	if not midas_golden_valkyrie.init then
+	if not self.shared then
 		midas_golden_valkyrie:Initialize( self:GetCaster() )
 	end
 
-	midas_golden_valkyrie:OnUpgrade("moren")
+	midas_golden_valkyrie:OnUpgrade( self, "moren" )
 end
 
 --------------------------------------------------------------------------------
--- Combined
+-- Combined data
 midas_golden_valkyrie = {}
 midas_golden_valkyrie.init = false
 midas_golden_valkyrie.unit_name = {
@@ -111,58 +114,82 @@ midas_golden_valkyrie.unit_style = {
 	["alena"] = 1,
 	["moren"] = 2,
 }
+midas_golden_valkyrie.ability_bit = {
+	["rheva"] = 1,
+	["alena"] = 2,
+	["moren"] = 4,
+}
+
 function midas_golden_valkyrie:Initialize( caster )
-	self.init = true
-	self.caster = caster
-	self.ability = {
+	-- generate class data
+	local copy = {}
+
+	-- generate instance data
+	copy.abilities = {
 		["rheva"] = caster:FindAbilityByName( "midas_golden_valkyrie_a" ),
 		["alena"] = caster:FindAbilityByName( "midas_golden_valkyrie_b" ),
 		["moren"] = caster:FindAbilityByName( "midas_golden_valkyrie_c" ),
 	}
-	self.leveled_ability = {
-		["rheva"] = false,
-		["alena"] = false,
-		["moren"] = false,
-	}
+	copy.passive = caster:AddNewModifier(
+		caster, -- player source
+		copy.abilities["rheva"], -- ability source
+		"modifier_midas_golden_valkyrie_passive", -- modifier name
+		{} -- kv
+	)
 
-	-- self.caster:AddNewModifier(
-	-- 	self.caster, -- player source
-	-- 	self.ability["rheva"], -- ability source
-	-- 	"modifier_midas_golden_valkyrie_passive", -- modifier name
-	-- 	{  } -- kv
-	-- )
+	for name,ability in pairs(copy.abilities) do
+		ability.shared = copy
+	end
 end
 
 midas_golden_valkyrie.upgrade_lock = false
-function midas_golden_valkyrie:OnUpgrade( name )
+function midas_golden_valkyrie:OnUpgrade( ability, name )
+	local shared = ability.shared
+
 	-- check upgrade lock
-	if self.upgrade_lock then return end
+	if shared.upgrade_lock then return end
 
 	-- lock upgrade to prevent recursive call
-	self.upgrade_lock = true
+	shared.upgrade_lock = true
 
 	-- check leveled
-	if self.leveled_ability[name] then
+	if shared.passive:HasBit( self.ability_bit[name] ) then
 		-- already leveled
-		self.ability[name]:SetLevel( self.ability[name]:GetLevel()-1 )
-		self.caster:SetAbilityPoints( self.caster:GetAbilityPoints()+1 )
+		ability:SetLevel( ability:GetLevel()-1 )
+		ability:GetCaster():SetAbilityPoints( ability:GetCaster():GetAbilityPoints()+1 )
 	else
-		-- level up
-		local ability = self.ability[name]
-		self.leveled_ability[name] = true
-		for k,v in pairs(self.leveled_ability) do
-			-- level up others
-			if k~=name then
-				self.ability[k]:SetLevel( ability:GetLevel() )
+		-- level up others
+		for _,abil in pairs(shared.abilities) do
+			if abil~=ability then
+				abil:SetLevel( ability:GetLevel() )
 			end
-
-			-- only leveled abilities that are active
-			self.ability[k]:SetActivated( self.leveled_ability[k] )
 		end
+
+		-- change behavior
+		shared.passive:AddBit( self.ability_bit[name] )
 	end
 
 	-- unlock upgrade
-	self.upgrade_lock = false
+	shared.upgrade_lock = false
+end
+
+function midas_golden_valkyrie:GetBehavior( ability, name )
+	local stack = ability:GetCaster():GetModifierStackCount( "modifier_midas_golden_valkyrie_passive", ability:GetCaster() )
+
+	-- flag operation
+	if self:FlagExist( stack, self.ability_bit[name] ) then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
+	end
+	return DOTA_ABILITY_BEHAVIOR_PASSIVE
+end
+function midas_golden_valkyrie:FlagExist(a,b)
+	local p,c,d=1,0,b
+	while a>0 and b>0 do
+		local ra,rb=a%2,b%2
+		if ra+rb>1 then c=c+p end
+		a,b,p=(a-ra)/2,(b-rb)/2,p*2
+	end
+	return c==d
 end
 
 function midas_golden_valkyrie:SummonValkyrie( ability, name, location, duration )

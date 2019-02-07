@@ -131,9 +131,11 @@ function modifier_midas_golden_valkyrie:CheckState()
 		[MODIFIER_STATE_UNSELECTABLE] = true,
 		[MODIFIER_STATE_UNTARGETABLE] = true,
 		[MODIFIER_STATE_INVULNERABLE] = true,
-		-- [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		-- [MODIFIER_STATE_NO_UNIT_COLLISION] = self.aggro==nil,
 		[MODIFIER_STATE_OUT_OF_GAME] = true,
 		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_INVISIBLE] = self:GetCaster():IsInvisible(),
+
 		[MODIFIER_STATE_STUNNED] = self.nostart,
 	}
 

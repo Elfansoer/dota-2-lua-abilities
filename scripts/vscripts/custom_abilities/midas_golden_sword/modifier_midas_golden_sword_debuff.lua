@@ -29,53 +29,24 @@ end
 -- Initializations
 function modifier_midas_golden_sword_debuff:OnCreated( kv )
 	self.max_stack = self:GetAbility():GetSpecialValueFor( "max_stack" )
+	self.chance_per_slow = self:GetAbility():GetSpecialValueFor( "chance_per_slow" )
 	self.decay_rate = self:GetAbility():GetSpecialValueFor( "decay_rate" )
 	self.decay_stack = self:GetAbility():GetSpecialValueFor( "decay_stack" )
-	self.loop = 0
 
 	if IsServer() then
-		-- Increment stack
-		self:SetStackCount( self:GetStackCount() + kv.slow )
-
-		-- Start interval
-		self.decay = false
-		self:StartIntervalThink( kv.stack_duration )
-
+		self:AttackLogic( kv.slow, kv.stack_duration )
 	end
 	self:PlayEffects()
 end
 
 function modifier_midas_golden_sword_debuff:OnRefresh( kv )
 	self.max_stack = self:GetAbility():GetSpecialValueFor( "max_stack" )
+	self.chance_per_slow = self:GetAbility():GetSpecialValueFor( "chance_per_slow" )
 	self.decay_rate = self:GetAbility():GetSpecialValueFor( "decay_rate" )
 	self.decay_stack = self:GetAbility():GetSpecialValueFor( "decay_stack" )
 
 	if IsServer() then
-		-- if decaying, do nothing
-		if self.decaying then return end
-
-		-- Increment stack
-		self:SetStackCount( self:GetStackCount() + kv.slow )
-
-		-- if stack is higher than max, cast golden touch
-		if self:GetStackCount()>=self.max_stack + self.loop then
-			-- find abilty
-			local ability = self:GetCaster():FindAbilityByName( "midas_golden_touch" )
-			if ability and ability:GetLevel()>0 then
-				-- cast the ability
-				self:GetCaster():SetCursorCastTarget( self:GetParent() )
-				ability:OnSpellStart()
-			end
-
-			self.loop = self.loop + self.max_stack
-
-			-- -- destroy this
-			-- self:Destroy()
-		end
-
-		-- Start interval
-		self.decay = false
-		self:StartIntervalThink( kv.stack_duration )
+		self:AttackLogic( kv.slow, kv.stack_duration )
 	end
 end
 
@@ -90,24 +61,24 @@ end
 function modifier_midas_golden_sword_debuff:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_TOOLTIP,
 	}
 
 	return funcs
 end
 
 function modifier_midas_golden_sword_debuff:GetModifierMoveSpeedBonus_Percentage()
-	return - math.min(self.max_stack,self:GetStackCount())
+	return -self:GetStackCount()
 end
---------------------------------------------------------------------------------
--- Status Effects
--- function modifier_midas_golden_sword_debuff:CheckState()
--- 	local state = {
--- 		[MODIFIER_STATE_INVULNERABLE] = true,
--- 	}
 
--- 	return state
--- end
+function modifier_midas_golden_sword_debuff:GetModifierAttackSpeedBonus_Constant()
+	return -self:GetStackCount()
+end
 
+function modifier_midas_golden_sword_debuff:OnTooltip()
+	return self:GetStackCount()*self.chance_per_slow
+end
 --------------------------------------------------------------------------------
 -- Interval Effects
 function modifier_midas_golden_sword_debuff:OnIntervalThink()
@@ -129,9 +100,33 @@ end
 function modifier_midas_golden_sword_debuff:OnStackCountChanged( old )
 	if IsClient() then
 		self:UpdateEffects( self:GetStackCount() )
-		self:SetStackCount( math.min(self.max_stack,self:GetStackCount()) )
 	end
 end
+
+--------------------------------------------------------------------------------
+-- Helper
+function modifier_midas_golden_sword_debuff:AttackLogic( stack, duration )
+	-- Increment stack up to maximum
+	self:SetStackCount( math.min(self:GetStackCount() + stack, self.max_stack) )
+
+	-- roll chance to cast golden touch
+	local chance = self.chance_per_slow * self:GetStackCount()
+	local r = RandomInt( 0,100 )
+	if r<chance then
+		-- cast if available and not golden
+		local modifier = self:GetParent():FindModifierByName( "modifier_midas_golden_touch" )
+		local ability = self:GetCaster():FindAbilityByName( "midas_golden_touch" )
+		if ability and ability:GetLevel()>0 and (not modifier) then
+			self:GetCaster():SetCursorCastTarget( self:GetParent() )
+			ability:OnSpellStart()
+		end
+	end
+
+	-- Start decay interval
+	self.decay = false
+	self:StartIntervalThink( duration )
+end
+
 --------------------------------------------------------------------------------
 -- Graphics & Animations
 function modifier_midas_golden_sword_debuff:PlayEffects()

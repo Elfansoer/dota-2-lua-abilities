@@ -30,7 +30,7 @@ function midas_golden_burst:OnSpellStart()
 		nil,	-- handle, cacheUnit. (not known)
 		radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
-		DOTA_UNIT_TARGET_HERO,	-- int, type filter
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
 		0,	-- int, flag filter
 		0,	-- int, order filter
 		false	-- bool, can grow cache
@@ -72,6 +72,7 @@ function midas_golden_burst:OnSpellStart()
 				local position = item_physical:GetOrigin()
 				local gold = item:GetCost() * gold_return/100
 				item_physical:Kill()
+				item:Kill()
 
 				PlayerResource:ModifyGold( purchaser:GetPlayerOwnerID(), gold, false, DOTA_ModifyGold_Unspecified )
 				self:PlayEffects2( purchaser, gold )

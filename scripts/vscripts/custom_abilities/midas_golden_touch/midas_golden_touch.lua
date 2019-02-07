@@ -22,10 +22,11 @@ function midas_golden_touch:CastFilterResultTarget( hTarget )
 	local nResult = UnitFilter(
 		hTarget,
 		DOTA_UNIT_TARGET_TEAM_BOTH,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP + DOTA_UNIT_TARGET_TREE,
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP + DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_COURIER + DOTA_UNIT_TARGET_OTHER + DOTA_UNIT_TARGET_TREE,
 		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP,
 		self:GetCaster():GetTeamNumber()
 	)
+
 	if nResult ~= UF_SUCCESS then
 		return nResult
 	end
@@ -58,6 +59,12 @@ function midas_golden_touch:OnSpellStart( kv )
 		caster:ModifyGold( tree_gold, false, 0 )
 		self:PlayEffects1( tree_gold )
 		self:PlayEffects2( target:GetOrigin() )
+		return
+	elseif target:GetClassname()=="dota_item_rune" then
+		caster:PickupRune( target )
+		caster:ModifyGold( tree_gold, false, 0 )
+		self:PlayEffects1( tree_gold )
+		self:PlayEffects3( target )
 		return
 	end
 
