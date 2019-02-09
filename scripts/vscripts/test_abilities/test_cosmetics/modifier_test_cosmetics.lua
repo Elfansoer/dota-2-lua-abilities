@@ -92,7 +92,8 @@ function modifier_test_cosmetics:OnCreated( kv )
 			-1, -- iPriority
 			false, -- bHeroEffect
 			false -- bOverheadEffect
-		)	end
+		)
+	end
 end
 
 function modifier_test_cosmetics:OnRefresh( kv )
@@ -154,4 +155,8 @@ function modifier_test_cosmetics:OnDeath( params )
 		)
 		ParticleManager:ReleaseParticleIndex( effect_cast )
 	end
+end
+
+function modifier_test_cosmetics:GetStatusEffectName()
+	return "particles/midas_golden_touch_fx.vpcf"
 end

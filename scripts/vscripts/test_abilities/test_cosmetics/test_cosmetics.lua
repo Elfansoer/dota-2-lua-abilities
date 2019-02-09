@@ -27,11 +27,10 @@ function test_cosmetics:CreateUnit( name, style, location )
 	cosmetics:SetControllableByPlayer( self:GetCaster():GetPlayerID(), false )
 	cosmetics:SetOwner( self:GetCaster() )
 	cosmetics:AddNewModifier(
-		caster, -- player source
+		self:GetCaster(), -- player source
 		self, -- ability source
 		"modifier_test_cosmetics", -- modifier name
 		{
-			duration = duration,
 			style = style,
 		} -- kv
 	)

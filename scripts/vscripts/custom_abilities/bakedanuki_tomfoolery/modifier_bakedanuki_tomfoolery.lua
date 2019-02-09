@@ -94,7 +94,7 @@ function modifier_bakedanuki_tomfoolery:OnTakeDamage( params )
 
 		-- logic
 		if pass then
-			if self:GetParent():GetHealth()<=1 then
+			if self:GetParent():GetHealth()<=2 then
 				self:GetAbility():StopTrick()
 			end
 		end

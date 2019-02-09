@@ -1,6 +1,7 @@
 lich_chain_frost_lua = class({})
 LinkLuaModifier( "modifier_lich_chain_frost_lua", "lua_abilities/lich_chain_frost_lua/modifier_lich_chain_frost_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_lich_chain_frost_lua_thinker", "lua_abilities/lich_chain_frost_lua/modifier_lich_chain_frost_lua_thinker", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_generic_tracking_projectile", "lua_abilities/generic/modifier_generic_tracking_projectile", LUA_MODIFIER_MOTION_NONE )
 local tempTable = require( "util/tempTable" )
 
 --------------------------------------------------------------------------------
@@ -71,6 +72,7 @@ function lich_chain_frost_lua:OnSpellStart()
 			key = key,
 		}
 	}
+	projectile_info = self:PlayProjectile( projectile_info )
 	castTable.projectile = projectile_info
 	ProjectileManager:CreateTrackingProjectile( castTable.projectile )
 
@@ -82,6 +84,8 @@ end
 --------------------------------------------------------------------------------
 -- Projectile
 function lich_chain_frost_lua:OnProjectileHit_ExtraData( target, location, kv )
+	self:StopProjectile( kv )
+
 	-- load data
 	local bounce_delay = 0.2
 	local castTable = tempTable:GetATValue( kv.key )
@@ -126,4 +130,27 @@ function lich_chain_frost_lua:OnProjectileHit_ExtraData( target, location, kv )
 		sound_target = "Hero_Lich.ChainFrostImpact.Hero"
 	end
 	EmitSoundOn( sound_target, target )
+end
+
+--------------------------------------------------------------------------------
+-- Graphics & Effects
+function lich_chain_frost_lua:PlayProjectile( info )
+	local tracker = info.Target:AddNewModifier(
+		info.Source, -- player source
+		self, -- ability source
+		"modifier_generic_tracking_projectile", -- modifier name
+		{ duration = 4 } -- kv
+	)
+	tracker:PlayTrackingProjectile( info )
+	
+	info.EffectName = nil
+	if not info.ExtraData then info.ExtraData = {} end
+	info.ExtraData.tracker = tempTable:AddATValue( tracker )
+
+	return info
+end
+
+function lich_chain_frost_lua:StopProjectile( kv )
+	local tracker = tempTable:RetATValue( kv.tracker )
+	if tracker and not tracker:IsNull() then tracker:Destroy() end
 end

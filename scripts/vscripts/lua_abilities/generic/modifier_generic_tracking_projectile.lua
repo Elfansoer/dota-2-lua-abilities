@@ -14,7 +14,7 @@ modifier_generic_tracking_projectile = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_generic_tracking_projectile:IsHidden()
-	return false
+	return true
 end
 
 function modifier_generic_tracking_projectile:IsPurgable()

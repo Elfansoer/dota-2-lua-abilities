@@ -15,6 +15,10 @@ function modifier_lich_chain_frost_lua_thinker:RemoveOnDeath()
 	return false
 end
 
+function modifier_lich_chain_frost_lua_thinker:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_lich_chain_frost_lua_thinker:OnCreated( kv )
@@ -41,6 +45,9 @@ function modifier_lich_chain_frost_lua_thinker:OnDestroy( kv )
 			castTable = tempTable:RetATValue( self.key )
 			return
 		end
+
+		-- add temporary FOV
+		AddFOWViewer( castTable.projectile.iVisionTeamNumber, self:GetParent():GetOrigin(), castTable.projectile.iVisionRadius, 0.3, false)
 
 		-- find enemies
 		local enemies = FindUnitsInRadius(
@@ -73,6 +80,36 @@ function modifier_lich_chain_frost_lua_thinker:OnDestroy( kv )
 		-- bounce to enemy
 		castTable.projectile.Target = target
 		castTable.projectile.Source = self:GetParent()
+		castTable.projectile.EffectName = "particles/econ/items/lich/lich_ti8_immortal_arms/lich_ti8_chain_frost.vpcf"
+		
+		castTable.projectile = self:PlayProjectile( castTable.projectile )
 		ProjectileManager:CreateTrackingProjectile( castTable.projectile )
 	end
+end
+
+--------------------------------------------------------------------------------
+-- Graphics & Effects
+function modifier_lich_chain_frost_lua_thinker:PlayProjectile( info )
+	local tracker = info.Target:AddNewModifier(
+		info.Source, -- player source
+		self:GetAbility(), -- ability source
+		"modifier_generic_tracking_projectile", -- modifier name
+		{ duration = 4 } -- kv
+	)
+	local effect_cast = tracker:PlayTrackingProjectile( info )
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		0,
+		info.Source,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		Vector(0,0,0), -- unknown
+		true -- unknown, true
+	)
+
+	info.EffectName = nil
+	if not info.ExtraData then info.ExtraData = {} end
+	info.ExtraData.tracker = tempTable:AddATValue( tracker )
+
+	return info
 end

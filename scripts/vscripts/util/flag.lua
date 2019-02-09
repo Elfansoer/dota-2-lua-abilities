@@ -17,7 +17,7 @@ end
 
 -- Adds flag b to state a, if not exist
 function flag:Add(a,b)
-	if flagExist(a,b) then
+	if flag:Exist(a,b) then
 		return a
 	else
 		return a+b
@@ -26,7 +26,7 @@ end
 
 -- Removes flag b to state a, if exist
 function flag:Min(a,b)
-	if flagExist(a,b) then
+	if flag:Exist(a,b) then
 		return a-b
 	else
 		return a
