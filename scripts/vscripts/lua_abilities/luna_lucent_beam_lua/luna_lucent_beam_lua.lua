@@ -31,6 +31,9 @@ function luna_lucent_beam_lua:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
+	-- cancel if linken
+	if target:TriggerSpellAbsorb( self ) then return end
+
 	-- load data
 	local duration = self:GetSpecialValueFor("stun_duration")
 	local damage = self:GetSpecialValueFor("beam_damage")
@@ -98,8 +101,8 @@ function luna_lucent_beam_lua:PlayEffects2( target )
 	local sound_target = "Hero_Luna.LucentBeam.Target"
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
-	assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_color"))(self,effect_cast)
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
 	ParticleManager:SetParticleControl( effect_cast, 0, target:GetOrigin() )
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,

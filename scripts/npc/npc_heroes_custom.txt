@@ -11,9 +11,9 @@
 	{
 		"override_hero"					"npc_dota_hero_queenofpain"			// Hero to override
 		"Ability1"				"undying_tombstone"			// Ability 5
-		"Ability2"				"venomancer_plague_ward"				// Ability 3
-		"Ability3"				"zuus_cloud"				// Ability 1
-		"Ability4"				"techies_land_mines"				// Ability 2
+		"Ability2"				"enchantress_enchant"				// Ability 3
+		"Ability3"				"doom_bringer_devour"				// Ability 1
+		"Ability4"				"chen_holy_persuasion"				// Ability 2
 		"Ability5"				"templar_assassin_psionic_trap"					// Ability 6
 		"Ability6"				"keeper_of_the_light_will_o_wisp"			// Ability 4
 
@@ -247,6 +247,9 @@
 	{
 		"override_hero"					"npc_dota_hero_mirana"	// Hero to override
 		"Ability1"				"luna_lucent_beam_lua"						// Ability 1
+		"Ability2"				"luna_moon_glaive_lua"						// Ability 1
+		"Ability3"				"luna_lunar_blessing_lua"						// Ability 1
+		"Ability6"				"luna_eclipse_lua"						// Ability 1
 	}
 
 	//=================================================================================================================
@@ -418,7 +421,7 @@
 	"npc_dota_hero_antimage_lua"
 	{
 		"override_hero"					"npc_dota_hero_antimage"	// Hero to override
-		"Ability1"				"abaddon_mist_coil_lua"						// Ability 2
+		"Ability1"				"axe_berserkers_call_lua"						// Ability 2
 		"Ability2"				"axe_battle_hunger_lua"						// Ability 3
 		"Ability3"				"axe_counter_helix_lua"						// Ability 1
 		"Ability6"				"axe_culling_blade_lua"							// Ability 6

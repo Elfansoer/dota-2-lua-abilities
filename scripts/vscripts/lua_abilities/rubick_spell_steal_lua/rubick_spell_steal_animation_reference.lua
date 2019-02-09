@@ -57,6 +57,8 @@ reference.animations = {
     {"invoker_sun_strike_lua", false, ACT_DOTA_CAST_ABILITY_5, "wave"},
     {"invoker_chaos_meteor_lua", false, ACT_DOTA_CAST_ABILITY_5, "wave"},
 
+    {"lich_chain_frost_lua", true, ACT_DOTA_ATTACK,"", 1.3},
+
     {"lina_dragon_slave_lua", false, nil, "wave"},
     {"lina_light_strike_array_lua", false, nil, "lsa"},
     {"lina_laguna_blade_lua", false, nil, "laguna"},

@@ -18,7 +18,11 @@ local reference = {
 	["particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf"] = "particles/rubick_chaos_meteor.vpcf",
 	["particles/units/heroes/hero_invoker/invoker_chaos_meteor_fly.vpcf"] = "particles/rubick_chaos_meteor_fly.vpcf",
 
+	["particles/econ/items/lich/lich_ti8_immortal_arms/lich_ti8_chain_frost.vpcf"] = "particles/rubick_chain_frost.vpcf",
 	["particles/units/heroes/hero_lion/lion_spell_finger_of_death.vpcf"] = "particles/units/heroes/hero_lion/lion_spell_finger_of_death.vpcf",
+
+	["particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"] = "particles/units/heroes/hero_luna/luna_lucent_beam.vpcf",
+	["particles/units/heroes/hero_luna/luna_eclipse.vpcf"] = "particles/units/heroes/hero_luna/luna_eclipse.vpcf",
 
 	["particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"] = "particles/rubick_guardian_angel_ally.vpcf",
 	["particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"] = "particles/rubick_guardian_angel_rubick.vpcf",

@@ -1,45 +1,45 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Luna: Lucent Beam (Lua version)
+	// Luna: Eclipse (Lua version)
 	//=================================================================================================================
-	"luna_lucent_beam_lua"
+	"luna_eclipse_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/luna_lucent_beam_lua/luna_lucent_beam_lua"
-		"AbilityTextureName"			"luna_lucent_beam_lua"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
+		"ScriptFile"					"lua_abilities/luna_eclipse_lua/luna_eclipse_lua"
+		"AbilityTextureName"			"luna_eclipse_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
-			"particle"	"particles/units/heroes/hero_luna/luna_lucent_beam_precast.vpcf"
+			"particle"	"particles/units/heroes/hero_luna/luna_eclipse.vpcf"
 			"particle"	"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.4"
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.6"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6.0 6.0 6.0 6.0"
-		"AbilityManaCost"				"90 100 110 120"
+		"AbilityCooldown"				"140"
+		"AbilityManaCost"				"150 200 250"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -50,13 +50,53 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.8"
+				"var_type"					"FIELD_INTEGER"
+				"beams"						"5 8 11"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"beam_damage"			"75 150 225 300"
+				"var_type"					"FIELD_INTEGER"
+				"hit_count"					"5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"beam_interval"				"0.6 0.6 0.6"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"beam_interval_scepter"				"0.3"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration_tooltip"			"2.4 4.2 6.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"675 675 675"
+			}	
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"beams_scepter"				"6 12 18"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hit_count_scepter"			"6 12 18"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration_tooltip_scepter"	"1.8 3.6 5.4"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range_tooltip_scepter"	"2500"
 			}
 		}
 	}
