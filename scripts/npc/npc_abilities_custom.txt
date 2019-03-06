@@ -1244,6 +1244,7 @@
 
 #base "../vscripts/lua_abilities/bane_enfeeble_lua/bane_enfeeble_lua.txt"
 #base "../vscripts/lua_abilities/bane_brain_sap_lua/bane_brain_sap_lua.txt"
+#base "../vscripts/lua_abilities/bane_nightmare_lua/bane_nightmare_lua.txt"
 #base "../vscripts/lua_abilities/bane_fiends_grip_lua/bane_fiends_grip_lua.txt"
 
 #base "../vscripts/lua_abilities/bristleback_viscous_nasal_goo_lua/bristleback_viscous_nasal_goo_lua_base.txt"
@@ -1253,6 +1254,7 @@
 
 #base "../vscripts/lua_abilities/bloodseeker_bloodrage_lua/bloodseeker_bloodrage_lua.txt"
 #base "../vscripts/lua_abilities/bloodseeker_blood_rite_lua/bloodseeker_blood_rite_lua.txt"
+#base "../vscripts/lua_abilities/bloodseeker_thirst_lua/bloodseeker_thirst_lua.txt"
 
 #base "../vscripts/lua_abilities/centaur_warrunner_hoof_stomp_lua/centaur_warrunner_hoof_stomp_lua.txt"
 #base "../vscripts/lua_abilities/centaur_warrunner_double_edge_lua/centaur_warrunner_double_edge_lua.txt"
@@ -1336,6 +1338,11 @@
 #base "../vscripts/lua_abilities/luna_moon_glaive_lua/luna_moon_glaive_lua.txt"
 #base "../vscripts/lua_abilities/luna_lunar_blessing_lua/luna_lunar_blessing_lua.txt"
 #base "../vscripts/lua_abilities/luna_eclipse_lua/luna_eclipse_lua.txt"
+
+#base "../vscripts/lua_abilities/mars_spear_of_mars_lua/mars_spear_of_mars_lua.txt"
+#base "../vscripts/lua_abilities/mars_bulwark_lua/mars_bulwark_lua.txt"
+#base "../vscripts/lua_abilities/mars_gods_rebuke_lua/mars_gods_rebuke_lua.txt"
+#base "../vscripts/lua_abilities/mars_arena_of_blood_lua/mars_arena_of_blood_lua.txt"
 
 #base "../vscripts/lua_abilities/mirana_sacred_arrow_lua/mirana_sacred_arrow_lua.txt"
 #base "../vscripts/lua_abilities/mirana_leap_lua/mirana_leap_lua.txt"

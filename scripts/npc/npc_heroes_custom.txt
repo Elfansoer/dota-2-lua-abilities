@@ -48,6 +48,18 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Antimage (Axe)
+	//=================================================================================================================
+	"npc_dota_hero_antimage_lua"
+	{
+		"override_hero"					"npc_dota_hero_antimage"	// Hero to override
+		"Ability1"				"axe_berserkers_call_lua"						// Ability 2
+		"Ability2"				"axe_battle_hunger_lua"						// Ability 3
+		"Ability3"				"axe_counter_helix_lua"						// Ability 1
+		"Ability6"				"axe_culling_blade_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Death Prophet (Bane)
 	//=================================================================================================================
 	"npc_dota_hero_death_prophet_lua"
@@ -55,6 +67,19 @@
 		"override_hero"					"npc_dota_hero_death_prophet"	// Hero to override
 		"Ability1"				"bane_enfeeble_lua"						// Ability 2
 		"Ability2"				"bane_brain_sap_lua"						// Ability 3
+		"Ability3"				"bane_nightmare_lua"						// Ability 3
+		"Ability6"				"bane_fiends_grip_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Death Prophet (Bane)
+	//=================================================================================================================
+	"npc_dota_hero_legion_commander_lua"
+	{
+		"override_hero"					"npc_dota_hero_legion_commander"	// Hero to override
+		"Ability1"				"bloodseeker_bloodrage_lua"						// Ability 2
+		"Ability2"				"bloodseeker_blood_rite_lua"						// Ability 3
+		"Ability3"				"bloodseeker_thirst_lua"						// Ability 3
 		"Ability6"				"bane_fiends_grip_lua"							// Ability 6
 	}
 
@@ -247,9 +272,21 @@
 	{
 		"override_hero"					"npc_dota_hero_mirana"	// Hero to override
 		"Ability1"				"luna_lucent_beam_lua"						// Ability 1
-		"Ability2"				"luna_moon_glaive_lua"						// Ability 1
 		"Ability3"				"luna_lunar_blessing_lua"						// Ability 1
 		"Ability6"				"luna_eclipse_lua"						// Ability 1
+	}
+
+	//=================================================================================================================
+	// HERO: Huskar (Mars)
+	//=================================================================================================================
+	"npc_dota_hero_huskar_lua"
+	{
+		"override_hero"					"npc_dota_hero_huskar"	// Hero to override
+		"Ability1"				"mars_spear_of_mars_lua"						// Ability 1
+		"Ability2"				"mars_gods_rebuke_lua"						// Ability 1
+		"Ability3"				"mars_bulwark_lua"						// Ability 1
+		"Ability4"				"mars_arena_of_blood"						// Ability 1
+		"Ability6"				"mars_arena_of_blood_lua"						// Ability 1
 	}
 
 	//=================================================================================================================
@@ -413,18 +450,6 @@
 		"Ability2"				"wraith_king_vampiric_aura_lua"						// Ability 2
 		"Ability3"				"wraith_king_mortal_strike_lua"						// Ability 3
 		"Ability6"				"wraith_king_reincarnation_lua"							// Ability 6
-	}
-
-	//=================================================================================================================
-	// HERO: Antimage (Collection 1)
-	//=================================================================================================================
-	"npc_dota_hero_antimage_lua"
-	{
-		"override_hero"					"npc_dota_hero_antimage"	// Hero to override
-		"Ability1"				"axe_berserkers_call_lua"						// Ability 2
-		"Ability2"				"axe_battle_hunger_lua"						// Ability 3
-		"Ability3"				"axe_counter_helix_lua"						// Ability 1
-		"Ability6"				"axe_culling_blade_lua"							// Ability 6
 	}
 
 	//=================================================================================================================

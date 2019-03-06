@@ -16,82 +16,100 @@ function modifier_generic_knockback_lua:OnCreated( kv )
 	if IsServer() then
 		-- creation data (default)
 			-- kv.distance (0)
-			-- kv.height (-1)
 			-- kv.duration (0)
-			-- kv.damage (nil)
-			-- kv.direction_x, kv.direction_y, kv.direction_z (xy:-forward vector, z:0)
+			-- kv.x, kv.y, kv.z (xy:-forward vector, z:0)
 			-- kv.IsStun (false)
-			-- kv.IsFlail (true)
-			-- kv.IsPurgable() // later 
-			-- kv.IsMultiple() // later
+			-- kv.damage (nil)
+			-- kv.IsPurgable () // later 
 
 		-- references
 		self.distance = kv.distance or 0
-		self.height = kv.height or -1
 		self.duration = kv.duration or 0
-		self.damage = kv.damage or 0
-		if kv.direction_x and kv.direction_y then
-			self.direction = Vector(kv.direction_x,kv.direction_y,0):Normalized()
+		if kv.x and kv.y then
+			self.direction = Vector(kv.x,kv.y,0):Normalized()
 		else
 			self.direction = -(self:GetParent():GetForwardVector())
 		end
-		self.stun = kv.IsStun or false
-		self.flail = kv.IsFlail or true
+		self.height = kv.z or 0
+		self.stun = kv.IsStun
 
 		-- load data
 		self.origin = self:GetParent():GetOrigin()
 		self.hVelocity = self.distance/self.duration
+		
+		-- sync
+		self.elapsedTime = 0
+		self.motionTick = {}
+		self.motionTick[0] = 0
+		self.motionTick[1] = 0
+		self.motionTick[2] = 0
 
 		-- vertical motion model
 		self.gravity = -self.height/(self.duration*self.duration*0.125)
 		self.vVelocity = (-0.5)*self.gravity*self.duration
 
-		-- check duration
-		if self.duration == 0 then
-			self:Destroy()
-		end
-
-		-- apply motion controllers
-		if self:ApplyHorizontalMotionController() == false then 
-			self:Destroy()
-		end
-		if self.height>=0 then
+		self.both = 0
+		if self.z~=0 then
+			self.both = self.both+1
 			if self:ApplyVerticalMotionController() == false then 
 				self:Destroy()
 			end
 		end
-
-		-- tell client of activity
-		if self.flail then
-			self:SetStackCount( 1 )
-		elseif self.stun then
-			self:SetStackCount( 2 )
+		if self.distance~=0 then
+			self.both = self.both+1
+			if self:ApplyHorizontalMotionController() == false then 
+				self:Destroy()
+			end
 		end
-	else
-		self.anim = self:GetStackCount()
-		self:SetStackCount( 0 )
 	end
 end
 
 function modifier_generic_knockback_lua:OnRefresh( kv )
-	if not IsServer() then return end
+	
 end
 
 function modifier_generic_knockback_lua:OnDestroy( kv )
-	if not IsServer() then return end
-	self:GetParent():InterruptMotionControllers( true )
+	if IsServer() then
+		self:GetParent():InterruptMotionControllers( true )
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Motion effects
+function modifier_generic_knockback_lua:SyncTime( iDir, dt )
+	-- check if sync is not required
+	if self.both<2 then
+		self.elapsedTime = self.elapsedTime + dt
+		if self.elapsedTime > self.duration then
+			self:Destroy()
+		end
+		return
+	end
+
+	-- check if already synced
+	if self.motionTick[1]==self.motionTick[2] then
+		self.motionTick[0] = self.motionTick[0] + 1
+		self.elapsedTime = self.elapsedTime + dt
+	end
+
+	-- sync time
+	self.motionTick[iDir] = self.motionTick[0]
+	
+	-- end motion
+	if self.elapsedTime > self.duration and self.motionTick[1]==self.motionTick[2] then
+		self:Destroy()
+	end
+end
+
 function modifier_generic_knockback_lua:UpdateHorizontalMotion( me, dt )
+	self:SyncTime(1, dt)
 	local parent = self:GetParent()
 	
 	-- set position
-	local target = self.direction*self.distance*(dt/self.duration)
+	local target = self.direction*self.hVelocity*self.elapsedTime
 
 	-- change position
-	parent:SetOrigin( parent:GetOrigin() + target )
+	parent:SetOrigin( self.origin + target )
 end
 
 function modifier_generic_knockback_lua:OnHorizontalMotionInterrupted()
@@ -101,15 +119,14 @@ function modifier_generic_knockback_lua:OnHorizontalMotionInterrupted()
 end
 
 function modifier_generic_knockback_lua:UpdateVerticalMotion( me, dt )
-	-- set time
-	local time = dt/self.duration
+	self:SyncTime(2, dt)
+	local parent = self:GetParent()
 
 	-- set relative position
-	local target = self.hVelocity*time
-	self.hVelocity = self.hVelocity - (self.gravity*time)
+	local target = self.vVelocity*self.elapsedTime + 0.5*self.gravity*self.elapsedTime*self.elapsedTime
 
 	-- change height
-	parent:SetOrigin( parent:GetOrigin() + Vector( 0, 0, target ) )
+	parent:SetOrigin( Vector( parent:GetOrigin().x, parent:GetOrigin().y, self.origin.z+target ) )
 end
 
 function modifier_generic_knockback_lua:OnVerticalMotionInterrupted()
@@ -129,10 +146,8 @@ function modifier_generic_knockback_lua:DeclareFunctions()
 end
 
 function modifier_generic_knockback_lua:GetOverrideAnimation( params )
-	if self.anim==1 then
+	if self.stun then
 		return ACT_DOTA_FLAIL
-	elseif self.anim==2 then
-		return ACT_DOTA_STUNNED
 	end
 end
 

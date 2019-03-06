@@ -1,3 +1,6 @@
 "AddonInfo"
 {
+    maps            "dota"
+    "IsPlayable"    "1"
+    "HeroGuidesSupported"     "0"
 }
