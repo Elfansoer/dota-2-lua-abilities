@@ -177,7 +177,7 @@ function modifier_luna_eclipse_lua:PlayEffects2( target, point )
 		ParticleManager:SetParticleControl( effect_cast, 6, vector )
 		ParticleManager:ReleaseParticleIndex( effect_cast )
 
-		EmitSoundOnLocationWithCaster( vector, sound_target, target )
+		EmitSoundOnLocationWithCaster( vector, sound_fail, self.caster )
 		return
 	end
 
