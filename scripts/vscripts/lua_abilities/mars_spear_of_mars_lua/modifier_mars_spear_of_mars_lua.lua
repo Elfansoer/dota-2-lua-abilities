@@ -39,7 +39,8 @@ function modifier_mars_spear_of_mars_lua:OnCreated( kv )
 		self.projectile = kv.projectile
 
 		-- face towards
-		self:GetParent():FaceTowards( self.ability.projectiles[kv.projectile].init_pos )
+		self:GetParent():SetForwardVector( -self:GetAbility().projectiles[kv.projectile].direction )
+		self:GetParent():FaceTowards( self.ability.projectiles[self.projectile].init_pos )
 
 		-- try apply
 		if self:ApplyHorizontalMotionController() == false then
@@ -54,7 +55,6 @@ end
 
 function modifier_mars_spear_of_mars_lua:OnRemoved()
 	if not IsServer() then return end
-
 	-- Compulsory interrupt
 	self:GetParent():InterruptMotionControllers( false )
 end
@@ -100,10 +100,12 @@ function modifier_mars_spear_of_mars_lua:UpdateHorizontalMotion( me, dt )
 	end
 
 	-- get location
-	local loc = self.ability.projectiles[self.projectile].location
+	local data = self.ability.projectiles[self.projectile]
+
+	if not data.active then return end
 
 	-- move parent to projectile location
-	self:GetParent():SetOrigin( loc )
+	self:GetParent():SetOrigin( data.location + data.direction*60 )
 end
 
 function modifier_mars_spear_of_mars_lua:OnHorizontalMotionInterrupted()

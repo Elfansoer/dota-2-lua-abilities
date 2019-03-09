@@ -29,12 +29,14 @@ function modifier_mars_spear_of_mars_lua_debuff:IsPurgable()
 	return true
 end
 
+function modifier_mars_spear_of_mars_lua_debuff:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_mars_spear_of_mars_lua_debuff:OnCreated( kv )
 	if not IsServer() then return end
 	self.projectile = kv.projectile
-	self:GetParent():SetForwardVector( -self:GetAbility().projectiles[self.projectile].direction )
 end
 
 function modifier_mars_spear_of_mars_lua_debuff:OnRefresh( kv )
@@ -43,13 +45,7 @@ end
 function modifier_mars_spear_of_mars_lua_debuff:OnRemoved()
 	if not IsServer() then return end
 	-- destroy tree
-	local tree = self:GetAbility().projectiles[self.projectile].tree
-	if tree then
-		tree:CutDown( -1 )
-	end
-
-	-- delete data
-	self:GetAbility().projectiles:Destroy( self.projectile )
+	GridNav:DestroyTreesAroundPoint( self:GetParent():GetOrigin(), 120, false )
 end
 
 function modifier_mars_spear_of_mars_lua_debuff:OnDestroy()
@@ -73,8 +69,8 @@ end
 function modifier_mars_spear_of_mars_lua_debuff:CheckState()
 	local state = {
 		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
 		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_INVISIBLE] = false,
 	}
 
 	return state

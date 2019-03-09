@@ -34,9 +34,6 @@ function modifier_mars_arena_of_blood_lua_thinker:OnCreated( kv )
 
 		-- play effects
 		self:PlayEffects()
-
-		self:GetParent():SetModel( "models/heroes/mars/mars_soldier.vpcf" )
-		self:GetParent():SetModelScale( 2 )
 	end
 end
 
@@ -60,23 +57,15 @@ function modifier_mars_arena_of_blood_lua_thinker:OnDestroy()
 	UTIL_Remove( self:GetParent() ) 
 end
 
-function modifier_mars_arena_of_blood_lua_thinker:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_MODEL_CHANGE,
-	}
-
-	return funcs
-end
-
-function modifier_mars_arena_of_blood_lua_thinker:GetModifierModelChange()
-	return "models/heroes/mars/mars_soldier.vpcf"
-end
 --------------------------------------------------------------------------------
 -- Interval Effects
 function modifier_mars_arena_of_blood_lua_thinker:OnIntervalThink()
 	if self.phase_delay then
 		self.phase_delay = false
 
+		-- create vision
+		AddFOWViewer( self:GetCaster():GetTeamNumber(), self:GetParent():GetOrigin(), self.radius, self.duration, false)
+		
 		-- create wall aura
 		self:GetParent():AddNewModifier(
 			self:GetCaster(), -- player source
@@ -85,13 +74,20 @@ function modifier_mars_arena_of_blood_lua_thinker:OnIntervalThink()
 			{  } -- kv
 		)
 
-		-- create spear thinkers around units
+		-- create spear aura
 		self:GetParent():AddNewModifier(
 			self:GetCaster(), -- player source
 			self:GetAbility(), -- ability source
 			"modifier_mars_arena_of_blood_lua_spear_aura", -- modifier name
 			{  } -- kv
 		)
+
+		-- create phantom blockers
+		self:SummonBlockers()
+
+		-- play effects
+		local sound_loop = "Hero_Mars.ArenaOfBlood"
+		EmitSoundOn( sound_loop, self:GetParent() )
 
 		-- add end duration
 		self:StartIntervalThink( self.duration )
@@ -104,20 +100,70 @@ function modifier_mars_arena_of_blood_lua_thinker:OnIntervalThink()
 	end
 end
 
+function modifier_mars_arena_of_blood_lua_thinker:SummonBlockers()
+	-- init data
+	local caster = self:GetCaster()
+	local ability = self:GetAbility()
+	local teamnumber = caster:GetTeamNumber()
+	local origin = self:GetParent():GetOrigin()
+	local angle = 0
+	local vector = origin + Vector(self.radius,0,0)
+	local zero = Vector(0,0,0)
+	local one = Vector(1,0,0)
+	local count = 28
+
+	local angle_diff = 360/count
+
+	for i=0,count-1 do
+		local location = RotatePosition( origin, QAngle( 0, angle_diff*i, 0 ), vector )
+		local facing = RotatePosition( zero, QAngle( 0, 200+angle_diff*i, 0 ), one )
+
+		-- callback after creation
+		local callback = function( unit )
+			unit:SetForwardVector( facing )
+			unit:SetNeverMoveToClearSpace( true )
+
+			-- add modifier
+			unit:AddNewModifier(
+				caster, -- player source
+				self:GetAbility(), -- ability source
+				"modifier_mars_arena_of_blood_lua_blocker", -- modifier name
+				{
+					duration = self.duration,
+					model = i%2==0,
+				} -- kv
+			)
+		end
+
+		-- create unit async (to avoid high think time)
+		local unit = CreateUnitByNameAsync(
+			"npc_dota_mars_arena_of_blood_lua_soldier",
+			location,
+			false,
+			caster,
+			nil,
+			caster:GetTeamNumber(),
+			callback
+		)
+	end
+end
+
 --------------------------------------------------------------------------------
 -- Graphics & Animations
 function modifier_mars_arena_of_blood_lua_thinker:PlayEffects()
 	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_mars/mars_arena_of_blood.vpcf"
-
 	local sound_cast = "Hero_Mars.ArenaOfBlood.Start"
-	local sound_loop = "Hero_Mars.ArenaOfBlood"
 	-- Hero_Mars.Block_Projectile
+
+	-- Get data
+	-- colloseum radius = radius + 50
+	local radius = self.radius + 50
 
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, self:GetParent() )
 	ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() )
-	ParticleManager:SetParticleControl( effect_cast, 1, Vector( self.radius, 0, 0 ) )
+	ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, 0, 0 ) )
 	ParticleManager:SetParticleControl( effect_cast, 2, self:GetParent():GetOrigin() )
 	ParticleManager:SetParticleControl( effect_cast, 3, self:GetParent():GetOrigin() )
 
@@ -131,7 +177,6 @@ function modifier_mars_arena_of_blood_lua_thinker:PlayEffects()
 		false -- bOverheadEffect
 	)
 
-	-- Create Sound
+	-- Play sound
 	EmitSoundOn( sound_cast, self:GetParent() )
-	EmitSoundOn( sound_loop, self:GetParent() )
 end

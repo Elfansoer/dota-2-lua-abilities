@@ -72,18 +72,21 @@ function mars_gods_rebuke_lua:OnSpellStart()
 				true
 			)
 
-			-- knockback
-			enemy:AddNewModifier(
-				caster, -- player source
-				self, -- ability source
-				"modifier_generic_knockback_lua", -- modifier name
-				{
-					duration = duration,
-					distance = distance,
-					direction_x = enemy_direction.x,
-					direction_y = enemy_direction.y,
-				} -- kv
-			)
+			-- knockback if not having spear stun
+			if not enemy:HasModifier( "modifier_mars_spear_of_mars_lua_debuff" ) then
+				enemy:AddNewModifier(
+					caster, -- player source
+					self, -- ability source
+					"modifier_generic_knockback_lua", -- modifier name
+					{
+						duration = duration,
+						distance = distance,
+						height = 30,
+						direction_x = enemy_direction.x,
+						direction_y = enemy_direction.y,
+					} -- kv
+				)
+			end
 
 			caught = true
 			-- play effects

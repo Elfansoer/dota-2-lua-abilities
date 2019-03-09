@@ -78,7 +78,7 @@ Fields:
 - init_pos
 - unit
 - modifier
-- tree
+- active
 ]]
 local mars_projectiles = {}
 function mars_projectiles:Init( projectileID )
@@ -180,6 +180,7 @@ function mars_spear_of_mars_lua:OnProjectileHitHandle( target, location, iProjec
 	)
 	self.projectiles[iProjectileHandle].unit = target
 	self.projectiles[iProjectileHandle].modifier = modifier
+	self.projectiles[iProjectileHandle].active = false
 
 	-- play effects
 	local sound_cast = "Hero_Mars.Spear.Target"
@@ -193,32 +194,55 @@ function mars_spear_of_mars_lua:OnProjectileThinkHandle( iProjectileHandle )
 		self.projectiles:Init( iProjectileHandle )
 	end
 
+	local data = self.projectiles[iProjectileHandle]
+
 	-- init data
-	local search_radius = 100
-	local direction = self.projectiles[iProjectileHandle].direction
-	local unit = self.projectiles[iProjectileHandle].unit
+	local tree_radius = 120
+	local wall_radius = 50
+	local building_radius = 30
+	local blocker_radius = 70
 
 	-- save location
 	local location = ProjectileManager:GetLinearProjectileLocation( iProjectileHandle )
-	self.projectiles[iProjectileHandle].location = location
+	data.location = location
 
-	-- check skewered unit
-	if not unit then return end
+	-- check skewered unit, and dragged (caught unit not necessarily dragged)
+	if not data.unit then return end
+	if not data.active then
+		-- check distance, mainly to avoid being pinned while behind the tree/cliffs
+		local difference = (data.unit:GetOrigin()-data.init_pos):Length2D() - (data.location-data.init_pos):Length2D()
+		if difference>0 then return end
+		data.active = true
+	end
+
+	-- search for arena walls
+	local arena_walls = Entities:FindAllByClassnameWithin( "npc_dota_phantomassassin_gravestone", data.location, wall_radius )
+	for _,arena_wall in pairs(arena_walls) do
+		if arena_wall:HasModifier( "modifier_mars_arena_of_blood_lua_blocker" ) then
+			self:Pinned( iProjectileHandle )
+			return			
+		end
+	end
+
+	-- search for blocker
+	local thinkers = Entities:FindAllByClassnameWithin( "npc_dota_thinker", data.location, wall_radius )
+	for _,thinker in pairs(thinkers) do
+		if thinker:IsPhantomBlocker() then
+			self:Pinned( iProjectileHandle )
+			return
+		end
+	end
 
 	-- search for high ground
-	local base_loc = unit:GetOrigin()
-	local search_loc = base_loc + direction * 80
-	search_loc = GetGroundPosition( search_loc, unit )
-	if search_loc.z>base_loc.z and (not GridNav:IsTraversable( search_loc )) then
+	local base_loc = GetGroundPosition( data.location, data.unit )
+	local search_loc = GetGroundPosition( base_loc + data.direction*wall_radius, data.unit )
+	if search_loc.z-base_loc.z>10 and (not GridNav:IsTraversable( search_loc )) then
 		self:Pinned( iProjectileHandle )
 		return
 	end
 
 	-- search for tree
-	local trees = GridNav:GetAllTreesAroundPoint( location, search_radius, false)
-	if #trees>0 then
-		self.projectiles[iProjectileHandle].tree = trees[1]
-
+	if GridNav:IsNearbyTree( data.location, tree_radius, false) then
 		-- pinned
 		self:Pinned( iProjectileHandle )
 		return
@@ -227,9 +251,9 @@ function mars_spear_of_mars_lua:OnProjectileThinkHandle( iProjectileHandle )
 	-- search for buildings
 	local buildings = FindUnitsInRadius(
 		self:GetCaster():GetTeamNumber(),	-- int, your team number
-		location,	-- point, center point
+		data.location,	-- point, center point
 		nil,	-- handle, cacheUnit. (not known)
-		50,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+		building_radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_BOTH,	-- int, team filter
 		DOTA_UNIT_TARGET_BUILDING,	-- int, type filter
 		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE,	-- int, flag filter
@@ -245,23 +269,23 @@ function mars_spear_of_mars_lua:OnProjectileThinkHandle( iProjectileHandle )
 end
 
 function mars_spear_of_mars_lua:Pinned( iProjectileHandle )
-	local unit = self.projectiles[iProjectileHandle].unit
-	local modifier = self.projectiles[iProjectileHandle].modifier
+	local data = self.projectiles[iProjectileHandle]
 	local duration = self:GetSpecialValueFor("stun_duration")
 	local projectile_vision = self:GetSpecialValueFor("spear_vision")
 
 	-- add viewer
-	AddFOWViewer( self:GetCaster():GetTeamNumber(), unit:GetOrigin(), projectile_vision, duration, false)
+	AddFOWViewer( self:GetCaster():GetTeamNumber(), data.unit:GetOrigin(), projectile_vision, duration, false)
 
 	-- destroy projectile and modifier
 	ProjectileManager:DestroyLinearProjectile( iProjectileHandle )
-	modifier:Destroy()
+	if not data.modifier:IsNull() then
+		data.modifier:Destroy()
 
-	-- set unit
-	unit:SetOrigin( self.projectiles[iProjectileHandle].location )
+		data.unit:SetOrigin( GetGroundPosition( data.location, data.unit ) )
+	end
 
 	-- add stun modifier
-	unit:AddNewModifier(
+	data.unit:AddNewModifier(
 		self:GetCaster(), -- player source
 		self, -- ability source
 		"modifier_mars_spear_of_mars_lua_debuff", -- modifier name
@@ -273,6 +297,9 @@ function mars_spear_of_mars_lua:Pinned( iProjectileHandle )
 
 	-- play effects
 	self:PlayEffects( iProjectileHandle, duration )
+
+	-- delete data
+	self.projectiles:Destroy( iProjectileHandle )
 end
 --------------------------------------------------------------------------------
 function mars_spear_of_mars_lua:PlayEffects( projID, duration )
@@ -281,19 +308,18 @@ function mars_spear_of_mars_lua:PlayEffects( projID, duration )
 	local sound_cast = "Hero_Mars.Spear.Root"
 
 	-- Get Data
-	local delta = 40
-	local unit = self.projectiles[projID].unit
-	local location = self.projectiles[projID].location
-	local direction = self.projectiles[projID].direction
+	local data = self.projectiles[projID]
+	local delta = 50
+	local location = GetGroundPosition( data.location, data.unit ) + data.direction*delta
 
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
-	ParticleManager:SetParticleControl( effect_cast, 0, unit:GetOrigin() + direction*delta )
-	ParticleManager:SetParticleControl( effect_cast, 1, direction*1000 )
+	ParticleManager:SetParticleControl( effect_cast, 0, location )
+	ParticleManager:SetParticleControl( effect_cast, 1, data.direction*1000 )
 	ParticleManager:SetParticleControl( effect_cast, 2, Vector( duration, 0, 0 ) )
-	ParticleManager:SetParticleControlForward( effect_cast, 0, direction )
+	ParticleManager:SetParticleControlForward( effect_cast, 0, data.direction )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
-	EmitSoundOn( sound_cast, unit )
+	EmitSoundOn( sound_cast, data.unit )
 end

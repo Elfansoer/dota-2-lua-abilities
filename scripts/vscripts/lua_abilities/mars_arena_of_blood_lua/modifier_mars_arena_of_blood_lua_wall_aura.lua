@@ -28,17 +28,22 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_mars_arena_of_blood_lua_wall_aura:OnCreated( kv )
+	if not IsServer() then return end
 	-- references
+	-- normal limit inner ring = radius - 200
+	-- zero limit inner ring = radius - 100
+	-- zero limit outer ring = radius + 100
+	-- normal limit outer ring = radius + 200
+
 	self.radius = self:GetAbility():GetSpecialValueFor( "radius" )
 	self.width = self:GetAbility():GetSpecialValueFor( "width" )
-
-	self.half_width = self.width/2
-	self.aura_radius = self.radius + self.width
 	self.parent = self:GetParent()
+
+	self.twice_width = self.width*2
+	self.aura_radius = self.radius + self.twice_width
 	self.MAX_SPEED = 550
 	self.MIN_SPEED = 1
 
-	if not IsServer() then return end
 	self.owner = kv.isProvidedByAura~=1
 
 	if not self.owner then
@@ -80,8 +85,8 @@ function modifier_mars_arena_of_blood_lua_wall_aura:GetModifierMoveSpeed_Limit( 
 	local actual_distance = parent_vector:Length2D()
 	local wall_distance = actual_distance-self.radius
 	local isInside = (wall_distance)<0
-	wall_distance = math.min( math.abs( wall_distance ), self.width )
-	wall_distance = math.max( self.half_width, wall_distance )-self.half_width -- clamped between 0 and half_width, but located between half_width and width
+	wall_distance = math.min( math.abs( wall_distance ), self.twice_width )
+	wall_distance = math.max( wall_distance, self.width ) - self.width -- clamped between 0 and width
 
 	-- calculate facing angle
 	local parent_angle = 0
@@ -100,7 +105,7 @@ function modifier_mars_arena_of_blood_lua_wall_aura:GetModifierMoveSpeed_Limit( 
 		limit = 0
 	else
 		-- interpolate between max
-		limit = self:Interpolate( wall_distance/self.half_width, self.MIN_SPEED, self.MAX_SPEED )
+		limit = self:Interpolate( wall_distance/self.width, self.MIN_SPEED, self.MAX_SPEED )
 	end
 
 	return limit
@@ -140,4 +145,13 @@ end
 
 function modifier_mars_arena_of_blood_lua_wall_aura:GetAuraSearchFlags()
 	return 0
+end
+
+function modifier_mars_arena_of_blood_lua_wall_aura:GetAuraEntityReject( unit )
+	if not IsServer() then return end
+
+	-- check flying
+	if unit:HasFlyMovementCapability() then return true end
+
+	return false
 end

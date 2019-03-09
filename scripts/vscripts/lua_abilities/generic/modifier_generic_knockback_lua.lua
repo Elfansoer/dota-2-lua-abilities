@@ -10,6 +10,9 @@ function modifier_generic_knockback_lua:IsPurgable()
 	return false
 end
 
+function modifier_generic_knockback_lua:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_generic_knockback_lua:OnCreated( kv )
@@ -18,7 +21,6 @@ function modifier_generic_knockback_lua:OnCreated( kv )
 			-- kv.distance (0)
 			-- kv.height (-1)
 			-- kv.duration (0)
-			-- kv.damage (nil)
 			-- kv.direction_x, kv.direction_y, kv.direction_z (xy:-forward vector, z:0)
 			-- kv.IsStun (false)
 			-- kv.IsFlail (true)
@@ -29,35 +31,43 @@ function modifier_generic_knockback_lua:OnCreated( kv )
 		self.distance = kv.distance or 0
 		self.height = kv.height or -1
 		self.duration = kv.duration or 0
-		self.damage = kv.damage or 0
 		if kv.direction_x and kv.direction_y then
 			self.direction = Vector(kv.direction_x,kv.direction_y,0):Normalized()
 		else
 			self.direction = -(self:GetParent():GetForwardVector())
 		end
-		self.stun = kv.IsStun or false
-		self.flail = kv.IsFlail or true
-
-		-- load data
-		self.origin = self:GetParent():GetOrigin()
-		self.hVelocity = self.distance/self.duration
-
-		-- vertical motion model
-		self.gravity = -self.height/(self.duration*self.duration*0.125)
-		self.vVelocity = (-0.5)*self.gravity*self.duration
+		if kv.IsStun then self.stun = kv.IsStun==1 else self.stun = false end
+		if kv.IsFlail then self.flail = kv.IsFlail==1 else self.flail = true end
 
 		-- check duration
 		if self.duration == 0 then
 			self:Destroy()
+			return
 		end
 
+		-- load data
+		self.parent = self:GetParent()
+		self.origin = self.parent:GetOrigin()
+
+		-- horizontal init
+		self.hVelocity = self.distance/self.duration
+
+		-- vertical init
+		local half_duration = self.duration/2
+		self.gravity = 2*self.height/(half_duration*half_duration)
+		self.vVelocity = self.gravity*half_duration
+
 		-- apply motion controllers
-		if self:ApplyHorizontalMotionController() == false then 
-			self:Destroy()
+		if self.distance>0 then
+			if self:ApplyHorizontalMotionController() == false then 
+				self:Destroy()
+				return
+			end
 		end
 		if self.height>=0 then
 			if self:ApplyVerticalMotionController() == false then 
 				self:Destroy()
+				return
 			end
 		end
 
@@ -104,12 +114,11 @@ function modifier_generic_knockback_lua:UpdateVerticalMotion( me, dt )
 	-- set time
 	local time = dt/self.duration
 
-	-- set relative position
-	local target = self.hVelocity*time
-	self.hVelocity = self.hVelocity - (self.gravity*time)
-
 	-- change height
-	parent:SetOrigin( parent:GetOrigin() + Vector( 0, 0, target ) )
+	self.parent:SetOrigin( self.parent:GetOrigin() + Vector( 0, 0, self.vVelocity*dt ) )
+
+	-- calculate vertical velocity
+	self.vVelocity = self.vVelocity - self.gravity*dt
 end
 
 function modifier_generic_knockback_lua:OnVerticalMotionInterrupted()
@@ -132,7 +141,7 @@ function modifier_generic_knockback_lua:GetOverrideAnimation( params )
 	if self.anim==1 then
 		return ACT_DOTA_FLAIL
 	elseif self.anim==2 then
-		return ACT_DOTA_STUNNED
+		return ACT_DOTA_DISABLED
 	end
 end
 
@@ -144,4 +153,19 @@ function modifier_generic_knockback_lua:CheckState()
 	}
 
 	return state
+end
+
+
+--------------------------------------------------------------------------------
+-- Graphics & Animations
+function modifier_generic_knockback_lua:GetEffectName()
+	if not IsServer() then return end
+	if self.stun then
+		return "particles/generic_gameplay/generic_stunned.vpcf"
+	end
+end
+
+function modifier_generic_knockback_lua:GetEffectAttachType()
+	if not IsServer() then return end
+	return PATTACH_OVERHEAD_FOLLOW
 end

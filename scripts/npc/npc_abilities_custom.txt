@@ -1452,5 +1452,7 @@
 #base "../vscripts/custom_abilities/sona_crescendo/sona_crescendo.txt"
 
 // Test abilities
+#base "../vscripts/test_abilities/test_blockcamp/test_blockcamp.txt"
 #base "../vscripts/test_abilities/test_cosmetics/test_cosmetics.txt"
 #base "../vscripts/test_abilities/test_getbehavior/test_getbehavior.txt"
+#base "../vscripts/test_abilities/test_knockback/test_knockback.txt"

@@ -245,5 +245,6 @@
 	}
 }
 
-#base "../vscripts/test_abilities/test_cosmetics/test_cosmetics_units.txt"
+#base "../vscripts/lua_abilities/mars_arena_of_blood_lua/mars_arena_of_blood_lua_units.txt"
 #base "../vscripts/custom_abilities/midas_golden_valkyrie/midas_golden_valkyrie_units.txt"
+#base "../vscripts/test_abilities/test_cosmetics/test_cosmetics_units.txt"

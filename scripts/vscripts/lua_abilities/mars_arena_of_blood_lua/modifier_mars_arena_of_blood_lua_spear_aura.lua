@@ -44,6 +44,8 @@ function modifier_mars_arena_of_blood_lua_spear_aura:OnCreated( kv )
 
 	if not self.owner then
 		self.aura_origin = Vector( kv.aura_origin_x, kv.aura_origin_y, 0 )
+		local direction = self.aura_origin-self:GetParent():GetOrigin()
+		direction.z = 0
 
 		-- damage
 		local damageTable = {
@@ -55,9 +57,22 @@ function modifier_mars_arena_of_blood_lua_spear_aura:OnCreated( kv )
 		}
 		ApplyDamage(damageTable)
 
-		-- knockback
-		local direction = self.aura_origin-self:GetParent():GetOrigin()
-		direction.z = 0
+		-- animate soldiers
+		local arena_walls = Entities:FindAllByClassnameWithin( "npc_dota_phantomassassin_gravestone", self.parent:GetOrigin(), 160 )
+		for _,arena_wall in pairs(arena_walls) do
+			if arena_wall:HasModifier( "modifier_mars_arena_of_blood_lua_blocker" ) and arena_wall.model then
+				arena_wall:FadeGesture( ACT_DOTA_ATTACK )
+				arena_wall:StartGesture( ACT_DOTA_ATTACK )
+				break
+			end
+		end
+
+		-- play effects
+		self:PlayEffects( direction:Normalized() )
+
+		-- knockback if not having spear buff
+		if self:GetParent():HasModifier( "modifier_mars_spear_of_mars_lua" ) then return end
+		if self:GetParent():HasModifier( "modifier_mars_spear_of_mars_lua_debuff" ) then return end
 		self:GetParent():AddNewModifier(
 			self:GetCaster(), -- player source
 			self:GetAbility(), -- ability source
@@ -65,13 +80,11 @@ function modifier_mars_arena_of_blood_lua_spear_aura:OnCreated( kv )
 			{
 				duration = self.knockback_duration,
 				distance = self.width,
+				height = 30,
 				direction_x = direction.x,
 				direction_y = direction.y,
 			} -- kv
 		)
-
-		-- play effects
-		self:PlayEffects( direction:Normalized() )
 	end
 end
 
@@ -116,6 +129,9 @@ function modifier_mars_arena_of_blood_lua_spear_aura:GetAuraSearchFlags()
 end
 function modifier_mars_arena_of_blood_lua_spear_aura:GetAuraEntityReject( unit )
 	if not IsServer() then return end
+
+	-- check flying
+	if unit:HasFlyMovementCapability() then return true end
 
 	-- check if already own this aura
 	if unit:FindModifierByNameAndCaster( "modifier_mars_arena_of_blood_lua_spear_aura", self:GetCaster() ) then

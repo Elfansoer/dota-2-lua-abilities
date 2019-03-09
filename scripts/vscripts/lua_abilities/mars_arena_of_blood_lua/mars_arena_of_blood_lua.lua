@@ -11,15 +11,17 @@ Ability checklist (erase if done/checked):
 
 --[[
 Not implemented:
-- Interaction with spear
-- Knockback override with rebuke
+- vertical motion unit bypass
 - projectile obstruction
-- phalanx models
+
+Shoud be revised:
+- soldier still use "models/heroes/attachto_ghost/pa_gravestone_ghost.vmdl" as base class (also affects Spear of Mars)
 ]]
 --------------------------------------------------------------------------------
 mars_arena_of_blood_lua = class({})
 LinkLuaModifier( "modifier_generic_knockback_lua", "lua_abilities/generic/modifier_generic_knockback_lua", LUA_MODIFIER_MOTION_BOTH )
 LinkLuaModifier( "modifier_mars_arena_of_blood_lua", "lua_abilities/mars_arena_of_blood_lua/modifier_mars_arena_of_blood_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_mars_arena_of_blood_lua_blocker", "lua_abilities/mars_arena_of_blood_lua/modifier_mars_arena_of_blood_lua_blocker", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_mars_arena_of_blood_lua_thinker", "lua_abilities/mars_arena_of_blood_lua/modifier_mars_arena_of_blood_lua_thinker", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_mars_arena_of_blood_lua_wall_aura", "lua_abilities/mars_arena_of_blood_lua/modifier_mars_arena_of_blood_lua_wall_aura", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_mars_arena_of_blood_lua_spear_aura", "lua_abilities/mars_arena_of_blood_lua/modifier_mars_arena_of_blood_lua_spear_aura", LUA_MODIFIER_MOTION_NONE )
