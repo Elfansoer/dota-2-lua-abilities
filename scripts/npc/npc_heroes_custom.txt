@@ -229,6 +229,19 @@
 		"Ability6"				"invoker_invoke_lua"				// Ability 4
 	}
 
+
+	//=================================================================================================================
+	// HERO: Skywrath Mage (Leshrac)
+	//=================================================================================================================
+	"npc_dota_hero_skywrath_mage_lua"
+	{
+		"override_hero"					"npc_dota_hero_skywrath_mage"	// Hero to override
+		"Ability1"				"leshrac_split_earth_lua"						// Ability 1
+		"Ability2"				"leshrac_diabolic_edict_lua"						// Ability 1
+		"Ability3"				"leshrac_lightning_storm_lua"						// Ability 1
+		"Ability6"				"leshrac_pulse_nova_lua"						// Ability 1
+	}
+
 	//=================================================================================================================
 	// HERO: Witch Doctor (Lich)
 	//=================================================================================================================

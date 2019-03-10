@@ -1322,6 +1322,11 @@
 #base "../vscripts/lua_abilities/juggernaut_blade_fury_lua/juggernaut_blade_fury_lua.txt"
 #base "../vscripts/lua_abilities/juggernaut_blade_dance_lua/juggernaut_blade_dance_lua.txt"
 
+#base "../vscripts/lua_abilities/leshrac_split_earth_lua/leshrac_split_earth_lua.txt"
+#base "../vscripts/lua_abilities/leshrac_diabolic_edict_lua/leshrac_diabolic_edict_lua.txt"
+#base "../vscripts/lua_abilities/leshrac_lightning_storm_lua/leshrac_lightning_storm_lua.txt"
+#base "../vscripts/lua_abilities/leshrac_pulse_nova_lua/leshrac_pulse_nova_lua.txt"
+
 #base "../vscripts/lua_abilities/lich_frost_blast_lua/lich_frost_blast_lua.txt"
 #base "../vscripts/lua_abilities/lich_frost_armor_lua/lich_frost_armor_lua.txt"
 #base "../vscripts/lua_abilities/lich_sacrifice_lua/lich_sacrifice_lua.txt"

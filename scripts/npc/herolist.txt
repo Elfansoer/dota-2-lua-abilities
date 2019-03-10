@@ -43,6 +43,7 @@
 	"npc_dota_hero_puck"			"1"
 	"npc_dota_hero_queenofpain"		"1"
 	"npc_dota_hero_sniper"		"1"
+	"npc_dota_hero_skywrath_mage"		"1"
 	"npc_dota_hero_templar_assassin"			"1"
 	"npc_dota_hero_tidehunter"		"1"
 	"npc_dota_hero_ursa"		"1"
