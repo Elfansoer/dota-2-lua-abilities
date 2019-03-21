@@ -5,7 +5,11 @@ A repository for creating Dota 2 Lua abilities.
 Tutorial is available on this repo's wiki. It is rarely updated, but it will be. Just have a patience.
 
 # How to test
-Download the repository, put it in "yourdotafolder/game/dota_addons", then run in console using "dota_launch_custom_game"
+* Download the repository,
+* put it in `"yourdotafolder/game/dota_addons"`,
+* Launch Dota, run in console using `"dota_launch_custom_game dota-2-lua-abilities dota"`
+
+(Note: You may need cheat mode on to test abilities easily)
 
 # Notes
 Some abilities are implemented differently than in-game, and it was intended.
