@@ -89,6 +89,7 @@ function lion_finger_of_death_lua:PlayEffects( target )
 
 	-- load data
 	local caster = self:GetCaster()
+	local direction = (caster:GetOrigin()-target:GetOrigin()):Normalized()
 
 	-- Create Particle
 	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, caster )
@@ -114,8 +115,8 @@ function lion_finger_of_death_lua:PlayEffects( target )
 		true -- unknown, true
 	)
 	ParticleManager:SetParticleControl( effect_cast, 2, target:GetOrigin() )
-	ParticleManager:SetParticleControl( effect_cast, 3, target:GetOrigin() )
-	ParticleManager:SetParticleControlForward( effect_cast, 3, (target:GetOrigin()-caster:GetOrigin()):Normalized() )
+	ParticleManager:SetParticleControl( effect_cast, 3, target:GetOrigin() + direction )
+	ParticleManager:SetParticleControlForward( effect_cast, 3, -direction )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound

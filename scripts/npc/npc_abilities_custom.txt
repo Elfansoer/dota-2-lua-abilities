@@ -1275,6 +1275,10 @@
 #base "../vscripts/lua_abilities/dazzle_shadow_wave_lua/dazzle_shadow_wave_lua.txt"
 #base "../vscripts/lua_abilities/dazzle_weave_lua/dazzle_weave_lua.txt"
 
+#base "../vscripts/lua_abilities/disruptor_thunder_strike_lua/disruptor_thunder_strike_lua.txt"
+#base "../vscripts/lua_abilities/disruptor_kinetic_field_lua/disruptor_kinetic_field_lua.txt"
+#base "../vscripts/lua_abilities/disruptor_static_storm_lua/disruptor_static_storm_lua.txt"
+
 #base "../vscripts/lua_abilities/drow_ranger_frost_arrows_lua/drow_ranger_frost_arrows_lua.txt"
 
 #base "../vscripts/lua_abilities/earthshaker_fissure_lua/earthshaker_fissure_lua.txt"
@@ -1336,7 +1340,9 @@
 #base "../vscripts/lua_abilities/lifestealer_feast_lua/lifestealer_feast_lua.txt"
 #base "../vscripts/lua_abilities/lifestealer_open_wounds_lua/lifestealer_open_wounds_lua.txt"
 
+#base "../vscripts/lua_abilities/lion_earth_spike_lua/lion_earth_spike_lua.txt"
 #base "../vscripts/lua_abilities/lion_hex_lua/lion_hex_lua.txt"
+#base "../vscripts/lua_abilities/lion_mana_drain_lua/lion_mana_drain_lua.txt"
 #base "../vscripts/lua_abilities/lion_finger_of_death_lua/lion_finger_of_death_lua.txt"
 
 #base "../vscripts/lua_abilities/luna_lucent_beam_lua/luna_lucent_beam_lua.txt"
@@ -1429,6 +1435,8 @@
 #base "../vscripts/custom_abilities/bakedanuki_frolic_aura/bakedanuki_frolic_aura_base.txt"
 #base "../vscripts/custom_abilities/bakedanuki_futatsuiwas_curse/bakedanuki_futatsuiwas_curse_base.txt"
 
+#base "../vscripts/custom_abilities/builder_build_tower/builder_build_tower.txt"
+
 #base "../vscripts/custom_abilities/midas_golden_touch/midas_golden_touch.txt"
 #base "../vscripts/custom_abilities/midas_golden_sword/midas_golden_sword.txt"
 #base "../vscripts/custom_abilities/midas_golden_burst/midas_golden_burst.txt"
@@ -1461,3 +1469,4 @@
 #base "../vscripts/test_abilities/test_cosmetics/test_cosmetics.txt"
 #base "../vscripts/test_abilities/test_getbehavior/test_getbehavior.txt"
 #base "../vscripts/test_abilities/test_knockback/test_knockback.txt"
+#base "../vscripts/test_abilities/test_vector_target/test_vector_target.txt"

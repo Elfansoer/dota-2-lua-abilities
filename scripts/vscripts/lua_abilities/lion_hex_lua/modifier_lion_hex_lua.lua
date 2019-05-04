@@ -34,7 +34,7 @@ end
 
 function modifier_lion_hex_lua:OnRefresh( kv )
 	-- references
-	self.base_speed = self:GetAbility():GetSpecialValueFor( "hex_base_speed" )
+	self.base_speed = self:GetAbility():GetSpecialValueFor( "movespeed" )
 	if IsServer() then
 		-- play effects
 		self:PlayEffects( true )

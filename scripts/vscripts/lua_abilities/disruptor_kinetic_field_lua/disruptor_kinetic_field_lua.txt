@@ -1,49 +1,45 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Lion: Earth Spike (Lua version)
+	// Disruptor: Kinetic Field (Lua version)
 	//=================================================================================================================
-	"lion_earth_spike_lua"
+	"disruptor_kinetic_field_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/lion_earth_spike_lua/lion_earth_spike_lua"
-		"AbilityTextureName"			"lion_earth_spike_lua"
+		"ScriptFile"					"lua_abilities/disruptor_kinetic_field_lua/disruptor_kinetic_field_lua"
+		"AbilityTextureName"			"disruptor_kinetic_field_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
-			"particle"	"particles/units/heroes/hero_lion/lion_spell_impale.vpcf"
-			"particle"	"particles/units/heroes/hero_lion/lion_spell_impale_hit_spikes.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+			"particle"	"particles/units/heroes/hero_disruptor/disruptor_kineticfield_formation.vpcf"
+			"particle"	"particles/units/heroes/hero_disruptor/disruptor_kineticfield.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"900 900 900 900"
+		"AbilityCastPoint"				"0.05 0.05 0.05 0.05"
+
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0"
-		"AbilityManaCost"				"70 100 130 160"
+		"AbilityCooldown"				"19 16 13 10"
+		"AbilityManaCost"				"70 70 70 70"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"80 140 200 260"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -51,23 +47,18 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"width"				"125 125 125 125"
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"340"
 			}
 			"02"
-			{	
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"1.4 1.8 2.2 2.6"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"formation_time"			"1.2 1.2 1.2 1.2"
 			}
 			"03"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"length_buffer"		"325"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"speed"				"1600 1600 1600 1600"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2.6 3.2 3.8 4.4"
 			}
 		}
 	}

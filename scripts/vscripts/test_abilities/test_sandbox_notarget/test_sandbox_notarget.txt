@@ -1,49 +1,45 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Lion: Earth Spike (Lua version)
+	// Hero Name: test_sandbox_notarget
 	//=================================================================================================================
-	"lion_earth_spike_lua"
+	"test_sandbox_notarget"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/lion_earth_spike_lua/lion_earth_spike_lua"
-		"AbilityTextureName"			"lion_earth_spike_lua"
+		"ScriptFile"					"test_abilities/test_sandbox_notarget/test_sandbox_notarget"
+		"AbilityTextureName"			"test_sandbox_notarget"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
-			"particle"	"particles/units/heroes/hero_lion/lion_spell_impale.vpcf"
-			"particle"	"particles/units/heroes/hero_lion/lion_spell_impale_hit_spikes.vpcf"
-		}
+//		"precache"
+//		{
+//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
+		"AbilityCastRange"				"600"
+		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastPoint"				"0.3"
+		"AbilityChannelTime"			"0"
+		"AbilityDuration"				"0.0"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0"
-		"AbilityManaCost"				"70 100 130 160"
+		"AbilityCooldown"				"10.0"
+		"AbilityManaCost"				"100"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"80 140 200 260"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -51,23 +47,18 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"width"				"125 125 125 125"
+				"var_type"				"FIELD_INTEGER"
+				"special_one"			"1000"
 			}
 			"02"
-			{	
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"1.4 1.8 2.2 2.6"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"special_two"			"2.0"
 			}
 			"03"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"length_buffer"		"325"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"speed"				"1600 1600 1600 1600"
+				"var_type"				"FIELD_INTEGER"
+				"special_three"			"255"
 			}
 		}
 	}

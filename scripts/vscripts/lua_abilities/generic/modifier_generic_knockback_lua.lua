@@ -22,6 +22,7 @@ function modifier_generic_knockback_lua:OnCreated( kv )
 			-- kv.height (-1)
 			-- kv.duration (0)
 			-- kv.direction_x, kv.direction_y, kv.direction_z (xy:-forward vector, z:0)
+			-- kv.tree_destroy_radius (hull-radius), can be null if -1 
 			-- kv.IsStun (false)
 			-- kv.IsFlail (true)
 			-- kv.IsPurgable() // later 
@@ -36,6 +37,8 @@ function modifier_generic_knockback_lua:OnCreated( kv )
 		else
 			self.direction = -(self:GetParent():GetForwardVector())
 		end
+		self.tree = kv.tree_destroy_radius or self:GetParent():GetHullRadius()
+
 		if kv.IsStun then self.stun = kv.IsStun==1 else self.stun = false end
 		if kv.IsFlail then self.flail = kv.IsFlail==1 else self.flail = true end
 
@@ -89,42 +92,25 @@ end
 
 function modifier_generic_knockback_lua:OnDestroy( kv )
 	if not IsServer() then return end
+
+	if not self.interrupted then
+		-- destroy trees
+		if self.tree>0 then
+			GridNav:DestroyTreesAroundPoint( self:GetParent():GetOrigin(), self.tree, true )
+		end
+	end
+
+	if self.EndCallback then
+		self.EndCallback()
+	end
+
 	self:GetParent():InterruptMotionControllers( true )
 end
 
 --------------------------------------------------------------------------------
--- Motion effects
-function modifier_generic_knockback_lua:UpdateHorizontalMotion( me, dt )
-	local parent = self:GetParent()
-	
-	-- set position
-	local target = self.direction*self.distance*(dt/self.duration)
-
-	-- change position
-	parent:SetOrigin( parent:GetOrigin() + target )
-end
-
-function modifier_generic_knockback_lua:OnHorizontalMotionInterrupted()
-	if IsServer() then
-		self:Destroy()
-	end
-end
-
-function modifier_generic_knockback_lua:UpdateVerticalMotion( me, dt )
-	-- set time
-	local time = dt/self.duration
-
-	-- change height
-	self.parent:SetOrigin( self.parent:GetOrigin() + Vector( 0, 0, self.vVelocity*dt ) )
-
-	-- calculate vertical velocity
-	self.vVelocity = self.vVelocity - self.gravity*dt
-end
-
-function modifier_generic_knockback_lua:OnVerticalMotionInterrupted()
-	if IsServer() then
-		self:Destroy()
-	end
+-- Setter
+function modifier_generic_knockback_lua:SetEndCallback( func ) 
+	self.EndCallback = func
 end
 
 --------------------------------------------------------------------------------
@@ -155,6 +141,42 @@ function modifier_generic_knockback_lua:CheckState()
 	return state
 end
 
+--------------------------------------------------------------------------------
+-- Motion effects
+function modifier_generic_knockback_lua:UpdateHorizontalMotion( me, dt )
+	local parent = self:GetParent()
+	
+	-- set position
+	local target = self.direction*self.distance*(dt/self.duration)
+
+	-- change position
+	parent:SetOrigin( parent:GetOrigin() + target )
+end
+
+function modifier_generic_knockback_lua:OnHorizontalMotionInterrupted()
+	if IsServer() then
+		self.interrupted = true
+		self:Destroy()
+	end
+end
+
+function modifier_generic_knockback_lua:UpdateVerticalMotion( me, dt )
+	-- set time
+	local time = dt/self.duration
+
+	-- change height
+	self.parent:SetOrigin( self.parent:GetOrigin() + Vector( 0, 0, self.vVelocity*dt ) )
+
+	-- calculate vertical velocity
+	self.vVelocity = self.vVelocity - self.gravity*dt
+end
+
+function modifier_generic_knockback_lua:OnVerticalMotionInterrupted()
+	if IsServer() then
+		self.interrupted = true
+		self:Destroy()
+	end
+end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations

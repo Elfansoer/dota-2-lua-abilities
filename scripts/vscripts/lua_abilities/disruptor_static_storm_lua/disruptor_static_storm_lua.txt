@@ -1,0 +1,83 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Disruptor: Static Storm (Lua version)
+	//=================================================================================================================
+	"disruptor_static_storm_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/disruptor_static_storm_lua/disruptor_static_storm_lua"
+		"AbilityTextureName"			"disruptor_static_storm_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"HasScepterUpgrade"				"1"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+			"particle"	"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
+			"particle"	"particles/units/heroes/hero_disruptor/disruptor_static_storm_bolt_hero.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.05 0.05 0.05 0.05"
+		"AbilityCastRange"				"800 800 800 800"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"90 80 70"
+		"AbilityManaCost"				"125 175 225"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"450"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pulses"					"20"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_max"				"200 250 300"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5.0"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration_scepter"			"7.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pulses_scepter"			"28"
+			}
+		}
+	}
+}
