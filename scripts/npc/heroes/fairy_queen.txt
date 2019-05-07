@@ -1,0 +1,15 @@
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Fairy Queen
+	//=================================================================================================================
+	"npc_dota_fairy_queen"
+	{
+		"override_hero"					"npc_dota_hero_crystal_maiden"	// Hero to override
+		"Ability1"				"fairy_queen_quell"						// Ability 1
+		"Ability2"				"fairy_queen_whisk"						// Ability 2
+		"Ability3"				"fairy_queen_enchantment"				// Ability 2
+		"Ability5"				"fairy_queen_fairies"					// Ability 3
+		"Ability6"				"fairy_queen_royal_decree"							// Ability 6
+	}
+}

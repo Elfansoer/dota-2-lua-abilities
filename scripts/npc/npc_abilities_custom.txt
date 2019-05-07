@@ -1442,6 +1442,12 @@
 #base "../vscripts/custom_abilities/midas_golden_burst/midas_golden_burst.txt"
 #base "../vscripts/custom_abilities/midas_golden_valkyrie/midas_golden_valkyrie.txt"
 
+#base "../vscripts/custom_abilities/fairy_queen_quell/fairy_queen_quell.txt"
+#base "../vscripts/custom_abilities/fairy_queen_whisk/fairy_queen_whisk.txt"
+#base "../vscripts/custom_abilities/fairy_queen_enchantment/fairy_queen_enchantment.txt"
+#base "../vscripts/custom_abilities/fairy_queen_fairies/fairy_queen_fairies.txt"
+#base "../vscripts/custom_abilities/fairy_queen_royal_decree/fairy_queen_royal_decree.txt"
+
 #base "../vscripts/custom_abilities/plague_doctor_healing_shield/plague_doctor_healing_shield_base.txt"
 
 #base "../vscripts/custom_abilities/riven_broken_wings/riven_broken_wings.txt"

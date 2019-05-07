@@ -1,0 +1,68 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Fairy Queen: Royal Decree
+	//=================================================================================================================
+	"fairy_queen_royal_decree"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/fairy_queen_royal_decree/fairy_queen_royal_decree"
+		"AbilityTextureName"			"custom/fairy_queen_royal_decree"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
+			"particle"	"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60 40 20"
+		"AbilityManaCost"				"0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"manacost_pct"			"15"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_reduction"	"1 2 3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"refund_pct"			"30"
+			}
+
+			// From Fairies ability, but is useful to be written here.
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_fairies"			"3"
+			}
+		}
+	}
+}

@@ -14,7 +14,7 @@ modifier_generic_custom_indicator = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_generic_custom_indicator:IsHidden()
-	return false
+	return true
 end
 
 function modifier_generic_custom_indicator:IsPurgable()
@@ -51,10 +51,11 @@ function modifier_generic_custom_indicator:OnIntervalThink()
 		self:StartIntervalThink(-1)
 
 		-- destroy effect
-		if self.effect_cast == nil then return end
-		ParticleManager:DestroyParticle( self.effect_cast, false )
-		ParticleManager:ReleaseParticleIndex( self.effect_cast )
-		self.effect_cast = nil
+		local ability = self:GetAbility()
+		if self.init and ability.DestroyCustomIndicator then
+			self.init = nil
+			ability:DestroyCustomIndicator()
+		end
 	end
 end
 
@@ -65,13 +66,14 @@ function modifier_generic_custom_indicator:Register( loc )
 	local ability = self:GetAbility()
 
 	-- init
-	if (not self.effect_cast) and ability.GetCustomIndicator then
-		self.effect_cast = ability:GetCustomIndicator()
+	if (not self.init) and ability.CreateCustomIndicator then
+		self.init = true
+		ability:CreateCustomIndicator()
 	end
 
 	-- update
 	if ability.UpdateCustomIndicator then
-		ability:UpdateCustomIndicator( self.effect_cast, loc )
+		ability:UpdateCustomIndicator( loc )
 	end
 
 	-- start interval

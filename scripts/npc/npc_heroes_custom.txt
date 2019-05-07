@@ -10,7 +10,7 @@
 	"npc_dota_hero_lina_lua"
 	{
 		"override_hero"					"npc_dota_hero_queenofpain"			// Hero to override
-		"Ability1"				"test_vector_target"			// Ability 5
+		"Ability1"				"pudge_meat_hook_lua"			// Ability 5
 		"Ability2"				"pangolier_swashbuckle"				// Ability 3
 		"Ability3"				"tiny_toss"				// Ability 1
 		"Ability4"				"test_knockback"				// Ability 2
@@ -438,11 +438,11 @@
 	}
 
 	//=================================================================================================================
-	// HERO: Crystal Maiden (Tinker)
+	// HERO: Dark Seer (Tinker)
 	//=================================================================================================================
-	"npc_dota_hero_crystal_maiden_lua"
+	"npc_dota_hero_dark_seer_lua"
 	{
-		"override_hero"					"npc_dota_hero_crystal_maiden"	// Hero to override
+		"override_hero"					"npc_dota_hero_dark_seer"	// Hero to override
 		"Ability1"				"tinker_laser_lua"						// Ability 1
 		"Ability2"				"tinker_heat_seeking_missile_lua"						// Ability 2
 		"Ability3"				"tinker_march_of_the_machines_lua"						// Ability 3
@@ -507,6 +507,7 @@
 // Custom heroes
 #base "heroes/azura.txt" 			// Drow Ranger
 #base "heroes/bakedanuki.txt"		// Dark Willow
+#base "heroes/fairy_queen.txt"		// Crystal Maiden
 #base "heroes/midas.txt"			// Dragon Knight
 #base "heroes/riven.txt"			// Juggernaut
 #base "heroes/sona.txt"				// Naga Siren

@@ -1,0 +1,99 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Fairy Queen: Whisk
+	//=================================================================================================================
+	"fairy_queen_whisk"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/fairy_queen_whisk/fairy_queen_whisk"
+		"AbilityTextureName"			"custom/fairy_queen_whisk"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
+			"particle"	"particles/units/heroes/heroes_underlord/underlord_rift_ring_aoe.vpcf"
+			"particle"	"particles/units/heroes/hero_puck/puck_illusory_orb_blink_out.vpcf"
+			"particle"	"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_failure.vpcf"
+			"particle"	"particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf"
+			"particle"	"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff_c.vpcf"
+			"particle"	"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_aoe.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"40"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range_1"			"600 650 700 750"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range_2"			"700 800 900 1000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range_3"			"800 950 1100 1250"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ally_radius"			"300"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"enemy_radius"			"450"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ally_amp"				"-12 -16 -20 -24"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"enemy_amp"				"12 18 24 30"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"buff_duration"			"5"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_duration"		"5"
+			}
+		}
+	}
+}
