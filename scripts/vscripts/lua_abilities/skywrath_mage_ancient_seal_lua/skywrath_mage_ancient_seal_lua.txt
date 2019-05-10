@@ -1,43 +1,43 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Skywrath Mage: Mystic Flare (Lua version)
+	// Skywrath Mage: Ancient Seal (Lua version)
 	//=================================================================================================================
-	"skywrath_mage_mystic_flare_lua"
+	"skywrath_mage_ancient_seal_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/skywrath_mage_mystic_flare_lua/skywrath_mage_mystic_flare_lua"
-		"AbilityTextureName"			"skywrath_mage_mystic_flare_lua"
-		"FightRecapLevel"				"2"
-		"MaxLevel"						"3"
+		"ScriptFile"					"lua_abilities/skywrath_mage_ancient_seal_lua/skywrath_mage_ancient_seal_lua"
+		"AbilityTextureName"			"skywrath_mage_ancient_seal_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
-			"particle"	"particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient.vpcf"
+			"particle"	"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"HasScepterUpgrade"			"1"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1200"
-		"AbilityCastPoint"				"0.1"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60.0 40.0 20.0"
-		"AbilityManaCost"				"300 550 800"
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"80 90 100 110"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -49,24 +49,14 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"170"
+				"resist_debuff"			"-30 -35 -40 -45"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.4"
+				"seal_duration"			"3.0 4.0 5.0 6.0"
 			}
 			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"600 1000 1400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_interval"		"0.1"
-			}
-			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_radius"		"700"

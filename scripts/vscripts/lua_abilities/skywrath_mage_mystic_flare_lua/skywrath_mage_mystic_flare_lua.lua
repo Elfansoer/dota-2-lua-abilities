@@ -27,10 +27,11 @@ function skywrath_mage_mystic_flare_lua:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	-- load data
-	local duration = self:GetSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor( "duration" )
+	local radius = self:GetSpecialValueFor( "radius" )
 
 	-- create thinker
-	self.thinker = CreateModifierThinker(
+	CreateModifierThinker(
 		caster, -- player source
 		self, -- ability source
 		"modifier_skywrath_mage_mystic_flare_lua_thinker", -- modifier name
@@ -39,9 +40,59 @@ function skywrath_mage_mystic_flare_lua:OnSpellStart()
 		caster:GetTeamNumber(),
 		false
 	)
-	self.thinker = self.thinker:FindModifierByName("modifier_skywrath_mage_mystic_flare_lua_thinker")
 
 	-- play effects
 	local sound_cast = "Hero_SkywrathMage.MysticFlare.Cast"
 	EmitSoundOn( sound_cast, caster )
+
+	-- scepter effect
+	if caster:HasScepter() then
+		local scepter_radius = self:GetSpecialValueFor( "scepter_radius" )
+		
+		-- find nearby enemies
+		local enemies = FindUnitsInRadius(
+			caster:GetTeamNumber(),	-- int, your team number
+			point,	-- point, center point
+			nil,	-- handle, cacheUnit. (not known)
+			scepter_radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+			DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
+			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
+			DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS,	-- int, flag filter
+			0,	-- int, order filter
+			false	-- bool, can grow cache
+		)
+
+		local target = nil
+		local creep = nil
+		-- prioritize hero
+		for _,enemy in pairs(enemies) do
+			-- only enemies outside cast aoe
+			if (enemy:GetOrigin()-point):Length2D()>radius then
+				if enemy:IsHero() then
+					target = enemy
+					break
+				elseif not creep then
+					-- store first found creep
+					creep = enemy
+				end
+			end
+		end
+		-- no secondary hero found, find creep
+		if not target then
+			target = creep
+		end
+
+		if target then
+			-- create thinker
+			CreateModifierThinker(
+				caster, -- player source
+				self, -- ability source
+				"modifier_skywrath_mage_mystic_flare_lua_thinker", -- modifier name
+				{ duration = duration }, -- kv
+				target:GetOrigin(),
+				caster:GetTeamNumber(),
+				false
+			)
+		end
+	end
 end

@@ -1,43 +1,43 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Skywrath Mage: Mystic Flare (Lua version)
+	// Skywrath Mage: Arcane Bolt (Lua version)
 	//=================================================================================================================
-	"skywrath_mage_mystic_flare_lua"
+	"skywrath_mage_arcane_bolt_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/skywrath_mage_mystic_flare_lua/skywrath_mage_mystic_flare_lua"
-		"AbilityTextureName"			"skywrath_mage_mystic_flare_lua"
-		"FightRecapLevel"				"2"
-		"MaxLevel"						"3"
+		"ScriptFile"					"lua_abilities/skywrath_mage_arcane_bolt_lua/skywrath_mage_arcane_bolt_lua"
+		"AbilityTextureName"			"skywrath_mage_arcane_bolt_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
-			"particle"	"particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient.vpcf"
+			"particle"	"particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"HasScepterUpgrade"			"1"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1200"
-		"AbilityCastPoint"				"0.1"
-
+		"AbilityCastRange"				"875"
+		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
+		
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60.0 40.0 20.0"
-		"AbilityManaCost"				"300 550 800"
+		"AbilityCooldown"				"5.0 4.0 3.0 2.0"
+		"AbilityManaCost"				"90"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -49,24 +49,29 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"170"
+				"bolt_speed"			"500"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.4"
+				"var_type"				"FIELD_INTEGER"
+				"bolt_vision"			"325"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"600 1000 1400"
+				"var_type"				"FIELD_FLOAT"
+				"bolt_damage"			"60 80 100 120"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_interval"		"0.1"
+				"int_multiplier"		"1.6"
 			}
 			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_duration"		"3.34"
+			}
+			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_radius"		"700"

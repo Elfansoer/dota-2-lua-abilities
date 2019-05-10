@@ -882,232 +882,6 @@
 	}
 	
 	//=================================================================================================================
-	// Ability: Lina Dragon Slave Lua
-	//=================================================================================================================
-	"lina_dragon_slave_lua"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"BaseClass"					"ability_lua"
-		"AbilityTextureName"				"lina_dragon_slave_lua"
-		"ScriptFile"					"lina_dragon_slave_lua"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.45 0.45 0.45 0.45"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.5"
-		"AbilityDuration"				"0.6875 0.6875 0.6875 0.6875"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 115 130 145"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"dragon_slave_speed"		"1200"
-			}
-			
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"dragon_slave_width_initial"	"275"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"dragon_slave_width_end"		"200"
-			}
-			
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"dragon_slave_distance"			"1075"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dragon_slave_damage"			"110 180 250 320"
-			}
-		}
-	}
-	
-	//=================================================================================================================
-	// Ability: Lina Light Strike Array Lua
-	//=================================================================================================================
-	"lina_light_strike_array_lua"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		
-		"AbilityCastRange"				"625"
-		"AbilityCastPoint"				"0.45 0.45 0.45 0.45"
-		"BaseClass"					"ability_lua"
-		"AbilityTextureName"				"lina_light_strike_array_lua"
-		"ScriptFile"					"lina_light_strike_array_lua"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7.0 7.0 7.0 7.0"
-		"AbilityDuration"				"1.6 1.9 2.2 2.5"				
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 110 120 130"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"light_strike_array_aoe"	"225"
-			}
-			
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"light_strike_array_delay_time"	"0.5"
-			}
-						
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"light_strike_array_stun_duration"	"1.6 1.9 2.2 2.5"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"light_strike_array_damage"	"120 160 200 240"
-			}
-		}
-	}
-	
-	//=================================================================================================================
-	// Ability: Lina's Fiery Soul Lua
-	//=================================================================================================================
-	"lina_fiery_soul_lua"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"					"ability_lua"
-		"AbilityTextureName"				"lina_fiery_soul_lua"
-		"ScriptFile"					"lina_fiery_soul_lua"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDuration"				"10"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"fiery_soul_attack_speed_bonus"	"40 55 70 85"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"fiery_soul_move_speed_bonus"	"5 6 7 8"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"fiery_soul_max_stacks"		"3"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration_tooltip"		"10"
-			}
-		}
-	}
-	
-	//=================================================================================================================
-	// Ability: Lina Laguna Blade Lua
-	//=================================================================================================================
-	"lina_laguna_blade_lua"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"							// Changes dynamically with scepter	
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"FightRecapLevel"				"2"
-		"BaseClass"					"ability_lua"
-		"AbilityTextureName"				"lina_laguna_blade_lua"
-		"ScriptFile"					"lina_laguna_blade_lua"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
-		}
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600"
-		"AbilityCastPoint"				"0.45 0.45 0.45"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70.0 60.0 50.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"280 420 680"
-			
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.0"	// Modifier just delays damage
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"450 675 950"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range_scepter"		"600"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_delay"				"0.25"
-			}
-		}
-	}
-	
-	//=================================================================================================================
 	//=================================================================================================================
 	// CUSTOM ABILITIES
 	//=================================================================================================================
@@ -1340,6 +1114,11 @@
 #base "../vscripts/lua_abilities/lifestealer_feast_lua/lifestealer_feast_lua.txt"
 #base "../vscripts/lua_abilities/lifestealer_open_wounds_lua/lifestealer_open_wounds_lua.txt"
 
+#base "../vscripts/lua_abilities/lina_dragon_slave_lua/lina_dragon_slave_lua.txt"
+#base "../vscripts/lua_abilities/lina_light_strike_array_lua/lina_light_strike_array_lua.txt"
+#base "../vscripts/lua_abilities/lina_fiery_soul_lua/lina_fiery_soul_lua.txt"
+#base "../vscripts/lua_abilities/lina_laguna_blade_lua/lina_laguna_blade_lua.txt"
+
 #base "../vscripts/lua_abilities/lion_earth_spike_lua/lion_earth_spike_lua.txt"
 #base "../vscripts/lua_abilities/lion_hex_lua/lion_hex_lua.txt"
 #base "../vscripts/lua_abilities/lion_mana_drain_lua/lion_mana_drain_lua.txt"
@@ -1390,6 +1169,9 @@
 #base "../vscripts/lua_abilities/shadow_fiend_presence_of_the_dark_lord_lua/shadow_fiend_presence_of_the_dark_lord_lua_base.txt"
 #base "../vscripts/lua_abilities/shadow_fiend_requiem_of_souls_lua/shadow_fiend_requiem_of_souls_lua_base.txt"
 
+#base "../vscripts/lua_abilities/skywrath_mage_arcane_bolt_lua/skywrath_mage_arcane_bolt_lua.txt"
+#base "../vscripts/lua_abilities/skywrath_mage_concussive_shot_lua/skywrath_mage_concussive_shot_lua.txt"
+#base "../vscripts/lua_abilities/skywrath_mage_ancient_seal_lua/skywrath_mage_ancient_seal_lua.txt"
 #base "../vscripts/lua_abilities/skywrath_mage_mystic_flare_lua/skywrath_mage_mystic_flare_lua.txt"
 
 #base "../vscripts/lua_abilities/slardar_guardian_sprint_lua/slardar_guardian_sprint_lua.txt"
@@ -1417,7 +1199,7 @@
 #base "../vscripts/lua_abilities/ursa_earthshock_lua/ursa_earthshock_lua.txt"
 #base "../vscripts/lua_abilities/ursa_overpower_lua/ursa_overpower_lua.txt"
 #base "../vscripts/lua_abilities/ursa_fury_swipes_lua/ursa_fury_swipes_lua.txt"
-#base "../vscripts/lua_abilities/ursa_earthshock_lua/ursa_enrage_lua.txt"
+#base "../vscripts/lua_abilities/ursa_enrage_lua/ursa_enrage_lua.txt"
 
 #base "../vscripts/lua_abilities/wraith_king_wraithfire_blast_lua/wraith_king_wraithfire_blast_lua.txt"
 #base "../vscripts/lua_abilities/wraith_king_vampiric_aura_lua/wraith_king_vampiric_aura_lua.txt"
@@ -1476,3 +1258,4 @@
 #base "../vscripts/test_abilities/test_getbehavior/test_getbehavior.txt"
 #base "../vscripts/test_abilities/test_knockback/test_knockback.txt"
 #base "../vscripts/test_abilities/test_vector_target/test_vector_target.txt"
+#base "../vscripts/test_abilities/test_particle_visibility/test_particle_visibility.txt"

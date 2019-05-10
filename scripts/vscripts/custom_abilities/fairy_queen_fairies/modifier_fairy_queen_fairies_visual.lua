@@ -128,7 +128,8 @@ function fairy_visual:CreateFairy( parent, pos )
 
 	-- create particle
 	local particle_cast = "particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf"
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, self.parent )
 
 	-- setup data
 	local init_pos = self.parent:GetOrigin() + Vector(0,0,1000)
@@ -138,10 +139,11 @@ function fairy_visual:CreateFairy( parent, pos )
 	end
 
 	-- change cp
+	ParticleManager:SetParticleControl( effect_cast, 0, init_pos )
 	ParticleManager:SetParticleControl( effect_cast, 1, init_pos )
 	ParticleManager:SetParticleControl( effect_cast, 2, Vector(400,0,0) )
-	-- ParticleManager:SetParticleFoWProperties( effect_cast, 0, 2, 1000 )
-	-- ParticleManager:SetParticleShouldCheckFoW( effect_cast, false )
+	ParticleManager:SetParticleShouldCheckFoW( effect_cast, true )
+	ParticleManager:SetParticleFoWProperties( effect_cast, 1, 1, 50 )
 
 	-- store data
 	self.particles = effect_cast
