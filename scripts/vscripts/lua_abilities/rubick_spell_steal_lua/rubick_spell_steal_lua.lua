@@ -210,8 +210,8 @@ function rubick_spell_steal_lua:SetStolenSpell( spellData )
 
 	-- Add new spell
 	self.currentSpell = self:GetCaster():AddAbility( spell:GetAbilityName() )
-	self.currentSpell:SetLevel( spell:GetLevel() )
 	self.currentSpell:SetStolen( true )
+	self.currentSpell:SetLevel( spell:GetLevel() )
 	if self.currentSpell.OnStolen then self.currentSpell:OnStolen( spell ) end
 	self:GetCaster():SwapAbilities( self.slot1, self.currentSpell:GetAbilityName(), false, true )
 

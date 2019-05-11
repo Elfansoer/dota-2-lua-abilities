@@ -155,6 +155,21 @@
 		"Ability3"					"disruptor_kinetic_field_lua"
 		"Ability6"					"disruptor_static_storm_lua"
 	}
+
+	//=================================================================================================================
+	// HERO: Wraith King (Doom)
+	//=================================================================================================================
+	"npc_dota_hero_wraith_king_lua"
+	{
+		"override_hero"				"npc_dota_hero_skeleton_king"			// Hero to override
+		"Ability1"					"doom_devour_lua"
+		"Ability2"					"doom_scorched_earth_lua"
+		"Ability3"					"doom_infernal_blade_lua"
+		"Ability4"					"doom_devour_lua_slot1"
+		"Ability5"					"doom_devour_lua_slot2"
+		"Ability6"					"doom_doom_lua"
+	}
+
 	//=================================================================================================================
 	// HERO: Magnus (Earthshaker)
 	//=================================================================================================================

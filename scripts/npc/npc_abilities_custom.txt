@@ -1053,6 +1053,11 @@
 #base "../vscripts/lua_abilities/disruptor_kinetic_field_lua/disruptor_kinetic_field_lua.txt"
 #base "../vscripts/lua_abilities/disruptor_static_storm_lua/disruptor_static_storm_lua.txt"
 
+#base "../vscripts/lua_abilities/doom_devour_lua/doom_devour_lua.txt"
+#base "../vscripts/lua_abilities/doom_scorched_earth_lua/doom_scorched_earth_lua.txt"
+#base "../vscripts/lua_abilities/doom_infernal_blade_lua/doom_infernal_blade_lua.txt"
+#base "../vscripts/lua_abilities/doom_doom_lua/doom_doom_lua.txt"
+
 #base "../vscripts/lua_abilities/drow_ranger_frost_arrows_lua/drow_ranger_frost_arrows_lua.txt"
 
 #base "../vscripts/lua_abilities/earthshaker_fissure_lua/earthshaker_fissure_lua.txt"

@@ -6,6 +6,8 @@ local reference = {
 	["particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf"] = "particles/rubick_freezing_field_explosion.vpcf",
 	["particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf"] = "particles/rubick_freezing_field_snow.vpcf",
 
+	["particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf"] = "particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf",
+	
 	["particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"] = "particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf",
 	["particles/units/heroes/hero_dazzle/dazzle_shadow_wave_impact_damage.vpcf"] = "particles/units/heroes/hero_dazzle/dazzle_shadow_wave_impact_damage.vpcf",
 
