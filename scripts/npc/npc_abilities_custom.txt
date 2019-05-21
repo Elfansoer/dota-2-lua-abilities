@@ -1045,6 +1045,7 @@
 #base "../vscripts/lua_abilities/crystal_maiden_arcane_aura_lua/crystal_maiden_arcane_aura_lua.txt"
 #base "../vscripts/lua_abilities/crystal_maiden_freezing_field_lua/crystal_maiden_freezing_field_lua.txt"
 
+#base "../vscripts/lua_abilities/dazzle_poison_touch_lua/dazzle_poison_touch_lua.txt"
 #base "../vscripts/lua_abilities/dazzle_shallow_grave_lua/dazzle_shallow_grave_lua.txt"
 #base "../vscripts/lua_abilities/dazzle_shadow_wave_lua/dazzle_shadow_wave_lua.txt"
 #base "../vscripts/lua_abilities/dazzle_weave_lua/dazzle_weave_lua.txt"
@@ -1262,5 +1263,6 @@
 #base "../vscripts/test_abilities/test_cosmetics/test_cosmetics.txt"
 #base "../vscripts/test_abilities/test_getbehavior/test_getbehavior.txt"
 #base "../vscripts/test_abilities/test_knockback/test_knockback.txt"
+#base "../vscripts/test_abilities/test_sandbox_notarget/test_sandbox_notarget.txt"
 #base "../vscripts/test_abilities/test_vector_target/test_vector_target.txt"
 #base "../vscripts/test_abilities/test_particle_visibility/test_particle_visibility.txt"

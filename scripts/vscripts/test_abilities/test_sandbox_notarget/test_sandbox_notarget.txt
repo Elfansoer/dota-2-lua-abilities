@@ -29,14 +29,14 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"600"
 		"AbilityCastRangeBuffer"		"250"
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0.1"
 		"AbilityChannelTime"			"0"
 		"AbilityDuration"				"0.0"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0"
-		"AbilityManaCost"				"100"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"1"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------

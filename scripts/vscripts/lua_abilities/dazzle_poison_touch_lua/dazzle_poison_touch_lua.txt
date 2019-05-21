@@ -1,0 +1,98 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Dazzle: Poison Touch (Lua version)
+	//=================================================================================================================
+	"dazzle_poison_touch_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/dazzle_poison_touch_lua/dazzle_poison_touch_lua"
+		"AbilityTextureName"			"dazzle_poison_touch_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+			"particle"	"particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf"
+			"particle"	"particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
+			"particle"	"particles/status_fx/status_effect_poison_dazzle.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500 600 700 800"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"27 24 21 18"
+		"AbilityManaCost"				"110 120 130 140"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"start_radius"				"200 200 200 200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"end_radius"				"300 300 300 300"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"end_distance"				"600 700 800 900"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"targets"					"2 4 6 8"
+			}
+			"05"
+			{	
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"16 28 40 52"
+			}
+			"06"
+			{	
+				"var_type"			"FIELD_INTEGER"
+				"slow"			"-14 -16 -18 -20"
+			}
+			"07"
+			{	
+				"var_type"			"FIELD_INTEGER"
+				"projectile_speed"	"1300"
+			}
+			"08"
+			{	
+				"var_type"			"FIELD_FLOAT"
+				"duration"		"4 5 6 7"
+			}
+			"09"
+			{	
+				"var_type"			"FIELD_INTEGER"
+				"range_tooltip"		"500 600 700 800"
+			}
+		}
+	}
+}

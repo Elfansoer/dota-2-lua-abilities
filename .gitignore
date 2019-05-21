@@ -1,3 +1,6 @@
 # ignore bin files
 tools_asset_info.bin
 tools_thumbnail_cache.bin
+
+# ignore cfg files
+panorama_debugger.cfg

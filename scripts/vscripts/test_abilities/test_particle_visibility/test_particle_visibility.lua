@@ -54,15 +54,15 @@ function test_particle_visibility:OnProjectileHit( target, location )
 end
 
 function test_particle_visibility:OnProjectileThink( loc )
-	ParticleManager:SetParticleControl( self.effect_cast, 1, loc )
+	-- ParticleManager:SetParticleControl( self.effect_cast, 1, loc )
 end
 --------------------------------------------------------------------------------
 function test_particle_visibility:PlayEffects( point )
 	local origin = self:GetCaster():GetOrigin()
 
 	-- Get Resources
-	local particle_cast = "particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf"
-
+	-- local particle_cast = "particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf"
+	local particle_cast = "particles/units/heroes/hero_grimstroke/grimstroke_soulchain.vpcf"
 	-- Create Particle
 	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_POINT_FOLLOW, self:GetCaster() )
 	ParticleManager:SetParticleFoWProperties( self.effect_cast, 1, 1, 50 )
@@ -71,15 +71,26 @@ function test_particle_visibility:PlayEffects( point )
 
 	ParticleManager:SetParticleControlEnt(
 		self.effect_cast,
-		0,
+		1,
 		self:GetCaster(),
 		PATTACH_CUSTOMORIGIN_FOLLOW,
 		"attach_hitloc",
 		origin, -- unknown
 		true -- unknown, true
 	)
+
+
+	ParticleManager:SetParticleControlEnt(
+		self.effect_cast,
+		0,
+		self:GetCaster(),
+		PATTACH_MAIN_VIEW,
+		"attach_hitloc",
+		origin, -- unknown
+		true -- unknown, true
+	)
 	-- ParticleManager:SetParticleControl( self.effect_cast, 0, origin )
-	ParticleManager:SetParticleControl( self.effect_cast, 1, origin )
+	-- ParticleManager:SetParticleControl( self.effect_cast, 1, origin )
 	ParticleManager:SetParticleControl( self.effect_cast, 2, Vector(1000,0,0) )
 	ParticleManager:SetParticleShouldCheckFoW( self.effect_cast, true )
 
