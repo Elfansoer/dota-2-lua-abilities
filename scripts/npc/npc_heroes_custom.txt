@@ -171,6 +171,18 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Chaos Knight (Dragon Knight)
+	//=================================================================================================================
+	"npc_dota_hero_chaos_knight_lua"
+	{
+		"override_hero"					"npc_dota_hero_chaos_knight"	// Hero to override
+		"Ability1"				"dragon_knight_breathe_fire_lua"						// Ability 1
+		"Ability2"				"dragon_knight_dragon_tail_lua"						// Ability 2
+		"Ability3"				"dragon_knight_dragon_blood_lua"						// Ability 3
+		"Ability6"				"earthshaker_echo_slam_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Magnus (Earthshaker)
 	//=================================================================================================================
 	"npc_dota_hero_magnus"

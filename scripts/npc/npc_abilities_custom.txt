@@ -1059,6 +1059,10 @@
 #base "../vscripts/lua_abilities/doom_infernal_blade_lua/doom_infernal_blade_lua.txt"
 #base "../vscripts/lua_abilities/doom_doom_lua/doom_doom_lua.txt"
 
+#base "../vscripts/lua_abilities/dragon_knight_breathe_fire_lua/dragon_knight_breathe_fire_lua.txt"
+#base "../vscripts/lua_abilities/dragon_knight_dragon_tail_lua/dragon_knight_dragon_tail_lua.txt"
+#base "../vscripts/lua_abilities/dragon_knight_dragon_blood_lua/dragon_knight_dragon_blood_lua.txt"
+
 #base "../vscripts/lua_abilities/drow_ranger_frost_arrows_lua/drow_ranger_frost_arrows_lua.txt"
 
 #base "../vscripts/lua_abilities/earthshaker_fissure_lua/earthshaker_fissure_lua.txt"
