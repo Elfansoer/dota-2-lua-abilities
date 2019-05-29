@@ -1062,6 +1062,7 @@
 #base "../vscripts/lua_abilities/dragon_knight_breathe_fire_lua/dragon_knight_breathe_fire_lua.txt"
 #base "../vscripts/lua_abilities/dragon_knight_dragon_tail_lua/dragon_knight_dragon_tail_lua.txt"
 #base "../vscripts/lua_abilities/dragon_knight_dragon_blood_lua/dragon_knight_dragon_blood_lua.txt"
+#base "../vscripts/lua_abilities/dragon_knight_elder_dragon_form_lua/dragon_knight_elder_dragon_form_lua.txt"
 
 #base "../vscripts/lua_abilities/drow_ranger_frost_arrows_lua/drow_ranger_frost_arrows_lua.txt"
 

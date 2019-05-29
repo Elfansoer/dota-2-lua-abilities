@@ -179,7 +179,7 @@
 		"Ability1"				"dragon_knight_breathe_fire_lua"						// Ability 1
 		"Ability2"				"dragon_knight_dragon_tail_lua"						// Ability 2
 		"Ability3"				"dragon_knight_dragon_blood_lua"						// Ability 3
-		"Ability6"				"earthshaker_echo_slam_lua"							// Ability 6
+		"Ability6"				"dragon_knight_elder_dragon_form_lua"							// Ability 6
 	}
 
 	//=================================================================================================================

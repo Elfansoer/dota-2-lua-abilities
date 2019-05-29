@@ -17,8 +17,14 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-		}
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_corrosive.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_transform_green.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_fire.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_transform_red.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_frost.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_transform_blue.vpcf"
+			"particle"	"particles/units/heroes/hero_dragon_knight/dragon_knight_corrosion_debuff.vpcf"
+ 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
