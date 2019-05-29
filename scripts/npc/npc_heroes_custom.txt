@@ -503,6 +503,20 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Grimstroke (Viper)
+	//=================================================================================================================
+	"npc_dota_hero_grimstroke_lua"
+	{
+		"override_hero"					"npc_dota_hero_grimstroke"	// Hero to override
+		"Ability1"				"viper_poison_attack_lua"						// Ability 1
+		"Ability2"				"viper_nethertoxin_lua"						// Ability 2
+		"Ability3"				"viper_corrosive_skin_lua"						// Ability 3
+		"Ability4"				"generic_hidden"						// Ability 3
+		"Ability5"				"generic_hidden"						// Ability 3
+		"Ability6"				"viper_viper_strike_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Tidehunter (Wraith King)
 	//=================================================================================================================
 	"npc_dota_hero_tidehunter_lua"

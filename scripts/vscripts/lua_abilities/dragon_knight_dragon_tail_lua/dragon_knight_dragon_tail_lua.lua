@@ -34,6 +34,9 @@ function dragon_knight_dragon_tail_lua:OnSpellStart()
 
 	-- check if simple form
 	if not modifier then
+		-- cancel if linken
+		if target:TriggerSpellAbsorb( self ) then return end
+
 		-- directly hit
 		self:Hit( target, false )
 

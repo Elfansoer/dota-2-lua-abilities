@@ -1212,6 +1212,11 @@
 #base "../vscripts/lua_abilities/ursa_fury_swipes_lua/ursa_fury_swipes_lua.txt"
 #base "../vscripts/lua_abilities/ursa_enrage_lua/ursa_enrage_lua.txt"
 
+#base "../vscripts/lua_abilities/viper_poison_attack_lua/viper_poison_attack_lua.txt"
+#base "../vscripts/lua_abilities/viper_nethertoxin_lua/viper_nethertoxin_lua.txt"
+#base "../vscripts/lua_abilities/viper_corrosive_skin_lua/viper_corrosive_skin_lua.txt"
+#base "../vscripts/lua_abilities/viper_viper_strike_lua/viper_viper_strike_lua.txt"
+
 #base "../vscripts/lua_abilities/wraith_king_wraithfire_blast_lua/wraith_king_wraithfire_blast_lua.txt"
 #base "../vscripts/lua_abilities/wraith_king_vampiric_aura_lua/wraith_king_vampiric_aura_lua.txt"
 #base "../vscripts/lua_abilities/wraith_king_mortal_strike_lua/wraith_king_mortal_strike_lua.txt"

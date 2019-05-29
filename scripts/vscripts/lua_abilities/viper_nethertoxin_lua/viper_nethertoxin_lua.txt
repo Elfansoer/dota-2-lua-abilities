@@ -1,0 +1,75 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Viper: Nethertoxin (Lua version)
+	//=================================================================================================================
+	"viper_nethertoxin_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/viper_nethertoxin_lua/viper_nethertoxin_lua"
+		"AbilityTextureName"			"viper_nethertoxin_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+			"particle"	"particles/units/heroes/hero_viper/viper_nethertoxin.vpcf"
+			"particle"	"particles/units/heroes/hero_viper/viper_nethertoxin_proj.vpcf"
+			"particle"	"particles/units/heroes/hero_viper/viper_nethertoxin_debuff.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"900"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6.0"
+		"AbilityManaCost"				"70 80 90 100"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"			"30 45 60 75"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"		"380"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"magic_resistance"	"-10 -15 -20 -25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"			"8"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_speed"	"2000"
+			}
+		}
+	}
+}

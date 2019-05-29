@@ -29,6 +29,7 @@
 	"npc_dota_hero_earth_spirit"		"1"
 	"npc_dota_hero_ember_spirit"		"1"
 	"npc_dota_hero_enchantress"		"1"
+	"npc_dota_hero_grimstroke"		"1"
 	"npc_dota_hero_huskar"		"1"
 	"npc_dota_hero_juggernaut"			"1"
 	"npc_dota_hero_leshrac"			"1"
