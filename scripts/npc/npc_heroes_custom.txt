@@ -517,6 +517,18 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Viper (Windranger)
+	//=================================================================================================================
+	"npc_dota_hero_viper_lua"
+	{
+		"override_hero"					"npc_dota_hero_viper"	// Hero to override
+		"Ability1"				"windranger_shackleshot_lua"						// Ability 1
+		"Ability2"				"windranger_powershot_lua"						// Ability 2
+		"Ability3"				"windranger_windrun_lua"						// Ability 3
+		"Ability6"				"windranger_focus_fire_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Tidehunter (Wraith King)
 	//=================================================================================================================
 	"npc_dota_hero_tidehunter_lua"

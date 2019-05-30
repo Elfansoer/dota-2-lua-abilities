@@ -1,0 +1,72 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Windranger: Focus Fire (Lua version)
+	//=================================================================================================================
+	"windranger_focus_fire_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/windranger_focus_fire_lua/windranger_focus_fire_lua"
+		"AbilityTextureName"			"windranger_focus_fire_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0"
+		"AbilityDuration"				"20.0 20.0 20.0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"70 50 30"
+		"AbilityManaCost"				"75 100 125"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_attack_speed"			"450"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"focusfire_damage_reduction"	"-50 -40 -30"
+			}						
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"focusfire_duration_tooltip"	"20"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"focusfire_fire_on_the_move"	"1"
+			}
+		}
+	}
+}

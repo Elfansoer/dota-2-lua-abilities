@@ -1,0 +1,84 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Windranger: Shackleshot (Lua version)
+	//=================================================================================================================
+	"windranger_shackleshot_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/windranger_shackleshot_lua/windranger_shackleshot_lua"
+		"AbilityTextureName"			"windranger_shackleshot_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+			"particle"	"particles/units/heroes/hero_windrunner/windrunner_shackleshot.vpcf"
+			"particle"	"particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair.vpcf"
+			"particle"	"particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf"
+			"particle"	"particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_single.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.15"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16 14 12 10"
+		"AbilityManaCost"				"70 85 100 115"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fail_stun_duration"	"0.75 0.75 0.75 0.75"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"2.0 2.6 3.2 3.8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"shackle_distance"		"575"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"arrow_speed"			"1650"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"shackle_count"			"1"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"shackle_angle"			"23"
+			}
+		}
+	}
+}

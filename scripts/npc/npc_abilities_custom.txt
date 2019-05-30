@@ -1217,6 +1217,11 @@
 #base "../vscripts/lua_abilities/viper_corrosive_skin_lua/viper_corrosive_skin_lua.txt"
 #base "../vscripts/lua_abilities/viper_viper_strike_lua/viper_viper_strike_lua.txt"
 
+#base "../vscripts/lua_abilities/windranger_shackleshot_lua/windranger_shackleshot_lua.txt"
+#base "../vscripts/lua_abilities/windranger_powershot_lua/windranger_powershot_lua.txt"
+#base "../vscripts/lua_abilities/windranger_windrun_lua/windranger_windrun_lua.txt"
+#base "../vscripts/lua_abilities/windranger_focus_fire_lua/windranger_focus_fire_lua.txt"
+
 #base "../vscripts/lua_abilities/wraith_king_wraithfire_blast_lua/wraith_king_wraithfire_blast_lua.txt"
 #base "../vscripts/lua_abilities/wraith_king_vampiric_aura_lua/wraith_king_vampiric_aura_lua.txt"
 #base "../vscripts/lua_abilities/wraith_king_mortal_strike_lua/wraith_king_mortal_strike_lua.txt"
