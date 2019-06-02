@@ -12,7 +12,7 @@
 		"override_hero"					"npc_dota_hero_queenofpain"			// Hero to override
 		"Ability1"				"test_particle_visibility"			// Ability 5
 		"Ability2"				"furion_force_of_nature"				// Ability 3
-		"Ability3"				"test_sandbox_notarget"				// Ability 1
+		"Ability3"				"pugna_nether_ward"				// Ability 1
 		"Ability4"				"test_knockback"				// Ability 2
 		"Ability5"				"test_blockcamp"					// Ability 6
 		"Ability6"				"builder_build_tower"			// Ability 4
@@ -109,11 +109,11 @@
 
 
 	//=================================================================================================================
-	// HERO: Enchantress (Chaos Knight)
+	// HERO: Luna (Chaos Knight)
 	//=================================================================================================================
-	"npc_dota_hero_enchantress_lua"
+	"npc_dota_hero_luna_lua"
 	{
-		"override_hero"				"npc_dota_hero_enchantress"			// Hero to override
+		"override_hero"				"npc_dota_hero_luna"			// Hero to override
 		"Ability1"					"chaos_knight_chaos_bolt_lua"
 		"Ability2"					"chaos_knight_reality_rift_lua"
 		"Ability3"					"chaos_knight_chaos_strike_lua"
@@ -322,6 +322,7 @@
 	{
 		"override_hero"					"npc_dota_hero_mirana"	// Hero to override
 		"Ability1"				"luna_lucent_beam_lua"						// Ability 1
+		"Ability2"				"luna_moon_glaive_lua"						// Ability 1
 		"Ability3"				"luna_lunar_blessing_lua"						// Ability 1
 		"Ability6"				"luna_eclipse_lua"						// Ability 1
 	}
@@ -337,6 +338,19 @@
 		"Ability3"				"mars_bulwark_lua"						// Ability 1
 		"Ability4"				"mars_arena_of_blood"						// Ability 1
 		"Ability6"				"mars_arena_of_blood_lua"						// Ability 1
+	}
+
+	//=================================================================================================================
+	// HERO: Enchantress (Medusa)
+	//=================================================================================================================
+	"npc_dota_hero_enchantress_lua"
+	{
+		"override_hero"					"npc_dota_hero_enchantress"	// Hero to override
+		"Ability1"				"medusa_split_shot_lua"						// Ability 1
+		"Ability2"				"medusa_mystic_snake_lua"						// Ability 1
+		"Ability3"				"medusa_mana_shield_lua"						// Ability 1
+		"Ability4"				"luna_moon_glaive_lua"						// Ability 1
+		"Ability6"				"medusa_stone_gaze_lua"						// Ability 1
 	}
 
 	//=================================================================================================================
@@ -454,11 +468,11 @@
 	}
 
 	//=================================================================================================================
-	// HERO: Luna (Slark)
+	// HERO: Riki (Slark)
 	//=================================================================================================================
-	"npc_dota_hero_luna_lua"
+	"npc_dota_hero_riki_lua"
 	{
-		"override_hero"					"npc_dota_hero_luna"	// Hero to override
+		"override_hero"					"npc_dota_hero_riki"	// Hero to override
 		"Ability1"				"slark_dark_pact_lua"						// Ability 2
 		"Ability3"				"slark_essence_shift_lua"						// Ability 3
 		"Ability6"				"slark_shadow_dance_lua"							// Ability 6

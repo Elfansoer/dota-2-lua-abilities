@@ -74,9 +74,11 @@ end
 -- Modifier Effects
 function modifier_luna_moon_glaive_lua_thinker:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
+
+		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
+		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
 	}
 
 	return funcs
@@ -87,6 +89,11 @@ function modifier_luna_moon_glaive_lua_thinker:GetModifierProjectileSpeedBonus()
 
 	-- base is 900
 	return self.caster:GetProjectileSpeed() - (self.projectile_speed or 900)
+end
+
+function modifier_luna_moon_glaive_lua_thinker:GetAttackSound()
+	print("here")
+	return "Hero_Luna.MoonGlaive.Impact"
 end
 
 function modifier_luna_moon_glaive_lua_thinker:GetModifierProcAttack_Feedback( params )
@@ -115,6 +122,10 @@ function modifier_luna_moon_glaive_lua_thinker:GetModifierProcAttack_Feedback( p
 		-- bounce
 		self:StartIntervalThink( 0.05 )
 	end
+
+	-- Play effects
+	local sound_cast = "Hero_Luna.MoonGlaive.Impact"
+	EmitSoundOn( sound_cast, params.target )
 end
 
 function modifier_luna_moon_glaive_lua_thinker:OnAttackFail( params )
@@ -123,10 +134,7 @@ function modifier_luna_moon_glaive_lua_thinker:OnAttackFail( params )
 		self:Destroy()
 	end
 end
-function modifier_luna_moon_glaive_lua_thinker:OnIntervalThink()
-	self:StartIntervalThink( -1 )
-	self:Attack()
-end
+
 --------------------------------------------------------------------------------
 -- Status Effects
 function modifier_luna_moon_glaive_lua_thinker:CheckState()
@@ -136,6 +144,14 @@ function modifier_luna_moon_glaive_lua_thinker:CheckState()
 
 	return state
 end
+
+--------------------------------------------------------------------------------
+-- Interval Effects
+function modifier_luna_moon_glaive_lua_thinker:OnIntervalThink()
+	self:StartIntervalThink( -1 )
+	self:Attack()
+end
+
 --------------------------------------------------------------------------------
 -- Helper
 function modifier_luna_moon_glaive_lua_thinker:Attack()

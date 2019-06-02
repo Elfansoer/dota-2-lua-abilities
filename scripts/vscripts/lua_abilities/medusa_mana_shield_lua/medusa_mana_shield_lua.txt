@@ -1,33 +1,35 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Luna: Moon Glaive (Lua version)
+	// Medusa: Mana Shield (Lua version)
 	//=================================================================================================================
-	"luna_moon_glaive_lua"
+	"medusa_mana_shield_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/luna_moon_glaive_lua/luna_moon_glaive_lua"
-		"AbilityTextureName"			"luna_moon_glaive_lua"
+		"ScriptFile"					"lua_abilities/medusa_mana_shield_lua/medusa_mana_shield_lua"
+		"AbilityTextureName"			"medusa_mana_shield_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+			"particle"	"particles/units/heroes/hero_medusa/medusa_mana_shield.vpcf"
+			"particle"	"particles/units/heroes/hero_medusa/medusa_mana_shield_impact.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"		
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
@@ -41,18 +43,13 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"range"						"500"
+				"var_type"				"FIELD_FLOAT"
+				"damage_per_mana"		"1.6 1.9 2.2 2.5"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bounces"					"1 2 3 6"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_reduction_percent"	"35"
+				"var_type"				"FIELD_FLOAT"
+				"absorption_tooltip"		"60"
 			}
 		}
 	}

@@ -1,0 +1,102 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Medusa: Mystic Snake (Lua version)
+	//=================================================================================================================
+	"medusa_mystic_snake_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/medusa_mystic_snake_lua/medusa_mystic_snake_lua"
+		"AbilityTextureName"			"medusa_mystic_snake_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+			"particle"	"particles/units/heroes/hero_medusa/medusa_mystic_snake_projectile.vpcf"
+			"particle"	"particles/units/heroes/hero_medusa/medusa_mystic_snake_projectile_return.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"11"
+		"AbilityManaCost"				"140 150 160 170"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"475 475 475 475"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"snake_jumps"			"3 4 5 6"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"jump_delay"			"0.25 0.25 0.25 0.25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"snake_damage"			"80 120 160 200"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"snake_mana_steal"		"11 14 17 20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"snake_scale"			"35"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"initial_speed"			"800"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"return_speed"			"800"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stone_form_scepter_base"		"1.0"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stone_form_scepter_increment"		"0.3"
+			}
+		}
+	}
+}

@@ -45,6 +45,7 @@
 	"npc_dota_hero_phantom_assassin"	"1"
 	"npc_dota_hero_puck"			"1"
 	"npc_dota_hero_queenofpain"		"1"
+	"npc_dota_hero_riki"			"1"
 	"npc_dota_hero_sniper"		"1"
 	"npc_dota_hero_silencer"		"1"
 	"npc_dota_hero_skeleton_king"		"1"
