@@ -10,14 +10,21 @@
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/dark_willow_bedlam_terrorize_lua/dark_willow_terrorize_lua"
+		"ScriptFile"					"lua_abilities/dark_willow_terrorize_lua/dark_willow_terrorize_lua"
 		"AbilityTextureName"			"dark_willow_terrorize_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"3"
+		"LinkedAbility"					"dark_willow_bedlam_lua"
+
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dark_willow.vsndevts"
-			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+			"particle"	"particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_marker.vpcf"
+			"particle"	"particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_channel.vpcf"
+			"particle"	"particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell.vpcf"
+			"particle"	"particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_debuff.vpcf"
+			"particle"	"particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_fear_debuff.vpcf"
+			"particle"	"particles/units/heroes/hero_dark_willow/dark_willow_willowisp_ambient.vpcf"
 		}
 		
 		// Ability General
@@ -25,17 +32,16 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1500"
-		"AbilityCastPoint"				"1"
+		"AbilityCastPoint"				"1.0"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80 60 40"
+		"AbilityCooldown"				"100 80 60"
 		"AbilityManaCost"				"150"
 
 		// Damage
@@ -47,7 +53,7 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"destination_travel_speed"	"2000"
 			}
 			"02"
@@ -62,14 +68,14 @@
 			}	
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"return_travel_speed"	"500"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"starting_height"		"300"
-			}
+			}	
 		}
 	}
 }
