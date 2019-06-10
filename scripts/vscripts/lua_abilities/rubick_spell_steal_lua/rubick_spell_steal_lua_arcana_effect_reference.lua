@@ -8,6 +8,7 @@ local reference = {
 	["particles/units/heroes/hero_dark_willow/dark_willow_wisp_aoe_cast.vpcf"] = "particles/rubick_wisp_aoe_cast.vpcf",
 	["particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_channel.vpcf"] = "particles/rubick_wisp_spell_channel.vpcf",
 	["particles/units/heroes/hero_dark_willow/dark_willow_willowisp_base_attack.vpcf"] = "particles/rubick_willowisp_base_attack.vpcf",
+	["particles/units/heroes/hero_dark_willow/dark_willow_willowisp_ambient.vpcf"] = "particles/rubick_willowisp_ambient.vpcf",
 
 	["particles/units/heroes/hero_earthshaker/earthshaker_fissure.vpcf"] = "particles/rubick_fissure.vpcf",
 

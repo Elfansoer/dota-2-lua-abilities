@@ -26,8 +26,15 @@ end
 function modifier_wisp_ambient:OnCreated( kv )
 	if not IsServer() then return end
 	self:GetParent():SetModel( "models/heroes/dark_willow/dark_willow_wisp.vmdl" )
-
 	self:PlayEffects()
+
+	-- check if stolen
+	local spell_steal = self:GetCaster():FindAbilityByName("rubick_spell_steal_lua")
+	local stolen = (self:GetAbility():IsStolen() and spell_steal)
+	if stolen then
+		self:GetParent():SetModelScale( 0.01 )
+	end
+
 end
 
 function modifier_wisp_ambient:OnRefresh( kv )
@@ -45,10 +52,18 @@ end
 function modifier_wisp_ambient:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
-		MODIFIER_EVENT_ON_ATTACKED,
 	}
 
 	return funcs
+end
+
+function modifier_wisp_ambient:GetModifierBaseAttack_BonusDamage()
+	if not IsServer() then return end
+
+	-- update cp
+	local target = self:GetParent():GetOrigin() + self:GetParent():GetForwardVector()
+	local forward = self:GetParent():GetForwardVector()
+	ParticleManager:SetParticleControl( self.effect_cast, 2, target )
 end
 
 --------------------------------------------------------------------------------
@@ -72,10 +87,10 @@ function modifier_wisp_ambient:PlayEffects()
 	local particle_cast = "particles/units/heroes/hero_dark_willow/dark_willow_willowisp_ambient.vpcf"
 
 	-- Create Particle
-	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
-	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	-- self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	self.effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	ParticleManager:SetParticleControlEnt(
-		effect_cast,
+		self.effect_cast,
 		0,
 		self:GetParent(),
 		PATTACH_POINT_FOLLOW,
@@ -84,7 +99,7 @@ function modifier_wisp_ambient:PlayEffects()
 		true -- unknown, true
 	)
 	ParticleManager:SetParticleControlEnt(
-		effect_cast,
+		self.effect_cast,
 		1,
 		self:GetParent(),
 		PATTACH_POINT_FOLLOW,
@@ -95,7 +110,7 @@ function modifier_wisp_ambient:PlayEffects()
 
 	-- buff particle
 	self:AddParticle(
-		effect_cast,
+		self.effect_cast,
 		false, -- bDestroyImmediately
 		false, -- bStatusEffect
 		-1, -- iPriority
