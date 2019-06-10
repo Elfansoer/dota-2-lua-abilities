@@ -3,7 +3,7 @@
 ]]
 local reference = require("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana_effect_reference")
 -- logic
-local self, particle_name, iAttach, hUnit = ...
+local self, particle_name, iAttach, hUnit, iTeam = ...
 if self.GetAbility then
 	self = self:GetAbility()
 end
@@ -12,16 +12,21 @@ end
 local spell_steal = self:GetCaster():FindAbilityByName("rubick_spell_steal_lua")
 local stolen = (self:IsStolen() and spell_steal)
 
--- check if available alternate
-local particle_alternate = reference[particle_name]
+-- check if available alternate (if nothing then the reference didn't changed)
+local particle_alternate = reference[particle_name] or particle_name
 
--- not stolen or no available alternate
-if (not stolen) or (not particle_alternate) then
+-- not stolen
+if (not stolen) then
 	return ParticleManager:CreateParticle( particle_name, iAttach, hUnit )
 end
 
 -- otherwise
-local effect_cast = ParticleManager:CreateParticle( particle_alternate, iAttach, hUnit )
+local effect_cast = nil
+if iTeam then
+	effect_cast = ParticleManager:CreateParticleForTeam( particle_alternate, iAttach, hUnit, iTeam )
+else
+	effect_cast = ParticleManager:CreateParticle( particle_alternate, iAttach, hUnit )
+end
 
 -- set color based on level
 local color = Vector(0,0,0)

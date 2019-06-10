@@ -222,7 +222,8 @@ function dark_willow_terrorize_lua:PlayEffects1( point, radius )
 	local particle_cast = "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_marker.vpcf"
 
 	-- Create Particle
-	self.effect_cast1 = ParticleManager:CreateParticleForTeam( particle_cast, PATTACH_WORLDORIGIN, nil, self:GetCaster():GetTeamNumber() )
+	-- self.effect_cast1 = ParticleManager:CreateParticleForTeam( particle_cast, PATTACH_WORLDORIGIN, nil, self:GetCaster():GetTeamNumber() )
+	self.effect_cast1 = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_WORLDORIGIN, nil, self:GetCaster():GetTeamNumber() )
 	ParticleManager:SetParticleControl( self.effect_cast1, 0, point )
 	ParticleManager:SetParticleControl( self.effect_cast1, 1, Vector( radius, 0, 0 ) )
 
@@ -253,7 +254,8 @@ function dark_willow_terrorize_lua:PlayEffects2()
 	local particle_cast = "particles/units/heroes/hero_dark_willow/dark_willow_wisp_spell_channel.vpcf"
 
 	-- Create Particle
-	self.effect_cast2 = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.wisp )
+	-- self.effect_cast2 = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.wisp )
+	self.effect_cast2 = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.wisp )
 end
 function dark_willow_terrorize_lua:StopEffects2()
 	-- destroy particle
@@ -267,7 +269,8 @@ function dark_willow_terrorize_lua:PlayEffects3( point, radius, number )
 	local sound_cast = "Hero_DarkWillow.Fear.FP"
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_WORLDORIGIN, nil )
 	ParticleManager:SetParticleControl( effect_cast, 0, point )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, 0, radius*2 ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
