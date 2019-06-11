@@ -113,6 +113,15 @@ function modifier_dark_willow_cursed_crown_lua:PlayEffects1()
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
+		0,
+		self:GetCaster(),
+		PATTACH_POINT_FOLLOW,
+		"attach_attack1",
+		Vector( 0, 0, 0 ), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
 		1,
 		self:GetParent(),
 		PATTACH_POINT_FOLLOW,

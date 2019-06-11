@@ -39,7 +39,8 @@ function modifier_dark_willow_bedlam_lua_attack:OnCreated( kv )
 
 	if not IsServer() then return end
 	-- precache projectile
-	local projectile_name = "particles/units/heroes/hero_dark_willow/dark_willow_willowisp_base_attack.vpcf"
+	-- local projectile_name = "particles/units/heroes/hero_dark_willow/dark_willow_willowisp_base_attack.vpcf"
+	local projectile_name = ""
 	local projectile_speed = 1400
 
 	self.info = {
@@ -102,8 +103,13 @@ function modifier_dark_willow_bedlam_lua_attack:OnIntervalThink()
 	)
 
 	for _,enemy in pairs(enemies) do
+		-- create projectile effect
+		local effect = self:PlayEffects1( enemy, self.info.iMoveSpeed )
+
 		-- launch attack
 		self.info.Target = enemy
+		self.info.ExtraData.effect = effect
+
 		ProjectileManager:CreateTrackingProjectile( self.info )
 
 		-- play effects
@@ -139,4 +145,31 @@ function modifier_dark_willow_bedlam_lua_attack:PlayEffects()
 
 	-- Create Sound
 	EmitSoundOn( sound_cast, self:GetParent() )
+end
+
+function modifier_dark_willow_bedlam_lua_attack:PlayEffects1( target, speed )
+	local particle_cast = "particles/units/heroes/hero_dark_willow/dark_willow_willowisp_base_attack.vpcf"
+	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
+
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		0,
+		self:GetParent(),
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		Vector(0,0,0), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		1,
+		target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		Vector(0,0,0), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:SetParticleControl( effect_cast, 2, Vector( speed, 0, 0 ) )
+
+	return effect_cast
 end

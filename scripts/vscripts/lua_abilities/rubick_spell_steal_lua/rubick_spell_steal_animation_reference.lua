@@ -30,6 +30,11 @@ reference.animations = {
     {"crystal_maiden_frostbite_lua", false, ACT_DOTA_CAST_ABILITY_5, "frostbite"},
     {"crystal_maiden_freezing_field_lua", false, ACT_DOTA_CHANNEL_ABILITY_5, "freezing_field"},
 
+    {"dark_willow_bramble_maze_lua", false, ACT_DOTA_CAST_ABILITY_5, "bramble_maze"},
+    {"dark_willow_cursed_crown_lua", false, ACT_DOTA_CAST_ABILITY_5, "cursed_crown"},
+    {"dark_willow_bedlam_lua", false, ACT_DOTA_CAST_ABILITY_5, "bedlam"},
+    {"dark_willow_terrorize_lua", false, ACT_DOTA_CAST_ABILITY_5, "terrorize"},
+
     {"dazzle_shallow_grave_lua", false, ACT_DOTA_CAST_ABILITY_5, "repel"},
     {"dazzle_shadow_wave_lua", false, ACT_DOTA_CAST_ABILITY_3, ""},
     {"dazzle_weave_lua", false, ACT_DOTA_CAST_ABILITY_5, "crystal_nova"},

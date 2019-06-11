@@ -35,6 +35,11 @@ end
 --------------------------------------------------------------------------------
 -- Projectile
 function dark_willow_bedlam_lua:OnProjectileHit_ExtraData( target, location, ExtraData )
+	-- destroy effect projectile
+	local effect_cast = ExtraData.effect
+	ParticleManager:DestroyParticle( effect_cast, false )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+
 	if not target then return end
 
 	-- damage
