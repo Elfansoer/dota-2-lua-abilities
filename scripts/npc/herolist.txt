@@ -52,6 +52,7 @@
 	"npc_dota_hero_skywrath_mage"		"1"
 	"npc_dota_hero_templar_assassin"			"1"
 	"npc_dota_hero_tidehunter"		"1"
+	"npc_dota_hero_tinker"		"1"
 	"npc_dota_hero_ursa"		"1"
 	"npc_dota_hero_windrunner"		"1"
 	"npc_dota_hero_wisp"		"1"

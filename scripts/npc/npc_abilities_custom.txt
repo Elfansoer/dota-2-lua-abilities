@@ -1028,7 +1028,6 @@
 
 #base "../vscripts/lua_abilities/bloodseeker_bloodrage_lua/bloodseeker_bloodrage_lua.txt"
 #base "../vscripts/lua_abilities/bloodseeker_blood_rite_lua/bloodseeker_blood_rite_lua.txt"
-#base "../vscripts/lua_abilities/bloodseeker_thirst_lua/bloodseeker_thirst_lua.txt"
 
 #base "../vscripts/lua_abilities/centaur_warrunner_hoof_stomp_lua/centaur_warrunner_hoof_stomp_lua.txt"
 #base "../vscripts/lua_abilities/centaur_warrunner_double_edge_lua/centaur_warrunner_double_edge_lua.txt"
@@ -1159,6 +1158,11 @@
 #base "../vscripts/lua_abilities/mirana_sacred_arrow_lua/mirana_sacred_arrow_lua.txt"
 #base "../vscripts/lua_abilities/mirana_leap_lua/mirana_leap_lua.txt"
 
+#base "../vscripts/lua_abilities/outworld_devourer_arcane_orb_lua/outworld_devourer_arcane_orb_lua.txt"
+#base "../vscripts/lua_abilities/outworld_devourer_astral_imprisonment_lua/outworld_devourer_astral_imprisonment_lua.txt"
+#base "../vscripts/lua_abilities/outworld_devourer_equilibrium_lua/outworld_devourer_equilibrium_lua.txt"
+#base "../vscripts/lua_abilities/outworld_devourer_sanitys_eclipse_lua/outworld_devourer_sanitys_eclipse_lua.txt"
+
 #base "../vscripts/lua_abilities/omniknight_purification_lua/omniknight_purification_lua.txt"
 #base "../vscripts/lua_abilities/omniknight_repel_lua/omniknight_repel_lua.txt"
 #base "../vscripts/lua_abilities/omniknight_degen_aura_lua/omniknight_degen_aura_lua.txt"
@@ -1248,8 +1252,6 @@
 #base "../vscripts/custom_abilities/bakedanuki_tomfoolery/bakedanuki_tomfoolery_base.txt"
 #base "../vscripts/custom_abilities/bakedanuki_frolic_aura/bakedanuki_frolic_aura_base.txt"
 #base "../vscripts/custom_abilities/bakedanuki_futatsuiwas_curse/bakedanuki_futatsuiwas_curse_base.txt"
-
-#base "../vscripts/custom_abilities/builder_build_tower/builder_build_tower.txt"
 
 #base "../vscripts/custom_abilities/midas_golden_touch/midas_golden_touch.txt"
 #base "../vscripts/custom_abilities/midas_golden_sword/midas_golden_sword.txt"

@@ -1,0 +1,77 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Obsidian Destroyer: Equilibrium (Lua version)
+	//=================================================================================================================
+	"outworld_devourer_equilibrium_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/outworld_devourer_equilibrium_lua/outworld_devourer_equilibrium_lua"
+		"AbilityTextureName"			"outworld_devourer_equilibrium_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
+			"particle"	"particles/status_fx/status_effect_obsidian_matter.vpcf"
+			"particle"	"particles/status_fx/status_effect_obsidian_matter_debuff.vpcf"
+			"particle"	"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf"
+			"particle"	"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_matter_buff.vpcf"
+			"particle"	"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_matter_debuff.vpcf"
+			"particle"	"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_matter_manasteal.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"50"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"mana_steal"		"11 18 25 32"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"mana_steal_active"	"33 54 75 96"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"movement_slow"		"12 22 32 42"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"slow_duration"		"1.75"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"7"
+			}
+		}
+	}
+}

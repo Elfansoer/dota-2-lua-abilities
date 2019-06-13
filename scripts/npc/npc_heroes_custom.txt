@@ -393,6 +393,18 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Tinker (Outworld Devourer)
+	//=================================================================================================================
+	"npc_dota_hero_tinker_lua"
+	{
+		"override_hero"					"npc_dota_hero_tinker"	// Hero to override
+		"Ability1"				"outworld_devourer_arcane_orb_lua"						// Ability 1
+		"Ability2"				"outworld_devourer_astral_imprisonment_lua"						// Ability 2
+		"Ability3"				"outworld_devourer_equilibrium_lua"						// Ability 2
+		"Ability6"				"outworld_devourer_sanitys_eclipse_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Ursa (Phantom Assassin)
 	//=================================================================================================================
 	"npc_dota_hero_ursa_lua"
