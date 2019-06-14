@@ -14,6 +14,10 @@ function modifier_generic_orb_effect_lua:IsPurgable()
 	return false
 end
 
+function modifier_generic_orb_effect_lua:GetAttributes()
+	return MODIFIER_ATTRIBUTE_PERMANENT
+end
+
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_generic_orb_effect_lua:OnCreated( kv )
@@ -48,25 +52,11 @@ function modifier_generic_orb_effect_lua:DeclareFunctions()
 end
 
 function modifier_generic_orb_effect_lua:OnAttack( params )
+	-- if not IsServer() then return end
 	if params.attacker~=self:GetParent() then return end
 
-	-- check autocast
-	if self.ability:GetAutoCastState() then
-		-- filter whether target is valid 
-		local nResult = UnitFilter(
-			params.target,
-			self.ability:GetAbilityTargetTeam(),
-			self.ability:GetAbilityTargetType(),
-			self.ability:GetAbilityTargetFlags(),
-			self:GetCaster():GetTeamNumber()
-		)
-		if nResult == UF_SUCCESS then
-			self.cast = true
-		end
-	end
-
 	-- register attack if being cast and fully castable
-	if self.cast and self.ability:IsFullyCastable() then
+	if self:ShouldLaunch( params.target ) then
 		-- use mana and cd
 		self.ability:UseResources( true, false, true )
 
@@ -75,18 +65,6 @@ function modifier_generic_orb_effect_lua:OnAttack( params )
 
 		-- run OrbFire script if available
 		if self.ability.OnOrbFire then self.ability:OnOrbFire( params ) end
-
-		-- create custom projectile
-		-- if self.ability.GetProjectileName then 
-		-- 	local info = {
-		-- 		Target = params.target,
-		-- 		Source = self:GetParent(),
-		-- 		Ability = self.ability,	
-		-- 		EffectName = self.ability:GetProjectileName(),
-		-- 		iMoveSpeed = self:GetParent():GetProjectileSpeed(),
-		-- 	}
-		-- 	ProjectileManager:CreateTrackingProjectile(info)
-		-- end
 	end
 
 	self.cast = false
@@ -147,12 +125,43 @@ function modifier_generic_orb_effect_lua:OnOrder( params )
 	end
 end
 
-function modifier_generic_orb_effect_lua:GetModifierProjectileName( params )
-	if self.ability.GetProjectileName then
-		if self.cast or (self.ability:GetAutoCastState() and self.ability:IsFullyCastable()) then
-			return self.ability:GetProjectileName()
+function modifier_generic_orb_effect_lua:GetModifierProjectileName()
+	if not self.ability.GetProjectileName then return end
+
+	if self:ShouldLaunch( self:GetCaster():GetAggroTarget() ) then
+		return self.ability:GetProjectileName()
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Helper
+function modifier_generic_orb_effect_lua:ShouldLaunch( target )
+	-- check autocast
+	if self.ability:GetAutoCastState() then
+		-- filter whether target is valid
+		if self.ability.CastFilterResultTarget then
+			if self.ability:CastFilterResultTarget( target )==UF_SUCCESS then
+				self.cast = true
+			end
+		else
+			local nResult = UnitFilter(
+				target,
+				self.ability:GetAbilityTargetTeam(),
+				self.ability:GetAbilityTargetType(),
+				self.ability:GetAbilityTargetFlags(),
+				self:GetCaster():GetTeamNumber()
+			)
+			if nResult == UF_SUCCESS then
+				self.cast = true
+			end
 		end
 	end
+
+	if self.cast and self.ability:IsFullyCastable() and (not self:GetParent():IsSilenced()) then
+		return true
+	end
+
+	return false
 end
 
 --------------------------------------------------------------------------------

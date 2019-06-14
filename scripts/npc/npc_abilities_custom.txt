@@ -1195,6 +1195,11 @@
 #base "../vscripts/lua_abilities/shadow_fiend_presence_of_the_dark_lord_lua/shadow_fiend_presence_of_the_dark_lord_lua_base.txt"
 #base "../vscripts/lua_abilities/shadow_fiend_requiem_of_souls_lua/shadow_fiend_requiem_of_souls_lua_base.txt"
 
+#base "../vscripts/lua_abilities/silencer_arcane_curse_lua/silencer_arcane_curse_lua.txt"
+#base "../vscripts/lua_abilities/silencer_glaives_of_wisdom_lua/silencer_glaives_of_wisdom_lua.txt"
+#base "../vscripts/lua_abilities/silencer_last_word_lua/silencer_last_word_lua.txt"
+#base "../vscripts/lua_abilities/silencer_global_silence_lua/silencer_global_silence_lua.txt"
+
 #base "../vscripts/lua_abilities/skywrath_mage_arcane_bolt_lua/skywrath_mage_arcane_bolt_lua.txt"
 #base "../vscripts/lua_abilities/skywrath_mage_concussive_shot_lua/skywrath_mage_concussive_shot_lua.txt"
 #base "../vscripts/lua_abilities/skywrath_mage_ancient_seal_lua/skywrath_mage_ancient_seal_lua.txt"

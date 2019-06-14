@@ -1,0 +1,64 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Silencer: Glaives of Wisdom (Lua version)
+	//=================================================================================================================
+	"silencer_glaives_of_wisdom_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/silencer_glaives_of_wisdom_lua/silencer_glaives_of_wisdom_lua"
+		"AbilityTextureName"			"silencer_glaives_of_wisdom_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"HasScepterUpgrade"			"1"
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
+			"particle"	"particles/units/heroes/hero_silencer/silencer_glaives_of_wisdom.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDuration"				"0.0 0.0 0.0 0.0"
+		"AbilityCastRange"				"600"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"15 15 15 15"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100 200 300 400"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"intellect_damage_pct"	"25 45 65 85"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"steal_range"		"925"
+			}
+		}
+	}
+}

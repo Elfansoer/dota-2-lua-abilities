@@ -1,0 +1,55 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Silencer: Global Silence (Lua version)
+	//=================================================================================================================
+	"silencer_global_silence_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/silencer_global_silence_lua/silencer_global_silence_lua"
+		"AbilityTextureName"			"silencer_global_silence_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
+			"particle"	"particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"
+			"particle"	"particles/units/heroes/hero_silencer/silencer_global_silence_hero.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3"
+		"AbilityDuration"				"4.5 5.25 6.0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"130.0"
+		"AbilityManaCost"				"300 450 600"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tooltip_duration"		"4.5 5.25 6.0"
+			}
+		}
+	}
+}

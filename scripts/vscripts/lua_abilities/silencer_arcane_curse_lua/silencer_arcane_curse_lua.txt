@@ -1,0 +1,78 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Silencer: Arcane Curse (Lua version)
+	//=================================================================================================================
+	"silencer_arcane_curse_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/silencer_arcane_curse_lua/silencer_arcane_curse_lua"
+		"AbilityTextureName"			"silencer_arcane_curse_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
+			"particle"	"particles/units/heroes/hero_silencer/silencer_curse.vpcf"
+			"particle"	"particles/units/heroes/hero_silencer/silencer_curse_aoe.vpcf"
+			"particle"	"particles/units/heroes/hero_silencer/silencer_curse_cast.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20 18 16 14"
+		"AbilityManaCost"				"125 130 135 140"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100 200 300 400"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"16 24 32 40"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"425"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"6"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"penalty_duration"			"5"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"movespeed"			"-9 -12 -15 -18"
+			}
+		}
+	}
+}

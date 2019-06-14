@@ -266,6 +266,7 @@
 		"Ability3"				"huskar_berserkers_blood_lua"						// Ability 3
 		"Ability6"				"huskar_life_break_lua"							// Ability 6
 	}
+
 	//=================================================================================================================
 	// HERO: Vengeful Spirit (Invoker)
 	//=================================================================================================================
@@ -466,6 +467,18 @@
 		"Ability4"				"shadow_fiend_necromastery_lua"			// Ability 4
 		"Ability5"				"shadow_fiend_presence_of_the_dark_lord_lua"				// Ability 2
 		"Ability6"				"shadow_fiend_requiem_of_souls_lua"					// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Lich (Silencer)
+	//=================================================================================================================
+	"npc_dota_hero_lich_lua"
+	{
+		"override_hero"					"npc_dota_hero_lich"	// Hero to override
+		"Ability1"				"silencer_arcane_curse_lua"						// Ability 1
+		"Ability2"				"silencer_glaives_of_wisdom_lua"						// Ability 2
+		"Ability3"				"silencer_last_word_lua"						// Ability 3
+		"Ability6"				"silencer_global_silence_lua"							// Ability 6
 	}
 
 	//=================================================================================================================
