@@ -1,0 +1,79 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Ogre Magi: Multicast (Lua version)
+	//=================================================================================================================
+	"ogre_magi_multicast_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/ogre_magi_multicast_lua/ogre_magi_multicast_lua"
+		"AbilityTextureName"			"ogre_magi_multicast_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+			"particle"	"particles/units/heroes/hero_ogre_magi/ogre_magi_multicast.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"multicast_2_times"		"0.75 0.75 0.75"
+			}
+
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"multicast_3_times"		"0 0.3 0.3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"multicast_4_times"		"0 0 0.15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bloodlust_aoe"			"575"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"multicast_2_times_tooltip"		"75"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"multicast_3_times_tooltip"		"0 30 30"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"multicast_4_times_tooltip"		"0 0 15"
+			}
+		}
+	}
+}

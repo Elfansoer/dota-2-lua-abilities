@@ -9,12 +9,20 @@ Ability checklist (erase if done/checked):
 - Stolen behavior
 ]]
 --------------------------------------------------------------------------------
-ogre_magi_fireblast_lua = class({})
+ogre_magi_unrefined_fireblast_lua = class({})
 LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
+-- Custom KV
+function ogre_magi_unrefined_fireblast_lua:GetManaCost( level )
+	local pct = self:GetSpecialValueFor( "scepter_mana" )
+
+	return math.floor( self:GetCaster():GetMana() * pct )
+end
+
+--------------------------------------------------------------------------------
 -- Ability Start
-function ogre_magi_fireblast_lua:OnSpellStart()
+function ogre_magi_unrefined_fireblast_lua:OnSpellStart()
 	-- unit identifier
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
@@ -48,19 +56,17 @@ function ogre_magi_fireblast_lua:OnSpellStart()
 
 	-- play effects
 	self:PlayEffects( target )
-
 end
 
 --------------------------------------------------------------------------------
-function ogre_magi_fireblast_lua:PlayEffects( target )
+function ogre_magi_unrefined_fireblast_lua:PlayEffects( target )
 	-- Get Resources
-	local particle_cast = "particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf"
+	local particle_cast = "particles/units/heroes/hero_ogre_magi/ogre_magi_unr_fireblast.vpcf"
 	local sound_cast = "Hero_OgreMagi.Fireblast.Cast"
 	local sound_target = "Hero_OgreMagi.Fireblast.Target"
 
 	-- Create Particle
-	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
-	local effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		0,

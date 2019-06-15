@@ -880,79 +880,7 @@
 			}
 		}
 	}
-	
-	//=================================================================================================================
-	//=================================================================================================================
-	// CUSTOM ABILITIES
-	//=================================================================================================================
-	//=================================================================================================================
-	
-	// AUTHOR: VALVE
-	//=================================================================================================================
-	// Ogre Magi: Fireblast
-	//=================================================================================================================
-	"ogre_magi_fireblast_lua"
-	{
-		// Ability Technical Aspect
-		// base script folder	: scripts/vscripts
-		// base texture folder	: resource/flash3/images/spellicons
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/ogre_magi_fireblast_lua/ogre_magi_fireblast_lua"
-		"AbilityTextureName"			"ogre_magi_fireblast_lua"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
-			"particle"	"particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf"
-		}
 
-		// Ability General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-
-		// Ability Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"475"
-		"AbilityCastPoint"				"0.45"
-
-		// Ability Resource
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0"
-		"AbilityManaCost"				"75 85 95 105"
-
-		// Damage
-		//-------------------------------------------------------------------------------------------------------------
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"1.5"
-			}
-
-			"02"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"multicast_delay"	"0.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"fireblast_damage"		"55 110 165 220"
-			}
-		}
-	}
 	//=================================================================================================================
 	// Troll Warlord: Fervor (Lua version)
 	//=================================================================================================================
@@ -1002,8 +930,9 @@
 	}
 }
 
-// Includes
-// Lua abilities
+//=================================================================================================================
+// LUA ABILITIES
+//=================================================================================================================
 #base "../vscripts/lua_abilities/abaddon_mist_coil_lua/abaddon_mist_coil_lua.txt"
 
 #base "../vscripts/lua_abilities/antimage_mana_break_lua/antimage_mana_break_lua_base.txt"
@@ -1158,15 +1087,21 @@
 #base "../vscripts/lua_abilities/mirana_sacred_arrow_lua/mirana_sacred_arrow_lua.txt"
 #base "../vscripts/lua_abilities/mirana_leap_lua/mirana_leap_lua.txt"
 
-#base "../vscripts/lua_abilities/outworld_devourer_arcane_orb_lua/outworld_devourer_arcane_orb_lua.txt"
-#base "../vscripts/lua_abilities/outworld_devourer_astral_imprisonment_lua/outworld_devourer_astral_imprisonment_lua.txt"
-#base "../vscripts/lua_abilities/outworld_devourer_equilibrium_lua/outworld_devourer_equilibrium_lua.txt"
-#base "../vscripts/lua_abilities/outworld_devourer_sanitys_eclipse_lua/outworld_devourer_sanitys_eclipse_lua.txt"
+#base "../vscripts/lua_abilities/ogre_magi_fireblast_lua/ogre_magi_fireblast_lua.txt"
+#base "../vscripts/lua_abilities/ogre_magi_ignite_lua/ogre_magi_ignite_lua.txt"
+#base "../vscripts/lua_abilities/ogre_magi_bloodlust_lua/ogre_magi_bloodlust_lua.txt"
+#base "../vscripts/lua_abilities/ogre_magi_unrefined_fireblast_lua/ogre_magi_unrefined_fireblast_lua.txt"
+#base "../vscripts/lua_abilities/ogre_magi_multicast_lua/ogre_magi_multicast_lua.txt"
 
 #base "../vscripts/lua_abilities/omniknight_purification_lua/omniknight_purification_lua.txt"
 #base "../vscripts/lua_abilities/omniknight_repel_lua/omniknight_repel_lua.txt"
 #base "../vscripts/lua_abilities/omniknight_degen_aura_lua/omniknight_degen_aura_lua.txt"
 #base "../vscripts/lua_abilities/omniknight_guardian_angel_lua/omniknight_guardian_angel_lua.txt"
+
+#base "../vscripts/lua_abilities/outworld_devourer_arcane_orb_lua/outworld_devourer_arcane_orb_lua.txt"
+#base "../vscripts/lua_abilities/outworld_devourer_astral_imprisonment_lua/outworld_devourer_astral_imprisonment_lua.txt"
+#base "../vscripts/lua_abilities/outworld_devourer_equilibrium_lua/outworld_devourer_equilibrium_lua.txt"
+#base "../vscripts/lua_abilities/outworld_devourer_sanitys_eclipse_lua/outworld_devourer_sanitys_eclipse_lua.txt"
 
 #base "../vscripts/lua_abilities/phantom_assassin_stifling_dagger_lua/phantom_assassin_stifling_dagger_lua.txt"
 #base "../vscripts/lua_abilities/phantom_assassin_phantom_strike_lua/phantom_assassin_phantom_strike_lua.txt"
@@ -1247,7 +1182,9 @@
 #base "../vscripts/lua_abilities/wraith_king_mortal_strike_lua/wraith_king_mortal_strike_lua.txt"
 #base "../vscripts/lua_abilities/wraith_king_reincarnation_lua/wraith_king_reincarnation_lua.txt"
 
-// Custom abilities
+//=================================================================================================================
+// CUSTOM ABILITIES
+//=================================================================================================================
 #base "../vscripts/custom_abilities/azura_black_ethereum/azura_black_ethereum_base.txt"
 #base "../vscripts/custom_abilities/azura_shadowform/azura_shadowform_base.txt"
 #base "../vscripts/custom_abilities/azura_multishot_crossbow/azura_multishot_crossbow_base.txt"
@@ -1291,7 +1228,9 @@
 #base "../vscripts/custom_abilities/sona_aria_of_perseverance/sona_aria_of_perseverance.txt"
 #base "../vscripts/custom_abilities/sona_crescendo/sona_crescendo.txt"
 
-// Test abilities
+//=================================================================================================================
+// TEST ABILITIES
+//=================================================================================================================
 #base "../vscripts/test_abilities/test_blockcamp/test_blockcamp.txt"
 #base "../vscripts/test_abilities/test_cosmetics/test_cosmetics.txt"
 #base "../vscripts/test_abilities/test_getbehavior/test_getbehavior.txt"
