@@ -52,6 +52,7 @@
 	"npc_dota_hero_skeleton_king"		"1"
 	"npc_dota_hero_skywrath_mage"		"1"
 	"npc_dota_hero_slardar"		"1"
+	"npc_dota_hero_sand_king"		"1"
 	"npc_dota_hero_templar_assassin"			"1"
 	"npc_dota_hero_tidehunter"		"1"
 	"npc_dota_hero_tinker"		"1"

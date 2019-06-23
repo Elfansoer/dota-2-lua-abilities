@@ -935,6 +935,11 @@
 //=================================================================================================================
 #base "../vscripts/lua_abilities/abaddon_mist_coil_lua/abaddon_mist_coil_lua.txt"
 
+#base "../vscripts/lua_abilities/alchemist_acid_spray_lua/alchemist_acid_spray_lua.txt"
+#base "../vscripts/lua_abilities/alchemist_unstable_concoction_lua/alchemist_unstable_concoction_lua.txt"
+#base "../vscripts/lua_abilities/alchemist_greevils_greed_lua/alchemist_greevils_greed_lua.txt"
+#base "../vscripts/lua_abilities/alchemist_chemical_rage_lua/alchemist_chemical_rage_lua.txt"
+
 #base "../vscripts/lua_abilities/antimage_mana_break_lua/antimage_mana_break_lua_base.txt"
 #base "../vscripts/lua_abilities/antimage_blink_lua/antimage_blink_lua_base.txt"
 #base "../vscripts/lua_abilities/antimage_mana_void_lua/antimage_mana_void_lua_base.txt"

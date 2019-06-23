@@ -12,10 +12,10 @@
 		"override_hero"					"npc_dota_hero_queenofpain"			// Hero to override
 		"Ability1"				"test_particle_visibility"			// Ability 5
 		"Ability2"				"furion_force_of_nature"				// Ability 3
-		"Ability3"				"pugna_nether_ward"				// Ability 1
-		"Ability4"				"test_knockback"				// Ability 2
+		"Ability3"				"alchemist_unstable_concoction_lua"				// Ability 1
+		"Ability4"				"alchemist_unstable_concoction_throw_lua"				// Ability 2
 		"Ability5"				"test_blockcamp"					// Ability 6
-		"Ability6"				"builder_build_tower"			// Ability 4
+		"Ability6"				"vengefulspirit_nether_swap"			// Ability 4
 
 		//"AttackDamageMin"		"0"
 		//"AttackDamageMax"		"0"
@@ -45,6 +45,19 @@
 		"Ability2"					"antimage_blink_lua"
 		"Ability3"					"antimage_spell_shield_lua"
 		"Ability6"					"antimage_mana_void_lua"
+	}
+
+	//=================================================================================================================
+	// HERO: Sand King (Alchemist)
+	//=================================================================================================================
+	"npc_dota_hero_sand_king_lua"
+	{
+		"override_hero"				"npc_dota_hero_sand_king"			// Hero to override
+		"Ability1"					"alchemist_acid_spray_lua"				// Ability 1
+		"Ability2"					"alchemist_unstable_concoction_lua"
+		"Ability3"					"alchemist_greevils_greed_lua"
+		"Ability4"					"alchemist_unstable_concoction_throw_lua"
+		"Ability6"					"alchemist_chemical_rage_lua"
 	}
 
 	//=================================================================================================================
@@ -152,7 +165,7 @@
 	{
 		"override_hero"				"npc_dota_hero_bloodseeker"			// Hero to override
 		"Ability1"					"dazzle_poison_touch_lua"
-		"Ability2"					"dazzle_shadow_wave"
+		"Ability2"					"dazzle_shallow_grave_lua"
 		"Ability3"					"dazzle_shadow_wave_lua"
 		"Ability6"					"dazzle_weave_lua"
 	}
