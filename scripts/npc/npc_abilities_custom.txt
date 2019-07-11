@@ -1162,6 +1162,11 @@
 #base "../vscripts/lua_abilities/tidehunter_gush_lua/tidehunter_gush_lua.txt"
 #base "../vscripts/lua_abilities/tidehunter_anchor_smash_lua/tidehunter_anchor_smash_lua.txt"
 
+#base "../vscripts/lua_abilities/timbersaw_whirling_death_lua/timbersaw_whirling_death_lua.txt"
+#base "../vscripts/lua_abilities/timbersaw_timber_chain_lua/timbersaw_timber_chain_lua.txt"
+#base "../vscripts/lua_abilities/timbersaw_reactive_armor_lua/timbersaw_reactive_armor_lua.txt"
+#base "../vscripts/lua_abilities/timbersaw_chakram_lua/timbersaw_chakram_lua.txt"
+
 #base "../vscripts/lua_abilities/tinker_laser_lua/tinker_laser_lua.txt"
 #base "../vscripts/lua_abilities/tinker_heat_seeking_missile_lua/tinker_heat_seeking_missile_lua.txt"
 #base "../vscripts/lua_abilities/tinker_march_of_the_machines_lua/tinker_march_of_the_machines_lua.txt"

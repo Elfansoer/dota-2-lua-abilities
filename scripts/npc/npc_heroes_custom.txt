@@ -556,6 +556,19 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Clockwerk (Timbersaw)
+	//=================================================================================================================
+	"npc_dota_hero_clockwerk_lua"
+	{
+		"override_hero"					"npc_dota_hero_rattletrap"	// Hero to override
+		"Ability1"				"timbersaw_whirling_death_lua"						// Ability 1
+		"Ability2"				"timbersaw_timber_chain_lua"						// Ability 2
+		"Ability3"				"timbersaw_reactive_armor_lua"						// Ability 3
+		"Ability4"				"timbersaw_chakram_2_lua"							// Ability 6
+		"Ability6"				"timbersaw_chakram_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Dark Seer (Tinker)
 	//=================================================================================================================
 	"npc_dota_hero_dark_seer_lua"
