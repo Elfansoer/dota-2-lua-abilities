@@ -225,6 +225,7 @@ end
 -- Remove currently stolen spell
 function rubick_spell_steal_lua:ForgetSpell()
 	if self.currentSpell~=nil then
+		if self.currentSpell.OnUnStolen then self.currentSpell:OnUnStolen() end
 		self:GetCaster():SwapAbilities( self.slot1, self.currentSpell:GetAbilityName(), true, false )
 		self:GetCaster():RemoveAbility( self.currentSpell:GetAbilityName() )
 		self.currentSpell = nil

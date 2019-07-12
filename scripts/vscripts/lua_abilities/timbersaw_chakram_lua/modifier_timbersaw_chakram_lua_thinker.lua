@@ -92,8 +92,8 @@ function modifier_timbersaw_chakram_lua_thinker:OnDestroy()
 
 	-- swap ability back, then remove sub
 	local main = self:GetAbility()
-	if (not main:IsNull()) and (not self.sub:IsNull()) then
-		-- check if main is hidden (due to scepter)
+	if main and (not main:IsNull()) and (not self.sub:IsNull()) then
+		-- check if main is hidden (due to scepter or stolen)
 		local active = main:IsActivated()
 
 		self.caster:SwapAbilities(
@@ -105,9 +105,8 @@ function modifier_timbersaw_chakram_lua_thinker:OnDestroy()
 	end
 	self.caster:RemoveAbilityByHandle( self.sub )
 
-	-- stop sound
-	local sound_cast = "Hero_Shredder.Chakram"
-	StopSoundOn( sound_cast, self.parent )
+	-- stop effects
+	self:StopEffects()
 
 	-- remove
 	UTIL_Remove( self.parent )
@@ -326,7 +325,8 @@ function modifier_timbersaw_chakram_lua_thinker:PlayEffects1()
 	direction = direction:Normalized()
 
 	-- Create Particle
-	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
+	-- self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
+	self.effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
 	ParticleManager:SetParticleControl( self.effect_cast, 0, self:GetParent():GetOrigin() )
 	ParticleManager:SetParticleControl( self.effect_cast, 1, direction * self.speed )
 	ParticleManager:SetParticleControl( self.effect_cast, 16, Vector( 0, 0, 0 ) )
@@ -350,7 +350,8 @@ function modifier_timbersaw_chakram_lua_thinker:PlayEffects2()
 	local particle_cast = "particles/units/heroes/hero_shredder/shredder_chakram_stay.vpcf"
 
 	-- Create Particle
-	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	-- self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, nil )
+	self.effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_WORLDORIGIN, nil )
 	ParticleManager:SetParticleControl( self.effect_cast, 0, self.parent:GetOrigin() )
 	ParticleManager:SetParticleControl( self.effect_cast, 16, Vector( 0, 0, 0 ) )
 
@@ -370,7 +371,8 @@ function modifier_timbersaw_chakram_lua_thinker:PlayEffects3()
 	local particle_cast = "particles/units/heroes/hero_shredder/shredder_chakram_return.vpcf"
 	local sound_cast = "Hero_Shredder.Chakram.Return"
 	-- Create Particle
-	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
+	-- self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
+	self.effect_cast = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
 	ParticleManager:SetParticleControl( self.effect_cast, 0, self:GetParent():GetOrigin() )
 	ParticleManager:SetParticleControlEnt(
 		self.effect_cast,

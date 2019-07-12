@@ -33,8 +33,8 @@ end
 -- Initializations
 function modifier_timbersaw_chakram_lua:OnCreated( kv )
 	-- references
-	if not self:GetAbility():IsNull() then
-		self.slow = self:GetAbility():GetSpecialValueFor( "slow" ) or 0
+	if self:GetAbility() and not self:GetAbility():IsNull() then
+		self.slow = self:GetAbility():GetSpecialValueFor( "slow" )
 	else
 		-- ability is deleted
 		self.slow = 0

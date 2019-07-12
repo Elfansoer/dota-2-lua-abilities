@@ -97,12 +97,18 @@ function timbersaw_timber_chain_lua:OnProjectileThinkHandle( handle )
 		-- destroy projectile
 		ProjectileManager:DestroyLinearProjectile( handle )
 		self.projectiles[ handle ] = nil
+
+		-- add vision
+		AddFOWViewer( self:GetCaster():GetTeamNumber(), point, 400, 1, true )
 	end
 end
 
 function timbersaw_timber_chain_lua:OnProjectileHitHandle( target, location, handle )
 	local ExtraData = self.projectiles[ handle ]
 	if not ExtraData then return end
+
+	-- add vision
+	AddFOWViewer( self:GetCaster():GetTeamNumber(), location, 400, 0.1, true )
 
 	-- play effect
 	self:ModifyEffects1( ExtraData.effect )

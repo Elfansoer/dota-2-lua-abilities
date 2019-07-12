@@ -22,6 +22,10 @@ local reference = {
 
 	["particles/econ/items/lich/lich_ti8_immortal_arms/lich_ti8_chain_frost.vpcf"] = "particles/rubick_chain_frost.vpcf",
 
+	["particles/units/heroes/hero_shredder/shredder_chakram.vpcf"] = "particles/rubick_chakram.vpcf",
+	["particles/units/heroes/hero_shredder/shredder_chakram_stay.vpcf"] = "particles/rubick_chakram_stay.vpcf",
+	["particles/units/heroes/hero_shredder/shredder_chakram_return.vpcf"] = "particles/rubick_chakram_return.vpcf",
+
 	["particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"] = "particles/rubick_guardian_angel_ally.vpcf",
 	["particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"] = "particles/rubick_guardian_angel_rubick.vpcf",
 }

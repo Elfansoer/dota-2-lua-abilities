@@ -63,12 +63,29 @@ function timbersaw_chakram_lua:OnSpellStart()
 	)
 
 	-- register each other
+	self.modifier = modifier
+	self.sub = sub
 	sub.modifier = modifier
 	modifier.sub = sub
 
 	-- play effects
 	local sound_cast = "Hero_Shredder.Chakram.Cast"
 	EmitSoundOn( sound_cast, caster )
+end
+
+function timbersaw_chakram_lua:OnUnStolen()
+	if self.modifier and not self.modifier:IsNull() then
+		-- return the chakram
+		self.modifier:ReturnChakram()
+
+		-- reset position
+		self:GetCaster():SwapAbilities(
+			self:GetAbilityName(),
+			self.sub:GetAbilityName(),
+			true,
+			false
+		)
+	end
 end
 
 --------------------------------------------------------------------------------
