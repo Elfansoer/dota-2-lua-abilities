@@ -62,7 +62,7 @@ function modifier_tinker_march_of_the_machines_lua_thinker:OnCreated( kv )
 		    fDistance = distance,
 		    fStartRadius = collision_radius,
 		    fEndRadius = collision_radius,
-			vVelocity = self.direction * speed,
+			vVelocity = direction * speed,
 
 			ExtraData = {
 				radius = splash_radius,
