@@ -7,10 +7,10 @@
 	//=================================================================================================================
 	// HERO: Queen of Pain (Sacrificial Test Hero)
 	//=================================================================================================================
-	"npc_dota_hero_lina_lua"
+	"npc_dota_hero_qop_lua"
 	{
 		"override_hero"					"npc_dota_hero_queenofpain"			// Hero to override
-		"Ability1"				"test_particle_visibility"			// Ability 5
+		"Ability1"				"test_sandbox_notarget"			// Ability 5
 		"Ability2"				"furion_force_of_nature"				// Ability 3
 		"Ability3"				"alchemist_unstable_concoction_lua"				// Ability 1
 		"Ability4"				"alchemist_unstable_concoction_throw_lua"				// Ability 2

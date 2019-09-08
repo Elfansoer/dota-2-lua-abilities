@@ -103,7 +103,7 @@ function timbersaw_chakram_lua:OnInventoryContentsChanged( params )
 	ability:SetActivated( scepter )
 	ability:SetHidden( not scepter )
 
-	if ability:GetLevel()~=1 then
+	if ability:GetLevel()<1 then
 		ability:SetLevel( 1 )
 	end
 end

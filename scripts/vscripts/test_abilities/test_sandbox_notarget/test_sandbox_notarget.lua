@@ -10,92 +10,20 @@ Ability checklist (erase if done/checked):
 ]]
 --------------------------------------------------------------------------------
 test_sandbox_notarget = class({})
-LinkLuaModifier( "modifier_test_sandbox_notarget", "lua_abilities/test_sandbox_notarget/modifier_test_sandbox_notarget", LUA_MODIFIER_MOTION_NONE )
-
---------------------------------------------------------------------------------
--- Custom KV
--- function test_sandbox_notarget:GetBehavior()
-
--- end
-
--- -- AOE Radius
--- function test_sandbox_notarget:GetAOERadius()
--- 	return self:GetSpecialValueFor( "radius" )
--- end
-
--- -- CD
--- function test_sandbox_notarget:GetCooldown( level )
--- 	if self:GetCaster():HasScepter() then
--- 		return self:GetSpecialValueFor( "cooldown_scepter" )
--- 	end
-
--- 	return self.BaseClass.GetCooldown( self, level )
--- end
+LinkLuaModifier( "modifier_test_sandbox_notarget", "test_abilities/test_sandbox_notarget/test_sandbox_notarget", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Ability Start
 function test_sandbox_notarget:OnSpellStart()
 	-- unit identifier
 	local caster = self:GetCaster()
-	local casterid = caster:GetPlayerOwnerID()
 
-	-- local event = 
-	-- {
-	-- 	gold = 0,
-	-- 	killer_id = caster:GetPlayerOwnerID(),
-	-- 	killer_streak = 0,
-	-- 	killer_multikill = 5,
-	-- }
-	-- FireGameEvent( "dota_chat_kill_streak", event )
-	-- EmitAnnouncerSound( "announcer_killing_spree_announcer_kill_dominate_01" )
-	-- EmitAnnouncerSound( "announcer_killing_spree_announcer_kill_rampage_01" )
-
-	-- for i=0,10 do
-	-- 	local event = {
-	-- 		-- userid = caster:GetPlayerOwnerID(),
-	-- 		userid = 0,
-	-- 		value = 1,
-	-- 		message = i,
-	-- 	}
-	-- 	FireGameEvent( "dota_pause_event", event )
-	-- end
-
-	-- for i=0,10 do
-	-- 	local event = {
-	-- 		reason = i,
-	-- 		message = "#cannot_go",
-	-- 	}
-	-- 	FireGameEvent( "dota_hud_error_message", event )
-	-- end
-	-- caster:IncrementLastHitMultikill()
-	-- caster:IncrementLastHitMultikill()
-	-- caster:IncrementLastHitMultikill()
-	-- caster:IncrementLastHitMultikill()
-	-- caster:IncrementLastHitStreak()
-	-- caster:IncrementLastHits()
-
-	local streak = 0
-
-	-- PlayerResource:IncrementLastHitMultikill( casterid )
-	-- streak = PlayerResource:GetLastHitMultikill( casterid )
-	-- Say( caster, "Streak :" .. streak, false )
-
-	-- PlayerResource:IncrementLastHitStreak( casterid )
-	-- streak = PlayerResource:GetLastHitStreak( casterid )
-	-- Say( caster, "Streak :" .. streak, false )
-
-	-- PlayerResource:IncrementStreak( casterid )
-	-- streak = caster:GetStreak()
-	-- Say( caster, "Streak: " .. streak, false )
-
-	-- PlayerResource:UpdateTeamSlot( casterid, caster:GetTeamNumber(), 3 )
-	PlayerResource:SetCustomPlayerColor( casterid, 1, 1, 1 )
-
-	self:PlayEffects()
-end
---------------------------------------------------------------------------------
--- Projectile
-function test_sandbox_notarget:OnProjectileHit( target, location )
+	caster:AddNewModifier(
+		caster, -- player source
+		self, -- ability source
+		"modifier_test_sandbox_notarget", -- modifier name
+		{ duration = 5 } -- kv
+	)
 end
 
 --------------------------------------------------------------------------------
@@ -106,23 +34,88 @@ function test_sandbox_notarget:PlayEffects()
 	ParticleManager:SetParticleControl( effect_cast, 0, self:GetCaster():GetOrigin() )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( 100, 1, 1 ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
+end
 
-	-- Create Particle
-	-- ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	-- ParticleManager:SetParticleControlEnt(
-	-- 	effect_cast,
-	-- 	iControlPoint,
-	-- 	hTarget,
-	-- 	PATTACH_NAME,
-	-- 	"attach_name",
-	-- 	vOrigin, -- unknown
-	-- 	bool -- unknown, true
-	-- )
-	-- ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	-- SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
+modifier_test_sandbox_notarget = class({})
+--------------------------------------------------------------------------------
+-- Classifications
+function modifier_test_sandbox_notarget:IsHidden()
+	return false
+end
 
-	-- -- Create Sound
-	-- local sound_cast = "string"
-	-- EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	-- EmitSoundOn( sound_target, target )
+--------------------------------------------------------------------------------
+-- Initializations
+function modifier_test_sandbox_notarget:OnCreated( kv )
+	-- -- references
+	-- self.special_value = self:GetAbility():GetSpecialValueFor( "special_value" )
+
+	-- if IsServer() then
+	-- 	-- Start interval
+	-- 	self:StartIntervalThink( self.interval )
+	-- 	self:OnIntervalThink()
+	-- end
+end
+
+--------------------------------------------------------------------------------
+-- Aura Effects
+function modifier_test_sandbox_notarget:IsAura()
+	return self:GetParent()==self:GetCaster()
+end
+
+function modifier_test_sandbox_notarget:GetModifierAura()
+	return "modifier_test_sandbox_notarget"
+end
+
+function modifier_test_sandbox_notarget:GetAuraRadius()
+	return FIND_UNITS_EVERYWHERE
+end
+
+function modifier_test_sandbox_notarget:GetAuraDuration()
+	return 0.5
+end
+
+function modifier_test_sandbox_notarget:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+
+function modifier_test_sandbox_notarget:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_ALL
+end
+
+function modifier_test_sandbox_notarget:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+end
+
+-- function modifier_test_sandbox_notarget:GetAuraEntityReject( hEntity )
+-- 	if IsServer() then
+		
+-- 	end
+
+-- 	return false
+-- end
+
+--------------------------------------------------------------------------------
+-- Modifier Effects
+function modifier_test_sandbox_notarget:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR,
+	}
+
+	return funcs
+end
+
+function modifier_test_sandbox_notarget:GetModifierIgnorePhysicalArmor( params )
+	if not IsServer() then return end
+	print(self:GetParent():GetUnitName(),"GetModifierIgnorePhysicalArmor")
+	for k,v in pairs(params) do
+		print(k,v)
+	end
+end
+
+function modifier_test_sandbox_notarget:GetEffectName()
+	return "particles/units/heroes/hero_nevermore/nevermore_shadowraze_debuff.vpcf"
+end
+
+function modifier_test_sandbox_notarget:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
 end
