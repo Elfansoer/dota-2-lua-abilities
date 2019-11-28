@@ -48,7 +48,7 @@ function modifier_underlord_firestorm_lua:OnCreated( kv )
 	-- ApplyDamage(damageTable)
 
 	-- Start interval
-	self:StartIntervalThink( self.interval )
+	self:StartIntervalThink( interval )
 end
 
 function modifier_underlord_firestorm_lua:OnRefresh( kv )

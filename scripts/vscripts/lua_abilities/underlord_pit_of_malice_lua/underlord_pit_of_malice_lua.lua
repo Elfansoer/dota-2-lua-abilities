@@ -45,7 +45,10 @@ function underlord_pit_of_malice_lua:OnSpellStart()
 		caster, -- player source
 		self, -- ability source
 		"modifier_underlord_pit_of_malice_lua_thinker", -- modifier name
-		{ duration = duration } -- kv
+		{ duration = duration }, -- kv
+		point,
+		caster:GetTeamNumber(),
+		false
 	)
 
 end

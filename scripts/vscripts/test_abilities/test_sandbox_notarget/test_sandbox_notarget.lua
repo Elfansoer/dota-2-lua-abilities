@@ -18,12 +18,31 @@ function test_sandbox_notarget:OnSpellStart()
 	-- unit identifier
 	local caster = self:GetCaster()
 
-	caster:AddNewModifier(
-		caster, -- player source
-		self, -- ability source
-		"modifier_test_sandbox_notarget", -- modifier name
-		{ duration = 5 } -- kv
+	local enemies = FindUnitsInRadius(
+		caster:GetTeamNumber(),	-- int, your team number
+		caster:GetOrigin(),	-- point, center point
+		nil,	-- handle, cacheUnit. (not known)
+		1000,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
+		DOTA_UNIT_TARGET_HERO,	-- int, type filter
+		0,	-- int, flag filter
+		0,	-- int, order filter
+		false	-- bool, can grow cache
 	)
+
+	for _,enemy in pairs(enemies) do
+		caster:AddNewModifier(
+			caster, -- player source
+			self, -- ability source
+			"modifier_test_sandbox_notarget", -- modifier name
+			{
+				duration = 5,
+				target = enemy:entindex(),
+			} -- kv
+		)
+		break
+	end
+
 end
 
 --------------------------------------------------------------------------------
@@ -46,8 +65,15 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_test_sandbox_notarget:OnCreated( kv )
-	-- -- references
+	-- references
 	-- self.special_value = self:GetAbility():GetSpecialValueFor( "special_value" )
+	if IsServer() then
+		self:SetStackCount( kv.target )
+		self.target = EntIndexToHScript( kv.target )
+	else
+		local stack = self:GetStackCount()
+		self.target = EntIndexToHScript( stack )
+	end
 
 	-- if IsServer() then
 	-- 	-- Start interval
@@ -59,7 +85,8 @@ end
 --------------------------------------------------------------------------------
 -- Aura Effects
 function modifier_test_sandbox_notarget:IsAura()
-	return self:GetParent()==self:GetCaster()
+	-- return self:GetParent()==self:GetCaster()
+	return false
 end
 
 function modifier_test_sandbox_notarget:GetModifierAura()
@@ -98,10 +125,24 @@ end
 -- Modifier Effects
 function modifier_test_sandbox_notarget:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR,
+		-- MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR,
+		MODIFIER_EVENT_ON_MODEL_CHANGED,
+		MODIFIER_PROPERTY_MODEL_CHANGE,
 	}
 
 	return funcs
+end
+
+
+function modifier_test_sandbox_notarget:OnModelChanged( params )
+	if not IsServer() then return end
+	if params.attacker~=self:GetParent() then return end
+	print( params.attacker:GetModelName() )
+	self:GetParent():NotifyWearablesOfModelChange( true )
+end
+function modifier_test_sandbox_notarget:GetModifierModelChange( params )
+	if not IsServer() then return end
+	return self.target:GetModelName() or self:GetParent():GetModelName()
 end
 
 function modifier_test_sandbox_notarget:GetModifierIgnorePhysicalArmor( params )
