@@ -24,7 +24,7 @@ function modifier_tinker_march_of_the_machines_lua_thinker:OnCreated( kv )
 		
 		local speed = self:GetAbility():GetSpecialValueFor( "speed" ) -- special value
 		local distance = self:GetAbility():GetSpecialValueFor( "distance" ) -- special value
-		if self:GetParent():HasScepter() then
+		if self:GetCaster():HasScepter() then
 			distance = self:GetAbility():GetSpecialValueFor( "distance_scepter" ) -- special value
 		end
 
@@ -62,7 +62,7 @@ function modifier_tinker_march_of_the_machines_lua_thinker:OnCreated( kv )
 		    fDistance = distance,
 		    fStartRadius = collision_radius,
 		    fEndRadius = collision_radius,
-			vVelocity = self.direction * speed,
+			vVelocity = direction * speed,
 
 			ExtraData = {
 				radius = splash_radius,
