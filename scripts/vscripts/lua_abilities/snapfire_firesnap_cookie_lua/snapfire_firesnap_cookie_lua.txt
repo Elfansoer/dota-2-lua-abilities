@@ -1,0 +1,109 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Snapfire: Firesnap Cookie (Lua version)
+	//=================================================================================================================
+	"snapfire_firesnap_cookie_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/snapfire_firesnap_cookie_lua/snapfire_firesnap_cookie_lua"
+		"AbilityTextureName"			"snapfire_firesnap_cookie"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_snapfire.vsndevts"
+			"particle"	"particles/units/heroes/hero_snapfire/hero_snapfire_cookie_projectile.vpcf"
+			"particle"	"particles/units/heroes/hero_snapfire/hero_snapfire_cookie_selfcast.vpcf"
+			"particle"	"particles/units/heroes/hero_snapfire/hero_snapfire_cookie_buff.vpcf"
+			"particle"	"particles/units/heroes/hero_snapfire/hero_snapfire_cookie_receive.vpcf"
+			"particle"	"particles/units/heroes/hero_snapfire/hero_snapfire_cookie_landing.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.2"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"24 22 20 18"
+		"AbilityManaCost"				"100"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_speed"		"800"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pre_hop_duration"		"0.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"jump_duration"			"0.484" //"0.431 0.484 0.538 0.592" // proportional to horizontal distance
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"jump_height"			"257" //"228 257 285 314" // proportional to horizontal distance
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"jump_horizontal_distance"	"450" //"400 450 500 550"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pre_land_anim_time"	"0.14"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"landing_gesture_duration"	"0.6"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_radius"			"300"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_damage"			"90 160 230 300"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"impact_stun_duration"	"1.6 1.9 2.2 2.5"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"self_cast_delay"		"0.4"
+			}
+		}
+	}
+}

@@ -29,6 +29,7 @@
 	"npc_dota_hero_earth_spirit"		"1"
 	"npc_dota_hero_ember_spirit"		"1"
 	"npc_dota_hero_enchantress"		"1"
+	"npc_dota_hero_faceless_void"		"1"
 	"npc_dota_hero_grimstroke"		"1"
 	"npc_dota_hero_huskar"		"1"
 	"npc_dota_hero_kunkka"		"1"
@@ -59,10 +60,11 @@
 	"npc_dota_hero_tidehunter"		"1"
 	"npc_dota_hero_tinker"		"1"
 	"npc_dota_hero_ursa"		"1"
+	"npc_dota_hero_viper"		"1"
+	"npc_dota_hero_weaver"		"1"
 	"npc_dota_hero_windrunner"		"1"
 	"npc_dota_hero_wisp"		"1"
 	"npc_dota_hero_witch_doctor"		"1"
-	"npc_dota_hero_viper"		"1"
 
 	"npc_dota_hero_rubick"			"1"
 }

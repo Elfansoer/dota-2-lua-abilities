@@ -101,7 +101,7 @@ function modifier_generic_knockback_lua:OnDestroy( kv )
 	end
 
 	if self.EndCallback then
-		self.EndCallback()
+		self.EndCallback( self.interrupted )
 	end
 
 	self:GetParent():InterruptMotionControllers( true )

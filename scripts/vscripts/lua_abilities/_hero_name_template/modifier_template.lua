@@ -39,11 +39,16 @@ function modifier_template:OnCreated( kv )
 	-- references
 	self.special_value = self:GetAbility():GetSpecialValueFor( "special_value" )
 
-	if IsServer() then
-		-- Start interval
-		self:StartIntervalThink( self.interval )
-		self:OnIntervalThink()
-	end
+	if not IsServer() then return end
+	-- ability properties
+	self.abilityDamageType = self:GetAbility():GetAbilityDamageType()
+	self.abilityTargetTeam = self:GetAbility():GetAbilityTargetTeam()
+	self.abilityTargetType = self:GetAbility():GetAbilityTargetType()
+	self.abilityTargetFlags = self:GetAbility():GetAbilityTargetFlags()
+
+	-- Start interval
+	self:StartIntervalThink( self.interval )
+	self:OnIntervalThink()
 end
 
 function modifier_template:OnRefresh( kv )
@@ -60,18 +65,26 @@ end
 -- Modifier Effects
 function modifier_template:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
-		MODIFIER_EVENT_ON_ATTACKED,
+		MODIFIER_EVENT_ON_ATTACK,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 	}
 
 	return funcs
+end
+
+function modifier_template:OnAttack( params )
+
+end
+
+function modifier_template:GetModifierMoveSpeedBonus_Percentage()
+	return -100
 end
 
 --------------------------------------------------------------------------------
 -- Status Effects
 function modifier_template:CheckState()
 	local state = {
-		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_STUNNED] = true,
 	}
 
 	return state
@@ -140,6 +153,10 @@ end
 
 function modifier_template:GetStatusEffectName()
 	return "status/effect/here.vpcf"
+end
+
+function modifier_template:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
 end
 
 function modifier_template:PlayEffects()

@@ -1108,6 +1108,8 @@
 #base "../vscripts/lua_abilities/outworld_devourer_equilibrium_lua/outworld_devourer_equilibrium_lua.txt"
 #base "../vscripts/lua_abilities/outworld_devourer_sanitys_eclipse_lua/outworld_devourer_sanitys_eclipse_lua.txt"
 
+#base "../vscripts/lua_abilities/pangolier_swashbuckle_lua/pangolier_swashbuckle_lua.txt"
+
 #base "../vscripts/lua_abilities/phantom_assassin_stifling_dagger_lua/phantom_assassin_stifling_dagger_lua.txt"
 #base "../vscripts/lua_abilities/phantom_assassin_phantom_strike_lua/phantom_assassin_phantom_strike_lua.txt"
 #base "../vscripts/lua_abilities/phantom_assassin_blur_lua/phantom_assassin_blur_lua.txt"
@@ -1154,6 +1156,11 @@
 #base "../vscripts/lua_abilities/slark_essence_shift_lua/slark_essence_shift_lua.txt"
 #base "../vscripts/lua_abilities/slark_shadow_dance_lua/slark_shadow_dance_lua.txt"
 
+#base "../vscripts/lua_abilities/snapfire_scatterblast_lua/snapfire_scatterblast_lua.txt"
+#base "../vscripts/lua_abilities/snapfire_firesnap_cookie_lua/snapfire_firesnap_cookie_lua.txt"
+#base "../vscripts/lua_abilities/snapfire_lil_shredder_lua/snapfire_lil_shredder_lua.txt"
+#base "../vscripts/lua_abilities/snapfire_mortimer_kisses_lua/snapfire_mortimer_kisses_lua.txt"
+
 #base "../vscripts/lua_abilities/sniper_shrapnel_lua/sniper_shrapnel_lua.txt"
 #base "../vscripts/lua_abilities/sniper_headshot_lua/sniper_headshot_lua.txt"
 #base "../vscripts/lua_abilities/sniper_take_aim_lua/sniper_take_aim_lua.txt"
@@ -1184,6 +1191,11 @@
 #base "../vscripts/lua_abilities/viper_nethertoxin_lua/viper_nethertoxin_lua.txt"
 #base "../vscripts/lua_abilities/viper_corrosive_skin_lua/viper_corrosive_skin_lua.txt"
 #base "../vscripts/lua_abilities/viper_viper_strike_lua/viper_viper_strike_lua.txt"
+
+#base "../vscripts/lua_abilities/void_spirit_aether_remnant_lua/void_spirit_aether_remnant_lua.txt"
+#base "../vscripts/lua_abilities/void_spirit_dissimilate_lua/void_spirit_dissimilate_lua.txt"
+#base "../vscripts/lua_abilities/void_spirit_resonant_pulse_lua/void_spirit_resonant_pulse_lua.txt"
+#base "../vscripts/lua_abilities/void_spirit_astral_step_lua/void_spirit_astral_step_lua.txt"
 
 #base "../vscripts/lua_abilities/windranger_shackleshot_lua/windranger_shackleshot_lua.txt"
 #base "../vscripts/lua_abilities/windranger_powershot_lua/windranger_powershot_lua.txt"

@@ -14,6 +14,7 @@ function Precache( context )
 			PrecacheResource( "particle", "*.vpcf", context )
 			PrecacheResource( "particle_folder", "particles/folder", context )
 	]]
+	PrecacheResource( "particle", "particles/ui_mouseactions/range_finder_cone.vpcf", context )
 end
 
 -- Create the game mode when we activate
@@ -27,6 +28,7 @@ function CAddonTemplateGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
 
 	-- dotadoc.mainFunction()
+	require( "scripts/vscripts/libraries/vector_target/vector_target" )
 end
 
 -- Evaluate the state of the game

@@ -22,6 +22,7 @@ end
 function modifier_generic_charges:OnCreated( kv )
 	-- references
 	self.max_charges = self:GetAbility():GetSpecialValueFor( "max_charges" ) -- special value
+	self.charge_time = self:GetAbility():GetSpecialValueFor( "charge_restore_time" ) -- special value
 
 	if IsServer() then
 		self:SetStackCount( self.max_charges )
@@ -32,6 +33,7 @@ end
 function modifier_generic_charges:OnRefresh( kv )
 	-- references
 	self.max_charges = self:GetAbility():GetSpecialValueFor( "max_charges" ) -- special value
+	self.charge_time = self:GetAbility():GetSpecialValueFor( "charge_restore_time" ) -- special value
 
 	if IsServer() then
 		self:CalculateCharge()
@@ -81,6 +83,9 @@ function modifier_generic_charges:CalculateCharge()
 		if self:GetRemainingTime() <= 0.05 then
 			-- start charging
 			local charge_time = self:GetAbility():GetCooldown( -1 )
+			if self.charge_time then
+				charge_time = self.charge_time
+			end
 			self:StartIntervalThink( charge_time )
 			self:SetDuration( charge_time, true )
 		end

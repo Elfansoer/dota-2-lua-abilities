@@ -1,0 +1,92 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Void Spirit: Astral Step (Lua version)
+	//=================================================================================================================
+	"void_spirit_astral_step_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/void_spirit_astral_step_lua/void_spirit_astral_step_lua"
+		"AbilityTextureName"			"void_spirit_astral_step"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_void_spirit.vsndevts"
+			"particle"	"particles/status_fx/status_effect_void_spirit_astral_step_debuff.vpcf"
+			"particle"	"particles/units/heroes/hero_void_spirit/astral_step/void_spirit_astral_step.vpcf"
+			"particle"	"particles/units/heroes/hero_void_spirit/astral_step/void_spirit_astral_step_impact.vpcf"
+			"particle"	"particles/units/heroes/hero_void_spirit/astral_step/void_spirit_astral_step_debuff.vpcf"
+			"particle"	"particles/units/heroes/hero_void_spirit/astral_step/void_spirit_astral_step_dmg.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		//"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"80 90 100"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"170"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_charges"			"2"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"charge_restore_time"	"25 20 15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"min_travel_distance"	"200"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_travel_distance"	"700 900 1100"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pop_damage_delay"		"1.25"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pop_damage"			"150 200 250"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movement_slow_pct"		"40 60 80"
+			}
+		}
+	}
+}

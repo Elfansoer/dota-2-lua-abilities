@@ -1,0 +1,95 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Snapfire: Lil' Shredder (Lua version)
+	//=================================================================================================================
+	"snapfire_lil_shredder_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/snapfire_lil_shredder_lua/snapfire_lil_shredder_lua"
+		"AbilityTextureName"			"snapfire_lil_shredder"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_snapfire.vsndevts"
+			"particle"	"particles/units/heroes/hero_snapfire/hero_snapfire_shells_projectile.vpcf"
+			"particle"	"particles/units/heroes/hero_snapfire/hero_snapfire_shells_buff.vpcf"
+			"particle"	"particles/units/heroes/hero_snapfire/hero_snapfire_slow_debuff.vpcf"
+			"particle"	"particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.0"
+		"AbilityChannelTime"			"0"
+		"AbilityDuration"				"8"
+
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"24 20 16 12"
+		"AbilityManaCost"				"75"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"30 45 60 75"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"buffed_attacks"			"6"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_speed_bonus"		"300"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_range_bonus"		"75 150 225 300"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"buff_duration_tooltip"		"8"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"base_attack_time"			"1.0"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_speed_slow_per_stack"	"20 25 30 35"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow_duration"				"3.0"
+			}
+		}
+	}
+}
