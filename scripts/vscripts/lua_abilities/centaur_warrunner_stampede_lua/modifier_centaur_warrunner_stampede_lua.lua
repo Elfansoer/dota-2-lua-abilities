@@ -32,7 +32,7 @@ function modifier_centaur_warrunner_stampede_lua:OnCreated( kv )
 		self.damageTable = {
 			-- victim = target,
 			attacker = self:GetParent(),
-			damage = base_damage + self:GetParent():GetStrength()*strength_pct,
+			damage = base_damage + self:GetCaster():GetStrength()*strength_pct,
 			damage_type = self:GetAbility():GetAbilityDamageType(),
 			ability = self:GetAbility(), --Optional.
 		}
@@ -58,7 +58,7 @@ function modifier_centaur_warrunner_stampede_lua:OnRefresh( kv )
 		self.damageTable = {
 			-- victim = target,
 			attacker = self:GetParent(),
-			damage = base_damage + self:GetParent():GetStrength()*strength_pct,
+			damage = base_damage + self:GetCaster():GetStrength()*strength_pct,
 			damage_type = self:GetAbility():GetAbilityDamageType(),
 			ability = self:GetAbility(), --Optional.
 		}
