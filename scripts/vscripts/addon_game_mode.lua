@@ -6,6 +6,26 @@ if CAddonTemplateGameMode == nil then
 	CAddonTemplateGameMode = class({})
 end
 
+
+function OnModifierAdded( params1, params2 )
+	local name = params2.name_const
+	print("OnModifierAddedFilter",name)
+	if params2.entindex_parent_const then
+		local parent = EntIndexToHScript( params2.entindex_parent_const )
+		print("parent",parent:GetUnitName())
+	end
+	if params2.entindex_caster_const then
+		local caster = EntIndexToHScript( params2.entindex_caster_const )
+		print("caster",caster:GetUnitName())
+	end
+	if params2.entindex_ability_const then
+		local ability = EntIndexToHScript( params2.entindex_ability_const )
+		print("ability",ability:GetAbilityName())
+	end
+
+	return true
+end
+
 function Precache( context )
 	--[[
 		Precache things we know we'll use.  Possible file types include (but not limited to):
@@ -26,6 +46,8 @@ end
 function CAddonTemplateGameMode:InitGameMode()
 	print( "Template addon is loaded." )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
+
+	GameRules:GetGameModeEntity():SetModifierGainedFilter( OnModifierAdded, self )
 
 	-- dotadoc.mainFunction()
 	require( "scripts/vscripts/libraries/vector_target/vector_target" )

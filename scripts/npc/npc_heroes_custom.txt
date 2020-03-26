@@ -11,7 +11,7 @@
 	{
 		"override_hero"					"npc_dota_hero_queenofpain"			// Hero to override
 		"Ability1"				"pangolier_swashbuckle_lua"			// Ability 5
-		"Ability2"				"furion_force_of_nature"				// Ability 3
+		"Ability2"				"test_sandbox_notarget"				// Ability 3
 		"Ability3"				"alchemist_unstable_concoction_lua"				// Ability 1
 		"Ability4"				"alchemist_unstable_concoction_throw_lua"				// Ability 2
 		"Ability5"				"test_blockcamp"					// Ability 6

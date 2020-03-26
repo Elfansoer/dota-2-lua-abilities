@@ -140,12 +140,6 @@ function CreateItemOnPositionSync( Vector_1, handle_2 ) end
 -- @param bool_7 bool
 function CreateModifierThinker( handle_1, handle_2, string_3, handle_4, Vector_5, int_6, bool_7 ) end
 
----[[ CreateRune  Create a rune of the specified type (vLocation, iRuneType). ])
--- @return handle
--- @param Vector_1 Vector
--- @param int_2 int
-function CreateRune( Vector_1, int_2 ) end
-
 ---[[ CreateSceneEntity  Create a scene entity to play the specified scene. ])
 -- @return handle
 -- @param string_1 string
@@ -378,14 +372,6 @@ function DoUniqueString( string_1 ) end
 -- @param Vector_2 Vector
 function DotProduct( Vector_1, Vector_2 ) end
 
----[[ DropNeutralItemAtPositionForHero  Drop a neutral item for the team of the hero at the given tier. ])
--- @return void
--- @param string_1 string
--- @param Vector_2 Vector
--- @param handle_3 handle
--- @param int_4 int
-function DropNeutralItemAtPositionForHero( string_1, Vector_2, handle_3, int_4 ) end
-
 ---[[ EmitAnnouncerSound  Emit an announcer sound for all players. ])
 -- @return void
 -- @param string_1 string
@@ -471,11 +457,6 @@ function FindClearRandomPositionAroundUnit( handle_1, handle_2, int_3 ) end
 -- @param Vector_2 Vector
 -- @param bool_3 bool
 function FindClearSpaceForUnit( handle_1, Vector_2, bool_3 ) end
-
----[[ FindSpawnEntityForTeam  Find a spawn point for the given team. ])
--- @return handle
--- @param int_1 int
-function FindSpawnEntityForTeam( int_1 ) end
 
 ---[[ FindUnitsInLine  Find units that intersect the given line with the given flags. ])
 -- @return table
@@ -674,11 +655,6 @@ function GetWorldMinX(  ) end
 ---[[ GetWorldMinY  Gets the world's minimum Y position. ])
 -- @return float
 function GetWorldMinY(  ) end
-
----[[ GetXPNeededToReachNextLevel  Get amount of XP required to reach the next level. ])
--- @return int
--- @param int_1 int
-function GetXPNeededToReachNextLevel( int_1 ) end
 
 ---[[ InitLogFile  InitLogFile is deprecated. Print to the console for logging instead. ])
 -- @return void
@@ -1391,15 +1367,15 @@ DOTA_DAMAGE_FLAG_REFLECTION = 16
 DOTA_DAMAGE_FLAG_USE_COMBAT_PROFICIENCY = 256
 
 --- Enum DOTAHUDVisibility_t
-DOTA_HUD_CUSTOMUI_BEHIND_HUD_ELEMENTS = 28
+DOTA_HUD_CUSTOMUI_BEHIND_HUD_ELEMENTS = 27
 DOTA_HUD_VISIBILITY_ACTION_MINIMAP = 4
 DOTA_HUD_VISIBILITY_ACTION_PANEL = 3
-DOTA_HUD_VISIBILITY_COUNT = 29
-DOTA_HUD_VISIBILITY_ENDGAME = 22
-DOTA_HUD_VISIBILITY_ENDGAME_CHAT = 23
-DOTA_HUD_VISIBILITY_HERO_SELECTION_CLOCK = 16
-DOTA_HUD_VISIBILITY_HERO_SELECTION_GAME_NAME = 15
-DOTA_HUD_VISIBILITY_HERO_SELECTION_TEAMS = 14
+DOTA_HUD_VISIBILITY_COUNT = 28
+DOTA_HUD_VISIBILITY_ENDGAME = 21
+DOTA_HUD_VISIBILITY_ENDGAME_CHAT = 22
+DOTA_HUD_VISIBILITY_HERO_SELECTION_CLOCK = 15
+DOTA_HUD_VISIBILITY_HERO_SELECTION_GAME_NAME = 14
+DOTA_HUD_VISIBILITY_HERO_SELECTION_TEAMS = 13
 DOTA_HUD_VISIBILITY_INVALID = -1
 DOTA_HUD_VISIBILITY_INVENTORY_COURIER = 9
 DOTA_HUD_VISIBILITY_INVENTORY_GOLD = 11
@@ -1408,18 +1384,17 @@ DOTA_HUD_VISIBILITY_INVENTORY_PANEL = 5
 DOTA_HUD_VISIBILITY_INVENTORY_PROTECT = 10
 DOTA_HUD_VISIBILITY_INVENTORY_QUICKBUY = 8
 DOTA_HUD_VISIBILITY_INVENTORY_SHOP = 6
-DOTA_HUD_VISIBILITY_KILLCAM = 26
-DOTA_HUD_VISIBILITY_PREGAME_STRATEGYUI = 25
-DOTA_HUD_VISIBILITY_QUICK_STATS = 24
-DOTA_HUD_VISIBILITY_SHOP_COMMONITEMS = 13
+DOTA_HUD_VISIBILITY_KILLCAM = 25
+DOTA_HUD_VISIBILITY_PREGAME_STRATEGYUI = 24
+DOTA_HUD_VISIBILITY_QUICK_STATS = 23
 DOTA_HUD_VISIBILITY_SHOP_SUGGESTEDITEMS = 12
-DOTA_HUD_VISIBILITY_TOP_BAR = 27
-DOTA_HUD_VISIBILITY_TOP_BAR_BACKGROUND = 18
-DOTA_HUD_VISIBILITY_TOP_BAR_DIRE_TEAM = 20
-DOTA_HUD_VISIBILITY_TOP_BAR_RADIANT_TEAM = 19
-DOTA_HUD_VISIBILITY_TOP_BAR_SCORE = 21
+DOTA_HUD_VISIBILITY_TOP_BAR = 26
+DOTA_HUD_VISIBILITY_TOP_BAR_BACKGROUND = 17
+DOTA_HUD_VISIBILITY_TOP_BAR_DIRE_TEAM = 19
+DOTA_HUD_VISIBILITY_TOP_BAR_RADIANT_TEAM = 18
+DOTA_HUD_VISIBILITY_TOP_BAR_SCORE = 20
 DOTA_HUD_VISIBILITY_TOP_HEROES = 1
-DOTA_HUD_VISIBILITY_TOP_MENU_BUTTONS = 17
+DOTA_HUD_VISIBILITY_TOP_MENU_BUTTONS = 16
 DOTA_HUD_VISIBILITY_TOP_SCOREBOARD = 2
 DOTA_HUD_VISIBILITY_TOP_TIMEOFDAY = 0
 
@@ -1641,7 +1616,6 @@ DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL = 536870912
 DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT = 8388608
 DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK = 33554432
 DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT = 262144
-DOTA_ABILITY_BEHAVIOR_FREE_DRAW_TARGETING = 0
 DOTA_ABILITY_BEHAVIOR_HIDDEN = 1
 DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING = 134217728
 DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL = 4194304
@@ -1766,8 +1740,7 @@ DOTA_RUNE_XP = 7
 DOTA_SHOP_CUSTOM = 6
 DOTA_SHOP_GROUND = 3
 DOTA_SHOP_HOME = 0
-DOTA_SHOP_NEUTRALS = 7
-DOTA_SHOP_NONE = 8
+DOTA_SHOP_NONE = 7
 DOTA_SHOP_SECRET = 2
 DOTA_SHOP_SECRET2 = 5
 DOTA_SHOP_SIDE = 1
@@ -1823,14 +1796,14 @@ DOTA_DAMAGE_CATEGORY_SPELL = 0
 --- Enum DotaDefaultUIElement_t
 DOTA_DEFAULT_UI_ACTION_MINIMAP = 4
 DOTA_DEFAULT_UI_ACTION_PANEL = 3
-DOTA_DEFAULT_UI_CUSTOMUI_BEHIND_HUD_ELEMENTS = 28
-DOTA_DEFAULT_UI_ELEMENT_COUNT = 29
-DOTA_DEFAULT_UI_ENDGAME = 22
-DOTA_DEFAULT_UI_ENDGAME_CHAT = 23
+DOTA_DEFAULT_UI_CUSTOMUI_BEHIND_HUD_ELEMENTS = 27
+DOTA_DEFAULT_UI_ELEMENT_COUNT = 28
+DOTA_DEFAULT_UI_ENDGAME = 21
+DOTA_DEFAULT_UI_ENDGAME_CHAT = 22
 DOTA_DEFAULT_UI_FLYOUT_SCOREBOARD = 2
-DOTA_DEFAULT_UI_HERO_SELECTION_CLOCK = 16
-DOTA_DEFAULT_UI_HERO_SELECTION_GAME_NAME = 15
-DOTA_DEFAULT_UI_HERO_SELECTION_TEAMS = 14
+DOTA_DEFAULT_UI_HERO_SELECTION_CLOCK = 15
+DOTA_DEFAULT_UI_HERO_SELECTION_GAME_NAME = 14
+DOTA_DEFAULT_UI_HERO_SELECTION_TEAMS = 13
 DOTA_DEFAULT_UI_INVALID = -1
 DOTA_DEFAULT_UI_INVENTORY_COURIER = 9
 DOTA_DEFAULT_UI_INVENTORY_GOLD = 11
@@ -1839,18 +1812,17 @@ DOTA_DEFAULT_UI_INVENTORY_PANEL = 5
 DOTA_DEFAULT_UI_INVENTORY_PROTECT = 10
 DOTA_DEFAULT_UI_INVENTORY_QUICKBUY = 8
 DOTA_DEFAULT_UI_INVENTORY_SHOP = 6
-DOTA_DEFAULT_UI_KILLCAM = 26
-DOTA_DEFAULT_UI_PREGAME_STRATEGYUI = 25
-DOTA_DEFAULT_UI_QUICK_STATS = 24
-DOTA_DEFAULT_UI_SHOP_COMMONITEMS = 13
+DOTA_DEFAULT_UI_KILLCAM = 25
+DOTA_DEFAULT_UI_PREGAME_STRATEGYUI = 24
+DOTA_DEFAULT_UI_QUICK_STATS = 23
 DOTA_DEFAULT_UI_SHOP_SUGGESTEDITEMS = 12
-DOTA_DEFAULT_UI_TOP_BAR = 27
-DOTA_DEFAULT_UI_TOP_BAR_BACKGROUND = 18
-DOTA_DEFAULT_UI_TOP_BAR_DIRE_TEAM = 20
-DOTA_DEFAULT_UI_TOP_BAR_RADIANT_TEAM = 19
-DOTA_DEFAULT_UI_TOP_BAR_SCORE = 21
+DOTA_DEFAULT_UI_TOP_BAR = 26
+DOTA_DEFAULT_UI_TOP_BAR_BACKGROUND = 17
+DOTA_DEFAULT_UI_TOP_BAR_DIRE_TEAM = 19
+DOTA_DEFAULT_UI_TOP_BAR_RADIANT_TEAM = 18
+DOTA_DEFAULT_UI_TOP_BAR_SCORE = 20
 DOTA_DEFAULT_UI_TOP_HEROES = 1
-DOTA_DEFAULT_UI_TOP_MENU_BUTTONS = 17
+DOTA_DEFAULT_UI_TOP_MENU_BUTTONS = 16
 DOTA_DEFAULT_UI_TOP_TIMEOFDAY = 0
 
 --- Enum EDOTA_ModifyGold_Reason
@@ -2259,18 +2231,18 @@ MODIFIER_PROPERTY_ALWAYS_ETHEREAL_ATTACK = 146 -- GetAllowEtherealAttack
 MODIFIER_PROPERTY_ATTACKSPEED_BASE_OVERRIDE = 28 -- GetModifierAttackSpeedBaseOverride
 MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT = 30 -- GetModifierAttackSpeedBonus_Constant
 MODIFIER_PROPERTY_ATTACK_POINT_CONSTANT = 34 -- GetModifierAttackPointConstant
-MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE = 95 -- GetModifierAttackRangeOverride
-MODIFIER_PROPERTY_ATTACK_RANGE_BONUS = 96 -- GetModifierAttackRangeBonus
-MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_PERCENTAGE = 98 -- GetModifierAttackRangeBonusPercentage
-MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_UNIQUE = 97 -- GetModifierAttackRangeBonusUnique
-MODIFIER_PROPERTY_AVOID_DAMAGE = 58 -- GetModifierAvoidDamage
-MODIFIER_PROPERTY_AVOID_SPELL = 59 -- GetModifierAvoidSpell
+MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE = 94 -- GetModifierAttackRangeOverride
+MODIFIER_PROPERTY_ATTACK_RANGE_BONUS = 95 -- GetModifierAttackRangeBonus
+MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_PERCENTAGE = 97 -- GetModifierAttackRangeBonusPercentage
+MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_UNIQUE = 96 -- GetModifierAttackRangeBonusUnique
+MODIFIER_PROPERTY_AVOID_DAMAGE = 57 -- GetModifierAvoidDamage
+MODIFIER_PROPERTY_AVOID_SPELL = 58 -- GetModifierAvoidSpell
 MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE = 4 -- GetModifierBaseAttack_BonusDamage
-MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE = 47 -- GetModifierBaseDamageOutgoing_Percentage
-MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE_UNIQUE = 48 -- GetModifierBaseDamageOutgoing_PercentageUnique
+MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE = 46 -- GetModifierBaseDamageOutgoing_Percentage
+MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE_UNIQUE = 47 -- GetModifierBaseDamageOutgoing_PercentageUnique
 MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT = 32 -- GetModifierBaseAttackTimeConstant
 MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT_ADJUST = 33 -- GetModifierBaseAttackTimeConstant_Adjust
-MODIFIER_PROPERTY_BASE_MANA_REGEN = 72 -- GetModifierBaseRegen
+MODIFIER_PROPERTY_BASE_MANA_REGEN = 71 -- GetModifierBaseRegen
 MODIFIER_PROPERTY_BONUS_DAY_VISION = 127 -- GetBonusDayVision
 MODIFIER_PROPERTY_BONUS_NIGHT_VISION = 128 -- GetBonusNightVision
 MODIFIER_PROPERTY_BONUS_NIGHT_VISION_UNIQUE = 129 -- GetBonusNightVisionUnique
@@ -2280,12 +2252,13 @@ MODIFIER_PROPERTY_BOUNTY_CREEP_MULTIPLIER = 149 -- Unused
 MODIFIER_PROPERTY_BOUNTY_OTHER_MULTIPLIER = 150 -- Unused
 MODIFIER_PROPERTY_CAN_ATTACK_TREES = 212 -- GetModifierCanAttackTrees
 MODIFIER_PROPERTY_CASTTIME_PERCENTAGE = 109 -- GetModifierPercentageCasttime
-MODIFIER_PROPERTY_CAST_RANGE_BONUS = 92 -- GetModifierCastRangeBonus
-MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING = 94 -- GetModifierCastRangeBonusStacking
-MODIFIER_PROPERTY_CAST_RANGE_BONUS_TARGET = 93 -- GetModifierCastRangeBonusTarget
+MODIFIER_PROPERTY_CAST_RANGE_BONUS = 91 -- GetModifierCastRangeBonus
+MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING = 93 -- GetModifierCastRangeBonusStacking
+MODIFIER_PROPERTY_CAST_RANGE_BONUS_TARGET = 92 -- GetModifierCastRangeBonusTarget
 MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE = 205 -- GetModifierChangeAbilityValue
-MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE = 107 -- GetModifierPercentageCooldown
+MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE = 106 -- GetModifierPercentageCooldown
 MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_ONGOING = 108 -- GetModifierPercentageCooldownOngoing
+MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING = 107 -- GetModifierPercentageCooldownStacking
 MODIFIER_PROPERTY_COOLDOWN_REDUCTION_CONSTANT = 31 -- GetModifierCooldownReduction_Constant
 MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE = 35 -- GetModifierDamageOutgoing_Percentage
 MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_ILLUSION = 36 -- GetModifierDamageOutgoing_Percentage_Illusion
@@ -2296,55 +2269,54 @@ MODIFIER_PROPERTY_DISABLE_HEALING = 144 -- GetDisableHealing
 MODIFIER_PROPERTY_DISABLE_TURNING = 203 -- GetModifierDisableTurning
 MODIFIER_PROPERTY_DODGE_PROJECTILE = 152 -- GetModifierDodgeProjectile
 MODIFIER_PROPERTY_DONT_GIVE_VISION_OF_ATTACKER = 215 -- GetModifierNoVisionOfAttacker
-MODIFIER_PROPERTY_EVASION_CONSTANT = 53 -- GetModifierEvasion_Constant
+MODIFIER_PROPERTY_EVASION_CONSTANT = 52 -- GetModifierEvasion_Constant
 MODIFIER_PROPERTY_EXP_RATE_BOOST = 113 -- GetModifierPercentageExpRateBoost
-MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS = 82 -- GetModifierExtraHealthBonus
-MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE = 84 -- GetModifierExtraHealthPercentage
-MODIFIER_PROPERTY_EXTRA_MANA_BONUS = 83 -- GetModifierExtraManaBonus
-MODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE = 85 -- GetModifierExtraManaPercentage
-MODIFIER_PROPERTY_EXTRA_STRENGTH_BONUS = 81 -- GetModifierExtraStrengthBonus
+MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS = 81 -- GetModifierExtraHealthBonus
+MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE = 83 -- GetModifierExtraHealthPercentage
+MODIFIER_PROPERTY_EXTRA_MANA_BONUS = 82 -- GetModifierExtraManaBonus
+MODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE = 84 -- GetModifierExtraManaPercentage
+MODIFIER_PROPERTY_EXTRA_STRENGTH_BONUS = 80 -- GetModifierExtraStrengthBonus
 MODIFIER_PROPERTY_FIXED_ATTACK_RATE = 29 -- GetModifierFixedAttackRate
 MODIFIER_PROPERTY_FIXED_DAY_VISION = 131 -- GetFixedDayVision
 MODIFIER_PROPERTY_FIXED_NIGHT_VISION = 132 -- GetFixedNightVision
 MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP = 202 -- GetForceDrawOnMinimap
-MODIFIER_PROPERTY_HEALTH_BONUS = 79 -- GetModifierHealthBonus
-MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT = 76 -- GetModifierConstantHealthRegen
-MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE = 77 -- GetModifierHealthRegenPercentage
-MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE_UNIQUE = 78 -- GetModifierHealthRegenPercentageUnique
-MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_SOURCE = 41 -- GetModifierHealAmplify_PercentageSource
-MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET = 42 -- GetModifierHealAmplify_PercentageTarget
-MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE = 43 -- GetModifierHPRegenAmplify_Percentage
+MODIFIER_PROPERTY_HEALTH_BONUS = 78 -- GetModifierHealthBonus
+MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT = 75 -- GetModifierConstantHealthRegen
+MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE = 76 -- GetModifierHealthRegenPercentage
+MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE_UNIQUE = 77 -- GetModifierHealthRegenPercentageUnique
+MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE = 42 -- GetModifierHPRegenAmplify_Percentage
+MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE_SOURCE = 41 -- GetModifierHPRegenAmplify_PercentageSource
 MODIFIER_PROPERTY_IGNORE_CAST_ANGLE = 204 -- GetModifierIgnoreCastAngle
 MODIFIER_PROPERTY_IGNORE_COOLDOWN = 211 -- GetModifierIgnoreCooldown
 MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT = 26 -- GetModifierIgnoreMovespeedLimit
-MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR = 66 -- GetModifierIgnorePhysicalArmor
+MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR = 65 -- GetModifierIgnorePhysicalArmor
 MODIFIER_PROPERTY_ILLUSION_LABEL = 138 -- GetModifierIllusionLabel
 MODIFIER_PROPERTY_INCOMING_DAMAGE_ILLUSION = 214
-MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE = 49 -- GetModifierIncomingDamage_Percentage
-MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_CONSTANT = 51 -- GetModifierIncomingPhysicalDamageConstant
-MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE = 50 -- GetModifierIncomingPhysicalDamage_Percentage
-MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT = 52 -- GetModifierIncomingSpellDamageConstant
+MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE = 48 -- GetModifierIncomingDamage_Percentage
+MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_CONSTANT = 50 -- GetModifierIncomingPhysicalDamageConstant
+MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE = 49 -- GetModifierIncomingPhysicalDamage_Percentage
+MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT = 51 -- GetModifierIncomingSpellDamageConstant
 MODIFIER_PROPERTY_INVISIBILITY_ATTACK_BEHAVIOR_EXCEPTION = 12 -- GetModifierInvisibilityAttackBehaviorException
 MODIFIER_PROPERTY_INVISIBILITY_LEVEL = 11 -- GetModifierInvisibilityLevel
 MODIFIER_PROPERTY_IS_ILLUSION = 137 -- GetIsIllusion
 MODIFIER_PROPERTY_IS_SCEPTER = 195 -- GetModifierScepter
-MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE = 44 -- GetModifierLifestealRegenAmplify_Percentage
+MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE = 43 -- GetModifierLifestealRegenAmplify_Percentage
 MODIFIER_PROPERTY_LIFETIME_FRACTION = 199 -- GetUnitLifetimeFraction
 MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK = 116 -- GetModifierMagical_ConstantBlock
-MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BASE_REDUCTION = 67 -- GetModifierMagicalResistanceBaseReduction
-MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS = 69 -- GetModifierMagicalResistanceBonus
-MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS_ILLUSIONS = 70 -- GetModifierMagicalResistanceBonusIllusions
-MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE = 71 -- GetModifierMagicalResistanceDecrepifyUnique
-MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DIRECT_MODIFICATION = 68 -- GetModifierMagicalResistanceDirectModification
+MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BASE_REDUCTION = 66 -- GetModifierMagicalResistanceBaseReduction
+MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS = 68 -- GetModifierMagicalResistanceBonus
+MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS_ILLUSIONS = 69 -- GetModifierMagicalResistanceBonusIllusions
+MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE = 70 -- GetModifierMagicalResistanceDecrepifyUnique
+MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DIRECT_MODIFICATION = 67 -- GetModifierMagicalResistanceDirectModification
 MODIFIER_PROPERTY_MANACOST_PERCENTAGE = 110 -- GetModifierPercentageManacost
 MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING = 111 -- GetModifierPercentageManacostStacking
-MODIFIER_PROPERTY_MANA_BONUS = 80 -- GetModifierManaBonus
-MODIFIER_PROPERTY_MANA_REGEN_CONSTANT = 73 -- GetModifierConstantManaRegen
-MODIFIER_PROPERTY_MANA_REGEN_CONSTANT_UNIQUE = 74 -- GetModifierConstantManaRegenUnique
-MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE = 75 -- GetModifierTotalPercentageManaRegen
-MODIFIER_PROPERTY_MAX_ATTACK_RANGE = 99 -- GetModifierMaxAttackRange
+MODIFIER_PROPERTY_MANA_BONUS = 79 -- GetModifierManaBonus
+MODIFIER_PROPERTY_MANA_REGEN_CONSTANT = 72 -- GetModifierConstantManaRegen
+MODIFIER_PROPERTY_MANA_REGEN_CONSTANT_UNIQUE = 73 -- GetModifierConstantManaRegenUnique
+MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE = 74 -- GetModifierTotalPercentageManaRegen
+MODIFIER_PROPERTY_MAX_ATTACK_RANGE = 98 -- GetModifierMaxAttackRange
 MODIFIER_PROPERTY_MIN_HEALTH = 133 -- GetMinHealth
-MODIFIER_PROPERTY_MISS_PERCENTAGE = 60 -- GetModifierMiss_Percentage
+MODIFIER_PROPERTY_MISS_PERCENTAGE = 59 -- GetModifierMiss_Percentage
 MODIFIER_PROPERTY_MODEL_CHANGE = 193 -- GetModifierModelChange
 MODIFIER_PROPERTY_MODEL_SCALE = 194 -- GetModifierModelScale
 MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE = 23 -- GetModifierMoveSpeed_Absolute
@@ -2360,20 +2332,20 @@ MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE_UNIQUE_2 = 18 -- GetModifierMoveSpe
 MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE = 19 -- GetModifierMoveSpeedBonus_Special_Boots
 MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE_2 = 20 -- GetModifierMoveSpeedBonus_Special_Boots_2
 MODIFIER_PROPERTY_MOVESPEED_LIMIT = 27 -- GetModifierMoveSpeed_Limit
-MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE = 45 -- GetModifierMPRegenAmplify_Percentage
-MODIFIER_PROPERTY_MP_RESTORE_AMPLIFY_PERCENTAGE = 46 -- GetModifierMPRestoreAmplify_Percentage
-MODIFIER_PROPERTY_NEGATIVE_EVASION_CONSTANT = 54 -- GetModifierNegativeEvasion_Constant
+MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE = 44 -- GetModifierMPRegenAmplify_Percentage
+MODIFIER_PROPERTY_MP_RESTORE_AMPLIFY_PERCENTAGE = 45 -- GetModifierMPRestoreAmplify_Percentage
+MODIFIER_PROPERTY_NEGATIVE_EVASION_CONSTANT = 53 -- GetModifierNegativeEvasion_Constant
 MODIFIER_PROPERTY_OVERRIDE_ANIMATION = 121 -- GetOverrideAnimation
 MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE = 123 -- GetOverrideAnimationRate
 MODIFIER_PROPERTY_OVERRIDE_ANIMATION_WEIGHT = 122 -- GetOverrideAnimationWeight
 MODIFIER_PROPERTY_OVERRIDE_ATTACK_DAMAGE = 9 -- GetModifierOverrideAttackDamage
 MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL = 147 -- GetOverrideAttackMagical
 MODIFIER_PROPERTY_PERSISTENT_INVISIBILITY = 13 -- GetModifierPersistentInvisibility
-MODIFIER_PROPERTY_PHYSICAL_ARMOR_BASE_PERCENTAGE = 61 -- GetModifierPhysicalArmorBase_Percentage
-MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS = 63 -- GetModifierPhysicalArmorBonus
-MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE = 64 -- GetModifierPhysicalArmorBonusUnique
-MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE_ACTIVE = 65 -- GetModifierPhysicalArmorBonusUniqueActive
-MODIFIER_PROPERTY_PHYSICAL_ARMOR_TOTAL_PERCENTAGE = 62 -- GetModifierPhysicalArmorTotal_Percentage
+MODIFIER_PROPERTY_PHYSICAL_ARMOR_BASE_PERCENTAGE = 60 -- GetModifierPhysicalArmorBase_Percentage
+MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS = 62 -- GetModifierPhysicalArmorBonus
+MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE = 63 -- GetModifierPhysicalArmorBonusUnique
+MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE_ACTIVE = 64 -- GetModifierPhysicalArmorBonusUniqueActive
+MODIFIER_PROPERTY_PHYSICAL_ARMOR_TOTAL_PERCENTAGE = 61 -- GetModifierPhysicalArmorTotal_Percentage
 MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK = 117 -- GetModifierPhysical_ConstantBlock
 MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK_SPECIAL = 118 -- GetModifierPhysical_ConstantBlockSpecial
 MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE = 0 -- GetModifierPreAttack_BonusDamage
@@ -2388,28 +2360,28 @@ MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_MAGICAL = 6 -- GetModifierProcAttack_B
 MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL = 5 -- GetModifierProcAttack_BonusDamage_Physical
 MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PURE = 7 -- GetModifierProcAttack_BonusDamage_Pure
 MODIFIER_PROPERTY_PROCATTACK_FEEDBACK = 8 -- GetModifierProcAttack_Feedback
-MODIFIER_PROPERTY_PROJECTILE_NAME = 102 -- GetModifierProjectileName
-MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS = 100 -- GetModifierProjectileSpeedBonus
-MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS_PERCENTAGE = 101 -- GetModifierProjectileSpeedBonusPercentage
+MODIFIER_PROPERTY_PROJECTILE_NAME = 101 -- GetModifierProjectileName
+MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS = 99 -- GetModifierProjectileSpeedBonus
+MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS_PERCENTAGE = 100 -- GetModifierProjectileSpeedBonusPercentage
 MODIFIER_PROPERTY_PROVIDES_FOW_POSITION = 200 -- GetModifierProvidesFOWVision
 MODIFIER_PROPERTY_RADAR_COOLDOWN_REDUCTION = 196 -- GetModifierRadarCooldownReduction
 MODIFIER_PROPERTY_REFLECT_SPELL = 125 -- GetReflectSpell
-MODIFIER_PROPERTY_REINCARNATION = 103 -- ReincarnateTime
-MODIFIER_PROPERTY_RESPAWNTIME = 104 -- GetModifierConstantRespawnTime
-MODIFIER_PROPERTY_RESPAWNTIME_PERCENTAGE = 105 -- GetModifierPercentageRespawnTime
-MODIFIER_PROPERTY_RESPAWNTIME_STACKING = 106 -- GetModifierStackingRespawnTime
+MODIFIER_PROPERTY_REINCARNATION = 102 -- ReincarnateTime
+MODIFIER_PROPERTY_RESPAWNTIME = 103 -- GetModifierConstantRespawnTime
+MODIFIER_PROPERTY_RESPAWNTIME_PERCENTAGE = 104 -- GetModifierPercentageRespawnTime
+MODIFIER_PROPERTY_RESPAWNTIME_STACKING = 105 -- GetModifierStackingRespawnTime
 MODIFIER_PROPERTY_SPELLS_REQUIRE_HP = 201 -- GetModifierSpellsRequireHP
 MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE = 39 -- GetModifierSpellAmplify_Percentage
 MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE_UNIQUE = 40 -- GetModifierSpellAmplify_PercentageUnique
-MODIFIER_PROPERTY_STATS_AGILITY_BONUS = 87 -- GetModifierBonusStats_Agility
-MODIFIER_PROPERTY_STATS_AGILITY_BONUS_PERCENTAGE = 90 -- GetModifierBonusStats_Agility_Percentage
-MODIFIER_PROPERTY_STATS_INTELLECT_BONUS = 88 -- GetModifierBonusStats_Intellect
-MODIFIER_PROPERTY_STATS_INTELLECT_BONUS_PERCENTAGE = 91 -- GetModifierBonusStats_Intellect_Percentage
-MODIFIER_PROPERTY_STATS_STRENGTH_BONUS = 86 -- GetModifierBonusStats_Strength
-MODIFIER_PROPERTY_STATS_STRENGTH_BONUS_PERCENTAGE = 89 -- GetModifierBonusStats_Strength_Percentage
-MODIFIER_PROPERTY_STATUS_RESISTANCE = 55 -- GetModifierStatusResistance
-MODIFIER_PROPERTY_STATUS_RESISTANCE_CASTER = 57 -- GetModifierStatusResistanceCaster
-MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING = 56 -- GetModifierStatusResistanceStacking
+MODIFIER_PROPERTY_STATS_AGILITY_BONUS = 86 -- GetModifierBonusStats_Agility
+MODIFIER_PROPERTY_STATS_AGILITY_BONUS_PERCENTAGE = 89 -- GetModifierBonusStats_Agility_Percentage
+MODIFIER_PROPERTY_STATS_INTELLECT_BONUS = 87 -- GetModifierBonusStats_Intellect
+MODIFIER_PROPERTY_STATS_INTELLECT_BONUS_PERCENTAGE = 90 -- GetModifierBonusStats_Intellect_Percentage
+MODIFIER_PROPERTY_STATS_STRENGTH_BONUS = 85 -- GetModifierBonusStats_Strength
+MODIFIER_PROPERTY_STATS_STRENGTH_BONUS_PERCENTAGE = 88 -- GetModifierBonusStats_Strength_Percentage
+MODIFIER_PROPERTY_STATUS_RESISTANCE = 54 -- GetModifierStatusResistance
+MODIFIER_PROPERTY_STATUS_RESISTANCE_CASTER = 56 -- GetModifierStatusResistanceCaster
+MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING = 55 -- GetModifierStatusResistanceStacking
 MODIFIER_PROPERTY_STRONG_ILLUSION = 139 -- GetModifierStrongIllusion
 MODIFIER_PROPERTY_SUPER_ILLUSION = 140 -- GetModifierSuperIllusion
 MODIFIER_PROPERTY_SUPER_ILLUSION_WITH_ULTIMATE = 141 -- GetModifierSuperIllusionWithUltimate
@@ -2454,7 +2426,6 @@ MODIFIER_STATE_DISARMED = 1
 MODIFIER_STATE_DOMINATED = 28
 MODIFIER_STATE_EVADE_DISABLED = 13
 MODIFIER_STATE_FAKE_ALLY = 31
-MODIFIER_STATE_FEARED = 41
 MODIFIER_STATE_FLYING = 23
 MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY = 32
 MODIFIER_STATE_FROZEN = 18
@@ -2463,7 +2434,7 @@ MODIFIER_STATE_IGNORING_MOVE_AND_ATTACK_ORDERS = 35
 MODIFIER_STATE_IGNORING_STOP_ORDERS = 40
 MODIFIER_STATE_INVISIBLE = 7
 MODIFIER_STATE_INVULNERABLE = 8
-MODIFIER_STATE_LAST = 43
+MODIFIER_STATE_LAST = 41
 MODIFIER_STATE_LOW_ATTACK_PRIORITY = 21
 MODIFIER_STATE_MAGIC_IMMUNE = 9
 MODIFIER_STATE_MUTED = 4
@@ -2481,7 +2452,6 @@ MODIFIER_STATE_ROOTED = 0
 MODIFIER_STATE_SILENCED = 3
 MODIFIER_STATE_SPECIALLY_DENIABLE = 17
 MODIFIER_STATE_STUNNED = 5
-MODIFIER_STATE_TAUNTED = 42
 MODIFIER_STATE_TETHERED = 39
 MODIFIER_STATE_TRUESIGHT_IMMUNE = 33
 MODIFIER_STATE_UNSELECTABLE = 14
@@ -3581,10 +3551,6 @@ function CDOTABaseAbility:IsFullyCastable(  ) end
 -- @return bool
 function CDOTABaseAbility:IsHidden(  ) end
 
----[[ CDOTABaseAbility:IsHiddenAsSecondaryAbility   ])
--- @return bool
-function CDOTABaseAbility:IsHiddenAsSecondaryAbility(  ) end
-
 ---[[ CDOTABaseAbility:IsHiddenWhenStolen   ])
 -- @return bool
 function CDOTABaseAbility:IsHiddenWhenStolen(  ) end
@@ -4206,11 +4172,6 @@ function CDOTABaseGameMode:SetFountainPercentageHealthRegen( flPercentageHealthR
 -- @param flPercentageManaRegen float
 function CDOTABaseGameMode:SetFountainPercentageManaRegen( flPercentageManaRegen ) end
 
----[[ CDOTABaseGameMode:SetFreeCourierModeEnabled  If set to true, enable 7.23 free courier mode. ])
--- @return void
--- @param bEnabled bool
-function CDOTABaseGameMode:SetFreeCourierModeEnabled( bEnabled ) end
-
 ---[[ CDOTABaseGameMode:SetFriendlyBuildingMoveToEnabled  Allows clicks on friendly buildings to be handled normally. ])
 -- @return void
 -- @param bEnabled bool
@@ -4422,8 +4383,7 @@ function CDOTAGameManager:GetHeroUnitNameByID( int_1 ) end
 -- @param string_2 string
 -- @param int_3 int
 -- @param string_4 string
--- @param bool_5 bool
-function CDOTAGamerules:AddBotPlayerWithEntityScript( string_1, string_2, int_3, string_4, bool_5 ) end
+function CDOTAGamerules:AddBotPlayerWithEntityScript( string_1, string_2, int_3, string_4 ) end
 
 ---[[ CDOTAGamerules:AddEventMetadataLeaderboardEntry  Event-only ( string szNameSuffix, int nStars, int nMaxStars, int nExtraData1, int nExtraData2 ) ])
 -- @return bool
@@ -4504,11 +4464,6 @@ function CDOTAGamerules:ForceCreepSpawn(  ) end
 ---[[ CDOTAGamerules:ForceGameStart  Transition game state to DOTA_GAMERULES_STATE_GAME_IN_PROGRESS ])
 -- @return void
 function CDOTAGamerules:ForceGameStart(  ) end
-
----[[ CDOTAGamerules:GetAnnouncer  Get the announcer for a team ])
--- @return handle
--- @param int_1 int
-function CDOTAGamerules:GetAnnouncer( int_1 ) end
 
 ---[[ CDOTAGamerules:GetCustomGameDifficulty  Returns the difficulty level of the custom game mode ])
 -- @return int
@@ -4642,11 +4597,6 @@ function CDOTAGamerules:Playtesting_UpdateAddOnKeyValues(  ) end
 -- @param float_1 float
 function CDOTAGamerules:PrepareSpawners( float_1 ) end
 
----[[ CDOTAGamerules:RemoveFakeClient  Removes a fake client ])
--- @return void
--- @param int_1 int
-function CDOTAGamerules:RemoveFakeClient( int_1 ) end
-
 ---[[ CDOTAGamerules:RemoveItemFromWhiteList  Remove an item from the whitelist ])
 -- @return void
 -- @param string_1 string
@@ -4769,11 +4719,6 @@ function CDOTAGamerules:SetEventSignoutCustomTable( handle_1 ) end
 -- @return void
 -- @param bool_1 bool
 function CDOTAGamerules:SetFirstBloodActive( bool_1 ) end
-
----[[ CDOTAGamerules:SetGameTimeFrozen  Freeze the game time. ])
--- @return void
--- @param bool_1 bool
-function CDOTAGamerules:SetGameTimeFrozen( bool_1 ) end
 
 ---[[ CDOTAGamerules:SetGameWinner  Makes the specified team win ])
 -- @return void
@@ -4905,18 +4850,9 @@ function CDOTAGamerules:SetWhiteListEnabled( bool_1 ) end
 -- @return void
 function CDOTAGamerules:SpawnAndReleaseCreeps(  ) end
 
----[[ CDOTAGamerules:SpawnNeutralCreeps  Spawn and release the next set of neutral camps. ])
--- @return void
-function CDOTAGamerules:SpawnNeutralCreeps(  ) end
-
 ---[[ CDOTAGamerules:State_Get  Get the current Gamerules state ])
 -- @return int
 function CDOTAGamerules:State_Get(  ) end
-
----[[ CDOTAPlayer:CheckForCourierSpawning  Attempt to spawn the appropriate couriers for this mode. ])
--- @return void
--- @param hHero handle
-function CDOTAPlayer:CheckForCourierSpawning( hHero ) end
 
 ---[[ CDOTAPlayer:GetAssignedHero  Get the player's hero. ])
 -- @return handle
@@ -4950,11 +4886,6 @@ function CDOTAPlayer:SetMusicStatus( nMusicStatus, flIntensity ) end
 -- @return void
 -- @param pszHeroName string
 function CDOTAPlayer:SetSelectedHero( pszHeroName ) end
-
----[[ CDOTAPlayer:SpawnCourierAtPosition  Spawn a courier for this player at the given position. ])
--- @return handle
--- @param vLocation Vector
-function CDOTAPlayer:SpawnCourierAtPosition( vLocation ) end
 
 ---[[ CDOTATutorial:AddBot  Add a computer controlled bot. ])
 -- @return bool
@@ -5843,10 +5774,6 @@ function CDOTA_BaseNPC:GetMoveSpeedModifier( flBaseSpeed, bReturnUnslowed ) end
 -- @return bool
 function CDOTA_BaseNPC:GetMustReachEachGoalEntity(  ) end
 
----[[ CDOTA_BaseNPC:GetNeutralSpawnerName  Get the name of this camp's neutral spawner. ])
--- @return string
-function CDOTA_BaseNPC:GetNeutralSpawnerName(  ) end
-
 ---[[ CDOTA_BaseNPC:GetNeverMoveToClearSpace  If set to true, we will never attempt to move this unit to clear space, even when it unphases. ])
 -- @return bool
 function CDOTA_BaseNPC:GetNeverMoveToClearSpace(  ) end
@@ -6686,11 +6613,6 @@ function CDOTA_BaseNPC:SetUnitName( pName ) end
 -- @return bool
 function CDOTA_BaseNPC:ShouldIdleAcquire(  ) end
 
----[[ CDOTA_BaseNPC:SpeakConcept  Speak a response system concept with the TLK_DOTA_CUSTOM concept. ])
--- @return void
--- @param hCriteriaTable handle
-function CDOTA_BaseNPC:SpeakConcept( hCriteriaTable ) end
-
 ---[[ CDOTA_BaseNPC:SpendMana  Spend mana from this unit, this can be used for spending mana from abilities or item usage. ])
 -- @return void
 -- @param flManaSpent float
@@ -7274,6 +7196,10 @@ function CDOTA_BaseNPC_Hero:ShouldDoFlyHeightVisual(  ) end
 -- @param iCost int
 -- @param iReason int
 function CDOTA_BaseNPC_Hero:SpendGold( iCost, iReason ) end
+
+---[[ CDOTA_BaseNPC_Hero:UnitCanRespawn   ])
+-- @return bool
+function CDOTA_BaseNPC_Hero:UnitCanRespawn(  ) end
 
 ---[[ CDOTA_BaseNPC_Hero:UpgradeAbility  This upgrades the passed ability if it exists and the hero has enough ability points. ])
 -- @return void
