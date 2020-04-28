@@ -209,6 +209,18 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Clinkz (Drow Ranger)
+	//=================================================================================================================
+	"npc_dota_hero_clinkz_lua"
+	{
+		"override_hero"					"npc_dota_hero_clinkz"	// Hero to override
+		"Ability1"				"drow_ranger_frost_arrows_lua"						// Ability 1
+		"Ability2"				"drow_ranger_gust_lua"						// Ability 2
+		"Ability3"				"drow_ranger_multishot_lua"							// Ability 6
+		"Ability6"				"drow_ranger_marksmanship_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Magnus (Earthshaker)
 	//=================================================================================================================
 	"npc_dota_hero_magnus"

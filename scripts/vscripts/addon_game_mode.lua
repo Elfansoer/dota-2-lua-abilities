@@ -47,7 +47,7 @@ function CAddonTemplateGameMode:InitGameMode()
 	print( "Template addon is loaded." )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
 
-	GameRules:GetGameModeEntity():SetModifierGainedFilter( OnModifierAdded, self )
+	-- GameRules:GetGameModeEntity():SetModifierGainedFilter( OnModifierAdded, self )
 
 	-- dotadoc.mainFunction()
 	require( "scripts/vscripts/libraries/vector_target/vector_target" )

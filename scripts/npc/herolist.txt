@@ -19,6 +19,7 @@
 	"npc_dota_hero_bloodseeker"		"1"
 	"npc_dota_hero_centaur"		"1"
 	"npc_dota_hero_chaos_knight"		"1"
+	"npc_dota_hero_clinkz"		"1"
 	"npc_dota_hero_crystal_maiden"		"1"
 	"npc_dota_hero_dark_willow"		"1"
 	"npc_dota_hero_dazzle"		"1"

@@ -1004,6 +1004,9 @@
 #base "../vscripts/lua_abilities/dragon_knight_elder_dragon_form_lua/dragon_knight_elder_dragon_form_lua.txt"
 
 #base "../vscripts/lua_abilities/drow_ranger_frost_arrows_lua/drow_ranger_frost_arrows_lua.txt"
+#base "../vscripts/lua_abilities/drow_ranger_gust_lua/drow_ranger_gust_lua.txt"
+#base "../vscripts/lua_abilities/drow_ranger_multishot_lua/drow_ranger_multishot_lua.txt"
+#base "../vscripts/lua_abilities/drow_ranger_marksmanship_lua/drow_ranger_marksmanship_lua.txt"
 
 #base "../vscripts/lua_abilities/earthshaker_fissure_lua/earthshaker_fissure_lua.txt"
 #base "../vscripts/lua_abilities/earthshaker_enchant_totem_lua/earthshaker_enchant_totem_lua.txt"
