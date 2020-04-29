@@ -24,15 +24,25 @@ end
 --------------------------------------------------------------------------------
 -- Ability Phase Start
 function underlord_pit_of_malice_lua:OnAbilityPhaseStart()
+	-- create effects
+	local point = self:GetCursorPosition()
+	self:PlayEffects( point )
+
 	return true -- if success
 end
 function underlord_pit_of_malice_lua:OnAbilityPhaseInterrupted()
+	-- kill effect
+	ParticleManager:DestroyParticle( self.effect_cast, true )
+	ParticleManager:ReleaseParticleIndex( self.effect_cast )
 
 end
 
 --------------------------------------------------------------------------------
 -- Ability Start
 function underlord_pit_of_malice_lua:OnSpellStart()
+	-- release cast effect
+	ParticleManager:ReleaseParticleIndex( self.effect_cast )
+
 	-- unit identifier
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
@@ -52,36 +62,22 @@ function underlord_pit_of_malice_lua:OnSpellStart()
 	)
 
 end
---------------------------------------------------------------------------------
--- Projectile
-function underlord_pit_of_malice_lua:OnProjectileHit( target, location )
-end
 
 --------------------------------------------------------------------------------
-function underlord_pit_of_malice_lua:PlayEffects()
+function underlord_pit_of_malice_lua:PlayEffects( point )
 	-- Get Resources
-	local particle_cast = "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
-	local sound_cast = "string"
+	local particle_cast = "particles/units/heroes/heroes_underlord/underlord_pitofmalice_pre.vpcf"
+	local sound_cast = "Hero_AbyssalUnderlord.PitOfMalice.Start"
 
 	-- Get Data
+	local radius = self:GetSpecialValueFor( "radius" )
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
-	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
+	self.effect_cast = ParticleManager:CreateParticleForTeam( particle_cast, PATTACH_WORLDORIGIN, self:GetCaster(), self:GetCaster():GetTeamNumber() )
+	ParticleManager:SetParticleControl( self.effect_cast, 0, point )
+	ParticleManager:SetParticleControl( self.effect_cast, 1, Vector( radius, 1, 1 ) )
+	-- ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
+	EmitSoundOnLocationForAllies( point, sound_cast, self:GetCaster() )
 end

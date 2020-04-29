@@ -59,7 +59,7 @@ end
 function underlord_firestorm_lua:PlayEffects( point )
 	-- Get Resources
 	local particle_cast = "particles/units/heroes/heroes_underlord/underlord_firestorm_pre.vpcf"
-	local sound_cast = "Hero_AbyssalUnderlord.Firestorm.Cast"
+	local sound_cast = "Hero_AbyssalUnderlord.Firestorm.Start"
 
 	-- get data
 	local radius = self:GetSpecialValueFor( "radius" )
@@ -67,7 +67,7 @@ function underlord_firestorm_lua:PlayEffects( point )
 	-- Create Particle
 	self.effect_cast = ParticleManager:CreateParticleForTeam( particle_cast, PATTACH_WORLDORIGIN, self:GetCaster(), self:GetCaster():GetTeamNumber() )
 	ParticleManager:SetParticleControl( self.effect_cast, 0, point )
-	ParticleManager:SetParticleControl( self.effect_cast, 1, Vector( radius, radius, radius ) )
+	ParticleManager:SetParticleControl( self.effect_cast, 1, Vector( 2, 2, 2 ) )
 
 	-- Create Sound
 	EmitSoundOnLocationWithCaster( point, sound_cast, self:GetCaster() )

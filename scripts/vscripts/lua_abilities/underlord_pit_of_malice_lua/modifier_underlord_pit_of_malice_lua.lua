@@ -9,173 +9,85 @@ Ability checklist (erase if done/checked):
 - Stolen behavior
 ]]
 --------------------------------------------------------------------------------
-modifier_template = class({})
+modifier_underlord_pit_of_malice_lua = class({})
 
 --------------------------------------------------------------------------------
 -- Classifications
-function modifier_template:IsHidden()
+function modifier_underlord_pit_of_malice_lua:IsHidden()
 	return false
 end
 
-function modifier_template:IsDebuff()
-	return false
-end
-
-function modifier_template:IsStunDebuff()
-	return false
-end
-
-function modifier_template:IsPurgable()
+function modifier_underlord_pit_of_malice_lua:IsDebuff()
 	return true
 end
 
-function modifier_template:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE + MODIFIER_ATTRIBUTE_INVULNERABLE 
+function modifier_underlord_pit_of_malice_lua:IsStunDebuff()
+	return false
+end
+
+function modifier_underlord_pit_of_malice_lua:IsPurgable()
+	return true
+end
+
+function modifier_underlord_pit_of_malice_lua:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
 end
 
 --------------------------------------------------------------------------------
 -- Initializations
-function modifier_template:OnCreated( kv )
+function modifier_underlord_pit_of_malice_lua:OnCreated( kv )
 	-- references
-	self.special_value = self:GetAbility():GetSpecialValueFor( "special_value" )
+	local interval = self:GetAbility():GetSpecialValueFor( "pit_interval" )
 
-	if IsServer() then
-		-- Start interval
-		self:StartIntervalThink( self.interval )
-		self:OnIntervalThink()
+	if not IsServer() then return end
+
+	-- create cooldown modifier
+	self:GetParent():AddNewModifier(
+		self:GetCaster(), -- player source
+		self:GetAbility(), -- ability source
+		"modifier_underlord_pit_of_malice_lua_cooldown", -- modifier name
+		{
+			duration = interval,
+		} -- kv
+	)
+
+	-- play effects
+	local hero = self:GetParent():IsHero()
+	local sound_cast = "Hero_AbyssalUnderlord.Pit.TargetHero"
+	if not hero then
+		sound_cast = "Hero_AbyssalUnderlord.Pit.Target"
 	end
+	EmitSoundOn( sound_cast, self:GetParent() )
+
 end
 
-function modifier_template:OnRefresh( kv )
+function modifier_underlord_pit_of_malice_lua:OnRefresh( kv )
 	
 end
 
-function modifier_template:OnRemoved()
+function modifier_underlord_pit_of_malice_lua:OnRemoved()
 end
 
-function modifier_template:OnDestroy()
-end
-
---------------------------------------------------------------------------------
--- Modifier Effects
-function modifier_template:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
-		MODIFIER_EVENT_ON_ATTACKED,
-	}
-
-	return funcs
+function modifier_underlord_pit_of_malice_lua:OnDestroy()
 end
 
 --------------------------------------------------------------------------------
 -- Status Effects
-function modifier_template:CheckState()
+function modifier_underlord_pit_of_malice_lua:CheckState()
 	local state = {
-		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_INVISIBLE] = false,
+		[MODIFIER_STATE_ROOTED] = true,
 	}
 
 	return state
 end
 
 --------------------------------------------------------------------------------
--- Interval Effects
-function modifier_template:OnIntervalThink()
-end
-
---------------------------------------------------------------------------------
--- Motion Effects
-function modifier_template:UpdateHorizontalMotion( me, dt )
-end
-
-function modifier_template:OnHorizontalMotionInterrupted()
-end
-
---------------------------------------------------------------------------------
--- Aura Effects
-function modifier_template:IsAura()
-	return true
-end
-
-function modifier_template:GetModifierAura()
-	return "modifier_template_effect"
-end
-
-function modifier_template:GetAuraRadius()
-	return self.radius
-end
-
-function modifier_template:GetAuraDuration()
-	return self.radius
-end
-
-function modifier_template:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-
-function modifier_template:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-
-function modifier_template:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-end
-
-function modifier_template:GetAuraEntityReject( hEntity )
-	if IsServer() then
-		
-	end
-
-	return false
-end
-
---------------------------------------------------------------------------------
 -- Graphics & Animations
-function modifier_template:GetEffectName()
-	return "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
+function modifier_underlord_pit_of_malice_lua:GetEffectName()
+	return "particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun.vpcf"
 end
 
-function modifier_template:GetEffectAttachType()
+function modifier_underlord_pit_of_malice_lua:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function modifier_template:GetStatusEffectName()
-	return "status/effect/here.vpcf"
-end
-
-function modifier_template:PlayEffects()
-	-- Get Resources
-	local particle_cast = "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
-	local sound_cast = "string"
-
-	-- Get Data
-
-	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
-	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
-
-	-- buff particle
-	self:AddParticle(
-		effect_cast,
-		false, -- bDestroyImmediately
-		false, -- bStatusEffect
-		-1, -- iPriority
-		false, -- bHeroEffect
-		false -- bOverheadEffect
-	)
-
-	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
 end

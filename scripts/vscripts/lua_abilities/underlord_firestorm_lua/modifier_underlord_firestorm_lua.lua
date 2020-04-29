@@ -52,6 +52,7 @@ function modifier_underlord_firestorm_lua:OnCreated( kv )
 end
 
 function modifier_underlord_firestorm_lua:OnRefresh( kv )
+	if not IsServer() then return end
 	self.damage_pct = kv.damage/100
 end
 

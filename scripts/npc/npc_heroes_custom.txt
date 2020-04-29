@@ -624,8 +624,9 @@
 		"override_hero"					"npc_dota_hero_kunkka"	// Hero to override
 		"Ability1"				"underlord_firestorm_lua"						// Ability 1
 		"Ability2"				"underlord_pit_of_malice_lua"						// Ability 2
-		//"Ability3"				"tinker_march_of_the_machines_lua"						// Ability 3
-		//"Ability6"				"tinker_rearm_lua"							// Ability 6
+		"Ability3"				"underlord_atrophy_aura_lua"						// Ability 3
+		"Ability4"				"underlord_cancel_dark_rift_lua"							// Ability 6
+		"Ability6"				"underlord_dark_rift_lua"							// Ability 6
 	}
 
 	//=================================================================================================================

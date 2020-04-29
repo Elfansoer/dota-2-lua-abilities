@@ -1,44 +1,40 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Underlord: Pit of Malice (Lua version)
+	// Underlord: Atrophy Aura (Lua version)
 	//=================================================================================================================
-	"underlord_pit_of_malice_lua"
+	"underlord_atrophy_aura_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/underlord_pit_of_malice_lua/underlord_pit_of_malice_lua"
-		"AbilityTextureName"			"underlord_pit_of_malice_lua"
+		"ScriptFile"					"lua_abilities/underlord_atrophy_aura_lua/underlord_atrophy_aura_lua"
+		"AbilityTextureName"			"underlord_atrophy_aura_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
+		"HasScepterUpgrade"				"1"
+
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
-			"particle"	"particles/units/heroes/heroes_underlord/underlord_pitofmalice_pre.vpcf"
-			"particle"	"particles/units/heroes/heroes_underlord/underlord_pitofmalice.vpcf"
-			"particle"	"particles/units/heroes/heroes_underlord/abyssal_underlord_pitofmalice_stun.vpcf"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"	
+		
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"750"
-		"AbilityCastPoint"				"0.45"
+		"AbilityCastRange"				"1200"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30 26 22 18"
-		"AbilityManaCost"				"100 115 130 145"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -49,28 +45,39 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"400"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"1200"
 			}
 			"02"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"pit_duration"					"12.0"
-			}		
+				"var_type"						"FIELD_INTEGER"
+				"damage_reduction_pct"			"5 15 25 35"
+			}
 			"03"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"pit_interval"					"3.6"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_damage_from_creep"		"5"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"pit_damage"					"0"
+				"bonus_damage_from_hero"		"30 35 40 45"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"ensnare_duration"				"0.9 1.2 1.5 1.8"
+				"bonus_damage_duration"			"30 40 50 60"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_damage_duration_scepter"		"70 80 90 100"
+				"RequiresScepter"	"1"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"permanent_bonus"		"2 3 4 5"
 			}
 		}
 	}
