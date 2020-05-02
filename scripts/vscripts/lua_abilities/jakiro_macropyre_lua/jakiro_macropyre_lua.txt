@@ -1,0 +1,104 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Jakiro: Macropyre (Lua version)
+	//=================================================================================================================
+	"jakiro_macropyre_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/jakiro_macropyre_lua/jakiro_macropyre_lua"
+		"AbilityTextureName"			"jakiro_macropyre_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"HasScepterUpgrade"			"1"
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+			"particle"	"particles/units/heroes/hero_jakiro/jakiro_macropyre.vpcf"
+			"particle"	"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1400"
+		"AbilityCastPoint"				"0.55"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60 60 60"
+		"AbilityManaCost"				"220 330 440"		
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"100 140 180"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range"				"1400"					
+			}
+			
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"path_radius"				"260"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"10"
+			}	
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"burn_interval"				"0.5 0.5 0.5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_scepter"			"125 175 225"
+				"RequiresScepter"		"1"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range_scepter"		"1800"
+				"RequiresScepter"		"1"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration_scepter"			"30"
+				"RequiresScepter"		"1"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"linger_duration"			"2"
+			}
+		}
+	}
+}

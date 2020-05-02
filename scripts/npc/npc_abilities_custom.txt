@@ -1053,6 +1053,11 @@
 #base "../vscripts/lua_abilities/juggernaut_blade_fury_lua/juggernaut_blade_fury_lua.txt"
 #base "../vscripts/lua_abilities/juggernaut_blade_dance_lua/juggernaut_blade_dance_lua.txt"
 
+#base "../vscripts/lua_abilities/jakiro_dual_breath_lua/jakiro_dual_breath_lua.txt"
+#base "../vscripts/lua_abilities/jakiro_ice_path_lua/jakiro_ice_path_lua.txt"
+#base "../vscripts/lua_abilities/jakiro_liquid_fire_lua/jakiro_liquid_fire_lua.txt"
+#base "../vscripts/lua_abilities/jakiro_macropyre_lua/jakiro_macropyre_lua.txt"
+
 #base "../vscripts/lua_abilities/leshrac_split_earth_lua/leshrac_split_earth_lua.txt"
 #base "../vscripts/lua_abilities/leshrac_diabolic_edict_lua/leshrac_diabolic_edict_lua.txt"
 #base "../vscripts/lua_abilities/leshrac_lightning_storm_lua/leshrac_lightning_storm_lua.txt"

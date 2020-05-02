@@ -319,6 +319,18 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Ancient Apparition (Jakiro)
+	//=================================================================================================================
+	"npc_dota_hero_ancient_apparition_lua"
+	{
+		"override_hero"					"npc_dota_hero_ancient_apparition"	// Hero to override
+		"Ability1"				"jakiro_dual_breath_lua"						// Ability 1
+		"Ability2"				"jakiro_ice_path_lua"						// Ability 1
+		"Ability3"				"jakiro_liquid_fire_lua"						// Ability 1
+		"Ability6"				"jakiro_macropyre_lua"						// Ability 1
+	}
+
+	//=================================================================================================================
 	// HERO: Skywrath Mage (Leshrac)
 	//=================================================================================================================
 	"npc_dota_hero_skywrath_mage_lua"
