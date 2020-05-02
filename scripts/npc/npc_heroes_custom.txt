@@ -429,6 +429,19 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Terrorblade (Naga Siren)
+	//=================================================================================================================
+	"npc_dota_hero_terrorblade_lua"
+	{
+		"override_hero"					"npc_dota_hero_terrorblade"	// Hero to override
+		"Ability1"				"naga_siren_mirror_image_lua"						// Ability 1
+		"Ability2"				"naga_siren_ensnare_lua"						// Ability 3
+		"Ability3"				"naga_siren_rip_tide_lua"						// Ability 2
+		"Ability4"				"naga_siren_song_of_the_siren_end_lua"						// Ability 2
+		"Ability6"				"naga_siren_song_of_the_siren_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Slardar (Ogre Magi)
 	//=================================================================================================================
 	"npc_dota_hero_slardar_lua"

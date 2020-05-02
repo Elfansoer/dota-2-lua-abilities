@@ -1100,6 +1100,11 @@
 #base "../vscripts/lua_abilities/mirana_sacred_arrow_lua/mirana_sacred_arrow_lua.txt"
 #base "../vscripts/lua_abilities/mirana_leap_lua/mirana_leap_lua.txt"
 
+#base "../vscripts/lua_abilities/naga_siren_mirror_image_lua/naga_siren_mirror_image_lua.txt"
+#base "../vscripts/lua_abilities/naga_siren_ensnare_lua/naga_siren_ensnare_lua.txt"
+#base "../vscripts/lua_abilities/naga_siren_rip_tide_lua/naga_siren_rip_tide_lua.txt"
+#base "../vscripts/lua_abilities/naga_siren_song_of_the_siren_lua/naga_siren_song_of_the_siren_lua.txt"
+
 #base "../vscripts/lua_abilities/ogre_magi_fireblast_lua/ogre_magi_fireblast_lua.txt"
 #base "../vscripts/lua_abilities/ogre_magi_ignite_lua/ogre_magi_ignite_lua.txt"
 #base "../vscripts/lua_abilities/ogre_magi_bloodlust_lua/ogre_magi_bloodlust_lua.txt"

@@ -81,11 +81,6 @@ function modifier_underlord_atrophy_aura_lua_scepter:GetModifierPreAttack_BonusD
 	return self:GetStackCount()
 end
 
--- --------------------------------------------------------------------------------
--- -- Interval Effects
--- function modifier_underlord_atrophy_aura_lua_scepter:OnIntervalThink()
--- end
-
 --------------------------------------------------------------------------------
 -- Aura Effects
 function modifier_underlord_atrophy_aura_lua_scepter:IsAura()
@@ -134,59 +129,3 @@ function modifier_underlord_atrophy_aura_lua_scepter:GetAuraEntityReject( hEntit
 
 	return false
 end
-
--- --------------------------------------------------------------------------------
--- -- Graphics & Animations
--- function modifier_underlord_atrophy_aura_lua_scepter:GetEffectName()
--- 	return "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
--- end
-
--- function modifier_underlord_atrophy_aura_lua_scepter:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
-
--- function modifier_underlord_atrophy_aura_lua_scepter:GetStatusEffectName()
--- 	return "status/effect/here.vpcf"
--- end
-
--- function modifier_underlord_atrophy_aura_lua_scepter:StatusEffectPriority()
--- 	return MODIFIER_PRIORITY_NORMAL
--- end
-
--- function modifier_underlord_atrophy_aura_lua_scepter:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
--- 	local sound_cast = "string"
-
--- 	-- Get Data
-
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
-
--- 	-- buff particle
--- 	self:AddParticle(
--- 		effect_cast,
--- 		false, -- bDestroyImmediately
--- 		false, -- bStatusEffect
--- 		-1, -- iPriority
--- 		false, -- bHeroEffect
--- 		false -- bOverheadEffect
--- 	)
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end

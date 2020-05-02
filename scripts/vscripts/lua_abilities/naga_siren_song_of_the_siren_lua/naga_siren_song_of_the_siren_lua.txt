@@ -1,0 +1,119 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Naga Siren: Song of the Siren (Lua version)
+	//=================================================================================================================
+	"naga_siren_song_of_the_siren_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/naga_siren_song_of_the_siren_lua/naga_siren_song_of_the_siren_lua"
+		"AbilityTextureName"			"naga_siren_song_of_the_siren_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"HasScepterUpgrade"			"1"
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts"
+			"particle"	"particles/status_fx/status_effect_siren_song.vpcf"
+			"particle"	"particles/units/heroes/hero_siren/naga_siren_siren_song_cast.vpcf"
+			"particle"	"particles/units/heroes/hero_siren/naga_siren_song_aura.vpcf"
+			"particle"	"particles/units/heroes/hero_siren/naga_siren_song_debuff.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"1.0"
+		"AbilityCastRange"				"1000 1200 1400"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"160.0 120.0 80.0"
+		"AbilityManaCost"				"150 175 200"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"1000 1200 1400"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"7.0 7.0 7.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"animation_rate"				"0.55 0.55 0.55"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"regen_rate"				"10.0"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"regen_rate_self"				"10.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"regen_rate_tooltip_scepter"				"10"
+				"RequiresScepter"	"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Naga Siren: Song of the Siren End (Lua version)
+	//=================================================================================================================
+	"naga_siren_song_of_the_siren_end_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/naga_siren_song_of_the_siren_lua/naga_siren_song_of_the_siren_lua"
+		"AbilityTextureName"			"naga_siren_song_of_the_siren_end_lua"
+		"MaxLevel"						"1"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0 0 0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1.0 1.0 1.0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+	}
+}

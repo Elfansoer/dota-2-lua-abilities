@@ -62,6 +62,7 @@
 	"npc_dota_hero_templar_assassin"			"1"
 	"npc_dota_hero_tidehunter"		"1"
 	"npc_dota_hero_tinker"		"1"
+	"npc_dota_hero_terrorblade"		"1"
 	"npc_dota_hero_ursa"		"1"
 	"npc_dota_hero_viper"		"1"
 	"npc_dota_hero_weaver"		"1"
