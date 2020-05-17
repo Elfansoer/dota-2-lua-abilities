@@ -1100,6 +1100,8 @@
 #base "../vscripts/lua_abilities/mirana_sacred_arrow_lua/mirana_sacred_arrow_lua.txt"
 #base "../vscripts/lua_abilities/mirana_leap_lua/mirana_leap_lua.txt"
 
+#base "../vscripts/lua_abilities/monkey_king_tree_dance_lua/monkey_king_tree_dance_lua.txt"
+
 #base "../vscripts/lua_abilities/naga_siren_mirror_image_lua/naga_siren_mirror_image_lua.txt"
 #base "../vscripts/lua_abilities/naga_siren_ensnare_lua/naga_siren_ensnare_lua.txt"
 #base "../vscripts/lua_abilities/naga_siren_rip_tide_lua/naga_siren_rip_tide_lua.txt"

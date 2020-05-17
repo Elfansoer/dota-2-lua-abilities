@@ -91,8 +91,9 @@
 	{
 		"override_hero"					"npc_dota_hero_legion_commander"	// Hero to override
 		"Ability1"				"bloodseeker_bloodrage_lua"						// Ability 2
-		"Ability2"				"bloodseeker_blood_rite_lua"						// Ability 3
-		"Ability3"				"bloodseeker_thirst_lua"						// Ability 3
+		"Ability2"				"monkey_king_tree_dance_lua"						// Ability 3
+		"Ability3"				"monkey_king_tree_dance"						// Ability 3
+		"Ability4"				"monkey_king_primal_spring"						// Ability 3
 		"Ability6"				"bane_fiends_grip_lua"							// Ability 6
 	}
 
