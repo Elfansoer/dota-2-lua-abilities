@@ -1,48 +1,48 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Earthshaker: Enchant Totem (Lua version)
+	// Slark: Pounce (Lua version)
 	//=================================================================================================================
-	"earthshaker_enchant_totem_lua"
+	"slark_pounce_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/earthshaker_enchant_totem_lua/earthshaker_enchant_totem_lua"
-		"AbilityTextureName"			"earthshaker_enchant_totem_lua"
+		"ScriptFile"					"lua_abilities/slark_pounce_lua/slark_pounce_lua"
+		"AbilityTextureName"			"slark_pounce_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
+
 		"HasScepterUpgrade"				"1"
 
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
-			"particle"	"particles/units/heroes/hero_earthshaker/earthshaker_totem_buff.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_slark.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.69"
-		"AbilityDuration"				"14"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5.0"
-		"AbilityManaCost"				"35 40 45 50"
+		"AbilityCooldown"				"20.0 16.0 12.0 8.0"
+		"AbilityManaCost"				"75 75 75 75"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100 200 300 400"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -50,49 +50,52 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"totem_damage_percentage"	"100 200 300 400"
-				"CalculateSpellDamageTooltip"	"0"
+				"var_type"				"FIELD_INTEGER"
+				"pounce_distance"		"700"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"distance_scepter"			"1100"
+				"var_type"				"FIELD_FLOAT"
+				"pounce_speed"			"933.33"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"aftershock_range"			"300"
+				"var_type"				"FIELD_FLOAT"
+				"pounce_acceleration"	"7000.0"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_height"			"950"
+				"var_type"				"FIELD_INTEGER"
+				"pounce_radius"			"95"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_height_arcbuffer"	"100"
+				"var_type"				"FIELD_FLOAT"
+				"leash_duration"		"2.5 2.75 3 3.25"
+				"LinkedSpecialBonus"	"special_bonus_unique_slark"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_acceleration_z"	"4000"
+				"var_type"				"FIELD_INTEGER"
+				"leash_radius"			"400"
 			}
 			"07"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_acceleration_horizontal"	"3000"
+				"var_type"				"FIELD_INTEGER"
+				"max_charges"			"2"
+				"RequiresScepter"	"1"
 			}
 			"08"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_leap_duration"		"1.0"
+				"var_type"				"FIELD_INTEGER"
+				"charge_restore_time"			"10"
+				"RequiresScepter"	"1"
 			}
 			"09"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_attack_range"		"75"
+				"var_type"				"FIELD_INTEGER"
+				"pounce_distance_scepter"		"1100"
+				"RequiresScepter"	"1"
 			}
 		}
 	}

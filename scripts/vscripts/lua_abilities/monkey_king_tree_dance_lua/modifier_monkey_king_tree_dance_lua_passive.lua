@@ -50,8 +50,19 @@ function modifier_monkey_king_tree_dance_lua_passive:OnTakeDamage( params )
 	if not IsServer() then return end
 	if params.unit~=self:GetParent() then return end
 
-	-- not if flying
-	if params.unit:HasModifier( "modifier_monkey_king_tree_dance_lua" ) or params.unit:HasModifier( "modifier_monkey_king_tree_dance_lua_arc" ) then return end
+	-- not if perched
+	if params.unit:HasModifier( "modifier_monkey_king_tree_dance_lua" ) then return end
+
+	-- not if jumping
+	local mod = false
+	local modifiers = params.unit:FindAllModifiersByName( 'modifier_generic_arc_lua' )
+	for _,modifier in pairs(modifiers) do
+		if modifier:GetAbility()==self:GetAbility() then
+			mod = true
+			break
+		end
+	end
+	if mod then return end
 
 	-- only roshan/player-based damage
 	if not params.attacker:IsControllableByAnyPlayer() and params.attacker:GetUnitName()~="npc_dota_roshan" then return end

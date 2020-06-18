@@ -11,8 +11,8 @@ Ability checklist (erase if done/checked):
 --------------------------------------------------------------------------------
 monkey_king_tree_dance_lua = class({})
 LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_generic_arc_lua", "lua_abilities/generic/modifier_generic_arc_lua", LUA_MODIFIER_MOTION_BOTH )
 LinkLuaModifier( "modifier_monkey_king_tree_dance_lua", "lua_abilities/monkey_king_tree_dance_lua/modifier_monkey_king_tree_dance_lua", LUA_MODIFIER_MOTION_BOTH )
-LinkLuaModifier( "modifier_monkey_king_tree_dance_lua_arc", "lua_abilities/monkey_king_tree_dance_lua/modifier_monkey_king_tree_dance_lua_arc", LUA_MODIFIER_MOTION_BOTH )
 LinkLuaModifier( "modifier_monkey_king_tree_dance_lua_passive", "lua_abilities/monkey_king_tree_dance_lua/modifier_monkey_king_tree_dance_lua_passive", LUA_MODIFIER_MOTION_BOTH )
 
 --------------------------------------------------------------------------------
@@ -22,65 +22,11 @@ function monkey_king_tree_dance_lua:GetIntrinsicModifierName()
 end
 
 --------------------------------------------------------------------------------
--- Custom KV
--- AOE Radius
--- function monkey_king_tree_dance_lua:GetAOERadius()
--- 	return self:GetSpecialValueFor( "radius" )
--- end
-
--- function monkey_king_tree_dance_lua:GetCooldown( level )
--- 	if self:GetCaster():HasScepter() then
--- 		return self:GetSpecialValueFor( "cooldown_scepter" )
--- 	end
-
--- 	return self.BaseClass.GetCooldown( self, level )
--- end
-
---------------------------------------------------------------------------------
--- Ability Cast Filter
-function monkey_king_tree_dance_lua:CastFilterResultTarget( hTarget )
-	-- check if has perch modifier
-	if hTarget:GetClassname()~="ent_dota_tree" then return UF_FAIL_CUSTOM end
-
-	local caster = self:GetCaster()
-	if caster:HasModifier( "modifier_monkey_king_tree_dance_lua" ) then
-		print("","has modifier")
-		-- check if target outside range
-		if (hTarget:GetOrigin()-caster:GetOrigin()):Length2D()>self:GetCastRange( hTarget:GetOrigin(), hTarget ) then
-			-- error
-			return UF_FAIL_CUSTOM
-		end
-	end
-
-	return UF_SUCCESS
-end
-
-function monkey_king_tree_dance_lua:GetCustomCastErrorTarget( hTarget )
-	-- check if has perch modifier
-	local caster = self:GetCaster()
-	if caster:HasModifier( "modifier_monkey_king_tree_dance_lua" ) then
-		-- check if target outside range
-		if (hTarget:GetOrigin()-caster:GetOrigin()):Length2D()>self:GetCastRange( hTarget:GetOrigin(), hTarget ) then
-			-- error
-			return "#dota_hud_error_tree_outside_range"
-		end
-	end
-
-	return ""
-end
-
---------------------------------------------------------------------------------
 -- Ability Start
 function monkey_king_tree_dance_lua:OnSpellStart()
 	-- unit identifier
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-
-	-- check if from perch
-	local perch = 0
-	if caster:FindModifierByNameAndCaster( "modifier_monkey_king_tree_dance_lua", caster ) then
-		perch = 1
-	end
 
 	-- load data
 	local speed = self:GetSpecialValueFor( "leap_speed" )
@@ -89,33 +35,99 @@ function monkey_king_tree_dance_lua:OnSpellStart()
 	local position = target:GetOrigin()
 
 	-- data above is fake news
-	speed = 1000
-	arc_height = 192
-	perch_height = 256
+	local perch_height = 256
+	local speed = 1000
+	local height = 192
+	local distance = (target:GetOrigin()-caster:GetOrigin()):Length2D()
 
-	-- get vertical positions
-	local flying_delta = 150
-	local pos = target:GetOrigin()
-	local height_end = GetGroundHeight( pos, caster ) + perch_height
-	height_end = height_end - caster:GetOrigin().z - flying_delta
+	-- check if from perch
+	local perch = 0
+	if caster:FindModifierByNameAndCaster( "modifier_monkey_king_tree_dance_lua", caster ) then
+		perch = 1
+	end
 
-	-- add jump modifier
-	caster:AddNewModifier(
+	-- jump
+	local arc = caster:AddNewModifier(
 		caster, -- player source
 		self, -- ability source
-		"modifier_monkey_king_tree_dance_lua_arc", -- modifier name
+		"modifier_generic_arc_lua", -- modifier name
 		{
-			tree = target:entindex(),
-			perch = perch,
+			target_x = target:GetOrigin().x,
+			target_y = target:GetOrigin().y,
+			distance = distance,
 			speed = speed,
-			height_max = arc_height,
-			height_end = height_end,
-			x = position.x,
-			y = position.y,
+			height = height,
+			fix_end = false,
+			fix_height = false,
+			isStun = true,
+			activity = ACT_DOTA_FLAIL,
+			start_offset = perch_height*perch,
+			end_offset = perch_height,
 		} -- kv
 	)
+	arc:SetEndCallback(function()
+		-- add perch modifier
+		caster:AddNewModifier(
+			caster, -- player source
+			self, -- ability source
+			"modifier_monkey_king_tree_dance_lua", -- modifier name
+			{
+				tree = target:entindex(),
+			} -- kv
+		)
+	end)
+
+	-- set spring ability as active
+	if not self.spring then
+		self.spring = self:GetCaster():FindAbilityByName( 'monkey_king_primal_spring_lua' )
+	end
+	if self.spring then
+		self.spring:SetActivated( true )
+	end
 
 	-- play effects
+	self:PlayEffects( arc )
+end
+
+--------------------------------------------------------------------------------
+-- Ability Events
+function monkey_king_tree_dance_lua:OnUpgrade()
+	-- find primal spring ability
+	if not self.spring then
+		self.spring = self:GetCaster():FindAbilityByName( 'monkey_king_primal_spring_lua' )
+	end
+	if not self.spring then return end
+
+	-- level up
+	self.spring:SetLevel( self:GetLevel() )
+
+	-- check perch modifier
+	local modifier = self:GetCaster():FindModifierByNameAndCaster( 'modifier_monkey_king_tree_dance_lua', self:GetCaster() )
+	if not modifier then
+		self.spring:SetActivated( false )
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Graphics & Animations
+function monkey_king_tree_dance_lua:PlayEffects( modifier )
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_monkey_king/monkey_king_jump_trail.vpcf"
 	local sound_cast = "Hero_MonkeyKing.TreeJump.Cast"
-	EmitSoundOn( sound_cast, caster )
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
+
+	-- buff particle
+	modifier:AddParticle(
+		effect_cast,
+		false, -- bDestroyImmediately
+		false, -- bStatusEffect
+		-1, -- iPriority
+		false, -- bHeroEffect
+		false -- bOverheadEffect
+	)
+
+	-- Create Sound
+	EmitSoundOn( sound_cast, self:GetCaster() )
 end

@@ -3,7 +3,7 @@ modifier_generic_charges = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_generic_charges:IsHidden()
-	return false
+	return not self.active
 end
 
 function modifier_generic_charges:IsDebuff()
@@ -17,17 +17,22 @@ end
 function modifier_generic_charges:DestroyOnExpire()
 	return false
 end
+
+function modifier_generic_charges:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_generic_charges:OnCreated( kv )
 	-- references
 	self.max_charges = self:GetAbility():GetSpecialValueFor( "max_charges" ) -- special value
 	self.charge_time = self:GetAbility():GetSpecialValueFor( "charge_restore_time" ) -- special value
+	self.active = true
 
-	if IsServer() then
-		self:SetStackCount( self.max_charges )
-		self:CalculateCharge()
-	end
+	if not IsServer() then return end
+	self:SetStackCount( self.max_charges )
+	self:CalculateCharge()
 end
 
 function modifier_generic_charges:OnRefresh( kv )
@@ -35,9 +40,8 @@ function modifier_generic_charges:OnRefresh( kv )
 	self.max_charges = self:GetAbility():GetSpecialValueFor( "max_charges" ) -- special value
 	self.charge_time = self:GetAbility():GetSpecialValueFor( "charge_restore_time" ) -- special value
 
-	if IsServer() then
-		self:CalculateCharge()
-	end
+	if not IsServer() then return end
+	self:CalculateCharge()
 end
 
 function modifier_generic_charges:OnDestroy( kv )
@@ -73,7 +77,9 @@ function modifier_generic_charges:OnIntervalThink()
 end
 
 function modifier_generic_charges:CalculateCharge()
-	self:GetAbility():EndCooldown()
+	if self.active then
+		self:GetAbility():EndCooldown()
+	end
 	if self:GetStackCount()>=self.max_charges then
 		-- stop charging
 		self:SetDuration( -1, false )
@@ -83,7 +89,7 @@ function modifier_generic_charges:CalculateCharge()
 		if self:GetRemainingTime() <= 0.05 then
 			-- start charging
 			local charge_time = self:GetAbility():GetCooldown( -1 )
-			if self.charge_time then
+			if self.charge_time and self.active then
 				charge_time = self.charge_time
 			end
 			self:StartIntervalThink( charge_time )
@@ -95,4 +101,13 @@ function modifier_generic_charges:CalculateCharge()
 			self:GetAbility():StartCooldown( self:GetRemainingTime() )
 		end
 	end
+end
+
+--------------------------------------------------------------------------------
+-- Helper
+function modifier_generic_charges:SetActive( active )
+	-- for server
+	self.active = active
+
+	-- todo: self.active should be known to client
 end

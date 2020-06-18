@@ -40,15 +40,14 @@ function modifier_monkey_king_tree_dance_lua:OnCreated( kv )
 
 	-- reference above is fake news
 	self.perch_height = 256
-	self.flying_delta = 150
 
 	if not IsServer() then return end
 	-- get data
 	self.parent = self:GetParent()
-
 	self.tree = EntIndexToHScript( kv.tree )
 	self.origin = self.tree:GetOrigin()
 
+	-- apply still motion
 	if not self:ApplyHorizontalMotionController() then
 		self.interrupted = true
 		self:Destroy()
@@ -58,7 +57,13 @@ function modifier_monkey_king_tree_dance_lua:OnCreated( kv )
 		self:Destroy()
 	end
 
-	-- Start interval
+	-- set spring ability as active
+	self.spring = self:GetCaster():FindAbilityByName( 'monkey_king_primal_spring_lua' )
+	if self.spring then
+		self.spring:SetActivated( true )
+	end
+
+	-- Start interval check for tree cur
 	self:StartIntervalThink( 0.1 )
 	self:OnIntervalThink()
 
@@ -76,7 +81,22 @@ end
 
 function modifier_monkey_king_tree_dance_lua:OnDestroy()
 	if not IsServer() then return end
-	self:GetParent():InterruptMotionControllers( true )
+
+	-- set spring ability as inactive
+	if self.spring then
+		self.spring:SetActivated( false )
+	end
+
+	-- preserve height
+	local pos = self:GetParent():GetOrigin()
+
+	self:GetParent():RemoveHorizontalMotionController( self )
+	self:GetParent():RemoveVerticalMotionController( self )
+
+	-- preserve height
+	if not self.unperched then
+		self:GetParent():SetOrigin( pos )
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -110,42 +130,44 @@ function modifier_monkey_king_tree_dance_lua:OnOrder( params )
 			return
 		end
 
+		-- don't do anything if casting primal spring
+		if self.spring and self.spring:IsChanneling() then return end
+
+		-- get target
 		local pos = params.new_pos
 		if params.target then pos = params.target:GetOrigin() end
-
-		-- get direction
-		local direction = pos - self.tree:GetOrigin()
+		local direction = (pos-self.parent:GetOrigin())
 		direction.z = 0
 		direction = direction:Normalized()
 
-		local flying_delta = 150
-		local distance = 150
-		local endpos = self.tree:GetOrigin() + direction * distance
-		local startpos = self.parent:GetOrigin()
+		-- set facing
+		self.parent:SetForwardVector( direction )
 
-		-- get final position
-		-- local height_max = startpos.z - GetGroundHeight( startpos, nil )
-		local height_max = 1
-		local height_end = GetGroundHeight( endpos, nil )
-		height_end = height_end - startpos.z
-
-		-- add jump modifier
-		self.parent:AddNewModifier(
+		-- jump arc
+		local arc = self.parent:AddNewModifier(
 			self.parent, -- player source
 			self:GetAbility(), -- ability source
-			"modifier_monkey_king_tree_dance_lua_arc", -- modifier name
+			"modifier_generic_arc_lua", -- modifier name
 			{
-				tree = self.tree:entindex(),
-				perch = 1,
+				dir_x = direction.x,
+				dir_y = direction.y,
+				distance = 150,
 				speed = 550,
-				height_max = height_max,
-				height_end = height_end,
-				x = endpos.x,
-				y = endpos.y,
-				exit = 1,
+				height = 1,
+				start_offset = self.perch_height,
+				fix_end = false,
+				isForward = true,
 			} -- kv
 		)
+		arc:SetEndCallback(function()
+			-- find clear space
+			FindClearSpaceForUnit( self.parent, self.parent:GetOrigin(), true )
+		end)
 
+		-- play effects
+		self:PlayEffects( arc )
+
+		-- self destroy
 		self:Destroy()
 	end
 end
@@ -162,7 +184,7 @@ end
 -- Status Effects
 function modifier_monkey_king_tree_dance_lua:CheckState()
 	local state = {
-		[MODIFIER_STATE_FLYING] = true,
+		-- [MODIFIER_STATE_FLYING] = true,
 		-- [MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
 		[MODIFIER_STATE_DISARMED] = true,
 	}
@@ -185,12 +207,16 @@ function modifier_monkey_king_tree_dance_lua:OnIntervalThink()
 	if self.tree:IsStanding() then return end
 
 	-- destroy modifier and stun
-	self.parent:AddNewModifier(
+	local mod = self.parent:AddNewModifier(
 		self.parent, -- player source
 		self:GetAbility(), -- ability source
 		"modifier_generic_stunned_lua", -- modifier name
 		{ duration = self.stun } -- kv
 	)
+
+	-- add tag
+	self.unperched = true
+
 	self:Destroy()
 end
 
@@ -198,10 +224,6 @@ end
 -- Motion Effects
 function modifier_monkey_king_tree_dance_lua:UpdateHorizontalMotion( me, dt )
 	me:SetOrigin( self.origin )
-end
-
-function modifier_monkey_king_tree_dance_lua:OnHorizontalMotionInterrupted()
-	self:Destroy()
 end
 
 function modifier_monkey_king_tree_dance_lua:UpdateVerticalMotion( me, dt )
@@ -214,12 +236,35 @@ function modifier_monkey_king_tree_dance_lua:UpdateVerticalMotion( me, dt )
 	end
 
 	local pos = self.tree:GetOrigin()
-
-	pos.z = pos.z + self.perch_height - self.flying_delta
+	pos.z = pos.z + self.perch_height
 
 	me:SetOrigin( pos )
 end
 
 function modifier_monkey_king_tree_dance_lua:OnVerticalMotionInterrupted()
 	self:Destroy()
+end
+
+function modifier_monkey_king_tree_dance_lua:OnHorizontalMotionInterrupted()
+	self:Destroy()
+end
+
+--------------------------------------------------------------------------------
+-- Graphics & Animations
+function modifier_monkey_king_tree_dance_lua:PlayEffects( modifier )
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_monkey_king/monkey_king_jump_trail.vpcf"
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
+
+	-- buff particle
+	modifier:AddParticle(
+		effect_cast,
+		false, -- bDestroyImmediately
+		false, -- bStatusEffect
+		-1, -- iPriority
+		false, -- bHeroEffect
+		false -- bOverheadEffect
+	)
 end
