@@ -1,45 +1,41 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Earthshaker: Enchant Totem (Lua version)
+	// Hero Name: monkey_king_tree_dance_lua
 	//=================================================================================================================
-	"earthshaker_enchant_totem_lua"
+	"monkey_king_tree_dance_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/earthshaker_enchant_totem_lua/earthshaker_enchant_totem_lua"
-		"AbilityTextureName"			"earthshaker_enchant_totem_lua"
+		"ScriptFile"					"lua_abilities/monkey_king_tree_dance_lua/monkey_king_tree_dance_lua"
+		"AbilityTextureName"			"monkey_king_tree_dance_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-		"HasScepterUpgrade"				"1"
-
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
-			"particle"	"particles/units/heroes/hero_earthshaker/earthshaker_totem_buff.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_monkey_king.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.69"
-		"AbilityDuration"				"14"
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.3"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5.0"
-		"AbilityManaCost"				"35 40 45 50"
+		"AbilityCooldown"				"1.0"
+		"AbilityManaCost"				"0"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -51,48 +47,67 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"totem_damage_percentage"	"100 200 300 400"
-				"CalculateSpellDamageTooltip"	"0"
+				"leap_speed"				"700"
 			}
-			"02"
+			"02" // this should belong to Spring ability but for how it gets called it's simpler to have Tree Jump own it
 			{
-				"var_type"				"FIELD_INTEGER"
-				"distance_scepter"			"1100"
+				"var_type"					"FIELD_INTEGER"
+				"spring_leap_speed"			"1300"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"aftershock_range"			"300"
+				"give_up_distance"			"1850"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_height"			"950"
+				"ground_jump_distance"		"1000"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_height_arcbuffer"	"100"
+				"perched_jump_distance"		"1000"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_acceleration_z"	"4000"
+				"var_type"					"FIELD_FLOAT"
+				"jump_damage_cooldown"		"3.0"
 			}
 			"07"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_acceleration_horizontal"	"3000"
+				"var_type"					"FIELD_FLOAT"
+				"perched_day_vision"			"800"
 			}
 			"08"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"scepter_leap_duration"		"1.0"
+				"perched_night_vision"			"400"
 			}
 			"09"
 			{
+				"var_type"					"FIELD_FLOAT"
+				"perched_spot_height"		"192.0"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"unperched_stunned_duration"	"4.0"
+			}
+			"11"
+			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_attack_range"		"75"
+				"top_level_height"			"500"
+			}
+			"12"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"impact_damage_tooltip"		"140 210 280 350"
+			}
+			"13"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"impact_movement_slow_tooltip"	"20 40 60 80"
 			}
 		}
 	}

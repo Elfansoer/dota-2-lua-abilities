@@ -1,45 +1,45 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Earthshaker: Enchant Totem (Lua version)
+	// Pangolier: Shield Crash (Lua version)
 	//=================================================================================================================
-	"earthshaker_enchant_totem_lua"
+	"pangolier_shield_crash_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/earthshaker_enchant_totem_lua/earthshaker_enchant_totem_lua"
-		"AbilityTextureName"			"earthshaker_enchant_totem_lua"
+		"ScriptFile"					"lua_abilities/pangolier_shield_crash_lua/pangolier_shield_crash_lua"
+		"AbilityTextureName"			"pangolier_shield_crash_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-		"HasScepterUpgrade"				"1"
-
+		
+		"HasScepterUpgrade"			"1"
+		
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
-			"particle"	"particles/units/heroes/hero_earthshaker/earthshaker_totem_buff.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_pangolier.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
 		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.69"
-		"AbilityDuration"				"14"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5.0"
-		"AbilityManaCost"				"35 40 45 50"
+		"AbilityCooldown"				"19 17 15 13"
+		"AbilityManaCost"				"90 100 110 120"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -50,49 +50,48 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"totem_damage_percentage"	"100 200 300 400"
-				"CalculateSpellDamageTooltip"	"0"
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"75 150 225 300"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"distance_scepter"			"1100"
+				"hero_stacks"			"9 12 15 18"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"aftershock_range"			"300"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10.0"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_height"			"950"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_height_arcbuffer"	"100"
+				"var_type"				"FIELD_FLOAT"
+				"jump_duration"			"0.4"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_acceleration_z"	"4000"
+				"var_type"					"FIELD_FLOAT"
+				"jump_duration_gyroshell"	"0.75"
 			}
 			"07"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_acceleration_horizontal"	"3000"
+				"var_type"				"FIELD_INTEGER"
+				"jump_height"			"250"
 			}
 			"08"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_leap_duration"		"1.0"
+				"var_type"				"FIELD_INTEGER"
+				"jump_height_gyroshell"	"350"
 			}
 			"09"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_attack_range"		"75"
+				"var_type"				"FIELD_INTEGER"
+				"jump_horizontal_distance"	"225"
 			}
 		}
 	}

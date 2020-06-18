@@ -19,6 +19,7 @@ end
 function modifier_earthshaker_enchant_totem_lua:OnCreated( kv )
 	-- references
 	self.bonus = self:GetAbility():GetSpecialValueFor( "totem_damage_percentage" ) -- special value
+	self.range = self:GetAbility():GetSpecialValueFor( "bonus_attack_range" ) -- special value
 	if IsServer() then
 		self:PlayEffects()
 	end
@@ -27,6 +28,7 @@ end
 function modifier_earthshaker_enchant_totem_lua:OnRefresh( kv )
 	-- references
 	self.bonus = self:GetAbility():GetSpecialValueFor( "totem_damage_percentage" ) -- special value
+	self.range = self:GetAbility():GetSpecialValueFor( "bonus_attack_range" ) -- special value
 end
 
 function modifier_earthshaker_enchant_totem_lua:OnDestroy( kv )
@@ -39,10 +41,12 @@ function modifier_earthshaker_enchant_totem_lua:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 	}
 
 	return funcs
 end
+
 function modifier_earthshaker_enchant_totem_lua:GetModifierBaseDamageOutgoing_Percentage()
 	return self.bonus
 end
@@ -55,6 +59,10 @@ function modifier_earthshaker_enchant_totem_lua:GetModifierProcAttack_Feedback( 
 
 		self:Destroy()
 	end
+end
+
+function modifier_earthshaker_enchant_totem_lua:GetModifierAttackRangeBonus()
+	return self.range
 end
 
 --------------------------------------------------------------------------------

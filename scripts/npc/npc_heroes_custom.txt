@@ -10,8 +10,8 @@
 	"npc_dota_hero_qop_lua"
 	{
 		"override_hero"					"npc_dota_hero_queenofpain"			// Hero to override
-		"Ability1"				"pangolier_swashbuckle_lua"			// Ability 5
-		"Ability2"				"test_sandbox_notarget"				// Ability 3
+		"Ability1"				"tiny_toss"			// Ability 5
+		"Ability2"				"tiny_toss_lua"				// Ability 3
 		"Ability3"				"alchemist_unstable_concoction_lua"				// Ability 1
 		"Ability4"				"alchemist_unstable_concoction_throw_lua"				// Ability 2
 		"Ability5"				"test_blockcamp"					// Ability 6
@@ -90,10 +90,10 @@
 	"npc_dota_hero_legion_commander_lua"
 	{
 		"override_hero"					"npc_dota_hero_legion_commander"	// Hero to override
-		"Ability1"				"bloodseeker_bloodrage_lua"						// Ability 2
-		"Ability2"				"bloodseeker_blood_rite_lua"						// Ability 3
-		"Ability3"				"bloodseeker_thirst_lua"						// Ability 3
-		"Ability6"				"bane_fiends_grip_lua"							// Ability 6
+		//"Ability1"				"bane_enfeeble_lua"						// Ability 2
+		"Ability2"				"monkey_king_tree_dance_lua"						// Ability 3
+		"Ability3"				"monkey_king_primal_spring_lua"						// Ability 3
+		//"Ability6"				"bane_fiends_grip_lua"							// Ability 6
 	}
 
 	//=================================================================================================================
@@ -417,6 +417,18 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Chen (Mirana)
+	//=================================================================================================================
+	"npc_dota_hero_chen_lua"
+	{
+		"override_hero"					"npc_dota_hero_chen"	// Hero to override
+		//"Ability1"				"lion_earth_spike_lua"						// Ability 1
+		"Ability2"				"mirana_sacred_arrow_lua"						// Ability 3
+		"Ability3"				"mirana_leap_lua"						// Ability 2
+		//"Ability6"				"lion_finger_of_death_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Earthshaker (Lion)
 	//=================================================================================================================
 	"npc_dota_hero_earthshaker_lua"
@@ -479,6 +491,18 @@
 		"Ability2"				"outworld_devourer_astral_imprisonment_lua"						// Ability 2
 		"Ability3"				"outworld_devourer_equilibrium_lua"						// Ability 2
 		"Ability6"				"outworld_devourer_sanitys_eclipse_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Slark (Pangolier)
+	//=================================================================================================================
+	"npc_dota_hero_slark_lua"
+	{
+		"override_hero"					"npc_dota_hero_slark"	// Hero to override
+		"Ability1"				"pangolier_swashbuckle_lua"						// Ability 1
+		"Ability2"				"pangolier_shield_crash_lua"						// Ability 2
+		//"Ability3"				"pangolier_shield_crash"						// Ability 2
+		//"Ability6"				"outworld_devourer_sanitys_eclipse_lua"							// Ability 6
 	}
 
 	//=================================================================================================================
@@ -600,6 +624,7 @@
 	{
 		"override_hero"					"npc_dota_hero_riki"	// Hero to override
 		"Ability1"				"slark_dark_pact_lua"						// Ability 2
+		"Ability2"				"slark_pounce_lua"						// Ability 2
 		"Ability3"				"slark_essence_shift_lua"						// Ability 3
 		"Ability6"				"slark_shadow_dance_lua"							// Ability 6
 	}
