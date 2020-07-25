@@ -10,10 +10,6 @@ Ability checklist (erase if done/checked):
 ]]
 
 --[[
-Not implemented:
-- vertical motion unit bypass
-- projectile obstruction
-
 Shoud be revised:
 - soldier still use "models/heroes/attachto_ghost/pa_gravestone_ghost.vmdl" as base class (also affects Spear of Mars)
 ]]
@@ -25,6 +21,7 @@ LinkLuaModifier( "modifier_mars_arena_of_blood_lua_blocker", "lua_abilities/mars
 LinkLuaModifier( "modifier_mars_arena_of_blood_lua_thinker", "lua_abilities/mars_arena_of_blood_lua/modifier_mars_arena_of_blood_lua_thinker", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_mars_arena_of_blood_lua_wall_aura", "lua_abilities/mars_arena_of_blood_lua/modifier_mars_arena_of_blood_lua_wall_aura", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_mars_arena_of_blood_lua_spear_aura", "lua_abilities/mars_arena_of_blood_lua/modifier_mars_arena_of_blood_lua_spear_aura", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_mars_arena_of_blood_lua_projectile_aura", "lua_abilities/mars_arena_of_blood_lua/modifier_mars_arena_of_blood_lua_projectile_aura", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Custom KV
@@ -50,4 +47,17 @@ function mars_arena_of_blood_lua:OnSpellStart()
 		caster:GetTeamNumber(),
 		false
 	)
+end
+
+--------------------------------------------------------------------------------
+-- Projectile
+mars_arena_of_blood_lua.projectiles = {}
+function mars_arena_of_blood_lua:OnProjectileHitHandle( target, location, id )
+	local data = self.projectiles[id]
+	self.projectiles[id] = nil
+
+	if data.destroyed then return end
+
+	local attacker = EntIndexToHScript( data.entindex_source_const )
+	attacker:PerformAttack( target, true, true, true, true, false, false, true )
 end

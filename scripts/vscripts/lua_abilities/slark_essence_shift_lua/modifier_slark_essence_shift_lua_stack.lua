@@ -1,5 +1,4 @@
 modifier_slark_essence_shift_lua_stack = class({})
-local tempTable = require("util/tempTable")
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_slark_essence_shift_lua_stack:IsHidden()
@@ -15,9 +14,6 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_slark_essence_shift_lua_stack:OnCreated( kv )
-	if IsServer() then
-		self.modifier = tempTable:RetATValue( kv.modifier )
-	end
 end
 
 function modifier_slark_essence_shift_lua_stack:OnRemoved()

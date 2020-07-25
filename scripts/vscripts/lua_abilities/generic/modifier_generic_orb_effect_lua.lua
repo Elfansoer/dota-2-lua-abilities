@@ -139,7 +139,8 @@ function modifier_generic_orb_effect_lua:ShouldLaunch( target )
 	-- check autocast
 	if self.ability:GetAutoCastState() then
 		-- filter whether target is valid
-		if self.ability.CastFilterResultTarget then
+		if self.ability.CastFilterResultTarget~=CDOTA_Ability_Lua.CastFilterResultTarget then
+			-- check if ability has custom target cast filter
 			if self.ability:CastFilterResultTarget( target )==UF_SUCCESS then
 				self.cast = true
 			end

@@ -133,6 +133,9 @@ function modifier_mars_arena_of_blood_lua_spear_aura:GetAuraEntityReject( unit )
 	-- check flying
 	if unit:HasFlyMovementCapability() then return true end
 
+	-- check vertical motion controlled
+	if unit:IsCurrentlyVerticalMotionControlled() then return true end
+
 	-- check if already own this aura
 	if unit:FindModifierByNameAndCaster( "modifier_mars_arena_of_blood_lua_spear_aura", self:GetCaster() ) then
 		return true

@@ -1,5 +1,4 @@
 modifier_slark_essence_shift_lua_debuff = class({})
-local tempTable = require("util/tempTable")
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_slark_essence_shift_lua_debuff:IsHidden()
@@ -18,7 +17,7 @@ end
 -- Initializations
 function modifier_slark_essence_shift_lua_debuff:OnCreated( kv )
 	-- references
-	self.stat_loss = kv.stat_loss
+	self.stat_loss = self:GetAbility():GetSpecialValueFor( "stat_loss" )
 	self.duration = kv.stack_duration
 
 	if IsServer() then
@@ -28,7 +27,7 @@ end
 
 function modifier_slark_essence_shift_lua_debuff:OnRefresh( kv )
 	-- references
-	self.stat_loss = kv.stat_loss
+	self.stat_loss = self:GetAbility():GetSpecialValueFor( "stat_loss" )
 	self.duration = kv.stack_duration
 
 	if IsServer() then
@@ -66,16 +65,15 @@ end
 -- Helper
 function modifier_slark_essence_shift_lua_debuff:AddStack( duration )
 	-- Add modifier
-	local parent = tempTable:AddATValue( self )
-	self:GetParent():AddNewModifier(
+	local mod = self:GetParent():AddNewModifier(
 		self:GetParent(),
 		self:GetAbility(),
 		"modifier_slark_essence_shift_lua_stack",
 		{
 			duration = self.duration,
-			modifier = parent,
 		}
 	)
+	mod.modifier = self
 
 	-- Add stack
 	self:IncrementStackCount()
