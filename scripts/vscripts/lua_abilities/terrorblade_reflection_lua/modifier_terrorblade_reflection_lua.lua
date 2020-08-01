@@ -37,7 +37,7 @@ function modifier_terrorblade_reflection_lua:OnCreated( kv )
 
 	if not IsServer() then return end
 
-	local distance = 72
+	self.distance = 72
 
 	-- create illusion
 	local illusions = CreateIllusions(
@@ -49,14 +49,11 @@ function modifier_terrorblade_reflection_lua:OnCreated( kv )
 			duration = self:GetDuration(),
 		}, -- hModiiferKeys
 		1, -- nNumIllusions
-		distance, -- nPadding
+		self.distance, -- nPadding
 		false, -- bScramblePosition
 		true -- bFindClearSpace
 	)
 	local illusion = illusions[1]
-	-- illusion:SetControllableByPlayer( self:GetCaster():GetPlayerID(), false )
-	-- illusion:SetOwner( self:GetCaster() )
-	-- illusion:SetPlayerID( self:GetCaster():GetPlayerID() )
 
 	-- add illusion buff
 	illusion:AddNewModifier(
@@ -66,17 +63,22 @@ function modifier_terrorblade_reflection_lua:OnCreated( kv )
 		{ duration = self:GetDuration() } -- kv
 	)
 
-	-- command to attack target
-	local order = {
-		UnitIndex = illusion:entindex(),
-		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-		TargetIndex = self:GetParent():entindex(),
-	}
-	ExecuteOrderFromTable( order )
+	self:GetAbility():SetContextThink( self:GetAbility():GetAbilityName(), function()
+		-- command to attack target
+		local order = {
+			UnitIndex = illusion:entindex(),
+			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+			TargetIndex = self:GetParent():entindex(),
+		}
+		ExecuteOrderFromTable( order )
+	end, FrameTime())
 
 	-- add to illusion table
 	self.illusions = self.illusions or {}
 	self.illusions[ illusion ] = true
+
+	-- start interval
+	self:StartIntervalThink( 0.1 )
 end
 
 function modifier_terrorblade_reflection_lua:OnRefresh( kv )
@@ -112,6 +114,35 @@ function modifier_terrorblade_reflection_lua:GetModifierMoveSpeedBonus_Percentag
 end
 
 --------------------------------------------------------------------------------
+-- Interval Effects
+function modifier_terrorblade_reflection_lua:OnIntervalThink()
+	local parent = self:GetParent()
+	local origin = parent:GetOrigin()
+	local seen = self:GetCaster():CanEntityBeSeenByMyTeam( parent )
+
+	if not seen then
+		for illusion,_ in pairs( self.illusions ) do
+			if not illusion:IsNull() and (illusion:GetOrigin()-origin):Length2D()>self.distance/2 then
+				-- move to position
+				illusion:MoveToPosition( origin )
+			end
+		end
+	else
+		for illusion,_ in pairs( self.illusions ) do
+			if not illusion:IsNull() and illusion:GetAggroTarget()~=parent then
+				-- command to attack target
+				local order = {
+					UnitIndex = illusion:entindex(),
+					OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+					TargetIndex = parent:entindex(),
+				}
+				ExecuteOrderFromTable( order )
+			end
+		end
+	end
+end
+
+--------------------------------------------------------------------------------
 -- Graphics & Animations
 function modifier_terrorblade_reflection_lua:GetEffectName()
 	return "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf"
@@ -120,49 +151,3 @@ end
 function modifier_terrorblade_reflection_lua:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
-
--- function modifier_terrorblade_reflection_lua:GetStatusEffectName()
--- 	return "status/effect/here.vpcf"
--- end
-
--- function modifier_terrorblade_reflection_lua:StatusEffectPriority()
--- 	return MODIFIER_PRIORITY_NORMAL
--- end
-
--- function modifier_terrorblade_reflection_lua:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
--- 	local sound_cast = "string"
-
--- 	-- Get Data
-
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
-
--- 	-- buff particle
--- 	self:AddParticle(
--- 		effect_cast,
--- 		false, -- bDestroyImmediately
--- 		false, -- bStatusEffect
--- 		-1, -- iPriority
--- 		false, -- bHeroEffect
--- 		false -- bOverheadEffect
--- 	)
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end

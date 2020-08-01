@@ -1185,6 +1185,7 @@
 #base "../vscripts/lua_abilities/sniper_assassinate_lua/sniper_assassinate_lua.txt"
 
 #base "../vscripts/lua_abilities/terrorblade_reflection_lua/terrorblade_reflection_lua.txt"
+#base "../vscripts/lua_abilities/terrorblade_conjure_image_lua/terrorblade_conjure_image_lua.txt"
 
 #base "../vscripts/lua_abilities/tidehunter_gush_lua/tidehunter_gush_lua.txt"
 #base "../vscripts/lua_abilities/tidehunter_anchor_smash_lua/tidehunter_anchor_smash_lua.txt"
