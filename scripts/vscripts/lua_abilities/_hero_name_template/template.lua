@@ -13,6 +13,17 @@ template = class({})
 LinkLuaModifier( "modifier_template", "lua_abilities/template/modifier_template", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
+-- Init Abilities
+function template:Precache( context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_name/template.vpcf", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_template.vsndevts", context )
+end
+
+function template:Spawn()
+	if not IsServer() then return end
+end
+
+--------------------------------------------------------------------------------
 -- Passive Modifier
 function template:GetIntrinsicModifierName()
 	return "modifier_template"
@@ -79,7 +90,7 @@ function template:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	-- load data
-	local value1 = self:GetSpecialValueFor("some_value")
+	local value1 = self:GetSpecialValueFor( "some_value" )
 
 	-- logic
 
@@ -158,12 +169,12 @@ function template:OnInventoryContentsChanged()
 
 end
 
-function template:OnItemEquipped(handle hItem)
+function template:OnItemEquipped( item )
 
 end
 
 --------------------------------------------------------------------------------
 -- Other Events
-function template:OnHeroDiedNearby(handle unit, handle attacker, handle table)
+function template:OnHeroDiedNearby( unit, attacker, data )
 
 end

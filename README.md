@@ -16,6 +16,8 @@ Tutorial is available on this repo's wiki. It is rarely updated, but it will be.
 (Note: You may need cheat mode on to test abilities easily)
 
 # Notes
+If you need help, you can find me at [Moddota Discord](https://moddota.com/).
+
 Some abilities are implemented differently than in-game, and it was intended.
 
 As the repo grew larger, I could no longer guarantee the abilities to be bug-free.

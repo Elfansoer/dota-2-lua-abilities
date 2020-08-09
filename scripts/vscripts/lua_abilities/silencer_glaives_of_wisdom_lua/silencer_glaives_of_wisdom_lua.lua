@@ -90,15 +90,3 @@ function silencer_glaives_of_wisdom_lua:OnOrbImpact( params )
 	local sound_cast = "Hero_Silencer.GlaivesOfWisdom.Damage"
 	EmitSoundOn( sound_cast, params.target )
 end
-
---------------------------------------------------------------------------------
--- Hero Events
--- function silencer_glaives_of_wisdom_lua:OnHeroCalculateStatBonus()
-
--- end
-
---------------------------------------------------------------------------------
--- Other Events
--- function silencer_glaives_of_wisdom_lua:OnHeroDiedNearby(handle unit, handle attacker, handle table)
-
--- end
