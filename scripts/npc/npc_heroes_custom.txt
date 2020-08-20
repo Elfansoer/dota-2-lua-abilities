@@ -661,8 +661,9 @@
 		"override_hero"					"npc_dota_hero_spectre"	// Hero to override
 		"Ability1"				"terrorblade_reflection_lua"						// Ability 1
 		"Ability2"				"terrorblade_conjure_image_lua"						// Ability 2
-		"Ability3"				"snapfire_lil_shredder_lua"						// Ability 3
-		"Ability6"				"snapfire_mortimer_kisses_lua"							// Ability 6
+		"Ability3"				"terrorblade_metamorphosis_lua"						// Ability 3
+		"Ability4"				"generic_hidden"
+		"Ability6"				"terrorblade_sunder_lua"							// Ability 6
 	}
 
 	//=================================================================================================================

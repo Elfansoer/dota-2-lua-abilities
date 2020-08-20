@@ -9,82 +9,137 @@ Ability checklist (erase if done/checked):
 - Stolen behavior
 ]]
 --------------------------------------------------------------------------------
-modifier_template = class({})
+modifier_terrorblade_metamorphosis_lua = class({})
 
 --------------------------------------------------------------------------------
 -- Classifications
-function modifier_template:IsHidden()
+function modifier_terrorblade_metamorphosis_lua:IsHidden()
 	return false
 end
 
-function modifier_template:IsDebuff()
+function modifier_terrorblade_metamorphosis_lua:IsDebuff()
 	return false
 end
 
-function modifier_template:IsStunDebuff()
+function modifier_terrorblade_metamorphosis_lua:IsStunDebuff()
 	return false
 end
 
-function modifier_template:IsPurgable()
-	return true
-end
-
-function modifier_template:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE + MODIFIER_ATTRIBUTE_INVULNERABLE 
+function modifier_terrorblade_metamorphosis_lua:IsPurgable()
+	return false
 end
 
 --------------------------------------------------------------------------------
 -- Initializations
-function modifier_template:OnCreated( kv )
+function modifier_terrorblade_metamorphosis_lua:OnCreated( kv )
 	-- references
-	self.special_value = self:GetAbility():GetSpecialValueFor( "special_value" )
+	self.bat = self:GetAbility():GetSpecialValueFor( "base_attack_time" )
+	self.range = self:GetAbility():GetSpecialValueFor( "bonus_range" )
+	self.damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" )
+	self.slow = self:GetAbility():GetSpecialValueFor( "speed_loss" )
+	local delay = self:GetAbility():GetSpecialValueFor( "transformation_time" )
+
+	self.projectile = 900
 
 	if not IsServer() then return end
-	-- ability properties
-	self.abilityDamageType = self:GetAbility():GetAbilityDamageType()
-	self.abilityTargetTeam = self:GetAbility():GetAbilityTargetTeam()
-	self.abilityTargetType = self:GetAbility():GetAbilityTargetType()
-	self.abilityTargetFlags = self:GetAbility():GetAbilityTargetFlags()
 
-	-- Start interval
-	self:StartIntervalThink( self.interval )
-	self:OnIntervalThink()
+	-- melee/ranged
+	self.attack = self:GetParent():GetAttackCapability()
+	if self.attack == DOTA_UNIT_CAP_RANGED_ATTACK then
+		-- no bonus for originally ranged enemies
+		self.range = 0
+		self.projectile = 0
+	end
+	self:GetParent():SetAttackCapability( DOTA_UNIT_CAP_RANGED_ATTACK )
+
+	-- gesture
+	self:GetAbility():SetContextThink(DoUniqueString( "terrorblade_metamorphosis_lua" ), function()
+		self:GetParent():StartGesture( ACT_DOTA_CAST_ABILITY_3 )
+	end, FrameTime())
+
+	-- transform time
+	self.stun = true
+	self:StartIntervalThink( delay )
+
+	-- play effects
+	self:PlayEffects()
 end
 
-function modifier_template:OnRefresh( kv )
-	
+function modifier_terrorblade_metamorphosis_lua:OnRefresh( kv )
+	self:OnCreated( kv )
 end
 
-function modifier_template:OnRemoved()
+function modifier_terrorblade_metamorphosis_lua:OnRemoved()
 end
 
-function modifier_template:OnDestroy()
+function modifier_terrorblade_metamorphosis_lua:OnDestroy()
+	if not IsServer() then return end
+
+	-- return attack cap
+	self:GetParent():SetAttackCapability( self.attack )
 end
 
 --------------------------------------------------------------------------------
 -- Modifier Effects
-function modifier_template:DeclareFunctions()
+function modifier_terrorblade_metamorphosis_lua:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
+
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+
+		MODIFIER_PROPERTY_MODEL_CHANGE,
+		MODIFIER_PROPERTY_MODEL_SCALE,
+		MODIFIER_PROPERTY_PROJECTILE_NAME,
+		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
 	}
 
 	return funcs
 end
 
-function modifier_template:OnAttack( params )
-
+function modifier_terrorblade_metamorphosis_lua:GetModifierBaseAttack_BonusDamage()
+	return self.damage
 end
 
-function modifier_template:GetModifierMoveSpeedBonus_Percentage()
-	return -100
+function modifier_terrorblade_metamorphosis_lua:GetModifierBaseAttackTimeConstant()
+	return self.bat
+end
+
+function modifier_terrorblade_metamorphosis_lua:GetModifierMoveSpeedBonus_Constant()
+	return self.slow
+end
+
+function modifier_terrorblade_metamorphosis_lua:GetModifierProjectileSpeedBonus()
+	return self.projectile
+end
+
+function modifier_terrorblade_metamorphosis_lua:GetModifierAttackRangeBonus()
+	return self.range
+end
+
+function modifier_terrorblade_metamorphosis_lua:GetModifierModelChange()
+	return "models/heroes/terrorblade/demon.vmdl"
+end
+
+function modifier_terrorblade_metamorphosis_lua:GetModifierModelScale()
+	return 80
+end
+
+function modifier_terrorblade_metamorphosis_lua:GetModifierProjectileName()
+	return "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_base_attack.vpcf"
+end
+
+function modifier_terrorblade_metamorphosis_lua:GetAttackSound()
+	return "Hero_Terrorblade_Morphed.Attack"
 end
 
 --------------------------------------------------------------------------------
 -- Status Effects
-function modifier_template:CheckState()
+function modifier_terrorblade_metamorphosis_lua:CheckState()
 	local state = {
-		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_STUNNED] = self.stun,
 	}
 
 	return state
@@ -92,107 +147,29 @@ end
 
 --------------------------------------------------------------------------------
 -- Interval Effects
-function modifier_template:OnIntervalThink()
-end
-
---------------------------------------------------------------------------------
--- Motion Effects
-function modifier_template:UpdateHorizontalMotion( me, dt )
-end
-
-function modifier_template:OnHorizontalMotionInterrupted()
-end
-
---------------------------------------------------------------------------------
--- Aura Effects
-function modifier_template:IsAura()
-	return true
-end
-
-function modifier_template:GetModifierAura()
-	return "modifier_template_effect"
-end
-
-function modifier_template:GetAuraRadius()
-	return self.radius
-end
-
-function modifier_template:GetAuraDuration()
-	return self.radius
-end
-
-function modifier_template:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-
-function modifier_template:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-
-function modifier_template:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-end
-
-function modifier_template:GetAuraEntityReject( hEntity )
-	if IsServer() then
-		
-	end
-
-	return false
+function modifier_terrorblade_metamorphosis_lua:OnIntervalThink()
+	self.stun = false
 end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
-function modifier_template:GetEffectName()
-	return "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
+function modifier_terrorblade_metamorphosis_lua:GetEffectName()
+	return "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
 end
 
-function modifier_template:GetEffectAttachType()
+function modifier_terrorblade_metamorphosis_lua:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
 
-function modifier_template:GetStatusEffectName()
-	return "status/effect/here.vpcf"
-end
-
-function modifier_template:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
-function modifier_template:PlayEffects()
+function modifier_terrorblade_metamorphosis_lua:PlayEffects()
 	-- Get Resources
-	local particle_cast = "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
-	local sound_cast = "string"
-
-	-- Get Data
+	local particle_cast = "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_transform.vpcf"
+	local sound_cast = "Hero_Terrorblade.Metamorphosis"
 
 	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
-	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
-	-- buff particle
-	self:AddParticle(
-		effect_cast,
-		false, -- bDestroyImmediately
-		false, -- bStatusEffect
-		-1, -- iPriority
-		false, -- bHeroEffect
-		false -- bOverheadEffect
-	)
-
 	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
+	EmitSoundOn( sound_cast, self:GetParent() )
 end

@@ -8,6 +8,8 @@ Ability checklist (erase if done/checked):
 - Illusion behavior
 - Stolen behavior
 ]]
+local MODIFIER_PRIORITY_MONKAGIGA_EXTEME_HYPER_ULTRA_REINFORCED_V9 = 10001
+
 --------------------------------------------------------------------------------
 modifier_terrorblade_conjure_image_lua = class({})
 
@@ -47,18 +49,18 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_terrorblade_conjure_image_lua:GetEffectName()
--- 	return "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
--- end
+function modifier_terrorblade_conjure_image_lua:GetEffectName()
+	return "particles/units/heroes/hero_terrorblade/terrorblade_mirror_image.vpcf"
+end
 
--- function modifier_terrorblade_conjure_image_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+function modifier_terrorblade_conjure_image_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
 
 function modifier_terrorblade_conjure_image_lua:GetStatusEffectName()
 	return "particles/status_fx/status_effect_terrorblade_reflection.vpcf"
 end
 
 function modifier_terrorblade_conjure_image_lua:StatusEffectPriority()
-	return MODIFIER_PRIORITY_SUPER_ULTRA
+	return MODIFIER_PRIORITY_MONKAGIGA_EXTEME_HYPER_ULTRA_REINFORCED_V9
 end

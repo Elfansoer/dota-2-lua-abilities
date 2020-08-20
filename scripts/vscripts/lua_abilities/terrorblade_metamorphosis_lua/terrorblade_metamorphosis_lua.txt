@@ -16,12 +16,6 @@
 		"MaxLevel"						"4"
 
         "HasScepterUpgrade"			"1"
-
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------

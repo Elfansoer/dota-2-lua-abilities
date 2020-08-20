@@ -13,6 +13,13 @@ terrorblade_conjure_image_lua = class({})
 LinkLuaModifier( "modifier_terrorblade_conjure_image_lua", "lua_abilities/terrorblade_conjure_image_lua/modifier_terrorblade_conjure_image_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
+-- Init Abilities
+function terrorblade_conjure_image_lua:Precache( context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_terrorblade/terrorblade_mirror_image.vpcf", context )
+end
+
+--------------------------------------------------------------------------------
 -- Ability Start
 function terrorblade_conjure_image_lua:OnSpellStart()
 	-- unit identifier
@@ -54,36 +61,3 @@ function terrorblade_conjure_image_lua:OnSpellStart()
 
 	end, FrameTime()*2)
 end
--- --------------------------------------------------------------------------------
--- -- Projectile
--- function terrorblade_conjure_image_lua:OnProjectileHit( target, location )
--- end
-
--- --------------------------------------------------------------------------------
--- function terrorblade_conjure_image_lua:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
--- 	local sound_cast = "string"
-
--- 	-- Get Data
-
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end

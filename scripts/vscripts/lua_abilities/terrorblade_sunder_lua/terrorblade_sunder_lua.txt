@@ -1,33 +1,38 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Terrorblade: Conjure Image (Lua version)
+	// Terrorblade: Sunder (Lua version)
 	//=================================================================================================================
-	"terrorblade_conjure_image_lua"
+	"terrorblade_sunder_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/terrorblade_conjure_image_lua/terrorblade_conjure_image_lua"
-		"AbilityTextureName"			"terrorblade_conjure_image_lua"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
+		"ScriptFile"					"lua_abilities/terrorblade_sunder_lua/terrorblade_sunder_lua"
+		"AbilityTextureName"			"terrorblade_sunder_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.15"
+		"AbilityCastRange"				"475"
+		"AbilityCastPoint"				"0.35"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16"
-		"AbilityManaCost"				"70 75 80 85"
+		"AbilityCooldown"				"120.0 80.0 40.0"
+		"AbilityManaCost"				"200 100 50"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -38,28 +43,8 @@
 		{
 			"01"
 			{
-				"var_type"							"FIELD_FLOAT"
-				"illusion_duration"					"34.0"
-			}
-			"02"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"illusion_outgoing_damage"			"-70 -60 -50 -40"		 
-			}
-			"03"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"illusion_outgoing_tooltip"			"30 40 50 60"
-			}
-			"04"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"illusion_incoming_damage"			"220.0"
-			}
-			"05"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"illusion_incoming_damage_total_tooltip"			"320.0"
+				"var_type"					"FIELD_INTEGER"
+				"hit_point_minimum_pct"		"35 30 25"
 			}
 		}
 	}

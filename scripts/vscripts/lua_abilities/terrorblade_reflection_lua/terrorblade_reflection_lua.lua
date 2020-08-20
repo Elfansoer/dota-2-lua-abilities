@@ -14,6 +14,13 @@ LinkLuaModifier( "modifier_terrorblade_reflection_lua", "lua_abilities/terrorbla
 LinkLuaModifier( "modifier_terrorblade_reflection_lua_illusion", "lua_abilities/terrorblade_reflection_lua/modifier_terrorblade_reflection_lua_illusion", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
+-- Init Abilities
+function terrorblade_reflection_lua:Precache( context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", context )
+end
+
+--------------------------------------------------------------------------------
 -- Custom KV
 -- AOE Radius
 function terrorblade_reflection_lua:GetAOERadius()

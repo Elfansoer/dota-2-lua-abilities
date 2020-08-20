@@ -14,11 +14,6 @@
 		"AbilityTextureName"			"terrorblade_reflection_lua"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-//		"precache"
-//		{
-//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-//		}
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------

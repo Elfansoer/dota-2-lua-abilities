@@ -8,6 +8,8 @@ Ability checklist (erase if done/checked):
 - Illusion behavior
 - Stolen behavior
 ]]
+local MODIFIER_PRIORITY_MONKAGIGA_EXTEME_HYPER_ULTRA_REINFORCED_V9 = 10001
+
 --------------------------------------------------------------------------------
 modifier_terrorblade_reflection_lua_illusion = class({})
 
@@ -79,56 +81,10 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_terrorblade_reflection_lua_illusion:GetEffectName()
--- 	return "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf"
--- end
-
--- function modifier_terrorblade_reflection_lua_illusion:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
-
 function modifier_terrorblade_reflection_lua_illusion:GetStatusEffectName()
 	return "particles/status_fx/status_effect_terrorblade_reflection.vpcf"
 end
 
 function modifier_terrorblade_reflection_lua_illusion:StatusEffectPriority()
-	return MODIFIER_PRIORITY_SUPER_ULTRA
+	return MODIFIER_PRIORITY_MONKAGIGA_EXTEME_HYPER_ULTRA_REINFORCED_V9
 end
-
--- function modifier_terrorblade_reflection_lua_illusion:PlayEffects()
--- 	-- Get Resources
--- 	local particle_cast = "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
--- 	local sound_cast = "string"
-
--- 	-- Get Data
-
--- 	-- Create Particle
--- 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
--- 	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
--- 	ParticleManager:SetParticleControlEnt(
--- 		effect_cast,
--- 		iControlPoint,
--- 		hTarget,
--- 		PATTACH_NAME,
--- 		"attach_name",
--- 		vOrigin, -- unknown
--- 		bool -- unknown, true
--- 	)
--- 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
--- 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
--- 	ParticleManager:ReleaseParticleIndex( effect_cast )
-
--- 	-- buff particle
--- 	self:AddParticle(
--- 		effect_cast,
--- 		false, -- bDestroyImmediately
--- 		false, -- bStatusEffect
--- 		-1, -- iPriority
--- 		false, -- bHeroEffect
--- 		false -- bOverheadEffect
--- 	)
-
--- 	-- Create Sound
--- 	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
--- 	EmitSoundOn( sound_target, target )
--- end
