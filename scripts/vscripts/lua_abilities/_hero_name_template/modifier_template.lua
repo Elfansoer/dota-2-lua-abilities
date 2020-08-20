@@ -173,10 +173,10 @@ function modifier_template:PlayEffects()
 		effect_cast,
 		iControlPoint,
 		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		Vector(0,0,0), -- unknown
+		true -- unknown, true
 	)
 	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
 	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )

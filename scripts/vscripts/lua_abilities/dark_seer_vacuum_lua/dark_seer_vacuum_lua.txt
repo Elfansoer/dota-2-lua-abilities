@@ -1,0 +1,79 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Dark Seer: Vacuum (Lua version)
+	//=================================================================================================================
+	"dark_seer_vacuum_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/dark_seer_vacuum_lua/dark_seer_vacuum_lua"
+		"AbilityTextureName"			"dark_seer_vacuum_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"HasScepterUpgrade"			"1"
+
+//		"precache"
+//		{
+//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"450 500 550 600"
+		"AbilityCastPoint"				"0.4"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60 50 40 30"
+		"AbilityManaCost"				"60 90 120 150"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400 450 500 550"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.3 0.4 0.5 0.6"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100 150 200 250"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_tree"				"275"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_cooldown"				"12"
+				"RequiresScepter"		"1"
+			}
+		}
+	}
+}

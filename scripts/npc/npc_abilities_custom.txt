@@ -978,6 +978,11 @@
 #base "../vscripts/lua_abilities/crystal_maiden_arcane_aura_lua/crystal_maiden_arcane_aura_lua.txt"
 #base "../vscripts/lua_abilities/crystal_maiden_freezing_field_lua/crystal_maiden_freezing_field_lua.txt"
 
+#base "../vscripts/lua_abilities/dark_seer_vacuum_lua/dark_seer_vacuum_lua.txt"
+#base "../vscripts/lua_abilities/dark_seer_ion_shell_lua/dark_seer_ion_shell_lua.txt"
+#base "../vscripts/lua_abilities/dark_seer_surge_lua/dark_seer_surge_lua.txt"
+#base "../vscripts/lua_abilities/dark_seer_wall_of_replica_lua/dark_seer_wall_of_replica_lua.txt"
+
 #base "../vscripts/lua_abilities/dark_willow_bramble_maze_lua/dark_willow_bramble_maze_lua.txt"
 #base "../vscripts/lua_abilities/dark_willow_shadow_realm_lua/dark_willow_shadow_realm_lua.txt"
 #base "../vscripts/lua_abilities/dark_willow_cursed_crown_lua/dark_willow_cursed_crown_lua.txt"
@@ -1183,6 +1188,11 @@
 #base "../vscripts/lua_abilities/sniper_headshot_lua/sniper_headshot_lua.txt"
 #base "../vscripts/lua_abilities/sniper_take_aim_lua/sniper_take_aim_lua.txt"
 #base "../vscripts/lua_abilities/sniper_assassinate_lua/sniper_assassinate_lua.txt"
+
+#base "../vscripts/lua_abilities/storm_spirit_static_remnant_lua/storm_spirit_static_remnant_lua.txt"
+#base "../vscripts/lua_abilities/storm_spirit_electric_vortex_lua/storm_spirit_electric_vortex_lua.txt"
+#base "../vscripts/lua_abilities/storm_spirit_overload_lua/storm_spirit_overload_lua.txt"
+#base "../vscripts/lua_abilities/storm_spirit_ball_lightning_lua/storm_spirit_ball_lightning_lua.txt"
 
 #base "../vscripts/lua_abilities/tidehunter_gush_lua/tidehunter_gush_lua.txt"
 #base "../vscripts/lua_abilities/tidehunter_anchor_smash_lua/tidehunter_anchor_smash_lua.txt"

@@ -15,8 +15,8 @@ LinkLuaModifier( "modifier_template", "lua_abilities/template/modifier_template"
 --------------------------------------------------------------------------------
 -- Init Abilities
 function template:Precache( context )
-	PrecacheResource( "particle", "particles/units/heroes/hero_name/template.vpcf", context )
 	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_template.vsndevts", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_template/template.vpcf", context )
 end
 
 function template:Spawn()
@@ -31,6 +31,10 @@ end
 
 --------------------------------------------------------------------------------
 -- Custom KV
+function template:GetBehavior()
+	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+end
+
 -- AOE Radius
 function template:GetAOERadius()
 	return self:GetSpecialValueFor( "radius" )
@@ -101,6 +105,7 @@ function template:OnProjectileHit( target, location )
 end
 
 --------------------------------------------------------------------------------
+-- Effects
 function template:PlayEffects()
 	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
