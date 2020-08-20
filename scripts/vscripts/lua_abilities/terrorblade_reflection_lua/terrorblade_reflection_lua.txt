@@ -1,0 +1,74 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Terrorblade: Reflection (Lua version)
+	//=================================================================================================================
+	"terrorblade_reflection_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/terrorblade_reflection_lua/terrorblade_reflection_lua"
+		"AbilityTextureName"			"terrorblade_reflection_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+//		"precache"
+//		{
+//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22 20 18 16"
+		"AbilityManaCost"				"50"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_duration"			"2.5 3.5 4.5 5.5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_outgoing_damage"	"-60.0 -40.0 -20.0 0.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_outgoing_tooltip"	"40 60 80 100"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"move_slow"					"25"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"range"						"475"
+			}
+		}
+	}
+}
