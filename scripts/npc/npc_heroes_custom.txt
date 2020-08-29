@@ -404,6 +404,18 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Elder Titan (Magnus)
+	//=================================================================================================================
+	"npc_dota_hero_elder_titan_lua"
+	{
+		"override_hero"					"npc_dota_hero_elder_titan"	// Hero to override
+		"Ability1"				"magnus_shockwave_lua"						// Ability 1
+		"Ability2"				"magnus_empower_lua"						// Ability 1
+		"Ability3"				"magnus_skewer_lua"						// Ability 1
+		"Ability6"				"magnus_reverse_polarity_lua"						// Ability 1
+	}
+
+	//=================================================================================================================
 	// HERO: Huskar (Mars)
 	//=================================================================================================================
 	"npc_dota_hero_huskar_lua"

@@ -1092,6 +1092,11 @@
 #base "../vscripts/lua_abilities/luna_lunar_blessing_lua/luna_lunar_blessing_lua.txt"
 #base "../vscripts/lua_abilities/luna_eclipse_lua/luna_eclipse_lua.txt"
 
+#base "../vscripts/lua_abilities/magnus_shockwave_lua/magnus_shockwave_lua.txt"
+#base "../vscripts/lua_abilities/magnus_empower_lua/magnus_empower_lua.txt"
+#base "../vscripts/lua_abilities/magnus_skewer_lua/magnus_skewer_lua.txt"
+#base "../vscripts/lua_abilities/magnus_reverse_polarity_lua/magnus_reverse_polarity_lua.txt"
+
 #base "../vscripts/lua_abilities/mars_spear_of_mars_lua/mars_spear_of_mars_lua.txt"
 #base "../vscripts/lua_abilities/mars_bulwark_lua/mars_bulwark_lua.txt"
 #base "../vscripts/lua_abilities/mars_gods_rebuke_lua/mars_gods_rebuke_lua.txt"
