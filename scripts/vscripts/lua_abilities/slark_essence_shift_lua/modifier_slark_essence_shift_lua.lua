@@ -1,5 +1,4 @@
 modifier_slark_essence_shift_lua = class({})
-local tempTable = require("util/tempTable")
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_slark_essence_shift_lua:IsHidden()
@@ -19,14 +18,12 @@ end
 function modifier_slark_essence_shift_lua:OnCreated( kv )
 	-- references
 	self.agi_gain = self:GetAbility():GetSpecialValueFor( "agi_gain" )
-	self.stat_loss = self:GetAbility():GetSpecialValueFor( "stat_loss" )
 	self.duration = self:GetAbility():GetSpecialValueFor( "duration" )
 end
 
 function modifier_slark_essence_shift_lua:OnRefresh( kv )
 	-- references
 	self.agi_gain = self:GetAbility():GetSpecialValueFor( "agi_gain" )
-	self.stat_loss = self:GetAbility():GetSpecialValueFor( "stat_loss" )
 	self.duration = self:GetAbility():GetSpecialValueFor( "duration" )
 end
 
@@ -59,7 +56,6 @@ function modifier_slark_essence_shift_lua:GetModifierProcAttack_Feedback( params
 			"modifier_slark_essence_shift_lua_debuff",
 			{
 				stack_duration = self.duration,
-				stat_loss = self.stat_loss,
 			}
 		)
 
@@ -79,16 +75,15 @@ end
 -- Helper
 function modifier_slark_essence_shift_lua:AddStack( duration )
 	-- Add counter
-	local parent = tempTable:AddATValue( self )
-	self:GetParent():AddNewModifier(
+	local mod = self:GetParent():AddNewModifier(
 		self:GetParent(),
 		self:GetAbility(),
 		"modifier_slark_essence_shift_lua_stack",
 		{
 			duration = self.duration,
-			modifier = parent,
 		}
 	)
+	mod.modifier = self
 
 	-- Add stack
 	self:IncrementStackCount()

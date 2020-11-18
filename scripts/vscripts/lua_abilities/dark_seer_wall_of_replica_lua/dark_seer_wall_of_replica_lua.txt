@@ -1,0 +1,101 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Dark Seer: Wall of Replica (Lua version)
+	//=================================================================================================================
+	"dark_seer_wall_of_replica_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/dark_seer_wall_of_replica_lua/dark_seer_wall_of_replica_lua"
+		"AbilityTextureName"			"dark_seer_wall_of_replica_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		"HasScepterUpgrade"			"1"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1300"
+		"AbilityCastPoint"				"0.2"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100.0 100.0 100.0"
+		"AbilityManaCost"				"125 250 375"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"45.0"
+			}			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"replica_damage_outgoing"	"-30 -15 0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_outgoing"	"70 85 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"replica_damage_incoming"	"100"
+			}	
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_replica_total_damage_incoming"	"200"
+			}				
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"1300"
+			}			
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"replica_scale"	"0"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movement_slow"					"50 60 70"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_duration"				"1"
+			}	
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_length_multiplier"				"2"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vector_target"				"1"
+			}
+		}
+	}
+}

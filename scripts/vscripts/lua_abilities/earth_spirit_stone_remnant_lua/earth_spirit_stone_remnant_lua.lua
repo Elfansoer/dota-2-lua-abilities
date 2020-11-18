@@ -40,8 +40,7 @@ function earth_spirit_stone_remnant_lua:OnSpellStart()
 	)
 end
 
-function earth_spirit_stone_remnant_lua:OnHeroCalculateStatBonus()
-	if self:GetLevel()<1 then
-		self:SetLevel(1)
-	end
+function earth_spirit_stone_remnant_lua:Spawn()
+	if not IsServer() then return end
+	self:SetLevel(1)
 end

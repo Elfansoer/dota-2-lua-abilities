@@ -32,8 +32,7 @@ end
 
 --------------------------------------------------------------------------------
 -- Init ability
-function fairy_queen_fairies:OnHeroCalculateStatBonus()
-	if self:GetLevel()<1 then
-		self:SetLevel(1)
-	end
+function fairy_queen_fairies:Spawn()
+	if not IsServer() then return end
+	self:SetLevel(1)
 end

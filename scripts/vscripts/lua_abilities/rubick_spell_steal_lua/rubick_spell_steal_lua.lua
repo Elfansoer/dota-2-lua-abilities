@@ -7,17 +7,14 @@ LinkLuaModifier( "modifier_rubick_spell_steal_lua_animation", "lua_abilities/rub
 
 --------------------------------------------------------------------------------
 -- Passive Modifier
-rubick_spell_steal_lua.firstTime = true
-function rubick_spell_steal_lua:OnHeroCalculateStatBonus()
-	if self.firstTime then
-		self:GetCaster():AddNewModifier(
-			self:GetCaster(),
-			self,
-			"modifier_rubick_spell_steal_lua_hidden",
-			{}
-		)
-		self.firstTime = false
-	end
+function rubick_spell_steal_lua:Spawn()
+	if not IsServer() then return end
+	self:GetCaster():AddNewModifier(
+		self:GetCaster(),
+		self,
+		"modifier_rubick_spell_steal_lua_hidden",
+		{}
+	)
 end
 
 --------------------------------------------------------------------------------

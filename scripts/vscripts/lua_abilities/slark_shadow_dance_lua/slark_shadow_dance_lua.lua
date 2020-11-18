@@ -34,8 +34,4 @@ function slark_shadow_dance_lua:OnSpellStart()
 		"modifier_slark_shadow_dance_lua", -- modifier name
 		{ duration = bDuration } -- kv
 	)
-
-	-- Play effects
-	local sound_cast = "Hero_Slark.ShadowDance"
-	EmitSoundOn( sound_cast, caster )
 end

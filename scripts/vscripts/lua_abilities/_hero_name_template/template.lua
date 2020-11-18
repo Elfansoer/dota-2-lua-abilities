@@ -13,6 +13,17 @@ template = class({})
 LinkLuaModifier( "modifier_template", "lua_abilities/template/modifier_template", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
+-- Init Abilities
+function template:Precache( context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_template.vsndevts", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_template/template.vpcf", context )
+end
+
+function template:Spawn()
+	if not IsServer() then return end
+end
+
+--------------------------------------------------------------------------------
 -- Passive Modifier
 function template:GetIntrinsicModifierName()
 	return "modifier_template"
@@ -20,6 +31,10 @@ end
 
 --------------------------------------------------------------------------------
 -- Custom KV
+function template:GetBehavior()
+	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+end
+
 -- AOE Radius
 function template:GetAOERadius()
 	return self:GetSpecialValueFor( "radius" )
@@ -79,7 +94,7 @@ function template:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	-- load data
-	local value1 = self:GetSpecialValueFor("some_value")
+	local value1 = self:GetSpecialValueFor( "some_value" )
 
 	-- logic
 
@@ -90,6 +105,7 @@ function template:OnProjectileHit( target, location )
 end
 
 --------------------------------------------------------------------------------
+-- Effects
 function template:PlayEffects()
 	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
@@ -158,12 +174,12 @@ function template:OnInventoryContentsChanged()
 
 end
 
-function template:OnItemEquipped(handle hItem)
+function template:OnItemEquipped( item )
 
 end
 
 --------------------------------------------------------------------------------
 -- Other Events
-function template:OnHeroDiedNearby(handle unit, handle attacker, handle table)
+function template:OnHeroDiedNearby( unit, attacker, data )
 
 end

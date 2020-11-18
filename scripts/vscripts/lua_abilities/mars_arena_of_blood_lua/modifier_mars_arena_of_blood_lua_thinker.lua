@@ -54,6 +54,15 @@ end
 function modifier_mars_arena_of_blood_lua_thinker:OnDestroy()
 	if not IsServer() then return end
 
+	-- destroy modifiers (somehow it does not automatically calls OnDestroy on modifiers)
+	local modifiers = {}
+	for k,v in pairs(self:GetParent():FindAllModifiers()) do
+		modifiers[k] = v
+	end
+	for k,v in pairs(modifiers) do
+		v:Destroy()
+	end
+
 	UTIL_Remove( self:GetParent() ) 
 end
 
@@ -79,6 +88,14 @@ function modifier_mars_arena_of_blood_lua_thinker:OnIntervalThink()
 			self:GetCaster(), -- player source
 			self:GetAbility(), -- ability source
 			"modifier_mars_arena_of_blood_lua_spear_aura", -- modifier name
+			{  } -- kv
+		)
+
+		-- create spear aura
+		self:GetParent():AddNewModifier(
+			self:GetCaster(), -- player source
+			self:GetAbility(), -- ability source
+			"modifier_mars_arena_of_blood_lua_projectile_aura", -- modifier name
 			{  } -- kv
 		)
 

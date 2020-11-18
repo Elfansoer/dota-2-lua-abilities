@@ -978,6 +978,11 @@
 #base "../vscripts/lua_abilities/crystal_maiden_arcane_aura_lua/crystal_maiden_arcane_aura_lua.txt"
 #base "../vscripts/lua_abilities/crystal_maiden_freezing_field_lua/crystal_maiden_freezing_field_lua.txt"
 
+#base "../vscripts/lua_abilities/dark_seer_vacuum_lua/dark_seer_vacuum_lua.txt"
+#base "../vscripts/lua_abilities/dark_seer_ion_shell_lua/dark_seer_ion_shell_lua.txt"
+#base "../vscripts/lua_abilities/dark_seer_surge_lua/dark_seer_surge_lua.txt"
+#base "../vscripts/lua_abilities/dark_seer_wall_of_replica_lua/dark_seer_wall_of_replica_lua.txt"
+
 #base "../vscripts/lua_abilities/dark_willow_bramble_maze_lua/dark_willow_bramble_maze_lua.txt"
 #base "../vscripts/lua_abilities/dark_willow_shadow_realm_lua/dark_willow_shadow_realm_lua.txt"
 #base "../vscripts/lua_abilities/dark_willow_cursed_crown_lua/dark_willow_cursed_crown_lua.txt"
@@ -1087,6 +1092,11 @@
 #base "../vscripts/lua_abilities/luna_lunar_blessing_lua/luna_lunar_blessing_lua.txt"
 #base "../vscripts/lua_abilities/luna_eclipse_lua/luna_eclipse_lua.txt"
 
+#base "../vscripts/lua_abilities/magnus_shockwave_lua/magnus_shockwave_lua.txt"
+#base "../vscripts/lua_abilities/magnus_empower_lua/magnus_empower_lua.txt"
+#base "../vscripts/lua_abilities/magnus_skewer_lua/magnus_skewer_lua.txt"
+#base "../vscripts/lua_abilities/magnus_reverse_polarity_lua/magnus_reverse_polarity_lua.txt"
+
 #base "../vscripts/lua_abilities/mars_spear_of_mars_lua/mars_spear_of_mars_lua.txt"
 #base "../vscripts/lua_abilities/mars_bulwark_lua/mars_bulwark_lua.txt"
 #base "../vscripts/lua_abilities/mars_gods_rebuke_lua/mars_gods_rebuke_lua.txt"
@@ -1099,6 +1109,9 @@
 
 #base "../vscripts/lua_abilities/mirana_sacred_arrow_lua/mirana_sacred_arrow_lua.txt"
 #base "../vscripts/lua_abilities/mirana_leap_lua/mirana_leap_lua.txt"
+
+#base "../vscripts/lua_abilities/monkey_king_tree_dance_lua/monkey_king_tree_dance_lua.txt"
+#base "../vscripts/lua_abilities/monkey_king_primal_spring_lua/monkey_king_primal_spring_lua.txt"
 
 #base "../vscripts/lua_abilities/naga_siren_mirror_image_lua/naga_siren_mirror_image_lua.txt"
 #base "../vscripts/lua_abilities/naga_siren_ensnare_lua/naga_siren_ensnare_lua.txt"
@@ -1122,6 +1135,7 @@
 #base "../vscripts/lua_abilities/outworld_devourer_sanitys_eclipse_lua/outworld_devourer_sanitys_eclipse_lua.txt"
 
 #base "../vscripts/lua_abilities/pangolier_swashbuckle_lua/pangolier_swashbuckle_lua.txt"
+#base "../vscripts/lua_abilities/pangolier_shield_crash_lua/pangolier_shield_crash_lua.txt"
 
 #base "../vscripts/lua_abilities/phantom_assassin_stifling_dagger_lua/phantom_assassin_stifling_dagger_lua.txt"
 #base "../vscripts/lua_abilities/phantom_assassin_phantom_strike_lua/phantom_assassin_phantom_strike_lua.txt"
@@ -1166,6 +1180,7 @@
 #base "../vscripts/lua_abilities/slardar_corrosive_haze_lua/slardar_corrosive_haze_lua.txt"
 
 #base "../vscripts/lua_abilities/slark_dark_pact_lua/slark_dark_pact_lua.txt"
+#base "../vscripts/lua_abilities/slark_pounce_lua/slark_pounce_lua.txt"
 #base "../vscripts/lua_abilities/slark_essence_shift_lua/slark_essence_shift_lua.txt"
 #base "../vscripts/lua_abilities/slark_shadow_dance_lua/slark_shadow_dance_lua.txt"
 
@@ -1179,6 +1194,16 @@
 #base "../vscripts/lua_abilities/sniper_take_aim_lua/sniper_take_aim_lua.txt"
 #base "../vscripts/lua_abilities/sniper_assassinate_lua/sniper_assassinate_lua.txt"
 
+#base "../vscripts/lua_abilities/storm_spirit_static_remnant_lua/storm_spirit_static_remnant_lua.txt"
+#base "../vscripts/lua_abilities/storm_spirit_electric_vortex_lua/storm_spirit_electric_vortex_lua.txt"
+#base "../vscripts/lua_abilities/storm_spirit_overload_lua/storm_spirit_overload_lua.txt"
+#base "../vscripts/lua_abilities/storm_spirit_ball_lightning_lua/storm_spirit_ball_lightning_lua.txt"
+
+#base "../vscripts/lua_abilities/terrorblade_reflection_lua/terrorblade_reflection_lua.txt"
+#base "../vscripts/lua_abilities/terrorblade_conjure_image_lua/terrorblade_conjure_image_lua.txt"
+#base "../vscripts/lua_abilities/terrorblade_metamorphosis_lua/terrorblade_metamorphosis_lua.txt"
+#base "../vscripts/lua_abilities/terrorblade_sunder_lua/terrorblade_sunder_lua.txt"
+
 #base "../vscripts/lua_abilities/tidehunter_gush_lua/tidehunter_gush_lua.txt"
 #base "../vscripts/lua_abilities/tidehunter_anchor_smash_lua/tidehunter_anchor_smash_lua.txt"
 
@@ -1191,6 +1216,8 @@
 #base "../vscripts/lua_abilities/tinker_heat_seeking_missile_lua/tinker_heat_seeking_missile_lua.txt"
 #base "../vscripts/lua_abilities/tinker_march_of_the_machines_lua/tinker_march_of_the_machines_lua.txt"
 #base "../vscripts/lua_abilities/tinker_rearm_lua/tinker_rearm_lua.txt"
+
+#base "../vscripts/lua_abilities/tiny_toss_lua/tiny_toss_lua.txt"
 
 #base "../vscripts/lua_abilities/underlord_firestorm_lua/underlord_firestorm_lua.txt"
 #base "../vscripts/lua_abilities/underlord_pit_of_malice_lua/underlord_pit_of_malice_lua.txt"

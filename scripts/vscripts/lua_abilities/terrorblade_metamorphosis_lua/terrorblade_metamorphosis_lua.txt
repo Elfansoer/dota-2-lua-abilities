@@ -1,0 +1,109 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Terrorblade: Metamorphosis (Lua version)
+	//=================================================================================================================
+	"terrorblade_metamorphosis_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/terrorblade_metamorphosis_lua/terrorblade_metamorphosis_lua"
+		"AbilityTextureName"			"terrorblade_metamorphosis_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+        "HasScepterUpgrade"			"1"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"155.0"
+		"AbilityManaCost"				"100"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"40 44 48 52"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"transformation_time"	"0.35"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_attack_time"		"1.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_range"			"400"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_attack_range"			"550"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"20 40 60 80"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed_loss"				"0"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"metamorph_aura_tooltip"				"1200"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fear_duration"		"3.75"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_cooldown_reduction"		"0"
+			}
+			"11"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_radius"				"1600"
+			}
+			"12"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_speed"				"1000"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_spawn_delay"		"0.6"
+			}
+		}
+	}
+}

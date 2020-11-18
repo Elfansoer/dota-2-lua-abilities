@@ -1,0 +1,164 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Monkey King: Primal Spring (Lua version)
+	//=================================================================================================================
+	"monkey_king_primal_spring_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/monkey_king_primal_spring_lua/monkey_king_primal_spring_lua"
+		"AbilityTextureName"			"monkey_king_primal_spring_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+//		"precache"
+//		{
+//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+		"AbilityCastRange"				"0"
+		"AbilityChannelTime"			"1.7"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"19 17 15 13"
+		"AbilityManaCost"				"100"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"leap_speed"				"700"
+			}
+			"02" // this should belong to Spring ability but for how it gets called it's simpler to have Tree Jump own it
+			{
+				"var_type"					"FIELD_INTEGER"
+				"spring_leap_speed"			"1300"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"give_up_distance"			"1850"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ground_jump_distance"		"1000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"perched_jump_distance"		"1000"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"jump_damage_cooldown"		"3.0"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"perched_day_vision"			"800"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"perched_night_vision"			"400"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"perched_spot_height"		"192.0"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"unperched_stunned_duration"	"4.0"
+			}
+			"11"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"top_level_height"			"500"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_damage"			"140 210 280 350"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_movement_slow"	"20 40 60 80"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"impact_slow_duration"	"4.0"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_distance"			"1000"
+			}
+			"16"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impact_radius"			"375"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Monkey King: Primal Spring (Early) (Lua version)
+	//=================================================================================================================
+	"monkey_king_primal_spring_early_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/monkey_king_primal_spring_lua/monkey_king_primal_spring_lua"
+		"AbilityTextureName"			"monkey_king_primal_spring_lua"
+		"MaxLevel"						"4"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0 0 0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+	}
+}
