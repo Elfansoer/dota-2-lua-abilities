@@ -1039,6 +1039,11 @@
 #base "../vscripts/lua_abilities/grimstroke_ink_swell_lua/grimstroke_ink_swell_lua.txt"
 #base "../vscripts/lua_abilities/grimstroke_soulbind_lua/grimstroke_soulbind_lua.txt"
 
+#base "../vscripts/lua_abilities/hoodwink_acorn_shot_lua/hoodwink_acorn_shot_lua.txt"
+#base "../vscripts/lua_abilities/hoodwink_bushwhack_lua/hoodwink_bushwhack_lua.txt"
+#base "../vscripts/lua_abilities/hoodwink_scurry_lua/hoodwink_scurry_lua.txt"
+#base "../vscripts/lua_abilities/hoodwink_sharpshooter_lua/hoodwink_sharpshooter_lua.txt"
+
 #base "../vscripts/lua_abilities/huskar_inner_vitality_lua/huskar_inner_vitality_lua.txt"
 #base "../vscripts/lua_abilities/huskar_burning_spear_lua/huskar_burning_spear_lua.txt"
 #base "../vscripts/lua_abilities/huskar_berserkers_blood_lua/huskar_berserkers_blood_lua.txt"

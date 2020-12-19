@@ -1,0 +1,87 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Hoodwink: Acorn Shot (Lua version)
+	//=================================================================================================================
+	"hoodwink_acorn_shot_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/hoodwink_acorn_shot_lua/hoodwink_acorn_shot_lua"
+		"AbilityTextureName"			"hoodwink_acorn_shot"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"575"
+		"AbilityCastPoint"				"0.2"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16 14 12 10"
+		"AbilityManaCost"				"75 85 95 105"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{	
+				"var_type"				"FIELD_INTEGER"
+				"bonus_range"			"125 200 275 350"
+			}
+			"02"
+			{	
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"25 50 75 100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"projectile_speed"		"2000"
+			}
+			"04"
+			{	
+				"var_type"				"FIELD_INTEGER"
+				"bounce_count"			"3 4 5 6"
+			}
+			"05"
+			{	
+				"var_type"				"FIELD_INTEGER"
+				"bounce_range"			"525"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_duration"		"0.25"
+			}
+			"07"
+			{	
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"100"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bounce_delay"			"0.1"
+			}
+		}
+	}
+}

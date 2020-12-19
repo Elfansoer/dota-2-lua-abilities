@@ -1,0 +1,64 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Hoodwink: Scurry (Lua version)
+	//=================================================================================================================
+	"hoodwink_scurry_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/hoodwink_scurry_lua/hoodwink_scurry_lua"
+		"AbilityTextureName"			"hoodwink_scurry"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+		"AbilityCastRange"				"275"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+		"AbilityManaCost"				"35"
+		"AbilityCharges"				"2"
+		"AbilityChargeRestoreTime"		"30 25 20 15"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"275"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"movement_speed_pct"			"25 30 35 40"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"4.0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"evasion"						"8 16 24 32"
+			}
+		}
+	}
+}
