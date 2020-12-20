@@ -43,7 +43,6 @@ function hoodwink_bushwhack_lua:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	-- load data
-	local projectile_name = "particles/units/heroes/hero_hoodwink/hoodwink_bushwhack.vpcf"
 	local projectile_speed = self:GetSpecialValueFor( "projectile_speed" )
 
 	-- calculate delay

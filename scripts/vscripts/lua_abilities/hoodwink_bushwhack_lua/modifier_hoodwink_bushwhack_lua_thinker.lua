@@ -168,7 +168,8 @@ end
 function modifier_hoodwink_bushwhack_lua_thinker:PlayEffects2( success )
 	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_hoodwink/hoodwink_bushwhack_fail.vpcf"
-	local sound_cast = "Hero_Hoodwink.Bushwhack.Impact"
+	local sound_cast = "Hero_Hoodwink.Bushwhack.Cast"
+	local sound_location = "Hero_Hoodwink.Bushwhack.Impact"
 	if success then
 		particle_cast = "particles/units/heroes/hero_hoodwink/hoodwink_bushwhack.vpcf"
 	end
@@ -182,5 +183,6 @@ function modifier_hoodwink_bushwhack_lua_thinker:PlayEffects2( success )
 	if success then return end
 
 	-- Create Sound
+	StopSoundOn( sound_cast, self.caster )
 	EmitSoundOnLocationWithCaster( self.location, sound_location, self.caster )
 end

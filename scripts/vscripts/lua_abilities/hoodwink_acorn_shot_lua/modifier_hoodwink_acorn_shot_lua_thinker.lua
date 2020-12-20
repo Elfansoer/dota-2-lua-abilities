@@ -23,7 +23,6 @@ function modifier_hoodwink_acorn_shot_lua_thinker:OnCreated( kv )
 
 	-- references
 	self.projectile_name = "particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_tracking.vpcf"
-	-- self.projectile_name = "particles/units/heroes/hero_rubick/rubick_base_attack.vpcf"
 
 	self.projectile_speed = self:GetAbility():GetSpecialValueFor( "projectile_speed" )
 	self.bounces = self:GetAbility():GetSpecialValueFor( "bounce_count" )+1
@@ -49,7 +48,6 @@ function modifier_hoodwink_acorn_shot_lua_thinker:OnCreated( kv )
 		bDodgeable = true,                           -- Optional
 	
 		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
-		-- vSourceLoc = caster:GetAbsOrigin(),                -- Optional (HOW)
 
 		bVisibleToEnemies = true,                         -- Optional
 		bProvidesVision = true,                           -- Optional
@@ -60,7 +58,7 @@ function modifier_hoodwink_acorn_shot_lua_thinker:OnCreated( kv )
 		}
 	}
 
-	-- Start interval
+	-- Start bounce in next frame
 	self:StartIntervalThink( 0 )
 end
 

@@ -40,14 +40,15 @@ function modifier_hoodwink_sharpshooter_lua:OnCreated( kv )
 	self.charge = self:GetAbility():GetSpecialValueFor( "max_charge_time" )
 	self.damage = self:GetAbility():GetSpecialValueFor( "max_damage" )
 	self.duration = self:GetAbility():GetSpecialValueFor( "max_slow_debuff_duration" )
-	self.turn_rate = -self:GetAbility():GetSpecialValueFor( "turn_rate" )
+	self.turn_rate = self:GetAbility():GetSpecialValueFor( "turn_rate" )
 
 	self.recoil_distance = self:GetAbility():GetSpecialValueFor( "recoil_distance" )
 	self.recoil_duration = self:GetAbility():GetSpecialValueFor( "recoil_duration" )
 	self.recoil_height = self:GetAbility():GetSpecialValueFor( "recoil_height" )
 
 	-- set interval on both cl and sv
-	self:StartIntervalThink( 0.03 )
+	self.interval = 0.03 
+	self:StartIntervalThink( self.interval )
 
 	if not IsServer() then return end
 
@@ -57,6 +58,14 @@ function modifier_hoodwink_sharpshooter_lua:OnCreated( kv )
 	self.projectile_width = self:GetAbility():GetSpecialValueFor( "arrow_width" )
 	local projectile_vision = self:GetAbility():GetSpecialValueFor( "arrow_vision" )
 	local projectile_name = "particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_projectile.vpcf"
+
+	-- init turn logic
+	local vec = Vector( kv.x, kv.y, 0 )
+	self:SetDirection( vec )
+	self.current_dir = self.target_dir
+	self.face_target = true
+	self.parent:SetForwardVector( self.current_dir )
+	self.turn_speed = self.interval*self.turn_rate
 
 	-- precache projectile
 	self.info = {
@@ -87,6 +96,9 @@ function modifier_hoodwink_sharpshooter_lua:OnCreated( kv )
 	-- create order filter using library
 	self.filter = FilterManager:AddExecuteOrderFilter( self.OrderFilter, self )
 
+	-- swap abilities
+	self.caster:SwapAbilities( "hoodwink_sharpshooter_lua", "hoodwink_sharpshooter_release_lua", false, true )
+
 	-- play effects
 	self:PlayEffects1()
 	self:PlayEffects2()
@@ -103,7 +115,7 @@ function modifier_hoodwink_sharpshooter_lua:OnDestroy()
 	if not IsServer() then return end
 
 	-- calculate direction
-	local direction = self.parent:GetForwardVector()
+	local direction = self.current_dir
 
 	-- calculate percentage
 	local pct = math.min( self:GetElapsedTime(), self.charge )/self.charge
@@ -130,8 +142,13 @@ function modifier_hoodwink_sharpshooter_lua:OnDestroy()
 			duration = self.recoil_duration,
 			height = self.recoil_height,
 			distance = self.recoil_distance,
+			direction_x = -direction.x,
+			direction_y = -direction.y,
 		} -- kv
 	)
+
+	-- swap abilities
+	self.caster:SwapAbilities( "hoodwink_sharpshooter_lua", "hoodwink_sharpshooter_release_lua", true, false )
 
 	-- Remove filter from library
 	FilterManager:RemoveExecuteOrderFilter( self.filter )
@@ -144,11 +161,11 @@ end
 -- Modifier Effects
 function modifier_hoodwink_sharpshooter_lua:DeclareFunctions()
 	local funcs = {
-		-- MODIFIER_EVENT_ON_ORDER,
+		MODIFIER_EVENT_ON_ORDER,
 		
-		-- MODIFIER_PROPERTY_DISABLE_TURNING,
+		MODIFIER_PROPERTY_DISABLE_TURNING,
 		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE,
+		-- MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE,
 	}
 
 	return funcs
@@ -157,21 +174,10 @@ end
 function modifier_hoodwink_sharpshooter_lua:OnOrder( params )
 	if params.unit~=self:GetParent() then return end
 
-	-- right click, switch position
-	if 	params.order_type==DOTA_UNIT_ORDER_MOVE_TO_POSITION then
-		-- face towards
-		self.parent:FaceTowards( params.new_pos )
-
-	elseif 
-		params.order_type==DOTA_UNIT_ORDER_MOVE_TO_TARGET or
-		params.order_type==DOTA_UNIT_ORDER_ATTACK_TARGET
-	then
-		self.parent:FaceTowards( params.target:GetOrigin() )
-
-	elseif
+	if
 		params.order_type==DOTA_UNIT_ORDER_MOVE_TO_DIRECTION
 	then
-		self.parent:FaceTowards( params.new_pos )
+		self:SetDirection( params.new_pos )
 
 	-- stop or hold
 	elseif 
@@ -187,7 +193,7 @@ function modifier_hoodwink_sharpshooter_lua:GetModifierMoveSpeed_Limit()
 end
 
 function modifier_hoodwink_sharpshooter_lua:GetModifierTurnRate_Percentage()
-	return self.turn_rate
+	return -self.turn_rate
 end
 
 function modifier_hoodwink_sharpshooter_lua:GetModifierDisableTurning()
@@ -213,14 +219,8 @@ function modifier_hoodwink_sharpshooter_lua:OnIntervalThink()
 		return
 	end
 
-	-- max charge sound
-	if not self.charged and self:GetElapsedTime()>self.charge then
-		self.charged = true
-
-		-- play effects
-		local sound_cast = "Hero_Hoodwink.Sharpshooter.MaxCharge"
-		EmitSoundOnClient( sound_cast, self.parent:GetPlayerOwner() )
-	end
+	-- turning logic
+	self:TurnLogic()
 
 	-- vision
 	-- NOTE: Can be optimized if there's a way to move vision provider dynamically
@@ -230,6 +230,15 @@ function modifier_hoodwink_sharpshooter_lua:OnIntervalThink()
 	for i=1,visions do
 		AddFOWViewer( self.team, startpos, self.projectile_width, 0.1, false )
 		startpos = startpos + delta
+	end
+
+	-- max charge sound
+	if not self.charged and self:GetElapsedTime()>self.charge then
+		self.charged = true
+
+		-- play effects
+		local sound_cast = "Hero_Hoodwink.Sharpshooter.MaxCharge"
+		EmitSoundOnClient( sound_cast, self.parent:GetPlayerOwner() )
 	end
 
 	-- timer particle
@@ -247,6 +256,41 @@ function modifier_hoodwink_sharpshooter_lua:OnIntervalThink()
 
 	-- update paticle
 	self:UpdateEffect()
+end
+
+--------------------------------------------------------------------------------
+-- Helper
+function modifier_hoodwink_sharpshooter_lua:SetDirection( vec )
+	self.target_dir = ((vec-self.parent:GetOrigin())*Vector(1,1,0)):Normalized()
+	self.face_target = false
+end
+
+function modifier_hoodwink_sharpshooter_lua:TurnLogic()
+	-- only rotate when target changed
+	if self.face_target then return end
+
+	local current_angle = VectorToAngles( self.current_dir ).y
+	local target_angle = VectorToAngles( self.target_dir ).y
+	local angle_diff = AngleDiff( current_angle, target_angle )
+
+	local sign = -1
+	if angle_diff<0 then sign = 1 end
+
+	-- end rotating
+	if math.abs( angle_diff )<1.1*self.turn_speed then
+		self.face_target = true
+		return
+	end
+
+	-- rotate
+	self.current_dir = RotatePosition( Vector(0,0,0), QAngle(0, sign*self.turn_speed, 0), self.current_dir )
+
+	-- set facing when not motion controlled
+	local a = self.parent:IsCurrentlyHorizontalMotionControlled()
+	local b = self.parent:IsCurrentlyVerticalMotionControlled()
+	if not (a or b) then
+		self.parent:SetForwardVector( self.current_dir )
+	end
 end
 
 function modifier_hoodwink_sharpshooter_lua:UpdateStack()
@@ -390,7 +434,7 @@ function modifier_hoodwink_sharpshooter_lua:UpdateEffect()
 
 	-- Get Data
 	local startpos = self.parent:GetAbsOrigin()
-	local endpos = startpos + self.parent:GetForwardVector() * self.projectile_range
+	local endpos = startpos + self.current_dir * self.projectile_range
 
 	ParticleManager:SetParticleControl( self.effect_cast, 0, startpos )
 	ParticleManager:SetParticleControl( self.effect_cast, 1, endpos )

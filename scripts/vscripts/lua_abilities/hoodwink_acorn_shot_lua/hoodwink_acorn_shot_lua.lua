@@ -29,6 +29,12 @@ function hoodwink_acorn_shot_lua:Spawn()
 end
 
 --------------------------------------------------------------------------------
+-- Custom KV
+function hoodwink_acorn_shot_lua:GetCastRange( vLocation, hTarget )
+	return self:GetCaster():Script_GetAttackRange() + self:GetSpecialValueFor( "bonus_range" )
+end
+
+--------------------------------------------------------------------------------
 -- Ability Start
 function hoodwink_acorn_shot_lua:OnSpellStart()
 	-- unit identifier
@@ -37,7 +43,7 @@ function hoodwink_acorn_shot_lua:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	-- Hardcoded as it has no kv value
-	self.tree_duration = 19
+	self.tree_duration = 20
 	self.tree_vision = 300
 
 	-- create thinker
@@ -63,6 +69,7 @@ function hoodwink_acorn_shot_lua:OnSpellStart()
 	local sound_cast = "Hero_Hoodwink.AcornShot.Cast"
 	EmitSoundOn( sound_cast, caster )
 end
+
 --------------------------------------------------------------------------------
 -- Projectile
 function hoodwink_acorn_shot_lua:OnProjectileHit_ExtraData( target, location, ExtraData )
@@ -147,6 +154,22 @@ function hoodwink_acorn_shot_lua:CreateTree( location )
 
 	-- tree
 	local tree = CreateTempTreeWithModel( location, self.tree_duration, "models/heroes/hoodwink/hoodwink_tree_model.vmdl" )
+
+	-- move everyone on tree collision so they don't get stuck
+	local units = FindUnitsInRadius(
+		self:GetCaster():GetTeamNumber(),	-- int, your team number
+		location,	-- point, center point
+		nil,	-- handle, cacheUnit. (not known)
+		50,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+		DOTA_UNIT_TARGET_TEAM_BOTH,	-- int, team filter
+		DOTA_UNIT_TARGET_ALL,	-- int, type filter
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	-- int, flag filter
+		0,	-- int, order filter
+		false	-- bool, can grow cache
+	)
+	for _,unit in pairs(units) do
+		FindClearSpaceForUnit( unit, location, true )
+	end
 
 	self:PlayEffects1( tree, location )
 	self:PlayEffects2( tree, location )

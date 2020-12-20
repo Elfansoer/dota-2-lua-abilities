@@ -11,8 +11,7 @@ Ability checklist (erase if done/checked):
 
 --[[
 NOTE:
-- Difference: Does not use secondary ability: use Stop command instead to launch early. Launch secondary ability examples can be found on Alche's Unstable Concoction
-- Turn rate is faster than original. Maybe original uses manual turning.
+- Difference: can use Stop command instead to launch early.
 - No projectile sound, don't want to create dummy just for sound
 ]]
 
@@ -47,12 +46,22 @@ function hoodwink_sharpshooter_lua:OnSpellStart()
 	-- load data
 	local duration = self:GetSpecialValueFor( "misfire_time" )
 
+	-- add secondary ability if doesn't exist
+	if not caster:FindAbilityByName( "hoodwink_sharpshooter_release_lua" ) then
+		local ability = caster:AddAbility( "hoodwink_sharpshooter_release_lua" )
+		ability:SetLevel( 1 )
+	end
+
 	-- add modifier
 	caster:AddNewModifier(
 		caster, -- player source
 		self, -- ability source
 		"modifier_hoodwink_sharpshooter_lua", -- modifier name
-		{ duration = duration } -- kv
+		{
+			duration = duration,
+			x = point.x,
+			y = point.y,
+		} -- kv
 	)
 end
 --------------------------------------------------------------------------------
@@ -85,6 +94,7 @@ function hoodwink_sharpshooter_lua:OnProjectileHit_ExtraData( target, location, 
 		} -- kv
 	)
 
+
 	-- play effects
 	local direction = Vector( ExtraData.x, ExtraData.y, 0 ):Normalized()
 	self:PlayEffects( target, direction )
@@ -110,4 +120,16 @@ function hoodwink_sharpshooter_lua:PlayEffects( target, direction )
 
 	-- Create Sound
 	EmitSoundOn( sound_cast, target )
+end
+
+
+--------------------------------------------------------------------------------
+-- Secondary Ability
+hoodwink_sharpshooter_release_lua = class({})
+function hoodwink_sharpshooter_release_lua:OnSpellStart()
+	-- find modifier
+	local mod = self:GetCaster():FindModifierByName( "modifier_hoodwink_sharpshooter_lua" )
+	if not mod then return end
+
+	mod:Destroy()
 end
