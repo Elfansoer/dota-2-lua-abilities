@@ -160,7 +160,7 @@ function hoodwink_acorn_shot_lua:CreateTree( location )
 		self:GetCaster():GetTeamNumber(),	-- int, your team number
 		location,	-- point, center point
 		nil,	-- handle, cacheUnit. (not known)
-		50,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+		100,	-- float, radius. or use FIND_UNITS_EVERYWHERE
 		DOTA_UNIT_TARGET_TEAM_BOTH,	-- int, team filter
 		DOTA_UNIT_TARGET_ALL,	-- int, type filter
 		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	-- int, flag filter
@@ -168,7 +168,7 @@ function hoodwink_acorn_shot_lua:CreateTree( location )
 		false	-- bool, can grow cache
 	)
 	for _,unit in pairs(units) do
-		FindClearSpaceForUnit( unit, location, true )
+		FindClearSpaceForUnit( unit, unit:GetOrigin(), true )
 	end
 
 	self:PlayEffects1( tree, location )

@@ -9,12 +9,6 @@ Ability checklist (erase if done/checked):
 - Stolen behavior
 ]]
 
---[[
-NOTE:
-- Difference: can use Stop command instead to launch early.
-- No projectile sound, don't want to create dummy just for sound
-]]
-
 --------------------------------------------------------------------------------
 hoodwink_sharpshooter_lua = class({})
 LinkLuaModifier( "modifier_generic_knockback_lua", "lua_abilities/generic/modifier_generic_knockback_lua", LUA_MODIFIER_MOTION_BOTH )
@@ -64,9 +58,23 @@ function hoodwink_sharpshooter_lua:OnSpellStart()
 		} -- kv
 	)
 end
+
 --------------------------------------------------------------------------------
 -- Projectile
+function hoodwink_sharpshooter_lua:OnProjectileThink_ExtraData( location, ExtraData )
+	local sound = EntIndexToHScript( ExtraData.sound )
+	if not sound or sound:IsNull() then return end
+	sound:SetOrigin( location )
+end
+
 function hoodwink_sharpshooter_lua:OnProjectileHit_ExtraData( target, location, ExtraData )
+	-- stop projectile sound
+	local sound = EntIndexToHScript( ExtraData.sound )
+	if not sound or sound:IsNull() then return end
+	local sound_projectile = "Hero_Hoodwink.Sharpshooter.Projectile"
+	StopSoundOn( sound_projectile, sound )
+	UTIL_Remove( sound )
+
 	if not target then return end
 
 	local caster = self:GetCaster()
@@ -94,6 +102,17 @@ function hoodwink_sharpshooter_lua:OnProjectileHit_ExtraData( target, location, 
 		} -- kv
 	)
 
+	-- overhead damage info
+	SendOverheadEventMessage(
+		nil,
+		OVERHEAD_ALERT_BONUS_SPELL_DAMAGE,
+		target,
+		ExtraData.damage,
+		self:GetCaster():GetPlayerOwner()
+	)
+
+	-- Vision
+	AddFOWViewer( self:GetCaster():GetTeamNumber(), target:GetOrigin(), 300, 4, false)
 
 	-- play effects
 	local direction = Vector( ExtraData.x, ExtraData.y, 0 ):Normalized()
@@ -121,7 +140,6 @@ function hoodwink_sharpshooter_lua:PlayEffects( target, direction )
 	-- Create Sound
 	EmitSoundOn( sound_cast, target )
 end
-
 
 --------------------------------------------------------------------------------
 -- Secondary Ability

@@ -35,6 +35,7 @@ function modifier_hoodwink_sharpshooter_lua:OnCreated( kv )
 	-- references
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 	self.team = self.parent:GetTeamNumber()
 
 	self.charge = self:GetAbility():GetSpecialValueFor( "max_charge_time" )
@@ -93,9 +94,6 @@ function modifier_hoodwink_sharpshooter_lua:OnCreated( kv )
 		iVisionTeamNumber = self.caster:GetTeamNumber()
 	}
 
-	-- create order filter using library
-	self.filter = FilterManager:AddExecuteOrderFilter( self.OrderFilter, self )
-
 	-- swap abilities
 	self.caster:SwapAbilities( "hoodwink_sharpshooter_lua", "hoodwink_sharpshooter_release_lua", false, true )
 
@@ -124,13 +122,26 @@ function modifier_hoodwink_sharpshooter_lua:OnDestroy()
 	self.info.vSpawnOrigin = self.parent:GetOrigin()
 	self.info.vVelocity = direction * self.projectile_speed
 
+	-- Create thinker for sound
+	local sound = CreateModifierThinker(
+		self.caster, -- player source
+		self, -- ability source
+		"", -- modifier name
+		{}, -- kv
+		self.caster:GetOrigin(),
+		self.team,
+		false
+	)
+	local sound_cast = "Hero_Hoodwink.Sharpshooter.Projectile"
+	EmitSoundOn( sound_cast, sound )
+
 	self.info.ExtraData = {
 		damage = self.damage * pct,
 		duration = self.duration * pct,
 		x = direction.x,
-		y = direction.y
+		y = direction.y,
+		sound = sound:entindex(),
 	}
-
 	ProjectileManager:CreateLinearProjectile( self.info )
 
 	-- knockback
@@ -149,9 +160,6 @@ function modifier_hoodwink_sharpshooter_lua:OnDestroy()
 
 	-- swap abilities
 	self.caster:SwapAbilities( "hoodwink_sharpshooter_lua", "hoodwink_sharpshooter_release_lua", true, false )
-
-	-- Remove filter from library
-	FilterManager:RemoveExecuteOrderFilter( self.filter )
 
 	-- play effects
 	self:PlayEffects4( mod )
@@ -174,17 +182,20 @@ end
 function modifier_hoodwink_sharpshooter_lua:OnOrder( params )
 	if params.unit~=self:GetParent() then return end
 
-	if
+	-- point right click
+	if 	params.order_type==DOTA_UNIT_ORDER_MOVE_TO_POSITION or
 		params.order_type==DOTA_UNIT_ORDER_MOVE_TO_DIRECTION
 	then
+		-- set facing
 		self:SetDirection( params.new_pos )
 
-	-- stop or hold
+	-- targetted right click
 	elseif 
-		params.order_type==DOTA_UNIT_ORDER_STOP or
-		params.order_type==DOTA_UNIT_ORDER_HOLD_POSITION
+		params.order_type==DOTA_UNIT_ORDER_MOVE_TO_TARGET or
+		params.order_type==DOTA_UNIT_ORDER_ATTACK_TARGET
 	then
-		self:Destroy()
+		-- set facing
+		self:SetDirection( params.target:GetOrigin() )
 	end
 end
 
@@ -276,14 +287,14 @@ function modifier_hoodwink_sharpshooter_lua:TurnLogic()
 	local sign = -1
 	if angle_diff<0 then sign = 1 end
 
-	-- end rotating
 	if math.abs( angle_diff )<1.1*self.turn_speed then
+		-- end rotating
+		self.current_dir = self.target_dir
 		self.face_target = true
-		return
+	else
+		-- rotate
+		self.current_dir = RotatePosition( Vector(0,0,0), QAngle(0, sign*self.turn_speed, 0), self.current_dir )
 	end
-
-	-- rotate
-	self.current_dir = RotatePosition( Vector(0,0,0), QAngle(0, sign*self.turn_speed, 0), self.current_dir )
 
 	-- set facing when not motion controlled
 	local a = self.parent:IsCurrentlyHorizontalMotionControlled()

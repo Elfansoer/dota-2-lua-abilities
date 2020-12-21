@@ -180,8 +180,6 @@ function modifier_hoodwink_bushwhack_lua_thinker:PlayEffects2( success )
 	ParticleManager:SetParticleControl( effect_cast, 1, Vector( self.radius, 0, 0 ) )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
-	if success then return end
-
 	-- Create Sound
 	StopSoundOn( sound_cast, self.caster )
 	EmitSoundOnLocationWithCaster( self.location, sound_location, self.caster )
