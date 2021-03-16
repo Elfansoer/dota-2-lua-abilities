@@ -1234,6 +1234,10 @@
 #base "../vscripts/lua_abilities/ursa_fury_swipes_lua/ursa_fury_swipes_lua.txt"
 #base "../vscripts/lua_abilities/ursa_enrage_lua/ursa_enrage_lua.txt"
 
+#base "../vscripts/lua_abilities/venomancer_venomous_gale_lua/venomancer_venomous_gale_lua.txt"
+#base "../vscripts/lua_abilities/venomancer_poison_sting_lua/venomancer_poison_sting_lua.txt"
+#base "../vscripts/lua_abilities/venomancer_poison_nova_lua/venomancer_poison_nova_lua.txt"
+
 #base "../vscripts/lua_abilities/viper_poison_attack_lua/viper_poison_attack_lua.txt"
 #base "../vscripts/lua_abilities/viper_nethertoxin_lua/viper_nethertoxin_lua.txt"
 #base "../vscripts/lua_abilities/viper_corrosive_skin_lua/viper_corrosive_skin_lua.txt"

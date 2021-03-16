@@ -756,6 +756,17 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Disruptor (Venomancer)
+	//=================================================================================================================
+	"npc_dota_hero_disruptor_lua"
+	{
+		"override_hero"					"npc_dota_hero_disruptor"	// Hero to override
+		"Ability1"				"venomancer_venomous_gale_lua"						// Ability 1
+		"Ability2"				"venomancer_poison_sting_lua"						// Ability 2
+		"Ability6"				"venomancer_poison_nova_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Grimstroke (Viper)
 	//=================================================================================================================
 	"npc_dota_hero_grimstroke_lua"

@@ -1,12 +1,22 @@
 -- Created by Elfansoer
 --[[
-Ability checklist (erase if done/checked):
-- Scepter Upgrade
-- Break behavior
-- Linken/Reflect behavior
-- Spell Immune/Invulnerable/Invisible behavior
-- Illusion behavior
-- Stolen behavior
+	Usage parameters
+		kv.start_radius (0)
+		kv.end_radius (0)
+		kv.width (100)
+		kv.speed (0)
+
+		kv.target_team
+		kv.target_type
+		kv.target_flags
+
+		kv.IsCircle (1) -- 0: expanding radius, 1: expanding donut with width (hollow inside)
+
+	Callback set after creating modifier:
+		modifier:SetCallback( function( unit ) ... end ) -- MANDATORY
+		modifier:SetEndCallback( function() ... end )
+
+
 ]]
 --------------------------------------------------------------------------------
 modifier_generic_ring_lua = class({})
@@ -36,17 +46,6 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_generic_ring_lua:OnCreated( kv )
-	-- kv.start_radius (0)
-	-- kv.end_radius (0)
-	-- kv.width (100)
-	-- kv.speed (0)
-
-	-- default 0
-	-- kv.target_team
-	-- kv.target_type
-	-- kv.target_flags
-
-	-- modifier:SetCallback( function( unit ) ... end ) 
 
 	if not IsServer() then return end
 
@@ -60,6 +59,8 @@ function modifier_generic_ring_lua:OnCreated( kv )
 	self.target_type = kv.target_type or 0
 	self.target_flags = kv.target_flags or 0
 
+	self.IsCircle = kv.IsCircle or 1
+
 	self.targets = {}
 end
 
@@ -67,6 +68,9 @@ function modifier_generic_ring_lua:OnRemoved()
 end
 
 function modifier_generic_ring_lua:OnDestroy()
+	if self.EndCallback then
+		self.EndCallback()
+	end
 end
 
 function modifier_generic_ring_lua:SetCallback( callback )
@@ -75,6 +79,10 @@ function modifier_generic_ring_lua:SetCallback( callback )
 	-- Start interval
 	self:StartIntervalThink( 0.03 )
 	self:OnIntervalThink()
+end
+
+function modifier_generic_ring_lua:SetEndCallback( callback )
+	self.EndCallback = callback
 end
 
 --------------------------------------------------------------------------------
@@ -100,12 +108,19 @@ function modifier_generic_ring_lua:OnIntervalThink()
 	)
 
 	for _,target in pairs(targets) do
-		-- only check for targets that have not been hit, and within width
-		if not self.targets[target] and (target:GetOrigin()-self:GetParent():GetOrigin()):Length2D()>(radius-self.width) then
-			self.targets[target] = true
 
-			-- do something
-			self.Callback( target )
+		-- only unaffected unit
+		if not self.targets[target] then
+
+			-- check if it is within circle/chakram
+			if (not self.IsCircle) or (target:GetOrigin()-self:GetParent():GetOrigin()):Length2D()>(radius-self.width) then
+
+				self.targets[target] = true
+
+				-- do something
+				self.Callback( target )
+			end
 		end
+
 	end
 end
