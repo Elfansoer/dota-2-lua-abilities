@@ -85,14 +85,16 @@
 	}
 
 	//=================================================================================================================
-	// HERO: Legion Commander (Bloodseeker)
+	// HERO: Legion Commander (Red Transistor)
 	//=================================================================================================================
 	"npc_dota_hero_legion_commander_lua"
 	{
 		"override_hero"					"npc_dota_hero_legion_commander"	// Hero to override
-		//"Ability1"				"bane_enfeeble_lua"						// Ability 2
-		"Ability2"				"monkey_king_tree_dance_lua"						// Ability 3
-		"Ability3"				"monkey_king_primal_spring_lua"						// Ability 3
+		"Ability1"				"red_transistor_bounce"						// Ability 2
+		"Ability2"				"red_transistor_breach"						// Ability 3
+		"Ability3"				"red_transistor_crash"						// Ability 3
+		"Ability4"				"red_transistor_flood"						// Ability 3
+		"Ability5"				"red_transistor_access"						// Ability 3
 		//"Ability6"				"bane_fiends_grip_lua"							// Ability 6
 	}
 
