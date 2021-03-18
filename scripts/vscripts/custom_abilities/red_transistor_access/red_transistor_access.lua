@@ -18,9 +18,8 @@
 		- fixed by semi-aura
 	- Replace install uninstall by loop instead of hardcode name1 name2
 - Test issues
-	- Bounce/Ping/purge/switch get not working
-		- TODO: How nonpierce get should react to get
-
+	- Client/Panorama update should be broadcast to all client (minor)
+	- enemy modifiers should have greyed out in panorama (minor)
 ]]
 
 --------------------------------------------------------------------------------
@@ -51,7 +50,7 @@ end
 function generic_projectile:Spawn()
 	if not IsServer() then return end
 	self.modifiers = self.modifiers or {}
-	self.kv = LoadKeyValues( "scripts/npc/npc_abilities_custom.txt" )
+	-- self.kv = LoadKeyValues( "scripts/npc/npc_abilities_custom.txt" )
 
 end
 
@@ -59,8 +58,7 @@ end
 -- Install/Uninstall
 function generic_projectile:Install( access, name1, name2 )
 	self.access = access
-
-	print("Install",self:GetAbilityName(),name1,name2)
+	self.kv = access.kv
 
 	if name1 then
 		self.modifiers[1] = access.abilities[name1]
@@ -70,11 +68,33 @@ function generic_projectile:Install( access, name1, name2 )
 		self.modifiers[2] = access.abilities[name2]
 		self.modifiers[2]:ModifierInstall( self )
 	end
+
+	-- set access modifier (for client purposes)
+	local caster = self:GetCaster()
+	self.access_modifier = caster:AddNewModifier(
+		caster, -- player source
+		self, -- ability source
+		"modifier_red_transistor_access_modifiers", -- modifier name
+		{} -- kv
+	)
+
+	-- set stack
+	local id = access.ability_index[ self:GetAbilityName() ]
+	local id1 = access.ability_index[ name1 ]
+	local id2 = access.ability_index[ name2 ]
+	local stack = 10000*id2 + 100*id1 + id
+	self.access_modifier:SetStackCount( stack )
 end
 
 function generic_projectile:Uninstall()
 	for _,modifier in pairs(self.modifiers) do
 		modifier:ModifierUninstall( self )
+	end
+
+	-- destroy access modifier
+	if self.access_modifier and (not self.access_modifier:IsNull()) then
+		self.access_modifier:Destroy()
+		self.access_modifier = nil
 	end
 
 	self.modifiers = {}
@@ -85,11 +105,29 @@ function generic_projectile:Replace( access, name1, name2 )
 		self.modifiers[1]:ModifierUninstall( self )
 		self.modifiers[1] = access.abilities[name1]
 		self.modifiers[1]:ModifierInstall( self )
+
+		-- update access modifier
+		if self.access_modifier and (not self.access_modifier:IsNull()) then
+			local stack = self.access_modifier:GetStackCount()
+			local old_id = math.floor(stack/100)%100
+			local id1 = access.ability_index[ name1 ]
+			stack = stack - old_id*100 + id1*100
+			self.access_modifier:SetStackCount( stack )
+		end
 	end
 	if name2 then
 		self.modifiers[2]:ModifierUninstall( self )
 		self.modifiers[2] = access.abilities[name2]
 		self.modifiers[2]:ModifierInstall( self )
+
+		-- update access modifier
+		if self.access_modifier and (not self.access_modifier:IsNull()) then
+			local stack = self.access_modifier:GetStackCount()
+			local old_id = math.floor(stack/10000)%100
+			local id2 = access.ability_index[ name2 ]
+			stack = stack - old_id*10000 + id2*10000
+			self.access_modifier:SetStackCount( stack )
+		end
 	end
 end
 
@@ -829,7 +867,16 @@ local ability_index = {
 	["red_transistor_ping"] = 6,
 	["red_transistor_purge"] = 7,
 	["red_transistor_switch"] = 8,
-	["red_transistor_locked"] = 9,	
+	["red_transistor_locked"] = 17,	
+
+	["red_transistor_empty_1"] = 0,
+	["red_transistor_empty_2"] = 0,
+	["red_transistor_empty_3"] = 0,
+	["red_transistor_empty_4"] = 0,
+	["red_transistor_locked_1"] = 17,	
+	["red_transistor_locked_2"] = 17,	
+	["red_transistor_locked_3"] = 17,	
+	["red_transistor_locked_4"] = 17,	
 
 	[0] = "red_transistor_empty",
 	[1] = "red_transistor_bounce",
@@ -858,6 +905,12 @@ function red_transistor_access:Spawn()
 	-- get ability references
 	self.abilities = abilities
 	self.ability_index = ability_index
+	self.kv = LoadKeyValues( "scripts/npc/npc_abilities_custom.txt" )
+	for k,v in pairs(self.kv) do
+		if not self.ability_index[k] then
+			self.kv[k] = nil
+		end
+	end
 
 	-- set initial states as locked
 	self.list = {}
@@ -905,15 +958,6 @@ function red_transistor_access:EventUpgrade( ability )
 	local ctr = slot-1
 	self.list[ ctr*3 + ability:GetLevel()] = 0
 
-	-- local isLock = false
-	-- local name = ability:GetAbilityName()
-	-- for i=1,4 do
-	-- 	local lname = "red_transistor_locked_" .. i
-	-- 	if name==lname then
-	-- 		isLock = true
-	-- 	end
-	-- end
-
 	-- update abilities
 	if level==1 then
 		-- create Empty ability
@@ -940,6 +984,7 @@ function red_transistor_access:EventUpgrade( ability )
 		self.slots[slot] = empty
 
 		-- remove locked
+		ability:Uninstall()
 		caster:RemoveAbilityByHandle( ability )
 	elseif level==2 then
 		-- change locked upgrade to empty upgrade
@@ -947,6 +992,11 @@ function red_transistor_access:EventUpgrade( ability )
 	elseif level==3 then
 		ability:Replace( self, nil, "red_transistor_empty" )
 	end
+
+	-- Refresh Panorama
+	local caster = self:GetCaster()
+	local data = {}
+	CustomGameEventManager:Send_ServerToPlayer( caster:GetPlayerOwner(), "red_transistor_access", data )
 
 	self:PrintStatus()
 end
@@ -989,6 +1039,10 @@ function red_transistor_access.EventConfirm( playerID, data )
 	-- self:RefreshUpgrades()
 	-- self:RefreshClient()
 	
+	-- Refresh Panorama
+	local caster = self:GetCaster()
+	CustomGameEventManager:Send_ServerToPlayer( caster:GetPlayerOwner(), "red_transistor_access", data )
+
 	self:PrintStatus()
 end
 
@@ -1037,7 +1091,7 @@ function red_transistor_access:UpdateAbilities( list )
 				self.lock = false
 
 				-- get old one
-				old_ability = self.slots[slot]
+				local old_ability = self.slots[slot]
 
 				-- swap ability
 				caster:SwapAbilities( 
@@ -1057,7 +1111,7 @@ function red_transistor_access:UpdateAbilities( list )
 			end
 		else
 		-- not Locked or Empty
-			
+
 			-- find existing ability
 			local new_ability = caster:FindAbilityByName( new_ability_name )
 			if not new_ability then
@@ -1069,7 +1123,7 @@ function red_transistor_access:UpdateAbilities( list )
 				self.lock = false
 
 				-- get old one
-				old_ability = self.slots[slot]
+				local old_ability = self.slots[slot]
 
 				-- swap ability
 				caster:SwapAbilities( 
@@ -1103,7 +1157,14 @@ function red_transistor_access:UpdateAbilities( list )
 					self.lock = false
 
 					-- get old one (will not be to the left)
-					old_ability = self.slots[slot]
+					local old_ability = self.slots[slot]
+					local old_slot
+					for i,v in pairs(self.slots) do
+						if new_ability==v then
+							old_slot = i
+							break
+						end
+					end
 
 					-- swap ability
 					caster:SwapAbilities( 
@@ -1119,6 +1180,9 @@ function red_transistor_access:UpdateAbilities( list )
 
 					-- set references
 					self.slots[slot] = new_ability
+					if old_slot then
+						self.slots[old_slot] = old_ability
+					end
 				end
 			end
 		end -- ability switch
@@ -1217,9 +1281,10 @@ function red_transistor_access:OnSpellStart()
 	self.current = self.current+1
 	if self.current>8 then self.current = 1 end
 
-	list[1] = self.current
-	list[2] = 5
+	-- list[1] = 6
+	-- list[2] = 5
 	-- list[3] = self.current
+	-- list[4] = 8
 
 	print("TEST LIST")
 	for k,v in pairs(list) do
