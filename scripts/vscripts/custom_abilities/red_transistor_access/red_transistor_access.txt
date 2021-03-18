@@ -46,6 +46,82 @@
 	}
 
 	//=================================================================================================================
+	// Red Transistor: Empty and Locked slots
+	//=================================================================================================================
+	"red_transistor_empty_1"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
+		"AbilityTextureName"			"custom/red_transistor_empty"
+		"MaxLevel"						"3"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"red_transistor_empty_2"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
+		"AbilityTextureName"			"custom/red_transistor_empty"
+		"MaxLevel"						"3"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"red_transistor_empty_3"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
+		"AbilityTextureName"			"custom/red_transistor_empty"
+		"MaxLevel"						"3"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"red_transistor_empty_4"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
+		"AbilityTextureName"			"custom/red_transistor_empty"
+		"MaxLevel"						"3"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"red_transistor_locked_1"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
+		"AbilityTextureName"			"custom/red_transistor_locked"
+		"MaxLevel"						"3"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"red_transistor_locked_2"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
+		"AbilityTextureName"			"custom/red_transistor_locked"
+		"MaxLevel"						"3"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"red_transistor_locked_3"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
+		"AbilityTextureName"			"custom/red_transistor_locked"
+		"MaxLevel"						"3"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"red_transistor_locked_4"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
+		"AbilityTextureName"			"custom/red_transistor_locked"
+		"MaxLevel"						"3"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	//=================================================================================================================
 	// Red Transistor: Bounce
 	//=================================================================================================================
 	"red_transistor_bounce"
@@ -58,7 +134,7 @@
 		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
 		"AbilityTextureName"			"custom/red_transistor_bounce"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"3"
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
@@ -133,7 +209,7 @@
 		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
 		"AbilityTextureName"			"custom/red_transistor_breach"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"3"
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
@@ -203,7 +279,7 @@
 		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
 		"AbilityTextureName"			"custom/red_transistor_crash"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"3"
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
@@ -278,7 +354,7 @@
 		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
 		"AbilityTextureName"			"custom/red_transistor_flood"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"3"
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
@@ -353,7 +429,7 @@
 		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
 		"AbilityTextureName"			"custom/red_transistor_get"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"3"
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
@@ -428,7 +504,7 @@
 		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
 		"AbilityTextureName"			"custom/red_transistor_ping"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"3"
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
@@ -499,7 +575,7 @@
 		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
 		"AbilityTextureName"			"custom/red_transistor_purge"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"3"
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
@@ -574,7 +650,7 @@
 		"ScriptFile"					"custom_abilities/red_transistor_access/red_transistor_access"
 		"AbilityTextureName"			"custom/red_transistor_switch"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"1"
+		"MaxLevel"						"3"
 		
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
