@@ -12,13 +12,10 @@
 		- nonpierce has target, if disjointed no target
 - Issues
 	- Red help when dominated
-	- bounce area still undefined
-	- spark area modifier still undefined
-	- breach area modifier still unclear
+	- Breach castrange bonus does not affect GetCastRange
 		help, mask, tap is duration, duration, radius
 	- ping area hit is too good
 	- Switch area modifier is unclear
-	- Breach castrange does not affect GetCastRange
 - Test issues
 	- Client/Panorama update should be broadcast to all client (minor)
 	- enemy modifiers should have greyed out in panorama (minor)
@@ -27,10 +24,7 @@
 	- set cast range as abilityspecial
 	- "Modifier" to "Upgrade"
 	- mark for deletion delayed by existing projectiles/buffs
-	- mask casting abilities has delay to de-invis
 - not in progress
-	- bounce upgrade area
-	- spark upgrade area
 	- help upgrade concept (illusion is not good)
 ]]
 
@@ -1075,13 +1069,13 @@ function red_transistor_access:Spawn()
 
 	-- set initial states as locked
 	self.list = {}
-	for i=1,6 do
+	for i=1,12 do
 		self.list[i] = 17
 	end
 
 	-- set abilities levels as 0
 	self.levels = {}
-	for i=1,2 do
+	for i=1,4 do
 		self.levels[i] = 0
 	end
 
@@ -1089,6 +1083,8 @@ function red_transistor_access:Spawn()
 	self.slots = {}
 	self.slots[1] = self:GetCaster():FindAbilityByName( "red_transistor_locked_1" )
 	self.slots[2] = self:GetCaster():FindAbilityByName( "red_transistor_locked_2" )
+	self.slots[3] = self:GetCaster():FindAbilityByName( "red_transistor_locked_3" )
+	self.slots[4] = self:GetCaster():FindAbilityByName( "red_transistor_locked_4" )
 
 	-- initialize abilities
 	for _,ability in pairs(self.slots) do
@@ -1160,9 +1156,11 @@ function red_transistor_access:EventUpgrade( ability )
 	end
 
 	-- Refresh Panorama
-	local caster = self:GetCaster()
 	local data = {}
-	CustomGameEventManager:Send_ServerToPlayer( caster:GetPlayerOwner(), "red_transistor_access", data )
+	data['refresh'] = 1
+	CustomGameEventManager:Send_ServerToAllClients( "red_transistor_access", data )
+	-- local caster = self:GetCaster()
+	-- CustomGameEventManager:Send_ServerToPlayer( caster:GetPlayerOwner(), "red_transistor_access", data )
 
 	self:PrintStatus()
 end
@@ -1170,18 +1168,14 @@ end
 function red_transistor_access.EventConfirm( playerID, data )
 	local self = EntIndexToHScript( tonumber(data.ability) )
 
-	-- -- convert to list
-	-- local function_data = data.data
-	-- local temp = {}
-	-- for k,v in pairs(function_data) do
-	-- 	local temp2 = {}
-	-- 	for l,m in pairs(v) do
-	-- 		temp2[tonumber(l)] = m
-	-- 	end
-	-- 	temp[tonumber(k)] = temp2
-	-- end
+	-- convert to list
+	local data_list = {}
+	for k,v in pairs(data.data) do
+		data_list[tonumber(k)] = v
+	end
+	data_list[0] = nil
 
-	local list = data.list
+	local list = data_list
 
 	-- Validation
 	local valid = self:Validate( list )
@@ -1189,9 +1183,6 @@ function red_transistor_access.EventConfirm( playerID, data )
 		-- fail
 		return
 	end
-
-	-- -- update data
-	-- self.data['slots'] = temp
 
 	-- start cooldown
 	self:StartCooldown( self:GetCooldown(-1) )
@@ -1201,13 +1192,14 @@ function red_transistor_access.EventConfirm( playerID, data )
 
 	-- update ability list
 	self.list = list
-
-	-- self:RefreshUpgrades()
-	-- self:RefreshClient()
 	
 	-- Refresh Panorama
-	local caster = self:GetCaster()
-	CustomGameEventManager:Send_ServerToPlayer( caster:GetPlayerOwner(), "red_transistor_access", data )
+	local data = {}
+	data['refresh'] = 1
+	CustomGameEventManager:Send_ServerToAllClients( "red_transistor_access", data )
+
+	-- local caster = self:GetCaster()
+	-- CustomGameEventManager:Send_ServerToPlayer( caster:GetPlayerOwner(), "red_transistor_access", data )
 
 	self:PrintStatus()
 end
@@ -1225,7 +1217,7 @@ function red_transistor_access:UpdateAbilities( list )
 
 	-- Change ability layout
 	local mark_for_deletion = {}
-	for ctr=0,1 do
+	for ctr=0,3 do
 		-- layout is main-up1-up2-main-up1-...
 		local slot = ctr+1
 		local i = ctr*3 + 1
@@ -1376,7 +1368,7 @@ function red_transistor_access:Validate( list )
 	end
 
 	if len1~=len2 then
-		print("Invalid: Length is different:",len1)
+		print("Invalid: Length is different:",len1,len2)
 		return false
 	end
 
@@ -1393,9 +1385,9 @@ function red_transistor_access:Validate( list )
 	end
 
 	-- Rule 2: No duplicates, except Empty and Locked
-	for i=1,5 do
+	for i=1,11 do
 		if list[i]~=0 and list[i]~=17 then
-			for j=i+1,6 do
+			for j=i+1,12 do
 				if list[i]==list[j] then
 					valid = false
 					break
@@ -1436,65 +1428,48 @@ end
 function red_transistor_access:OnSpellStart()
 	local caster = self:GetCaster()
 
-	-- CORRECT CONFIRM TEST
-	local list = {}
-	for i=1,6 do
-		list[i] = RandomInt( 1, 8 )
-		if self.list[i]==17 then list[i] = 17 end
-	end
+	-- -- TEST LIST
+	-- print("TEST LIST")
+	-- local mocklist = {}
+	-- local available = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 }
 
-	self.c2 = self.c2 or 1
-	self.c1 = self.c1 or 0
-	self.c1 = self.c1+1
-	if self.c1>16 then
-		self.c1 = 1
-		self.c2 = self.c2+1
-	end
-	if self.c2>16 then
-		self.c2 = 1
-	end
+	-- -- set mains
+	-- for i=0,3 do
+	-- 	local idx = i*3+1
+	-- 	local get = RandomInt( 1, #available )
+	-- 	local ability = available[get]
+	-- 	table.remove( available, get )
+	-- 	mocklist[idx] = ability
+	-- end
+	-- -- set modifiers
+	-- for i=1,12 do
+	-- 	if i==1 or i==4 then
+	-- 	else
+	-- 		local get = RandomInt( 1, #available )
+	-- 		local ability = available[get]
+	-- 		table.remove( available, get )
+	-- 		mocklist[i] = ability
+	-- 	end
+	-- end
+	-- -- set locked
+	-- for k,v in pairs(mocklist) do
+	-- 	if self.list[k]==17 then mocklist[k] = 17 end
+	-- end
 
-	list[1] = 1
-	list[2] = self.c1
-	list[3] = self.c2
-	-- list[4] = 2
+	-- for k,v in pairs(mocklist) do
+	-- 	print("",k,v,self.ability_index[v])
+	-- end
 
-	print("TEST LIST")
-	for k,v in pairs(list) do
-		print("",k,v,self.ability_index[v])
-	end
+	-- local data = {}
+	-- data.list = mocklist
+	-- data.ability = self:entindex()
+	-- -- self.EventConfirm( self:GetCaster():GetPlayerOwnerID(), data )
 
-	local data = {}
-	data.list = list
-	data.ability = self:entindex()
-	self.EventConfirm( self:GetCaster():GetPlayerOwnerID(), data )
-
-	-- MOCK LIST
-	print("MOCK LIST")
-	local mocklist = {}
-	local available = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 }
-
-	-- set mains
-	for i=0,1 do
-		local idx = i*3+1
-		local get = RandomInt( 1, #available )
-		local ability = available[get]
-		table.remove( available, get )
-		mocklist[idx] = ability
-	end
-	-- set modifiers
-	for i=1,6 do
-		if i==1 or i==4 then
-		else
-			local get = RandomInt( 1, #available )
-			local ability = available[get]
-			table.remove( available, get )
-			mocklist[i] = ability
-		end
-	end
-	for k,v in pairs(mocklist) do
-		print("",k,v,self.ability_index[v])
-	end
-
+	local senddata = {}
+	senddata.list = self.list
+	senddata.ability = self:entindex()
+	senddata.playerID = self:GetCaster():GetPlayerOwnerID()
+	senddata.open = 1
+	CustomGameEventManager:Send_ServerToPlayer( caster:GetPlayerOwner(), "red_transistor_access", senddata )
 end
 
