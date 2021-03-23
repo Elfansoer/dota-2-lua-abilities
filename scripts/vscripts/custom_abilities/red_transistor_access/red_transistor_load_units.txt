@@ -1,0 +1,66 @@
+"DOTAUnits"
+{
+	"npc_dota_red_transistor_load"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"					"npc_dota_creep"
+		"Level"						"1"
+		"ConsideredHero"			"0"
+		"WakesNeutrals"				"0"
+		
+		"Model"						"models/heroes/techies/fx_techiesfx_mine.vmdl"
+		"ModelScale" 				"1.0"
+		
+		"SoundSet"					"0"
+
+		// Abilities
+		//----------------------------------------------------------------
+
+		// Armor
+		//----------------------------------------------------------------
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+
+		// Attributes
+		//----------------------------------------------------------------
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"
+		"BountyGoldMin"				"0"
+		"BountyGoldMax"				"0"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"				"70"
+		"HealthBarOffset"			"150"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"0"
+		"MovementTurnRate"			"0.4"
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1"		// Base health.
+		"StatusHealthRegen"			"0.0"		// Health regeneration rate.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"300"
+		"VisionNighttimeRange"		"300"
+		"HasInventory"				"0"
+	}
+}

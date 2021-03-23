@@ -11,20 +11,36 @@
 		- pierce has no target
 		- nonpierce has target, if disjointed no target
 - Issues
-	- Bounce behavior is wild
-		- Bounce will hit the same target on nonpierce projectiles
-		- fixed by edge case
-	- Flood DoT too high
-		- fixed by semi-aura
-	- Replace install uninstall by loop instead of hardcode name1 name2
+	- Red help when dominated
+	- bounce area still undefined
+	- spark area modifier still undefined
+	- breach area modifier still unclear
+		help, mask, tap is duration, duration, radius
+	- ping area hit is too good
+	- Switch area modifier is unclear
+	- Breach castrange does not affect GetCastRange
 - Test issues
 	- Client/Panorama update should be broadcast to all client (minor)
 	- enemy modifiers should have greyed out in panorama (minor)
+- Improvements
+	- Replace install uninstall by loop instead of hardcode name1 name2
+	- set cast range as abilityspecial
+	- "Modifier" to "Upgrade"
+	- mark for deletion delayed by existing projectiles/buffs
+	- mask casting abilities has delay to de-invis
+- not in progress
+	- bounce upgrade area
+	- spark upgrade area
+	- help upgrade concept (illusion is not good)
 ]]
+
+require( "scripts/vscripts/custom_abilities/red_transistor_access/red_transistor_area" )
 
 --------------------------------------------------------------------------------
 -- Game Modifiers
 LinkLuaModifier( "modifier_red_transistor_access_modifiers", "custom_abilities/red_transistor_access/modifier_red_transistor_access_modifiers", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_bounce_area", "custom_abilities/red_transistor_access/modifier_red_transistor_bounce_area", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_breach_castrange", "custom_abilities/red_transistor_access/modifier_red_transistor_breach_castrange", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_red_transistor_flood_thinker", "custom_abilities/red_transistor_access/modifier_red_transistor_flood_thinker", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_red_transistor_flood_damage", "custom_abilities/red_transistor_access/modifier_red_transistor_flood_damage", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_red_transistor_get_pull", "custom_abilities/red_transistor_access/modifier_red_transistor_get_pull", LUA_MODIFIER_MOTION_HORIZONTAL )
@@ -50,8 +66,6 @@ end
 function generic_projectile:Spawn()
 	if not IsServer() then return end
 	self.modifiers = self.modifiers or {}
-	-- self.kv = LoadKeyValues( "scripts/npc/npc_abilities_custom.txt" )
-
 end
 
 --------------------------------------------------------------------------------
@@ -84,6 +98,9 @@ function generic_projectile:Install( access, name1, name2 )
 	local id2 = access.ability_index[ name2 ]
 	local stack = 10000*id2 + 100*id1 + id
 	self.access_modifier:SetStackCount( stack )
+
+	-- set install base
+	self:InstallBase()
 end
 
 function generic_projectile:Uninstall()
@@ -98,6 +115,9 @@ function generic_projectile:Uninstall()
 	end
 
 	self.modifiers = {}
+
+	-- set uninstall base
+	self:UninstallBase()
 end
 
 function generic_projectile:Replace( access, name1, name2 )
@@ -252,13 +272,20 @@ function generic_projectile:ProjectileThink( loc, data ) end
 function generic_projectile:ProjectileHit( target, loc, data ) end
 function generic_projectile:ProjectileEnd( target, loc, data ) end
 
+function generic_projectile:InstallBase() end
+function generic_projectile:UninstallBase() end
 function generic_projectile:ModifierInstall( this ) end
 function generic_projectile:ModifierUninstall( this ) end
 
-function generic_projectile:ModifierProjectileLaunch( data ) end
-function generic_projectile:ModifierProjectileThink( loc, data ) end
-function generic_projectile:ModifierProjectileHit( target, loc, data ) end
-function generic_projectile:ModifierProjectileEnd( target, loc, data ) end
+function generic_projectile:ModifierProjectileLaunch( this, data ) end
+function generic_projectile:ModifierProjectileThink( this, loc, data ) end
+function generic_projectile:ModifierProjectileHit( this, target, loc, data ) end
+function generic_projectile:ModifierProjectileEnd( this, target, loc, data ) end
+
+function generic_projectile:ModifierAreaStart( this, data ) end
+function generic_projectile:ModifierAreaThink( this, loc, data ) end
+function generic_projectile:ModifierAreaHit( this, target, loc, data ) end
+function generic_projectile:ModifierAreaEnd( this, loc, data ) end
 
 --------------------------------------------------------------------------------
 -- Helper
@@ -433,6 +460,32 @@ function red_transistor_bounce:ModifierProjectileEnd( this, target, loc, data )
 	ProjectileManager:CreateLinearProjectile(info)
 end
 
+function red_transistor_bounce:ModifierAreaStart( this, data )
+	-- if not data.bounces then return end
+	-- if data.bounces < 1 then return end
+	-- data.bounces = data.bounces - 1
+
+	local loc = GetGroundPosition( Vector( data.center_x, data.center_y, 0 ), this:GetCaster() )
+	data.bounces = this:GetAbilitySpecialValue( "red_transistor_bounce", "modifier_bounces" )
+
+	local delay = 1
+	data.duration = delay
+
+	-- create thinker
+	CreateModifierThinker(
+		this:GetCaster(), -- player source
+		this, -- ability source
+		"modifier_red_transistor_bounce_area", -- modifier name
+		data, -- kv
+		loc,
+		this:GetCaster():GetTeamNumber(),
+		false
+	)
+end
+
+-- function red_transistor_bounce:ModifierAreaEnd( this, loc, data )
+-- end
+
 --------------------------------------------------------------------------------
 -- Breach
 --------------------------------------------------------------------------------
@@ -456,11 +509,35 @@ function red_transistor_breach:ProjectileHit( target, loc, data )
 end
 
 -- Modifiers
-function red_transistor_breach:ModifierProjectileLaunch( this, data )
-	local bonus = this:GetAbilitySpecialValue( "red_transistor_breach", "modifier_range" )
+function red_transistor_breach:ModifierInstall( this )
+	local castrange = 100
 
-	data.distance = data.distance + bonus
+	local mod = this:GetCaster():AddNewModifier(
+		this:GetCaster(), -- player source
+		this, -- ability source
+		"modifier_red_transistor_breach_castrange", -- modifier name
+		{
+			castrange = castrange,
+		} -- kv
+	)
 end
+
+function red_transistor_breach:ModifierUninstall( this )
+	local mods = this:GetCaster():FindAllModifiersByName( "modifier_red_transistor_breach_castrange" )
+	for _,mod in pairs(mods) do
+		if (not mod:IsNull()) and mod:GetAbility()==this then
+			mod:Destroy()
+		end
+	end
+end
+
+
+-- function red_transistor_breach:ModifierProjectileLaunch( this, data )
+-- 	local bonus = this:GetAbilitySpecialValue( "red_transistor_breach", "modifier_range" )
+
+-- 	data.distance = data.distance + bonus
+-- end
+
 
 --------------------------------------------------------------------------------
 -- Crash
@@ -507,6 +584,9 @@ function red_transistor_crash:ModifierProjectileHit( this, target, loc, data )
 	)
 end
 
+function red_transistor_crash:ModifierAreaHit( this, target, loc, data )
+	self:ModifierProjectileHit( this, target, loc, data )
+end
 --------------------------------------------------------------------------------
 -- Flood
 --------------------------------------------------------------------------------
@@ -581,6 +661,30 @@ function red_transistor_flood:ModifierProjectileThink( this, loc, data )
 			false
 		)
 	end
+end
+
+function red_transistor_flood:ModifierAreaEnd( this, loc, data )
+	-- local duration = this:GetAbilitySpecialValue( "red_transistor_flood", "modifier_duration" )
+	local duration = 5
+	local dps = this:GetAbilitySpecialValue( "red_transistor_flood", "modifier_dps" )
+	-- local radius = this:GetAbilitySpecialValue( "red_transistor_flood", "radius" )
+	local radius = data.radius
+	local interval = 0.1
+
+	CreateModifierThinker(
+		this:GetCaster(), -- player source
+		this, -- ability source
+		"modifier_red_transistor_flood_thinker", -- modifier name
+		{
+			duration = duration,
+			dps = dps,
+			radius = radius,
+			interval = interval,
+		}, -- kv
+		loc,
+		this:GetCaster():GetTeamNumber(),
+		false
+	)
 end
 
 --------------------------------------------------------------------------------
@@ -681,6 +785,24 @@ function red_transistor_get:ModifierProjectileHit( this, target, loc, data )
 			speed = speed,
 			target_x = point.x,
 			target_y = point.y,
+		} -- kv
+	)
+end
+
+function red_transistor_get:ModifierAreaHit( this, target, loc, data )
+	local duration = 0.1
+	local speed = this:GetAbilitySpecialValue( "red_transistor_get", "get_speed" )
+
+	-- set target
+	target:AddNewModifier(
+		this:GetCaster(), -- player source
+		this, -- ability source
+		"modifier_red_transistor_get_pull", -- modifier name
+		{
+			duration = duration,
+			speed = speed,
+			target_x = data.center_x,
+			target_y = data.center_y,
 		} -- kv
 	)
 end
@@ -793,6 +915,10 @@ function red_transistor_purge:ModifierProjectileHit( this, target, loc, data )
 	)
 end
 
+function red_transistor_purge:ModifierAreaHit( this, target, loc, data )
+	self:ModifierProjectileHit( this, target, loc, data )
+end
+
 --------------------------------------------------------------------------------
 -- Switch
 --------------------------------------------------------------------------------
@@ -826,6 +952,10 @@ function red_transistor_switch:ModifierProjectileHit( this, target, loc, data )
 	)
 end
 
+function red_transistor_switch:ModifierAreaHit( this, target, loc, data )
+	self:ModifierProjectileHit( this, target, loc, data )
+end
+
 --------------------------------------------------------------------------------
 -- Empty and Locked
 --------------------------------------------------------------------------------
@@ -855,10 +985,20 @@ local abilities = {
 	["red_transistor_ping"] = red_transistor_ping,
 	["red_transistor_purge"] = red_transistor_purge,
 	["red_transistor_switch"] = red_transistor_switch,
+
+	["red_transistor_cull"] = red_transistor_cull,
+	["red_transistor_help"] = red_transistor_help,
+	["red_transistor_jaunt"] = red_transistor_jaunt,
+	["red_transistor_load"] = red_transistor_load,
+	["red_transistor_mask"] = red_transistor_mask,
+	["red_transistor_spark"] = red_transistor_spark,
+	["red_transistor_tap"] = red_transistor_tap,
+	["red_transistor_void"] = red_transistor_void,
 }
 
 local ability_index = {
 	["red_transistor_empty"] = 0,
+
 	["red_transistor_bounce"] = 1,
 	["red_transistor_breach"] = 2,
 	["red_transistor_crash"] = 3,
@@ -867,6 +1007,16 @@ local ability_index = {
 	["red_transistor_ping"] = 6,
 	["red_transistor_purge"] = 7,
 	["red_transistor_switch"] = 8,
+
+	["red_transistor_cull"] = 9,
+	["red_transistor_help"] = 10,
+	["red_transistor_jaunt"] = 11,
+	["red_transistor_load"] = 12,
+	["red_transistor_mask"] = 13,
+	["red_transistor_spark"] = 14,
+	["red_transistor_tap"] = 15,
+	["red_transistor_void"] = 16,
+
 	["red_transistor_locked"] = 17,	
 
 	["red_transistor_empty_1"] = 0,
@@ -879,6 +1029,7 @@ local ability_index = {
 	["red_transistor_locked_4"] = 17,	
 
 	[0] = "red_transistor_empty",
+
 	[1] = "red_transistor_bounce",
 	[2] = "red_transistor_breach",
 	[3] = "red_transistor_crash",
@@ -887,6 +1038,16 @@ local ability_index = {
 	[6] = "red_transistor_ping",
 	[7] = "red_transistor_purge",
 	[8] = "red_transistor_switch",
+
+	[9] = "red_transistor_cull",
+	[10] = "red_transistor_help",
+	[11] = "red_transistor_jaunt",
+	[12] = "red_transistor_load",
+	[13] = "red_transistor_mask",
+	[14] = "red_transistor_spark",
+	[15] = "red_transistor_tap",
+	[16] = "red_transistor_void",
+
 	[17] = "red_transistor_locked",
 }
 
@@ -936,6 +1097,11 @@ function red_transistor_access:Spawn()
 
 	-- listen to event
 	CustomGameEventManager:RegisterListener( "red_transistor_access", self.EventConfirm )
+
+	-- print("Abilities2")
+	-- for k,v in pairs(abilities2) do
+	-- 	print("",k,v)
+	-- end
 end
 
 --------------------------------------------------------------------------------
@@ -1277,14 +1443,21 @@ function red_transistor_access:OnSpellStart()
 		if self.list[i]==17 then list[i] = 17 end
 	end
 
-	self.current = self.current or 0
-	self.current = self.current+1
-	if self.current>8 then self.current = 1 end
+	self.c2 = self.c2 or 1
+	self.c1 = self.c1 or 0
+	self.c1 = self.c1+1
+	if self.c1>16 then
+		self.c1 = 1
+		self.c2 = self.c2+1
+	end
+	if self.c2>16 then
+		self.c2 = 1
+	end
 
-	-- list[1] = 6
-	-- list[2] = 5
-	-- list[3] = self.current
-	-- list[4] = 8
+	list[1] = 1
+	list[2] = self.c1
+	list[3] = self.c2
+	-- list[4] = 2
 
 	print("TEST LIST")
 	for k,v in pairs(list) do
@@ -1295,5 +1468,33 @@ function red_transistor_access:OnSpellStart()
 	data.list = list
 	data.ability = self:entindex()
 	self.EventConfirm( self:GetCaster():GetPlayerOwnerID(), data )
+
+	-- MOCK LIST
+	print("MOCK LIST")
+	local mocklist = {}
+	local available = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 }
+
+	-- set mains
+	for i=0,1 do
+		local idx = i*3+1
+		local get = RandomInt( 1, #available )
+		local ability = available[get]
+		table.remove( available, get )
+		mocklist[idx] = ability
+	end
+	-- set modifiers
+	for i=1,6 do
+		if i==1 or i==4 then
+		else
+			local get = RandomInt( 1, #available )
+			local ability = available[get]
+			table.remove( available, get )
+			mocklist[i] = ability
+		end
+	end
+	for k,v in pairs(mocklist) do
+		print("",k,v,self.ability_index[v])
+	end
+
 end
 

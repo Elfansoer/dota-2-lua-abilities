@@ -14,7 +14,7 @@ modifier_red_transistor_access_modifiers = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_red_transistor_access_modifiers:IsHidden()
-	return false
+	return true
 end
 
 function modifier_red_transistor_access_modifiers:IsDebuff()
