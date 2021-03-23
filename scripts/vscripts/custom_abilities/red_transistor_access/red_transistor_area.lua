@@ -2,27 +2,44 @@
 --[[
 - Check False/True piercing projectile
 - Projectile Events
-	Start: Area started
-	Think: Area during duration
-	Hit: Area hits target
-	End: Area ended
-- Confirmations
-	- Mask: Invis area damage. Upon attack out of invis, backstab damage
+	Launch: Projectile launched
+	Think: Projectile in flight
+	Hit: Projectile hits target
+		- pierce procs multiple times
+		- nonpierce procs once or none if disjointed
+	End: Piercing ended, Non-piercing hits target (same with ProjHit)
+		- pierce has no target
+		- nonpierce has target, if disjointed no target
 - Issues
-	- Bounce behavior is wild
-		- Bounce will hit the same target on nonpierce projectiles
-		- fixed by edge case
-	- Flood DoT too high
-		- fixed by semi-aura
-	- Replace install uninstall by loop instead of hardcode name1 name2
+	- Red help when dominated
+	- Breach castrange bonus does not affect GetCastRange
+		help, mask, tap is duration, duration, radius
+	- ping area hit is too good
+	- Switch area modifier is unclear
 - Test issues
 	- Client/Panorama update should be broadcast to all client (minor)
 	- enemy modifiers should have greyed out in panorama (minor)
+- Improvements
+	- Replace install uninstall by loop instead of hardcode name1 name2
+	- set cast range as abilityspecial
+	- "Modifier" to "Upgrade"
+	- mark for deletion delayed by existing projectiles/buffs
+- not in progress
+	- help upgrade concept (illusion is not good)
+- next
+	breach castrange
+	split access file to general projectile
+	rework abilities
+		crash vs cull, switch, get, ping
+	delete after no refcount
+	onstolen
+	multiple same hero
 ]]
+
+require( "scripts/vscripts/custom_abilities/red_transistor_access/red_transistor_base" )
 
 --------------------------------------------------------------------------------
 -- Game Modifiers
-LinkLuaModifier( "modifier_red_transistor_access_modifiers", "custom_abilities/red_transistor_access/modifier_red_transistor_access_modifiers", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_red_transistor_help_unit", "custom_abilities/red_transistor_access/modifier_red_transistor_help_unit", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_red_transistor_jaunt_manacost", "custom_abilities/red_transistor_access/modifier_red_transistor_jaunt_manacost", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_red_transistor_load_unit", "custom_abilities/red_transistor_access/modifier_red_transistor_load_unit", LUA_MODIFIER_MOTION_NONE )
@@ -34,117 +51,10 @@ LinkLuaModifier( "modifier_generic_arc_lua", "lua_abilities/generic/modifier_gen
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
--- Base Projectile abilities
+-- Base Area abilities
 --------------------------------------------------------------------------------
-generic_area = class({})
-generic_area.modifiers = {}
-
---------------------------------------------------------------------------------
--- Init Abilities
-function generic_area:Precache( context )
-	-- PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_generic_area.vsndevts", context )
-	-- PrecacheResource( "particle", "particles/units/heroes/hero_generic_area/generic_area.vpcf", context )
-end
-
-function generic_area:Spawn()
-	if not IsServer() then return end
-	self.modifiers = self.modifiers or {}
-end
-
-function generic_area:GetAOERadius()
-	return self:GetSpecialValueFor( "radius" )
-end
-
---------------------------------------------------------------------------------
--- Install/Uninstall
-function generic_area:Install( access, name1, name2 )
-	self.access = access
-	self.kv = access.kv
-
-	if name1 then
-		self.modifiers[1] = access.abilities[name1]
-		self.modifiers[1]:ModifierInstall( self )
-	end
-	if name2 then
-		self.modifiers[2] = access.abilities[name2]
-		self.modifiers[2]:ModifierInstall( self )
-	end
-
-	-- set access modifier (for client purposes)
-	local caster = self:GetCaster()
-	self.access_modifier = caster:AddNewModifier(
-		caster, -- player source
-		self, -- ability source
-		"modifier_red_transistor_access_modifiers", -- modifier name
-		{} -- kv
-	)
-
-	-- set stack
-	local id = access.ability_index[ self:GetAbilityName() ]
-	local id1 = access.ability_index[ name1 ]
-	local id2 = access.ability_index[ name2 ]
-	local stack = 10000*id2 + 100*id1 + id
-	self.access_modifier:SetStackCount( stack )
-
-	-- set install base
-	self:InstallBase()
-end
-
-function generic_area:Uninstall()
-	for _,modifier in pairs(self.modifiers) do
-		modifier:ModifierUninstall( self )
-	end
-
-	-- destroy access modifier
-	if self.access_modifier and (not self.access_modifier:IsNull()) then
-		self.access_modifier:Destroy()
-		self.access_modifier = nil
-	end
-
-	self.modifiers = {}
-
-	-- set uninstall base
-	self:UninstallBase()
-end
-
-function generic_area:Replace( access, name1, name2 )
-	if name1 then
-		self.modifiers[1]:ModifierUninstall( self )
-		self.modifiers[1] = access.abilities[name1]
-		self.modifiers[1]:ModifierInstall( self )
-
-		-- update access modifier
-		if self.access_modifier and (not self.access_modifier:IsNull()) then
-			local stack = self.access_modifier:GetStackCount()
-			local old_id = math.floor(stack/100)%100
-			local id1 = access.ability_index[ name1 ]
-			stack = stack - old_id*100 + id1*100
-			self.access_modifier:SetStackCount( stack )
-		end
-	end
-	if name2 then
-		self.modifiers[2]:ModifierUninstall( self )
-		self.modifiers[2] = access.abilities[name2]
-		self.modifiers[2]:ModifierInstall( self )
-
-		-- update access modifier
-		if self.access_modifier and (not self.access_modifier:IsNull()) then
-			local stack = self.access_modifier:GetStackCount()
-			local old_id = math.floor(stack/10000)%100
-			local id2 = access.ability_index[ name2 ]
-			stack = stack - old_id*10000 + id2*10000
-			self.access_modifier:SetStackCount( stack )
-		end
-	end
-end
-
---------------------------------------------------------------------------------
--- Upgrade
-function generic_area:OnUpgrade()
-	if self.access and (not self.access.lock) then
-		self.access:EventUpgrade( self )
-	end
-end
+generic_area = class(generic_base)
+-- generic_area.modifiers = {}
 
 --------------------------------------------------------------------------------
 -- Ability Start
@@ -200,28 +110,6 @@ function generic_area:OnAreaEnd( location, data )
 end
 
 --------------------------------------------------------------------------------
--- Overridden functions
-function generic_area:AreaStart( data ) end
-function generic_area:AreaThink( loc, data ) end
-function generic_area:AreaHit( target, loc, data ) end
-function generic_area:AreaEnd( loc, data ) end
-
-function generic_area:InstallBase() end
-function generic_area:UninstallBase() end
-function generic_area:ModifierInstall( this ) end
-function generic_area:ModifierUninstall( this ) end
-
-function generic_area:ModifierProjectileLaunch( this, data ) end
-function generic_area:ModifierProjectileThink( this, loc, data ) end
-function generic_area:ModifierProjectileHit( this, target, loc, data ) end
-function generic_area:ModifierProjectileEnd( this, target, loc, data ) end
-
-function generic_area:ModifierAreaStart( this, data ) end
-function generic_area:ModifierAreaThink( this, loc, data ) end
-function generic_area:ModifierAreaHit( this, target, loc, data ) end
-function generic_area:ModifierAreaEnd( this,  loc, data ) end
-
---------------------------------------------------------------------------------
 -- Helper
 function generic_area:ProcessArea( area )
 	local caster = self:GetCaster()
@@ -249,20 +137,12 @@ function generic_area:ProcessArea( area )
 	self:OnAreaEnd( pos, area )
 end
 
-function generic_area:GetAbilitySpecialValue( ability, name )
-	local kv = self.kv[ability]["AbilitySpecial"]
-
-	local specials = {}
-	for _,v in pairs(kv) do
-		for a,b in pairs(v) do
-			if a~="var_type" then
-				specials[a] = b
-			end
-		end
-	end
-
-	return specials[name] or 0
-end
+--------------------------------------------------------------------------------
+-- Overridden functions
+function generic_area:AreaStart( data ) end
+function generic_area:AreaThink( loc, data ) end
+function generic_area:AreaHit( target, loc, data ) end
+function generic_area:AreaEnd( loc, data ) end
 
 --------------------------------------------------------------------------------
 -- Cull
@@ -271,7 +151,7 @@ red_transistor_cull = class(generic_area)
 function red_transistor_cull:AreaHit( target, loc, data )
 	local damage = 100
 	local duration = 1
-	local height = 400
+	local height = 500
 
 	-- add knockback
 	local knockback = target:AddNewModifier(
@@ -311,8 +191,8 @@ end
 
 -- modifiers
 function red_transistor_cull:ModifierAreaHit( this, target, loc, data )
-	local duration = 2
-	local height = 700
+	local duration = 1
+	local height = 500
 
 	-- add knockback
 	local knockback = target:AddNewModifier(

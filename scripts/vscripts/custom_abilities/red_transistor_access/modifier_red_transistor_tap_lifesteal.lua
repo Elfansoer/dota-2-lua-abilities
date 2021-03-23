@@ -14,7 +14,7 @@ modifier_red_transistor_tap_lifesteal = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_red_transistor_tap_lifesteal:IsHidden()
-	return false
+	return true
 end
 
 function modifier_red_transistor_tap_lifesteal:IsDebuff()

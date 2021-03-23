@@ -29,6 +29,10 @@ function modifier_red_transistor_purge_debuff:IsPurgable()
 	return true
 end
 
+function modifier_red_transistor_purge_debuff:GetTexture()
+	return "custom/red_transistor_purge"
+end
+
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_red_transistor_purge_debuff:OnCreated( kv )

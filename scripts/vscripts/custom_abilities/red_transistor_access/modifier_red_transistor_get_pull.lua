@@ -29,6 +29,10 @@ function modifier_red_transistor_get_pull:IsPurgable()
 	return true
 end
 
+function modifier_red_transistor_get_pull:GetTexture()
+	return "custom/red_transistor_get"
+end
+
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_red_transistor_get_pull:OnCreated( kv )

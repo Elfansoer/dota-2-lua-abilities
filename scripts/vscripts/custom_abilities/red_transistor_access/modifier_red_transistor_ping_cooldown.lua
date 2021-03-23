@@ -14,7 +14,7 @@ modifier_red_transistor_ping_cooldown = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_red_transistor_ping_cooldown:IsHidden()
-	return false
+	return true
 end
 
 function modifier_red_transistor_ping_cooldown:IsDebuff()

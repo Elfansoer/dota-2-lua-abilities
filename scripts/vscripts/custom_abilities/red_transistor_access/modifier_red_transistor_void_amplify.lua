@@ -29,6 +29,10 @@ function modifier_red_transistor_void_amplify:IsPurgable()
 	return true
 end
 
+function modifier_red_transistor_void_amplify:GetTexture()
+	return "custom/red_transistor_void"
+end
+
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_red_transistor_void_amplify:OnCreated( kv )

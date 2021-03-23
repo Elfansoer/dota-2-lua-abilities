@@ -14,7 +14,7 @@ modifier_red_transistor_jaunt_manacost = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_red_transistor_jaunt_manacost:IsHidden()
-	return false
+	return true
 end
 
 function modifier_red_transistor_jaunt_manacost:IsDebuff()

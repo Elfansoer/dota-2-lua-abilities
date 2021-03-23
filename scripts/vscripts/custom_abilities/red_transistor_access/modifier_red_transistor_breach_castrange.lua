@@ -14,7 +14,7 @@ modifier_red_transistor_breach_castrange = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_red_transistor_breach_castrange:IsHidden()
-	return false
+	return true
 end
 
 function modifier_red_transistor_breach_castrange:IsDebuff()

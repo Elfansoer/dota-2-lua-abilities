@@ -29,6 +29,10 @@ function modifier_red_transistor_switch_debuff:IsPurgable()
 	return true
 end
 
+function modifier_red_transistor_switch_debuff:GetTexture()
+	return "custom/red_transistor_switch"
+end
+
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_red_transistor_switch_debuff:OnCreated( kv )
