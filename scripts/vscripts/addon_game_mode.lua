@@ -49,6 +49,7 @@ function CAddonTemplateGameMode:InitGameMode()
 
 	require( "scripts/vscripts/libraries/vector_target/vector_target" )
 	require( "scripts/vscripts/libraries/filters/filters" )
+	require( "scripts/vscripts/libraries/talent/talent" )
 	FilterManager:Init()
 end
 
