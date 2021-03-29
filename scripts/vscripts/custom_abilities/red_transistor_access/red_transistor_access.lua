@@ -27,6 +27,7 @@
 - not in progress
 	- help upgrade concept (illusion is not good)
 - next
+	localization
 	breach castrange
 		- help and mask left
 	rework abilities
@@ -34,6 +35,7 @@
 	delete after no refcount
 	onstolen
 	multiple same hero
+	turn
 ]]
 
 require( "scripts/vscripts/custom_abilities/red_transistor_access/red_transistor_base" )
@@ -60,7 +62,6 @@ red_transistor_locked_4 = class(generic_base)
 --------------------------------------------------------------------------------
 -- Abilities list
 --------------------------------------------------------------------------------
-
 local abilities = {
 	["red_transistor_empty"] = red_transistor_empty_1,
 	["red_transistor_locked"] = red_transistor_locked_1,
@@ -151,6 +152,13 @@ function red_transistor_access:Spawn()
 	if not IsServer() then return end
 	self:SetLevel( 1 )
 
+	-- vars
+	self.MAX_SLOT = 4
+	self.MAX_UPGRADE = 2
+
+	self.SLOT_SIZE = 1 + self.MAX_UPGRADE
+	self.MAX_ABILITIES = self.SLOT_SIZE * self.MAX_SLOT
+
 	-- get ability references
 	self.abilities = abilities
 	self.ability_index = ability_index
@@ -163,22 +171,26 @@ function red_transistor_access:Spawn()
 
 	-- set initial states as locked
 	self.list = {}
-	for i=1,12 do
+	for i=1,self.MAX_ABILITIES do
 		self.list[i] = 17
 	end
 
 	-- set abilities levels as 0
 	self.levels = {}
-	for i=1,4 do
+	for i=1,self.MAX_SLOT do
 		self.levels[i] = 0
 	end
 
 	-- get slot handles
 	self.slots = {}
-	self.slots[1] = self:GetCaster():FindAbilityByName( "red_transistor_locked_1" )
-	self.slots[2] = self:GetCaster():FindAbilityByName( "red_transistor_locked_2" )
-	self.slots[3] = self:GetCaster():FindAbilityByName( "red_transistor_locked_3" )
-	self.slots[4] = self:GetCaster():FindAbilityByName( "red_transistor_locked_4" )
+	for i=1,self.MAX_SLOT do
+		self.slots[i] = self:GetCaster():FindAbilityByName( "red_transistor_locked_"..i )
+	end
+
+	-- local upgrades = {}
+	-- for i=1,self.MAX_UPGRADE do
+	-- 	upgrades[i] = 17
+	-- end
 
 	-- initialize abilities
 	for _,ability in pairs(self.slots) do
