@@ -1,16 +1,53 @@
 -- Created by Elfansoer
 --[[
-How to install:
+1. How to install:
 - require this file in both addon_game_mode.lua (for server) and addon_init.lua (for client)
 
-How to use: (see examples)
+2. How to use: (see examples, in Midas Talents)
 - make an ability KV for the talent ability
 - set BaseClass as "special_bonus_undefined"
 - add key-value "IsTalent" "1" to the ability
 - on the ability special kv, put
-	- ability to be modified: "ability" "<target ability"
+	- ability to be modified: "ability" "<target ability>"
 	- special value to be modified: "<special name>" "<value>"
 	- addition or multiplication: "bonus_type" "<'*' or '+'>"
+
+3. Check Talent
+To check if talent is leveled up, use TalentSystem:UnitHasTalent( unit, talentname )
+
+4. Generic Talent bonus
+For generic bonus, set kv-pair "ability" "generic". Possible generic talent bonus:
+- str
+- agi
+- int
+- health
+- mana
+- hregen
+- mregen
+- armor
+- magicresist
+- attackspeed
+- movespeed
+- basedamage
+- attackdamage
+- spellamp
+- attackrange
+- castrange
+- evasion
+- cdr
+- nightvision
+
+5. Generic Modifier
+Use "ScriptFile" "<modifier_path>" to use custom modifier that created when the talent is levelud up.
+The modifier name must be the same as ability name.
+Useful for complex talents such as:
+- manabreak
+- lifesteal
+- spelllifesteal
+- corruption
+- cleave
+- spell block
+- reincarnation
 ]]
 
 
@@ -37,6 +74,15 @@ function TalentSystem:Init()
 		self.kv[k] = v
 	end
 
+	-- check for required ScriptFile
+	for name,tab in pairs(self.kv) do
+		if type(tab)=='table' then
+			if tab["IsTalent"]==1 and tab["ScriptFile"] then
+				LinkLuaModifier( name, tab["ScriptFile"], LUA_MODIFIER_MOTION_NONE )
+			end
+		end
+	end
+
 	-- unit queue
 	self.queue = {}
 end
@@ -53,16 +99,25 @@ function TalentSystem:OnAbilityLearned( params )
 	-- get ability ref
 	local ability = hero:FindAbilityByName( abilityname )
 
+	-- get modifier ref
+	local modifiername = "modifier_talent"
+	if self.kv[abilityname]["ScriptFile"] then
+		modifiername = abilityname
+	end
+
 	-- ded unit can't receive modifier
 	if not hero:IsAlive() then
-		self.queue[hero] = ability
+		self.queue[hero] = {
+			ability = ability,
+			name = modifiername,
+		}
 		return
 	end
 
 	hero:AddNewModifier(
 		hero, -- player source
 		ability, -- ability source
-		"modifier_talent", -- modifier name
+		modifiername, -- modifier name
 		{} -- kv
 	)
 end
@@ -72,11 +127,21 @@ function TalentSystem:OnNPCSpawned( params )
 	if not self.queue[unit] then return end
 	unit:AddNewModifier(
 		unit, -- player source
-		self.queue[unit], -- ability source
-		"modifier_talent", -- modifier name
+		self.queue[unit].ability, -- ability source
+		self.queue[unit].name, -- modifier name
 		{} -- kv
 	)
 	self.queue[unit] = nil
+end
+
+function TalentSystem:UnitHasTalent( unit, name )
+	local mods = unit:FindAllModifiersByName( "modifier_talent" )
+	for _,mod in pairs(mods) do
+		if mod:GetAbility() and mod:GetAbility():GetAbilityName()==name then
+			return true
+		end
+	end
+	return false
 end
 
 TalentSystem:Init()

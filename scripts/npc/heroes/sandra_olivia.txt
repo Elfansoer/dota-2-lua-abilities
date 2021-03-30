@@ -46,5 +46,13 @@
 		"Ability2"				"sandra_ironical_healing"						// Ability 2
 		"Ability3"				"sandra_will_to_live"						// Ability 3
 		"Ability6"				"sandra_sacrifice"							// Ability 6
+		"Ability10"				"special_bonus_unique_sandra_1"							// Ability 6
+		"Ability11"				"special_bonus_unique_sandra_2"							// Ability 6
+		"Ability12"				"special_bonus_unique_sandra_3"							// Ability 6
+		"Ability13"				"special_bonus_unique_sandra_4"							// Ability 6
+		"Ability14"				"special_bonus_unique_sandra_spellblock"							// Ability 6
+		"Ability15"				"special_bonus_unique_ironical_healing_duration"							// Ability 6
+		"Ability16"				"special_bonus_unique_will_to_live_tick"							// Ability 6
+		"Ability17"				"special_bonus_unique_undeniable_torture_lifeshare"							// Ability 6
 	}
 }

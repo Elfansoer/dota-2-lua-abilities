@@ -1271,6 +1271,7 @@
 #base "../vscripts/custom_abilities/bakedanuki_frolic_aura/bakedanuki_frolic_aura_base.txt"
 #base "../vscripts/custom_abilities/bakedanuki_futatsuiwas_curse/bakedanuki_futatsuiwas_curse_base.txt"
 
+#base "../vscripts/custom_abilities/midas_talents/midas_talents.txt"
 #base "../vscripts/custom_abilities/midas_golden_touch/midas_golden_touch.txt"
 #base "../vscripts/custom_abilities/midas_golden_sword/midas_golden_sword.txt"
 #base "../vscripts/custom_abilities/midas_golden_burst/midas_golden_burst.txt"
@@ -1289,6 +1290,7 @@
 #base "../vscripts/custom_abilities/riven_runic_blade/riven_runic_blade.txt"
 #base "../vscripts/custom_abilities/riven_blade_of_the_exile/riven_blade_of_the_exile.txt"
 
+#base "../vscripts/custom_abilities/sandra_talents/sandra_talents.txt"
 #base "../vscripts/custom_abilities/sandra_undeniable_torture/sandra_undeniable_torture.txt"
 #base "../vscripts/custom_abilities/sandra_ironical_healing/sandra_ironical_healing.txt"
 #base "../vscripts/custom_abilities/sandra_will_to_live/sandra_will_to_live.txt"
