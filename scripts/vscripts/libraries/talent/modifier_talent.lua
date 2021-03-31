@@ -2,29 +2,6 @@
 --[[
 ]]
 
-local propertylist = {
-	-- ["all"] = -1,
-	["str"] = MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-	["agi"] = MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-	["int"] = MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-	["health"] = MODIFIER_PROPERTY_HEALTH_BONUS,
-	["mana"] = MODIFIER_PROPERTY_MANA_BONUS,
-	["hregen"] = MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-	["mregen"] = MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-	["armor"] = MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-	["magicresist"] = MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-	["attackspeed"] = MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-	["movespeed"] = MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	["basedamage"] = MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
-	["attackdamage"] = MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-	["spellamp"] = MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-	["attackrange"] = MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-	["castrange"] = MODIFIER_PROPERTY_CAST_RANGE_BONUS,
-	["evasion"] = MODIFIER_PROPERTY_EVASION_CONSTANT,
-	["cdr"] = MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
-	["nightvision"] = MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
-}
-
 --------------------------------------------------------------------------------
 modifier_talent = class({})
 
@@ -50,28 +27,33 @@ function modifier_talent:OnCreated( kv )
 	local name = self:GetAbility():GetAbilityName()
 	local kv = TalentSystem.kv[name]["AbilitySpecial"]
 
-	self.specials = {}
+	self.modified = {}
+	self.modified["generic"] = {}
 	for k,v in pairs(kv) do
-		table.insert( self.specials, v )
+		-- register ability names
+		local ability = v["ability"]
+		if not self.modified[ability] then
+			self.modified[ability] = {}
+		end
+
+		-- find special value names
+		for key,value in pairs(v) do
+			if key~='ability' and key~='var_type' and key~='bonus_type' then
+				local temp = {}
+				temp.value = value
+				temp.type = v["bonus_type"] or '+'
+				self.modified[ability][key] = temp
+			end
+		end
 	end
 
 	-- init generics
-	self.generics = {}
-	for k,v in pairs(propertylist) do
-		self.generics[k] = 0
-	end
-
-	-- get generics
-	for _,special in pairs(self.specials) do
-		-- the ability is generic
-		if special.ability=="generic" then
-
-			-- loop over what bonuses
-			for name,value in pairs(special) do
-				if propertylist[name] then
-					self.generics[name] = value
-				end
-			end
+	self.generics = self.modified["generic"]
+	for k,v in pairs(TalentSystem.propertylist) do
+		if self.generics[k] then
+			self.generics[k] = self.generics[k].value
+		else
+			self.generics[k] = 0
 		end
 	end
 end
@@ -119,10 +101,8 @@ function modifier_talent:GetModifierOverrideAbilitySpecial( params )
 	local specialname = params.ability_special_value
 	local level = params.ability_special_level
 
-	for _,special in pairs(self.specials) do
-		if abilityname==special.ability and special[specialname] then
-			return 1
-		end
+	if self.modified[abilityname] and self.modified[abilityname][specialname] then
+		return 1
 	end
 
 	return 0
@@ -133,16 +113,10 @@ function modifier_talent:GetModifierOverrideAbilitySpecialValue( params )
 	local specialname = params.ability_special_value
 	local level = params.ability_special_level
 
-	local value = 0
-	local bonus_type = '+'
-	for _,special in pairs(self.specials) do
-		if abilityname==special.ability and special[specialname] then
-			value = special[specialname]
-			bonus_type = special.bonus_type
-		end
-	end
-
 	local base = params.ability:GetLevelSpecialValueNoOverride( specialname, level )
+	local value = self.modified[abilityname][specialname].value
+	local bonus_type = self.modified[abilityname][specialname].type
+
 	if bonus_type=='*' then
 		return base * value
 	else 

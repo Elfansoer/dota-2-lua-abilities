@@ -1,7 +1,7 @@
 -- Created by Elfansoer
 --[[
 1. How to install:
-- require this file in both addon_game_mode.lua (for server) and addon_init.lua (for client)
+- require this file in addon_init.lua (for server & client)
 
 2. How to use: (see examples, in Midas Talents)
 - make an ability KV for the talent ability
@@ -14,6 +14,7 @@
 
 3. Check Talent
 To check if talent is leveled up, use TalentSystem:UnitHasTalent( unit, talentname )
+(Currently server-only)
 
 4. Generic Talent bonus
 For generic bonus, set kv-pair "ability" "generic". Possible generic talent bonus:
@@ -50,10 +51,32 @@ Useful for complex talents such as:
 - reincarnation
 ]]
 
-
 if not TalentSystem then
 	TalentSystem = {}
 end
+
+local propertylist = {
+	-- ["all"] = -1,
+	["str"] = MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+	["agi"] = MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+	["int"] = MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+	["health"] = MODIFIER_PROPERTY_HEALTH_BONUS,
+	["mana"] = MODIFIER_PROPERTY_MANA_BONUS,
+	["hregen"] = MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+	["mregen"] = MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+	["armor"] = MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	["magicresist"] = MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+	["attackspeed"] = MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	["movespeed"] = MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	["basedamage"] = MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
+	["attackdamage"] = MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+	["spellamp"] = MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+	["attackrange"] = MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+	["castrange"] = MODIFIER_PROPERTY_CAST_RANGE_BONUS,
+	["evasion"] = MODIFIER_PROPERTY_EVASION_CONSTANT,
+	["cdr"] = MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
+	["nightvision"] = MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
+}
 
 function TalentSystem:Init()
 	self.PATH = debug.getinfo(1).source:sub(2):gsub('\\','/'):match( 'scripts/vscripts.*/' )
@@ -63,28 +86,25 @@ function TalentSystem:Init()
 	ListenToGameEvent("dota_player_learned_ability", Dynamic_Wrap(TalentSystem, 'OnAbilityLearned'), self)
 	ListenToGameEvent("npc_spawned", Dynamic_Wrap(TalentSystem, 'OnNPCSpawned'), self)
 
-	-- get values
-	local abilities1 = LoadKeyValues( "scripts/npc/npc_abilities_custom.txt" )
-	local abilities2 = LoadKeyValues( "scripts/npc/npc_abilities.txt" )
+	-- get Talent KVs
+	local abilities = LoadKeyValues( "scripts/npc/npc_abilities_custom.txt" )
 	self.kv = {}
-	for k,v in pairs(abilities1) do
-		self.kv[k] = v
-	end
-	for k,v in pairs(abilities2) do
-		self.kv[k] = v
+	for k,v in pairs(abilities) do
+		if type(v)=='table' and v["IsTalent"]==1 then
+			self.kv[k] = v
+		end
 	end
 
 	-- check for required ScriptFile
 	for name,tab in pairs(self.kv) do
-		if type(tab)=='table' then
-			if tab["IsTalent"]==1 and tab["ScriptFile"] then
-				LinkLuaModifier( name, tab["ScriptFile"], LUA_MODIFIER_MOTION_NONE )
-			end
+		if tab["ScriptFile"] then
+			LinkLuaModifier( name, tab["ScriptFile"], LUA_MODIFIER_MOTION_NONE )
 		end
 	end
 
 	-- unit queue
 	self.queue = {}
+	self.propertylist = propertylist
 end
 
 function TalentSystem:OnAbilityLearned( params )
@@ -94,7 +114,7 @@ function TalentSystem:OnAbilityLearned( params )
 	local abilityname = params.abilityname
 
 	-- check if talent
-	if self.kv[abilityname]["IsTalent"]~=1 then return end
+	if not self.kv[abilityname] then return end
 
 	-- get ability ref
 	local ability = hero:FindAbilityByName( abilityname )
