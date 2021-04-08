@@ -580,6 +580,18 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Gyrocopter (Razor)
+	//=================================================================================================================
+	"npc_dota_hero_gyrocopter_lua"
+	{
+		"override_hero"					"npc_dota_hero_gyrocopter"	// Hero to override
+		"Ability1"				"razor_plasma_field_lua"						// Ability 1
+		//"Ability2"				"sand_king_sand_storm_lua"						// Ability 2
+		//"Ability3"				"sand_king_caustic_finale_lua"						// Ability 3
+		//"Ability6"				"sand_king_epicenter_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Omniknight (Sand king)
 	//=================================================================================================================
 	"npc_dota_hero_omniknight_lua"
@@ -676,20 +688,20 @@
 		"Ability3"				"sniper_take_aim_lua"						// Ability 3
 		"Ability6"				"sniper_assassinate_lua"							// Ability 6
 	}
-	
-	//=================================================================================================================
-	// HERO: Spectre (Terrorblade)
-	//=================================================================================================================
-	"npc_dota_hero_spectre_lua"
-	{
-		"override_hero"					"npc_dota_hero_spectre"	// Hero to override
-		"Ability1"				"terrorblade_reflection_lua"						// Ability 1
-		"Ability2"				"terrorblade_conjure_image_lua"						// Ability 2
-		"Ability3"				"terrorblade_metamorphosis_lua"						// Ability 3
-		"Ability4"				"generic_hidden"
-		"Ability6"				"terrorblade_sunder_lua"							// Ability 6
-	}
 
+	//=================================================================================================================
+	// HERO: Pangolier (Spectre)
+	//=================================================================================================================
+	"npc_dota_hero_pangolier_lua"
+	{
+		"override_hero"					"npc_dota_hero_pangolier"	// Hero to override
+		//"Ability1"				"spectre_spectral_dagger_lua"						// Ability 1
+		"Ability2"				"spectre_desolate_lua"						// Ability 2
+		"Ability3"				"spectre_dispersion_lua"						// Ability 3
+		"Ability5"				"spectre_reality_lua"							// Ability 6
+		"Ability6"				"spectre_haunt_lua"							// Ability 6
+	}
+	
 	//=================================================================================================================
 	// HERO: Necrophos (Storm Spirit)
 	//=================================================================================================================
@@ -701,6 +713,19 @@
 		"Ability3"				"storm_spirit_overload_lua"						// Ability 3
 		"Ability4"				"storm_spirit_ball_lightning"						// Ability 3
 		"Ability6"				"storm_spirit_ball_lightning_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
+	// HERO: Spectre (Terrorblade)
+	//=================================================================================================================
+	"npc_dota_hero_spectre_lua"
+	{
+		"override_hero"					"npc_dota_hero_spectre"	// Hero to override
+		"Ability1"				"terrorblade_reflection_lua"						// Ability 1
+		"Ability2"				"terrorblade_conjure_image_lua"						// Ability 2
+		"Ability3"				"terrorblade_metamorphosis_lua"						// Ability 3
+		"Ability4"				"generic_hidden"
+		"Ability6"				"terrorblade_sunder_lua"							// Ability 6
 	}
 
 	//=================================================================================================================
@@ -810,10 +835,10 @@
 	"npc_dota_hero_bristleback_lua"
 	{
 		"override_hero"					"npc_dota_hero_bristleback"	// Hero to override
-		"Ability1"				"juggernaut_blade_fury_lua"						// Ability 2
-		"Ability2"				"juggernaut_blade_dance_lua"						// Ability 3
-		"Ability3"				"tidehunter_gush_lua"						// Ability 1
-		"Ability4"				"tidehunter_anchor_smash_lua"							// Ability 6
+		"Ability1"				"tidehunter_gush_lua"						// Ability 2
+		"Ability2"				"tidehunter_kraken_shell_lua"						// Ability 3
+		"Ability3"				"tidehunter_anchor_smash_lua"						// Ability 1
+		"Ability6"				"tidehunter_ravage_lua"							// Ability 6
 	}
 
 //=================================================================================================================

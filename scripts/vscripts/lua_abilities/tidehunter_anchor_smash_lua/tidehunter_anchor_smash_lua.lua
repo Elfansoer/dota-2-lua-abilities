@@ -1,49 +1,56 @@
 tidehunter_anchor_smash_lua = class({})
 LinkLuaModifier( "modifier_tidehunter_anchor_smash_lua", "lua_abilities/tidehunter_anchor_smash_lua/modifier_tidehunter_anchor_smash_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_tidehunter_anchor_smash_lua_buff", "lua_abilities/tidehunter_anchor_smash_lua/modifier_tidehunter_anchor_smash_lua_buff", LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------
 
 function tidehunter_anchor_smash_lua:OnSpellStart()
+	local caster = self:GetCaster()
+
 	-- get references
 	local reduction_radius = self:GetSpecialValueFor("radius")
 	local reduction_duration = self:GetSpecialValueFor("reduction_duration")
-	local ability_damage = self:GetAbilityDamage()
+	local bonus_damage = self:GetSpecialValueFor("attack_damage")
 
 	-- get list of affected enemies
-	local enemies = FindUnitsInRadius (
-		self:GetCaster():GetTeamNumber(),
-		self:GetOrigin(),
+	local enemies = FindUnitsInRadius(
+		caster:GetTeamNumber(),
+		caster:GetOrigin(),
 		nil,
 		reduction_radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-		FIND_ANY_ORDER,
+		0,
 		false
 	)
 
-	-- precache damage
-	local damage = {
-		-- victim = enemy,
-		attacker = self:GetCaster(),
-		damage = ability_damage,
-		damage_type = DAMAGE_TYPE_PHYSICAL,
-		ability = self
-	}
+	-- add buff modifier
+	-- SUPPRESS_CLEAVE doesn't work yet
+	local mod = caster:AddNewModifier(
+		caster, -- player source
+		self, -- ability source
+		"modifier_tidehunter_anchor_smash_lua_buff", -- modifier name
+		{
+			bonus = bonus_damage,
+		} -- kv
+	)
 
 	-- Do for each affected enemies
 	for _,enemy in pairs(enemies) do
 		-- Add reduction modifier
 		enemy:AddNewModifier(
-			self:GetCaster(),
+			caster,
 			self,
 			"modifier_tidehunter_anchor_smash_lua",
 			{ duration = reduction_duration }
 		)
 
-		-- Apply damage
-		damage.victim = enemy
-		ApplyDamage( damage )
+		-- attack
+		caster:PerformAttack( enemy, true, true, true, true, false, false, true )
 	end
+
+	-- destroy modifier
+	mod:Destroy()
 
 	self:PlayEffects()
 end

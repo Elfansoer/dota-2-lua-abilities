@@ -3,13 +3,29 @@ LinkLuaModifier( "modifier_tidehunter_gush_lua", "lua_abilities/tidehunter_gush_
 
 --------------------------------------------------------------------------------
 -- Custom KV
--- function tidehunter_gush_lua:GetCooldown( level )
--- 	if self:GetCaster():HasScepter() then
--- 		return self:GetSpecialValueFor( "cooldown_scepter" )
--- 	end
+function tidehunter_gush_lua:GetCooldown( level )
+	if self:GetCaster():HasScepter() then
+		return self:GetSpecialValueFor( "cooldown_scepter" )
+	end
 
--- 	return self.BaseClass.GetCooldown( self, level )
--- end
+	return self.BaseClass.GetCooldown( self, level )
+end
+
+function tidehunter_gush_lua:GetCastRange( vLocation, hTarget )
+	if self:GetCaster():HasScepter() then
+		return self:GetSpecialValueFor( "cast_range_scepter" )
+	end
+
+	return self.BaseClass.GetCastRange( self, vLocation, hTarget )
+end
+
+function tidehunter_gush_lua:GetBehavior()
+	if self:GetCaster():HasScepter() then
+		return DOTA_ABILITY_BEHAVIOR_POINT
+	end
+
+	return self.BaseClass.GetBehavior( self )
+end
 
 --------------------------------------------------------------------------------
 -- Ability Start
@@ -17,22 +33,63 @@ function tidehunter_gush_lua:OnSpellStart()
 	-- unit identifier
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	-- local point = self:GetCursorPosition()
+	local point = self:GetCursorPosition()
 
-	-- load data
-	local projectile_speed = self:GetSpecialValueFor("projectile_speed")
+	-- check if scepter
+	if caster:HasScepter() then
+		if target then point = target:GetOrigin() end
 
-	-- create projectile
-	local info = {
-		Target = target,
-		Source = caster,
-		Ability = self,	
+		local name = "particles/units/heroes/hero_tidehunter/tidehunter_gush_upgrade.vpcf"
+		local speed = self:GetSpecialValueFor("speed_scepter")
+		local radius = self:GetSpecialValueFor("aoe_scepter")
+		local range = self:GetCastRange( point, target )
+		local direction = point-caster:GetOrigin()
+		direction.z = 0
+		direction = direction:Normalized()
+
+		-- create linear projectile
+		local info = {
+			Source = caster,
+			Ability = self,
+			vSpawnOrigin = caster:GetAbsOrigin(),
 		
-		EffectName = projectile_name,
-		iMoveSpeed = projectile_speed,
-		bDodgeable = true,                           -- Optional
-	}
-	ProjectileManager:CreateTrackingProjectile(info)
+			bDeleteOnHit = false,
+		
+			iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+			iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+			iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		
+			EffectName = name,
+			fDistance = range,
+			fStartRadius = radius,
+			fEndRadius = radius,
+			vVelocity = direction * speed,
+			ExtraData = {
+				scepter = 1,
+			}
+		}
+		ProjectileManager:CreateLinearProjectile( info )
+	else
+
+		-- load data
+		local name = "particles/units/heroes/hero_tidehunter/tidehunter_gush.vpcf"
+		local speed = self:GetSpecialValueFor("projectile_speed")
+
+		-- create projectile
+		local info = {
+			Target = target,
+			Source = caster,
+			Ability = self,	
+			
+			EffectName = name,
+			iMoveSpeed = speed,
+			bDodgeable = true,                           -- Optional
+			ExtraData = {
+				scepter = 0,
+			}
+		}
+		ProjectileManager:CreateTrackingProjectile(info)
+	end
 
 	-- play effects
 	local sound_cast = "Ability.GushCast"
@@ -41,7 +98,20 @@ function tidehunter_gush_lua:OnSpellStart()
 end
 --------------------------------------------------------------------------------
 -- Projectile
-function tidehunter_gush_lua:OnProjectileHit( target, location )
+function tidehunter_gush_lua:OnProjectileHit_ExtraData( target, location, data )
+	if not target then return end
+
+	-- cancel if linken
+	if data.scepter==0 and target:TriggerSpellAbsorb( self ) then return end
+
+	if data.scepter==1 then
+		local vision = 200
+		local duration = 2
+
+		-- provide vision
+		AddFOWViewer( self:GetCaster():GetTeamNumber(), target:GetOrigin(), vision, duration, true )
+	end
+
 	local damage = self:GetSpecialValueFor("gush_damage")
 	local duration = self:GetDuration()
 
@@ -64,33 +134,32 @@ function tidehunter_gush_lua:OnProjectileHit( target, location )
 	ApplyDamage(damageTable)
 
 	-- effects
-	self:PlayEffects( target )
+	if data.scepter==0 then
+		self:PlayEffects( target )
+
+	end
+
+	local sound_cast = "Ability.GushImpact"
+	EmitSoundOn( sound_cast, target )
+
+	return false
 end
 
 --------------------------------------------------------------------------------
 function tidehunter_gush_lua:PlayEffects( target )
 	-- Get Resources
-	-- local particle_cast = "string"
-	local sound_cast = "Ability.GushImpact"
-
-	-- Get Data
+	local particle_cast = "particles/units/heroes/hero_tidehunter/tidehunter_gush_splash.vpcf"
 
 	-- Create Particle
-	-- local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	-- ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	-- ParticleManager:SetParticleControlEnt(
-	-- 	effect_cast,
-	-- 	iControlPoint,
-	-- 	hTarget,
-	-- 	PATTACH_NAME,
-	-- 	"attach_name",
-	-- 	vOrigin, -- unknown
-	-- 	bool -- unknown, true
-	-- )
-	-- ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	-- SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	-- ParticleManager:ReleaseParticleIndex( effect_cast )
-
-	-- Create Sound
-	EmitSoundOn( sound_cast, target )
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		3,
+		target,
+		PATTACH_ABSORIGIN_FOLLOW,
+		"attach_hitloc",
+		Vector(0,0,0), -- unknown
+		true -- unknown, true
+	)
+	ParticleManager:ReleaseParticleIndex( effect_cast )
 end
