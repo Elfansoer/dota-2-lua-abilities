@@ -146,6 +146,20 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Timbersaw (Dawnbreaker)
+	//=================================================================================================================
+	"npc_dota_hero_shredder_lua"
+	{
+		"override_hero"				"npc_dota_hero_shredder"			// Hero to override
+		"Ability1"					"dawnbreaker_starbreaker_lua"
+		"Ability2"					"dawnbreaker_celestial_hammer_lua"
+		"Ability3"					"dawnbreaker_luminosity_lua"
+		"Ability4"					"generic_hidden"
+		"Ability5"					"generic_hidden"
+		"Ability6"					"dawnbreaker_solar_guardian_lua"
+	}
+
+	//=================================================================================================================
 	// HERO: Undying (Dark Seer)
 	//=================================================================================================================
 	"npc_dota_hero_undying_lua"

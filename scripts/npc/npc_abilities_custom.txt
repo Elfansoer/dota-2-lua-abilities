@@ -978,6 +978,11 @@
 #base "../vscripts/lua_abilities/crystal_maiden_arcane_aura_lua/crystal_maiden_arcane_aura_lua.txt"
 #base "../vscripts/lua_abilities/crystal_maiden_freezing_field_lua/crystal_maiden_freezing_field_lua.txt"
 
+#base "../vscripts/lua_abilities/dawnbreaker_starbreaker_lua/dawnbreaker_starbreaker_lua.txt"
+#base "../vscripts/lua_abilities/dawnbreaker_celestial_hammer_lua/dawnbreaker_celestial_hammer_lua.txt"
+#base "../vscripts/lua_abilities/dawnbreaker_luminosity_lua/dawnbreaker_luminosity_lua.txt"
+#base "../vscripts/lua_abilities/dawnbreaker_solar_guardian_lua/dawnbreaker_solar_guardian_lua.txt"
+
 #base "../vscripts/lua_abilities/dark_seer_vacuum_lua/dark_seer_vacuum_lua.txt"
 #base "../vscripts/lua_abilities/dark_seer_ion_shell_lua/dark_seer_ion_shell_lua.txt"
 #base "../vscripts/lua_abilities/dark_seer_surge_lua/dark_seer_surge_lua.txt"

@@ -1,0 +1,87 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Dawnbreaker: Solar Guardian (Lua version)
+	//=================================================================================================================
+	"dawnbreaker_solar_guardian_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/dawnbreaker_solar_guardian_lua/dawnbreaker_solar_guardian_lua"
+		"AbilityTextureName"			"dawnbreaker_solar_guardian"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
+		"AbilityChannelTime"			"1.7"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120 110 100"
+		"AbilityManaCost"				"150 200 250"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"airtime_duration"				"0.8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"30 50 70"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_heal"				"40 55 70"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pulse_interval"				"0.5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"land_damage"			"130 160 190"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"land_stun_duration"			"1.1 1.3 1.5"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_offset_distance"			"350"
+			}
+		}
+	}
+}
