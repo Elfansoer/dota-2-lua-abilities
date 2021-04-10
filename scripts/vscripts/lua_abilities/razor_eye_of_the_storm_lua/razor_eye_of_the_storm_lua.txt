@@ -1,0 +1,71 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Razor: Eye of the Storm (Lua version)
+	//=================================================================================================================
+	"razor_eye_of_the_storm_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/razor_eye_of_the_storm_lua/razor_eye_of_the_storm_lua"
+		"AbilityTextureName"			"razor_eye_of_the_storm"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+
+		"HasScepterUpgrade"			"1"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"80 70 60"
+		"AbilityManaCost"				"100 150 200"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"500"		
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"30.0"		
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_interval"		"0.7 0.6 0.5"	
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"armor_reduction"	"1 1 1"		
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"60 75 90"		
+			}
+		}
+	}
+}

@@ -1158,6 +1158,8 @@
 #base "../vscripts/lua_abilities/queen_of_pain_sonic_wave_lua/queen_of_pain_sonic_wave_lua.txt"
 
 #base "../vscripts/lua_abilities/razor_plasma_field_lua/razor_plasma_field_lua.txt"
+#base "../vscripts/lua_abilities/razor_storm_surge_lua/razor_storm_surge_lua.txt"
+#base "../vscripts/lua_abilities/razor_eye_of_the_storm_lua/razor_eye_of_the_storm_lua.txt"
 
 #base "../vscripts/lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua.txt"
 
