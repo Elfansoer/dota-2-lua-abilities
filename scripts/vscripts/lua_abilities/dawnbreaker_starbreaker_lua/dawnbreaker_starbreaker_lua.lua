@@ -81,7 +81,6 @@ function dawnbreaker_starbreaker_lua:DestroyCustomIndicator()
 	ParticleManager:ReleaseParticleIndex( self.effect_cast )
 end
 
-
 --------------------------------------------------------------------------------
 -- Ability Cast Filter
 function dawnbreaker_starbreaker_lua:GetCustomCastErrorLocation( vLoc )
@@ -92,7 +91,6 @@ function dawnbreaker_starbreaker_lua:GetCustomCastErrorLocation( vLoc )
 
 	return ""
 end
-
 
 --------------------------------------------------------------------------------
 -- Ability Start
@@ -125,34 +123,4 @@ function dawnbreaker_starbreaker_lua:OnSpellStart()
 			y = direction.y,
 		} -- kv
 	)
-end
-
---------------------------------------------------------------------------------
--- Effects
-function dawnbreaker_starbreaker_lua:PlayEffects()
-	-- Get Resources
-	local particle_cast = "particles/units/heroes/hero_heroname/heroname_ability.vpcf"
-	local sound_cast = "string"
-
-	-- Get Data
-
-	-- Create Particle
-	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_NAME, hOwner )
-	ParticleManager:SetParticleControl( effect_cast, iControlPoint, vControlVector )
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		iControlPoint,
-		hTarget,
-		PATTACH_NAME,
-		"attach_name",
-		vOrigin, -- unknown
-		bool -- unknown, true
-	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
-	ParticleManager:ReleaseParticleIndex( effect_cast )
-
-	-- Create Sound
-	EmitSoundOnLocationWithCaster( vTargetPosition, sound_location, self:GetCaster() )
-	EmitSoundOn( sound_target, target )
 end

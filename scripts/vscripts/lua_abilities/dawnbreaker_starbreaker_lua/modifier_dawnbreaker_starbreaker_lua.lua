@@ -14,7 +14,7 @@ modifier_dawnbreaker_starbreaker_lua = class({})
 --------------------------------------------------------------------------------
 -- Classifications
 function modifier_dawnbreaker_starbreaker_lua:IsHidden()
-	return true
+	return false
 end
 
 function modifier_dawnbreaker_starbreaker_lua:IsDebuff()
@@ -151,6 +151,7 @@ function modifier_dawnbreaker_starbreaker_lua:Swipe()
 
 	-- play effects
 	self:PlayEffects1()
+	self:PlayEffects2()
 end
 
 function modifier_dawnbreaker_starbreaker_lua:Smash()
@@ -211,7 +212,7 @@ function modifier_dawnbreaker_starbreaker_lua:Smash()
 	end
 
 	-- play effects
-	self:PlayEffects2( center )
+	self:PlayEffects3( center )
 end
 
 --------------------------------------------------------------------------------
@@ -237,6 +238,15 @@ end
 -- Graphics & Animations
 function modifier_dawnbreaker_starbreaker_lua:PlayEffects1()
 	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_dawnbreaker/dawnbreaker_fire_wreath_sweep_cast.vpcf"
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
+	ParticleManager:ReleaseParticleIndex( effect_cast )
+end
+
+function modifier_dawnbreaker_starbreaker_lua:PlayEffects2()
+	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_dawnbreaker/dawnbreaker_fire_wreath_sweep.vpcf"
 	local sound_cast = "Hero_Dawnbreaker.Fire_Wreath.Sweep"
 
@@ -245,7 +255,6 @@ function modifier_dawnbreaker_starbreaker_lua:PlayEffects1()
 
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent )
-	ParticleManager:SetParticleControl( effect_cast, 0, self.parent:GetOrigin() )
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		1,
@@ -271,7 +280,7 @@ function modifier_dawnbreaker_starbreaker_lua:PlayEffects1()
 	EmitSoundOn( sound_cast, self.parent )
 end
 
-function modifier_dawnbreaker_starbreaker_lua:PlayEffects2( center )
+function modifier_dawnbreaker_starbreaker_lua:PlayEffects3( center )
 	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_dawnbreaker/dawnbreaker_fire_wreath_smash.vpcf"
 	local sound_cast = "Hero_Dawnbreaker.Fire_Wreath.Smash"

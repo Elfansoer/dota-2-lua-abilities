@@ -27,7 +27,6 @@ function dawnbreaker_celestial_hammer_lua:Precache( context )
 	PrecacheResource( "particle", "particles/units/heroes/hero_dawnbreaker/dawnbreaker_converge_burning_trail.vpcf", context )
 	PrecacheResource( "particle", "particles/units/heroes/hero_dawnbreaker/dawnbreaker_converge_trail.vpcf", context )
 	PrecacheResource( "particle", "particles/units/heroes/hero_dawnbreaker/dawnbreaker_converge_debuff.vpcf", context )
-
 end
 
 function dawnbreaker_celestial_hammer_lua:Spawn()
@@ -71,7 +70,7 @@ function dawnbreaker_celestial_hammer_lua:OnSpellStart()
 	local point = self:GetCursorPosition()
 
 	-- load data
-	local name = "particles/units/heroes/hero_dawnbreaker/dawnbreaker_celestial_hammer_projectile.vpcf"
+	local name = ""
 	local radius = self:GetSpecialValueFor( "projectile_radius" )
 	local speed = self:GetSpecialValueFor( "projectile_speed" )
 	local distance = self:GetSpecialValueFor( "range" )
@@ -146,8 +145,7 @@ function dawnbreaker_celestial_hammer_lua:OnSpellStart()
 	)
 
 	-- play effects
-	local sound_cast = "Hero_Dawnbreaker.Celestial_Hammer.Cast"
-	EmitSoundOn( sound_cast, caster )
+	data.effect = self:PlayEffects1( caster:GetOrigin(), distance, direction * speed )
 end
 
 --------------------------------------------------------------------------------
@@ -219,6 +217,9 @@ function dawnbreaker_celestial_hammer_lua:OnProjectileHitHandle( target, locatio
 		local mod = data.thinker:FindModifierByName( "modifier_dawnbreaker_celestial_hammer_lua_thinker" )
 		mod:Delay()
 
+		-- stop effect
+		self:StopEffects( data.effect )
+
 		-- destroy handle
 		self.projectiles[handle] = nil
 
@@ -262,7 +263,7 @@ function dawnbreaker_celestial_hammer_lua:OnProjectileHitHandle( target, locatio
 		self.projectiles[handle] = nil
 
 		-- play effects
-		self:PlayEffects2()
+		self:PlayEffects3()
 	end
 end
 
@@ -281,7 +282,7 @@ function dawnbreaker_celestial_hammer_lua:HammerHit( target, location )
 	ApplyDamage(damageTable)
 
 	-- play effects
-	self:PlayEffects1( target )
+	self:PlayEffects2( target )
 end
 
 function dawnbreaker_celestial_hammer_lua:Converge()
@@ -296,6 +297,10 @@ function dawnbreaker_celestial_hammer_lua:Converge()
 
 	-- find projectile if exist
 	if self.projectiles[target.id] then
+		-- stop effect
+		self:StopEffects( self.projectiles[target.id].effect )
+
+		-- destroy projectile
 		self.projectiles[target.id] = nil
 		ProjectileManager:DestroyLinearProjectile( target.id )
 	end
@@ -321,7 +326,35 @@ end
 
 --------------------------------------------------------------------------------
 -- Effects
-function dawnbreaker_celestial_hammer_lua:PlayEffects1( target )
+function dawnbreaker_celestial_hammer_lua:PlayEffects1( start, distance, velocity )
+	-- Get Resources
+	local particle_cast = "particles/units/heroes/hero_dawnbreaker/dawnbreaker_celestial_hammer_projectile.vpcf"
+	local sound_cast = "Hero_Dawnbreaker.Celestial_Hammer.Cast"
+
+	-- Get Data
+	local min_rate = 1
+	local duration = distance/velocity:Length2D()
+	local rotation = 0.5
+
+	local rate = rotation/duration
+	while rate<min_rate do
+		rotation = rotation + 1
+		rate = rotation/duration
+	end
+
+	-- Create Particle
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, self:GetCaster() )
+	ParticleManager:SetParticleControl( effect_cast, 0, start )
+	ParticleManager:SetParticleControl( effect_cast, 1, velocity )
+	ParticleManager:SetParticleControl( effect_cast, 4, Vector( rate, 0, 0 ) )
+
+	-- Create Sound
+	EmitSoundOn( sound_cast, self:GetCaster() )
+
+	return effect_cast
+end
+
+function dawnbreaker_celestial_hammer_lua:PlayEffects2( target )
 	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_dawnbreaker/dawnbreaker_celestial_hammer_aoe_impact.vpcf"
 	local sound_cast = "Hero_Dawnbreaker.Celestial_Hammer.Damage"
@@ -338,7 +371,7 @@ function dawnbreaker_celestial_hammer_lua:PlayEffects1( target )
 	EmitSoundOn( sound_cast, target )
 end
 
-function dawnbreaker_celestial_hammer_lua:PlayEffects2()
+function dawnbreaker_celestial_hammer_lua:PlayEffects3()
 	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_dawnbreaker/dawnbreaker_converge.vpcf"
 
@@ -347,7 +380,6 @@ function dawnbreaker_celestial_hammer_lua:PlayEffects2()
 
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
-	-- ParticleManager:SetParticleControl( effect_cast, 1, Vector( radius, radius, radius ) )
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		3,
@@ -360,6 +392,10 @@ function dawnbreaker_celestial_hammer_lua:PlayEffects2()
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 end
 
+function dawnbreaker_celestial_hammer_lua:StopEffects( effect )
+	ParticleManager:DestroyParticle( effect, false )
+	ParticleManager:ReleaseParticleIndex( effect )
+end
 
 --------------------------------------------------------------------------------
 -- Sub-ability: Converge
