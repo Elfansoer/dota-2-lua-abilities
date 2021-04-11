@@ -33,18 +33,19 @@ function modifier_dawnbreaker_starbreaker_lua:OnCreated( kv )
 	-- references
 	self.swipe_radius = self:GetAbility():GetSpecialValueFor( "swipe_radius" )
 	self.swipe_damage = self:GetAbility():GetSpecialValueFor( "swipe_damage" )
+	self.swipe_duration = self:GetAbility():GetSpecialValueFor( "sweep_stun_duration" )
+
 	self.smash_radius = self:GetAbility():GetSpecialValueFor( "smash_radius" )
 	self.smash_damage = self:GetAbility():GetSpecialValueFor( "smash_damage" )
+	self.smash_duration = self:GetAbility():GetSpecialValueFor( "smash_stun_duration" )
 	self.smash_distance = self:GetAbility():GetSpecialValueFor( "smash_distance_from_hero" )
 
-	self.duration = self:GetAbility():GetSpecialValueFor( "smash_stun_duration" )
 	self.selfstun = self:GetAbility():GetSpecialValueFor( "self_stun_duration" )
-
 	self.attacks = self:GetAbility():GetSpecialValueFor( "total_attacks" )
 	self.speed = self:GetAbility():GetSpecialValueFor( "movement_speed" )
 
 	self.tree_radius = 100
-	self.arc_height = 200
+	self.arc_height = 90
 	self.arc_duration = 0.4
 
 	if not IsServer() then return end
@@ -114,7 +115,6 @@ function modifier_dawnbreaker_starbreaker_lua:OnIntervalThink()
 		return
 	end
 
-
 	self.ctr = self.ctr + 1
 	if self.ctr>=self.attacks then
 		self:Smash()
@@ -141,12 +141,28 @@ function modifier_dawnbreaker_starbreaker_lua:Swipe()
 		-- attack
 		self.bonus = self.swipe_damage
 		self.parent:PerformAttack( enemy, true, true, true, true, false, false, true )
+
+		-- slow
+		if not enemy:IsMagicImmune() then
+			enemy:AddNewModifier(
+				self.parent, -- player source
+				self:GetAbility(), -- ability source
+				"modifier_dawnbreaker_starbreaker_lua_slow", -- modifier name
+				{ duration = self.swipe_duration } -- kv
+			)
+		end
 	end
 
 	-- increment luminosity stack
-	local mod = self.parent:FindModifierByName( "modifier_dawnbreaker_luminosity_lua" )
-	if mod and #enemies>0 then
-		mod:Increment()
+	if #enemies>0 then
+		local mod1 = self.parent:FindModifierByName( "modifier_dawnbreaker_luminosity_lua" )
+		local mod2 = self.parent:FindModifierByName( "modifier_dawnbreaker_luminosity_lua_buff" )
+
+		if mod2 then
+			mod2:Destroy()
+		elseif mod1 then
+			mod1:Increment()
+		end
 	end
 
 	-- play effects
@@ -181,7 +197,7 @@ function modifier_dawnbreaker_starbreaker_lua:Smash()
 				self.parent, -- player source
 				self:GetAbility(), -- ability source
 				"modifier_generic_stunned_lua", -- modifier name
-				{ duration = self.duration } -- kv
+				{ duration = self.smash_duration } -- kv
 			)
 
 			enemy:AddNewModifier(
@@ -206,9 +222,15 @@ function modifier_dawnbreaker_starbreaker_lua:Smash()
 	)
 
 	-- increment luminosity stack
-	local mod = self.parent:FindModifierByName( "modifier_dawnbreaker_luminosity_lua" )
-	if mod and #enemies>0 then
-		mod:Increment()
+	if #enemies>0 then
+		local mod1 = self.parent:FindModifierByName( "modifier_dawnbreaker_luminosity_lua" )
+		local mod2 = self.parent:FindModifierByName( "modifier_dawnbreaker_luminosity_lua_buff" )
+
+		if mod2 then
+			mod2:Destroy()
+		elseif mod1 then
+			mod1:Increment()
+		end
 	end
 
 	-- play effects

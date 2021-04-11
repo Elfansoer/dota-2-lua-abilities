@@ -11,6 +11,7 @@ Ability checklist (erase if done/checked):
 --------------------------------------------------------------------------------
 dawnbreaker_luminosity_lua = class({})
 LinkLuaModifier( "modifier_dawnbreaker_luminosity_lua", "lua_abilities/dawnbreaker_luminosity_lua/modifier_dawnbreaker_luminosity_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_dawnbreaker_luminosity_lua_buff", "lua_abilities/dawnbreaker_luminosity_lua/modifier_dawnbreaker_luminosity_lua_buff", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Init Abilities

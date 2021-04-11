@@ -72,7 +72,7 @@
 			"07"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"burn_damage"						"20"
+				"burn_damage"						"20 30 40 50"
 			}	
 			"08"
 			{
