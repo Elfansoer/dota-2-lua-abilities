@@ -1,0 +1,75 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Dawnbreaker: Luminosity (Lua version)
+	//=================================================================================================================
+	"dawnbreaker_luminosity_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/dawnbreaker_luminosity_lua/dawnbreaker_luminosity_lua"
+		"AbilityTextureName"			"dawnbreaker_luminosity"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal_radius"				"650"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal_pct"					"30 40 50 60"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"120 140 160 180"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_count"				"3"
+			}	
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"proc_cooldown"				"0.00"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal_from_creeps"			"50"
+			}	
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"allied_healing_pct"		"35"
+			}
+		}
+	}
+}

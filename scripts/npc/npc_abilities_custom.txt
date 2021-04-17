@@ -978,6 +978,11 @@
 #base "../vscripts/lua_abilities/crystal_maiden_arcane_aura_lua/crystal_maiden_arcane_aura_lua.txt"
 #base "../vscripts/lua_abilities/crystal_maiden_freezing_field_lua/crystal_maiden_freezing_field_lua.txt"
 
+#base "../vscripts/lua_abilities/dawnbreaker_starbreaker_lua/dawnbreaker_starbreaker_lua.txt"
+#base "../vscripts/lua_abilities/dawnbreaker_celestial_hammer_lua/dawnbreaker_celestial_hammer_lua.txt"
+#base "../vscripts/lua_abilities/dawnbreaker_luminosity_lua/dawnbreaker_luminosity_lua.txt"
+#base "../vscripts/lua_abilities/dawnbreaker_solar_guardian_lua/dawnbreaker_solar_guardian_lua.txt"
+
 #base "../vscripts/lua_abilities/dark_seer_vacuum_lua/dark_seer_vacuum_lua.txt"
 #base "../vscripts/lua_abilities/dark_seer_ion_shell_lua/dark_seer_ion_shell_lua.txt"
 #base "../vscripts/lua_abilities/dark_seer_surge_lua/dark_seer_surge_lua.txt"
@@ -1157,6 +1162,10 @@
 #base "../vscripts/lua_abilities/queen_of_pain_scream_of_pain_lua/queen_of_pain_scream_of_pain_lua.txt"
 #base "../vscripts/lua_abilities/queen_of_pain_sonic_wave_lua/queen_of_pain_sonic_wave_lua.txt"
 
+#base "../vscripts/lua_abilities/razor_plasma_field_lua/razor_plasma_field_lua.txt"
+#base "../vscripts/lua_abilities/razor_storm_surge_lua/razor_storm_surge_lua.txt"
+#base "../vscripts/lua_abilities/razor_eye_of_the_storm_lua/razor_eye_of_the_storm_lua.txt"
+
 #base "../vscripts/lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua.txt"
 
 #base "../vscripts/lua_abilities/sand_king_burrowstrike_lua/sand_king_burrowstrike_lua.txt"
@@ -1199,6 +1208,15 @@
 #base "../vscripts/lua_abilities/sniper_take_aim_lua/sniper_take_aim_lua.txt"
 #base "../vscripts/lua_abilities/sniper_assassinate_lua/sniper_assassinate_lua.txt"
 
+#base "../vscripts/lua_abilities/spectre_desolate_lua/spectre_desolate_lua.txt"
+#base "../vscripts/lua_abilities/spectre_dispersion_lua/spectre_dispersion_lua.txt"
+#base "../vscripts/lua_abilities/spectre_haunt_lua/spectre_haunt_lua.txt"
+
+#base "../vscripts/lua_abilities/spirit_breaker_charge_of_darkness_lua/spirit_breaker_charge_of_darkness_lua.txt"
+#base "../vscripts/lua_abilities/spirit_breaker_bulldoze_lua/spirit_breaker_bulldoze_lua.txt"
+#base "../vscripts/lua_abilities/spirit_breaker_greater_bash_lua/spirit_breaker_greater_bash_lua.txt"
+#base "../vscripts/lua_abilities/spirit_breaker_nether_strike_lua/spirit_breaker_nether_strike_lua.txt"
+
 #base "../vscripts/lua_abilities/storm_spirit_static_remnant_lua/storm_spirit_static_remnant_lua.txt"
 #base "../vscripts/lua_abilities/storm_spirit_electric_vortex_lua/storm_spirit_electric_vortex_lua.txt"
 #base "../vscripts/lua_abilities/storm_spirit_overload_lua/storm_spirit_overload_lua.txt"
@@ -1210,7 +1228,9 @@
 #base "../vscripts/lua_abilities/terrorblade_sunder_lua/terrorblade_sunder_lua.txt"
 
 #base "../vscripts/lua_abilities/tidehunter_gush_lua/tidehunter_gush_lua.txt"
+#base "../vscripts/lua_abilities/tidehunter_kraken_shell_lua/tidehunter_kraken_shell_lua.txt"
 #base "../vscripts/lua_abilities/tidehunter_anchor_smash_lua/tidehunter_anchor_smash_lua.txt"
+#base "../vscripts/lua_abilities/tidehunter_ravage_lua/tidehunter_ravage_lua.txt"
 
 #base "../vscripts/lua_abilities/timbersaw_whirling_death_lua/timbersaw_whirling_death_lua.txt"
 #base "../vscripts/lua_abilities/timbersaw_timber_chain_lua/timbersaw_timber_chain_lua.txt"
@@ -1271,6 +1291,7 @@
 #base "../vscripts/custom_abilities/bakedanuki_frolic_aura/bakedanuki_frolic_aura_base.txt"
 #base "../vscripts/custom_abilities/bakedanuki_futatsuiwas_curse/bakedanuki_futatsuiwas_curse_base.txt"
 
+#base "../vscripts/custom_abilities/midas_talents/midas_talents.txt"
 #base "../vscripts/custom_abilities/midas_golden_touch/midas_golden_touch.txt"
 #base "../vscripts/custom_abilities/midas_golden_sword/midas_golden_sword.txt"
 #base "../vscripts/custom_abilities/midas_golden_burst/midas_golden_burst.txt"
@@ -1293,6 +1314,7 @@
 #base "../vscripts/custom_abilities/riven_runic_blade/riven_runic_blade.txt"
 #base "../vscripts/custom_abilities/riven_blade_of_the_exile/riven_blade_of_the_exile.txt"
 
+#base "../vscripts/custom_abilities/sandra_talents/sandra_talents.txt"
 #base "../vscripts/custom_abilities/sandra_undeniable_torture/sandra_undeniable_torture.txt"
 #base "../vscripts/custom_abilities/sandra_ironical_healing/sandra_ironical_healing.txt"
 #base "../vscripts/custom_abilities/sandra_will_to_live/sandra_will_to_live.txt"

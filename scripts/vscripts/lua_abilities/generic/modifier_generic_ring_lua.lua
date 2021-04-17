@@ -39,6 +39,10 @@ function modifier_generic_ring_lua:IsPurgable()
 	return false
 end
 
+function modifier_generic_ring_lua:RemoveOnDeath()
+	return false
+end
+
 function modifier_generic_ring_lua:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
@@ -54,6 +58,10 @@ function modifier_generic_ring_lua:OnCreated( kv )
 	self.end_radius = kv.end_radius or 0
 	self.width = kv.width or 100
 	self.speed = kv.speed or 0
+	self.outward = self.end_radius>=self.start_radius
+	if not self.outward then
+		self.speed = -self.speed
+	end
 
 	self.target_team = kv.target_team or 0
 	self.target_type = kv.target_type or 0
@@ -70,6 +78,12 @@ end
 function modifier_generic_ring_lua:OnDestroy()
 	if self.EndCallback then
 		self.EndCallback()
+	end
+	if not IsServer() then return end
+
+	-- kill if thinker
+	if self:GetParent():GetClassname()=="npc_dota_thinker" then
+		UTIL_Remove( self:GetParent() )
 	end
 end
 
@@ -89,7 +103,10 @@ end
 -- Interval Effects
 function modifier_generic_ring_lua:OnIntervalThink()
 	local radius = self.start_radius + self.speed * self:GetElapsedTime()
-	if radius>self.end_radius then
+	if not self.outward and radius<self.end_radius then
+		self:Destroy()
+		return
+	elseif self.outward and radius>self.end_radius then
 		self:Destroy()
 		return
 	end

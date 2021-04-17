@@ -1,0 +1,200 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Talent 1: +63 damage
+	//=================================================================================================================
+	"special_bonus_unique_sandra_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attackdamage"				"63"
+				"ability"					"generic"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Talent 2: +1.92 mana regen
+	//=================================================================================================================
+	"special_bonus_unique_sandra_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"mregen"					"1.92"
+				"ability"					"generic"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Talent 3: +387 cast range
+	//=================================================================================================================
+	"special_bonus_unique_sandra_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"castrange"					"387"
+				"ability"					"generic"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Talent 4: +108 attack speed
+	//=================================================================================================================
+	"special_bonus_unique_sandra_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attackspeed"				"108"
+				"ability"					"generic"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Talent 5: 15s spell block
+	//=================================================================================================================
+	"special_bonus_unique_sandra_spellblock"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		"ScriptFile"					"custom_abilities/sandra_talents/modifier_sandra_talents"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cooldown"					"15"
+				"ability"					"modifier"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Talent 6: -10s Ironical Healing duration
+	//=================================================================================================================
+	"special_bonus_unique_ironical_healing_duration"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"			"-10"
+				"ability"					"sandra_ironical_healing"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Talent 7: -10% Will to Live damage per tick
+	//=================================================================================================================
+	"special_bonus_unique_will_to_live_tick"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_delay"				"-10"
+				"ability"					"sandra_will_to_live"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Talent 8: +53% Undeniable Torture shared damage
+	//=================================================================================================================
+	"special_bonus_unique_undeniable_torture_lifeshare"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"lifeshare"					"53"
+				"ability"					"sandra_undeniable_torture"
+			}
+		}
+	}
+}

@@ -7,15 +7,32 @@ function modifier_generic_silenced_lua:IsDebuff()
 end
 
 function modifier_generic_silenced_lua:IsStunDebuff()
-	return false
-end
-
-function modifier_generic_silenced_lua:IsPurgable()
 	return true
 end
 
 --------------------------------------------------------------------------------
--- Modifier State
+-- Initializations
+function modifier_generic_silenced_lua:OnCreated( kv )
+	if not IsServer() then return end
+
+	-- calculate status resistance
+	local resist = 1-self:GetParent():GetStatusResistance()
+	local duration = kv.duration*resist
+	self:SetDuration( duration, true )
+end
+
+function modifier_generic_silenced_lua:OnRefresh( kv )
+	self:OnCreated( kv )
+end
+
+function modifier_generic_silenced_lua:OnRemoved()
+end
+
+function modifier_generic_silenced_lua:OnDestroy()
+end
+
+--------------------------------------------------------------------------------
+-- Status Effects
 function modifier_generic_silenced_lua:CheckState()
 	local state = {
 		[MODIFIER_STATE_SILENCED] = true,
@@ -25,7 +42,7 @@ function modifier_generic_silenced_lua:CheckState()
 end
 
 --------------------------------------------------------------------------------
--- Graphics and animations
+-- Graphics & Animations
 function modifier_generic_silenced_lua:GetEffectName()
 	return "particles/generic_gameplay/generic_silenced.vpcf"
 end

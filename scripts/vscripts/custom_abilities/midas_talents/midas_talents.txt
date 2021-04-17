@@ -1,0 +1,215 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Talent 1: +200 health
+	//=================================================================================================================
+	"special_bonus_unique_midas_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health"					"200"
+				"ability"					"generic"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Talent 2: +2 armor
+	//=================================================================================================================
+	"special_bonus_unique_midas_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"armor"						"2"
+				"ability"					"generic"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Talent 3: +20 AS/MS
+	//=================================================================================================================
+	"special_bonus_unique_midas_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attackspeed"				"20"
+				"movespeed"					"20"
+				"ability"					"generic"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Talent 4: +20% cdr
+	//=================================================================================================================
+	"special_bonus_unique_midas_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cdr"						"20"
+				"ability"					"generic"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Talent 5: +3s Golden Burst duration
+	//=================================================================================================================
+	"special_bonus_unique_golden_burst_duration"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"3"
+				"ability"					"midas_golden_burst"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Talent 6: +10% Golden Touch damage per gold
+	//=================================================================================================================
+	"special_bonus_unique_golden_touch_gold"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_per_gold"			"10"
+				"ability"					"midas_golden_touch"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Talent 7: +20% Golden Burst gold return
+	//=================================================================================================================
+	"special_bonus_unique_golden_burst_return"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"gold_return"				"20"
+				"ability"					"midas_golden_burst"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Talent 8: 2x Golden Valkyrie duration
+	//=================================================================================================================
+	"special_bonus_unique_golden_valkyrie_duration"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsTalent"						"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"2"
+				"ability"					"midas_golden_valkyrie_a"
+				"bonus_type"				"*"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"2"
+				"ability"					"midas_golden_valkyrie_b"
+				"bonus_type"				"*"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"2"
+				"ability"					"midas_golden_valkyrie_c"
+				"bonus_type"				"*"
+			}
+		}
+	}
+}

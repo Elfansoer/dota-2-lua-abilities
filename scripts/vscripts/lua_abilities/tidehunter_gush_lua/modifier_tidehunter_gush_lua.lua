@@ -56,13 +56,13 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_tidehunter_gush_lua:GetEffectName()
--- 	return "particles/string/here.vpcf"
--- end
+function modifier_tidehunter_gush_lua:GetEffectName()
+	return "particles/units/heroes/hero_tidehunter/tidehunter_gush_slow.vpcf"
+end
 
--- function modifier_tidehunter_gush_lua:GetEffectAttachType()
--- 	return PATTACH_ABSORIGIN_FOLLOW
--- end
+function modifier_tidehunter_gush_lua:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
 
 -- function modifier_tidehunter_gush_lua:PlayEffects()
 -- 	-- Get Resources

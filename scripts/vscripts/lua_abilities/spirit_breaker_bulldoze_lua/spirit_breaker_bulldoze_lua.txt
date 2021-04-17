@@ -1,0 +1,56 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Spirit Breaker: Bulldoze (Lua version)
+	//=================================================================================================================
+	"spirit_breaker_bulldoze_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/spirit_breaker_bulldoze_lua/spirit_breaker_bulldoze_lua"
+		"AbilityTextureName"			"spirit_breaker_bulldoze"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22 20 18 16"
+		"AbilityManaCost"				"30 40 50 60"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"movement_speed"				"10 16 22 28"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"status_resistance"			"34 46 58 70"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"	"8"
+			}
+		}
+	}
+}
