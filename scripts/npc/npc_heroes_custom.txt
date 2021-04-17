@@ -717,6 +717,19 @@
 	}
 	
 	//=================================================================================================================
+	// HERO: Lycan (Spirit Breaker)
+	//=================================================================================================================
+	"npc_dota_hero_lycan_lua"
+	{
+		"override_hero"					"npc_dota_hero_lycan"	// Hero to override
+		"Ability1"				"spirit_breaker_charge_of_darkness_lua"						// Ability 1
+		"Ability2"				"spirit_breaker_bulldoze_lua"						// Ability 2
+		"Ability3"				"spirit_breaker_greater_bash_lua"						// Ability 3
+		"Ability4"				"generic_hidden"						// Ability 3
+		"Ability6"				"spirit_breaker_nether_strike_lua"							// Ability 6
+	}
+
+	//=================================================================================================================
 	// HERO: Necrophos (Storm Spirit)
 	//=================================================================================================================
 	"npc_dota_hero_necrolyte_lua"

@@ -1212,6 +1212,11 @@
 #base "../vscripts/lua_abilities/spectre_dispersion_lua/spectre_dispersion_lua.txt"
 #base "../vscripts/lua_abilities/spectre_haunt_lua/spectre_haunt_lua.txt"
 
+#base "../vscripts/lua_abilities/spirit_breaker_charge_of_darkness_lua/spirit_breaker_charge_of_darkness_lua.txt"
+#base "../vscripts/lua_abilities/spirit_breaker_bulldoze_lua/spirit_breaker_bulldoze_lua.txt"
+#base "../vscripts/lua_abilities/spirit_breaker_greater_bash_lua/spirit_breaker_greater_bash_lua.txt"
+#base "../vscripts/lua_abilities/spirit_breaker_nether_strike_lua/spirit_breaker_nether_strike_lua.txt"
+
 #base "../vscripts/lua_abilities/storm_spirit_static_remnant_lua/storm_spirit_static_remnant_lua.txt"
 #base "../vscripts/lua_abilities/storm_spirit_electric_vortex_lua/storm_spirit_electric_vortex_lua.txt"
 #base "../vscripts/lua_abilities/storm_spirit_overload_lua/storm_spirit_overload_lua.txt"
