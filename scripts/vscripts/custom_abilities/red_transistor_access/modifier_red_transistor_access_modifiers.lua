@@ -37,6 +37,11 @@ end
 -- Initializations
 function modifier_red_transistor_access_modifiers:OnCreated( kv )
 	if not IsServer() then return end
+	-- send init data from server to client
+	self:SetHasCustomTransmitterData( true )
+
+	self.slot_type = kv.slot_type
+	self:GetAbility().passive = kv.slot_type=="passive"
 end
 
 function modifier_red_transistor_access_modifiers:OnRefresh( kv )
@@ -47,4 +52,22 @@ function modifier_red_transistor_access_modifiers:OnRemoved()
 end
 
 function modifier_red_transistor_access_modifiers:OnDestroy()
+end
+
+--------------------------------------------------------------------------------
+-- Transmitter data
+function modifier_red_transistor_access_modifiers:AddCustomTransmitterData()
+	-- on server
+	local data = {
+		slot_type = self.slot_type
+	}
+
+	return data
+end
+
+function modifier_red_transistor_access_modifiers:HandleCustomTransmitterData( data )
+	-- on client
+	self.slot_type = data.slot_type
+
+	self:GetAbility().passive = data.slot_type=="passive"
 end

@@ -19,6 +19,7 @@
 - Test issues
 	- Client/Panorama update should be broadcast to all client (minor)
 	- enemy modifiers should have greyed out in panorama (minor)
+	- passive switch allstat not work, purge not defined
 - Improvements
 	- Replace install uninstall by loop instead of hardcode name1 name2
 	- set cast range as abilityspecial
@@ -45,6 +46,26 @@ require( "scripts/vscripts/custom_abilities/red_transistor_access/red_transistor
 --------------------------------------------------------------------------------
 -- Game Modifiers
 LinkLuaModifier( "modifier_red_transistor_access_modifiers", "custom_abilities/red_transistor_access/modifier_red_transistor_access_modifiers", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_base_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_bounce_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_breach_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_crash_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_flood_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_get_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_ping_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_purge_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_switch_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_cull_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_help_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_jaunt_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_load_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_mask_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_spark_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_tap_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_void_passive", "custom_abilities/red_transistor_access/modifier_red_transistor_access_passives", LUA_MODIFIER_MOTION_NONE )
+
+LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_generic_slowed_lua", "lua_abilities/generic/modifier_generic_slowed_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Empty and Locked
@@ -57,6 +78,34 @@ red_transistor_locked_1 = class(generic_base)
 red_transistor_locked_2 = class(generic_base)
 red_transistor_locked_3 = class(generic_base)
 red_transistor_locked_4 = class(generic_base)
+
+--------------------------------------------------------------------------------
+-- Passive modifiers
+--------------------------------------------------------------------------------
+local passive_name = {
+	["red_transistor_empty"] = "modifier_red_transistor_base_passive",
+	["red_transistor_empty_1"] = "modifier_red_transistor_base_passive",
+	["red_transistor_empty_4"] = "modifier_red_transistor_base_passive",
+	["red_transistor_locked"] = "modifier_red_transistor_base_passive",
+	["red_transistor_locked_1"] = "modifier_red_transistor_base_passive",
+	["red_transistor_locked_4"] = "modifier_red_transistor_base_passive",
+	["red_transistor_bounce"] = "modifier_red_transistor_bounce_passive",
+	["red_transistor_breach"] = "modifier_red_transistor_breach_passive",
+	["red_transistor_crash"] = "modifier_red_transistor_crash_passive",
+	["red_transistor_flood"] = "modifier_red_transistor_flood_passive",
+	["red_transistor_get"] = "modifier_red_transistor_get_passive",
+	["red_transistor_ping"] = "modifier_red_transistor_ping_passive",
+	["red_transistor_purge"] = "modifier_red_transistor_purge_passive",
+	["red_transistor_switch"] = "modifier_red_transistor_switch_passive",
+	["red_transistor_cull"] = "modifier_red_transistor_cull_passive",
+	["red_transistor_help"] = "modifier_red_transistor_help_passive",
+	["red_transistor_jaunt"] = "modifier_red_transistor_jaunt_passive",
+	["red_transistor_load"] = "modifier_red_transistor_load_passive",
+	["red_transistor_mask"] = "modifier_red_transistor_mask_passive",
+	["red_transistor_spark"] = "modifier_red_transistor_spark_passive",
+	["red_transistor_tap"] = "modifier_red_transistor_tap_passive",
+	["red_transistor_void"] = "modifier_red_transistor_void_passive",
+}
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -159,9 +208,12 @@ function red_transistor_access:Spawn()
 	self.SLOT_SIZE = 1 + self.MAX_UPGRADE
 	self.MAX_ABILITIES = self.SLOT_SIZE * self.MAX_SLOT
 
+	self.PASSIVE_SLOT = 4
+
 	-- get ability references
 	self.abilities = abilities
 	self.ability_index = ability_index
+	self.passive_name = passive_name
 	self.kv = LoadKeyValues( "scripts/npc/npc_abilities_custom.txt" )
 	for k,v in pairs(self.kv) do
 		if not self.ability_index[k] then
@@ -187,14 +239,13 @@ function red_transistor_access:Spawn()
 		self.slots[i] = self:GetCaster():FindAbilityByName( "red_transistor_locked_"..i )
 	end
 
-	-- local upgrades = {}
-	-- for i=1,self.MAX_UPGRADE do
-	-- 	upgrades[i] = 17
-	-- end
-
 	-- initialize abilities
-	for _,ability in pairs(self.slots) do
-		ability:Install( self, "red_transistor_locked", "red_transistor_locked" )
+	for i,ability in pairs(self.slots) do
+		local upgrades = {}
+		for i=1,self.MAX_UPGRADE do
+			table.insert( upgrades, 17 )
+		end
+		ability:Install( self, upgrades, self:SlotType( i ) )
 	end
 
 	-- listen to event
@@ -219,7 +270,7 @@ function red_transistor_access:EventUpgrade( ability )
 
 	-- update list (ability upgrade means change Locked to Empty)
 	local ctr = slot-1
-	self.list[ ctr*3 + ability:GetLevel()] = 0
+	self.list[ ctr*self.SLOT_SIZE + ability:GetLevel()] = 0
 
 	-- update abilities
 	if level==1 then
@@ -227,7 +278,7 @@ function red_transistor_access:EventUpgrade( ability )
 		local caster = ability:GetCaster()
 		local empty = caster:AddAbility( "red_transistor_empty_" .. slot )
 
-		-- update level			
+		-- update level
 		self.lock = true
 		empty:SetLevel( self.levels[slot] )
 		self.lock = false
@@ -241,7 +292,11 @@ function red_transistor_access:EventUpgrade( ability )
 		)
 
 		-- Install
-		empty:Install( self, "red_transistor_locked", "red_transistor_locked" )
+		local upgrades = {}
+		for i=1,self.MAX_UPGRADE do
+			table.insert( upgrades, 17 )
+		end
+		empty:Install( self, upgrades, self:SlotType( slot ) )
 
 		-- set reference
 		self.slots[slot] = empty
@@ -249,11 +304,9 @@ function red_transistor_access:EventUpgrade( ability )
 		-- remove locked
 		ability:Uninstall()
 		caster:RemoveAbilityByHandle( ability )
-	elseif level==2 then
+	elseif level>1 then
 		-- change locked upgrade to empty upgrade
-		ability:Replace( self, "red_transistor_empty", nil )
-	elseif level==3 then
-		ability:Replace( self, nil, "red_transistor_empty" )
+		ability:Replace( self, level-1, "red_transistor_empty" )		
 	end
 
 	-- Refresh Panorama
@@ -313,28 +366,32 @@ function red_transistor_access:UpdateAbilities( list )
 
 	-- Change ability layout
 	local mark_for_deletion = {}
-	for ctr=0,3 do
+	for ctr=0,self.MAX_SLOT-1 do
 		-- layout is main-up1-up2-main-up1-...
 		local slot = ctr+1
-		local i = ctr*3 + 1
+		local i = ctr*self.SLOT_SIZE + 1
+
 		local new_ability_index = list[i]
 		local new_ability_name = self.ability_index[new_ability_index]
-		local modifier1 = self.ability_index[list[i+1]]
-		local modifier2 = self.ability_index[list[i+2]]
 		print(i,"new_ability",self.ability_index[new_ability_index])
+
+		local modifiers = {}
+		for j=1,self.MAX_UPGRADE do
+			table.insert( modifiers, list[ i+j ] )
+		end
 
 		-- Assume not locked nor empty
 		if new_ability_index==17 then
 		-- Locked ability
 			-- Locked do not change anything. Reinstall.
-			self.slots[slot]:Install( self, modifier1, modifier2 )
+			self.slots[slot]:Install( self, modifiers, self:SlotType( slot ) )
 
 		elseif new_ability_index==0 then
 		-- Empty ability
 
 			if self.list[i]==0 then
 				-- previously also empty. Reinstall.
-				self.slots[slot]:Install( self, modifier1, modifier2 )
+				self.slots[slot]:Install( self, modifiers, self:SlotType( slot ) )
 			else
 				-- previously was ability
 				local new_ability = caster:AddAbility( "red_transistor_empty_" .. slot )
@@ -357,7 +414,7 @@ function red_transistor_access:UpdateAbilities( list )
 				mark_for_deletion[old_ability] = true
 
 				-- install upgrades
-				new_ability:Install( self, modifier1, modifier2 )
+				new_ability:Install( self, modifiers, self:SlotType( slot ) )
 
 				-- set references
 				self.slots[slot] = new_ability
@@ -389,7 +446,7 @@ function red_transistor_access:UpdateAbilities( list )
 				mark_for_deletion[old_ability] = true
 
 				-- install upgrades
-				new_ability:Install( self, modifier1, modifier2 )
+				new_ability:Install( self, modifiers, self:SlotType( slot ) )
 
 				-- set references
 				self.slots[slot] = new_ability
@@ -403,7 +460,7 @@ function red_transistor_access:UpdateAbilities( list )
 					new_ability:SetHidden( false )
 
 					-- install upgrades
-					new_ability:Install( self, modifier1, modifier2 )
+					new_ability:Install( self, modifiers, self:SlotType( slot ) )
 				else
 					-- set level according to slot
 					self.lock = true
@@ -430,7 +487,7 @@ function red_transistor_access:UpdateAbilities( list )
 					mark_for_deletion[old_ability] = true
 
 					-- install upgrades
-					new_ability:Install( self, modifier1, modifier2 )
+					new_ability:Install( self, modifiers, self:SlotType( slot ) )
 
 					-- set references
 					self.slots[slot] = new_ability
@@ -448,11 +505,25 @@ function red_transistor_access:UpdateAbilities( list )
 	end
 end
 
-
 --------------------------------------------------------------------------------
 -- Helper
+function red_transistor_access:SlotType( slot )
+	local slot_type = "active"
+	if slot==self.PASSIVE_SLOT then
+		slot_type = "passive"
+	end
+	return slot_type
+end
+
 function red_transistor_access:Validate( list )
 	local valid = true
+
+	-- cant update if unit is dead
+	if not self:GetCaster():IsAlive() then
+		print("Invalid: Unit is dead.")
+		return false
+	end
+	
 	-- Assuming the length are the same
 	local len1 = 0
 	local len2 = 0

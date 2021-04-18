@@ -223,6 +223,10 @@ end
 --------------------------------------------------------------------------------
 red_transistor_help = class(generic_area)
 function red_transistor_help:GetBehavior()
+	if self.passive then
+		return DOTA_ABILITY_BEHAVIOR_PASSIVE
+	end
+
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 end
 
@@ -493,6 +497,10 @@ end
 --------------------------------------------------------------------------------
 red_transistor_mask = class(generic_area)
 function red_transistor_mask:GetBehavior()
+	if self.passive then
+		return DOTA_ABILITY_BEHAVIOR_PASSIVE
+	end
+
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 end
 
@@ -753,6 +761,10 @@ end
 --------------------------------------------------------------------------------
 red_transistor_tap = class(generic_area)
 function red_transistor_tap:GetBehavior()
+	if self.passive then
+		return DOTA_ABILITY_BEHAVIOR_PASSIVE
+	end
+
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 end
 

@@ -25,7 +25,7 @@
 		ACTIVE: Toggle on to rapidly shoot bolts that deals damage.
 		UPGRADE: Reduces cooldown of the main function.
 		PASSIVE: Increases attack speed.
-	Purge
+	Purge?
 		ACTIVE: Shot a bolt that deals damage over time to a single target.
 		UPGRADE: Deals damage per second to affected enemies.
 		PASSIVE: Grants a slow effect on attacked enemies.
@@ -89,6 +89,7 @@
 --------------------------------------------------------------------------------
 generic_base = class({})
 generic_base.modifiers = {}
+generic_base.passive_name = "modifier_red_transistor_access_modifiers"
 
 --------------------------------------------------------------------------------
 -- Init Abilities
@@ -102,11 +103,38 @@ function generic_base:Spawn()
 	self.modifiers = self.modifiers or {}
 end
 
+function generic_base:GetBehavior()
+	if self.passive then
+		return DOTA_ABILITY_BEHAVIOR_PASSIVE
+	end
+	return self.BaseClass.GetBehavior( self )
+end
+
 --------------------------------------------------------------------------------
 -- Install/Uninstall
-function generic_base:Install( access, name1, name2 )
+function generic_base:Install( access, modifiers, slot_type )
 	self.access = access
 	self.kv = access.kv
+	self.slot_type = slot_type
+
+	if slot_type=="passive" then
+		-- set install base
+		self:InstallPassive()
+
+		-- modifier installs
+		for i,id in ipairs(modifiers) do
+			self.modifiers[i] = self:ModifierInstallPassive( access.ability_index[ id ] )
+		end
+	else
+		-- set install base
+		self:InstallBase()
+
+		-- modifier installs
+		for i,id in ipairs(modifiers) do
+			self.modifiers[i] = access.abilities[ access.ability_index[ id ] ]
+			self.modifiers[i]:ModifierInstall( self )
+		end
+	end
 
 	-- set access modifier (for client purposes)
 	local caster = self:GetCaster()
@@ -114,63 +142,16 @@ function generic_base:Install( access, name1, name2 )
 		caster, -- player source
 		self, -- ability source
 		"modifier_red_transistor_access_modifiers", -- modifier name
-		{} -- kv
+		{ slot_type = slot_type } -- kv
 	)
 
 	-- set stack
-	local id = access.ability_index[ self:GetAbilityName() ]
-	local id1 = access.ability_index[ name1 ]
-	local id2 = access.ability_index[ name2 ]
-	local stack = 10000*id2 + 100*id1 + id
+	table.insert( modifiers, 1, access.ability_index[ self:GetAbilityName() ] )
+	local stack = 0
+	for i,id in pairs(modifiers) do
+		stack = stack + id * 100^(i-1)
+	end
 	self.access_modifier:SetStackCount( stack )
-
-	-- -- 4th slot is passive
-	-- if self.access.slots[4]==self then
-	-- 	-- add passive modifier
-	-- 	local passive = self:GetPassiveData()
-	-- 	local mod = self:GetCaster():AddNewModifier(
-	-- 		caster, -- player source
-	-- 		self, -- ability source
-	-- 		passive.name, -- modifier name
-	-- 		passive.kv -- kv
-	-- 	)
-
-	-- 	self.passive = mod
-	-- 	self.passive_mods = {}
-
-	-- 	-- passive upgrades
-	-- 	local passive = access.abilities[name1]:GetPassiveData()
-	-- 	local mod = self:GetCaster():AddNewModifier(
-	-- 		caster, -- player source
-	-- 		self, -- ability source
-	-- 		passive.name, -- modifier name
-	-- 		passive.kv -- kv
-	-- 	)
-	-- 	self.passive[1] = mod
-
-	-- 	local passive = access.abilities[name2]:GetPassiveData()
-	-- 	local mod = self:GetCaster():AddNewModifier(
-	-- 		caster, -- player source
-	-- 		self, -- ability source
-	-- 		passive.name, -- modifier name
-	-- 		passive.kv -- kv
-	-- 	)
-	-- 	self.passive[2] = mod
-
-	-- 	return
-	-- end
-
-	-- set install base
-	self:InstallBase()
-
-	if name1 then
-		self.modifiers[1] = access.abilities[name1]
-		self.modifiers[1]:ModifierInstall( self )
-	end
-	if name2 then
-		self.modifiers[2] = access.abilities[name2]
-		self.modifiers[2]:ModifierInstall( self )
-	end
 end
 
 function generic_base:Uninstall()
@@ -180,52 +161,84 @@ function generic_base:Uninstall()
 		self.access_modifier = nil
 	end
 
-	-- -- passive
-	-- if self.passive then
-	-- 	if not self.passive:IsNull() then
-	-- 		self.passive:Destroy()
-	-- 		return
-	-- 	end
-	-- end
+	if self.slot_type=="passive" then
+		-- modifier uninstalls
+		for _,modifier in pairs(self.modifiers) do
+			self:ModifierUninstallPassive( modifier )
+		end
 
-	for _,modifier in pairs(self.modifiers) do
-		modifier:ModifierUninstall( self )
+		-- set uninstall base
+		self:UninstallPassive()
+	else
+		-- modifier uninstalls
+		for _,modifier in pairs(self.modifiers) do
+			modifier:ModifierUninstall( self )
+		end
+
+		-- set uninstall base
+		self:UninstallBase()
 	end
 
 	self.modifiers = {}
-
-	-- set uninstall base
-	self:UninstallBase()
 end
 
-function generic_base:Replace( access, name1, name2 )
-	if name1 then
-		self.modifiers[1]:ModifierUninstall( self )
-		self.modifiers[1] = access.abilities[name1]
-		self.modifiers[1]:ModifierInstall( self )
-
-		-- update access modifier
-		if self.access_modifier and (not self.access_modifier:IsNull()) then
-			local stack = self.access_modifier:GetStackCount()
-			local old_id = math.floor(stack/100)%100
-			local id1 = access.ability_index[ name1 ]
-			stack = stack - old_id*100 + id1*100
-			self.access_modifier:SetStackCount( stack )
-		end
+function generic_base:Replace( access, index, name )
+	if self.slot_type=="passive" then
+		-- install uninstall
+		self:ModifierUninstallPassive( self.modifiers[index] )
+		self.modifiers[index] = self:ModifierInstallPassive( name )
+	else
+		-- install uninstall
+		self.modifiers[index]:ModifierUninstall( self )
+		self.modifiers[index] = access.abilities[ name ]
+		self.modifiers[index]:ModifierInstall( self )
 	end
-	if name2 then
-		self.modifiers[2]:ModifierUninstall( self )
-		self.modifiers[2] = access.abilities[name2]
-		self.modifiers[2]:ModifierInstall( self )
 
-		-- update access modifier
-		if self.access_modifier and (not self.access_modifier:IsNull()) then
-			local stack = self.access_modifier:GetStackCount()
-			local old_id = math.floor(stack/10000)%100
-			local id2 = access.ability_index[ name2 ]
-			stack = stack - old_id*10000 + id2*10000
-			self.access_modifier:SetStackCount( stack )
-		end
+	-- update access modifier
+	if self.access_modifier and (not self.access_modifier:IsNull()) then
+		local stack = self.access_modifier:GetStackCount()
+		local div = 100^(index)
+
+		local old_id = math.floor(stack/div)%100 * div
+		local new_id = access.ability_index[ name ] * div
+
+		stack = stack - old_id + new_id
+		self.access_modifier:SetStackCount( stack )
+	end
+end
+
+function generic_base:InstallPassive()
+	local name = self.access.passive_name[self:GetAbilityName()]
+
+	self.passive_mod = self:GetCaster():AddNewModifier(
+		self:GetCaster(), -- player source
+		self, -- ability source
+		name, -- modifier name
+		{} -- kv
+	)
+end
+
+function generic_base:UninstallPassive()
+	if self.passive_mod and (not self.passive_mod:IsNull()) then
+		self.passive_mod:Destroy()
+	end
+end
+
+function generic_base:ModifierInstallPassive( modifiername )
+	local name = self.access.passive_name[ modifiername ]
+
+	local mod = self:GetCaster():AddNewModifier(
+		self:GetCaster(), -- player source
+		self, -- ability source
+		name, -- modifier name
+		{} -- kv
+	)
+	return mod
+end
+
+function generic_base:ModifierUninstallPassive( mod )
+	if mod and (not mod:IsNull()) then
+		mod:Destroy()
 	end
 end
 
