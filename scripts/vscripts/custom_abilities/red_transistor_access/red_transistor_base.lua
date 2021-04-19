@@ -25,10 +25,10 @@
 		ACTIVE: Toggle on to rapidly shoot bolts that deals damage.
 		UPGRADE: Reduces cooldown of the main function.
 		PASSIVE: Increases attack speed.
-	Purge?
+	Purge
 		ACTIVE: Shot a bolt that deals damage over time to a single target.
 		UPGRADE: Deals damage per second to affected enemies.
-		PASSIVE: Grants a slow effect on attacked enemies.
+		PASSIVE: GGrants attack modifier that reduces enemy's armor.
 	Switch
 		ACTIVE: Temporarily dominates the first enemy hit.
 		UPGRADE: Add switch-allegiance effect to affected enemies.
@@ -82,7 +82,6 @@
 		Switch(), 	 Farrah Yon-Dale
 		Tap(), 		 Grant Kendrell
 		Void(), 	 Asher Kendrell
-
 ]]
 --------------------------------------------------------------------------------
 -- Base Ability
@@ -108,6 +107,20 @@ function generic_base:GetBehavior()
 		return DOTA_ABILITY_BEHAVIOR_PASSIVE
 	end
 	return self.BaseClass.GetBehavior( self )
+end
+
+function generic_base:GetCooldown( iLevel )
+	if self.passive then
+		return 0
+	end
+	return self.BaseClass.GetCooldown( self, iLevel )
+end
+
+function generic_base:GetManaCost( iLevel )
+	if self.passive then
+		return 0
+	end
+	return self.BaseClass.GetManaCost( self, iLevel )
 end
 
 --------------------------------------------------------------------------------
@@ -226,7 +239,6 @@ end
 
 function generic_base:ModifierInstallPassive( modifiername )
 	local name = self.access.passive_name[ modifiername ]
-
 	local mod = self:GetCaster():AddNewModifier(
 		self:GetCaster(), -- player source
 		self, -- ability source
@@ -275,6 +287,12 @@ function generic_base:ModifierAreaEnd( this, loc, data ) end
 --------------------------------------------------------------------------------
 -- Helper
 function generic_base:GetAbilitySpecialValue( ability, name )
+	if IsClient() and not self.kv then
+		local access = self:GetCaster():FindAbilityByName( "red_transistor_access" )
+		if not access then return 0 end
+		self.kv = access.kv
+	end
+
 	local kv = self.kv[ability]["AbilitySpecial"]
 
 	local specials = {}

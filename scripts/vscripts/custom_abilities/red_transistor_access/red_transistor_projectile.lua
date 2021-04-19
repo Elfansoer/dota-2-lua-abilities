@@ -63,6 +63,11 @@ function generic_projectile:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
+	-- get data
+	local radius = self:GetSpecialValueFor( "radius" )
+	local speed = self:GetSpecialValueFor( "speed" )
+	local pierce = self:GetSpecialValueFor( "pierce" )
+
 	-- direction
 	local direction = point-caster:GetOrigin()
 	direction.z = 0
@@ -72,9 +77,9 @@ function generic_projectile:OnSpellStart()
 	local projectile = {
 		name = "projectile_name",
 		distance = self:GetCastRange( point, nil ),
-		radius = self:GetSpecialValueFor( "radius" ),
-		speed = self:GetSpecialValueFor( "speed" ),
-		pierce = self:GetSpecialValueFor( "pierce" ),
+		radius = radius,
+		speed = speed,
+		pierce = pierce,
 		direction_x = direction.x,
 		direction_y = direction.y,
 		origin_x = caster:GetOrigin().x,
@@ -193,21 +198,6 @@ function generic_projectile:ProcessProjectile( proj )
 	return info
 end
 
-function generic_projectile:GetAbilitySpecialValue( ability, name )
-	local kv = self.kv[ability]["AbilitySpecial"]
-
-	local specials = {}
-	for _,v in pairs(kv) do
-		for a,b in pairs(v) do
-			if a~="var_type" then
-				specials[a] = b
-			end
-		end
-	end
-
-	return specials[name] or 0
-end
-
 --------------------------------------------------------------------------------
 -- Overridden functions
 function generic_projectile:ProjectileLaunch( data ) end
@@ -217,11 +207,18 @@ function generic_projectile:ProjectileEnd( target, loc, data ) end
 
 --------------------------------------------------------------------------------
 -- Bounce
+--[[
+	radius, speed, pierce, damage
+	active_bounces
+	upgrade_bounces
+	upgrade_delay
+	passive_reflect
+]]
 --------------------------------------------------------------------------------
 red_transistor_bounce = class(generic_projectile)
 function red_transistor_bounce:ProjectileLaunch( data )
 	data.name = "particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf"
-	data.bounce = self:GetSpecialValueFor( "bounces" )
+	data.bounce = self:GetSpecialValueFor( "active_bounces" )
 end
 
 function red_transistor_bounce:ProjectileHit( target, loc, data )
@@ -229,11 +226,14 @@ function red_transistor_bounce:ProjectileHit( target, loc, data )
 		return false
 	end
 
+	-- get data
+	local damage = self:GetSpecialValueFor( "damage" )
+
 	-- apply damage
 	local damageTable = {
 		victim = target,
 		attacker = self:GetCaster(),
-		damage = self:GetSpecialValueFor( "damage" ),
+		damage = damage,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 		ability = self, --Optional.
 	}
@@ -285,7 +285,7 @@ end
 
 -- modifiers
 function red_transistor_bounce:ModifierProjectileLaunch( this, data )
-	data.bounces = this:GetAbilitySpecialValue( "red_transistor_bounce", "modifier_bounces" )
+	data.bounces = this:GetAbilitySpecialValue( "red_transistor_bounce", "upgrade_bounces" )
 end
 
 function red_transistor_bounce:ModifierProjectileEnd( this, target, loc, data )
@@ -343,15 +343,11 @@ function red_transistor_bounce:ModifierProjectileEnd( this, target, loc, data )
 end
 
 function red_transistor_bounce:ModifierAreaStart( this, data )
-	-- if not data.bounces then return end
-	-- if data.bounces < 1 then return end
-	-- data.bounces = data.bounces - 1
+	data.bounces = this:GetAbilitySpecialValue( "red_transistor_bounce", "upgrade_bounces" )
+	data.duration = this:GetAbilitySpecialValue( "red_transistor_bounce", "upgrade_delay" )
 
 	local loc = GetGroundPosition( Vector( data.center_x, data.center_y, 0 ), this:GetCaster() )
-	data.bounces = this:GetAbilitySpecialValue( "red_transistor_bounce", "modifier_bounces" )
 
-	local delay = 1
-	data.duration = delay
 
 	-- create thinker
 	CreateModifierThinker(
@@ -365,11 +361,14 @@ function red_transistor_bounce:ModifierAreaStart( this, data )
 	)
 end
 
--- function red_transistor_bounce:ModifierAreaEnd( this, loc, data )
--- end
-
 --------------------------------------------------------------------------------
 -- Breach
+--[[
+	radius, speed, pierce, damage
+	active_range
+	upgrade_castrange
+	passive_bonus
+]]
 --------------------------------------------------------------------------------
 red_transistor_breach = class(generic_projectile)
 function red_transistor_breach:ProjectileLaunch( data )
@@ -392,7 +391,7 @@ end
 
 -- Modifiers
 function red_transistor_breach:ModifierInstall( this )
-	local castrange = 100
+	local castrange = this:GetAbilitySpecialValue( "red_transistor_breach", "upgrade_castrange" )
 
 	local mod = this:GetCaster():AddNewModifier(
 		this:GetCaster(), -- player source
@@ -414,14 +413,19 @@ function red_transistor_breach:ModifierUninstall( this )
 end
 
 function red_transistor_breach:ModifierProjectileLaunch( this, data )
-	-- local bonus = this:GetAbilitySpecialValue( "red_transistor_breach", "modifier_range" )
-	local bonus_pct = 100
+	local bonus_pct = this:GetAbilitySpecialValue( "red_transistor_breach", "upgrade_castrange" )
 
 	data.distance = data.distance + bonus_pct/100*data.distance
 end
 
 --------------------------------------------------------------------------------
 -- Crash
+--[[
+	radius, speed, pierce, damage
+	active_stun
+	upgrade_stun
+	passive_reduction
+]]
 --------------------------------------------------------------------------------
 red_transistor_crash = class(generic_projectile)
 function red_transistor_crash:ProjectileLaunch( data )
@@ -429,8 +433,8 @@ function red_transistor_crash:ProjectileLaunch( data )
 end
 
 function red_transistor_crash:ProjectileHit( target, loc, data )
-	-- local damage = self:GetSpecialValueFor( "damage" )
-	-- local duration = self:GetSpecialValueFor( "duration" )
+	local damage = self:GetSpecialValueFor( "damage" )
+	local duration = self:GetSpecialValueFor( "active_stun" )
 	local damage = 100
 	local duration = 1
 
@@ -455,7 +459,8 @@ end
 
 -- Modifiers
 function red_transistor_crash:ModifierProjectileHit( this, target, loc, data )
-	local duration = this:GetAbilitySpecialValue( "red_transistor_crash", "modifier_stun" )
+	local duration = this:GetAbilitySpecialValue( "red_transistor_crash", "upgrade_stun" )
+	local duration = 0.5
 
 	target:AddNewModifier(
 		this:GetCaster(), -- player source
@@ -468,8 +473,17 @@ end
 function red_transistor_crash:ModifierAreaHit( this, target, loc, data )
 	self:ModifierProjectileHit( this, target, loc, data )
 end
+
 --------------------------------------------------------------------------------
 -- Flood
+--[[
+	radius, speed, pierce, damage
+	upgrade_duration
+	upgrade_damage
+	upgrade_radius
+		upgrade_interval
+	passive_bonus
+]]
 --------------------------------------------------------------------------------
 red_transistor_flood = class(generic_projectile)
 function red_transistor_flood:ProjectileLaunch( data )
@@ -479,12 +493,13 @@ end
 function red_transistor_flood:ProjectileThink( loc, data )
 	local damage = self:GetSpecialValueFor( "damage" )
 	local radius = self:GetSpecialValueFor( "radius" )
+	local tick = damage * 0.03
 
 	-- apply damage
 	local damageTable = {
 		-- victim = target,
 		attacker = self:GetCaster(),
-		damage = damage*0.03,
+		damage = tick,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 		ability = self, --Optional.
 	}
@@ -511,10 +526,9 @@ end
 
 -- modifiers
 function red_transistor_flood:ModifierProjectileThink( this, loc, data )
-	local duration = this:GetAbilitySpecialValue( "red_transistor_flood", "modifier_duration" )
-	local dps = this:GetAbilitySpecialValue( "red_transistor_flood", "modifier_dps" )
-	-- local radius = this:GetAbilitySpecialValue( "red_transistor_flood", "radius" )
-	local radius = 150
+	local duration = this:GetAbilitySpecialValue( "red_transistor_flood", "upgrade_duration" )
+	local dps = this:GetAbilitySpecialValue( "red_transistor_flood", "upgrade_damage" )
+	local radius = this:GetAbilitySpecialValue( "red_transistor_flood", "upgrade_radius" )
 	local interval = 0.1
 
 	-- get data
@@ -545,10 +559,8 @@ function red_transistor_flood:ModifierProjectileThink( this, loc, data )
 end
 
 function red_transistor_flood:ModifierAreaEnd( this, loc, data )
-	-- local duration = this:GetAbilitySpecialValue( "red_transistor_flood", "modifier_duration" )
-	local duration = 5
-	local dps = this:GetAbilitySpecialValue( "red_transistor_flood", "modifier_dps" )
-	-- local radius = this:GetAbilitySpecialValue( "red_transistor_flood", "radius" )
+	local duration = this:GetAbilitySpecialValue( "red_transistor_flood", "upgrade_duration" )
+	local dps = this:GetAbilitySpecialValue( "red_transistor_flood", "upgrade_damage" )
 	local radius = data.radius
 	local interval = 0.1
 
@@ -570,6 +582,15 @@ end
 
 --------------------------------------------------------------------------------
 -- Get
+--[[
+	radius, speed, pierce, damage
+	active_speed
+	active_duration
+	upgrade_radius
+	upgrade_duration
+	passive_slow
+	passive_duration
+]]
 --------------------------------------------------------------------------------
 red_transistor_get = class(generic_projectile)
 function red_transistor_get:ProjectileLaunch( data )
@@ -578,8 +599,8 @@ end
 
 function red_transistor_get:ProjectileHit( target, loc, data )
 	local damage = self:GetSpecialValueFor( "damage" )
-	local duration = self:GetSpecialValueFor( "duration" )
-	local speed = self:GetSpecialValueFor( "get_speed" )
+	local duration = self:GetSpecialValueFor( "active_duration" )
+	local speed = self:GetSpecialValueFor( "active_speed" )
 
 	-- apply damage
 	local damageTable = {
@@ -609,9 +630,9 @@ end
 function red_transistor_get:ModifierProjectileThink( this, loc, data )
 	if data.pierce~=1 then return end
 
-	local radius = 150
-	local duration = 0.1
-	local speed = this:GetAbilitySpecialValue( "red_transistor_get", "get_speed" )
+	local speed = this:GetAbilitySpecialValue( "red_transistor_get", "active_speed" )
+	local radius = this:GetAbilitySpecialValue( "red_transistor_get", "upgrade_radius" )
+	local duration = this:GetAbilitySpecialValue( "red_transistor_get", "upgrade_duration" )
 
 	local dir = Vector( data.direction_x, data.direction_y, 0 )
 	local location = loc - dir*radius/2
@@ -648,9 +669,9 @@ end
 function red_transistor_get:ModifierProjectileHit( this, target, loc, data )
 	if data.pierce==1 then return end
 
-	local radius = 150
-	local duration = 0.1
-	local speed = this:GetAbilitySpecialValue( "red_transistor_get", "get_speed" )
+	local speed = this:GetAbilitySpecialValue( "red_transistor_get", "active_speed" )
+	local radius = this:GetAbilitySpecialValue( "red_transistor_get", "upgrade_radius" )
+	local duration = this:GetAbilitySpecialValue( "red_transistor_get", "upgrade_duration" )
 
 	-- set target
 	local origin = Vector( data.origin_x, data.origin_y, 0 )
@@ -671,8 +692,8 @@ function red_transistor_get:ModifierProjectileHit( this, target, loc, data )
 end
 
 function red_transistor_get:ModifierAreaHit( this, target, loc, data )
-	local duration = 0.1
-	local speed = this:GetAbilitySpecialValue( "red_transistor_get", "get_speed" )
+	local duration = this:GetAbilitySpecialValue( "red_transistor_get", "upgrade_duration" )
+	local speed = this:GetAbilitySpecialValue( "red_transistor_get", "active_speed" )
 
 	-- set target
 	target:AddNewModifier(
@@ -690,15 +711,23 @@ end
 
 --------------------------------------------------------------------------------
 -- Ping
+--[[
+	radius, speed, pierce, damage
+	active_interval
+	upgrade_cooldown
+	passive_bonus
+]]
 --------------------------------------------------------------------------------
 red_transistor_ping = class(generic_projectile)
 function red_transistor_ping:OnToggle()
+	local interval = self:GetSpecialValueFor( "active_interval" )
+
 	if self:GetToggleState() then
 		self:GetCaster():AddNewModifier(
 			self:GetCaster(), -- player source
 			self, -- ability source
 			"modifier_red_transistor_ping_toggle", -- modifier name
-			{} -- kv
+			{ interval = interval } -- kv
 		)
 	else
 		local mod = self:GetCaster():FindModifierByName( "modifier_red_transistor_ping_toggle" )
@@ -730,7 +759,7 @@ end
 
 -- modifiers
 function red_transistor_ping:ModifierInstall( this )
-	local cooldown = 50
+	local cooldown = this:GetAbilitySpecialValue( "red_transistor_ping", "upgrade_cooldown" )
 
 	local mod = this:GetCaster():AddNewModifier(
 		this:GetCaster(), -- player source
@@ -753,6 +782,15 @@ end
 
 --------------------------------------------------------------------------------
 -- Purge
+--[[
+	radius, speed, pierce, damage
+	active_duration
+	active_interval
+	upgrade_duration
+	upgrade_damage
+	passive_armor
+	passive_duration
+]]
 --------------------------------------------------------------------------------
 red_transistor_purge = class(generic_projectile)
 function red_transistor_purge:ProjectileLaunch( data )
@@ -760,9 +798,9 @@ function red_transistor_purge:ProjectileLaunch( data )
 end
 
 function red_transistor_purge:ProjectileHit( target, loc, data )
-	local duration = self:GetSpecialValueFor( "duration" )
 	local damage = self:GetSpecialValueFor( "damage" )
-	local interval = self:GetSpecialValueFor( "interval" )
+	local duration = self:GetSpecialValueFor( "active_duration" )
+	local interval = self:GetSpecialValueFor( "active_interval" )
 
 	-- apply modifier
 	target:AddNewModifier(
@@ -779,9 +817,9 @@ end
 
 -- modifiers
 function red_transistor_purge:ModifierProjectileHit( this, target, loc, data )
-	local duration = 4
-	local damage = 50
-	local interval = 1
+	local damage = this:GetAbilitySpecialValue( "red_transistor_purge", "upgrade_damage" )
+	local duration = this:GetAbilitySpecialValue( "red_transistor_purge", "upgrade_duration" )
+	local interval = this:GetAbilitySpecialValue( "red_transistor_purge", "active_interval" )
 
 	-- apply modifier
 	target:AddNewModifier(
@@ -802,6 +840,12 @@ end
 
 --------------------------------------------------------------------------------
 -- Switch
+--[[
+	radius, speed, pierce, damage
+	active_duration
+	upgrade_duration
+	passive_bonus
+]]
 --------------------------------------------------------------------------------
 red_transistor_switch = class(generic_projectile)
 function red_transistor_switch:ProjectileLaunch( data )
@@ -809,7 +853,10 @@ function red_transistor_switch:ProjectileLaunch( data )
 end
 
 function red_transistor_switch:ProjectileHit( target, loc, data )
-	local duration = self:GetSpecialValueFor( "duration" )
+	local duration = self:GetSpecialValueFor( "active_duration" )
+	if target:IsRealHero() then
+		duration = duration/5
+	end
 
 	-- apply modifier
 	target:AddNewModifier(
@@ -822,7 +869,10 @@ end
 
 -- modifiers
 function red_transistor_switch:ModifierProjectileHit( this, target, loc, data )
-	local duration = 2
+	local duration = this:GetAbilitySpecialValue( "red_transistor_switch", "upgrade_duration" )
+	if target:IsRealHero() then
+		duration = duration/5
+	end
 
 	-- apply modifier
 	target:AddNewModifier(

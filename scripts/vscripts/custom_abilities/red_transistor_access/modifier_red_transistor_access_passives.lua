@@ -52,8 +52,7 @@ modifier_red_transistor_bounce_passive = class(modifier_red_transistor_base_pass
 -- Initializations
 function modifier_red_transistor_bounce_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 20
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_bounce", "passive_reflect" )
 
 	if not IsServer() then return end
 end
@@ -95,8 +94,7 @@ modifier_red_transistor_breach_passive = class(modifier_red_transistor_base_pass
 -- Initializations
 function modifier_red_transistor_breach_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 400
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_breach", "passive_bonus" )
 
 	if not IsServer() then return end
 end
@@ -105,18 +103,19 @@ end
 -- Modifier Effects
 function modifier_red_transistor_breach_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_MANA_BONUS,
+		-- MODIFIER_PROPERTY_MANA_BONUS,
 		-- MODIFIER_PROPERTY_EXTRA_MANA_BONUS = 88 -- GetModifierExtraManaBonus
-		-- MODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE = 90 -- GetModifierExtraManaPercentage
+		MODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE,
 	}
 
 	return funcs
 end
 
-function modifier_red_transistor_breach_passive:GetModifierManaBonus()
+function modifier_red_transistor_breach_passive:GetModifierExtraManaPercentage()
 	if self:GetParent():PassivesDisabled() then return end
 	return self.value
 end
+
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -128,8 +127,7 @@ modifier_red_transistor_crash_passive = class(modifier_red_transistor_base_passi
 -- Initializations
 function modifier_red_transistor_crash_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 10
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_crash", "passive_reduction" )
 
 	if not IsServer() then return end
 end
@@ -159,8 +157,7 @@ modifier_red_transistor_flood_passive = class(modifier_red_transistor_base_passi
 -- Initializations
 function modifier_red_transistor_flood_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 10
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_flood", "passive_bonus" )
 
 	if not IsServer() then return end
 end
@@ -191,10 +188,8 @@ modifier_red_transistor_get_passive = class(modifier_red_transistor_base_passive
 -- Initializations
 function modifier_red_transistor_get_passive:OnCreated( kv )
 	-- references
-	self.duration = self:GetAbility():GetSpecialValueFor( "passive_duration" )
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.duration = 2
-	self.value = 20
+	self.duration = self:GetAbility():GetAbilitySpecialValue( "red_transistor_get", "passive_duration" )
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_get", "passive_slow" )
 
 	if not IsServer() then return end
 end
@@ -244,8 +239,7 @@ modifier_red_transistor_ping_passive = class(modifier_red_transistor_base_passiv
 -- Initializations
 function modifier_red_transistor_ping_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 40
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_ping", "passive_bonus" )
 
 	if not IsServer() then return end
 end
@@ -275,8 +269,8 @@ modifier_red_transistor_purge_passive = class(modifier_red_transistor_base_passi
 -- Initializations
 function modifier_red_transistor_purge_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 40
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_purge", "passive_armor" )
+	self.duration = self:GetAbility():GetAbilitySpecialValue( "red_transistor_purge", "passive_duration" )
 
 	if not IsServer() then return end
 end
@@ -285,15 +279,35 @@ end
 -- Modifier Effects
 function modifier_red_transistor_purge_passive:DeclareFunctions()
 	local funcs = {
-		-- MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 	}
 
 	return funcs
 end
 
-function modifier_red_transistor_purge_passive:GetModifierAttackSpeedBonus_Constant()
+function modifier_red_transistor_purge_passive:GetModifierProcAttack_Feedback( params )
 	if self:GetParent():PassivesDisabled() then return end
-	return self.value
+
+	-- unit filter
+	local filter = UnitFilter(
+		params.target,
+		DOTA_UNIT_TARGET_TEAM_ENEMY,
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		self:GetParent():GetTeamNumber()
+	)
+	if filter~=UF_SUCCESS then return end
+
+	-- slow target
+	params.target:AddNewModifier(
+		self:GetParent(), -- player source
+		self:GetAbility(), -- ability source
+		"modifier_red_transistor_purge_passive_armor", -- modifier name
+		{
+			duration = self.duration,
+			armor = self.value,
+		} -- kv
+	)
 end
 
 --------------------------------------------------------------------------------
@@ -306,7 +320,7 @@ modifier_red_transistor_switch_passive = class(modifier_red_transistor_base_pass
 -- Initializations
 function modifier_red_transistor_switch_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_switch", "passive_bonus" )
 	self.value = 40
 
 	if not IsServer() then return end
@@ -316,27 +330,48 @@ end
 -- Modifier Effects
 function modifier_red_transistor_switch_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		-- MODIFIER_PROPERTY_STATS_AGILITY_BONUS_PERCENTAGE = 95 -- GetModifierBonusStats_Agility_Percentage
+		-- MODIFIER_PROPERTY_STATS_INTELLECT_BONUS_PERCENTAGE = 96 -- GetModifierBonusStats_Intellect_Percentage
+		-- MODIFIER_PROPERTY_STATS_STRENGTH_BONUS_PERCENTAGE = 94 -- GetModifierBonusStats_Strength_Percentage
 	}
 
 	return funcs
 end
 
-function modifier_red_transistor_switch_passive:GetModifierBonusStats_Agility_Percentage()
+function modifier_red_transistor_switch_passive:GetModifierBonusStats_Strength()
 	if self:GetParent():PassivesDisabled() then return end
-	return self.value
+	if self.lock1 then return 0 end
+
+	self.lock1 = true
+	local value = self:GetParent():GetStrength()
+	self.lock1 = nil
+
+	return value * self.value/100
 end
 
-function modifier_red_transistor_switch_passive:GetModifierBonusStats_Intellect_Percentage()
+function modifier_red_transistor_switch_passive:GetModifierBonusStats_Agility()
 	if self:GetParent():PassivesDisabled() then return end
-	return self.value
+	if self.lock2 then return 0 end
+
+	self.lock2 = true
+	local value = self:GetParent():GetAgility()
+	self.lock2 = nil
+
+	return value * self.value/100
 end
 
-function modifier_red_transistor_switch_passive:GetModifierBonusStats_Strength_Percentage()
+function modifier_red_transistor_switch_passive:GetModifierBonusStats_Intellect()
 	if self:GetParent():PassivesDisabled() then return end
-	return self.value
+	if self.lock3 then return 0 end
+
+	self.lock3 = true
+	local value = self:GetParent():GetIntellect()
+	self.lock3 = nil
+
+	return value * self.value/100
 end
 
 --------------------------------------------------------------------------------
@@ -349,10 +384,8 @@ modifier_red_transistor_cull_passive = class(modifier_red_transistor_base_passiv
 -- Initializations
 function modifier_red_transistor_cull_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 0.3
-	self.chance = self:GetAbility():GetSpecialValueFor( "passive_chance" )
-	self.chance = 50
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_cull", "passive_duration" )
+	self.chance = self:GetAbility():GetAbilitySpecialValue( "red_transistor_cull", "passive_chance" )
 	self.pseudoseed = RandomInt( 1, 100 )
 
 	if not IsServer() then return end
@@ -406,10 +439,8 @@ modifier_red_transistor_help_passive = class(modifier_red_transistor_base_passiv
 -- Initializations
 function modifier_red_transistor_help_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 200
-	self.chance = self:GetAbility():GetSpecialValueFor( "passive_chance" )
-	self.chance = 50
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_help", "passive_crit" )
+	self.chance = self:GetAbility():GetAbilitySpecialValue( "red_transistor_help", "passive_chance" )
 	self.pseudoseed = RandomInt( 1, 100 )
 
 	if not IsServer() then return end
@@ -444,8 +475,7 @@ modifier_red_transistor_jaunt_passive = class(modifier_red_transistor_base_passi
 -- Initializations
 function modifier_red_transistor_jaunt_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 20
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_jaunt", "passive_bonus" )
 
 	if not IsServer() then return end
 end
@@ -475,8 +505,7 @@ modifier_red_transistor_load_passive = class(modifier_red_transistor_base_passiv
 -- Initializations
 function modifier_red_transistor_load_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 20
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_load", "passive_bonus" )
 
 	if not IsServer() then return end
 end
@@ -507,8 +536,7 @@ modifier_red_transistor_mask_passive = class(modifier_red_transistor_base_passiv
 -- Initializations
 function modifier_red_transistor_mask_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 20
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_mask", "passive_evasion" )
 
 	if not IsServer() then return end
 end
@@ -538,10 +566,8 @@ modifier_red_transistor_spark_passive = class(modifier_red_transistor_base_passi
 -- Initializations
 function modifier_red_transistor_spark_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 20
-	self.radius = self:GetAbility():GetSpecialValueFor( "passive_radius" )
-	self.radius = 600
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_spark", "passive_cleave" )
+	self.radius = self:GetAbility():GetAbilitySpecialValue( "red_transistor_spark", "passive_radius" )
 	self.radius_start = 150
 	self.radius_end = 360
 
@@ -593,8 +619,7 @@ modifier_red_transistor_tap_passive = class(modifier_red_transistor_base_passive
 -- Initializations
 function modifier_red_transistor_tap_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 400
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_tap", "passive_bonus" )
 
 	if not IsServer() then return end
 end
@@ -603,15 +628,15 @@ end
 -- Modifier Effects
 function modifier_red_transistor_tap_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_HEALTH_BONUS,
+		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
+		-- MODIFIER_PROPERTY_HEALTH_BONUS,
 		-- MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS = 87 -- GetModifierExtraHealthBonus
-		-- MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE = 89 -- GetModifierExtraHealthPercentage
 	}
 
 	return funcs
 end
 
-function modifier_red_transistor_tap_passive:GetModifierHealthBonus()
+function modifier_red_transistor_tap_passive:GetModifierExtraHealthPercentage()
 	if self:GetParent():PassivesDisabled() then return end
 	return self.value
 end
@@ -626,8 +651,7 @@ modifier_red_transistor_void_passive = class(modifier_red_transistor_base_passiv
 -- Initializations
 function modifier_red_transistor_void_passive:OnCreated( kv )
 	-- references
-	self.value = self:GetAbility():GetSpecialValueFor( "passive_value" )
-	self.value = 10
+	self.value = self:GetAbility():GetAbilitySpecialValue( "red_transistor_void", "passive_bonus" )
 
 	if not IsServer() then return end
 end

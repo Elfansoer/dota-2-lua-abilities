@@ -19,9 +19,7 @@
 - Test issues
 	- Client/Panorama update should be broadcast to all client (minor)
 	- enemy modifiers should have greyed out in panorama (minor)
-	- passive switch allstat not work, purge not defined
 - Improvements
-	- Replace install uninstall by loop instead of hardcode name1 name2
 	- set cast range as abilityspecial
 	- "Modifier" to "Upgrade"
 	- mark for deletion delayed by existing projectiles/buffs
@@ -66,6 +64,7 @@ LinkLuaModifier( "modifier_red_transistor_void_passive", "custom_abilities/red_t
 
 LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_generic_slowed_lua", "lua_abilities/generic/modifier_generic_slowed_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_red_transistor_purge_passive_armor", "custom_abilities/red_transistor_access/modifier_red_transistor_purge_passive_armor", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Empty and Locked
@@ -198,7 +197,23 @@ red_transistor_access = class({})
 --------------------------------------------------------------------------------
 -- Init Abilities
 function red_transistor_access:Spawn()
-	if not IsServer() then return end
+	if not IsServer() then
+		-- client code
+		if self.kv then return end
+
+		-- get ability references
+		self.abilities = abilities
+		self.ability_index = ability_index
+		self.passive_name = passive_name
+		self.kv = LoadKeyValues( "scripts/npc/npc_abilities_custom.txt" )
+		for k,v in pairs(self.kv) do
+			if not self.ability_index[k] then
+				self.kv[k] = nil
+			end
+		end
+		return
+	end
+
 	self:SetLevel( 1 )
 
 	-- vars
@@ -349,6 +364,9 @@ function red_transistor_access.EventConfirm( playerID, data )
 	local data = {}
 	data['refresh'] = 1
 	CustomGameEventManager:Send_ServerToAllClients( "red_transistor_access", data )
+
+	-- start cooldown
+	self:UseResources( true, false, true )
 
 	self:PrintStatus()
 end
@@ -602,41 +620,6 @@ function red_transistor_access:OnSpellStart()
 	senddata.open = 1
 	CustomGameEventManager:Send_ServerToPlayer( caster:GetPlayerOwner(), "red_transistor_access", senddata )
 
-	-- -- TEST LIST
-	-- print("TEST LIST")
-	-- local mocklist = {}
-	-- local available = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 }
-
-	-- -- set mains
-	-- for i=0,3 do
-	-- 	local idx = i*3+1
-	-- 	local get = RandomInt( 1, #available )
-	-- 	local ability = available[get]
-	-- 	table.remove( available, get )
-	-- 	mocklist[idx] = ability
-	-- end
-	-- -- set modifiers
-	-- for i=1,12 do
-	-- 	if i==1 or i==4 then
-	-- 	else
-	-- 		local get = RandomInt( 1, #available )
-	-- 		local ability = available[get]
-	-- 		table.remove( available, get )
-	-- 		mocklist[i] = ability
-	-- 	end
-	-- end
-	-- -- set locked
-	-- for k,v in pairs(mocklist) do
-	-- 	if self.list[k]==17 then mocklist[k] = 17 end
-	-- end
-
-	-- for k,v in pairs(mocklist) do
-	-- 	print("",k,v,self.ability_index[v])
-	-- end
-
-	-- local data = {}
-	-- data.list = mocklist
-	-- data.ability = self:entindex()
-	-- -- self.EventConfirm( self:GetCaster():GetPlayerOwnerID(), data )
+	self:EndCooldown()
 end
 

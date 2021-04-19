@@ -55,7 +55,22 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"2"
+				"active_duration"		"1"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"upgrade_duration"		"0.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"passive_duration"		"0.3"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"passive_chance"		"20"
 			}
 		}
 	}
@@ -87,12 +102,12 @@
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
+		"AbilityCastRange"				"2000"
 		"AbilityCastPoint"				"0.3"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0"
+		"AbilityCooldown"				"20.0"
 		"AbilityManaCost"				"100"
 
 		// Damage
@@ -111,6 +126,26 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_duration"		"20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"upgrade_duration"		"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"passive_chance"		"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"passive_crit"			"200"
 			}
 		}
 	}
@@ -167,6 +202,16 @@
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"100"
 			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"upgrade_manacost"		"50"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"passive_bonus"			"20"
+			}
 		}
 	}
 
@@ -220,7 +265,22 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"100"
+				"damage"				"200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"upgrade_radius"		"150"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"upgrade_damage"		"100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"passive_bonus"			"20"
 			}
 		}
 	}
@@ -274,7 +334,27 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"100"
+				"damage"				"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_duration"		"10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_backstab"		"200"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"upgrade_backstab"		"150"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"passive_evasion"		"20"
 			}
 		}
 	}
@@ -330,6 +410,26 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_count"			"16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"upgrade_count"			"2"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"passive_cleave"		"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"passive_radius"		"600"
 			}
 		}
 	}
@@ -389,7 +489,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"30"
+				"active_lifesteal"		"30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"upgrade_lifesteal"		"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"passive_bonus"			"50"
 			}
 		}
 	}
@@ -449,17 +559,32 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"4"
+				"active_maxamp"			"16"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"amplify"				"6"
+				"active_amp"			"6"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_amplify"			"18"
+				"active_duration"		"6"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"upgrade_amp"			"3"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"upgrade_duration"		"3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"passive_bonus"			"8"
 			}
 		}
 	}

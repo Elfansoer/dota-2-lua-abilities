@@ -34,7 +34,7 @@ end
 function modifier_red_transistor_ping_toggle:OnCreated( kv )
 	if not IsServer() then return end
 
-	self.interval = self:GetAbility():GetSpecialValueFor( "interval" )
+	self.interval = kv.interval
 	self.ready = true
 end
 

@@ -146,11 +146,19 @@ function generic_area:AreaEnd( loc, data ) end
 
 --------------------------------------------------------------------------------
 -- Cull
+--[[
+	radius
+	damage
+	active_duration
+	upgrade_duration
+	passive_chance
+	passive_duration
+]]
 --------------------------------------------------------------------------------
 red_transistor_cull = class(generic_area)
 function red_transistor_cull:AreaHit( target, loc, data )
-	local damage = 100
-	local duration = 1
+	local damage = self:GetSpecialValueFor( "damage" )
+	local duration = self:GetSpecialValueFor( "active_duration" )
 	local height = 500
 
 	-- add knockback
@@ -191,8 +199,8 @@ end
 
 -- modifiers
 function red_transistor_cull:ModifierAreaHit( this, target, loc, data )
-	local duration = 1
-	local height = 500
+	local duration = this:GetAbilitySpecialValue( "red_transistor_cull", "upgrade_duration" )
+	local height = 250
 
 	-- add knockback
 	local knockback = target:AddNewModifier(
@@ -220,23 +228,23 @@ end
 
 --------------------------------------------------------------------------------
 -- Help
+--[[
+	radius
+	damage
+	active_duration
+	upgrade_duration
+	passive_crit
+	passive_chance
+]]
 --------------------------------------------------------------------------------
 red_transistor_help = class(generic_area)
-function red_transistor_help:GetBehavior()
-	if self.passive then
-		return DOTA_ABILITY_BEHAVIOR_PASSIVE
-	end
-
-	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
-end
-
 function red_transistor_help:OnSpellStart()
 	local name = 'npc_dota_red_transistor_help'
 
 	-- duration is relative to castrange (for breach)
-	-- local duration = self:GetCastRange( Vector(0,0,0), self:GetCaster() )*0.01
-	local radius = 150
-	local duration = 10
+	-- local duration = self:GetSpecialValueFor( "active_duration" )
+	local duration = self:GetCastRange( Vector(0,0,0), self:GetCaster() )*0.01
+	local radius = self:GetSpecialValueFor( "radius" )
 
 	-- basic reference
 	local caster = self:GetCaster()
@@ -287,7 +295,7 @@ function red_transistor_help:OnSpellStart()
 end
 
 function red_transistor_help:AreaHit( target, loc, data )
-	local damage = 100
+	local damage = self:GetSpecialValueFor( "damage" )
 	local damageTable = {
 		victim = target,
 		attacker = self:GetCaster(),
@@ -309,9 +317,9 @@ end
 
 -- modifiers
 function red_transistor_help:ModifierAreaHit( this, target, loc, data )
+	local duration = this:GetAbilitySpecialValue( "red_transistor_help", "upgrade_duration" )
 	local outgoing = -80
 	local incoming = 400
-	local duration = 3
 	local caster = this:GetCaster()
 
 	-- create illusion
@@ -338,10 +346,16 @@ end
 
 --------------------------------------------------------------------------------
 -- Jaunt
+--[[
+	radius
+	damage
+	upgrade_manacost
+	passive_bonus
+]]
 --------------------------------------------------------------------------------
 red_transistor_jaunt = class(generic_area)
 function red_transistor_jaunt:AreaHit( target, loc, data )
-	local damage = 100
+	local damage = self:GetSpecialValueFor( "damage" )
 
 	-- damage
 	local damageTable = {
@@ -374,7 +388,7 @@ end
 
 -- modifiers
 function red_transistor_jaunt:ModifierInstall( this )
-	local manacost = 50
+	local manacost = this:GetAbilitySpecialValue( "red_transistor_jaunt", "upgrade_manacost" )
 
 	local mod = this:GetCaster():AddNewModifier(
 		this:GetCaster(), -- player source
@@ -397,11 +411,18 @@ end
 
 --------------------------------------------------------------------------------
 -- Load
+--[[
+	radius
+	damage
+	upgrade_radius
+	upgrade_damage
+	passive_bonus
+]]
 --------------------------------------------------------------------------------
 red_transistor_load = class(generic_area)
 function red_transistor_load:OnSpellStart()
 	local name = 'npc_dota_red_transistor_load'
-	local radius = 300
+	local radius = self:GetSpecialValueFor( "radius" )
 
 	-- basic reference
 	local caster = self:GetCaster()
@@ -429,7 +450,7 @@ function red_transistor_load:OnSpellStart()
 end
 
 function red_transistor_load:AreaHit( target, loc, data )
-	local damage = 200
+	local damage = self:GetSpecialValueFor( "damage" )
 
 	-- damage
 	local damageTable = {
@@ -456,8 +477,8 @@ end
 
 -- modifiers
 function red_transistor_load:ModifierAreaHit( this, target, loc, data )
-	local radius = 150
-	local damage = 100
+	local radius = this:GetAbilitySpecialValue( "red_transistor_load", "upgrade_radius" )
+	local damage = this:GetAbilitySpecialValue( "red_transistor_load", "upgrade_damage" )
 
 	-- damage
 	local damageTable = {
@@ -494,21 +515,21 @@ end
 
 --------------------------------------------------------------------------------
 -- Mask
+--[[
+	radius
+	damage
+	active_duration
+	active_backstab
+	upgrade_backstab
+	passive_evasion
+]]
 --------------------------------------------------------------------------------
 red_transistor_mask = class(generic_area)
-function red_transistor_mask:GetBehavior()
-	if self.passive then
-		return DOTA_ABILITY_BEHAVIOR_PASSIVE
-	end
-
-	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
-end
-
 function red_transistor_mask:OnSpellStart()
 	-- duration is relative to castrange
-	-- local duration = self:GetCastRange( Vector(0,0,0), self:GetCaster() )*0.01
-	local duration = 10
-	local backstab = 150
+	-- local duration = self:GetSpecialValueFor( "active_duration" )
+	local duration = self:GetCastRange( Vector(0,0,0), self:GetCaster() )*0.01
+	local backstab = self:GetSpecialValueFor( "active_backstab" )
 
 	-- basic reference
 	local caster = self:GetCaster()
@@ -539,20 +560,10 @@ function red_transistor_mask:OnSpellStart()
 
 	-- explode
 	local enemies = self:ProcessArea( area )
-
-	-- for _,enemy in pairs(enemies) do
-	-- 	-- call OnHit event
-	-- 	self:OnAreaHit( enemy, enemy:GetOrigin(), area )
-	-- end
-
-	-- -- call OnEnd event
-	-- local pos = GetGroundPosition( Vector( area.center_x, area.center_y, 0 ), caster )
-	-- self:OnAreaEnd( pos, area )
-
 end
 
 function red_transistor_mask:AreaHit( target, loc, data )
-	local damage = 100
+	local damage = self:GetSpecialValueFor( "damage" )
 
 	-- damage
 	local damageTable = {
@@ -576,7 +587,7 @@ end
 
 -- modifiers
 function red_transistor_mask:ModifierAreaHit( this, target, loc, data )
-	local damage = 150
+	local damage = this:GetAbilitySpecialValue( "red_transistor_mask", "upgrade_backstab" )
 
 	-- backstab works if not seen
 	if target:CanEntityBeSeenByMyTeam( this:GetCaster() ) then return end
@@ -597,38 +608,24 @@ end
 
 --------------------------------------------------------------------------------
 -- Spark
+--[[
+	radius
+	damage
+	active_count
+	upgrade_count
+	passive_cleave
+	passive_radius
+]]
 --------------------------------------------------------------------------------
 red_transistor_spark = class(generic_area)
--- function red_transistor_spark:OnSpellStart()
--- 	local radius = 500
-
--- 	-- basic reference
--- 	local caster = self:GetCaster()
--- 	local point = self:GetCursorPosition()
-
--- 	-- unique area properties
--- 	local area = {
--- 		radius = radius,
--- 		center_x = point.x,
--- 		center_y = point.y,
--- 		origin_x = caster:GetOrigin().x,
--- 		origin_y = caster:GetOrigin().y,
--- 	}
-
--- 	-- call OnStart event
--- 	self:OnAreaStart( area )
-
--- 	-- process projectile
-
--- end
-
 function red_transistor_spark:ProcessArea( area )
 	local caster = self:GetCaster()
 	local pos = GetGroundPosition( Vector( area.center_x, area.center_y, 0 ), caster )
 
+	local count = self:GetSpecialValueFor( "active_count" )
+
 	local name = "particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
 	local hit_radius = 100
-	local count = 16
 	local speed = 3000
 
 	-- prepare projectiles
@@ -676,7 +673,7 @@ end
 
 function red_transistor_spark:AreaHit( target, location, data )
 	-- damage
-	local damage = 30
+	local damage = self:GetSpecialValueFor( "damage" )
 
 	local damageTable = {
 		victim = target,
@@ -692,7 +689,7 @@ end
 function red_transistor_spark:ModifierProjectileLaunch( this, data )
 	if data.spark==1 then return end
 
-	local projectiles = 2
+	local projectiles = this:GetAbilitySpecialValue( "red_transistor_spark", "upgrade_count" )
 	local angle = 30
 	local loop = { -1, 1 }
 
@@ -715,7 +712,7 @@ end
 function red_transistor_spark:ModifierAreaStart( this, data )
 	if data.spark==1 then return end
 
-	local sparks = 2
+	local sparks = this:GetAbilitySpecialValue( "red_transistor_spark", "upgrade_count" )
 
 	-- get front direction from center
 	local center = Vector( data.center_x, data.center_y, 0 )
@@ -758,6 +755,13 @@ end
 
 --------------------------------------------------------------------------------
 -- Tap
+--[[
+	radius
+	damage
+	active_lifesteal
+	upgrade_lifesteal
+	passive_bonus
+]]
 --------------------------------------------------------------------------------
 red_transistor_tap = class(generic_area)
 function red_transistor_tap:GetBehavior()
@@ -769,7 +773,7 @@ function red_transistor_tap:GetBehavior()
 end
 
 function red_transistor_tap:InstallBase()
-	local lifesteal = 30
+	local lifesteal = self:GetSpecialValueFor( "active_lifesteal" )
 
 	self.lifesteal = self:GetCaster():AddNewModifier(
 		self:GetCaster(), -- player source
@@ -787,11 +791,9 @@ function red_transistor_tap:UninstallBase()
 	end
 end
 
-
 function red_transistor_tap:OnSpellStart()
 	-- radius is relative to castrange
 	local radius = self:GetCastRange( Vector(0,0,0), self:GetCaster() )
-	-- local radius = 600
 	
 	-- edge case breach castrange
 	local mods = self:GetCaster():FindAllModifiersByName( "modifier_red_transistor_breach_castrange" )
@@ -807,7 +809,6 @@ function red_transistor_tap:OnSpellStart()
 	-- unique area properties
 	local area = {
 		radius = radius,
-		-- radius = self:GetSpecialValueFor( "radius" ),
 		center_x = caster:GetOrigin().x,
 		center_y = caster:GetOrigin().y,
 		origin_x = caster:GetOrigin().x,
@@ -819,20 +820,11 @@ function red_transistor_tap:OnSpellStart()
 
 	-- explode
 	local enemies = self:ProcessArea( area )
-
-	-- for _,enemy in pairs(enemies) do
-	-- 	-- call OnHit event
-	-- 	self:OnAreaHit( enemy, enemy:GetOrigin(), area )
-	-- end
-
-	-- -- call OnEnd event
-	-- local pos = GetGroundPosition( Vector( area.center_x, area.center_y, 0 ), caster )
-	-- self:OnAreaEnd( pos, area )
 end
 
 function red_transistor_tap:AreaHit( target, location, data )
 	-- damage
-	local damage = 100
+	local damage = self:GetSpecialValueFor( "damage" )
 
 	local damageTable = {
 		victim = target,
@@ -857,7 +849,7 @@ end
 
 -- modifiers
 function red_transistor_tap:ModifierInstall( this )
-	local lifesteal = 10
+	local lifesteal = this:GetAbilitySpecialValue( "red_transistor_tap", "upgrade_lifesteal" )
 
 	local mod = this:GetCaster():AddNewModifier(
 		this:GetCaster(), -- player source
@@ -880,12 +872,21 @@ end
 
 --------------------------------------------------------------------------------
 -- Void
+--[[
+	radius
+	active_maxamp
+	active_amp
+	active_duration
+	upgrade_amp
+	upgrade_duration
+	passive_bonus
+]]
 --------------------------------------------------------------------------------
 red_transistor_void = class(generic_area)
 function red_transistor_void:AreaHit( target, loc, data )
-	local duration = 6
-	local amplify = 6
-	local max_amplify = 18
+	local duration = self:GetSpecialValueFor( "active_duration" )
+	local amplify = self:GetSpecialValueFor( "active_amp" )
+	local max_amplify = self:GetSpecialValueFor( "active_maxamp" )
 
 	-- spell amp debuff
 	target:AddNewModifier(
@@ -914,9 +915,9 @@ end
 
 -- modifiers
 function red_transistor_void:ModifierAreaHit( this, target, loc, data )
-	local duration = 3
-	local amplify = 3
-	local max_amplify = 18
+	local duration = this:GetAbilitySpecialValue( "red_transistor_void", "upgrade_duration" )
+	local amplify = this:GetAbilitySpecialValue( "red_transistor_void", "upgrade_amp" )
+	local max_amplify = this:GetAbilitySpecialValue( "red_transistor_void", "active_maxamp" )
 
 	-- knockback
 	target:AddNewModifier(
