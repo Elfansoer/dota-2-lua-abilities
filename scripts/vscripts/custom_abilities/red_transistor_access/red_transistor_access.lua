@@ -586,6 +586,18 @@ function red_transistor_access:Validate( list )
 		return false
 	end
 
+	-- "Rule" 3: If there is no change, set invalid
+	local equal = true
+	for k,v in pairs(self.list) do
+		if list[k]~=v then
+			equal = false
+			break
+		end
+	end 
+	if equal then
+		print("Invalid: No changes.")
+	end
+
 	return valid
 end
 

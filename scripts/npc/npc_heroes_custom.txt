@@ -95,7 +95,7 @@
 		"Ability3"				"red_transistor_locked_3"						// Ability 3
 		"Ability4"				"red_transistor_locked_4"						// Ability 3
 		"Ability5"				"red_transistor_access"						// Ability 3
-		//"Ability6"				"bane_fiends_grip_lua"							// Ability 6
+		"Ability6"				"red_transistor_turn"							// Ability 6
 	}
 
 	//=================================================================================================================

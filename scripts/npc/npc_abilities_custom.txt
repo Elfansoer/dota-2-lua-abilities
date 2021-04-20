@@ -1308,6 +1308,7 @@
 #base "../vscripts/custom_abilities/red_transistor_access/red_transistor_area.txt"
 #base "../vscripts/custom_abilities/red_transistor_access/red_transistor_projectile.txt"
 #base "../vscripts/custom_abilities/red_transistor_access/red_transistor_access.txt"
+#base "../vscripts/custom_abilities/red_transistor_turn/red_transistor_turn.txt"
 
 #base "../vscripts/custom_abilities/riven_broken_wings/riven_broken_wings.txt"
 #base "../vscripts/custom_abilities/riven_ki_burst/riven_ki_burst.txt"

@@ -315,6 +315,11 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"upgrade_radius"		"150"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"passive_bonus"			"10"
 			}
 		}
