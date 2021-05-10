@@ -172,7 +172,7 @@ function modifier_storm_spirit_ball_lightning_lua:UpdateHorizontalMotion( me, dt
 	end
 
 	-- spend mana
-	me:SpendMana( manacost, hAbility )
+	me:SpendMana( manacost, self:GetAbility() )
 end
 
 function modifier_storm_spirit_ball_lightning_lua:OnHorizontalMotionInterrupted()
