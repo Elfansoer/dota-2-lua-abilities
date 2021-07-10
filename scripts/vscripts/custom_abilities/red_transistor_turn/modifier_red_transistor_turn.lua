@@ -46,7 +46,7 @@ function modifier_red_transistor_turn:OnCreated( kv )
 	self:SetDuration( duration, true )
 
 	-- timescale
-	SendToServerConsole( "host_timescale " .. self.timescale )
+	Convars:SetFloat( "host_timescale", self.timescale )
 
 	-- play effects
 	self:PlayEffects1()
@@ -66,7 +66,8 @@ function modifier_red_transistor_turn:OnDestroy()
 	if not IsServer() then return end
 	FilterManager:RemoveExecuteOrderFilter( self.filter )
 
-	SendToServerConsole( "host_timescale 1" )
+	-- reset timescale
+	Convars:SetFloat( "host_timescale", 1 )
 
 	local origin = self.parent:GetOrigin()
 
