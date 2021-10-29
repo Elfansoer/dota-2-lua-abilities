@@ -1107,6 +1107,11 @@
 #base "../vscripts/lua_abilities/magnus_skewer_lua/magnus_skewer_lua.txt"
 #base "../vscripts/lua_abilities/magnus_reverse_polarity_lua/magnus_reverse_polarity_lua.txt"
 
+#base "../vscripts/lua_abilities/marci_dispose_lua/marci_dispose_lua.txt"
+#base "../vscripts/lua_abilities/marci_rebound_lua/marci_rebound_lua.txt"
+#base "../vscripts/lua_abilities/marci_sidekick_lua/marci_sidekick_lua.txt"
+#base "../vscripts/lua_abilities/marci_unleash_lua/marci_unleash_lua.txt"
+
 #base "../vscripts/lua_abilities/mars_spear_of_mars_lua/mars_spear_of_mars_lua.txt"
 #base "../vscripts/lua_abilities/mars_bulwark_lua/mars_bulwark_lua.txt"
 #base "../vscripts/lua_abilities/mars_gods_rebuke_lua/mars_gods_rebuke_lua.txt"

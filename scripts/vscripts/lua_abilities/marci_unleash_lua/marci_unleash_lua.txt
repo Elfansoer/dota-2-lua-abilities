@@ -1,0 +1,103 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Marci: Unleash (Lua version)
+	//=================================================================================================================
+	"marci_unleash_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/marci_unleash_lua/marci_unleash_lua"
+		"AbilityTextureName"			"marci_unleash"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"90 75 60"
+		"AbilityManaCost"				"100 125 150"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"18"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"charges_per_flurry"	"3 4 5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"flurry_bonus_attack_speed"	"700 975 1325"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"time_between_flurries"	"1.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pulse_radius"			"800"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pulse_debuff_duration"	"2.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pulse_damage"			"80 150 220"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pulse_move_slow_pct"	"30.0"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pulse_attack_slow_pct"	"60.0 80.0 100.0"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"max_time_window_per_hit"	"1.0"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movespeed"		"15"
+			}
+			"12"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"recovery_fixed_attack_rate"	"2.0"
+			}
+		}
+	}
+}

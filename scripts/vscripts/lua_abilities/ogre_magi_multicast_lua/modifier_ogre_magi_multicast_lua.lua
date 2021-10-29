@@ -76,8 +76,8 @@ function modifier_ogre_magi_multicast_lua:OnAbilityFullyCast( params )
 	if not params.target then return end
 
 	-- if the spell can do both target and point, it should not trigger
-	if bit.band( params.ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_POINT ) ~= 0 then return end
-	if bit.band( params.ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET ) ~= 0 then return end
+	if bit.band( params.ability:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_POINT ) ~= 0 then return end
+	if bit.band( params.ability:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET ) ~= 0 then return end
 
 	-- roll multicasts
 	local casts = 1

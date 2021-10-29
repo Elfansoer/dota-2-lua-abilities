@@ -1,0 +1,87 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Marci: Dispose (Lua version)
+	//=================================================================================================================
+	"marci_dispose_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/marci_dispose_lua/marci_dispose_lua"
+		"AbilityTextureName"			"marci_grapple"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"175"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16 14 12 10"
+		"AbilityManaCost"				"90"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"landing_radius"	"275"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"air_duration"		"0.5"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"air_height"		"150"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"pull_offset"		"75"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"throw_distance_behind"	"350"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"pull_angle"		"230"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"1.2 1.5 1.8 2.1"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"impact_damage"		"70 140 210 280"
+			}
+		}
+	}
+}

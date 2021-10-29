@@ -444,6 +444,18 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Dawnbreaker (Marci)
+	//=================================================================================================================
+	"npc_dota_hero_dawnbreaker_lua"
+	{
+		"override_hero"					"npc_dota_hero_dawnbreaker"	// Hero to override
+		"Ability1"				"marci_dispose_lua"						// Ability 1
+		"Ability2"				"marci_rebound_lua"						// Ability 1
+		"Ability3"				"marci_sidekick_lua"						// Ability 1
+		"Ability6"				"marci_unleash_lua"						// Ability 1
+	}
+
+	//=================================================================================================================
 	// HERO: Huskar (Mars)
 	//=================================================================================================================
 	"npc_dota_hero_huskar_lua"
