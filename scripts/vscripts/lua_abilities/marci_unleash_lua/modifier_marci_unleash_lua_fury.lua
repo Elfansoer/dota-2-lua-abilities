@@ -208,6 +208,10 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
+function modifier_marci_unleash_lua_fury:ShouldUseOverheadOffset()
+	return true
+end
+
 function modifier_marci_unleash_lua_fury:PlayEffects1()
 	-- Get Resources
 	local particle_cast = "particles/units/heroes/hero_marci/marci_unleash_buff.vpcf"
@@ -283,7 +287,7 @@ function modifier_marci_unleash_lua_fury:PlayEffects1()
 
 	-- Create Sound
 	EmitSoundOn( sound_cast, self:GetParent() )
-	EmitSoundOn( sound_cast2, self:GetParent() )
+	EmitSoundOnClient( sound_cast2, self:GetParent():GetPlayerOwner() )
 end
 
 function modifier_marci_unleash_lua_fury:PlayEffects2( caster, counter )
@@ -300,9 +304,9 @@ function modifier_marci_unleash_lua_fury:PlayEffects2( caster, counter )
 		effect_cast,
 		false, -- bDestroyImmediately
 		false, -- bStatusEffect
-		-1, -- iPriority
+		1, -- iPriority
 		false, -- bHeroEffect
-		false -- bOverheadEffect
+		true -- bOverheadEffect
 	)
 
 	-- save index for later

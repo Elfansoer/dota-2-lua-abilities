@@ -34,6 +34,7 @@ function modifier_marci_sidekick_lua:OnCreated( kv )
 
 	-- references
 	self.lifesteal = self:GetAbility():GetSpecialValueFor( "lifesteal_pct" )/100
+	self.damage = self:GetAbility():GetSpecialValueFor( "bonus_damage" )
 
 	if not IsServer() then return end
 
@@ -51,6 +52,7 @@ function modifier_marci_sidekick_lua:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 	}
 
 	return funcs
@@ -75,15 +77,15 @@ function modifier_marci_sidekick_lua:OnTakeDamage( params )
 	self:PlayEffects2()
 end
 
+function modifier_marci_sidekick_lua:GetModifierPreAttack_BonusDamage()
+	return self.damage
+end
+
 --------------------------------------------------------------------------------
 -- Graphics & Animations
--- function modifier_marci_sidekick_lua:GetEffectName()
--- 	return "particles/units/heroes/hero_marci/marci_sidekick_buff.vpcf"
--- end
-
--- function modifier_marci_sidekick_lua:GetEffectAttachType()
--- 	return PATTACH_OVERHEAD_FOLLOW
--- end
+function modifier_marci_sidekick_lua:ShouldUseOverheadOffset()
+	return true
+end
 
 function modifier_marci_sidekick_lua:GetStatusEffectName()
 	return "particles/status_fx/status_effect_marci_sidekick.vpcf"
@@ -114,16 +116,15 @@ function modifier_marci_sidekick_lua:PlayEffects1()
 	-- Create Particle
 	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_OVERHEAD_FOLLOW, self.parent )
 	ParticleManager:SetParticleControl( effect_cast, 1, self.parent:GetOrigin() )
-	-- ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- buff particle
 	self:AddParticle(
 		effect_cast,
 		false, -- bDestroyImmediately
 		false, -- bStatusEffect
-		-1, -- iPriority
+		1, -- iPriority
 		false, -- bHeroEffect
-		false -- bOverheadEffect
+		true -- bOverheadEffect
 	)
 
 	-- Create Sound
