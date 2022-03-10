@@ -39,6 +39,12 @@ function primal_beast_pulverize_lua:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
+	-- cancel if linken
+	if target:TriggerSpellAbsorb( self ) then
+		caster:Interrupt()
+		return
+	end
+
 	-- load data
 	local duration = self:GetSpecialValueFor( "channel_time" )
 
