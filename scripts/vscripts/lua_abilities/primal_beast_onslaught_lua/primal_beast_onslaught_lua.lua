@@ -19,8 +19,11 @@ LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier
 --------------------------------------------------------------------------------
 -- Init Abilities
 function primal_beast_onslaught_lua:Precache( context )
-	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_primal_beast_onslaught_lua.vsndevts", context )
-	PrecacheResource( "particle", "particles/units/heroes/hero_primal_beast_onslaught_lua/primal_beast_onslaught_lua.vpcf", context )
+	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_primal_beast.vsndevts", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_primal_beast/primal_beast_onslaught_charge_active.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_primal_beast/primal_beast_onslaught_impact.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_primal_beast/primal_beast_onslaught_chargeup.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_primal_beast/primal_beast_onslaught_range_finder.vpcf", context )
 end
 
 function primal_beast_onslaught_lua:Spawn()

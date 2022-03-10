@@ -17,7 +17,7 @@ LinkLuaModifier( "modifier_primal_beast_pulverize_lua_debuff", "lua_abilities/pr
 -- Init Abilities
 function primal_beast_pulverize_lua:Precache( context )
 	PrecacheResource( "soundfile", "soundevents/game_sounds_heroes/game_sounds_primal_beast.vsndevts", context )
-	PrecacheResource( "particle", "particles/units/heroes/hero_primal_beast_pulverize_lua/primal_beast_pulverize_lua.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_primal_beast/primal_beast_pulverize_hit.vpcf", context )
 end
 
 function primal_beast_pulverize_lua:Spawn()
