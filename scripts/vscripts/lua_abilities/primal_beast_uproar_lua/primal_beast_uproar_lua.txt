@@ -1,0 +1,53 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Primal Beast: Uproar (Lua version)
+	//=================================================================================================================
+	"primal_beast_uproar_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/primal_beast_uproar_lua/primal_beast_uproar_lua"
+		"AbilityTextureName"			"primal_beast_uproar"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"bonus_damage"				"10 15 20 25"
+			"bonus_damage_per_stack"	"15 25 35 45"
+			"stack_limit"				"5"
+			"damage_limit"				"35"
+			"stack_duration"			"15"
+			"move_slow_per_stack"		"10"
+			"slow_duration"				"3.0"
+			"damage_min"				"20"
+			"damage_max"				"2000"
+			"radius"					"900"
+			"roared_bonus_attack_speed"	"0"
+			"roared_bonus_armor" 		"1 2 3 4"
+			"roar_duration"				"7"
+		}
+	}
+}

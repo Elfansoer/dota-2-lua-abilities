@@ -1152,6 +1152,11 @@
 #base "../vscripts/lua_abilities/pangolier_swashbuckle_lua/pangolier_swashbuckle_lua.txt"
 #base "../vscripts/lua_abilities/pangolier_shield_crash_lua/pangolier_shield_crash_lua.txt"
 
+#base "../vscripts/lua_abilities/primal_beast_onslaught_lua/primal_beast_onslaught_lua.txt"
+#base "../vscripts/lua_abilities/primal_beast_trample_lua/primal_beast_trample_lua.txt"
+#base "../vscripts/lua_abilities/primal_beast_uproar_lua/primal_beast_uproar_lua.txt"
+#base "../vscripts/lua_abilities/primal_beast_pulverize_lua/primal_beast_pulverize_lua.txt"
+
 #base "../vscripts/lua_abilities/phantom_assassin_stifling_dagger_lua/phantom_assassin_stifling_dagger_lua.txt"
 #base "../vscripts/lua_abilities/phantom_assassin_phantom_strike_lua/phantom_assassin_phantom_strike_lua.txt"
 #base "../vscripts/lua_abilities/phantom_assassin_blur_lua/phantom_assassin_blur_lua.txt"

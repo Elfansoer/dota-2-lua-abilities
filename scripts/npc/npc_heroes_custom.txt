@@ -582,6 +582,19 @@
 	}
 
 	//=================================================================================================================
+	// HERO: Lifestealer (Primal Beast)
+	//=================================================================================================================
+	"npc_dota_hero_life_stealer_lua"
+	{
+		"override_hero"					"npc_dota_hero_life_stealer"	// Hero to override
+		"Ability1"				"primal_beast_onslaught_lua"						// Ability 1
+		"Ability2"				"primal_beast_trample_lua"						// Ability 2
+		"Ability3"				"primal_beast_uproar_lua"							// Ability 6
+		"Ability4"				"primal_beast_onslaught_release_lua"							// Ability 6
+		"Ability6"				"primal_beast_pulverize_lua"						// Ability 2
+	}
+
+	//=================================================================================================================
 	// HERO: Bane (Puck)
 	//=================================================================================================================
 	"npc_dota_hero_bane_lua"
