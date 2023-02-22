@@ -1,0 +1,61 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Sally: Sword Dance
+	//=================================================================================================================
+	"sally_sword_dance"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/sally_sword_dance/sally_sword_dance"
+		"AbilityTextureName"			"phantom_assassin_blur"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"45 30 15 0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"AbilityCooldown"
+			{
+				"value"								"30"
+				"special_bonus_unique_sally_6"		"-15"
+			}
+			"active_duration"
+			{
+				"value"								"0.3 0.4 0.5 0.6"
+				"special_bonus_unique_sally_8"		"+0.4"
+			}
+			"stack_attack_speed"
+			{
+				"value"								"4 8 12 16"
+				"special_bonus_unique_sally_4"		"+4"
+			}
+
+			"stack_evasion"			"6 7 8 9"
+			"max_stack"				"10"
+			"active_evasion"		"100"
+		}
+	}
+}

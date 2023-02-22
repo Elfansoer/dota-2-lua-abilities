@@ -920,3 +920,5 @@
 #base "heroes/riven.txt"			// Juggernaut
 #base "heroes/sona.txt"				// Naga Siren
 #base "heroes/sandra_olivia.txt"	// Phantom Assassin
+#base "heroes/maple.txt"			// Custom, ID 200
+#base "heroes/sally.txt"			// Custom, ID 201

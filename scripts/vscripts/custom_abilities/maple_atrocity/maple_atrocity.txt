@@ -1,0 +1,82 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Maple: Atrocity
+	//=================================================================================================================
+	"maple_atrocity"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/maple_atrocity/maple_atrocity"
+		"AbilityTextureName"			"primal_beast_uproar_max"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"IsGrantedByScepter"			"1"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.5"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120"
+		"AbilityManaCost"				"0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"duration"					"30"
+			"atrocity_health"			"2500"
+			"atrocity_attack"			"150"
+			"atrocity_armor"			"10"
+			"atrocity_magic"			"25"
+		}
+	}
+
+	//=================================================================================================================
+	// Maple: Martyr's Devotion End
+	//=================================================================================================================
+	"maple_atrocity_end"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/maple_atrocity/maple_atrocity"
+		"AbilityTextureName"			"primal_beast_uproar_none"
+		"MaxLevel"						"1"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0 0 0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1.0 1.0 1.0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+	}
+}

@@ -1343,6 +1343,20 @@
 #base "../vscripts/custom_abilities/sona_aria_of_perseverance/sona_aria_of_perseverance.txt"
 #base "../vscripts/custom_abilities/sona_crescendo/sona_crescendo.txt"
 
+#base "../vscripts/custom_abilities/maple_hydra/maple_hydra.txt"
+#base "../vscripts/custom_abilities/maple_cover_move/maple_cover_move.txt"
+#base "../vscripts/custom_abilities/maple_devour/maple_devour.txt"
+#base "../vscripts/custom_abilities/maple_indomitable_guardian/maple_indomitable_guardian.txt"
+#base "../vscripts/custom_abilities/maple_atrocity/maple_atrocity.txt"
+#base "../vscripts/custom_abilities/maple_martyrs_devotion/maple_martyrs_devotion.txt"
+#base "../vscripts/custom_abilities/maple_talents/maple_talents.txt"
+
+#base "../vscripts/custom_abilities/sally_quadruple_slash/sally_quadruple_slash.txt"
+#base "../vscripts/custom_abilities/sally_super_acceleration/sally_super_acceleration.txt"
+#base "../vscripts/custom_abilities/sally_sword_dance/sally_sword_dance.txt"
+#base "../vscripts/custom_abilities/sally_mirage/sally_mirage.txt"
+#base "../vscripts/custom_abilities/sally_talents/sally_talents.txt"
+
 //=================================================================================================================
 // TEST ABILITIES
 //=================================================================================================================

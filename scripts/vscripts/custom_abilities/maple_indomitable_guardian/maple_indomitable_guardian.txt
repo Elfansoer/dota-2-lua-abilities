@@ -1,0 +1,43 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Maple: Indomitable Guardian
+	//=================================================================================================================
+	"maple_indomitable_guardian"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/maple_indomitable_guardian/maple_indomitable_guardian"
+		"AbilityTextureName"			"dazzle_shallow_grave"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+		"IsGrantedByShard"				"1"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"duration"			"3"
+			"min_health_pct"	"5"
+		}
+	}
+}

@@ -1,0 +1,86 @@
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Maple
+	//=================================================================================================================
+	"npc_dota_hero_maple"
+	{
+		// "override_hero"					"npc_dota_hero_mars"	// Hero to override
+		"BaseClass"					"npc_dota_hero_mars"
+		"HeroID"					"200"
+
+		// Models
+		//----------------------------------------------------------------
+		"Model"					"models/heroes/marci/marci_base.vmdl"
+		"ModelScale"			"1.1"
+		"SoundSet"				"Hero_Marci"
+		"particle_folder"		"particles/units/heroes/hero_marci"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_marci.vsndevts"
+		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_marci.vsndevts"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"						"maple_hydra"
+		"Ability2"						"maple_cover_move"
+		"Ability3"						"maple_devour"
+		"Ability4"						"maple_indomitable_guardian"
+		"Ability5"						"maple_atrocity"
+		"Ability6"						"maple_martyrs_devotion"
+		"Ability10"						"special_bonus_unique_maple_1"
+		"Ability11"						"special_bonus_unique_maple_2"
+		"Ability12"						"special_bonus_unique_maple_3"
+		"Ability13"						"special_bonus_unique_maple_4"
+		"Ability14"						"special_bonus_unique_maple_5"
+		"Ability15"						"special_bonus_unique_maple_6"
+		"Ability16"						"special_bonus_unique_maple_7"
+		"Ability17"						"special_bonus_unique_maple_8"
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				    "0"		// Physical protection.
+		"MagicalResistance"				"25"	// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"12"
+		"AttackDamageMax"			"18"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.9"
+		"AttackAnimationPoint"		"0.600000"
+		"AttackRange"				"150"
+		"AttackAcquisitionRange"	"600"
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"52"
+		"AttributeStrengthGain"		"6"
+		"AttributeBaseIntelligence"	"0"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"0"
+		"AttributeAgilityGain"		"0"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"285"
+		"MovementTurnRate"			"0.6"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"
+		"VisionNighttimeRange"		"800"
+	}
+}

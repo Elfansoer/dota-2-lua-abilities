@@ -1,0 +1,76 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Hero Name: maple_hydra
+	//=================================================================================================================
+	"maple_hydra"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/maple_hydra/maple_hydra"
+		"AbilityTextureName"			"lina_dragon_slave"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15"
+		"AbilityManaCost"				"0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"radius"				"500"
+			"duration"
+			{
+				"value"							"10"
+				"special_bonus_unique_maple_4"	"+5"
+			}
+			"trail_duration"		"5"
+			"slow"					"15 25 35 45"
+			"base_dps"
+			{
+				"value"								"20 35 50 65"
+				"CalculateSpellDamageTooltip"		"1"
+				"DamageTypeTooltip"					"DAMAGE_TYPE_MAGICAL"
+			}
+			"manacost_dps"
+			{
+				"value"								"10 12 14 16"
+				"CalculateSpellDamageTooltip"		"1"
+				"DamageTypeTooltip"					"DAMAGE_TYPE_MAGICAL"
+			}
+
+			"manacost_pct"			"50"
+			"count"					"3"
+			"turn_rate"				"90"
+			"speed"					"400"
+			"trail_radius"			"150"
+
+		}
+	}
+}

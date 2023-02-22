@@ -1,0 +1,121 @@
+"DOTAUnits"
+{
+	"npc_dota_maple_atrocity"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"					"npc_dota_creature"
+		"Level"						"6"
+		"ConsideredHero"			"1"
+		"WakesNeutrals"				"1"
+		
+		"Model"						"models/heroes/primal_beast/primal_beast_base.vmdl"
+		"ModelScale" 				"1.5"
+		"particle_folder"			"particles/units/heroes/hero_primal_beast"
+		
+		"SoundSet"					"Hero_PrimalBeast"
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_primal_beast.vsndevts"
+		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_primal_beast.vsndevts"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"generic_hidden"			// Ability 1
+		"Ability2"					"generic_hidden"			// Ability 2
+		"Ability3"					"generic_hidden"			// Ability 3
+		"Ability4"					"generic_hidden"			// Ability 4
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				    "10"			// Physical protection.
+		"MagicalResistance"				"25"		// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"145"
+		"AttackDamageMax"			"155"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.8"
+		"AttackAnimationPoint"		"0.600000"
+		"AttackRange"				"150"
+		"AttackAcquisitionRange"		"600"
+		"AttackSpeedActivityModifiers"
+		{
+			"fast"		"200"
+		}
+		"ProjectileModel"			""
+		"ProjectileSpeed"			""
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"0"
+		"AttributeStrengthGain"		"0"
+		"AttributeBaseIntelligence"	"0"
+		"AttributeIntelligenceGain"	"0"
+		"AttributeBaseAgility"		"0"
+		"AttributeAgilityGain"		"0"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"
+		"BountyGoldMin"				"0"
+		"BountyGoldMax"				"0"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"RingRadius"				"70"
+		"HealthBarOffset"			"150"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"310"
+		"MovementTurnRate"			"0.6"
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"2500"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"
+		"VisionNighttimeRange"		"800"
+		"HasInventory"				"0"
+
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				// dark behemoth set
+				"Wearable1"
+				{
+					"ItemDef"			"26771" // head
+				}
+				"Wearable2"
+				{
+					"ItemDef"			"26795" // arms
+				}
+				"Wearable3"
+				{
+					"ItemDef"			"26770" // back
+				}
+				"Wearable4"
+				{
+					"ItemDef"			"26772" // legs
+				}
+			}
+		}
+	}
+}

@@ -14,12 +14,12 @@
 		"AbilityTextureName"			"template"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
-//		"precache"
-//		{
-//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
-//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
-//		}
-		
+
+		// "HasShardUpgrade"				"1"
+		// "HasScepterUpgrade"				"1"
+		// "IsGrantedByScepter"			"1"
+		// "IsGrantedByShard"				"1"
+
 		// Ability General
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
@@ -43,6 +43,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"10.0"
 		"AbilityManaCost"				"100"
+		"AbilityCharges"				"3 4 5 6"
+		"AbilityChargeRestoreTime"		"20"	// must also use ability_lua:GetAbilityChargeRestoreTime() in code
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
@@ -50,22 +52,32 @@
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			// tooltip ordering will follow this order
+			"special_one"				"1200"
+			"special_two"				"2.0"
+			"special_three"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"special_one"			"1000"
+				"value"								"20 40 60 80"
+				"special_bonus_unique_hero_1"		"+10"
 			}
-			"02"
+			"special_four"				"1200"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"special_two"			"2.0"
+				"value"								"100"
+				"special_bonus_unique_hero_2"		"x1.5"
+				"CalculateSpellDamageTooltip"		"1"
+				"DamageTypeTooltip"					"DAMAGE_TYPE_MAGICAL"
 			}
-			"03"
+			"special_shard"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"special_three"			"255"
+				"value"								"10"
+				"special_bonus_shard"				"-5"
+			}
+			"special_scepter"
+			{
+				"value"								"30"
+				"special_bonus_scepter"				"+5"
 			}
 		}
 	}
@@ -94,6 +106,8 @@
 "DOTA_Tooltip_<modifier_name>"		"Modifier Name"
 "DOTA_Tooltip_<modifier_name>_Description"
 	"Description, with %dMODIFIER_PROPERTY_XX% flat and %dMODIFIER_PROPERTY_XX%%% percent"
+
+"DOTA_Tooltip_ability_special_bonus_unique_hero_1"    "-{s:bonus_special_three}s Explanation"
 
 // Ability Behavior reference
 DOTA_ABILITY_BEHAVIOR_NONE 					{Just programming stuff}

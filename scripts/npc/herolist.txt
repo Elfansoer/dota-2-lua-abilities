@@ -52,6 +52,8 @@
 	"npc_dota_hero_lich"			"1"
 	"npc_dota_hero_luna"			"1"
 	"npc_dota_hero_magnataur"		"1"
+	"npc_dota_hero_marci"		"1"
+	"npc_dota_hero_mars"		"1"
 	"npc_dota_hero_mirana"			"1"
 	"npc_dota_hero_naga_siren"		"1"
 	"npc_dota_hero_necrolyte"		"1"
@@ -87,4 +89,7 @@
 	"npc_dota_hero_witch_doctor"		"1"
 
 	"npc_dota_hero_rubick"			"1"
+
+	"npc_dota_hero_maple"			"1"
+	"npc_dota_hero_sally"			"1"
 }

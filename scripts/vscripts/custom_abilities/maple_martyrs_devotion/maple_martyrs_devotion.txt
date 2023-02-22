@@ -1,0 +1,92 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Maple: Martyr's Devotion
+	//=================================================================================================================
+	"maple_martyrs_devotion"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/maple_martyrs_devotion/maple_martyrs_devotion"
+		"AbilityTextureName"			"omniknight_guardian_angel"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500 600 700"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100 80 60"
+		"AbilityManaCost"				"0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"init_cost"			"300 450 600"
+			"maintain_cost"
+			{
+				"value"							"4 4.5 5"
+				"special_bonus_unique_maple_6"	"-1"
+			}
+			"radius"
+			{
+				"value"							"500 600 700"
+				"special_bonus_unique_maple_5"	"+100"
+			}
+			"damage_reduction"	"60 80 100"
+		}
+	}
+
+	//=================================================================================================================
+	// Maple: Martyr's Devotion End
+	//=================================================================================================================
+	"maple_martyrs_devotion_end"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/maple_martyrs_devotion/maple_martyrs_devotion"
+		"AbilityTextureName"			"naga_siren_song_of_the_siren_end_lua"
+		"MaxLevel"						"1"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0 0 0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1.0 1.0 1.0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+	}
+}

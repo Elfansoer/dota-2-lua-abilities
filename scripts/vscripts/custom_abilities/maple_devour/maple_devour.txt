@@ -1,0 +1,61 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Maple: Devour
+	//=================================================================================================================
+	"maple_devour"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/maple_devour/maple_devour"
+		"AbilityTextureName"			"dragon_knight_dragon_blood"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"armor_per_strength"
+			{
+				"value"							"0.1"
+				"special_bonus_unique_maple_3"	"x1.5"
+			}
+			"AbilityCharges"			"3 4 5 6"
+			"mana_conversion"
+			{
+				"value"							"75 100 125 150"
+				"special_bonus_unique_maple_8"	"+100"
+			}
+			"mana_duration"				"20"
+
+			"damage_reduction"			"100"
+			"AbilityCooldown"
+			{
+				"value"							"20"
+				"special_bonus_unique_maple_7"	"-10"
+			}
+		}
+	}
+}

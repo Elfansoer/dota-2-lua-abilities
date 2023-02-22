@@ -1,0 +1,84 @@
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Maple
+	//=================================================================================================================
+	"npc_dota_hero_sally"
+	{
+		// "override_hero"					"npc_dota_hero_marci"	// Hero to override
+		"BaseClass"					"npc_dota_hero_marci"
+		"HeroID"					"201"
+
+		// Models
+		//----------------------------------------------------------------
+		"Model"					"models/heroes/marci/marci_base.vmdl"
+		"ModelScale"			"1.1"
+		"SoundSet"				"Hero_Marci"
+		"particle_folder"		"particles/units/heroes/hero_marci"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_marci.vsndevts"
+		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_marci.vsndevts"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"						"sally_quadruple_slash"
+		"Ability2"						"sally_super_acceleration"
+		"Ability3"						"sally_sword_dance"
+		"Ability6"						"sally_mirage"
+		"Ability10"						"special_bonus_unique_sally_1"
+		"Ability11"						"special_bonus_unique_sally_2"
+		"Ability12"						"special_bonus_unique_sally_3"
+		"Ability13"						"special_bonus_unique_sally_4"
+		"Ability14"						"special_bonus_unique_sally_5"
+		"Ability15"						"special_bonus_unique_sally_6"
+		"Ability16"						"special_bonus_unique_sally_7"
+		"Ability17"						"special_bonus_unique_sally_8"
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				    "2"		// Physical protection.
+		"MagicalResistance"				"25"	// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"12"
+		"AttackDamageMax"			"18"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.7"
+		"AttackAnimationPoint"		"0.3"
+		"AttackRange"				"150"
+		"AttackAcquisitionRange"	"600"
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"		"15"
+		"AttributeStrengthGain"		"1.7"
+		"AttributeBaseIntelligence"	"20"
+		"AttributeIntelligenceGain"	"2.2"
+		"AttributeBaseAgility"		"29"
+		"AttributeAgilityGain"		"3.6"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"310"
+		"MovementTurnRate"			"0.9"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"
+		"VisionNighttimeRange"		"800"
+	}
+}

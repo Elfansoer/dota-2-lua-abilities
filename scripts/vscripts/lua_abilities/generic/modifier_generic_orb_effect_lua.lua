@@ -55,6 +55,9 @@ function modifier_generic_orb_effect_lua:OnAttack( params )
 	-- if not IsServer() then return end
 	if params.attacker~=self:GetParent() then return end
 
+	-- no instant attacks
+	if params.no_attack_cooldown then return end
+
 	-- register attack if being cast and fully castable
 	if self:ShouldLaunch( params.target ) then
 		-- use mana and cd
@@ -98,7 +101,7 @@ function modifier_generic_orb_effect_lua:OnOrder( params )
 
 		-- if casting other ability that cancel channel while casting this ability, turn off
 		local pass = false
-		local behavior = params.ability:GetBehavior()
+		local behavior = params.ability:GetBehaviorInt()
 		if self:FlagExist( behavior, DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL ) or 
 			self:FlagExist( behavior, DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT ) or
 			self:FlagExist( behavior, DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL )

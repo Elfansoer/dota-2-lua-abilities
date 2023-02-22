@@ -1,0 +1,69 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Sally: Mirage
+	//=================================================================================================================
+	"sally_mirage"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/sally_mirage/sally_mirage"
+		"AbilityTextureName"			"naga_siren_mirror_image"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+        "HasShardUpgrade"				"1"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.1"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 125 150"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"AbilityCooldown"
+			{
+				"value"								"30 25 20"
+				"special_bonus_unique_sally_2"		"-5"
+			}
+			"illusion_count"
+			{
+				"value"						"2"
+				"special_bonus_shard"		"+1"
+			}
+			"duration"
+			{
+				"value"								"7"
+				"special_bonus_unique_sally_3"		"+5"
+			}
+			"max_attack"
+			{
+				"value"						"4 6 8"
+				"special_bonus_shard"		"+2"
+			}
+			"max_damage_pct"		"15 30 45"
+
+			"illusion_outgoing"		"0"
+			"illusion_incoming"		"100"
+			"spawn_delay"			"0.5"
+			"search_radius"			"1200"
+		}
+	}
+}

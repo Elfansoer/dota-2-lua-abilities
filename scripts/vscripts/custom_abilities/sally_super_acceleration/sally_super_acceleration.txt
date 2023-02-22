@@ -1,0 +1,68 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Sally: Super Acceleration
+	//=================================================================================================================
+	"sally_super_acceleration"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/sally_super_acceleration/sally_super_acceleration"
+		"AbilityTextureName"			"dark_seer_surge"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"move_speed"		"700"
+			"duration"			"1.5 2 2.5 3"
+			"bonus_damage"
+			{
+				"value"								"20 40 60 80"
+				"special_bonus_unique_sally_1"		"+10"
+			}
+
+			"radius"			"150"
+			"linger_duration"	"2"
+			"AbilityCharges"
+			{
+				"value"								"0"
+				"special_bonus_unique_sally_7"		"+2"
+			}
+
+			"AbilityChargeRestoreTime"				"18 14 10 6"	// must also use ability_lua:GetAbilityChargeRestoreTime() in code
+
+			// If using charges, AbiltyCooldown must be 0
+			"AbilityCooldown"
+			{
+				"value"								"18 14 10 6"
+				"special_bonus_unique_sally_7"		"=0"
+			}
+		}
+	}
+}
