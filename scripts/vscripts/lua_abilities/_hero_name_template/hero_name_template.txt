@@ -17,7 +17,7 @@
 
 		// "HasShardUpgrade"				"1"
 		// "HasScepterUpgrade"				"1"
-		// "IsGrantedByScepter"			"1"
+		// "IsGrantedByScepter"				"1"
 		// "IsGrantedByShard"				"1"
 
 		// Ability General
@@ -62,7 +62,7 @@
 				"value"								"20 40 60 80"
 				"special_bonus_unique_hero_1"		"+10"
 			}
-			"special_four"				"1200"
+			"special_four"
 			{
 				"value"								"100"
 				"special_bonus_unique_hero_2"		"x1.5"
@@ -76,8 +76,8 @@
 			}
 			"special_scepter"
 			{
-				"value"								"30"
-				"special_bonus_scepter"				"+5"
+				"value"								"30 25 20 15"
+				"special_bonus_scepter"				"=5"
 			}
 		}
 	}

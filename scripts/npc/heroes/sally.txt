@@ -1,7 +1,7 @@
 "DOTAHeroes"
 {
 	//=================================================================================================================
-	// HERO: Maple
+	// HERO: Sally
 	//=================================================================================================================
 	"npc_dota_hero_sally"
 	{
@@ -23,6 +23,8 @@
 		"Ability1"						"sally_quadruple_slash"
 		"Ability2"						"sally_super_acceleration"
 		"Ability3"						"sally_sword_dance"
+		"Ability4"						"generic_hidden"
+		"Ability5"						"generic_hidden"
 		"Ability6"						"sally_mirage"
 		"Ability10"						"special_bonus_unique_sally_1"
 		"Ability11"						"special_bonus_unique_sally_2"

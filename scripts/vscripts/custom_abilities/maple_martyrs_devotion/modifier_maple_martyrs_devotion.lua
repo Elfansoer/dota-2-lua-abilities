@@ -71,8 +71,10 @@ function modifier_maple_martyrs_devotion:OnIntervalThink()
 
 	-- check has atrocity active
 	local modifier = self.parent:FindModifierByName("modifier_maple_atrocity")
+	local lethal_flag = DOTA_DAMAGE_FLAG_NON_LETHAL
 	if modifier and modifier.unit then
 		victim = modifier.unit
+		lethal_flag = 0
 	end
 
 	local health = victim:GetHealth()
@@ -85,7 +87,7 @@ function modifier_maple_martyrs_devotion:OnIntervalThink()
 		damage = cost,
 		damage_type = DAMAGE_TYPE_PURE,
 		ability = self.ability, --Optional.
-		damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS, --Optional.
+		damage_flags = lethal_flag + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS, --Optional.
 	}
 	ApplyDamage(damageTable)
 	
