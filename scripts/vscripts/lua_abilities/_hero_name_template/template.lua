@@ -125,8 +125,8 @@ function template:PlayEffects()
 		vOrigin, -- unknown
 		bool -- unknown, true
 	)
-	ParticleManager:SetParticleControlForward( effect_cast, iControlPoint, vForward )
-	SetParticleControlOrientation( effect_cast, iControlPoint, vForward, vRight, vUp )
+	ParticleManager:SetParticleControlTransformForward( effect_cast, iControlPoint, vForward )
+	SetParticleControlTransform( effect_cast, iControlPoint, origin, qangles )
 	ParticleManager:ReleaseParticleIndex( effect_cast )
 
 	-- Create Sound

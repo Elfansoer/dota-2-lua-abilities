@@ -1128,6 +1128,11 @@
 #base "../vscripts/lua_abilities/monkey_king_tree_dance_lua/monkey_king_tree_dance_lua.txt"
 #base "../vscripts/lua_abilities/monkey_king_primal_spring_lua/monkey_king_primal_spring_lua.txt"
 
+#base "../vscripts/lua_abilities/muerta_dead_shot_lua/muerta_dead_shot_lua.txt"
+#base "../vscripts/lua_abilities/muerta_the_calling_lua/muerta_the_calling_lua.txt"
+#base "../vscripts/lua_abilities/muerta_gunslinger_lua/muerta_gunslinger_lua.txt"
+#base "../vscripts/lua_abilities/muerta_pierce_the_veil_lua/muerta_pierce_the_veil_lua.txt"
+
 #base "../vscripts/lua_abilities/naga_siren_mirror_image_lua/naga_siren_mirror_image_lua.txt"
 #base "../vscripts/lua_abilities/naga_siren_ensnare_lua/naga_siren_ensnare_lua.txt"
 #base "../vscripts/lua_abilities/naga_siren_rip_tide_lua/naga_siren_rip_tide_lua.txt"

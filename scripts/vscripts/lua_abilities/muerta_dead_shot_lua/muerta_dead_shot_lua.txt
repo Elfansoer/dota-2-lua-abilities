@@ -1,0 +1,62 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Muerta: Dead Shot (Lua version)
+	//=================================================================================================================
+	"muerta_dead_shot_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/muerta_dead_shot_lua/muerta_dead_shot_lua"
+		"AbilityTextureName"			"muerta_dead_shot"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_TREE"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.15"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16 14 12 10"
+		"AbilityManaCost"				"100 120 140 160"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"AbilityCastRange"			
+			{
+				"value"						"1000"
+				"special_bonus_unique_muerta_dead_shot_range"	"+250"
+			}
+			"damage"
+			{
+				"value"						"75 150 225 300"
+				"special_bonus_unique_muerta_dead_shot_damage"	"+100"
+			}
+			"speed"							"2000"
+			"radius"						"100"
+			"ricochet_radius_start"			"115"
+			"ricochet_radius_end"			"115"
+			"ricochet_distance_multiplier"	"1.5"
+			"ricochet_fear_duration"		"1.25 1.5 1.75 2.0"
+			"impact_slow_percent"			"-100"
+			"impact_slow_duration"			"0.5"
+		}
+	}
+}

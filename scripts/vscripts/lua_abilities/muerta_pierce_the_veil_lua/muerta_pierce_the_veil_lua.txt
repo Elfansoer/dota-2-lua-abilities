@@ -1,0 +1,41 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Muerta: Pierce the Veil (Lua version)
+	//=================================================================================================================
+	"muerta_pierce_the_veil_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/muerta_pierce_the_veil_lua/muerta_pierce_the_veil_lua"
+		"AbilityTextureName"			"muerta_pierce_the_veil"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"75 60 45"
+		"AbilityManaCost"				"150 250 350"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"duration"					"6 7 8"
+			"transform_duration"		"0.35"
+			"base_damage_pct"			"100"
+			"modelscale"				"30"
+			"bonus_damage"				"50 75 100"
+		}
+	}
+}
