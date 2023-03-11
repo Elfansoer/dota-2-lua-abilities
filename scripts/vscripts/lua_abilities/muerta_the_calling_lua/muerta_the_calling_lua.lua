@@ -10,7 +10,6 @@ Ability checklist (erase if done/checked):
 ]]
 --------------------------------------------------------------------------------
 muerta_the_calling_lua = class({})
-LinkLuaModifier( "modifier_generic_custom_indicator", "lua_abilities/generic/modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_HORIZONTAL )
 LinkLuaModifier( "modifier_generic_silenced_lua", "lua_abilities/generic/modifier_generic_silenced_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_muerta_the_calling_lua_thinker", "lua_abilities/muerta_the_calling_lua/modifier_muerta_the_calling_lua_thinker", LUA_MODIFIER_MOTION_HORIZONTAL )
 LinkLuaModifier( "modifier_muerta_the_calling_lua_slow", "lua_abilities/muerta_the_calling_lua/modifier_muerta_the_calling_lua_slow", LUA_MODIFIER_MOTION_NONE )
@@ -25,31 +24,17 @@ function muerta_the_calling_lua:Precache( context )
 	PrecacheResource( "particle", "particles/units/heroes/hero_muerta/muerta_calling_reticule.vpcf", context )
 end
 
---------------------------------------------------------------------------------
--- Passive Modifier
-function muerta_the_calling_lua:GetIntrinsicModifierName()
-	return "modifier_generic_custom_indicator"
-end
-
---------------------------------------------------------------------------------
--- Ability Cast Filter (For custom indicator)
-function muerta_the_calling_lua:CastFilterResultLocation( vLoc )
-	-- Custom indicator block start
-	if IsClient() then
-		-- check custom indicator
-		if self.custom_indicator then
-			-- register cursor position
-			self.custom_indicator:Register( vLoc )
-		end
+function muerta_the_calling_lua:Spawn()
+	-- register custom indicator
+	if not IsServer() then
+		CustomIndicator:RegisterAbility( self )
+		return
 	end
-	-- Custom indicator block end
-
-	return UF_SUCCESS
 end
 
 --------------------------------------------------------------------------------
--- Ability Custom Indicator
-function muerta_the_calling_lua:CreateCustomIndicator( loc, behavior )
+-- Ability Custom Indicator (using CustomIndicator library, this section is Client Lua only)
+function muerta_the_calling_lua:CreateCustomIndicator( position, unit, behavior )
 	-- references
 	local particle_cast = "particles/units/heroes/hero_muerta/muerta_calling_reticule.vpcf"
 
@@ -59,12 +44,12 @@ function muerta_the_calling_lua:CreateCustomIndicator( loc, behavior )
 	-- create particle
 	self.effect_indicator = ParticleManager:CreateParticle( particle_cast, PATTACH_CUSTOMORIGIN, self:GetCaster())
 	ParticleManager:SetParticleControl( self.effect_indicator, 1, Vector( radius, radius, radius ) )
-	self:UpdateCustomIndicator( loc, behavior )
+	self:UpdateCustomIndicator( position, behavior )
 end
 
-function muerta_the_calling_lua:UpdateCustomIndicator( loc, behavior )
+function muerta_the_calling_lua:UpdateCustomIndicator( position, unit, behavior )
 	-- update particle position
-	ParticleManager:SetParticleControl( self.effect_indicator, 0, loc )
+	ParticleManager:SetParticleControl( self.effect_indicator, 0, position )
 
 	local radius = self:GetSpecialValueFor( "radius" )
 	local num_revenants = self:GetSpecialValueFor( "num_revenants" )
@@ -76,13 +61,13 @@ function muerta_the_calling_lua:UpdateCustomIndicator( loc, behavior )
 	local cp_alpha_start = 10
 	for i=1,math.min(num_revenants,cp_max_revenants) do
 		local angle = math.pi/2 + 2*math.pi/num_revenants * i
-		local pos = loc + Vector( math.cos( angle ), math.sin( angle ), 0 ) * revenant_radius
+		local pos = position + Vector( math.cos( angle ), math.sin( angle ), 0 ) * revenant_radius
 		ParticleManager:SetParticleControl( self.effect_indicator, cp_pos_start + (i-1), pos )
 		ParticleManager:SetParticleControl( self.effect_indicator, cp_alpha_start + (i-1), Vector(1,0,0) )
 	end
 end
 
-function muerta_the_calling_lua:DestroyCustomIndicator( behavior )
+function muerta_the_calling_lua:DestroyCustomIndicator( position, unit, behavior )
 	-- destroy particle
 	ParticleManager:DestroyParticle( self.effect_indicator, false )
 	ParticleManager:ReleaseParticleIndex( self.effect_indicator )

@@ -13,7 +13,6 @@ dawnbreaker_solar_guardian_lua = class({})
 LinkLuaModifier( "modifier_dawnbreaker_solar_guardian_lua", "lua_abilities/dawnbreaker_solar_guardian_lua/modifier_dawnbreaker_solar_guardian_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_dawnbreaker_solar_guardian_lua_leap", "lua_abilities/dawnbreaker_solar_guardian_lua/modifier_dawnbreaker_solar_guardian_lua_leap", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_generic_arc_lua", "lua_abilities/generic/modifier_generic_arc_lua", LUA_MODIFIER_MOTION_BOTH )
-LinkLuaModifier( "modifier_generic_custom_indicator", "lua_abilities/generic/modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_BOTH )
 LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
@@ -29,17 +28,16 @@ function dawnbreaker_solar_guardian_lua:Precache( context )
 end
 
 function dawnbreaker_solar_guardian_lua:Spawn()
-	if not IsServer() then return end
+	-- register custom indicator
+	if not IsServer() then
+		CustomIndicator:RegisterAbility( self )
+		return
+	end
 end
 
 --------------------------------------------------------------------------------
--- Custom Indicator
+-- Ability Custom Indicator (using CustomIndicator library, this section is Client Lua only)
 -- NOTE: The whole Custom Indicator doesn't work because FindUnitsInRadius is server-only.
-
--- function dawnbreaker_solar_guardian_lua:GetIntrinsicModifierName()
--- 	return "modifier_generic_custom_indicator"
--- end
-
 function dawnbreaker_solar_guardian_lua:CreateCustomIndicator()
 	local particle_cast1 = "particles/ui_mouseactions/range_finder_tp_dest.vpcf"
 	local particle_cast2 = "particles/ui_mouseactions/range_finder_aoe.vpcf"

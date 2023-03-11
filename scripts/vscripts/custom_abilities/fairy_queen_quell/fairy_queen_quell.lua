@@ -10,30 +10,22 @@ Ability checklist (erase if done/checked):
 ]]
 --------------------------------------------------------------------------------
 fairy_queen_quell = class({})
-LinkLuaModifier( "modifier_generic_custom_indicator", "lua_abilities/generic/modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_fairy_queen_quell", "custom_abilities/fairy_queen_quell/modifier_fairy_queen_quell", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_fairy_queen_quell_debuff", "custom_abilities/fairy_queen_quell/modifier_fairy_queen_quell_debuff", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
--- Passive Modifier
-function fairy_queen_quell:GetIntrinsicModifierName()
-	-- Using custom indicator
-	return "modifier_generic_custom_indicator"
+-- Init Abilities
+function fairy_queen_quell:Spawn()
+	-- register custom indicator
+	if not IsServer() then
+		CustomIndicator:RegisterAbility( self )
+		return
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Ability Cast Filter
 function fairy_queen_quell:CastFilterResultLocation( vLoc )
-	-- Custom indicator block start
-	if IsClient() then
-		-- check custom indicator
-		if self.custom_indicator then
-			-- register cursor position
-			self.custom_indicator:Register( vLoc )
-		end
-	end
-	-- Custom indicator block end
-
 	if not self:CheckFairies() then
 		return UF_FAIL_CUSTOM
 	end
@@ -62,8 +54,8 @@ function fairy_queen_quell:CheckFairies()
 end
 
 --------------------------------------------------------------------------------
--- Ability Custom Indicator
-function fairy_queen_quell:CreateCustomIndicator()
+-- Ability Custom Indicator (using CustomIndicator library, this section is Client Lua only)
+function fairy_queen_quell:CreateCustomIndicator( loc )
 	local particle_cast = "particles/custom_indicator_cone.vpcf"
 	self.effect_cast = {}
 
@@ -81,6 +73,8 @@ function fairy_queen_quell:CreateCustomIndicator()
 		)
 		ParticleManager:SetParticleControl( self.effect_cast[i], 3, Vector(100,100,0) )
 	end
+
+	self:UpdateCustomIndicator( loc )
 end
 
 function fairy_queen_quell:UpdateCustomIndicator( loc )

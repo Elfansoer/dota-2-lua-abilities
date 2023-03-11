@@ -12,33 +12,20 @@ Ability checklist (erase if done/checked):
 monkey_king_primal_spring_lua = class({})
 LinkLuaModifier( "modifier_monkey_king_primal_spring_lua", "lua_abilities/monkey_king_primal_spring_lua/modifier_monkey_king_primal_spring_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_generic_arc_lua", "lua_abilities/generic/modifier_generic_arc_lua", LUA_MODIFIER_MOTION_BOTH )
-LinkLuaModifier( "modifier_generic_custom_indicator", "lua_abilities/generic/modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_BOTH )
 
 --------------------------------------------------------------------------------
--- Passive Modifier
-function monkey_king_primal_spring_lua:GetIntrinsicModifierName()
-	return "modifier_generic_custom_indicator"
-end
-
---------------------------------------------------------------------------------
--- Ability Cast Filter (For custom indicator)
-function monkey_king_primal_spring_lua:CastFilterResultLocation( vLoc )
-	-- Custom indicator block start
-	if IsClient() then
-		-- check custom indicator
-		if self.custom_indicator then
-			-- register cursor position
-			self.custom_indicator:Register( vLoc )
-		end
+-- Init Abilities
+function monkey_king_primal_spring_lua:Spawn()
+	-- register custom indicator
+	if not IsServer() then
+		CustomIndicator:RegisterAbility( self )
+		return
 	end
-	-- Custom indicator block end
-
-	return UF_SUCCESS
 end
 
 --------------------------------------------------------------------------------
 -- Ability Custom Indicator
-function monkey_king_primal_spring_lua:CreateCustomIndicator()
+function monkey_king_primal_spring_lua:CreateCustomIndicator( loc )
 	-- references
 	local particle_cast = "particles/ui_mouseactions/range_finder_aoe.vpcf"
 
@@ -48,6 +35,8 @@ function monkey_king_primal_spring_lua:CreateCustomIndicator()
 	-- create particle
 	self.effect_indicator = ParticleManager:CreateParticle( particle_cast, PATTACH_WORLDORIGIN, self:GetCaster())
 	ParticleManager:SetParticleControl( self.effect_indicator, 3, Vector( radius, radius, radius ) )
+
+	self:UpdateCustomIndicator( loc )
 end
 
 function monkey_king_primal_spring_lua:UpdateCustomIndicator( loc )

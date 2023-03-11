@@ -11,16 +11,18 @@ Ability checklist (erase if done/checked):
 --------------------------------------------------------------------------------
 fairy_queen_enchantment = class({})
 LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_generic_custom_indicator", "lua_abilities/generic/modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_fairy_queen_enchantment", "custom_abilities/fairy_queen_enchantment/modifier_fairy_queen_enchantment", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_fairy_queen_enchantment_debuff", "custom_abilities/fairy_queen_enchantment/modifier_fairy_queen_enchantment_debuff", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_fairy_queen_enchantment_visual", "custom_abilities/fairy_queen_enchantment/modifier_fairy_queen_enchantment_visual", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
--- Passive Modifier
-function fairy_queen_enchantment:GetIntrinsicModifierName()
-	-- Using custom indicator
-	return "modifier_generic_custom_indicator"
+-- Init Abilities
+function fairy_queen_enchantment:Spawn()
+	-- register custom indicator
+	if not IsServer() then
+		CustomIndicator:RegisterAbility( self )
+		return
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -33,16 +35,6 @@ end
 --------------------------------------------------------------------------------
 -- Ability Cast Filter
 function fairy_queen_enchantment:CastFilterResultLocation( vLoc )
-	-- Custom indicator block start
-	if IsClient() then
-		-- check custom indicator
-		if self.custom_indicator then
-			-- register cursor position
-			self.custom_indicator:Register( vLoc )
-		end
-	end
-	-- Custom indicator block end
-
 	if not self:CheckFairies() then
 		return UF_FAIL_CUSTOM
 	end
@@ -71,8 +63,8 @@ function fairy_queen_enchantment:CheckFairies()
 end
 
 --------------------------------------------------------------------------------
--- Ability Custom Indicator
-function fairy_queen_enchantment:CreateCustomIndicator()
+-- Ability Custom Indicator (using CustomIndicator library, this section is Client Lua only)
+function fairy_queen_enchantment:CreateCustomIndicator( loc )
 	local ally_radius = self:GetSpecialValueFor( "ally_radius" )
 	local enemy_radius = self:GetSpecialValueFor( "enemy_radius" )
 	local particle_cast = "particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt_core_glow.vpcf"
@@ -83,6 +75,8 @@ function fairy_queen_enchantment:CreateCustomIndicator()
 		self.effect_cast[i] = ParticleManager:CreateParticle( particle_cast, PATTACH_CUSTOMORIGIN, self:GetCaster())
 		ParticleManager:SetParticleShouldCheckFoW( self.effect_cast[i], false )
 	end
+
+	self:UpdateCustomIndicator( loc )
 end
 
 function fairy_queen_enchantment:UpdateCustomIndicator( loc )

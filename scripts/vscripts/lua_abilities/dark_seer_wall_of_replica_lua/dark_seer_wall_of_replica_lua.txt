@@ -91,11 +91,6 @@
 				"var_type"				"FIELD_FLOAT"
 				"scepter_length_multiplier"				"2"
 			}
-			"11"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vector_target"				"1"
-			}
 		}
 	}
 }

@@ -12,25 +12,19 @@ Ability checklist (erase if done/checked):
 --------------------------------------------------------------------------------
 snapfire_scatterblast_lua = class({})
 LinkLuaModifier( "modifier_snapfire_scatterblast_lua", "lua_abilities/snapfire_scatterblast_lua/modifier_snapfire_scatterblast_lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_generic_custom_indicator", "lua_abilities/generic/modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
--- Custom Indicator
-function snapfire_scatterblast_lua:GetIntrinsicModifierName()
-	return "modifier_generic_custom_indicator"
-end
-
-function snapfire_scatterblast_lua:CastFilterResultLocation( vLoc )
-	if IsClient() then
-		if self.custom_indicator then
-			-- register cursor position
-			self.custom_indicator:Register( vLoc )
-		end
+-- Init Abilities
+function snapfire_scatterblast_lua:Spawn()
+	-- register custom indicator
+	if not IsServer() then
+		CustomIndicator:RegisterAbility( self )
+		return
 	end
-
-	return UF_SUCCESS
 end
 
+--------------------------------------------------------------------------------
+-- Ability Custom Indicator (using CustomIndicator library, this section is Client Lua only)
 function snapfire_scatterblast_lua:CreateCustomIndicator()
 	local particle_cast = "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_range_finder_aoe.vpcf"
 	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )

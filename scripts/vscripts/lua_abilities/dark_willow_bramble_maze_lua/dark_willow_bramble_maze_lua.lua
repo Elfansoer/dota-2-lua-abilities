@@ -10,7 +10,6 @@ Ability checklist (erase if done/checked):
 ]]
 --------------------------------------------------------------------------------
 dark_willow_bramble_maze_lua = class({})
-LinkLuaModifier( "modifier_generic_custom_indicator", "lua_abilities/generic/modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_dark_willow_bramble_maze_lua_thinker", "lua_abilities/dark_willow_bramble_maze_lua/modifier_dark_willow_bramble_maze_lua_thinker", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_dark_willow_bramble_maze_lua_bramble", "lua_abilities/dark_willow_bramble_maze_lua/modifier_dark_willow_bramble_maze_lua_bramble", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_dark_willow_bramble_maze_lua_debuff", "lua_abilities/dark_willow_bramble_maze_lua/modifier_dark_willow_bramble_maze_lua_debuff", LUA_MODIFIER_MOTION_NONE )
@@ -30,30 +29,18 @@ end
 dark_willow_bramble_maze_lua.locations = locations
 
 --------------------------------------------------------------------------------
--- Passive Modifier
-function dark_willow_bramble_maze_lua:GetIntrinsicModifierName()
-	return "modifier_generic_custom_indicator"
-end
-
---------------------------------------------------------------------------------
--- Ability Cast Filter (For custom indicator)
-function dark_willow_bramble_maze_lua:CastFilterResultLocation( vLoc )
-	-- Custom indicator block start
-	if IsClient() then
-		-- check custom indicator
-		if self.custom_indicator then
-			-- register cursor position
-			self.custom_indicator:Register( vLoc )
-		end
+-- Init Abilities
+function dark_willow_bramble_maze_lua:Spawn()
+	-- register custom indicator
+	if not IsServer() then
+		CustomIndicator:RegisterAbility( self )
+		return
 	end
-	-- Custom indicator block end
-
-	return UF_SUCCESS
 end
 
 --------------------------------------------------------------------------------
--- Ability Custom Indicator
-function dark_willow_bramble_maze_lua:CreateCustomIndicator()
+-- Ability Custom Indicator (using CustomIndicator library, this section is Client Lua only)
+function dark_willow_bramble_maze_lua:CreateCustomIndicator( loc )
 	-- references
 	local particle_cast = "particles/units/heroes/hero_dark_willow/dark_willow_bramble_range_finder_aoe.vpcf"
 
@@ -63,6 +50,8 @@ function dark_willow_bramble_maze_lua:CreateCustomIndicator()
 	-- create particle
 	self.effect_indicator = ParticleManager:CreateParticle( particle_cast, PATTACH_CUSTOMORIGIN, self:GetCaster())
 	ParticleManager:SetParticleControl( self.effect_indicator, 1, Vector( radius, radius, radius ) )
+
+	self:UpdateCustomIndicator( loc )
 end
 
 function dark_willow_bramble_maze_lua:UpdateCustomIndicator( loc )

@@ -11,31 +11,23 @@ Ability checklist (erase if done/checked):
 --------------------------------------------------------------------------------
 fairy_queen_whisk = class({})
 LinkLuaModifier( "modifier_generic_knockback_lua", "lua_abilities/generic/modifier_generic_knockback_lua", LUA_MODIFIER_MOTION_BOTH )
-LinkLuaModifier( "modifier_generic_custom_indicator", "lua_abilities/generic/modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_BOTH )
 LinkLuaModifier( "modifier_fairy_queen_whisk", "custom_abilities/fairy_queen_whisk/modifier_fairy_queen_whisk", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_fairy_queen_whisk_debuff", "custom_abilities/fairy_queen_whisk/modifier_fairy_queen_whisk_debuff", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_fairy_queen_whisk_visual", "custom_abilities/fairy_queen_whisk/modifier_fairy_queen_whisk_visual", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
--- Passive Modifier
-function fairy_queen_whisk:GetIntrinsicModifierName()
-	-- Using custom indicator
-	return "modifier_generic_custom_indicator"
+-- Init Abilities
+function fairy_queen_whisk:Spawn()
+	-- register custom indicator
+	if not IsServer() then
+		CustomIndicator:RegisterAbility( self )
+		return
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Ability Cast Filter
 function fairy_queen_whisk:CastFilterResultLocation( vLoc )
-	-- Custom indicator block start
-	if IsClient() then
-		-- check custom indicator
-		if self.custom_indicator then
-			-- register cursor position
-			self.custom_indicator:Register( vLoc )
-		end
-	end
-	-- Custom indicator block end
-
 	if not self:CheckFairies() then
 		return UF_FAIL_CUSTOM
 	end
@@ -64,8 +56,8 @@ function fairy_queen_whisk:CheckFairies()
 end
 
 --------------------------------------------------------------------------------
--- Ability Custom Indicator
-function fairy_queen_whisk:CreateCustomIndicator()
+-- Ability Custom Indicator (using CustomIndicator library, this section is Client Lua only)
+function fairy_queen_whisk:CreateCustomIndicator( loc )
 	-- get data
 	local ally_radius = self:GetSpecialValueFor( "ally_radius" )
 	local enemy_radius = self:GetSpecialValueFor( "enemy_radius" )
@@ -79,6 +71,8 @@ function fairy_queen_whisk:CreateCustomIndicator()
 	
 	self.effect_cast[2] = ParticleManager:CreateParticle( particle_cast, PATTACH_CUSTOMORIGIN, self:GetCaster())
 	ParticleManager:SetParticleControl( self.effect_cast[2], 1, Vector(enemy_radius,0,0) )
+
+	self:UpdateCustomIndicator( loc )
 end
 
 function fairy_queen_whisk:UpdateCustomIndicator( loc )

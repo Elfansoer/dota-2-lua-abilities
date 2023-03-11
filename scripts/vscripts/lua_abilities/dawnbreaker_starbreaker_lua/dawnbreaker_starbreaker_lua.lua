@@ -12,7 +12,6 @@ Ability checklist (erase if done/checked):
 dawnbreaker_starbreaker_lua = class({})
 LinkLuaModifier( "modifier_dawnbreaker_starbreaker_lua", "lua_abilities/dawnbreaker_starbreaker_lua/modifier_dawnbreaker_starbreaker_lua", LUA_MODIFIER_MOTION_HORIZONTAL )
 LinkLuaModifier( "modifier_dawnbreaker_starbreaker_lua_slow", "lua_abilities/dawnbreaker_starbreaker_lua/modifier_dawnbreaker_starbreaker_lua_slow", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_generic_custom_indicator", "lua_abilities/generic/modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_generic_stunned_lua", "lua_abilities/generic/modifier_generic_stunned_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_generic_arc_lua", "lua_abilities/generic/modifier_generic_arc_lua", LUA_MODIFIER_MOTION_BOTH )
 
@@ -26,36 +25,20 @@ function dawnbreaker_starbreaker_lua:Precache( context )
 end
 
 function dawnbreaker_starbreaker_lua:Spawn()
-	if not IsServer() then return end
+	-- register custom indicator
+	if not IsServer() then
+		CustomIndicator:RegisterAbility( self )
+		return
+	end
 end
 
 --------------------------------------------------------------------------------
--- Custom Indicator
-function dawnbreaker_starbreaker_lua:GetIntrinsicModifierName()
-	return "modifier_generic_custom_indicator"
-end
-
-function dawnbreaker_starbreaker_lua:CastFilterResultLocation( vLoc )
-	if IsClient() then
-		if self.custom_indicator then
-			-- register cursor position
-			self.custom_indicator:Register( vLoc )
-		end
-	end
-
-	-- check nohammer
-	if self:GetCaster():HasModifier( "modifier_dawnbreaker_celestial_hammer_lua_nohammer" ) then
-		return UF_FAIL_CUSTOM
-	end
-
-	if not IsServer() then return end
-
-	return UF_SUCCESS
-end
-
-function dawnbreaker_starbreaker_lua:CreateCustomIndicator()
+-- Ability Custom Indicator (using CustomIndicator library, this section is Client Lua only)
+function dawnbreaker_starbreaker_lua:CreateCustomIndicator( loc )
 	local particle_cast = "particles/units/heroes/hero_dawnbreaker/hero_dawnbreaker_combo_strike_range_finder_aoe.vpcf"
 	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
+
+	self:UpdateCustomIndicator( loc )
 end
 
 function dawnbreaker_starbreaker_lua:UpdateCustomIndicator( loc )
@@ -84,6 +67,17 @@ end
 
 --------------------------------------------------------------------------------
 -- Ability Cast Filter
+function dawnbreaker_starbreaker_lua:CastFilterResultLocation( vLoc )
+	-- check nohammer
+	if self:GetCaster():HasModifier( "modifier_dawnbreaker_celestial_hammer_lua_nohammer" ) then
+		return UF_FAIL_CUSTOM
+	end
+
+	if not IsServer() then return end
+
+	return UF_SUCCESS
+end
+
 function dawnbreaker_starbreaker_lua:GetCustomCastErrorLocation( vLoc )
 	-- check nohammer
 	if self:GetCaster():HasModifier( "modifier_dawnbreaker_celestial_hammer_lua_nohammer" ) then

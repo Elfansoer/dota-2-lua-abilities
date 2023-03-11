@@ -10,15 +10,9 @@ Ability checklist (erase if done/checked):
 ]]
 --------------------------------------------------------------------------------
 muerta_dead_shot_lua = class({})
--- LinkLuaModifier( "modifier_generic_custom_indicator", "lua_abilities/generic/modifier_generic_custom_indicator", LUA_MODIFIER_MOTION_HORIZONTAL )
 LinkLuaModifier( "modifier_muerta_dead_shot_lua", "lua_abilities/muerta_dead_shot_lua/modifier_muerta_dead_shot_lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_muerta_dead_shot_lua_slow", "lua_abilities/muerta_dead_shot_lua/modifier_muerta_dead_shot_lua_slow", LUA_MODIFIER_MOTION_NONE )
-
---[[
-	NOTE:
-	We can't get cursor position during vector cast in Lua (yet), so custom indicator can't be used. This needs Panorama.
-	In normal cast, CastFilterResultLocation periodically returns current mouse position on client.
-]]
+LinkLuaModifier( "modifier_generic_vector_target", "lua_abilities/generic/modifier_generic_vector_target", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- Init Abilities
@@ -34,47 +28,81 @@ function muerta_dead_shot_lua:Precache( context )
 end
 
 function muerta_dead_shot_lua:Spawn()
-	if not IsServer() then return end
+	-- register custom indicator
+	if not IsServer() then
+		CustomIndicator:RegisterAbility( self )
+		return
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Passive Modifier
--- function muerta_dead_shot_lua:GetIntrinsicModifierName()
--- 	return "modifier_generic_custom_indicator"
--- end
-
---------------------------------------------------------------------------------
--- Ability Cast Filter
-function muerta_dead_shot_lua:CastFilterResultLocation( vLocation )
-	-- -- Custom indicator block start
-	-- if IsClient() then
-	-- 	local player = Entities:GetLocalPlayerController()
-	-- 	local behavior = self.player:GetClickBehaviors()
-
-	-- 	-- check custom indicator
-	-- 	if self.custom_indicator then
-	-- 		-- register cursor position
-	-- 		self.custom_indicator:Register( vLoc )
-	-- 	end
-	-- end
-	-- -- Custom indicator block end
-
-	-- store location cast
-	self.pointcast = vLocation
-
-	return UF_SUCCESS
+function muerta_dead_shot_lua:GetIntrinsicModifierName()
+	return "modifier_generic_vector_target"
 end
 
--- --------------------------------------------------------------------------------
--- -- Ability Custom Indicator
--- function muerta_dead_shot_lua:CreateCustomIndicator( loc, behavior )
--- end
+--------------------------------------------------------------------------------
+-- Ability Custom Indicator (using CustomIndicator library, this section is Client Lua only)
+function muerta_dead_shot_lua:CreateCustomIndicator( position, unit, behavior )
+	if behavior~=DOTA_CLICK_BEHAVIOR_VECTOR_CAST then return end
 
--- function muerta_dead_shot_lua:UpdateCustomIndicator( loc, behavior )
--- end
+	-- get data
+	local caster = self:GetCaster()
+	local ricochet_radius_start = self:GetSpecialValueFor( "ricochet_radius_start" )
+	local ricochet_radius_end = self:GetSpecialValueFor( "ricochet_radius_end" )
 
--- function muerta_dead_shot_lua:DestroyCustomIndicator( behavior )
--- end
+	-- primary cast unit
+	-- NOTE: We don't know how to get tree entity is currently targeted in Panorama yet. Only units.
+	if unit then
+		self.is_primary_unit = true
+		self.client_vector_target = unit
+	else
+		self.is_primary_unit = false
+		self.client_vector_target = position or self:GetCaster():GetAbsOrigin()
+	end
+
+	-- create particle
+	local particle_cast = "particles/ui_mouseactions/range_finder_cone.vpcf"
+	self.indicator = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster )
+	ParticleManager:SetParticleControl( self.indicator, 3, Vector( ricochet_radius_start, ricochet_radius_end, 0 ) )
+	ParticleManager:SetParticleControl( self.indicator, 4, Vector( 0, 255, 0 ) )
+	ParticleManager:SetParticleControl( self.indicator, 6, Vector( 1, 0, 0 ) )
+
+	-- do logic that is similar to update func
+	self:UpdateCustomIndicator( position, unit, behavior )
+end
+
+function muerta_dead_shot_lua:UpdateCustomIndicator( position, unit, behavior )
+	if behavior~=DOTA_CLICK_BEHAVIOR_VECTOR_CAST then return end
+
+	-- get data
+	local ricochet_range = self:GetCastRange( position, unit ) * self:GetSpecialValueFor( "ricochet_distance_multiplier" )
+	local origin_pos = self.client_vector_target
+	if self.is_primary_unit then
+		origin_pos = self.client_vector_target:GetAbsOrigin()
+	end
+
+	local direction = position - origin_pos
+	direction.z = 0
+	direction = direction:Normalized()
+
+	local end_pos = origin_pos + direction * ricochet_range
+
+	-- update particle
+	ParticleManager:SetParticleControl( self.indicator, 1, origin_pos )
+	ParticleManager:SetParticleControl( self.indicator, 2, end_pos )
+end
+
+function muerta_dead_shot_lua:DestroyCustomIndicator( position, unit, behavior )
+	if behavior~=DOTA_CLICK_BEHAVIOR_VECTOR_CAST then return end
+	self.is_primary_unit = nil
+	self.client_vector_target  = nil
+
+	-- destroy particle
+	ParticleManager:DestroyParticle(self.indicator, false)
+	ParticleManager:ReleaseParticleIndex(self.indicator)
+	self.indicator = nil
+end
 
 --------------------------------------------------------------------------------
 -- Ability Start
@@ -83,7 +111,7 @@ function muerta_dead_shot_lua:OnSpellStart()
 	-- unit identifier
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	local vector_point = self.pointcast
+	local vector_point = self.vector_position
 	if not vector_point then
 		-- likely reflected, otherwise set forward as default
 		vector_point = muerta_dead_shot_lua.reflect_location or (target:GetOrigin() + target:GetForwardVector())
@@ -182,10 +210,12 @@ function muerta_dead_shot_lua:OnInitialHit( direction, target, location )
 	-- NOTE: Lotus reflects direction to the opposite of original cast
 	-- this code below create static variable for reflected ability to use
 	muerta_dead_shot_lua.reflect_location = caster:GetOrigin() - direction
-	if target:TriggerSpellAbsorb( self ) then
-		muerta_dead_shot_lua.reflect_location = nil
-		return
-	end
+	muerta_dead_shot_lua.reflected = true
+	local reflect = target:TriggerSpellAbsorb( self )
+	muerta_dead_shot_lua.reflect_location = nil
+	muerta_dead_shot_lua.reflected = nil
+
+	if reflect then return end
 
 	local damage = self:GetSpecialValueFor( "damage" )
 	local slow_duration = self:GetSpecialValueFor( "impact_slow_duration" )

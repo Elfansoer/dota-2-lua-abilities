@@ -1,0 +1,13 @@
+"CustomEvents"
+{
+	"custom_indicator"
+	{
+		"ability"	"int"
+        "behavior"  "int"
+		"event"		"byte"
+		"unit"		"int"
+        "worldX"    "float"
+        "worldY"    "float"
+        "worldZ"    "float"
+	}
+}

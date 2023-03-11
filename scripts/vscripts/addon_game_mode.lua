@@ -47,7 +47,6 @@ function CAddonTemplateGameMode:InitGameMode()
 	print( "Template addon is loaded." )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
 
-	require( "scripts/vscripts/libraries/vector_target/vector_target" )
 	require( "scripts/vscripts/libraries/filters/filters" )
 	require( "scripts/vscripts/libraries/talent/talent" )
 	FilterManager:Init()

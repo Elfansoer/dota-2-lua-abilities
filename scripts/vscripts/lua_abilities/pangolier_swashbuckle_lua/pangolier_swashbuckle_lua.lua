@@ -12,16 +12,72 @@ Ability checklist (erase if done/checked):
 pangolier_swashbuckle_lua = class({})
 LinkLuaModifier( "modifier_generic_knockback_lua", "lua_abilities/generic/modifier_generic_knockback_lua", LUA_MODIFIER_MOTION_BOTH )
 LinkLuaModifier( "modifier_pangolier_swashbuckle_lua", "lua_abilities/pangolier_swashbuckle_lua/modifier_pangolier_swashbuckle_lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_generic_vector_target", "lua_abilities/generic/modifier_generic_vector_target", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
--- Ability Phase Start
-function pangolier_swashbuckle_lua:OnAbilityPhaseInterrupted()
-
+-- Init Abilities
+function pangolier_swashbuckle_lua:Spawn()
+	-- register custom indicator
+	if not IsServer() then
+		CustomIndicator:RegisterAbility( self )
+		return
+	end
 end
-function pangolier_swashbuckle_lua:OnAbilityPhaseStart()
-	-- Vector targeting
-	if not self:CheckVectorTargetPosition() then return false end
-	return true -- if success
+
+--------------------------------------------------------------------------------
+-- Passive Modifier
+function pangolier_swashbuckle_lua:GetIntrinsicModifierName()
+	return "modifier_generic_vector_target"
+end
+
+--------------------------------------------------------------------------------
+-- Ability Custom Indicator (using CustomIndicator library, this section is Client Lua only)
+function pangolier_swashbuckle_lua:CreateCustomIndicator( position, unit, behavior )
+	if behavior~=DOTA_CLICK_BEHAVIOR_VECTOR_CAST then return end
+
+	-- get data
+	local caster = self:GetCaster()
+
+	-- primary cast position
+	self.client_vector_position = position or self:GetCaster():GetAbsOrigin()
+
+	-- create particle
+	local particle_cast = "particles/ui_mouseactions/range_finder_cone.vpcf"
+	self.indicator = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, caster )
+	ParticleManager:SetParticleControl( self.indicator, 3, Vector( 125, 125, 0 ) )
+	ParticleManager:SetParticleControl( self.indicator, 4, Vector( 0, 255, 0 ) )
+	ParticleManager:SetParticleControl( self.indicator, 6, Vector( 1, 0, 0 ) )
+
+	-- do logic that is similar to update func
+	self:UpdateCustomIndicator( position, unit, behavior )
+end
+
+function pangolier_swashbuckle_lua:UpdateCustomIndicator( position, unit, behavior )
+	if behavior~=DOTA_CLICK_BEHAVIOR_VECTOR_CAST then return end
+
+	-- get data
+	local range = self:GetSpecialValueFor( "range" )
+	local origin_pos = self.client_vector_position
+
+	local direction = position - origin_pos
+	direction.z = 0
+	direction = direction:Normalized()
+
+	local end_pos = origin_pos + direction * range
+
+	-- update particle
+	ParticleManager:SetParticleControl( self.indicator, 1, origin_pos )
+	ParticleManager:SetParticleControl( self.indicator, 2, end_pos )
+end
+
+function pangolier_swashbuckle_lua:DestroyCustomIndicator( position, unit, behavior )
+	if behavior~=DOTA_CLICK_BEHAVIOR_VECTOR_CAST then return end
+	self.client_vector_position  = nil
+
+	-- destroy particle
+	ParticleManager:DestroyParticle(self.indicator, false)
+	ParticleManager:ReleaseParticleIndex(self.indicator)
+	self.indicator = nil
 end
 
 --------------------------------------------------------------------------------
@@ -29,13 +85,16 @@ end
 function pangolier_swashbuckle_lua:OnSpellStart()
 	-- unit identifier
 	local caster = self:GetCaster()
-	local targets = self:GetVectorTargetPosition()
+	local point = self:GetCursorPosition()
+	local vector_point = self.vector_position
 
 	-- load data
 	local speed = self:GetSpecialValueFor( "dash_speed" )
-	local direction = targets.direction
+	local direction = vector_point - point
+	direction.z = 0
+	direction = direction:Normalized()
 
-	local vector = (targets.init_pos-caster:GetOrigin())
+	local vector = (point-caster:GetOrigin())
 	local dist = vector:Length2D()
 	vector.z = 0
 	vector = vector:Normalized()

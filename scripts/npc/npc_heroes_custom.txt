@@ -170,7 +170,6 @@
 		"Ability1"					"dark_seer_vacuum_lua"
 		"Ability2"					"dark_seer_ion_shell_lua"
 		"Ability3"					"dark_seer_surge_lua"
-		"Ability4"					"dark_seer_wall_of_replica"
 		"Ability6"					"dark_seer_wall_of_replica_lua"
 	}
 
