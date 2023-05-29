@@ -51,7 +51,7 @@ function modifier_antimage_mana_break_lua:GetModifierProcAttack_BonusDamage_Phys
 	
 		if result == UF_SUCCESS then
 			local mana_burn =  math.min( target:GetMana(), self.mana_break )
-			target:ReduceMana( mana_burn )
+			target:Script_ReduceMana( mana_burn, self:GetAbility() )
 
 			self:PlayEffects( target )
 

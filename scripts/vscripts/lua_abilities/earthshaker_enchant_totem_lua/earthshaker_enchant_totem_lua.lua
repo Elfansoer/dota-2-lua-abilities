@@ -90,7 +90,7 @@ function earthshaker_enchant_totem_lua:OnAbilityPhaseStart()
 
 		-- do normal
 		self:OnSpellStart()
-		self:UseResources( true, false, true )
+		self:UseResources( true, true, false, true )
 	end)
 
 	return true

@@ -96,7 +96,7 @@ function modifier_outworld_devourer_arcane_orb_lua:AddStack( value, duration )
 
 	-- reduce some mana because of stat loss
 	if self.debuff then
-		self:GetParent():ReduceMana( value * 12 )
+		self:GetParent():Script_ReduceMana( value * 12, self:GetAbility() )
 	end
 end
 

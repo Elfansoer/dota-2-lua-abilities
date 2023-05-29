@@ -87,7 +87,7 @@ function modifier_spirit_breaker_greater_bash_lua:GetModifierProcAttack_Feedback
 	if not RollPseudoRandomPercentage( self.chance, self.pseudoseed, self.parent ) then return end
 
 	-- set cooldown
-	self.ability:UseResources( false, false, true )
+	self.ability:UseResources( false, false, false, true )
 
 	-- proc
 	self:Bash( params.target, false )

@@ -60,7 +60,7 @@ function outworld_devourer_sanitys_eclipse_lua:OnSpellStart()
 
 			-- mana loss
 			local mana = enemy:GetMaxMana() * mana_loss/100
-			enemy:ReduceMana( mana )
+			enemy:Script_ReduceMana( mana, self )
 
 			-- damage if hero and have intelligence 
 			if enemy.GetIntellect then

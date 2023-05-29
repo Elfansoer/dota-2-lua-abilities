@@ -30,6 +30,6 @@ end
 
 function modifier_riven_broken_wings:OnDestroy()
 	if IsServer() then
-		self:GetAbility():UseResources(false,false,true)
+		self:GetAbility():UseResources(false,false,false,true)
 	end
 end

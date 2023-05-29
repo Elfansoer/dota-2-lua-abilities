@@ -138,7 +138,7 @@ function medusa_mystic_snake_lua:OnProjectileHit_ExtraData( target, location, Ex
 
 		-- take mana
 		local mana_taken = math.min( target:GetMaxMana()*data.mana_steal, target:GetMana() )
-		target:ReduceMana( mana_taken )
+		target:Script_ReduceMana( mana_taken, self )
 		data.mana_stolen = data.mana_stolen + mana_taken
 
 		-- play effects

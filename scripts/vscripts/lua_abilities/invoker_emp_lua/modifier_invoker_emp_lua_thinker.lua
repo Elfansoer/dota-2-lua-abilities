@@ -52,7 +52,7 @@ function modifier_invoker_emp_lua_thinker:OnDestroy( kv )
 		for _,enemy in pairs(enemies) do
 			-- burn mana
 			local mana_burn = math.min( enemy:GetMana(), self.burn )
-			enemy:ReduceMana( mana_burn )
+			enemy:Script_ReduceMana( mana_burn, self:GetAbility() )
 
 			-- damage based on mana burned
 			damageTable.victim = enemy

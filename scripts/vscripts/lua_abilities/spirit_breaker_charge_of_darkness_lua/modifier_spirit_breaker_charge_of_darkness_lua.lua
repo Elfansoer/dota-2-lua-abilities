@@ -93,7 +93,7 @@ function modifier_spirit_breaker_charge_of_darkness_lua:OnDestroy()
 	self:GetAbility():SetActivated( true )
 
 	-- start cooldown
-	self:GetAbility():UseResources( false, false, true )
+	self:GetAbility():UseResources( false, false, false, true )
 
 
 	if self.interrupted then return end

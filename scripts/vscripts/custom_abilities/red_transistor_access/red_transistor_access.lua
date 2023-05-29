@@ -366,7 +366,7 @@ function red_transistor_access.EventConfirm( playerID, data )
 	CustomGameEventManager:Send_ServerToAllClients( "red_transistor_access", data )
 
 	-- start cooldown
-	self:UseResources( true, false, true )
+	self:UseResources( true, true, false, true )
 
 	self:PrintStatus()
 end

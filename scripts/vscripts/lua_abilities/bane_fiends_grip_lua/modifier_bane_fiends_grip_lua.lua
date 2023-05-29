@@ -103,7 +103,7 @@ function modifier_bane_fiends_grip_lua:OnIntervalThink()
 		if self:GetParent():GetMana() < mana_loss then
 			mana_loss = self:GetParent():GetMana()
 		end
-		self:GetParent():ReduceMana( mana_loss )
+		self:GetParent():Script_ReduceMana( mana_loss, self:GetAbility() )
 		self:GetCaster():GiveMana( mana_loss )
 	end
 end

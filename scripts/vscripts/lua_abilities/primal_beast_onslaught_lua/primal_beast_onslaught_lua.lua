@@ -64,7 +64,7 @@ function primal_beast_onslaught_lua:OnSpellStart()
 	)
 
 	-- set cooldown
-	self.sub:UseResources( false, false, true )
+	self.sub:UseResources( false, false, false, true )
 end
 
 function primal_beast_onslaught_lua:OnChargeFinish( interrupt )

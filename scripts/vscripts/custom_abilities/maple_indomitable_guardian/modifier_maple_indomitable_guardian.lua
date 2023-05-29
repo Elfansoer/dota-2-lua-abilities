@@ -74,5 +74,5 @@ function modifier_maple_indomitable_guardian:OnTakeDamage( params )
 		"modifier_maple_indomitable_guardian_buff",
 		{duration = self.duration}
 	)
-	self.ability:UseResources(true, false, true)
+	self.ability:UseResources(true, true, false, true)
 end

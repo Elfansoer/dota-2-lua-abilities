@@ -110,7 +110,7 @@ function modifier_lion_mana_drain_lua:OnIntervalThink()
 	end
 
 	-- absorbmana
-	self:GetParent():ReduceMana( self.mana )
+	self:GetParent():Script_ReduceMana( self.mana, self:GetAbility() )
 	self:GetCaster():GiveMana( self.mana )
 
 	if empty then

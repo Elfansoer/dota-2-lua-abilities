@@ -45,7 +45,7 @@ function bakedanuki_tomfoolery_blink:OnSpellStart()
 	self.tomfoolery:OnSpellStart( self, true )
 
 	-- shared cooldown
-	self:GetCaster():FindAbilityByName( self:GetSharedCooldownName() ):UseResources( false, false, true )
+	self:GetCaster():FindAbilityByName( self:GetSharedCooldownName() ):UseResources( false, false, false, true )
 end
 function bakedanuki_tomfoolery_blink:StopTrick()
 	self.tomfoolery:StopTrick( self )
@@ -69,7 +69,7 @@ function bakedanuki_tomfoolery_summon:OnSpellStart()
 	self.tomfoolery:OnSpellStart( self, false )
 
 	-- shared cooldown
-	self:GetCaster():FindAbilityByName( self:GetSharedCooldownName() ):UseResources( false, false, true )
+	self:GetCaster():FindAbilityByName( self:GetSharedCooldownName() ):UseResources( false, false, false, true )
 end
 
 function bakedanuki_tomfoolery_summon:StopTrick()

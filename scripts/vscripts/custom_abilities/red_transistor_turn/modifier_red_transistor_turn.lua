@@ -212,7 +212,7 @@ function modifier_red_transistor_turn:AbilityLogic( data )
 	table.insert( self.orders, order )
 
 	-- use resources
-	ability:UseResources( true, false, true )
+	ability:UseResources( true, true, false, true )
 
 	-- set facing
 	if data.position_x then
