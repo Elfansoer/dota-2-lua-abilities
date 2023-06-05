@@ -485,7 +485,7 @@
 	"npc_dota_hero_chen_lua"
 	{
 		"override_hero"					"npc_dota_hero_chen"	// Hero to override
-		//"Ability1"				"lion_earth_spike_lua"						// Ability 1
+		"Ability1"				"abaddon_aphotic_shield_lua"						// Ability 1
 		"Ability2"				"mirana_sacred_arrow_lua"						// Ability 3
 		"Ability3"				"mirana_leap_lua"						// Ability 2
 		//"Ability6"				"lion_finger_of_death_lua"							// Ability 6

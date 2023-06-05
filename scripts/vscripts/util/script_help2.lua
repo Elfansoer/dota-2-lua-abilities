@@ -1512,6 +1512,7 @@ ABILITY_NOT_LEARNABLE = 4
 DOTA_ATTRIBUTE_AGILITY_ARMOR = 4
 DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED = 5
 DOTA_ATTRIBUTE_AGILITY_DAMAGE = 3
+DOTA_ATTRIBUTE_ALL_DAMAGE = 10
 DOTA_ATTRIBUTE_INTELLIGENCE_DAMAGE = 6
 DOTA_ATTRIBUTE_INTELLIGENCE_MAGIC_RESIST = 9
 DOTA_ATTRIBUTE_INTELLIGENCE_MANA = 7
@@ -2732,8 +2733,9 @@ MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT = 212 -- OnTakeDamageKillCredit
 MODIFIER_EVENT_ON_TELEPORTED = 208 -- OnTeleported
 MODIFIER_EVENT_ON_TELEPORTING = 207 -- OnTeleporting
 MODIFIER_EVENT_ON_UNIT_MOVED = 186 -- OnUnitMoved
+MODIFIER_EVENT_SPELL_APPLIED_SUCCESSFULLY = 270 -- OnSpellAppliedSuccessfully
 MODIFIER_FUNCTION_INVALID = 65535
-MODIFIER_FUNCTION_LAST = 270
+MODIFIER_FUNCTION_LAST = 272
 MODIFIER_PROPERTY_ABILITY_LAYOUT = 236 -- GetModifierAbilityLayout
 MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL = 153 -- GetAbsoluteNoDamageMagical
 MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL = 152 -- GetAbsoluteNoDamagePhysical
@@ -2754,6 +2756,7 @@ MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_PERCENTAGE = 112 -- GetModifierAttackRangeB
 MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_UNIQUE = 111 -- GetModifierAttackRangeBonusUnique
 MODIFIER_PROPERTY_ATTACK_WHILE_MOVING_TARGET = 258
 MODIFIER_PROPERTY_AVOID_DAMAGE = 68 -- GetModifierAvoidDamage
+MODIFIER_PROPERTY_AVOID_DAMAGE_AFTER_REDUCTIONS = 271 -- GetModifierAvoidDamageAfterReductions
 MODIFIER_PROPERTY_AVOID_SPELL = 69 -- GetModifierAvoidSpell
 MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE = 4 -- GetModifierBaseAttack_BonusDamage
 MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE = 57 -- GetModifierBaseDamageOutgoing_Percentage
@@ -2821,7 +2824,7 @@ MODIFIER_PROPERTY_IGNORE_COOLDOWN = 243 -- GetModifierIgnoreCooldown
 MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT = 27 -- GetModifierIgnoreMovespeedLimit
 MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR = 77 -- GetModifierIgnorePhysicalArmor
 MODIFIER_PROPERTY_ILLUSION_LABEL = 156 -- GetModifierIllusionLabel
-MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT = 269 -- GetModifierPropertyIncomingDamage_Constant
+MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT = 269 -- GetModifierIncomingDamageConstant
 MODIFIER_PROPERTY_INCOMING_DAMAGE_ILLUSION = 247
 MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE = 59 -- GetModifierIncomingDamage_Percentage
 MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_CONSTANT = 61 -- GetModifierIncomingPhysicalDamageConstant
@@ -5218,6 +5221,765 @@ function CDOTAGameManager:GetHeroNameForUnitName( string_1 ) end
 -- @param int_1 int
 function CDOTAGameManager:GetHeroUnitNameByID( int_1 ) end
 
+---[[ CDOTAGameRules:AddBotPlayerWithEntityScript  Spawn a bot player of the passed hero name, player name, and team. ])
+-- @return handle
+-- @param string_1 string
+-- @param string_2 string
+-- @param int_3 int
+-- @param string_4 string
+-- @param bool_5 bool
+function CDOTAGameRules:AddBotPlayerWithEntityScript( string_1, string_2, int_3, string_4, bool_5 ) end
+
+---[[ CDOTAGameRules:AddEventMetadataLeaderboardEntry  Event-only ( string szNameSuffix, int nStars, int nMaxStars, int nExtraData1, int nExtraData2 ) ])
+-- @return bool
+-- @param string_1 string
+-- @param unsigned_2 unsigned
+-- @param unsigned_3 unsigned
+-- @param unsigned_4 unsigned
+-- @param unsigned_5 unsigned
+-- @param unsigned_6 unsigned
+-- @param unsigned_7 unsigned
+-- @param unsigned_8 unsigned
+-- @param unsigned_9 unsigned
+function CDOTAGameRules:AddEventMetadataLeaderboardEntry( string_1, unsigned_2, unsigned_3, unsigned_4, unsigned_5, unsigned_6, unsigned_7, unsigned_8, unsigned_9 ) end
+
+---[[ CDOTAGameRules:AddEventMetadataLeaderboardEntryRawScore  Event-only ( string szNameSuffix, int nScore, int nExtraData1, int nExtraData2 ) ])
+-- @return bool
+-- @param string_1 string
+-- @param unsigned_2 unsigned
+-- @param unsigned_3 unsigned
+-- @param unsigned_4 unsigned
+-- @param unsigned_5 unsigned
+-- @param unsigned_6 unsigned
+-- @param unsigned_7 unsigned
+-- @param unsigned_8 unsigned
+function CDOTAGameRules:AddEventMetadataLeaderboardEntryRawScore( string_1, unsigned_2, unsigned_3, unsigned_4, unsigned_5, unsigned_6, unsigned_7, unsigned_8 ) end
+
+---[[ CDOTAGameRules:AddHeroIDToBlacklist  Add the hero ID to the hero blacklist if it is not already present ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:AddHeroIDToBlacklist( int_1 ) end
+
+---[[ CDOTAGameRules:AddHeroIDToWhitelist  Add the hero ID to the hero whitelist if it is not already present ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:AddHeroIDToWhitelist( int_1 ) end
+
+---[[ CDOTAGameRules:AddHeroToBlacklist  Add the hero to the hero blacklist if it is not already present ])
+-- @return void
+-- @param string_1 string
+function CDOTAGameRules:AddHeroToBlacklist( string_1 ) end
+
+---[[ CDOTAGameRules:AddHeroToPlayerAvailability  Adds hero of given ID to available heroes of player of given ID ])
+-- @return void
+-- @param int_1 int
+-- @param int_2 int
+function CDOTAGameRules:AddHeroToPlayerAvailability( int_1, int_2 ) end
+
+---[[ CDOTAGameRules:AddHeroToWhitelist  Add the hero to the hero whitelist if it is not already present ])
+-- @return void
+-- @param string_1 string
+function CDOTAGameRules:AddHeroToWhitelist( string_1 ) end
+
+---[[ CDOTAGameRules:AddItemToWhiteList  Add an item to the whitelist ])
+-- @return void
+-- @param string_1 string
+function CDOTAGameRules:AddItemToWhiteList( string_1 ) end
+
+---[[ CDOTAGameRules:AddMinimapDebugPoint  Add a point on the minimap. ])
+-- @return void
+-- @param int_1 int
+-- @param Vector_2 Vector
+-- @param int_3 int
+-- @param int_4 int
+-- @param int_5 int
+-- @param int_6 int
+-- @param float_7 float
+function CDOTAGameRules:AddMinimapDebugPoint( int_1, Vector_2, int_3, int_4, int_5, int_6, float_7 ) end
+
+---[[ CDOTAGameRules:AddMinimapDebugPointForTeam  Add a point on the minimap for a specific team. ])
+-- @return void
+-- @param int_1 int
+-- @param Vector_2 Vector
+-- @param int_3 int
+-- @param int_4 int
+-- @param int_5 int
+-- @param int_6 int
+-- @param float_7 float
+-- @param int_8 int
+function CDOTAGameRules:AddMinimapDebugPointForTeam( int_1, Vector_2, int_3, int_4, int_5, int_6, float_7, int_8 ) end
+
+---[[ CDOTAGameRules:BeginNightstalkerNight  Begin night stalker night. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:BeginNightstalkerNight( float_1 ) end
+
+---[[ CDOTAGameRules:BeginTemporaryNight  Begin temporary night. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:BeginTemporaryNight( float_1 ) end
+
+---[[ CDOTAGameRules:BotPopulate  Fills all the teams with bots if cheat mode is enabled. ])
+-- @return void
+function CDOTAGameRules:BotPopulate(  ) end
+
+---[[ CDOTAGameRules:ClearHeroBlacklist  Clears the hero blacklist ])
+-- @return void
+function CDOTAGameRules:ClearHeroBlacklist(  ) end
+
+---[[ CDOTAGameRules:ClearHeroWhitelist  Clears the hero whitelist ])
+-- @return void
+function CDOTAGameRules:ClearHeroWhitelist(  ) end
+
+---[[ CDOTAGameRules:ClearPlayerHeroAvailability  Clears available heroes of player of given ID ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:ClearPlayerHeroAvailability( int_1 ) end
+
+---[[ CDOTAGameRules:ClearRiverPaint  Clears the current river paint ])
+-- @return void
+function CDOTAGameRules:ClearRiverPaint(  ) end
+
+---[[ CDOTAGameRules:Defeated  Kills the ancient, etc. ])
+-- @return void
+function CDOTAGameRules:Defeated(  ) end
+
+---[[ CDOTAGameRules:DidMatchSignoutTimeOut  true when we have waited some time after end of the game and not received signout ])
+-- @return bool
+function CDOTAGameRules:DidMatchSignoutTimeOut(  ) end
+
+---[[ CDOTAGameRules:EnableCustomGameSetupAutoLaunch  Enabled (true) or disable (false) auto launch for custom game setup. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:EnableCustomGameSetupAutoLaunch( bool_1 ) end
+
+---[[ CDOTAGameRules:ExecuteTeamPing  Sends a minimap ping to all players on the team ])
+-- @return void
+-- @param int_1 int
+-- @param float_2 float
+-- @param float_3 float
+-- @param handle_4 handle
+-- @param unsigned_5 unsigned
+function CDOTAGameRules:ExecuteTeamPing( int_1, float_2, float_3, handle_4, unsigned_5 ) end
+
+---[[ CDOTAGameRules:FinishCustomGameSetup  Indicate that the custom game setup phase is complete, and advance to the game. ])
+-- @return void
+function CDOTAGameRules:FinishCustomGameSetup(  ) end
+
+---[[ CDOTAGameRules:ForceCreepSpawn  Spawn the next wave of creeps. ])
+-- @return void
+function CDOTAGameRules:ForceCreepSpawn(  ) end
+
+---[[ CDOTAGameRules:ForceGameStart  Transition game state to DOTA_GAMERULES_STATE_GAME_IN_PROGRESS ])
+-- @return void
+function CDOTAGameRules:ForceGameStart(  ) end
+
+---[[ CDOTAGameRules:GetAnnouncer  Get the announcer for a team ])
+-- @return handle
+-- @param int_1 int
+function CDOTAGameRules:GetAnnouncer( int_1 ) end
+
+---[[ CDOTAGameRules:GetBannedHeroIDs  Returns the hero unit IDs banned in this game, if any ])
+-- @return table
+function CDOTAGameRules:GetBannedHeroIDs(  ) end
+
+---[[ CDOTAGameRules:GetBannedHeroes  Returns the hero unit names banned in this game, if any ])
+-- @return table
+function CDOTAGameRules:GetBannedHeroes(  ) end
+
+---[[ CDOTAGameRules:GetCustomGameDifficulty  Returns the difficulty level of the custom game mode ])
+-- @return int
+function CDOTAGameRules:GetCustomGameDifficulty(  ) end
+
+---[[ CDOTAGameRules:GetCustomGameTeamMaxPlayers  Get whether a team is selectable during game setup ])
+-- @return int
+-- @param int_1 int
+function CDOTAGameRules:GetCustomGameTeamMaxPlayers( int_1 ) end
+
+---[[ CDOTAGameRules:GetDOTATime  (b IncludePregameTime b IncludeNegativeTime) Returns the actual DOTA in-game clock time. ])
+-- @return float
+-- @param bool_1 bool
+-- @param bool_2 bool
+function CDOTAGameRules:GetDOTATime( bool_1, bool_2 ) end
+
+---[[ CDOTAGameRules:GetDifficulty  Returns difficulty level of the custom game mode ])
+-- @return int
+function CDOTAGameRules:GetDifficulty(  ) end
+
+---[[ CDOTAGameRules:GetDroppedItem  Gets the Xth dropped item ])
+-- @return handle
+-- @param int_1 int
+function CDOTAGameRules:GetDroppedItem( int_1 ) end
+
+---[[ CDOTAGameRules:GetGameFrameTime  Returns the number of seconds elapsed since the last frame was renderered. This time doesn't count up when the game is paused ])
+-- @return float
+function CDOTAGameRules:GetGameFrameTime(  ) end
+
+---[[ CDOTAGameRules:GetGameModeEntity  Get the game mode entity ])
+-- @return handle
+function CDOTAGameRules:GetGameModeEntity(  ) end
+
+---[[ CDOTAGameRules:GetGameSessionConfigValue  Get a string value from the game session config (map options) ])
+-- @return string
+-- @param string_1 string
+-- @param string_2 string
+function CDOTAGameRules:GetGameSessionConfigValue( string_1, string_2 ) end
+
+---[[ CDOTAGameRules:GetGameTime  Returns the number of seconds elapsed since map start. This time doesn't count up when the game is paused ])
+-- @return float
+function CDOTAGameRules:GetGameTime(  ) end
+
+---[[ CDOTAGameRules:GetIetmStockDuration  Get the time it takes to add a new item to stock ])
+-- @return float
+-- @param int_1 int
+-- @param string_2 string
+-- @param int_3 int
+function CDOTAGameRules:GetIetmStockDuration( int_1, string_2, int_3 ) end
+
+---[[ CDOTAGameRules:GetItemStockCount  Get the stock count of the item ])
+-- @return int
+-- @param int_1 int
+-- @param string_2 string
+-- @param int_3 int
+function CDOTAGameRules:GetItemStockCount( int_1, string_2, int_3 ) end
+
+---[[ CDOTAGameRules:GetItemStockTime  Get the time an item will be added to stock ])
+-- @return float
+-- @param int_1 int
+-- @param string_2 string
+-- @param int_3 int
+function CDOTAGameRules:GetItemStockTime( int_1, string_2, int_3 ) end
+
+---[[ CDOTAGameRules:GetMatchSignoutComplete  Have we received the post match signout message that includes reward information ])
+-- @return bool
+function CDOTAGameRules:GetMatchSignoutComplete(  ) end
+
+---[[ CDOTAGameRules:GetNeutralInitialSpawnOffset  Gets the extra offset to initial neutral creep spawn delay ])
+-- @return float
+function CDOTAGameRules:GetNeutralInitialSpawnOffset(  ) end
+
+---[[ CDOTAGameRules:GetNextBountyRuneSpawnTime  Gets next bounty rune spawn time ])
+-- @return float
+function CDOTAGameRules:GetNextBountyRuneSpawnTime(  ) end
+
+---[[ CDOTAGameRules:GetNextRuneSpawnTime  Gets next rune spawn time ])
+-- @return float
+function CDOTAGameRules:GetNextRuneSpawnTime(  ) end
+
+---[[ CDOTAGameRules:GetNianTotalDamageTaken  For New Bloom, get total damage taken by the Nian / Year Beast ])
+-- @return int
+function CDOTAGameRules:GetNianTotalDamageTaken(  ) end
+
+---[[ CDOTAGameRules:GetPlayerCustomGameAccountRecord  (Preview/Unreleased) Gets the player's custom game account record, as it looked at the start of this session ])
+-- @return table
+-- @param int_1 int
+function CDOTAGameRules:GetPlayerCustomGameAccountRecord( int_1 ) end
+
+---[[ CDOTAGameRules:GetStateTransitionTime  Get time remaining between state changes. ])
+-- @return float
+function CDOTAGameRules:GetStateTransitionTime(  ) end
+
+---[[ CDOTAGameRules:GetTimeOfDay  Get the time of day ])
+-- @return float
+function CDOTAGameRules:GetTimeOfDay(  ) end
+
+---[[ CDOTAGameRules:GetWeatherWindDirection  Get Weather Wind Direction Vector ])
+-- @return Vector
+function CDOTAGameRules:GetWeatherWindDirection(  ) end
+
+---[[ CDOTAGameRules:IncreaseItemStock  Increase an item's stock count, clamped to item max (nTeamNumber, szItemName, nCount, nPlayerID . ])
+-- @return void
+-- @param int_1 int
+-- @param string_2 string
+-- @param int_3 int
+-- @param int_4 int
+function CDOTAGameRules:IncreaseItemStock( int_1, string_2, int_3, int_4 ) end
+
+---[[ CDOTAGameRules:IsCheatMode  Are cheats enabled on the server ])
+-- @return bool
+function CDOTAGameRules:IsCheatMode(  ) end
+
+---[[ CDOTAGameRules:IsDaytime  Is it day time? ])
+-- @return bool
+function CDOTAGameRules:IsDaytime(  ) end
+
+---[[ CDOTAGameRules:IsDev   ])
+-- @return bool
+function CDOTAGameRules:IsDev(  ) end
+
+---[[ CDOTAGameRules:IsGamePaused  Returns whether the game is paused. ])
+-- @return bool
+function CDOTAGameRules:IsGamePaused(  ) end
+
+---[[ CDOTAGameRules:IsHeroEnabledViaLists  Is the hero not blacklisted, and is it either whitelisted or the whitelist is empty? ])
+-- @return bool
+-- @param string_1 string
+function CDOTAGameRules:IsHeroEnabledViaLists( string_1 ) end
+
+---[[ CDOTAGameRules:IsHeroRespawnEnabled  Returns whether hero respawn is enabled. ])
+-- @return bool
+function CDOTAGameRules:IsHeroRespawnEnabled(  ) end
+
+---[[ CDOTAGameRules:IsInBanPhase  Are we in the ban phase of hero pick? ])
+-- @return bool
+function CDOTAGameRules:IsInBanPhase(  ) end
+
+---[[ CDOTAGameRules:IsItemInWhiteList  Query an item in the whitelist ])
+-- @return bool
+-- @param string_1 string
+function CDOTAGameRules:IsItemInWhiteList( string_1 ) end
+
+---[[ CDOTAGameRules:IsNightstalkerNight  Is it night stalker night-time? ])
+-- @return bool
+function CDOTAGameRules:IsNightstalkerNight(  ) end
+
+---[[ CDOTAGameRules:IsSuggestAbilitiesEnabled  Returns whether Dota Plus ability suggestions are enabled or disabled ])
+-- @return bool
+function CDOTAGameRules:IsSuggestAbilitiesEnabled(  ) end
+
+---[[ CDOTAGameRules:IsSuggestItemsEnabled  Returns whether Dota Plus item suggestions are enabled or disabled ])
+-- @return bool
+function CDOTAGameRules:IsSuggestItemsEnabled(  ) end
+
+---[[ CDOTAGameRules:IsTemporaryNight  Is it temporarily night-time? ])
+-- @return bool
+function CDOTAGameRules:IsTemporaryNight(  ) end
+
+---[[ CDOTAGameRules:LockCustomGameSetupTeamAssignment  Lock (true) or unlock (false) team assignemnt. If team assignment is locked players cannot change teams. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:LockCustomGameSetupTeamAssignment( bool_1 ) end
+
+---[[ CDOTAGameRules:MakeTeamLose  Makes the specified team lose ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:MakeTeamLose( int_1 ) end
+
+---[[ CDOTAGameRules:ModifyGoldFiltered  Like ModifyGold, but will use the gold filter if SetFilterMoreGold has been set true ])
+-- @return int
+-- @param int_1 int
+-- @param int_2 int
+-- @param bool_3 bool
+-- @param int_4 int
+function CDOTAGameRules:ModifyGoldFiltered( int_1, int_2, bool_3, int_4 ) end
+
+---[[ CDOTAGameRules:NumDroppedItems  Returns the number of items currently dropped on the ground ])
+-- @return int
+function CDOTAGameRules:NumDroppedItems(  ) end
+
+---[[ CDOTAGameRules:PlayerHasCustomGameHostPrivileges  Whether a player has custom game host privileges (shuffle teams, etc.) ])
+-- @return bool
+-- @param handle_1 handle
+function CDOTAGameRules:PlayerHasCustomGameHostPrivileges( handle_1 ) end
+
+---[[ CDOTAGameRules:Playtesting_UpdateAddOnKeyValues  Updates custom hero, unit and ability KeyValues in memory with the latest values from disk ])
+-- @return void
+function CDOTAGameRules:Playtesting_UpdateAddOnKeyValues(  ) end
+
+---[[ CDOTAGameRules:PrepareSpawners  Prepare Dota lane style spawners with a given interval ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:PrepareSpawners( float_1 ) end
+
+---[[ CDOTAGameRules:RemoveFakeClient  Removes a fake client ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:RemoveFakeClient( int_1 ) end
+
+---[[ CDOTAGameRules:RemoveHeroFromBlacklist  Remove the hero from the hero blacklist if present ])
+-- @return void
+-- @param string_1 string
+function CDOTAGameRules:RemoveHeroFromBlacklist( string_1 ) end
+
+---[[ CDOTAGameRules:RemoveHeroFromWhitelist  Remove the hero from the hero whitelist if present ])
+-- @return void
+-- @param string_1 string
+function CDOTAGameRules:RemoveHeroFromWhitelist( string_1 ) end
+
+---[[ CDOTAGameRules:RemoveHeroIDFromBlacklist  Remove the hero ID from the hero blacklist if present ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:RemoveHeroIDFromBlacklist( int_1 ) end
+
+---[[ CDOTAGameRules:RemoveHeroIDFromWhitelist  Remove the hero ID from the hero whitelist if present ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:RemoveHeroIDFromWhitelist( int_1 ) end
+
+---[[ CDOTAGameRules:RemoveItemFromWhiteList  Remove an item from the whitelist ])
+-- @return void
+-- @param string_1 string
+function CDOTAGameRules:RemoveItemFromWhiteList( string_1 ) end
+
+---[[ CDOTAGameRules:ResetDefeated  Restart after killing the ancient, etc. ])
+-- @return void
+function CDOTAGameRules:ResetDefeated(  ) end
+
+---[[ CDOTAGameRules:ResetGameTime  Restart gametime from 0 ])
+-- @return void
+function CDOTAGameRules:ResetGameTime(  ) end
+
+---[[ CDOTAGameRules:ResetPlayer  Resets the player of a given ID. ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:ResetPlayer( int_1 ) end
+
+---[[ CDOTAGameRules:ResetToCustomGameSetup  Restart at custom game setup. ])
+-- @return void
+function CDOTAGameRules:ResetToCustomGameSetup(  ) end
+
+---[[ CDOTAGameRules:ResetToHeroSelection  Restart the game at hero selection ])
+-- @return void
+function CDOTAGameRules:ResetToHeroSelection(  ) end
+
+---[[ CDOTAGameRules:Script_GetMatchID  Get the MatchID for this game. ])
+-- @return uint64
+function CDOTAGameRules:Script_GetMatchID(  ) end
+
+---[[ CDOTAGameRules:SendCustomMessage  Sends a message on behalf of a player. ])
+-- @return void
+-- @param string_1 string
+-- @param int_2 int
+-- @param int_3 int
+function CDOTAGameRules:SendCustomMessage( string_1, int_2, int_3 ) end
+
+---[[ CDOTAGameRules:SendCustomMessageToTeam  Sends a message on behalf of a player to the specified team. ])
+-- @return void
+-- @param string_1 string
+-- @param int_2 int
+-- @param int_3 int
+-- @param int_4 int
+function CDOTAGameRules:SendCustomMessageToTeam( string_1, int_2, int_3, int_4 ) end
+
+---[[ CDOTAGameRules:SetAllowOutpostBonuses  Allow Outposts granting XP ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetAllowOutpostBonuses( bool_1 ) end
+
+---[[ CDOTAGameRules:SetCreepMinimapIconScale  (flMinimapCreepIconScale) - Scale the creep icons on the minimap. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetCreepMinimapIconScale( float_1 ) end
+
+---[[ CDOTAGameRules:SetCreepSpawningEnabled  Sets whether the regular Dota creeps spawn. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetCreepSpawningEnabled( bool_1 ) end
+
+---[[ CDOTAGameRules:SetCustomGameAccountRecordSaveFunction  (Preview/Unreleased) Sets a callback to handle saving custom game account records (callback is passed a Player ID and should return a flat simple table) ])
+-- @return void
+-- @param handle_1 handle
+-- @param handle_2 handle
+function CDOTAGameRules:SetCustomGameAccountRecordSaveFunction( handle_1, handle_2 ) end
+
+---[[ CDOTAGameRules:SetCustomGameAllowBattleMusic  Sets a flag to enable/disable the default music handling code for custom games ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetCustomGameAllowBattleMusic( bool_1 ) end
+
+---[[ CDOTAGameRules:SetCustomGameAllowHeroPickMusic  Sets a flag to enable/disable the default music handling code for custom games ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetCustomGameAllowHeroPickMusic( bool_1 ) end
+
+---[[ CDOTAGameRules:SetCustomGameAllowMusicAtGameStart  Sets a flag to enable/disable the default music handling code for custom games ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetCustomGameAllowMusicAtGameStart( bool_1 ) end
+
+---[[ CDOTAGameRules:SetCustomGameAllowSecondaryAbilitiesOnOtherUnits  Sets a flag to enable/disable the casting secondary abilities from units other than the player's own hero. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetCustomGameAllowSecondaryAbilitiesOnOtherUnits( bool_1 ) end
+
+---[[ CDOTAGameRules:SetCustomGameBansPerTeam  Set number of hero bans each team gets ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:SetCustomGameBansPerTeam( int_1 ) end
+
+---[[ CDOTAGameRules:SetCustomGameDifficulty  Set the difficulty level of the custom game mode ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:SetCustomGameDifficulty( int_1 ) end
+
+---[[ CDOTAGameRules:SetCustomGameEndDelay  Sets the game end delay. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetCustomGameEndDelay( float_1 ) end
+
+---[[ CDOTAGameRules:SetCustomGameSetupAutoLaunchDelay  Set the amount of time to wait for auto launch. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetCustomGameSetupAutoLaunchDelay( float_1 ) end
+
+---[[ CDOTAGameRules:SetCustomGameSetupRemainingTime  Set the amount of remaining time, in seconds, for custom game setup. 0 = finish immediately, -1 = wait forever ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetCustomGameSetupRemainingTime( float_1 ) end
+
+---[[ CDOTAGameRules:SetCustomGameSetupTimeout  Setup (pre-gameplay) phase timeout. 0 = instant, -1 = forever (until FinishCustomGameSetup is called) ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetCustomGameSetupTimeout( float_1 ) end
+
+---[[ CDOTAGameRules:SetCustomGameTeamMaxPlayers  Set whether a team is selectable during game setup ])
+-- @return void
+-- @param int_1 int
+-- @param int_2 int
+function CDOTAGameRules:SetCustomGameTeamMaxPlayers( int_1, int_2 ) end
+
+---[[ CDOTAGameRules:SetCustomVictoryMessage  Sets the victory message. ])
+-- @return void
+-- @param string_1 string
+function CDOTAGameRules:SetCustomVictoryMessage( string_1 ) end
+
+---[[ CDOTAGameRules:SetCustomVictoryMessageDuration  Sets the victory message duration. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetCustomVictoryMessageDuration( float_1 ) end
+
+---[[ CDOTAGameRules:SetEnableAlternateHeroGrids  Allow alternate hero grids to be used (DOTA+, etc).  True by default. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetEnableAlternateHeroGrids( bool_1 ) end
+
+---[[ CDOTAGameRules:SetEventMetadataCustomTable  Event-only ( table hMetadataTable ) ])
+-- @return bool
+-- @param handle_1 handle
+function CDOTAGameRules:SetEventMetadataCustomTable( handle_1 ) end
+
+---[[ CDOTAGameRules:SetEventSignoutCustomTable  Event-only ( table hMetadataTable ) ])
+-- @return bool
+-- @param handle_1 handle
+function CDOTAGameRules:SetEventSignoutCustomTable( handle_1 ) end
+
+---[[ CDOTAGameRules:SetFilterMoreGold  Sets whether to filter more gold events than normal ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetFilterMoreGold( bool_1 ) end
+
+---[[ CDOTAGameRules:SetFirstBloodActive  Sets whether First Blood has been triggered. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetFirstBloodActive( bool_1 ) end
+
+---[[ CDOTAGameRules:SetGameWinner  Makes the specified team win ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:SetGameWinner( int_1 ) end
+
+---[[ CDOTAGameRules:SetGlyphCooldown  Set Glyph cooldown for team ])
+-- @return void
+-- @param int_1 int
+-- @param float_2 float
+function CDOTAGameRules:SetGlyphCooldown( int_1, float_2 ) end
+
+---[[ CDOTAGameRules:SetGoldPerTick  Set the auto gold increase per timed interval. ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:SetGoldPerTick( int_1 ) end
+
+---[[ CDOTAGameRules:SetGoldTickTime  Set the time interval between auto gold increases. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetGoldTickTime( float_1 ) end
+
+---[[ CDOTAGameRules:SetHeroMinimapIconScale  (flMinimapHeroIconScale) - Scale the hero minimap icons on the minimap. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetHeroMinimapIconScale( float_1 ) end
+
+---[[ CDOTAGameRules:SetHeroRespawnEnabled  Control if the normal DOTA hero respawn rules apply. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetHeroRespawnEnabled( bool_1 ) end
+
+---[[ CDOTAGameRules:SetHeroSelectPenaltyTime  Sets amount of penalty time before randoming a hero ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetHeroSelectPenaltyTime( float_1 ) end
+
+---[[ CDOTAGameRules:SetHeroSelectionTime  Sets the amount of time players have to pick their hero. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetHeroSelectionTime( float_1 ) end
+
+---[[ CDOTAGameRules:SetHideBlacklistedHeroes  Should blacklisted heroes be hidden, or just dimmed, in hero picking? ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetHideBlacklistedHeroes( bool_1 ) end
+
+---[[ CDOTAGameRules:SetHideKillMessageHeaders  Sets whether the multikill, streak, and first-blood banners appear at the top of the screen. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetHideKillMessageHeaders( bool_1 ) end
+
+---[[ CDOTAGameRules:SetIgnoreLobbyTeamsInCustomGame  Set whether custom and event games should ignore Lobby teams when assigning players to teams. Defaults to true. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetIgnoreLobbyTeamsInCustomGame( bool_1 ) end
+
+---[[ CDOTAGameRules:SetItemStockCount  Set the stock count of the item ])
+-- @return void
+-- @param int_1 int
+-- @param int_2 int
+-- @param string_3 string
+-- @param int_4 int
+function CDOTAGameRules:SetItemStockCount( int_1, int_2, string_3, int_4 ) end
+
+---[[ CDOTAGameRules:SetNeutralInitialSpawnOffset  Sets the extra offset to initial neutral creep spawn delay ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetNeutralInitialSpawnOffset( float_1 ) end
+
+---[[ CDOTAGameRules:SetNextBountyRuneSpawnTime  Sets next bounty rune spawn time ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetNextBountyRuneSpawnTime( float_1 ) end
+
+---[[ CDOTAGameRules:SetNextRuneSpawnTime  Sets next rune spawn time ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetNextRuneSpawnTime( float_1 ) end
+
+---[[ CDOTAGameRules:SetOverlayHealthBarUnit  Show this unit's health on the overlay health bar ])
+-- @return void
+-- @param handle_1 handle
+-- @param int_2 int
+function CDOTAGameRules:SetOverlayHealthBarUnit( handle_1, int_2 ) end
+
+---[[ CDOTAGameRules:SetPostGameColumns  Set columns to show in post game ])
+-- @return bool
+-- @param handle_1 handle
+function CDOTAGameRules:SetPostGameColumns( handle_1 ) end
+
+---[[ CDOTAGameRules:SetPostGameLayout  Configure post game to be single or double column layout ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:SetPostGameLayout( int_1 ) end
+
+---[[ CDOTAGameRules:SetPostGameTeamScores  Set score value for each team. First element is for DOTA_TEAM_GOODGUYS. ])
+-- @return bool
+-- @param handle_1 handle
+function CDOTAGameRules:SetPostGameTeamScores( handle_1 ) end
+
+---[[ CDOTAGameRules:SetPostGameTime  Sets the amount of time players have between the game ending and the server disconnecting them. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetPostGameTime( float_1 ) end
+
+---[[ CDOTAGameRules:SetPreGameTime  Sets the amount of time players have between picking their hero and game start. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetPreGameTime( float_1 ) end
+
+---[[ CDOTAGameRules:SetRiverPaint  Paints the river for a duration ])
+-- @return void
+-- @param int_1 int
+-- @param float_2 float
+function CDOTAGameRules:SetRiverPaint( int_1, float_2 ) end
+
+---[[ CDOTAGameRules:SetRuneMinimapIconScale  (flMinimapRuneIconScale) - Scale the rune icons on the minimap. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetRuneMinimapIconScale( float_1 ) end
+
+---[[ CDOTAGameRules:SetRuneSpawnTime  Sets the amount of time between rune spawns. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetRuneSpawnTime( float_1 ) end
+
+---[[ CDOTAGameRules:SetSafeToLeave  (bSafeToLeave) - Mark this game as safe to leave. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetSafeToLeave( bool_1 ) end
+
+---[[ CDOTAGameRules:SetSameHeroSelectionEnabled  When true, players can repeatedly pick the same hero. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetSameHeroSelectionEnabled( bool_1 ) end
+
+---[[ CDOTAGameRules:SetShowcaseTime  Sets the amount of time players have between the strategy phase and entering the pre-game phase. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetShowcaseTime( float_1 ) end
+
+---[[ CDOTAGameRules:SetSpeechUseSpawnInsteadOfRespawnConcept  Set whether to speak a Spawn concept instead of a Respawn concept on respawn. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetSpeechUseSpawnInsteadOfRespawnConcept( bool_1 ) end
+
+---[[ CDOTAGameRules:SetStartingGold  Set the starting gold amount. ])
+-- @return void
+-- @param int_1 int
+function CDOTAGameRules:SetStartingGold( int_1 ) end
+
+---[[ CDOTAGameRules:SetStrategyTime  Sets the amount of time players have between the hero selection and entering the showcase phase. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetStrategyTime( float_1 ) end
+
+---[[ CDOTAGameRules:SetSuggestAbilitiesEnabled  Sets Dota Plus ability suggestions enabled or disabled ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetSuggestAbilitiesEnabled( bool_1 ) end
+
+---[[ CDOTAGameRules:SetSuggestItemsEnabled  Sets Dota Plus ability item enabled or disabled ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetSuggestItemsEnabled( bool_1 ) end
+
+---[[ CDOTAGameRules:SetTimeOfDay  Set the time of day. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetTimeOfDay( float_1 ) end
+
+---[[ CDOTAGameRules:SetTreeRegrowTime  Sets the tree regrow time in seconds. ])
+-- @return void
+-- @param float_1 float
+function CDOTAGameRules:SetTreeRegrowTime( float_1 ) end
+
+---[[ CDOTAGameRules:SetUseBaseGoldBountyOnHeroes  Heroes will use the basic NPC functionality for determining their bounty, rather than DOTA specific formulas. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetUseBaseGoldBountyOnHeroes( bool_1 ) end
+
+---[[ CDOTAGameRules:SetUseCustomHeroXPValues  Allows heroes in the map to give a specific amount of XP (this value must be set). ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetUseCustomHeroXPValues( bool_1 ) end
+
+---[[ CDOTAGameRules:SetUseUniversalShopMode  When true, all items are available at as long as any shop is in range. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetUseUniversalShopMode( bool_1 ) end
+
+---[[ CDOTAGameRules:SetWeatherWindDirection  Set Weather Wind Direction Vector ])
+-- @return void
+-- @param Vector_1 Vector
+function CDOTAGameRules:SetWeatherWindDirection( Vector_1 ) end
+
+---[[ CDOTAGameRules:SetWhiteListEnabled  Item whitelist functionality enable/disable ])
+-- @return void
+-- @param bool_1 bool
+function CDOTAGameRules:SetWhiteListEnabled( bool_1 ) end
+
+---[[ CDOTAGameRules:ShouldHideBlacklistedHeroes  Are blacklisted heroes hidden, or just dimmed, in hero picking? ])
+-- @return bool
+function CDOTAGameRules:ShouldHideBlacklistedHeroes(  ) end
+
+---[[ CDOTAGameRules:SpawnAndReleaseCreeps  Spawn and release the next creep wave from Dota lane style spawners. ])
+-- @return void
+function CDOTAGameRules:SpawnAndReleaseCreeps(  ) end
+
+---[[ CDOTAGameRules:SpawnNeutralCreeps  Spawn and release the next set of neutral camps. ])
+-- @return void
+function CDOTAGameRules:SpawnNeutralCreeps(  ) end
+
+---[[ CDOTAGameRules:State_Get  Get the current Gamerules state ])
+-- @return int
+function CDOTAGameRules:State_Get(  ) end
+
 ---[[ CDOTAPlayerController:CheckForCourierSpawning  Attempt to spawn the appropriate couriers for this mode. ])
 -- @return handle
 -- @param hHero handle
@@ -5260,6 +6022,126 @@ function CDOTAPlayerController:SetSelectedHero( pszHeroName ) end
 -- @return handle
 -- @param vLocation Vector
 function CDOTAPlayerController:SpawnCourierAtPosition( vLocation ) end
+
+---[[ CDOTATutorial:AddBot  Add a computer controlled bot. ])
+-- @return bool
+-- @param string_1 string
+-- @param string_2 string
+-- @param string_3 string
+-- @param bool_4 bool
+function CDOTATutorial:AddBot( string_1, string_2, string_3, bool_4 ) end
+
+---[[ CDOTATutorial:AddQuest  Add a quest to the quest log ])
+-- @return void
+-- @param string_1 string
+-- @param int_2 int
+-- @param string_3 string
+-- @param string_4 string
+function CDOTATutorial:AddQuest( string_1, int_2, string_3, string_4 ) end
+
+---[[ CDOTATutorial:AddShopWhitelistItem  Add an item to the shop whitelist. ])
+-- @return void
+-- @param string_1 string
+function CDOTATutorial:AddShopWhitelistItem( string_1 ) end
+
+---[[ CDOTATutorial:CompleteQuest  Complete a quest, ])
+-- @return void
+-- @param string_1 string
+function CDOTATutorial:CompleteQuest( string_1 ) end
+
+---[[ CDOTATutorial:CreateLocationTask  Add a task to move to a specific location ])
+-- @return void
+-- @param Vector_1 Vector
+function CDOTATutorial:CreateLocationTask( Vector_1 ) end
+
+---[[ CDOTATutorial:EnableCreepAggroViz  Alert the player when a creep becomes agro to their hero. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTATutorial:EnableCreepAggroViz( bool_1 ) end
+
+---[[ CDOTATutorial:EnablePlayerOffscreenTip  Enable the tip to alert players how to find their hero. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTATutorial:EnablePlayerOffscreenTip( bool_1 ) end
+
+---[[ CDOTATutorial:EnableTowerAggroViz  Alert the player when a tower becomes agro to their hero. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTATutorial:EnableTowerAggroViz( bool_1 ) end
+
+---[[ CDOTATutorial:FinishTutorial  End the tutorial. ])
+-- @return void
+function CDOTATutorial:FinishTutorial(  ) end
+
+---[[ CDOTATutorial:ForceGameStart  Force the start of the game. ])
+-- @return void
+function CDOTATutorial:ForceGameStart(  ) end
+
+---[[ CDOTATutorial:IsItemInWhiteList  Is this item currently in the white list. ])
+-- @return bool
+-- @param string_1 string
+function CDOTATutorial:IsItemInWhiteList( string_1 ) end
+
+---[[ CDOTATutorial:RemoveShopWhitelistItem  Remove an item from the shop whitelist. ])
+-- @return void
+-- @param string_1 string
+function CDOTATutorial:RemoveShopWhitelistItem( string_1 ) end
+
+---[[ CDOTATutorial:SelectHero  Select a hero for the local player ])
+-- @return void
+-- @param string_1 string
+function CDOTATutorial:SelectHero( string_1 ) end
+
+---[[ CDOTATutorial:SelectPlayerTeam  Select the team for the local player ])
+-- @return void
+-- @param string_1 string
+function CDOTATutorial:SelectPlayerTeam( string_1 ) end
+
+---[[ CDOTATutorial:SetItemGuide  Set the current item guide. ])
+-- @return void
+-- @param string_1 string
+function CDOTATutorial:SetItemGuide( string_1 ) end
+
+---[[ CDOTATutorial:SetOrModifyPlayerGold  Set gold amount for the tutorial player. (int) GoldAmount, (bool) true=Set, false=Modify ])
+-- @return void
+-- @param int_1 int
+-- @param bool_2 bool
+function CDOTATutorial:SetOrModifyPlayerGold( int_1, bool_2 ) end
+
+---[[ CDOTATutorial:SetQuickBuy  Set players quick buy item. ])
+-- @return void
+-- @param string_1 string
+function CDOTATutorial:SetQuickBuy( string_1 ) end
+
+---[[ CDOTATutorial:SetShopOpen  Set the shop open or closed. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTATutorial:SetShopOpen( bool_1 ) end
+
+---[[ CDOTATutorial:SetTutorialConvar  Set a tutorial convar ])
+-- @return void
+-- @param string_1 string
+-- @param string_2 string
+function CDOTATutorial:SetTutorialConvar( string_1, string_2 ) end
+
+---[[ CDOTATutorial:SetTutorialUI  Set the UI to use a reduced version to focus attention to specific elements. ])
+-- @return void
+-- @param int_1 int
+function CDOTATutorial:SetTutorialUI( int_1 ) end
+
+---[[ CDOTATutorial:SetWhiteListEnabled  Set if we should whitelist shop items. ])
+-- @return void
+-- @param bool_1 bool
+function CDOTATutorial:SetWhiteListEnabled( bool_1 ) end
+
+---[[ CDOTATutorial:StartTutorialMode  Initialize Tutorial Mode ])
+-- @return void
+function CDOTATutorial:StartTutorialMode(  ) end
+
+---[[ CDOTATutorial:UpgradePlayerAbility  Upgrade a specific ability for the local hero ])
+-- @return void
+-- @param string_1 string
+function CDOTATutorial:UpgradePlayerAbility( string_1 ) end
 
 ---[[ CDOTAVoteSystem:StartVote  Starts a vote, based upon a table of parameters ])
 -- @return void
@@ -5365,6 +6247,11 @@ function CDOTA_Ability_Lua:GetChannelStartTime(  ) end
 -- @return float
 function CDOTA_Ability_Lua:GetChannelTime(  ) end
 
+---[[ CDOTA_Ability_Lua:GetChannelledHealthCostPerSecond  Return health cost per second of channeling at the given level (-1 is current). ])
+-- @return int
+-- @param iLevel int
+function CDOTA_Ability_Lua:GetChannelledHealthCostPerSecond( iLevel ) end
+
 ---[[ CDOTA_Ability_Lua:GetChannelledManaCostPerSecond  Return mana cost at the given level per second while channeling (-1 is current). ])
 -- @return int
 -- @param iLevel int
@@ -5408,6 +6295,11 @@ function CDOTA_Ability_Lua:GetEffectiveCastRange( vLocation, hTarget ) end
 -- @return int
 -- @param iLevel int
 function CDOTA_Ability_Lua:GetGoldCost( iLevel ) end
+
+---[[ CDOTA_Ability_Lua:GetHealthCost  Return health cost at the given level (-1 is current). ])
+-- @return int
+-- @param iLevel int
+function CDOTA_Ability_Lua:GetHealthCost( iLevel ) end
 
 ---[[ CDOTA_Ability_Lua:GetIntrinsicModifierName  Returns the name of the modifier applied passively by this ability. ])
 -- @return string
@@ -6352,6 +7244,10 @@ function CDOTA_BaseNPC:IsCurrentlyHorizontalMotionControlled(  ) end
 ---[[ CDOTA_BaseNPC:IsCurrentlyVerticalMotionControlled   ])
 -- @return bool
 function CDOTA_BaseNPC:IsCurrentlyVerticalMotionControlled(  ) end
+
+---[[ CDOTA_BaseNPC:IsDebuffImmune   ])
+-- @return bool
+function CDOTA_BaseNPC:IsDebuffImmune(  ) end
 
 ---[[ CDOTA_BaseNPC:IsDisarmed   ])
 -- @return bool
@@ -8061,7 +8957,8 @@ function CDOTA_Item:IsStackable(  ) end
 -- @param flHeight float
 -- @param flDuration float
 -- @param vEndPoint Vector
-function CDOTA_Item:LaunchLoot( bAutoUse, flHeight, flDuration, vEndPoint ) end
+-- @param hTeleportOwner handle
+function CDOTA_Item:LaunchLoot( bAutoUse, flHeight, flDuration, vEndPoint, hTeleportOwner ) end
 
 ---[[ CDOTA_Item:LaunchLootInitialHeight   ])
 -- @return void
@@ -8259,6 +9156,11 @@ function CDOTA_Item_Lua:GetChannelStartTime(  ) end
 -- @return float
 function CDOTA_Item_Lua:GetChannelTime(  ) end
 
+---[[ CDOTA_Item_Lua:GetChannelledHealthCostPerSecond  Return health cost per second of channeling at the given level (-1 is current). ])
+-- @return int
+-- @param iLevel int
+function CDOTA_Item_Lua:GetChannelledHealthCostPerSecond( iLevel ) end
+
 ---[[ CDOTA_Item_Lua:GetChannelledManaCostPerSecond  Return mana cost at the given level per second while channeling (-1 is current). ])
 -- @return int
 -- @param iLevel int
@@ -8302,6 +9204,11 @@ function CDOTA_Item_Lua:GetEffectiveCastRange( vLocation, hTarget ) end
 -- @return int
 -- @param iLevel int
 function CDOTA_Item_Lua:GetGoldCost( iLevel ) end
+
+---[[ CDOTA_Item_Lua:GetHealthCost  Return health cost at the given level (-1 is current). ])
+-- @return int
+-- @param iLevel int
+function CDOTA_Item_Lua:GetHealthCost( iLevel ) end
 
 ---[[ CDOTA_Item_Lua:GetIntrinsicModifierName  Returns the name of the modifier applied passively by this ability. ])
 -- @return string

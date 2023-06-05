@@ -1,0 +1,57 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Abaddon: Apotic Shield (Lua version)
+	//=================================================================================================================
+	"abaddon_aphotic_shield_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/abaddon_aphotic_shield_lua/abaddon_aphotic_shield_lua"
+		"AbilityTextureName"			"abaddon_aphotic_shield"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		// "HasShardUpgrade"				"1"
+		// "HasScepterUpgrade"				"1"
+		// "IsGrantedByScepter"				"1"
+		// "IsGrantedByShard"				"1"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"	
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"550"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12.0 10.0 8.0 6.0"
+		"AbilityManaCost"				"85 100 115 130"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"duration"				"15.0"
+			"radius"				"675"
+			"damage_absorb"
+			{
+				"value"			"110 140 170 200"
+				"DamageTypeTooltip"		"DAMAGE_TYPE_NONE"
+			}
+		}
+	}
+}

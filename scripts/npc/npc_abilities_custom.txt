@@ -934,6 +934,7 @@
 // LUA ABILITIES
 //=================================================================================================================
 #base "../vscripts/lua_abilities/abaddon_mist_coil_lua/abaddon_mist_coil_lua.txt"
+#base "../vscripts/lua_abilities/abaddon_aphotic_shield_lua/abaddon_aphotic_shield_lua.txt"
 
 #base "../vscripts/lua_abilities/alchemist_acid_spray_lua/alchemist_acid_spray_lua.txt"
 #base "../vscripts/lua_abilities/alchemist_unstable_concoction_lua/alchemist_unstable_concoction_lua.txt"

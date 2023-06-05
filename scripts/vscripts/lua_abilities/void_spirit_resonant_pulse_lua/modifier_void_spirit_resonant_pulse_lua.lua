@@ -38,6 +38,9 @@ function modifier_void_spirit_resonant_pulse_lua:OnCreated( kv )
 
 	if not IsServer() then return end
 
+	-- send init data from server to client
+	self:SetHasCustomTransmitterData( true )
+
 	-- set up shield
 	self.shield = self.base_absorb
 
@@ -163,6 +166,22 @@ function modifier_void_spirit_resonant_pulse_lua:OnDestroy()
 end
 
 --------------------------------------------------------------------------------
+-- Transmitter data
+function modifier_void_spirit_resonant_pulse_lua:AddCustomTransmitterData()
+	-- on server
+	local data = {
+        shield = self.shield,
+	}
+
+	return data
+end
+
+function modifier_void_spirit_resonant_pulse_lua:HandleCustomTransmitterData( data )
+	-- on client
+    self.shield = data.shield
+end
+
+--------------------------------------------------------------------------------
 -- Modifier Effects
 function modifier_void_spirit_resonant_pulse_lua:DeclareFunctions()
 	local funcs = {
@@ -173,7 +192,9 @@ function modifier_void_spirit_resonant_pulse_lua:DeclareFunctions()
 end
 
 function modifier_void_spirit_resonant_pulse_lua:GetModifierIncomingPhysicalDamageConstant( params )
-	if not IsServer() then return end
+	if not IsServer() then
+		return self.shield
+	end
 
 	-- play effects
 	self:PlayEffects5()
@@ -184,6 +205,10 @@ function modifier_void_spirit_resonant_pulse_lua:GetModifierIncomingPhysicalDama
 		return -self.shield
 	else
 		self.shield = self.shield-params.damage
+
+		-- refresh shield on client using transmitter data
+		self:SendBuffRefreshToClients()
+
 		return -params.damage
 	end
 end
@@ -192,6 +217,9 @@ end
 -- Helper
 function modifier_void_spirit_resonant_pulse_lua:Absorb()
 	self.shield = self.shield + self.hero_absorb
+
+	-- refresh shield on client using transmitter data
+	self:SendBuffRefreshToClients()
 end
 
 --------------------------------------------------------------------------------
