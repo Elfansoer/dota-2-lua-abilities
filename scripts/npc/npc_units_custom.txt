@@ -247,6 +247,9 @@
 
 #base "heroes/maple.txt"			// Custom, ID 200
 #base "heroes/sally.txt"			// Custom, ID 201
+#base "heroes/darkness.txt"			// Custom, ID 202
+#base "heroes/aqua.txt"				// Custom, ID 203
+#base "heroes/megumin.txt"			// Custom, ID 204
 
 #base "../vscripts/lua_abilities/mars_arena_of_blood_lua/mars_arena_of_blood_lua_units.txt"
 #base "../vscripts/custom_abilities/midas_golden_valkyrie/midas_golden_valkyrie_units.txt"

@@ -1,0 +1,63 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Aqua: Resurrection
+	//=================================================================================================================
+	"aqua_resurrection"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/aqua_resurrection/aqua_resurrection"
+		"AbilityTextureName"			"skeleton_king_reincarnation"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"400"
+		"AbilityCastPoint"				"1"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"300 400 500"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"search_radius"				"300"
+			"tomb_duration"
+			{
+				"value"							"10 15 20"
+				"special_bonus_unique_aqua_7"	"=999"
+			}
+
+			"AbilityCharges"
+			{
+				"value"								"0"
+				"special_bonus_unique_aqua_8"		"+2"
+			}
+
+			"AbilityChargeRestoreTime"				"200 175 150"	// must also use ability_lua:GetAbilityChargeRestoreTime() in code
+
+			// If using charges, AbiltyCooldown must be 0
+			"AbilityCooldown"
+			{
+				"value"								"200 175 150"
+				"special_bonus_unique_aqua_8"		"=0"
+			}
+
+		}
+	}
+}

@@ -1,0 +1,43 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Megumin: Azure Core
+	//=================================================================================================================
+	"megumin_azure_core"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/megumin_azure_core/megumin_azure_core"
+		"AbilityTextureName"			"invoker_quas"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"5"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"core_manacost"			"20"
+
+			"base_regen"		"2 4 6 8 10"
+			"pct_regen"			"0.5 1 1.5 2 2.5"
+		}
+	}
+}

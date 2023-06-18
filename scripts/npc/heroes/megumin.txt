@@ -1,0 +1,89 @@
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Sally
+	//=================================================================================================================
+	"npc_dota_hero_megumin"
+	{
+		// "override_hero"					"npc_dota_hero_marci"	// Hero to override
+		"BaseClass"					"npc_dota_hero_lina"
+		"HeroID"					"204"
+
+		// Models
+		//----------------------------------------------------------------
+		// need custom model
+		"Model"					"models/heroes/lina/lina.vmdl"
+		"ModelScale"			"1"
+		"SoundSet"				"Hero_Lina"
+		"particle_folder"		"particles/units/heroes/hero_lina"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_lina.vsndevts"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"						"megumin_crimson_core"
+		"Ability2"						"megumin_emerald_core"
+		"Ability3"						"megumin_azure_core"
+		"Ability4"						"megumin_golden_core"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"megumin_explosion"
+		"Ability10"						"special_bonus_hp_300"
+		"Ability11"						"special_bonus_attack_base_damage_40"
+		"Ability12"						"special_bonus_armor_15"
+		"Ability13"						"special_bonus_attack_speed_50"
+		"Ability14"						"special_bonus_spell_lifesteal_25"
+		"Ability15"						"special_bonus_all_stats_15"
+		"Ability16"						"special_bonus_haste"
+		"Ability17"						"special_bonus_spell_immunity"
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				    "0"		// Physical protection.
+		"MagicalResistance"				"25"	// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"12"
+		"AttackDamageMax"			"18"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.7"
+		"AttackAnimationPoint"		"0.3"
+		"AttackRange"				"600"
+		"AttackAcquisitionRange"	"800"
+		"ProjectileSpeed"			"1000"
+		"ProjectileModel"			"particles/units/heroes/hero_lina/lina_base_attack.vpcf"
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"		"16"
+		"AttributeStrengthGain"		"1.5"
+		"AttributeBaseIntelligence"	"32"
+		"AttributeIntelligenceGain"	"4.3"
+		"AttributeBaseAgility"		"20"
+		"AttributeAgilityGain"		"2.2"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"
+		"MovementTurnRate"			"0.6"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"
+		"VisionNighttimeRange"		"800"
+	}
+}

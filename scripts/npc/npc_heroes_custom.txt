@@ -935,3 +935,6 @@
 #base "heroes/sandra_olivia.txt"	// Phantom Assassin
 #base "heroes/maple.txt"			// Custom, ID 200
 #base "heroes/sally.txt"			// Custom, ID 201
+#base "heroes/darkness.txt"			// Custom, ID 202
+#base "heroes/aqua.txt"				// Custom, ID 203
+#base "heroes/megumin.txt"			// Custom, ID 204

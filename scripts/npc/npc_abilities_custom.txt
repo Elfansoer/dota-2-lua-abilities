@@ -1363,6 +1363,25 @@
 #base "../vscripts/custom_abilities/sally_mirage/sally_mirage.txt"
 #base "../vscripts/custom_abilities/sally_talents/sally_talents.txt"
 
+#base "../vscripts/custom_abilities/darkness_darkness_charge/darkness_darkness_charge.txt"
+#base "../vscripts/custom_abilities/darkness_decoy/darkness_decoy.txt"
+#base "../vscripts/custom_abilities/darkness_vanguard/darkness_vanguard.txt"
+#base "../vscripts/custom_abilities/darkness_crusaders_strength/darkness_crusaders_strength.txt"
+#base "../vscripts/custom_abilities/darkness_talents/darkness_talents.txt"
+
+#base "../vscripts/custom_abilities/aqua_god_blow/aqua_god_blow.txt"
+#base "../vscripts/custom_abilities/aqua_sacred_dispel/aqua_sacred_dispel.txt"
+#base "../vscripts/custom_abilities/aqua_gods_blessing/aqua_gods_blessing.txt"
+#base "../vscripts/custom_abilities/aqua_gods_blessing_eris/aqua_gods_blessing_eris.txt"
+#base "../vscripts/custom_abilities/aqua_resurrection/aqua_resurrection.txt"
+#base "../vscripts/custom_abilities/aqua_talents/aqua_talents.txt"
+
+#base "../vscripts/custom_abilities/megumin_crimson_core/megumin_crimson_core.txt"
+#base "../vscripts/custom_abilities/megumin_emerald_core/megumin_emerald_core.txt"
+#base "../vscripts/custom_abilities/megumin_azure_core/megumin_azure_core.txt"
+#base "../vscripts/custom_abilities/megumin_golden_core/megumin_golden_core.txt"
+#base "../vscripts/custom_abilities/megumin_explosion/megumin_explosion.txt"
+
 //=================================================================================================================
 // TEST ABILITIES
 //=================================================================================================================

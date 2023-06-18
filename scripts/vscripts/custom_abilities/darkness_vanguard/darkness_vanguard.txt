@@ -1,0 +1,52 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Darkness: Vanguard
+	//=================================================================================================================
+	"darkness_vanguard"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/darkness_vanguard/darkness_vanguard"
+		"AbilityTextureName"			"dragon_knight_dragon_blood"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"5"
+
+		"HasShardUpgrade"				"1"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"min_miss"
+			{
+				"value"								"20"
+				"special_bonus_shard"				"=10"
+			}
+			"max_miss"
+			{
+				"value"								"80"
+				"special_bonus_shard"				"=40"
+			}
+			"outgoing_pct"
+			{
+				"value"									"0 8 16 24 32"
+				"special_bonus_unique_darkness_3"		"+18"
+			}
+			"heal_pct"
+			{
+				"value"									"100 120 140 160 180"
+				"special_bonus_unique_darkness_4"		"+20"
+			}
+		}
+	}
+}

@@ -1,0 +1,71 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Hero Name: aqua_god_blow
+	//=================================================================================================================
+	"aqua_god_blow"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/aqua_god_blow/aqua_god_blow"
+		"AbilityTextureName"			"dark_seer_normal_punch"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"HasShardUpgrade"				"1"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"24 21 18 15"
+		"AbilityManaCost"				"100"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"fix_castrange"				"150"
+			"speed"						"2000"
+			"min_distance"				"200"
+			"max_distance"
+			{
+				"value"								"800 1000 1200 1400"
+				"special_bonus_unique_aqua_1"		"+200"
+			}
+
+			"enemy_distance"
+			{
+				"value"								"50"
+				"special_bonus_shard"				"+50"
+			}
+
+			"radius"					"300"
+			"damage"					"75 150 225 300"
+			"slow"
+			{
+				"value"								"20 30 40 50"
+				"special_bonus_unique_aqua_2"		"+10"
+			}
+
+			"duration"					"4"
+		}
+	}
+}

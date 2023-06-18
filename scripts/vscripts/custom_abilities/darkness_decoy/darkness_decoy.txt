@@ -1,0 +1,67 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Hero Name: darkness_decoy
+	//=================================================================================================================
+	"darkness_decoy"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/darkness_decoy/darkness_decoy"
+		"AbilityTextureName"			"axe_berserkers_call"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"HasScepterUpgrade"				"1"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"300 400 500 600"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityHealthCost"				"100"
+		"AbilityManaCost"				"100"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"radius"
+			{
+				"value"									"300 400 500 600"
+				"special_bonus_unique_darkness_8"		"+200"
+			}
+			"buff_duration"			"4"
+			"dmg_reduction"			"10 20 30 40"
+			"taunt_duration"		"2"
+			"allow_ultimates"
+			{
+				"value"								"0"
+				"special_bonus_scepter"				"=1"
+			}
+			"AbilityCooldown"
+			{
+				"value"									"30 26 22 18"
+				"special_bonus_unique_darkness_2"		"-5"
+			}
+		}
+	}
+}

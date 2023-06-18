@@ -1,0 +1,87 @@
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Darkness
+	//=================================================================================================================
+	"npc_dota_hero_darkness"
+	{
+		// "override_hero"					"npc_dota_hero_mars"	// Hero to override
+		"BaseClass"					"npc_dota_hero_dawnbreaker"
+		"HeroID"					"202"
+
+		// Models
+		//----------------------------------------------------------------
+		// need custom model
+		"Model"					"models/heroes/dawnbreaker/dawnbreaker.vmdl"
+		"ModelScale"			"1"
+		"SoundSet"				"Hero_Dawnbreaker"
+		"particle_folder"		"particles/units/heroes/hero_dawnbreaker"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_dawnbreaker.vsndevts"
+		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_dawnbreaker.vsndevts"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"						"darkness_decoy"
+		"Ability2"						"darkness_darkness_charge"
+		"Ability3"						"darkness_vanguard"
+		"Ability4"						"generic_hidden"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"darkness_crusaders_strength"
+		"Ability10"						"special_bonus_unique_darkness_1"
+		"Ability11"						"special_bonus_unique_darkness_2"
+		"Ability12"						"special_bonus_unique_darkness_3"
+		"Ability13"						"special_bonus_unique_darkness_4"
+		"Ability14"						"special_bonus_unique_darkness_5"
+		"Ability15"						"special_bonus_unique_darkness_6"
+		"Ability16"						"special_bonus_unique_darkness_7"
+		"Ability17"						"special_bonus_unique_darkness_8"
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				    "5"		// Physical protection.
+		"MagicalResistance"				"25"	// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"12"
+		"AttackDamageMax"			"18"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.7"
+		"AttackAnimationPoint"		"0.600000"
+		"AttackRange"				"150"
+		"AttackAcquisitionRange"	"600"
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"32"
+		"AttributeStrengthGain"		"4"
+		"AttributeBaseIntelligence"	"20"
+		"AttributeIntelligenceGain"	"2.5"
+		"AttributeBaseAgility"		"15"
+		"AttributeAgilityGain"		"1.3"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"
+		"MovementTurnRate"			"0.6"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"
+		"VisionNighttimeRange"		"800"
+	}
+}

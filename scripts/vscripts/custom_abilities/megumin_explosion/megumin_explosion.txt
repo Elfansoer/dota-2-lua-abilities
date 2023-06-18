@@ -1,0 +1,74 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Hero Name: megumin_explosion
+	//=================================================================================================================
+	"megumin_explosion"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/megumin_explosion/megumin_explosion"
+		"AbilityTextureName"			"invoker_sun_strike"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+
+		"HasShardUpgrade"				"1"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"red_delay"							"1.5"
+			"red_damage_pct"					"60"
+			"green_stun_base"					"0"
+			"green_stun_pct"					"0"
+			"green_damage_stun"					"500"
+			"blue_manacost_pct"					"100"
+			"yellow_radius"						"400"
+			"yellow_castrange"					"1000"
+			"yellow_max_cores"
+			{
+				"value"								"3"
+				"special_bonus_scepter"				"=4"
+			}
+
+			"creep_multiplier"					"2"
+			"ally_damage"
+			{
+				"value"								"100"
+				"special_bonus_shard"				"-50"
+			}
+
+			"red_damage_tooltip"				"60"
+			"green_stun_tooltip"				"0"
+		}
+	}
+}

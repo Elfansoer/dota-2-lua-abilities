@@ -1,0 +1,49 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Megumin: Crimson Core
+	//=================================================================================================================
+	"megumin_crimson_core"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/megumin_crimson_core/megumin_crimson_core"
+		"AbilityTextureName"			"invoker_exort"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"5"
+
+		// "HasShardUpgrade"				"1"
+		// "HasScepterUpgrade"				"1"
+		// "IsGrantedByScepter"				"1"
+		// "IsGrantedByShard"				"1"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"core_delay"		"0.5"
+			"core_damage_pct"	"20"
+
+			"flat_mana"			"200 350 500 650 800"
+			"pct_mana"			"5 10 15 20 25"
+		}
+	}
+}

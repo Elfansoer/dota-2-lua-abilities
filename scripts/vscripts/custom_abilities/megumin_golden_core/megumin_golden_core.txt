@@ -1,0 +1,61 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Megumin: golden Core
+	//=================================================================================================================
+	"megumin_golden_core"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"custom_abilities/megumin_golden_core/megumin_golden_core"
+		"AbilityTextureName"			"dawnbreaker_luminosity"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"1"
+
+		"IsGrantedByScepter"				"1"
+		// "HasScepterUpgrade"				"1"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"core_radius"		"75"
+			"core_castrange"	"200"
+			"max_cores"			"4"
+
+			// "core_radius"
+			// {
+			// 	"value"	"75"
+			// 	"RequiresScepter"			"1"
+			// }
+			// "core_castrange"
+			// {
+			// 	"value"	"200"
+			// 	"RequiresScepter"			"1"
+			// }
+			// "max_cores"
+			// {
+			// 	"value"	"4"
+			// 	"RequiresScepter"			"1"
+			// }
+		}
+	}
+}
