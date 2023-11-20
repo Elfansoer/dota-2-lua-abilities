@@ -10,7 +10,12 @@ function IsHeroImageCustom( HeroImage ) {
 	return HeroImage.heroid >=200;
 }
 
-function ReplacePortrait( HeroImage, isHorizontal ) {
+function ReplacePortraitUnsafe( HeroImage, isHorizontal, shouldFit ) {
+	if (!HeroImage) return;
+	ReplacePortrait( HeroImage, isHorizontal, shouldFit );
+}
+
+function ReplacePortrait( HeroImage, isHorizontal, shouldFit=true ) {
 	if (!IsHeroImageCustom(HeroImage)) {
 		HeroImage.RemoveClass("CustomHeroImage");
 		HeroImage.style.backgroundImage = null;
@@ -20,7 +25,8 @@ function ReplacePortrait( HeroImage, isHorizontal ) {
 	HeroImage.AddClass("CustomHeroImage");
 	const pathModifier = isHorizontal ? '' : '/selection';
 	HeroImage.style.backgroundImage = 'url("file://{images}/heroes' + pathModifier + '/npc_dota_hero_' + HeroImage.heroname + '.png")';
-	HeroImage.style.backgroundSize = '100% 100%';
+	HeroImage.style.backgroundSize = shouldFit ? '100% 100%' : 'auto 100%';
+	HeroImage.style.backgroundPosition = 'center';
 }
 
 ///////////////////////////////
@@ -40,7 +46,7 @@ function GridViewCustomHeroManager() {
 function UpdateGridViewCustomHeroManager() {
 	HeroImages = FindGridViewCustomHeroImages();
 	for (const HeroImage of HeroImages) {
-		ReplacePortrait(HeroImage,false);
+		ReplacePortraitUnsafe(HeroImage,false,false);
 	}
 
 	if ( Game.GameStateIsBefore(DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME) ) {
@@ -65,7 +71,7 @@ function TopBarCustomHeroManager() {
 
 function UpdateTopBarCustomHeroManager() {
 	for (const HeroImage of TopBarHeroImages) {
-		ReplacePortrait(HeroImage,true);
+		ReplacePortraitUnsafe(HeroImage,true);
 	}
 	if ( Game.GameStateIsBefore(DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME) ) {
 		$.Schedule(0.1, UpdateTopBarCustomHeroManager);
@@ -91,7 +97,7 @@ function InspectCustomHeroManager() {
 }
 
 function UpdateInspectCustomHeroManager() {
-	ReplacePortrait(inspectMovie,false);
+	ReplacePortraitUnsafe(inspectMovie,false);
 
 	if (tooltipMovie==undefined || !tooltipMovie.IsValid()) {
 		tooltipMovie = FindTooltipMovie();
@@ -99,8 +105,8 @@ function UpdateInspectCustomHeroManager() {
 	
 	if (tooltipMovie) {
 		const tooltipImage = tooltipMovie?.GetParent().FindChild( "HeroImage" );
-		ReplacePortrait(tooltipMovie,false);
-		ReplacePortrait(tooltipImage,false);
+		ReplacePortraitUnsafe(tooltipMovie,false);
+		ReplacePortraitUnsafe(tooltipImage,false);
 	}
 
 	if ( Game.GameStateIsBefore(DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME) ) {
@@ -120,7 +126,7 @@ function FindGameTopBarHeroImages() {
 function GameTopBarCustomHeroManager() {
 	GameTopBarHeroImages = FindGameTopBarHeroImages();
 	for (const HeroImage of GameTopBarHeroImages) {
-		ReplacePortrait(HeroImage,true);
+		ReplacePortraitUnsafe(HeroImage,true);
 	}
 
 	UpdateGameTopBarCustomHeroManager();
@@ -132,7 +138,7 @@ function UpdateGameTopBarCustomHeroManager() {
 	if (isDirty) {
 		GameTopBarHeroImages = FindGameTopBarHeroImages();
 		for (const HeroImage of GameTopBarHeroImages) {
-			ReplacePortrait(HeroImage,true);
+			ReplacePortraitUnsafe(HeroImage,true);
 		}	
 	}
 
@@ -150,7 +156,7 @@ function FindGameScoreboardHeroImages() {
 function GameScoreboardCustomHeroManager() {
 	GameScoreboardHeroImages = FindGameScoreboardHeroImages();
 	for (const HeroImage of GameScoreboardHeroImages) {
-		ReplacePortrait(HeroImage,true);
+		ReplacePortraitUnsafe(HeroImage,true);
 	}
 
 	UpdateGameScoreboardCustomHeroManager();
@@ -162,7 +168,7 @@ function UpdateGameScoreboardCustomHeroManager() {
 	if (isDirty) {
 		GameScoreboardHeroImages = FindGameScoreboardHeroImages();
 		for (const HeroImage of GameScoreboardHeroImages) {
-			ReplacePortrait(HeroImage,true);
+			ReplacePortraitUnsafe(HeroImage,true);
 		}
 	}
 
