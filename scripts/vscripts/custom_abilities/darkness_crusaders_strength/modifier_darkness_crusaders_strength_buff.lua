@@ -44,6 +44,7 @@ function modifier_darkness_crusaders_strength_buff:OnCreated( kv )
 	self.duration = self:GetAbility():GetSpecialValueFor( "bonus_duration" )
 
 	self.interval = 0.1
+	self.max_shield = 0
 	self.shield = 0
 
 	if not IsServer() then return end
@@ -78,6 +79,7 @@ end
 function modifier_darkness_crusaders_strength_buff:AddCustomTransmitterData()
 	-- on server
 	local data = {
+		max_shield = self.max_shield,
 		shield = self.shield
 	}
 
@@ -86,6 +88,7 @@ end
 
 function modifier_darkness_crusaders_strength_buff:HandleCustomTransmitterData( data )
 	-- on client
+	self.max_shield = data.max_shield
 	self.shield = data.shield
 end
 
@@ -93,7 +96,6 @@ end
 -- Modifier Effects
 function modifier_darkness_crusaders_strength_buff:DeclareFunctions()
 	local funcs = {
-		-- MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 
@@ -101,12 +103,6 @@ function modifier_darkness_crusaders_strength_buff:DeclareFunctions()
 	}
 
 	return funcs
-end
-
-function modifier_darkness_crusaders_strength_buff:GetModifierHealthRegenPercentage()
-	if self:GetStackCount()==0 then
-		return self.base_regen
-	end
 end
 
 function modifier_darkness_crusaders_strength_buff:GetModifierPhysicalArmorBonus()
@@ -123,7 +119,12 @@ end
 
 function modifier_darkness_crusaders_strength_buff:GetModifierIncomingDamageConstant( params )
 	if not IsServer() then
-		return self.shield
+		-- shows max and current shield value on client
+		if params.report_max then
+			return self.max_shield
+		else
+			return self.shield
+		end
 	end
 	
 	-- block based on damage
@@ -180,9 +181,8 @@ function modifier_darkness_crusaders_strength_buff:OnIntervalThink()
 			multiplier = self.stun_multiplier
 		end
 
-		self.last_disabled = GameRules:GetGameTime()
-		
 		self.shield = self.shield + self.barrier_regen * self.interval * multiplier
+		self.max_shield = math.max( self.shield, self.max_shield )
 		self:SendBuffRefreshToClients()
 		
 		self:SetDuration( self.duration, true )

@@ -37,6 +37,7 @@ function modifier_abaddon_aphotic_shield_lua:OnCreated( kv )
 
 	if not IsServer() then return end
 
+	self.max_shield = self.barrier
 	self.current_shield = self.barrier
 
 	-- send init data from server to client
@@ -93,6 +94,7 @@ end
 function modifier_abaddon_aphotic_shield_lua:AddCustomTransmitterData()
 	-- on server
 	local data = {
+		max_shield = self.max_shield,
 		current_shield = self.current_shield
 	}
 
@@ -101,6 +103,7 @@ end
 
 function modifier_abaddon_aphotic_shield_lua:HandleCustomTransmitterData( data )
 	-- on client
+	self.max_shield = data.max_shield
 	self.current_shield = data.current_shield
 end
 
@@ -116,7 +119,12 @@ end
 
 function modifier_abaddon_aphotic_shield_lua:GetModifierIncomingDamageConstant( params )
 	if not IsServer() then
-		return self.current_shield
+		-- shows max and current shield value on client
+		if params.report_max then
+			return self.max_shield
+		else
+			return self.current_shield
+		end
 	end
 
 	-- play effects

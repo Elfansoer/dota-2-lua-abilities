@@ -43,6 +43,7 @@ function modifier_void_spirit_resonant_pulse_lua:OnCreated( kv )
 
 	-- set up shield
 	self.shield = self.base_absorb
+	self.max_shield = self.shield
 
 	-- precache damage
 	self.damageTable = {
@@ -112,6 +113,7 @@ function modifier_void_spirit_resonant_pulse_lua:OnRefresh( kv )
 
 	-- set up shield
 	self.shield = self.shield + self.base_absorb
+	self.max_shield = math.max( self.shield, self.max_shield )
 
 	-- precache damage
 	self.damageTable = {
@@ -170,6 +172,7 @@ end
 function modifier_void_spirit_resonant_pulse_lua:AddCustomTransmitterData()
 	-- on server
 	local data = {
+        max_shield = self.max_shield,
         shield = self.shield,
 	}
 
@@ -178,6 +181,7 @@ end
 
 function modifier_void_spirit_resonant_pulse_lua:HandleCustomTransmitterData( data )
 	-- on client
+    self.max_shield = data.max_shield
     self.shield = data.shield
 end
 
@@ -193,7 +197,11 @@ end
 
 function modifier_void_spirit_resonant_pulse_lua:GetModifierIncomingPhysicalDamageConstant( params )
 	if not IsServer() then
-		return self.shield
+		if params.report_max then
+			return self.max_shield
+		else
+			return self.shield
+		end
 	end
 
 	-- play effects
@@ -217,6 +225,7 @@ end
 -- Helper
 function modifier_void_spirit_resonant_pulse_lua:Absorb()
 	self.shield = self.shield + self.hero_absorb
+	self.max_shield = math.max( self.shield, self.max_shield )
 
 	-- refresh shield on client using transmitter data
 	self:SendBuffRefreshToClients()
