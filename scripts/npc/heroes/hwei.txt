@@ -1,0 +1,78 @@
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Hwei the Painter Mage
+	//=================================================================================================================
+	"npc_dota_hero_hwei"
+	{
+		"BaseClass"					"npc_dota_hero_pugna"
+		"HeroID"					"205"
+
+		// Models
+		//----------------------------------------------------------------
+		// need custom model
+		"Model"					"models/heroes/marci/marci_base.vmdl"
+		"ModelScale"			"1"
+		"SoundSet"				"Hero_Dawnbreaker"
+		"particle_folder"		"particles/units/heroes/hero_dawnbreaker"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_dawnbreaker.vsndevts"
+		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_dawnbreaker.vsndevts"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"						"hwei_disaster"
+		"Ability2"						"hwei_serenity"
+		"Ability3"						"hwei_torment"
+		"Ability4"						"generic_hidden"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"hwei_spiraling_despair"
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				    "5"		// Physical protection.
+		"MagicalResistance"				"25"	// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"12"
+		"AttackDamageMax"			"18"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.7"
+		"AttackAnimationPoint"		"0.600000"
+		"AttackRange"				"150"
+		"AttackAcquisitionRange"	"600"
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"		"16"
+		"AttributeStrengthGain"		"1.5"
+		"AttributeBaseIntelligence"	"32"
+		"AttributeIntelligenceGain"	"4.3"
+		"AttributeBaseAgility"		"20"
+		"AttributeAgilityGain"		"2.2"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"
+		"MovementTurnRate"			"0.6"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"
+		"VisionNighttimeRange"		"800"
+	}
+}

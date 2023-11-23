@@ -938,3 +938,4 @@
 #base "heroes/darkness.txt"			// Custom, ID 202
 #base "heroes/aqua.txt"				// Custom, ID 203
 #base "heroes/megumin.txt"			// Custom, ID 204
+#base "heroes/hwei.txt"				// Custom, ID 205

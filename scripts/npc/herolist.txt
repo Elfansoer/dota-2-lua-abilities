@@ -97,4 +97,5 @@
 	"npc_dota_hero_darkness"		"1"
 	"npc_dota_hero_aqua"			"1"
 	"npc_dota_hero_megumin"			"1"
+	"npc_dota_hero_hwei"			"1"
 }

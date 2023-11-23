@@ -1382,6 +1382,18 @@
 #base "../vscripts/custom_abilities/megumin_golden_core/megumin_golden_core.txt"
 #base "../vscripts/custom_abilities/megumin_explosion/megumin_explosion.txt"
 
+#base "../vscripts/custom_abilities/hwei_common/hwei_common.txt"
+#base "../vscripts/custom_abilities/hwei_devastating_fire/hwei_devastating_fire.txt"
+#base "../vscripts/custom_abilities/hwei_severing_bolt/hwei_severing_bolt.txt"
+#base "../vscripts/custom_abilities/hwei_molten_fissure/hwei_molten_fissure.txt"
+#base "../vscripts/custom_abilities/hwei_fleeting_current/hwei_fleeting_current.txt"
+#base "../vscripts/custom_abilities/hwei_pool_of_reflection/hwei_pool_of_reflection.txt"
+#base "../vscripts/custom_abilities/hwei_stirring_lights/hwei_stirring_lights.txt"
+#base "../vscripts/custom_abilities/hwei_grim_visage/hwei_grim_visage.txt"
+#base "../vscripts/custom_abilities/hwei_gaze_of_the_abyss/hwei_gaze_of_the_abyss.txt"
+#base "../vscripts/custom_abilities/hwei_crushing_maw/hwei_crushing_maw.txt"
+#base "../vscripts/custom_abilities/hwei_spiraling_despair/hwei_spiraling_despair.txt"
+
 //=================================================================================================================
 // TEST ABILITIES
 //=================================================================================================================
