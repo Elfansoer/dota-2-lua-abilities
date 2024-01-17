@@ -1,9 +1,9 @@
 # dota-2-lua-abilities
 A repository for creating Dota 2 Lua abilities.
 
-# Dota Cosmetics
-Also check out for my custom game to test hero cosmetics: [Dota Alternate: Cosmetics](https://steamcommunity.com/sharedfiles/filedetails/?id=1828497677)
-GitHub code will be released later.
+# Sponsor
+Now you can sponsor this project or request custom hero to be implemented at Patreon:
+https://patreon.com/elfansoer
 
 # Tutorial
 Tutorial is available on this repo's wiki. It is rarely updated, but it will be. Just have a patience.
