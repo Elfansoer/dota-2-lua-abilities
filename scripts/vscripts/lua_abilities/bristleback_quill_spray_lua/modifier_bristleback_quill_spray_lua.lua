@@ -37,6 +37,9 @@ function modifier_bristleback_quill_spray_lua:OnCreated( kv )
 
 		-- set stack
 		self:SetStackCount( 1 )
+
+		-- play effects
+		self:PlayEffects()
 	end
 end
 
@@ -58,6 +61,9 @@ function modifier_bristleback_quill_spray_lua:OnRefresh( kv )
 
 		-- increment stack
 		self:IncrementStackCount()
+
+		-- play effects
+		self:PlayEffects()
 	end
 end
 
@@ -75,10 +81,12 @@ end
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
-function modifier_bristleback_quill_spray_lua:GetEffectName()
-	return "particles/units/heroes/hero_bristleback/bristleback_quill_spray_hit_creep.vpcf"
-end
+function modifier_bristleback_quill_spray_lua:PlayEffects()
+    local particle_cast = "particles/units/heroes/hero_bristleback/bristleback_quill_spray_hit_creep.vpcf"
 
-function modifier_bristleback_quill_spray_lua:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
+    -- Create Particle
+    local effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+
+    ParticleManager:SetParticleControlEnt(effect_cast, 1, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+    self:AddParticle(effect_cast, false, false, -1, false, false)
 end
